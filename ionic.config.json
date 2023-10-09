@@ -1,0 +1,7 @@
+{
+  "name": "shi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

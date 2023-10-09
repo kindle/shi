@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="share-social-outline" color="medium"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <swiper-container *ngIf="slidesJsonData"
+    [loop]="false" navigation="false" scrollbar="false"
+    autoplay="true" speed="500">
+    <!--<swiper-slide>
+      <div style="margin:80px 50px;display: flex;flex-direction: column;justify-content: center;">
+        
+        <div style="font-size: 30px;text-align: center;padding:5px 0;">
+          {{slidesJsonData.title}}
+        </div>
+
+      </div>
+    </swiper-slide>-->
+    <swiper-slide *ngFor="let s of slidesJsonData.slides;index as i">
+      <!--(click)="share(s)" -->
+      <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;"
+      id="open-modal{{i}}">
+        
+        <div *ngFor="let t of s.title" style="font-size: 20px;text-align: center;padding:5px 0;">
+          {{t}}
+        </div>
+
+        <div style="text-align: center;padding:30px 0;">
+          -{{s.sub}}
+        </div>
+
+        <div style="padding:30px 0;">
+          译文：<br>
+          {{s.note}}
+        </div>
+      </div>
+      <ion-modal trigger="open-modal{{i}}" class="modal-fullscreen" [initialBreakpoint]=".75" [breakpoints]="[0, .75]">
+        <ng-template>
+          <app-explore-container title="" para="{{s.title.join('\n')}}" ending="{{s.author}}"></app-explore-container>
+        </ng-template>
+      </ion-modal>
+    </swiper-slide>
+  </swiper-container>
+  
+</ion-content>

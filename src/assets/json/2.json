@@ -1,0 +1,104 @@
+[
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"国庆.jpg",
+        "title_color":"white",
+        "small_title":"哪里值得去",
+        "big_title":"不想人挤人？国庆高低得玩点不一样的！",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "400px",
+        "bg_image":"桥底辣蟹.jpg",
+        "title_color":"white",
+        "small_title":"美味正当时",
+        "big_title":"探寻桥底秘密，香辣蟹等你品鉴",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
+        ],
+        "link":""
+    },
+    {
+        "template": "scroll",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"快来分享甜甜的秋日桂花味道叭!",
+        "big_title":"#秋日限定桂花美食",
+        "desc":"",
+        "items":[
+            {"image":"url('/assets/img/p1.jpg')", "text":"李白", "color":"rgb(255,230,151)", "link":""},
+            {"image":"url('/assets/img/p2.jpg')", "text":"高适", "color":"rgb(255,222,194)", "link":""},
+            {"image":"url('/assets/img/p3.jpg')", "text":"杜甫", "color":"rgb(205,238,240)", "link":""},
+            {"image":"url('/assets/img/p4.jpg')", "text":"裴十二", "color":"rgb(240,209,246)", "link":""}
+        ]
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"定格秋天.jpg",
+        "title_color":"white",
+        "small_title":"一首首诗词，藏着秋日的美好回忆",
+        "big_title":"#定格多彩秋天",
+        "desc":[
+            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
+        ],
+        "link":""
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"投票",
+        "big_title":"王维五言的巅峰之作，你最喜欢哪一句？",
+        "desc":"读王维的诗，就像在欣赏一幅画",
+        "items":[
+            {"text":"行到水穷处，坐看云起时","link":""},
+            {"text":"大漠孤烟直，长河落日圆","link":""},
+            {"text":"明月松间照，清泉石上流","link":""},
+            {"text":"月出惊山鸟，时鸣春涧中","link":""}
+        ]
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"车.jpg",
+        "title_color":"white",
+        "small_title":"轻车熟路",
+        "big_title":"旅游特种兵的高级装备",
+        "desc":[
+            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
+        ],
+        "link":""
+    }
+]

@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><!-- (click)="goback()"-->
+      <ion-back-button defaultHref="home" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{author}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
+  <!--
+  <ion-header collapse="condense" *ngIf="!showFilter">
+    <ion-toolbar>
+      <ion-title size="large" style="padding-left:20px;font-size:28px;">
+        {{author}} 
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>-->
+  <ion-card class="card card-img" *ngIf="!showFilter"
+      (click)="ui.imageviewer(getUrl())"
+      style="background-image: url('{{getUrl()}}');
+      background-size:cover;min-height: 300px;
+      margin-top:0;
+      margin-left:0;
+      margin-right:0;
+      border-radius: 0;
+      ">
+      <ion-card-content>
+        <ion-card-subtitle class="card-text" style="font-size:18px;"></ion-card-subtitle>
+        <ion-card-title class="card-text" style="color:white;">{{author}}</ion-card-title>
+      </ion-card-content>
+  </ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
+      style="padding-left:15px;"
+      [(ngModel)]="searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionCancel)="onSearchCancel()"
+      (ionInput)="onSearchChanged()"
+      cancel-button-text="取消"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-text [name]="authorData.name" [text]="authorData.desc" *ngIf="!showFilter&&authorData"></app-text>
+
+
+  <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
+    <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
+      {{localJsonData.length}}首诗词
+    </ion-text>
+  </ion-list>
+
+  <ion-list *ngIf="displayResult" style="margin-left:5px;">
+    <ion-item *ngFor="let p of displayResult">
+      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+        <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </ion-thumbnail>
+      <ion-label (click)="play(p)">
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.paragraphs[0]}}</p><!--{{p.sample}} - -->
+      </ion-label>
+    </ion-item>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+
+
+
+
+  <div class="placeholder-playbox"></div>
+</ion-content>

@@ -1,0 +1,232 @@
+.slide-container{
+    width: 100%;
+    height: 100%;
+}
+
+.style1{
+
+    writing-mode:vertical-rl;
+    width:100%;
+    height:600px;
+    border:1px solid gray;
+    //margin:20px;
+    display: flex;
+    flex-direction: column;
+    
+    .title{
+        padding-right:20px;
+        padding-left:20px;
+        padding-top:20px;
+        font-size: 30px;
+        letter-spacing: 5px;
+    }
+
+    .content{
+        padding-right:20px;
+        padding-left:20px;
+        padding-top:20px;
+        font-size: 30px;
+        letter-spacing: 5px;
+    }
+
+    .ending{
+        margin-left:20px;
+        margin-right:auto;
+        margin-top:auto;
+        margin-bottom:20px;
+        font-size: 20px;
+        letter-spacing: 5px;
+    }
+}
+
+
+.style2{
+
+    writing-mode:vertical-rl;
+    width:100%;
+    height:600px;
+    border:3px solid darkred;
+    display: flex;
+    flex-direction: column;
+    
+    .title{
+        padding-right:20px;
+        padding-left:20px;
+        padding-top:20px;
+        font-size: 30px;
+        letter-spacing: 5px;
+        border-left:2px solid darkred;
+    }
+
+    .content{
+        padding-right:20px;
+        padding-left:20px;
+        padding-top:20px;
+        font-size: 30px;
+        letter-spacing: 5px;
+        border-left:2px solid darkred;
+    }
+
+    .ending{
+        margin-left:20px;
+        margin-right:auto;
+        margin-top:auto;
+        margin-bottom:20px;
+        font-size: 20px;
+        letter-spacing: 5px;
+    }
+}
+
+
+.style3{
+
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+     
+    .img{
+        height: 250px;
+        background-image: url('/assets/img/city.jpg');
+        background-size: cover;
+    }
+
+    .down{
+        writing-mode:vertical-rl;
+        width:100%;
+        height:350px;
+        border:1px solid gray;
+        display: flex;
+        flex-direction: column;
+
+        .title{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+        }
+    
+        .content{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+        }
+    
+        .ending{
+            padding-top:20px;
+            margin-left:20px;
+            margin-right:auto;
+            margin-top:auto;
+            margin-bottom:20px;
+            font-size: 20px;
+            letter-spacing: 5px;
+        }
+    }
+
+}
+
+.style4{
+
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+     
+    .img{
+        height: 250px;
+        background-image: url('/assets/img/city.jpg');
+        background-size: cover;
+    }
+
+    .down{
+        writing-mode:vertical-rl;
+        width:100%;
+        height:350px;
+        border:1px solid gray;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+/*
+        .title{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+        }
+*/
+    
+        .content{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+        }
+/*
+        .ending{
+            padding-top:20px;
+            margin-left:20px;
+            margin-right:auto;
+            margin-top:auto;
+            margin-bottom:20px;
+            font-size: 20px;
+            letter-spacing: 5px;
+        }
+*/
+    }
+}
+
+.style5{
+
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+        
+    .img{
+        height: 250px;
+        background-image: url('/assets/img/city.jpg');
+        background-size: cover;
+    }
+
+    .down{
+        
+        width:100%;
+        height:350px;
+        border:1px solid gray;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+/*
+        .title{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+        }
+*/
+    
+        .content{
+            padding-right:20px;
+            padding-left:20px;
+            padding-top:20px;
+            font-size: 25px;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+/*
+        .ending{
+            padding-top:20px;
+            margin-left:20px;
+            margin-right:auto;
+            margin-top:auto;
+            margin-bottom:20px;
+            font-size: 20px;
+            letter-spacing: 5px;
+        }
+*/
+    }
+
+}

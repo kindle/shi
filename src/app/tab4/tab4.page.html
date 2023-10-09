@@ -1,0 +1,250 @@
+
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>搜索</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--
+大类：全部db  你的资料库
+
+  作者名 刘德华  ==》 如果是诗人名字，列搜索选项：刘德华  刘德华头像点击进诗人页面，刘德华作品列top10
+  诗词名 忘情水  ==》 列搜索选项：忘情水。exact match 诗词：忘情水。如果exact match再列出作者名字头像
+  诗词名句 给我一杯忘情水
+  描述 伤感   ==》列3个搜索选项 伤感、伤感开头keyword2个 下面是模糊查询结果top10
+  诗单名？ ==》
+
+  
+-->
+
+<ion-content [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" force-overscroll="false">
+  <ion-header [translucent]="true" collapse="condense" *ngIf="!showFilter" style="margin-top:5px;">
+    <ion-toolbar>
+      <ion-title class="tab-title" mode="md">搜索</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header style="position:sticky;top:0;" collapse="fade" [translucent]="true">
+    <ion-toolbar style="padding-top:15px;">
+      <ion-searchbar placeholder="诗人、诗词以及更多内容" show-cancel-button="focus"
+      [(ngModel)]="searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionBlur)="onLoseFocus()"
+      (ionCancel)="onSearchCancel()"
+      (ionInput)="onSearchChanged()"
+      cancel-button-text="取消"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list *ngIf="showFilter">
+    <ion-item *ngIf="isAuthor&&searchText" (click)="data.goToAuthor(searchText)">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 50%;margin:0 2px;" src="/assets/img/poet/{{searchText}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{searchText}}</h2>
+        <p>作者</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="chevron-forward-outline" color="medium"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item *ngFor="let p of displayResult" style="--padding-start:20px;--inner-padding-end:15px;"
+    (click)="play(p)">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.sample}}</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <!--最近搜索
+  <ion-list *ngIf="showFilter">
+    <ion-item *ngFor="let p of displayResult" style="--padding-start:20px;--inner-padding-end:0px;">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.sample}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+-->
+
+  <ion-card *ngIf="!showFilter&&showSubscription">
+    <ion-card-content style="z-index:1;position:fixed;width:100%;padding-top:10px;padding-right:10px;">
+      <ion-buttons style="display:flex;justify-content:center;width:30px;height:30px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" 
+      (click)="closeSub()">
+        <ion-button color="light">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-content>
+    <img src="/assets/img/madison.jpg" />
+    <ion-card-header>
+      <ion-card-title style="text-align: center;font-size:21px;">畅享20万首诗词。全无广告干扰。</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content style="text-align: center;font-weight: light;color:black;">
+      方案将以￥10.00/月的价格自动续期。
+    </ion-card-content>
+
+    <ion-card-content style="text-align: center;display: flex;justify-content: center;">
+      <ion-button color="primary" style="width:80%;">立即体验</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <div *ngIf="!showFilter">
+    <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 0;">
+      <ion-card-title style="font-size: 20px;">类别浏览</ion-card-title>
+    </ion-card-content>
+  </div>
+
+<!--
+  <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
+    <ion-card *ngFor="let topic of this.data.searchTopicData" 
+    style="margin:5px;
+    background-image: url('{{topic.image}}');
+    background-size:auto;"
+    [ngClass]="{'gray-mask': currentLpId === topic.id }"
+    id="{{topic.id}}"
+    (click)="goToTopic(topic.id)"
+    ion-long-press (pressed)="pressed(topic.id)" (longPressed)="active(topic.id)" (pressEnded)="released(topic.id)"
+    >
+      <div>
+        <div style="margin:5px;
+        background-image: url('{{topic.image}}');
+        background-size:auto;"></div>
+      </div>
+      <ion-card-header>
+        <ion-card-title>&nbsp;</ion-card-title>
+        <ion-card-subtitle>&nbsp;</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content style="color:white;padding-left:10px;padding-bottom:10px;"> {{topic.name}} </ion-card-content>
+    </ion-card>
+  </div>
+-->
+  <!--[ngStyle]="{'-webkit-filter':currentLpId === topic.id ? 'blur(1px)' : '' }"-->
+  <!--(longPressed)="active(topic.id)" -->
+  <!---->
+  <div style="display: grid;grid-template-columns: repeat({{ui.isiphone?2:3}}, 1fr);grid-gap:0px;padding:0 10px;"
+  *ngIf="!showFilter">
+    <ion-card *ngFor="let topic of this.data.searchTopicData" 
+    style="margin:5px;
+    background-image: url('{{topic.image}}');
+    background-size:auto;"
+    
+    id="{{topic.id}}"
+    (click)="goToTopic(topic.id)"
+    ion-long-press 
+    (pressed)="pressed(topic.id)" 
+    (longPressed)="active(topic.id)"
+    (pressEnded)="released(topic.id)"
+    >
+      <ion-card-header [ngClass]="{'gray-mask': currentLpId === topic.id }">
+        <ion-card-title>&nbsp;</ion-card-title>
+        <ion-card-subtitle>&nbsp;</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content 
+      [ngClass]="{'gray-mask': currentLpId === topic.id }"
+      style="color:white;padding-left:10px;padding-bottom:10px;"> {{topic.name}} </ion-card-content>
+    </ion-card>
+  </div>
+
+
+
+
+
+<!--
+  <ion-toolbar style="--background: translucent;">
+    <ion-card-content>
+      <ion-card-title>最近查看的诗单</ion-card-title>
+    </ion-card-content>
+  </ion-toolbar>
+  <div class="card-scroll">
+    <ion-card-content style="padding-top:0;padding-bottom: 0;">
+      <div class="card-scroll-box">
+        <div class="card-scroll-item" *ngFor="let c of recentStations">
+          <div class="card-image contain" style="background-image:{{c.src}};background-color:{{c.color}}"></div>
+          <div class="card-text-recent">{{c.name}}</div>
+        </div>
+      </div>
+    </ion-card-content>
+  </div>
+
+  <ion-toolbar style="--background: translucent;">
+    <ion-card-content style="padding-bottom: 10px;">
+      <ion-card-title>最近查看的诗词</ion-card-title>
+    </ion-card-content>
+  </ion-toolbar>
+  <ion-list>
+    <ion-item *ngFor="let song of data.queueData" style="margin-left:10px;" (click)="play(song)">
+      <ion-avatar slot="start">
+        <ion-img src="/assets/icon/icon.png" *ngIf="!song.selected"></ion-img>
+        <ion-icon name="pulse-outline" size="large" *ngIf="song.selected"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{song.name}}</h2>
+        <p>{{song.desc}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img src="/assets/icon/icon.png"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>设置</h2>
+        <p>tab名称等</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img src="/assets/icon/icon.png"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>导入导出</h2>
+        <p>歌单导入导出到其他设备</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img src="/assets/icon/icon.png"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>关于</h2>
+        <p>声明</p>
+      </ion-label>
+    </ion-item>
+    <ion-item (click)="testReset()">
+      <ion-avatar slot="start">
+        <ion-img src="/assets/icon/icon.png"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>test</h2>
+        <p>test</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+-->
+
+
+
+  <div class="placeholder-playbox"></div>
+</ion-content>

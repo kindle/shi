@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>诗词</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="tab-title" mode="md">诗词</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
+      style="padding-left:15px;"
+      cancel-button-text="取消"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list>
+    <ion-item *ngFor="let p of data.hotData[0]" style="--padding-start:20px;--inner-padding-end:0px;">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.sample}}</p>
+      </ion-label>
+      <!--
+      <ion-button fill="clear" slot="end">
+        <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>
+      </ion-button>
+      -->
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

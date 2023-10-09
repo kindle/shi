@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><!-- (click)="goback()"-->
+      <ion-back-button defaultHref="home" [text]="''"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="listdata">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
+      style="padding-left:15px;"
+      [(ngModel)]="searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionCancel)="onSearchCancel()"
+      (ionInput)="onSearchChanged()"
+      cancel-button-text="取消"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="!showFilter"
+   style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;">
+    <ion-card style="margin:auto;width:200px;height:200px;
+      background-image: url({{listdata.image}});background-size:cover;
+      background-repeat: no-repeat;
+      border-radius: 10px;" (click)="ui.imageviewer(listdata.image)">
+    </ion-card>
+  </div>
+  <div *ngIf="!showFilter"
+  style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:10px;margin-bottom:20px;">
+    <ion-text mode="ios" style="font-size:20px; margin:5px;text-align: center;" *ngIf="listdata">
+      {{listdata.name}} 
+    </ion-text>
+    <ion-text mode="ios" color="primary" style="font-size:20px; margin:5px;text-align: center;" *ngIf="listdata">
+      {{listdata.sub}} 
+    </ion-text>
+  </div>
+
+  <app-text name="简介" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
+    
+  <ion-list *ngIf="listdata" style="margin-left:5px;">
+    <ion-item *ngFor="let p of localList">
+      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+        <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
+        <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
+      </ion-thumbnail>
+      
+      <ion-label (click)="play(p)">
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.sample}}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
+  <ion-list  *ngIf="!showFilter"
+  style="margin-top:20px;margin-bottom: 20px;">
+    <ion-text color="medium" *ngIf="listdata" style="margin:20px;">{{listdata.list.length}}首诗词</ion-text>
+  </ion-list>
+    
+  <ion-toolbar *ngIf="!showFilter">
+    <app-author name="此诗单中的诗人" [source]="poets"></app-author>
+  </ion-toolbar>
+
+  <div class="placeholder-playbox"></div>
+</ion-content>

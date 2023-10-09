@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="height: 1px;">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <swiper-container class="slide-container" #swiper
+      style="z-index:0;"
+      [loop]="true" navigation="false" scrollbar="false"
+      pagination="false" space-between="20"
+      autoplay="false" speed="500">
+    <swiper-slide *ngFor="let s of slideStyles" style="padding:20px;" id="print-wrapper-prview{{s.id}}">
+      <div class="style1" *ngIf="s.id==1"
+        style="font-family: {{currentFont}}">
+        <div class="title" *ngIf="title">{{title}}</div>
+        <div class="content" *ngFor="let para of contentArray">{{para}}</div>
+        <div class="ending">{{ending}}</div>
+      </div>
+
+      <div class="style2" *ngIf="s.id==2"
+        style="font-family: {{currentFont}}">
+        <div class="title" *ngIf="title">{{title}}</div>
+        <div class="content" *ngFor="let para of contentArray">{{para}}</div>
+        <div class="ending">{{ending}}</div>
+      </div>
+
+      <div class="style3" *ngIf="s.id==3"
+        style="font-family: {{currentFont}}">
+        <div class="img"></div>
+        <div class="down">
+          <div class="title" *ngIf="title">{{title}}</div>
+          <div class="content" *ngFor="let para of contentArray">{{para}}</div>
+          <div class="ending">{{ending}}</div>
+        </div>
+      </div>
+
+      <div class="style4" *ngIf="s.id==4"
+        style="font-family: {{currentFont}}">
+        <div class="img"></div>
+        <div class="down">
+          <!--<div class="title" *ngIf="title">{{title}}</div>-->
+          <div class="content" *ngFor="let para of contentArray">{{para}}</div>
+          <!--<div class="ending">{{ending}}</div>-->
+        </div>
+      </div>
+
+      <div class="style5" *ngIf="s.id==5"
+        style="font-family: {{currentFont}}">
+        <div class="img"></div>
+        <div class="down">
+          <!--<div class="title" *ngIf="title">{{title}}</div>-->
+          <div class="content" *ngFor="let para of contentArray">{{para}}</div>
+          <!--<div class="ending">{{ending}}</div>-->
+        </div>
+      </div>
+      
+    </swiper-slide>
+  </swiper-container>
+<!--
+  <div style="bottom:0;position: fixed;width: 100%;">
+    <div style="display: flex;flex-direction: column;">
+      <div style="display: flex;justify-content: space-around;width: 100%;height:50px;">
+        <div *ngFor="let p of slideStyles"  style="background-color: antiquewhite;z-index: 10;">
+          <div (click)="goToStyle(p.id)">--{{p.img}}--</div>
+        </div>
+      </div>
+      <div style="display: flex;justify-content: space-around;width: 100%;height:50px;">
+        <div>--T--</div>
+        <div>--Save--</div>
+        <div (click)="share()">--Share--</div>
+      </div>
+    </div>
+  </div>
+-->
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="share()">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-toolbar style="--background: translucent;">
+  <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
+    <ion-buttons>
+      <ion-card-title class="station-text" style="font-weight: bold;">{{name}}</ion-card-title>
+      <ion-button>
+        <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card-content>
+</ion-toolbar>
+<swiper-container style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
+    space-between="10" direction="horizontal"
+    slides-per-view="2.2"
+    centered-slides="false"
+    slides-offset-before="20"
+    slides-offset-after="10"
+    >
+  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="goToAuthor(s)">
+    <div class="card-scroll-item" 
+    style="background-image:url('/assets/img/poet/{{s}}.jpeg');
+    background-size:cover;
+    background-repeat:no-repeat;">
+    </div>
+    <div class="card-text-style" style="text-align: center;">{{s}}</div>
+  </swiper-slide>
+</swiper-container>

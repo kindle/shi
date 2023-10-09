@@ -1,0 +1,22 @@
+<ion-toolbar style="--background: translucent;">
+  <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
+    <ion-buttons>
+      <ion-card-title class="station-text" style="font-weight: bold;">{{name}}</ion-card-title>
+      <ion-button *ngIf="arrow">
+        <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card-content>
+</ion-toolbar>
+<div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
+  <div style="margin:5px;" *ngFor="let s of source" >
+    <div class="card-scroll-item1" 
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="background-image:url('{{s.src}}');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-color:{{s.color}};">
+    </div>
+    <div class="card-text-style">{{s.text}}</div>
+  </div>
+</div>

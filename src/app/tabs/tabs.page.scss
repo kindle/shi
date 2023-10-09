@@ -1,0 +1,101 @@
+
+
+.play-icon-box{
+    margin: 15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //background-color: #e8e8e8;
+    border-radius: 5px;
+}
+
+.music-tab-bar{
+    // Translucent positioning effect
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.modal-fullscreen {
+    .modal-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.ios .modal-fullscreen {
+    .modal-wrapper {
+        top: 26px;
+    }
+}
+
+ion-range {
+    /*
+    --bar-background: #a2d2ff;
+    --bar-background-active: #bde0fe;
+    --bar-height: 8px;
+    --bar-border-radius: 8px;
+    */
+    --knob-background: #3880ff;
+    --pin-background: #3880ff;
+    --pin-color: #fff;
+  }
+
+
+
+
+
+
+
+
+.today-box{
+    background-color:#eeeeee;
+    display:flex;
+    justify-content:center;
+    margin:30px 20px 40px 20px;
+    border-radius:5px;
+}
+.today-card{
+    border-radius: 5px;
+    padding:5px;
+    background-color:white;
+    margin:10px 5px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.today-split{
+    font-size: x-large;
+    font-weight: bold;
+    color:gray;
+    padding-top: 20px;
+}
+
+.history-box{
+    padding:10px 10px;
+}
+
+.his-title {
+    vertical-align:top;
+    font-size: large;
+}
+
+.menu-item{
+    --padding-start:5px;border-radius: 10px;
+}
+
+.menu-text{
+    font-size:18px;margin-left:10px;
+}
+
+.menu-icon{
+    font-size:22px;
+    margin-left:5px;
+}

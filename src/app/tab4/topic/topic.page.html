@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="searchTopicData">{{searchTopicData.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="tab-title" mode="md" *ngIf="searchTopicData">{{searchTopicData.name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<!--
+  <swiper-container class="swiper-container" *ngIf="searchTopicData"
+      style="margin-top:10px;width: 100%;"
+      direction="horizontal"
+      [loop]="false" navigation="false" scrollbar="false"
+      pagination="false" space-between="0" 
+      slides-per-view="1.1" centered-slides="true"
+      autoplay="false" speed="500">
+    <swiper-slide *ngFor="let s of searchTopicData.scroll" (click)="goToList(s.id)">
+      <div style="min-height: 300px;">
+        <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:5px;">
+          <ion-card-title class="station-text">{{s.text}}诗单</ion-card-title>
+          <ion-card-title class="station-type">Reddah 诗单</ion-card-title>
+        </ion-card-content>
+
+        <ion-card style="border-radius: 10px;margin-left:5px;margin-right:5px;">
+          <div class="station-bg-title">{{s.alias}}</div>
+          <ion-card-content class="station-content" 
+            style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
+            {{s.alias}}
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+      
+    </swiper-slide>
+  </swiper-container>
+-->
+
+
+
+  <app-big [source]="searchTopicData.scroll"></app-big>
+
+  <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
+  <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
+
+  <div *ngFor="let list of searchTopicData.list;">
+    <app-tile [name]="list.name" [source]="list.data"></app-tile>
+  </div>
+
+
+  <app-text [name]="searchTopicData.desctitle" [text]="searchTopicData.desc">
+  </app-text>
+  
+  <div class="placeholder-playbox"></div>
+
+</ion-content>

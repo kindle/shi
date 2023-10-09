@@ -1,0 +1,35 @@
+<swiper-container #bigswiper
+    style="margin-top:10px;width: 100%;"
+    [loop]="false" navigation="false" scrollbar="false"
+    pagination="false" space-between="10" 
+    slides-per-view="1.1" centered-slides="false"
+    slides-offset-before="20"
+    slides-offset-after="20"
+    autoplay="false" speed="500">
+    <swiper-slide *ngFor="let s of source" (click)="goToListBy(s)">
+      <div style="min-height: 300px;">
+        <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:0;">
+          <ion-card-title class="station-text" style="margin-bottom:5px;">{{s.alias}}</ion-card-title>
+          <ion-card-title class="station-type">{{s.text}}</ion-card-title>
+        </ion-card-content>
+<!--background-color: rgba(0,0,0,0.5)-->
+        <ion-card style="border-radius: 10px;margin-left:0px;margin-right:0px;margin-top:15px;margin-bottom:15px;">
+          <div class="station-bg-title">{{s.alias}}</div>
+          <ion-card-content class="station-content" style="z-index:1;" *ngIf="s.image"
+            style="background-image: url('{{s.image}}');background-size: cover;background-repeat: no-repeat;">
+            
+            <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+            ;font-size:13px;width:100%;" *ngIf="s.desc"
+            >{{s.desc}}</div>
+          </ion-card-content>
+          <ion-card-content class="station-content" style="z-index:1;" *ngIf="!s.image"
+            style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
+            
+            <div style="padding:10px;z-index: 2;background-image: linear-gradient(to up,lightgray,white, white)">{{s.alias}}特别长的说明文字特别长的说明文字特别长的说明文字特别长的说明文字</div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      
+    </swiper-slide>
+</swiper-container>

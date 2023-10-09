@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true" style="--background: black;margin:0;padding:0;">
+  <swiper-container zoom="true" style="width: 100%;height:100%;background-color: black;">
+    <swiper-slide>
+      <div class="swiper-zoom-container" (click)="close()">
+        <img src="{{url}}" (click)="imageClick($event)"/>
+      </div>
+    </swiper-slide>
+</swiper-container>
+</ion-content>

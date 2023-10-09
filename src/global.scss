@@ -1,0 +1,57 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+.placeholder-playbox{
+    // height:120px;
+     height: calc((var(--ion-safe-area-bottom) + 120px))
+ }
+
+
+@font-face{
+    font-family: wenyuefangsong;
+    src: url('/assets/font/wenyuefangsong.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.list-divider-top ion-item::before {
+    border-top: 1px solid black;
+    //var(--ion-item-divider-color);
+    top: 0;
+    transform: translateY(0);
+}
+  
+.custom-divider {
+    border-top: 1px solid var(--ion-item-divider-color); /* Set the desired divider color */
+    margin-top: 0; /* Adjust the margin as needed */
+    padding-top: 8px; /* Adjust the padding as needed */
+}
+
+
+.tab-title{
+    padding-left:15px;font-size:28px;
+}

@@ -1,0 +1,10 @@
+大类->诗单->诗
+topic->list->poem
+
+大类可以包含很多诗单组合，组织形式可以是个广播
+举例：
+浪漫->浪漫诗单->诗
+初唐四杰->1,2,3,4=>他们的诗
+
+list:{name,image,data:{desc,list:[{id,image,name,sample}...]}}
+json example: list:{浪漫,image,data:{李白blahblah...,list:[{1,image,月下独酌,举杯邀明月对影成三人}...]}}
