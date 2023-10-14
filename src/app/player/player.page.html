@@ -1,0 +1,137 @@
+<div>
+  <ion-list>
+    <ion-item lines="none" *ngIf="bigimg"
+      style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
+      <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
+        <img style="min-width: 40px;border-radius: 10px;" src="/assets/img/poet/{{data.currentauthor}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </div>
+    </ion-item>
+    <ion-item lines="none" 
+    style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+      <div class="play-icon-box" *ngIf="!bigimg" (click)="toggleView()">
+        <img style="min-width: 40px;" src="/assets/img/poet/{{data.currentauthor}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </div>
+      <ion-label>
+        <h2>{{data.currenttitle}}</h2>
+        <p>{{data.currentauthor}}</p>
+      </ion-label>
+      <ion-icon slot="end" name="ellipsis-horizontal" color="medium"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+
+  <ion-list style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
+          
+    
+    <ion-item lines="none" *ngIf="data.qlyric.length<9&&!bigimg">
+      <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+        {{data.currenttitle}}
+      </div>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="data.qlyric.length<9&&!bigimg">
+      <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+        {{data.currentauthor}}
+      </div>
+    </ion-item>
+
+    <ion-item *ngFor="let text of data.qlyric;index as i" lines="none">
+      <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+      [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
+        {{text}}
+      </div>
+    </ion-item>
+    
+  </ion-list>
+
+  <div class="placeholder-playbox"></div>
+
+
+
+
+  <ion-list style="margin-top:0px;z-index: 1;bottom:0;position: fixed;width: 100%;
+    background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
+    -webkit-backdrop-filter:saturate(210%) blur(20px);
+    backdrop-filter:saturate(210%) blur(20px);">
+
+    
+
+
+    <!--00:00   ***hide   00:00-->
+    <ion-item lines="none" style="--background:transparent" *ngIf="false">
+      <div style="display: flex;justify-content: space-around;flex-direction: column;width:100%;">
+        <ion-range min="0" step="1" [max]="data.duration" [value]="data.currentTime"
+          style="height:30px;margin-bottom:0px;"
+          color="primary"
+          (ionInput)="test($event)"
+          (ionChange)="onChange($event)"
+          (ionKnobMoveStart)="onDragStart($event)" 
+          (ionKnobMoveEnd)="onDragEnd($event)">
+        </ion-range>
+        <div style="width:100%;">
+          <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="!dragWhere">{{formatTime(data.currentTime)}}</ion-text>
+          <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="dragWhere">{{formatTime(dragvalue)}}</ion-text>
+          <div style="font-size: 18px;width: 100%;text-align: center;font-size:13px;">{{data.displaySongName}}</div>
+          <ion-text color="medium" style="margin-right:0px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.audio.duration)}}</ion-text>
+          
+          <!--<ion-text color="medium" style="margin-right:20px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.leftTime)}}</ion-text>-->
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item lines="none" style="--background:transparent" *ngIf="false">
+      <!--prev   play   next-->
+      <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
+        <div style="display: flex;justify-content: space-around;margin-left:20px;margin-right:20px;">
+          <ion-buttons>
+            <ion-button [disabled]="isFirstPlaying()" (click)="prev()" style="font-size: 30px;">
+              <ion-icon name="play-back"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons>
+            <ion-button  size="large">
+              <ion-icon name="pause-outline" style="font-size: 60px;" *ngIf="true"></ion-icon>
+              <ion-icon name="play" style="font-size: 60px;" *ngIf="false"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons>
+            <ion-button [disabled]="isLastPlaying()" (click)="next()" style="font-size: 30px;">
+              <ion-icon name="play-forward"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+    </ion-item>
+
+    <!--volume ***hide-->
+    <ion-item lines="none" style="--background:transparent" *ngIf="false">
+      <ion-range min="0" step="1" 
+        style="height: 30px;"
+        color="primary">
+        <ion-icon slot="start" name="volume-off" color="medium" style="font-size: 15px;"></ion-icon>
+        <ion-icon slot="end" name="volume-high" color="medium" style="font-size: 15px;"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+    <!--text    list-->
+    <ion-item lines="none" style="--background:transparent">
+      <div style="display: flex;justify-content: space-around;width:100%;height: 60px;">
+        <ion-buttons>
+          <ion-button [disabled]="isFirstPlaying()" (click)="toggleView()" size="large">
+            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <div>&nbsp;</div>
+        <ion-buttons>
+          <ion-button [disabled]="isLastPlaying()" (click)="next()" size="large">
+            <ion-icon name="list-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-item>
+    
+
+    <div style="height:calc(env(safe-area-inset-bottom));"></div>
+  </ion-list>
+</div>

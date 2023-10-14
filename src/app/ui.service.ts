@@ -4,9 +4,10 @@ import { Animation, StatusBar, Style } from '@capacitor/status-bar';
 //import { Filesystem, Directory } from '@capacitor/filesystem';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { Capacitor } from '@capacitor/core';
-
+import { Location } from '@angular/common'
 import { AnimationController, ModalController } from '@ionic/angular';
 import { ImageViewerPage } from 'src/app/image-viewer/image-viewer.page';
+import { PlayerPage } from './player/player.page';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class UiService {
 
     private animationCtrl: AnimationController,
     private modalController: ModalController,
+    private location: Location
   ) { 
     if(this.platform.is('ios')){
       this.isIos =true;
@@ -113,6 +115,24 @@ export class UiService {
           showBackdrop: true,
           enterAnimation: this.enterAnimation,
           leaveAnimation: this.leaveAnimation,
+          presentingElement: await this.modalController.getTop(),
+      });
+
+      return await modal.present();
+  }
+
+  async player() {
+      const modal = await this.modalController.create({
+          component: PlayerPage,
+          componentProps: {
+          },
+          cssClass: 'modal-fullscreen',
+          keyboardClose: true,
+          showBackdrop: true,
+          breakpoints: [0, 0.5, 1],
+          initialBreakpoint: 0.5,
+          //enterAnimation: this.enterAnimation,
+          //leaveAnimation: this.leaveAnimation,
           presentingElement: await this.modalController.getTop(),
       });
 
@@ -210,6 +230,11 @@ export class UiService {
 
     var blob = new Blob(byteArrays, { type: contentType });
     return blob;
+  }
+
+
+  goback(){
+    this.location.back();
   }
 
 }

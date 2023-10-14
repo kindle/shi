@@ -17,8 +17,6 @@ export class TileComponent {
     public data: DataService,
     private router: Router,
   ){
-
-    console.log(`tile:${this.name}:${this.data.JsonData.length}`)
   }
 
 

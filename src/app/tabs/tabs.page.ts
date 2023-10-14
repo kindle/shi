@@ -5,13 +5,7 @@ import { RangeCustomEvent } from '@ionic/core';
 import { DataService } from '../data.service';
 import { UiService } from '../ui.service';
 
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-import * as download from 'downloadjs'
-
 import { Solar } from 'lunar-typescript';
-import { ModalEventService } from '../modal-event.service';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -20,22 +14,12 @@ import { ModalController } from '@ionic/angular';
 })
 export class TabsPage {
 
-  @ViewChild('modal') modal: any; 
-  async openModal() {
-    await this.modal.present();
-  }
 
   constructor(
     private router: Router,
     public data: DataService,
     public ui: UiService,
-    private modalEventService: ModalEventService,
-    private modalController: ModalController,
   ) {
-
-    this.modalEventService.modalOpen$.subscribe(() => {
-      this.openModal();
-    });
 
     this.data.initTodayText();
     
@@ -78,48 +62,7 @@ export class TabsPage {
     */
   }
   
-
-  goPlay(){
-    this.router.navigate(['/play'], {
-      queryParams: {
-        key:""
-      }
-    });
-  }
-
-  download(){
-    const historyBlock:any = document.getElementById("TodaysCard");
-    htmlToImage.toPng(historyBlock)
-    .then(function (dataUrl) {
-      download(dataUrl, 'shi.png');
-    });
-  }
-
-  share(){
-    const historyBlock:any = document.getElementById("TodaysCard");
-    /*
-    const options = { 
-      background: "white", 
-      width: historyBlock.clientWidth, 
-      height: historyBlock.clientHeight 
-    };*/
-    
-    htmlToImage.toPng(historyBlock).then((hisDataUrl:any) => {
-      this.ui.share(hisDataUrl);
-    });
-  }
-
-  prev(){
-    this.data.prevTodayText();
-  }
-
-  next(){
-    this.data.nextTodayText();
-  }
-
-  isFirstPlaying(){}
-  isLastPlaying(){}
-
+  next(){}
   
   lastIndex: number = 0;
   

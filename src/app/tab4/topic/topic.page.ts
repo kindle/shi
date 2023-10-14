@@ -2,21 +2,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../data.service';
 import { IonModal } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UiService } from 'src/app/ui.service';
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.page.html',
   styleUrls: ['./topic.page.scss'],
 })
-export class TopicPage implements OnInit {
+export class TopicPage {
 
   searchTopicData:any;
   
   constructor(
     public data : DataService,
+    public ui: UiService,
     private router: Router,
   ) {
-    console.log("tab4/topic:"+this.data.JsonData.length)
     this.searchTopicData = this.data.searchTopicData.filter((d:any)=>d.id==this.data.currentTopicId)[0];
   }
 
@@ -84,9 +85,6 @@ export class TopicPage implements OnInit {
       queryParams: {}
     });
   }
-
-  
-  ngOnInit(): void {}
 
   @ViewChild('modal', { static: true }) modal: IonModal|any;
   closeModal() {

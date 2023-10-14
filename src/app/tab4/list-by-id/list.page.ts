@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../data.service';
-import { ModalEventService } from 'src/app/modal-event.service';
 import { UiService } from 'src/app/ui.service';
 
 @Component({
@@ -38,10 +37,9 @@ export class ListPage {
 
   constructor(
     public data: DataService,
-    private modalEventService: ModalEventService,
     public ui: UiService,
   ) { 
-    this.listdata = this.data.topicListData.filter((e:any)=>e.id==this.data.currentListId)[0];
+    this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.data.currentListId)[0];
     this.localList = this.listdata.list;
     console.log(this.listdata)
     // Convert to Set to remove duplicates
@@ -50,23 +48,5 @@ export class ListPage {
     this.poets = [...authorSet]; 
   }
 
-
-  play(p:any){
-    
-    let poem = this.data.JsonData
-      .filter((shici:any)=>
-        shici.id===p.pid
-      )[0];
-    
-    console.log(poem)
-    this.data.qlyric = poem.paragraphs;
-
-    this.data.currenttitle = poem.title;
-    this.data.currentauthor = poem.author;
-
-
-
-    this.modalEventService.openModal();
-  }
   
 }

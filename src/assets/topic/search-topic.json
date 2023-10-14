@@ -32,10 +32,12 @@
         ]
       },
       {"name":"趣味诗单", "data": [
+        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
+        {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
         {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
-        {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"},
-        {"id":5,"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"美到窒息的小众诗词，99%的人没读过","desc":"","color":"rgb(98,166,243)"},
-        {"id":6,"src":"/assets/img/齐白石虫4.jpg","display":"cover","text":"因为一句诗，想去一座城","desc":"","color":"rgb(232,188,78)"}
+        {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+        
         ]
       },
       {"name":"风格诗单", "data": [
@@ -95,7 +97,7 @@
     "id":102,
     "name":"旅行",
     "image":"/assets/img/smart.jpg",
-    "desctitle":"旅行中的诗词",
+    "desctitle":"智者乐水，仁者乐山",
     "desc":"名山大川",
     "scroll":[
         {"id":3001, "alias":"诗词之源","text":"蔬菜","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", "image": 

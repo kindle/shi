@@ -15,6 +15,7 @@ import { catchError, tap } from 'rxjs';
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { Router } from '@angular/router';
+import { ModalEventService } from './modal-event.service';
 /*
 Preferences.set({
       key: this.PHOTO_STORAGE,
@@ -49,7 +50,7 @@ export class DataService {
 
   searchTopicData:any;
   currentTopicId = 0;
-  topicListData:any;
+  poemListData:any;
   currentListId = 0;
   currentAuthor = "";
   currentViewType = ViewType.Author;
@@ -87,7 +88,6 @@ export class DataService {
     for(let i=0;i<=57;i++){
       this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗");
     }
-    this.getObjects(`assets/db/全唐诗/唐诗三百首.json`,"唐诗三百首");
     for(let i=0;i<=254;i++){
       this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗");
     }
@@ -112,7 +112,29 @@ export class DataService {
       }
     });*/
 
+    //load 诗单
+    this.loadPoemList();
+
     this.jsonDataLoaded = true;
+  }
+
+  loadPoemList(){
+    //load all the lists
+    this.getData(`/assets/topic/list-normal.json`).subscribe(data=>{
+      //经典传统 诗单
+      this.poemListData = data;
+      this.getData(`/assets/topic/list-idea.json`).subscribe(ideaData=>{
+        //自定义花样诗单 id 1000 开头
+        this.poemListData =this.poemListData.concat(ideaData);
+        this.getData(`/assets/topic/list-holiday.json`).subscribe(holidayData=>{
+          //自定义节日诗单 id 2000 开头
+          this.poemListData =this.poemListData.concat(holidayData);
+          this.getData(`/assets/topic/list-food.json`).subscribe(foodData=>{
+            this.poemListData =this.poemListData.concat(foodData);
+          });
+        });
+      });
+    });
   }
 
   getData(json:any){
@@ -132,7 +154,8 @@ export class DataService {
   azureData:any;
   async loadData(){
 
-    let n = this.getRandom(1,2);
+    //let n = this.getRandom(1,3);
+    let n=3;
     this.http.get<any>(`/assets/json/${n}.json`).subscribe(result=>{
       this.jsonData = result;
     });
@@ -231,6 +254,8 @@ export class DataService {
     private ui: UiService,
     platform: Platform,
     private router: Router,
+
+    private modalEventService: ModalEventService,
     
   ){
     this.platform = platform;
@@ -270,8 +295,9 @@ export class DataService {
   /*--play queue start--*/
   audio:any;
 
-  duration:any;
+  duration=0;
   currentTime:any;
+  leftTime:any;
   
 
   getTodayHistory(month:any){
@@ -721,5 +747,30 @@ export class DataService {
       queryParams: {
       }
     });
+  }
+
+  play(){
+    if(this.qlyric&&this.currenttitle&&this.currentauthor)
+      this.ui.player();
+  }
+  
+  playbyid(pid:any=null){
+    if(pid){
+      let poem = this.JsonData
+        .filter((shici:any)=>
+          shici.id===pid
+        )[0];
+
+      this.playobj(poem);
+    }
+  }
+
+  playobj(poem:any){
+    if(poem){
+      this.qlyric = poem.paragraphs;
+      this.currenttitle = poem.title;
+      this.currentauthor = poem.author;
+      this.ui.player();
+    }
   }
 }

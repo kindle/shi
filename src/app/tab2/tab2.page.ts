@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { ModalEventService } from '../modal-event.service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +14,7 @@ export class Tab2Page {
   musicStations = [
     //{alias:"唐诗三百首",text:"唐诗三百首",color:"rgb(215,86,137)",light:"rgb(215,86,137,60%)"},
     //{alias:"宋词三百首",text:"宋词三百首",color:"rgb(231,112,103)",light:"rgb(231,112,103,60%)"},
-    {src:"assets/img/smart.jpg", alias:"美到窒息的小众诗词，99%的人没读过",text:"山水",color:"rgb(113,203,212)",light:"rgb(113,203,212,60%)"},
+    {src:"assets/img/smart.jpg", alias:"山水",text:"山水",color:"rgb(113,203,212)",light:"rgb(113,203,212,60%)"},
     {src:"assets/img/smart.jpg", alias:"田园",text:"田园",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},
     {src:"assets/img/smart.jpg", alias:"送别",text:"送别",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
     {src:"assets/img/smart.jpg", alias:"爱情",text:"爱情",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
@@ -145,7 +144,6 @@ export class Tab2Page {
   constructor(
     public data : DataService,
     private router: Router,
-    private modalEventService: ModalEventService,
   ) {
 
   }
@@ -159,22 +157,5 @@ export class Tab2Page {
   @ViewChild('modal', { static: true }) modal: IonModal|any;
   closeModal() {
     this.modal.dismiss();
-  }
-
-  play(p:any){
-    let poem = this.data.JsonData
-      .filter((shici:any)=>
-        shici.id===p.pid
-      )[0];
-    
-    console.log(poem)
-    this.data.qlyric = poem.paragraphs;
-
-    this.data.currenttitle = poem.title;
-    this.data.currentauthor = poem.author;
-
-
-
-    this.modalEventService.openModal();
   }
 }

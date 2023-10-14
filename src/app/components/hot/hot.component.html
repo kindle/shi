@@ -21,7 +21,7 @@
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
           <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </ion-thumbnail>
-        <ion-label (click)="play(p)">
+        <ion-label (click)="data.playbyid(p.pid)">
           <h2>{{p.title}} - {{p.author}}</h2>
           <p>{{p.sample}}</p>
         </ion-label>

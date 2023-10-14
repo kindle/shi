@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'article-viewer',
     loadChildren: () => import('./article-viewer/article-viewer.module').then( m => m.ArticleViewerPageModule)
   },
+  {
+    path: 'player',
+    loadChildren: () => import('./player/player.module').then( m => m.PlayerPageModule)
+  },
 ];
 @NgModule({
   imports: [

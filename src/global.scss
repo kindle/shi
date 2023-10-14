@@ -55,3 +55,13 @@
 .tab-title{
     padding-left:15px;font-size:28px;
 }
+
+/* Adjust the opacity of the knob */
+ion-range::part(knob) {
+    opacity: 0; /* You can adjust the opacity value as needed */
+}
+
+/* Add a safe bottom margin */
+.safe-area-bottom {
+    margin-bottom: env(safe-area-inset-bottom);
+}

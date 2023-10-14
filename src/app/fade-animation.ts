@@ -1,7 +1,7 @@
 import { Animation, createAnimation } from '@ionic/angular';
 
 export const enterAnimation = (baseEl: HTMLElement, opts?: any): Animation|any => {
-    const DURATION = 1000;
+    const DURATION = 300;
 
     if (opts.direction === 'forward') {
         // Fade in the next page

@@ -51,7 +51,7 @@
       </ion-button>
     </ion-item>
     <ion-item *ngFor="let p of displayResult" style="--padding-start:20px;--inner-padding-end:15px;"
-    (click)="play(p)">
+    (click)="data.playobj(p)">
       <ion-thumbnail slot="start">
         <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>

@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 import { DataService, ViewType } from 'src/app/data.service';
-import { ModalEventService } from 'src/app/modal-event.service';
 import { UiService } from 'src/app/ui.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class PoetPage {
 
   constructor(
     public data: DataService,
-    private modalEventService: ModalEventService,
     public ui: UiService,
     private router: Router,
   ) { 
@@ -51,14 +49,6 @@ export class PoetPage {
     {
       return "";
     }
-  }
-
-  play(p:any){
-      this.data.qlyric = p.paragraphs;
-      this.data.currenttitle = p.title;
-      this.data.currentauthor = p.author;
-
-      this.modalEventService.openModal();
   }
 
 

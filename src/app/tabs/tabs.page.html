@@ -7,7 +7,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-menu-toggle>
   </ion-buttons>
 </ion-card-content>
-<ion-menu type="reveal" content-id="main-content">
+<ion-menu type="reveal" content-id="main-content" ><!--[disabled]="ui.isiphone"-->
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>诗和远方</ion-title>
@@ -123,104 +123,15 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
 
 <ion-tabs id="main-content">
   <div class="music-tab-bar" style="display: flex;flex-direction: column;">
-  
-      <ion-modal class="modal-fullscreen" #modal trigger="open-modal" [initialBreakpoint]=".5" [breakpoints]="[0, .5, .75, 1]">
-        <ng-template>
-            <ion-list id="TodaysCard" style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:30px;">
-              
-              <ion-item lines="none">
-                <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
-                  {{data.currenttitle}}
-                </div>
-              </ion-item>
-
-              <ion-item lines="none">
-                <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
-                  {{data.currentauthor}}
-                </div>
-              </ion-item>
-
-              <ion-item *ngFor="let text of data.qlyric;index as i" lines="none">
-                <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
-                  {{text}}
-                </div>
-              </ion-item>
-              
-            </ion-list>
-
-
-
-
-
-            <ion-list style="margin-top:0px;z-index: 1;bottom:0;position: fixed;width: 100%;">
-
-              <!--
-              <ion-item lines="none">
-                <ion-text slot="start" style="margin-left:20px;" *ngIf="!dragWhere">{{formatTime(data.currentTime)}}</ion-text>
-                <ion-text slot="start" style="margin-left:20px;" *ngIf="dragWhere">{{formatTime(dragvalue)}}</ion-text>
-                <div style="font-size: 18px;width: 100%;text-align: center;">{{data.displaySongName}}</div>
-                <ion-text slot="end" style="margin-right:20px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.audio.duration)}}</ion-text>
-              </ion-item>
-
-              
-              <ion-item lines="none">
-                <ion-range min="0" [max]="data.duration" step="1" [value]="data.currentTime"
-                  style="margin:10px 20px;"
-                  color="primary"
-                  (ionInput)="test($event)"
-                  (ionChange)="onChange($event)"
-                  (ionKnobMoveStart)="onDragStart($event)" 
-                  (ionKnobMoveEnd)="onDragEnd($event)">
-                </ion-range>
-              </ion-item>-->
-          
-
-              <div style="display: flex;justify-content: space-around;height:120px;">
-                <!--
-                <ion-buttons>
-                  <ion-button [disabled]="isFirstPlaying()" (click)="previous()" size="large">
-                    <ion-icon name="play-back"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-                <ion-buttons>
-                  <ion-button (click)="start()" size="large">
-                    <ion-icon name="share-outline" size="large"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-                <ion-buttons>
-                  <ion-button [disabled]="isLastPlaying()" (click)="next()" size="large">
-                    <ion-icon name="play-forward"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-                -->
-                <ion-buttons>
-                  <ion-button [disabled]="isFirstPlaying()" (click)="prev()" size="large">
-                    <ion-icon name="play-back-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-                <ion-buttons>
-                  <ion-button [disabled]="isLastPlaying()" (click)="next()" size="large">
-                    <ion-icon name="play-forward-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </div>
-
-            </ion-list>
-
-        </ng-template>
-      </ion-modal>
-
-      <!--<ion-toolbar style="--background:rgba(255,255,255,0.8);" id="open-modal" expand="block">-->
-      <!--<ion-toolbar style="--background:rgba(255,255,255,0.8);" (click)="goPlay()">-->
-      <ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">
-        <ion-buttons slot="start" id="open-modal" expand="block" style="width:100%;">
+      <!--<ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">-->
+      <ion-toolbar style="--background:rgba(255,255,255,0.8);">
+        <ion-buttons slot="start" expand="block" style="width:100%;" (click)="data.play()">
           <div class="play-icon-box">
-            <ion-icon name="leaf-outline" style="font-size:25px;"></ion-icon>
+            <img style="min-width: 40px;" src="/assets/img/poet/{{data.currentauthor}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
           </div>
-          <ion-card-title style="font-size:20px;width:100%;">今日诗词</ion-card-title>
+          <ion-card-title style="font-size:18px;width:100%;font-weight: normal;">{{data.currenttitle}}</ion-card-title>
         </ion-buttons>
         <ion-buttons slot="end" style="display:none;">
-          
           <ion-button [disabled]="false" (click)="next()">
             <ion-icon name="play-forward" color="dark"></ion-icon>
           </ion-button>

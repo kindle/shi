@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-import { ModalEventService } from '../modal-event.service';
 import { UiService } from '../ui.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class Tab4Page implements OnInit {
     public data: DataService,
     public ui: UiService,
     private router: Router,
-    private modalEventService: ModalEventService,
   ) { 
     this.showSubscription = this.data.showSubscription;
     this.localJsonData = this.data.JsonData;
@@ -33,24 +31,6 @@ export class Tab4Page implements OnInit {
       this.data.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
         this.data.searchTopicData = data;
       });
-
-      //load all the lists
-      this.data.getData(`/assets/topic/list-normal.json`).subscribe(data=>{
-        //经典传统 诗单
-        this.data.topicListData = data;
-        this.data.getData(`/assets/topic/list-idea.json`).subscribe(ideaData=>{
-          //自定义花样诗单 id 1000 开头
-          this.data.topicListData =this.data.topicListData.concat(ideaData);
-          this.data.getData(`/assets/topic/list-holiday.json`).subscribe(holidayData=>{
-            //自定义节日诗单 id 2000 开头
-            this.data.topicListData =this.data.topicListData.concat(holidayData);
-            this.data.getData(`/assets/topic/list-food.json`).subscribe(foodData=>{
-              this.data.topicListData =this.data.topicListData.concat(foodData);
-            });
-          });
-        });
-      });
-
     }
   }
 
@@ -162,16 +142,7 @@ export class Tab4Page implements OnInit {
     this.displayResult = this.displayResult.concat(
       this.searchResult.splice(0,Math.min(this.searchResultCount,10))
     );
-  }
-
-
-
-  play(poem:any){
-    this.data.qlyric = poem.paragraphs;
-    this.data.currenttitle = poem.title;
-    this.data.currentauthor = poem.author;
-
-    this.modalEventService.openModal();
+    console.log(this.displayResult)
   }
 
 }

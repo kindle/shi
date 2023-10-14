@@ -1,7 +1,6 @@
-import { Component, ElementRef, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { Location } from '@angular/common';
-import { ModalController } from '@ionic/angular';
 import { UiService } from 'src/app/ui.service';
 
 @Component({
@@ -10,42 +9,41 @@ import { UiService } from 'src/app/ui.service';
   styleUrls: ['./article-viewer.page.scss'],
 })
 export class ArticleViewerPage {
-  item:any;
   constructor(
     public data: DataService,
-    private modalController: ModalController,
     private ui: UiService,
-    private elementRef: ElementRef, 
-    private ngZone: NgZone,
-    private location: Location
-  ) { 
-    this.item = this.data.currentArticle;
-    this.defaultBgHeight = this.item.min_height;
-  }
+    private location: Location,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   goback(){
    this.location.back();
-   //this.modalController.dismiss();
   }
 
 
   ionViewWillEnter() {
     this.ui.hideStatusBar();
+
+    this.defaultBgHeight = this.data.currentArticle.min_height;
   }
 
   ionViewWillLeave() {
     this.ui.showStatusBar();
   }
 
-  defaultBgHeight:string;
+
+  defaultBgHeight:string|any;
   onScroll(event:any){
     let offset = event.detail.scrollTop;
 
     if(offset<=0){
-      this.defaultBgHeight = (this.item.min_height.replace("px","") - offset)+"px";
+      this.defaultBgHeight = (this.data.currentArticle.min_height.replace("px","") - offset)+"px";
     }else{
-      this.defaultBgHeight = this.item.min_height;
+      this.defaultBgHeight = this.data.currentArticle.min_height;
     }
+
+    //bug fix for navigating back from other pages
+    this.cdRef.detectChanges();
   }
 
 }

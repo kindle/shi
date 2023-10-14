@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start"><!-- (click)="goback()"-->
-      <ion-back-button defaultHref="home" [text]="''"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     
   </ion-toolbar>
@@ -48,7 +48,7 @@
         <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
       </ion-thumbnail>
       
-      <ion-label (click)="play(p)">
+      <ion-label (click)="data.playbyid(p.pid)">
         <h2>{{p.title}} - {{p.author}}</h2>
         <p>{{p.sample}}</p>
       </ion-label>

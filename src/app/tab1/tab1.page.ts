@@ -13,16 +13,13 @@ import { UiService } from '../ui.service';
 export class Tab1Page {
 
   goToArticle(item:any){
+    this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
+
     this.data.currentArticle = item;
-    
     this.router.navigate(['article-viewer'], {
       queryParams: {
       }
     });
-    
-
-    //modal
-    //this.ui.articleviewer();
   }
   
 

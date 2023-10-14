@@ -88,7 +88,7 @@
 
 
 
-      <ion-card class="card card-img" id="modal-text{{i}}na" ion-card-shrink
+      <ion-card class="card card-img" ion-card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='text'"
         style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
@@ -97,37 +97,7 @@
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
         </ion-card-content>
 
-        <ion-modal trigger="modal-text{{i}}" #modal [initialBreakpoint]="1" [breakpoints]="[0, 1]">
-          <ng-template>
-            <ion-content class="no-padding">
-              <div class="card card-gif" style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
-                
-                <ion-card-content style="z-index:1;position:fixed;width:100%;">
-                  <ion-buttons style="display:flex;justify-content:center;width:35px;height:35px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" (click)="closeModal(i)">
-                    <ion-button color="light">
-                      <ion-icon name="close-outline"></ion-icon>
-                    </ion-button>
-                  </ion-buttons>
-                </ion-card-content>
-
-                <ion-card-content style="z-index:0;">
-                  <ion-card-subtitle style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-                  <ion-card-title style="color:{{item.title_color}};font-size:25px;">{{item.big_title}}</ion-card-title>
-                </ion-card-content>
-              
-                <ion-card-content>
-                  
-                </ion-card-content>
-              </div>
-              <div style="padding:10px;">
-                <div *ngFor="let it of item.desc">
-                  <p style="font-size: 18px;" *ngIf="it.type=='text'">{{it.value}}</p>
-                  <img  *ngIf="it.type=='image'" src="/assets/img/{{it.value}}">
-                </div>
-              </div>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+        
       </ion-card>
 
 
