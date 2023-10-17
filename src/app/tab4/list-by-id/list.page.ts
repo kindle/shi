@@ -38,10 +38,11 @@ export class ListPage {
   constructor(
     public data: DataService,
     public ui: UiService,
-  ) { 
+  ) { }
+
+  ionViewWillEnter() {
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.data.currentListId)[0];
     this.localList = this.listdata.list;
-    console.log(this.listdata)
     // Convert to Set to remove duplicates
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 
     // Convert back to an array

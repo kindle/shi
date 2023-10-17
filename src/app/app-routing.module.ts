@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'player',
     loadChildren: () => import('./player/player.module').then( m => m.PlayerPageModule)
   },
+  {
+    path: 'tab5',
+    loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -20,9 +20,13 @@ export class PoetPage {
     public ui: UiService,
     private router: Router,
   ) { 
+    
+  }
+
+
+  ionViewWillEnter() {
     this.author = this.data.currentAuthor;
     if(this.data.currentViewType == ViewType.Author){
-      console.log('its author')
       this.localJsonData = this.data.JsonData
         .filter((shici:any)=>shici.author===this.author);
       let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);

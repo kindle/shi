@@ -16,6 +16,15 @@ export class ArticleViewerPage {
     private cdRef: ChangeDetectorRef
   ) {}
 
+  gridopt={
+    rows: 3,
+    fill: "row"
+  }
+  autoplayopt={
+    delay: 0,
+    disableOnInteraction: true,
+  }
+
   goback(){
    this.location.back();
   }
@@ -34,16 +43,18 @@ export class ArticleViewerPage {
 
   defaultBgHeight:string|any;
   onScroll(event:any){
-    let offset = event.detail.scrollTop;
+    if(this.data.currentArticle.template == 'text'){
+      let offset = event.detail.scrollTop;
 
-    if(offset<=0){
-      this.defaultBgHeight = (this.data.currentArticle.min_height.replace("px","") - offset)+"px";
-    }else{
-      this.defaultBgHeight = this.data.currentArticle.min_height;
+      if(offset<=0){
+        this.defaultBgHeight = (this.data.currentArticle.min_height.replace("px","") - offset)+"px";
+      }else{
+        this.defaultBgHeight = this.data.currentArticle.min_height;
+      }
+
+      //bug fix for navigating back from other pages
+      this.cdRef.detectChanges();
     }
-
-    //bug fix for navigating back from other pages
-    this.cdRef.detectChanges();
   }
 
 }

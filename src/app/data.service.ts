@@ -738,7 +738,24 @@ export class DataService {
 
 
 
+  getRandomArray(arr:any,n:any){
+    if(!arr || arr.length<=4)
+      return arr;
+    
+    let localArr = JSON.parse(JSON.stringify(arr));
+    let resultArr = [];
+    for(let i=0;i<n;i++){
+      let randomIndex = this.getRandom(0, localArr.length-1);
+      resultArr.push(localArr[randomIndex]);
+      localArr.splice(randomIndex,1);
+    }
+    return resultArr;
+  }
 
+  getInt(value:any)
+  {
+    return Math.round(value)
+  }
 
   goToAuthor(author:any){
     this.currentViewType = ViewType.Author;

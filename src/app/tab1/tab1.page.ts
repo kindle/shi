@@ -12,6 +12,14 @@ import { UiService } from '../ui.service';
 })
 export class Tab1Page {
 
+  gridopt={
+    rows: 3,
+    fill: "row"
+  }
+  autoplayopt={
+    delay: 0,
+    disableOnInteraction: true,
+  }
   goToArticle(item:any){
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
 

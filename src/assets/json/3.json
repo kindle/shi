@@ -1,5 +1,47 @@
 [
     {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"国庆.jpg",
+        "title_color":"white",
+        "small_title":"初唐四杰",
+        "big_title":"海内称为王杨卢骆，亦号为四杰",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。"}
+        ],
+        "items":[
+            {"author":"王勃", "sample":"海内存知己，天涯若比邻", "desc":"", "pid":"fe6f4b72-855c-43b9-8883-8b3fe3cd8bd4"},
+            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "pid":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "pid":"fecca913-ad91-4fab-b34d-5734a2533039"},
+            {"author":"骆宾王",  "sample":"无人信高洁，谁为表予心", "desc":"", "pid":"c65539db-4e2b-4ce4-a22b-563b6ef3f4f1"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"国庆.jpg",
+        "title_color":"white",
+        "small_title":"唐宋八大家",
+        "big_title":"韩柳欧王曾三苏",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"唐宋八大家，又称为“唐宋散文八大家”，是唐代和宋代八位散文家的合称，分别为唐代韩愈、柳宗元和宋代欧阳修、苏洵、苏轼、苏辙、王安石、曾巩八位。其中韩愈、柳宗元是唐代古文运动的领袖，欧阳修、三苏（苏轼、苏辙、苏洵）等四人是宋代古文运动的核心人物，王安石、曾巩是临川文学的代表人物。他们先后掀起的古文革新浪潮，使诗文发展的陈旧面貌焕然一新。"}
+        ],
+        "items":[
+            {"author":"韩愈", "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "pid":"d7cb4244-143b-403b-8599-b10c6763d032"},
+            {"author":"柳宗元",  "sample":"千山鸟飞绝，万迳人踪灭", "desc":"", "pid":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
+            {"author":"欧阳修",  "sample":"月上柳梢头，人约黄昏后", "desc":"", "pid":"407688bf-75d1-4063-9e2b-e0673e823b73"},
+            {"author":"苏洵",  "sample":"六国论", "desc":"", "pid":"85c8677e-398d-4b6e-bd9a-a4911519fe26"},
+            {"author":"苏轼",  "sample":"大江东去，浪淘尽，千古风流人物", "desc":"", "pid":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"author":"苏辙",  "sample":"逍遥堂后千寻木，长送中宵风雨声", "desc":"", "pid":"984b06ab-b4b5-4917-9c30-0cac89b6bfa2"},
+            {"author":"王安石",  "sample":"京口瓜洲一水间，锺山祇隔数重山", "desc":"", "pid":"1f202323-f293-4c01-bcb6-8d7fb45b941f"},
+            {"author":"曾巩",  "sample":"解把飞花蒙日月，不知天地有清霜", "desc":"", "pid":"95d75f69-a301-4c8b-ad04-8935b5dfdaab"}
+        ],
+        "link":""
+    },
+    {
         "template": "text",
         "min_height": "380px",
         "bg_image":"国庆.jpg",
@@ -12,6 +54,7 @@
             {"type":"image", "value":"smart.jpg"},
             {"type":"text", "value":"冯友兰说：学哲学的目的就是使人做为人能够成为人，而不是为了成为某种人，不为成为赚钱的机器，而是成为一个周全理性的人。"},
             {"type":"poem", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "pid":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
+            {"type":"poem", "author":"孟浩然", "title":"宿建德江", "sample":"野旷天低树，江清月近人", "pid":"0bed9b02-991e-4e28-b631-86640147a712"},
             {"type":"text", "value":"我们终将会把自己的生活卷进去，像一个无尽的漩涡一样，因为贫穷所以痛苦，因为籍籍无名所以压抑。当有一点点财富的时候，又开始患得患失，担心保护不住这点财富。当你拥有巨额财富的时候，又开始内心焦虑，害怕被夺走财富。你始终无法找到内心的平静。所以得找到精神的一片安息之地。"},
             {"type":"list", "name":"趣味诗单", "data":[
                 {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
@@ -24,6 +67,53 @@
             
         ],
         "link":""
+    },
+    {
+        "template": "wall",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"诗人",
+        "big_title":"这些诗人你能看上一天",
+        "desc":[
+            {"type":"text", "value":"年轻人的迷茫是怎么来的？中年人的痛苦和焦虑是怎么来的？你的一生都不可能如你想要的有源源不断的财富和社会地位的提升的。如果没有了钱财，没有了社会地位，别人一直在批评你、羞辱你、讽刺你、打击你、抹黑你的时候你是不是就痛苦的活不下去了？因为你没有强力的精神支撑。"}
+        ],
+        "items":[
+            {"author":"李白", "sample":"小时不识月，呼作白玉盘", "desc":"", "pid":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
+            {"author":"杜甫", "sample":"", "desc":"", "pid":""},
+            {"author":"白居易",  "sample":"", "desc":"", "pid":""},
+            {"author":"元稹",  "sample":"", "desc":"", "pid":""},
+            {"author":"刘禹锡",  "sample":"", "desc":"", "pid":""},
+            {"author":"卢照邻",  "sample":"", "desc":"", "pid":""},
+            {"author":"孟浩然",  "sample":"绿树村边合，青山郭外斜", "desc":"", "pid":"5aad66b7-2ed8-c615-f728-059b601d9620"},
+            {"author":"孟郊",  "sample":"", "desc":"", "pid":""},
+            {"author":"屈原",  "sample":"", "desc":"", "pid":""},
+            {"author":"岑参",  "sample":"", "desc":"", "pid":""},
+            {"author":"岳飞",  "sample":"", "desc":"", "pid":""},
+            {"author":"骆宾王",  "sample":"", "desc":"", "pid":""},
+            {"author":"张九龄",  "sample":"", "desc":"", "pid":""},
+            {"author":"张籍",  "sample":"", "desc":"", "pid":""},
+            {"author":"曹操",  "sample":"", "desc":"", "pid":""},
+            {"author":"李商隐",  "sample":"", "desc":"", "pid":""},
+            {"author":"李清照",  "sample":"", "desc":"", "pid":""},
+            {"author":"李煜",  "sample":"", "desc":"", "pid":""},
+            {"author":"杨炯",  "sample":"", "desc":"", "pid":""},
+            {"author":"柳宗元",  "sample":"", "desc":"", "pid":""},
+            {"author":"王之涣",  "sample":"", "desc":"", "pid":""},
+            {"author":"王勃",  "sample":"落霞与孤鹜齐飞，秋水共长天一色", "desc":"", "pid":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
+            {"author":"王昌龄",  "sample":"", "desc":"", "pid":""},
+            {"author":"王维",  "sample":"独在异乡为异客，每逢佳节倍思亲", "desc":"", "pid":"EC12F5D4-1541-DC46-4B52-B75E70C85A81"},
+            {"author":"秦观",  "sample":"", "desc":"", "pid":""},
+            {"author":"苏轼",  "sample":"", "desc":"", "pid":""},
+            {"author":"贺知章",  "sample":"", "desc":"", "pid":""},
+            {"author":"诗经",  "sample":"", "desc":"", "pid":""},
+            {"author":"贾岛",  "sample":"", "desc":"", "pid":""},
+            {"author":"辛弃疾",  "sample":"", "desc":"", "pid":""},
+            {"author":"陆游",  "sample":"", "desc":"", "pid":""},
+            {"author":"陈子昂",  "sample":"", "desc":"", "pid":""},
+            {"author":"陶渊明",  "sample":"", "desc":"", "pid":""},
+            {"author":"韩愈",  "sample":"", "desc":"", "pid":""},
+            {"author":"高适",  "sample":"莫愁前路无知己，天下无人不识君", "desc":"", "pid":""}
+        ]
     },
     {
         "template": "text",
@@ -80,14 +170,15 @@
         "template": "vote",
         "bg_color":"white",
         "title_color":"black",
-        "small_title":"投票",
+        "small_title":"精选",
         "big_title":"王维五言的巅峰之作，你最喜欢哪一句？",
         "desc":"读王维的诗，就像在欣赏一幅画",
+        "lid":906,
         "items":[
-            {"text":"行到水穷处，坐看云起时","link":""},
-            {"text":"大漠孤烟直，长河落日圆","link":""},
-            {"text":"明月松间照，清泉石上流","link":""},
-            {"text":"月出惊山鸟，时鸣春涧中","link":""}
+            {"text":"行到水穷处，坐看云起时","pid":"6d098c75-038d-45f4-8f86-73976c355e44"},
+            {"text":"大漠孤烟直，长河落日圆","pid":"8ec59c80-46dc-4916-b069-a25ed8f144ec"},
+            {"text":"明月松间照，清泉石上流","pid":"00f12a19-bb96-4980-a4f5-11a1b9d604dd"},
+            {"text":"月出惊山鸟，时鸣春涧中","pid":"e4f16516-db22-4a20-90cb-917c66c4afbd"}
         ]
     },
     {

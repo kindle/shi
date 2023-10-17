@@ -1,7 +1,8 @@
 <!--background image top/width_auto height_sameas_tab1-->
 <ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" 
 style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
-    <div style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
+    <div
+     style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
         
         <ion-card-content style="z-index:1;position:fixed;width:100%;padding-inline-end:20px;padding-top:30px;">
           <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:right;background-color:rgba(128,128,128,0.5);border-radius: 50%;"
@@ -17,8 +18,27 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
           <ion-card-title style="color:{{data.currentArticle.title_color}};font-size:25px;">{{data.currentArticle.big_title}}</ion-card-title>
         </ion-card-content>
       
-      </div>
-    
+    </div>
+    <div *ngIf="data.currentArticle.template=='wall'">
+        <ion-card-content>
+          <swiper-container style="margin-top:0px;margin-bottom: 0px;"
+            [autoplay]="autoplayopt" 
+            [grid]="gridopt"
+            slides-Per-View="3.5"
+            speed="5000"
+            interval="5000"
+            duration="5000"
+            freeMode="true"
+            allow-Touch-Move="false"
+            >
+            <!--(click)="data.goToAuthor(v)" -->
+            <swiper-slide *ngFor="let v of data.currentArticle.items;index as i" class="swiper-slide" 
+            [ngStyle]="{'margin-left':(i === data.getInt(data.currentArticle.items.length/3)) ? '40px' : '0px' }">
+              <img style="width: 80px;height:80px;border-radius: 10px;" src="/assets/img/poet/{{v.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+            </swiper-slide>
+          </swiper-container>
+        </ion-card-content>
+    </div>
     
     <div style="padding:10px 0;background-color:white;">
       <div *ngFor="let it of data.currentArticle.desc">
@@ -43,8 +63,26 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
         <div *ngIf="it.type==='list'">
           <app-tile [name]="it.name" [source]="it.data" ></app-tile>
         </div>
+      </div>
 
-
+      <div *ngIf="data.currentArticle.items">
+        <div *ngIf="(data.currentArticle.template == 'wall'||data.currentArticle.template == 'group')&& data.currentArticle.items" style="padding-top:20px;">
+          <ion-list style="margin-left:5px;">
+            <ion-item *ngFor="let p of data.currentArticle.items"
+            style="--padding-start:15px;--inner-padding-end:20px;">
+              <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+                <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+              </ion-thumbnail>
+              <ion-label (click)="data.playbyid(p.pid)">
+                <h2>{{p.author}}  {{p.desc}}</h2>
+                <p>{{p.sample}}</p>
+              </ion-label>
+              <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">
+                <ion-text color="primary">所有作品</ion-text>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </div>
       </div>
 
 <!--
