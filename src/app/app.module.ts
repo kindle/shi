@@ -13,7 +13,7 @@ import { IonicGestureConfig } from './utils/IonicGestureConfig';
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
   ],
   imports: [
     BrowserModule, 

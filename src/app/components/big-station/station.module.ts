@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { StationComponent } from './station.component';
+import { SharedSwiperTouchModule } from 'src/app/shared-modules/shared-swiper-touch.module';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
+  imports: [ CommonModule, FormsModule, IonicModule, SharedSwiperTouchModule],
   declarations: [StationComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   exports: [StationComponent]

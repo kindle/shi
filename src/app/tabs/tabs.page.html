@@ -138,7 +138,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-buttons>
     </ion-toolbar>
 
-    <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="ui.isiphone">
+    <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="ui.isiphone" style="padding-top:3px;">
       <ion-tab-button tab="tab1" style="--background: transparent;">
         <ion-icon name="book-outline"></ion-icon>
         开卷有益
@@ -148,7 +148,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         浏览
       </ion-tab-button>
       <ion-tab-button tab="tab5">
-        <ion-icon name="map-outline"></ion-icon>
+        <ion-icon name="radio-outline"></ion-icon>
         地图
       </ion-tab-button>
       <ion-tab-button tab="tab3">

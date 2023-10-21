@@ -9,19 +9,16 @@
     </ion-buttons>
   </ion-card-content>
 </ion-toolbar>
-<swiper-container 
-    #hotswiper
-    (touchstart)="ontouchstart($event)"
-    (touchmove)="ontouchmove($event)"
+<swiper-container swiper-touch
     style="margin-top:10px;margin-bottom: 20px;" *ngIf="source"
-    space-between="10" 
-    slides-per-view="1.1"
+    slides-per-view="1.1" 
     centered-slides="false"
     slides-offset-before="20"
+    slides-offset-after="20"
     >
   <swiper-slide *ngFor="let hot of source">
     <ion-list>
-      <ion-item *ngFor="let p of hot" style="--padding-start:0;--inner-padding-end:0;" >
+      <ion-item lines="none" *ngFor="let p of hot" style="--padding-start:0;--inner-padding-end:0px;" >
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
           <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </ion-thumbnail>
