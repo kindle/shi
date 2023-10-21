@@ -1,47 +1,5 @@
 [
     {
-        "template": "group",
-        "min_height": "380px",
-        "bg_image":"国庆.jpg",
-        "title_color":"white",
-        "small_title":"初唐四杰",
-        "big_title":"海内称为王杨卢骆，亦号为四杰",
-        "is_title_bottom":false,
-        "desc":[
-            {"type":"text", "value":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。"}
-        ],
-        "items":[
-            {"author":"王勃", "sample":"海内存知己，天涯若比邻", "desc":"", "pid":"fe6f4b72-855c-43b9-8883-8b3fe3cd8bd4"},
-            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "pid":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
-            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "pid":"fecca913-ad91-4fab-b34d-5734a2533039"},
-            {"author":"骆宾王",  "sample":"无人信高洁，谁为表予心", "desc":"", "pid":"c65539db-4e2b-4ce4-a22b-563b6ef3f4f1"}
-        ],
-        "link":""
-    },
-    {
-        "template": "group",
-        "min_height": "380px",
-        "bg_image":"国庆.jpg",
-        "title_color":"white",
-        "small_title":"唐宋八大家",
-        "big_title":"韩柳欧王曾三苏",
-        "is_title_bottom":false,
-        "desc":[
-            {"type":"text", "value":"唐宋八大家，又称为“唐宋散文八大家”，是唐代和宋代八位散文家的合称，分别为唐代韩愈、柳宗元和宋代欧阳修、苏洵、苏轼、苏辙、王安石、曾巩八位。其中韩愈、柳宗元是唐代古文运动的领袖，欧阳修、三苏（苏轼、苏辙、苏洵）等四人是宋代古文运动的核心人物，王安石、曾巩是临川文学的代表人物。他们先后掀起的古文革新浪潮，使诗文发展的陈旧面貌焕然一新。"}
-        ],
-        "items":[
-            {"author":"韩愈", "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "pid":"d7cb4244-143b-403b-8599-b10c6763d032"},
-            {"author":"柳宗元",  "sample":"千山鸟飞绝，万迳人踪灭", "desc":"", "pid":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
-            {"author":"欧阳修",  "sample":"月上柳梢头，人约黄昏后", "desc":"", "pid":"407688bf-75d1-4063-9e2b-e0673e823b73"},
-            {"author":"苏洵",  "sample":"六国论", "desc":"", "pid":"85c8677e-398d-4b6e-bd9a-a4911519fe26"},
-            {"author":"苏轼",  "sample":"大江东去，浪淘尽，千古风流人物", "desc":"", "pid":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
-            {"author":"苏辙",  "sample":"逍遥堂后千寻木，长送中宵风雨声", "desc":"", "pid":"984b06ab-b4b5-4917-9c30-0cac89b6bfa2"},
-            {"author":"王安石",  "sample":"京口瓜洲一水间，锺山祇隔数重山", "desc":"", "pid":"1f202323-f293-4c01-bcb6-8d7fb45b941f"},
-            {"author":"曾巩",  "sample":"解把飞花蒙日月，不知天地有清霜", "desc":"", "pid":"95d75f69-a301-4c8b-ad04-8935b5dfdaab"}
-        ],
-        "link":""
-    },
-    {
         "template": "text",
         "min_height": "380px",
         "bg_image":"国庆.jpg",
@@ -65,6 +23,47 @@
             },
             {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "pid":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
             
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "450px",
+        "bg_image":"故宫瓦.jpg",
+        "title_color":"white",
+        "small_title":"唐宋八大家",
+        "big_title":"韩柳欧王曾三苏",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"唐宋八大家，又称为“唐宋散文八大家”，是唐代和宋代八位散文家的合称，分别为唐代韩愈、柳宗元和宋代欧阳修、苏洵、苏轼、苏辙、王安石、曾巩八位。其中韩愈、柳宗元是唐代古文运动的领袖，欧阳修、三苏（苏轼、苏辙、苏洵）等四人是宋代古文运动的核心人物，王安石、曾巩是临川文学的代表人物。他们先后掀起的古文革新浪潮，使诗文发展的陈旧面貌焕然一新。"}
+        ],
+        "items":[
+            {"author":"韩愈", "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "pid":"d7cb4244-143b-403b-8599-b10c6763d032"},
+            {"author":"柳宗元",  "sample":"千山鸟飞绝，万迳人踪灭", "desc":"", "pid":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
+            {"author":"欧阳修",  "sample":"月上柳梢头，人约黄昏后", "desc":"", "pid":"407688bf-75d1-4063-9e2b-e0673e823b73"},
+            {"author":"苏洵",  "sample":"六国论", "desc":"", "pid":"85c8677e-398d-4b6e-bd9a-a4911519fe26"},
+            {"author":"苏轼",  "sample":"大江东去，浪淘尽，千古风流人物", "desc":"", "pid":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"author":"苏辙",  "sample":"逍遥堂后千寻木，长送中宵风雨声", "desc":"", "pid":"984b06ab-b4b5-4917-9c30-0cac89b6bfa2"},
+            {"author":"王安石",  "sample":"京口瓜洲一水间，锺山祇隔数重山", "desc":"", "pid":"1f202323-f293-4c01-bcb6-8d7fb45b941f"},
+            {"author":"曾巩",  "sample":"解把飞花蒙日月，不知天地有清霜", "desc":"", "pid":"95d75f69-a301-4c8b-ad04-8935b5dfdaab"}
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"定格秋天.jpg",
+        "title_color":"white",
+        "small_title":"一首首诗词，藏着秋日的美好回忆",
+        "big_title":"#定格多彩秋天",
+        "desc":[
+            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
+            {"type":"image", "value":"smart.jpg"},
+            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
         ],
         "link":""
     },
@@ -149,24 +148,6 @@
         ]
     },
     {
-        "template": "text",
-        "min_height": "380px",
-        "bg_image":"定格秋天.jpg",
-        "title_color":"white",
-        "small_title":"一首首诗词，藏着秋日的美好回忆",
-        "big_title":"#定格多彩秋天",
-        "desc":[
-            {"type":"text", "value":"熙宁十年（1077）七月，黄河在河南濮阳决口，洪水泛滥，直冲徐州而来，苏轼听说后，发出了豪言壮语，“吾在是,水绝不能败城!”率领军民抗洪，三过家门而不入，由于应对及时，避免了一次毁城之灾。"},
-            {"type":"image", "value":"smart.jpg"},
-            {"type":"text", "value":"洪水过后，苏轼对徐州堤防感到担忧，次年二月朝廷拨款，苏轼又在城外修筑了七处防洪大堤，其中包括从建国西路到云龙山这一段，对保护徐州城安危和黎民百姓生命财产做出了莫大贡献。"},
-            {"type":"image", "value":"smart.jpg"},
-            {"type":"text", "value":"乾隆皇帝六下江南四到徐州，两次提笔写到苏堤，夸赞苏轼一心为民的同时，还盛赞徐州苏堤的景色优美远胜杭州西湖。《苏堤》：“通守彭城闻昔年，长堤亦得号髯仙。涨波未到麦芒绿，绝胜西湖花柳妍。”"},
-            {"type":"image", "value":"smart.jpg"},
-            {"type":"text", "value":"如今古老的苏堤成了徐州市区主干道，枝叶扶疏，道路宽广，方便了广大群众的出行。"}
-        ],
-        "link":""
-    },
-    {
         "template": "vote",
         "bg_color":"white",
         "title_color":"black",
@@ -180,6 +161,25 @@
             {"text":"明月松间照，清泉石上流","pid":"00f12a19-bb96-4980-a4f5-11a1b9d604dd"},
             {"text":"月出惊山鸟，时鸣春涧中","pid":"e4f16516-db22-4a20-90cb-917c66c4afbd"}
         ]
+    },
+    {
+        "template": "group",
+        "min_height": "500px",
+        "bg_image":"郑板桥.jpg",
+        "title_color":"white",
+        "small_title":"初唐四杰",
+        "big_title":"海内称为王杨卢骆，亦号为四杰",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。"}
+        ],
+        "items":[
+            {"author":"王勃", "sample":"海内存知己，天涯若比邻", "desc":"", "pid":"fe6f4b72-855c-43b9-8883-8b3fe3cd8bd4"},
+            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "pid":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "pid":"fecca913-ad91-4fab-b34d-5734a2533039"},
+            {"author":"骆宾王",  "sample":"无人信高洁，谁为表予心", "desc":"", "pid":"c65539db-4e2b-4ce4-a22b-563b6ef3f4f1"}
+        ],
+        "link":""
     },
     {
         "template": "text",

@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
 import { DataService } from '../data.service';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-tab2',
@@ -158,4 +159,5 @@ export class Tab2Page {
   closeModal() {
     this.modal.dismiss();
   }
+
 }

@@ -1,4 +1,7 @@
-<swiper-container #stationswiper
+<swiper-container 
+    #stationswiper
+    (touchstart)="ontouchstart($event)"
+    (touchmove)="ontouchmove($event)"
     style="margin-top:10px;width: 100%;"
     [loop]="false" navigation="false" scrollbar="false"
     pagination="false" space-between="10" 

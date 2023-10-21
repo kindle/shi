@@ -9,7 +9,11 @@
     </ion-buttons>
   </ion-card-content>
 </ion-toolbar>
-<swiper-container style="margin-top:10px;margin-bottom: 20px;" *ngIf="source"
+<swiper-container 
+    #hotswiper
+    (touchstart)="ontouchstart($event)"
+    (touchmove)="ontouchmove($event)"
+    style="margin-top:10px;margin-bottom: 20px;" *ngIf="source"
     space-between="10" 
     slides-per-view="1.1"
     centered-slides="false"

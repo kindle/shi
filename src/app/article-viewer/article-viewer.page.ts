@@ -43,7 +43,8 @@ export class ArticleViewerPage {
 
   defaultBgHeight:string|any;
   onScroll(event:any){
-    if(this.data.currentArticle.template == 'text'){
+    if(this.data.currentArticle.template == 'text'||
+    this.data.currentArticle.template == 'group'){
       let offset = event.detail.scrollTop;
 
       if(offset<=0){
