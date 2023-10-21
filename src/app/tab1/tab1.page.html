@@ -30,7 +30,7 @@
       
       
 
-      <ion-card #sgcard class="card card-img" (click)="goTemplateSlide(item.link)" ion-card-shrink
+      <ion-card #sgcard class="card card-img" (click)="goTemplateSlide(item.link)" card-shrink
       *ngIf="item.template=='slide'"
         style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content>
@@ -43,7 +43,7 @@
 
 
 
-      <ion-card class="card card-scroll" id="modal-scroll" ion-card-shrink
+      <ion-card class="card card-scroll" id="modal-scroll" card-shrink
       *ngIf="item.template=='scroll'">
         <ion-card-content>
           <ion-card-title> {{item.big_title}} </ion-card-title>
@@ -65,7 +65,7 @@
 
 
 <!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
-      <ion-card class="card card-vote" id="modal-vote" ion-card-shrink
+      <ion-card class="card card-vote" id="modal-vote" card-shrink
       *ngIf="item.template=='vote'">
         <div class="card-vote-bg">{{item.small_title}}</div>
         <ion-card-content>
@@ -85,7 +85,7 @@
         </ion-card-content>
       </ion-card>
 
-      <ion-card class="card card-vote" ion-card-shrink
+      <ion-card class="card card-vote" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='wall'">
         <div class="card-vote-bg">{{item.small_title}}</div>
@@ -95,9 +95,11 @@
           </ion-card-subtitle>
           <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
         </ion-card-content>
+        <!--[autoplay]="autoplayopt" -->
         <ion-card-content>
-          <swiper-container style="margin-top:0px;margin-bottom: 0px;"
-            [autoplay]="autoplayopt" 
+          <swiper-container #autoswiper
+            style="margin-top:0px;margin-bottom: 0px;"
+            [autoplay]="autoplayopt"
             [grid]="gridopt"
             slides-Per-View="3.5"
             speed="5000"
@@ -116,7 +118,7 @@
       </ion-card>
 
 
-      <ion-card class="card card-img" ion-card-shrink
+      <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='text'"
         style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
@@ -124,12 +126,10 @@
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
         </ion-card-content>
-
-        
       </ion-card>
 
 
-      <ion-card class="card card-img" ion-card-shrink
+      <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='group'"
         style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
@@ -137,16 +137,29 @@
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
         </ion-card-content>
-        <ion-card-content style="display: flex;justify-content: space-between;
-        bottom:0;position: absolute;width: 100%; background-color: white;padding-bottom: 20px;">
-          <img *ngFor="let v of data.getRandomArray(item.items,4);index as i"
-          style="width: 65px;height:65px;border-radius: 10px;border:1px solid lightgoldenrodyellow;" src="/assets/img/poet/{{v.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
-        
+        <ion-card-content style="bottom:0;position: absolute;width: 100%; background-color: white;padding-bottom: 20px;">
+          <swiper-container #autoswiper (click)="goToArticle(item)"
+            style="margin-top:0px;margin-bottom: 0px;"
+            autoplay="true"
+            [grid]="gridopt1"
+            slides-Per-View="4"
+            speed="5000"
+            interval="5000"
+            duration="5000"
+            freeMode="true"
+            allow-Touch-Move="false"
+            >
+            <swiper-slide *ngFor="let v of item.items;index as i" class="swiper-slide">
+              <img style="width: 65px;height:65px;border-radius: 10px;border:1px solid lightgoldenrodyellow;" 
+              src="/assets/img/poet/{{v.author}}.jpeg" 
+              onerror="javascript:this.src='/assets/img/default.jpg'" />
+            </swiper-slide>
+          </swiper-container>
         </ion-card-content>
       </ion-card>
 
 
-      <ion-card class="card card-gif" id="modal-gif{{i}}" ion-card-shrink
+      <ion-card class="card card-gif" id="modal-gif{{i}}" card-shrink
       *ngIf="item.template=='gif'">
         <ion-card-content>
           <ion-card-subtitle>{{item.small_title}}</ion-card-subtitle>

@@ -43,9 +43,6 @@ export class Tab4Page implements OnInit {
     });
   }
 
-  onScroll(event:any){
-    this.currentLpId=0;
-  }
   async ngOnInit() {
     /****test code*****/
     var arrayObj=Array.from(this.data.tagsStat);
@@ -68,6 +65,9 @@ export class Tab4Page implements OnInit {
   currentLpId=0;
   pressed(topicid:any){
     this.currentLpId = topicid;
+  }
+  onScroll(event:any){
+    this.currentLpId=0;
   }
   active(topicid:any){
   }

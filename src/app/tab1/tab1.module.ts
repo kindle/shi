@@ -5,18 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { CardAnimationDirective } from '../directives/card-animation.directive';
+import { SharedCardShrinkModule } from '../shared-modules/shared-card-shrink.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    SharedCardShrinkModule
   ],
   declarations: [
-    Tab1Page,
-    CardAnimationDirective,
+    Tab1Page
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
 })

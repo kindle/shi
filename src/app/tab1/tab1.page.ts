@@ -16,6 +16,10 @@ export class Tab1Page {
     rows: 3,
     fill: "row"
   }
+  gridopt1={
+    rows: 1,
+    fill: "row"
+  }
   autoplayopt={
     delay: 0,
     disableOnInteraction: true,
@@ -134,6 +138,9 @@ export class Tab1Page {
     
   }
 
+  //can not add lifecycle ionViewDidEnter event in directive.
+  @ViewChildren("autoswiper") autoSwipers: any;
+
   cardAnimation:any;
   ionViewDidEnter(){
     this.searchKeywordModel="";
@@ -150,6 +157,12 @@ export class Tab1Page {
       }
     }, 500 );
     */
+
+    this.autoSwipers.forEach((swiper:any) => {
+      swiper.nativeElement.swiper.autoplay.start();
+    });
+    
+    
   }
 
   ionViewDidLeave(){
