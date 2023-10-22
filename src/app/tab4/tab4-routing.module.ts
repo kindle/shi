@@ -9,16 +9,20 @@ const routes: Routes = [
     component: Tab4Page
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list-by-id/list.module').then( m => m.ListPageModule)
+    path: 'list/:id',
+    loadChildren: () => import('../pages/list-by-id/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'topic',
-    loadChildren: () => import('./topic/topic.module').then( m => m.TopicPageModule)
+    loadChildren: () => import('../pages/topic/topic.module').then( m => m.TopicPageModule)
   },
   {
-    path: 'poet',
-    loadChildren: () => import('./list-by-poet-tag/poet.module').then( m => m.PoetPageModule)
+    path: 'poet/:author',
+    loadChildren: () => import('../pages/list-by-poet/poet.module').then( m => m.PoetPageModule)
+  },
+  {
+    path: 'tag/:tag',
+    loadChildren: () => import('../pages/list-by-tag/tag.module').then( m => m.TagPageModule)
   }
 ];
 

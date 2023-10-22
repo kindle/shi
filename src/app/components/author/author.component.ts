@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService, ViewType } from 'src/app/data.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-author',
@@ -16,13 +16,4 @@ export class AuthorComponent {
     public data: DataService,
     private router: Router,
   ){}
-
-  goToAuthor(author:any){
-    this.data.currentViewType = ViewType.Author;
-    this.data.currentAuthor = author;
-    this.router.navigate(['/tabs/tab4/poet'], {
-      queryParams: {
-      }
-    });
-  }
 }

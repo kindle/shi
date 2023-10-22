@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { SharedCardShrinkModule } from '../shared-modules/shared-card-shrink.module';
+import { SharedCardShrinkModule } from '../modules/shared-card-shrink.module';
 
 @NgModule({
   imports: [

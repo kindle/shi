@@ -1,8 +1,7 @@
 import { Component, ElementRef, ViewChild, ViewChildren } from '@angular/core';
-import { DataService } from '../data.service';
-import { IonModal } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
-import Swiper from 'swiper';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +10,7 @@ import Swiper from 'swiper';
 })
 export class Tab2Page {
 
-
+/*
   musicStations = [
     //{alias:"唐诗三百首",text:"唐诗三百首",color:"rgb(215,86,137)",light:"rgb(215,86,137,60%)"},
     //{alias:"宋词三百首",text:"宋词三百首",color:"rgb(231,112,103)",light:"rgb(231,112,103,60%)"},
@@ -34,6 +33,7 @@ export class Tab2Page {
     //{alias:"节气",text:"节气",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
     //{alias:"赠答",text:"赠答",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
   ];
+  */
 /*
   lakeStations = [
     {alias:"西湖",text:"西湖",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
@@ -74,7 +74,7 @@ export class Tab2Page {
   */
 
 
-
+/*
   recentStations = [
     {src:"url('/assets/img/p1.jpg')",text:"我的跑步歌单",color:"rgb(247,54,65)"},
     {src:"url('/assets/img/p2.jpg')",text:"中文歌单",color:"rgb(119,117,118)"},
@@ -139,25 +139,19 @@ export class Tab2Page {
       }
     });
   }
+  */
 
 
-  hotData:any;
+  searchTopicData:any;
+  
   constructor(
     public data : DataService,
+    public ui: UiService,
     private router: Router,
   ) {
-
+    this.data.currentTopicId = 200;
+    this.searchTopicData = this.data.searchTopicData.filter((d:any)=>d.id==this.data.currentTopicId)[0];
   }
 
-
-  goStyleStations(){
-
-  }
-
-
-  @ViewChild('modal', { static: true }) modal: IonModal|any;
-  closeModal() {
-    this.modal.dismiss();
-  }
 
 }

@@ -1,5 +1,68 @@
 [
   {
+    "id":200,
+    "name":"浏览",
+    "image":"/assets/img/smart.jpg",
+    "desctitle":"搜索更多精彩内容",
+    "desc":"大语文时代，古诗文猛增87%：比不努力更可怕的，是死记硬背",
+    "scroll":[
+        {"id":10, "alias":"诗词之源","text":"关关雎鸠，在河之洲","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
+        "image":"/assets/img/张大千荷花.jpg"},
+        {"id":1, "alias":"初唐四大天王","text":"海内存知己，天涯若比邻","desc":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
+        "image":"/assets/img/梅花大千.jpg"},
+        {"id":3, "alias":"诗人也是热血男儿","text":"黄沙百战穿金甲，不破楼兰终不还","desc":"激情澎湃的边塞诗","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", 
+        "image": "/assets/img/腊梅大千.jpg"},
+        {"id":4, "alias":"诗人称号","text":"给诗人们起个外号儿","desc":"给诗人们起个外号儿---看看全了吗？","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", 
+        "image": "/assets/img/竹鸟大千.jpg"},
+        {"id":2, "alias":"奔跑吧兄弟","text":"山水田园诗派","desc":"王维、孟浩然等","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
+        "image":"/assets/img/菊花大千.jpg"}
+    ],
+    "hot":[],
+    "classic":[],
+    "list":[
+      {"name":"年级诗单", "data": [
+        {"src":"/assets/img/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"四年级","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/齐白石5.jpg","display":"cover","text":"五年级","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/齐白石6.jpg","display":"cover","text":"六年级","color":"rgb(232,188,78)"},
+        {"src":"/assets/img/齐白石7.jpg","display":"cover","text":"七年级","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/齐白石8.jpg","display":"cover","text":"八年级","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
+        ]
+      },
+      {"name":"趣味诗单", "data": [
+        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
+        {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+        {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+        {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+        
+        ]
+      },
+      {"name":"风格诗单", "data": [
+        {"src":"assets/img/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"assets/img/海钓.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/海钓.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"assets/img/海钓.jpg", "alias":"爱情", "text":"爱情", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"assets/img/海钓.jpg", "alias":"边塞", "text":"边塞", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"哲理", "text":"哲理", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"羁旅", "text":"羁旅", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"励志", "text":"励志", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/smart.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
+        ]
+      }
+    ]
+  }, 
+  {
     "id":201,
     "name":"大语文",
     "image":"/assets/img/smart.jpg",

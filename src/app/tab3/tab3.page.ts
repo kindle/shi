@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
 import { Song } from '../app.component';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 

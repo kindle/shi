@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
-import { UiService } from '../ui.service';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-tab4',
@@ -26,12 +26,14 @@ export class Tab4Page implements OnInit {
   }
 
   async ionViewDidEnter(){
+    //loaded in Component.app
+    /*
     if(this.data.searchTopicData==null){
       //load topics
       this.data.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
         this.data.searchTopicData = data;
       });
-    }
+    }*/
   }
 
   goToTopic(topicid:any){

@@ -8,6 +8,8 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { HotComponentModule } from '../components/hot/hot.module';
 import { StationComponentModule } from '../components/big-station/station.module';
 import { TileComponentModule } from '../components/tile/tile.module';
+import { BigComponentModule } from '../components/big/big.module';
+import { TextComponentModule } from '../components/text/text.module';
 
 @NgModule({
   imports: [
@@ -16,8 +18,9 @@ import { TileComponentModule } from '../components/tile/tile.module';
     FormsModule,
     Tab2PageRoutingModule,
     HotComponentModule,
-    StationComponentModule,
+    BigComponentModule,
     TileComponentModule,
+    TextComponentModule
   ],
   declarations: [Tab2Page],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

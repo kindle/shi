@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { UiService } from '../ui.service';
+import { UiService } from '../../services/ui.service';
 import { Style, Animation } from '@capacitor/status-bar';
 
 @Component({

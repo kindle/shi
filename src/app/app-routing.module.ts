@@ -8,19 +8,19 @@ const routes: Routes = [
   },
   {
     path: 'slide',
-    loadChildren: () => import('./slide/slide.module').then( m => m.SlidePageModule)
+    loadChildren: () => import('./pages/slide/slide.module').then( m => m.SlidePageModule)
   },
   {
     path: 'image-viewer',
-    loadChildren: () => import('./image-viewer/image-viewer.module').then( m => m.ImageViewerPageModule)
+    loadChildren: () => import('./pages/image-viewer/image-viewer.module').then( m => m.ImageViewerPageModule)
   },
   {
     path: 'article-viewer',
-    loadChildren: () => import('./article-viewer/article-viewer.module').then( m => m.ArticleViewerPageModule)
+    loadChildren: () => import('./pages/article-viewer/article-viewer.module').then( m => m.ArticleViewerPageModule)
   },
   {
     path: 'player',
-    loadChildren: () => import('./player/player.module').then( m => m.PlayerPageModule)
+    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
   },
   {
     path: 'tab5',

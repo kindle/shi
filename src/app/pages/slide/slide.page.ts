@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../../services/data.service';
 import { NavController } from '@ionic/angular';
-import { UiService } from '../ui.service';
+import { UiService } from '../../services/ui.service';
 
 import domtoimage from 'dom-to-image';
 

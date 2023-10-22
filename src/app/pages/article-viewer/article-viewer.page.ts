@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { Location } from '@angular/common';
-import { UiService } from 'src/app/ui.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-article-viewer',

@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ArticleViewerPageRoutingModule } from './article-viewer-routing.module';
 
 import { ArticleViewerPage } from './article-viewer.page';
-import { HotComponentModule } from '../components/hot/hot.module';
-import { TileComponentModule } from '../components/tile/tile.module';
+import { HotComponentModule } from '../../components/hot/hot.module';
+import { TileComponentModule } from '../../components/tile/tile.module';
 
 @NgModule({
   imports: [

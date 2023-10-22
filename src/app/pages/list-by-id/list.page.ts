@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../data.service';
-import { UiService } from 'src/app/ui.service';
+import { DataService } from '../../services/data.service';
+import { UiService } from 'src/app/services/ui.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -38,10 +39,13 @@ export class ListPage {
   constructor(
     public data: DataService,
     public ui: UiService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
+  id:any;
   ionViewWillEnter() {
-    this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.data.currentListId)[0];
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
     this.localList = this.listdata.list;
     // Convert to Set to remove duplicates
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 

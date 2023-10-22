@@ -8,14 +8,6 @@
 </ion-header>
 
 <ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
-  <!--
-  <ion-header collapse="condense" *ngIf="!showFilter">
-    <ion-toolbar>
-      <ion-title size="large" style="padding-left:20px;font-size:28px;">
-        {{author}} 
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>-->
   <ion-card class="card card-img" *ngIf="!showFilter"
       (click)="ui.imageviewer(getUrl())"
       style="background-image: url('{{getUrl()}}');

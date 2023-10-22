@@ -16,7 +16,7 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="goToAuthor(s)">
+  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToAuthor(s)">
     <div class="card-scroll-item" 
     style="background-image:url('/assets/img/poet/{{s}}.jpeg');
     background-size:cover;

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService, ViewType } from 'src/app/data.service';
+import { NavController } from '@ionic/angular';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-tile',
@@ -27,30 +28,4 @@ export class TileComponent {
     });
   }
 
-  
-  goToList(listid:any){
-    this.data.currentListId = listid;
-    this.router.navigate(['/tabs/tab4/list'], {
-      queryParams: {}
-    });
-  }
-
-  //by tag or by id
-  goToListBy(tile:any){
-    if(tile.id){//有id诗单
-      this.data.currentListId = tile.id;
-      this.router.navigate(['/tabs/tab4/list'], {
-        queryParams: {}
-      });
-    }
-    else{//tag诗单
-      this.data.currentViewType = ViewType.Tag;
-      this.data.currentAuthor = tile.text;
-      this.data.currentImage = tile.src;
-      this.router.navigate(['/tabs/tab4/poet'], {
-        queryParams: {
-        }
-      });
-    }
-  }
 }

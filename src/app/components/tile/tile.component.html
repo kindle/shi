@@ -16,7 +16,7 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="goToListBy(s)">
+  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToListBy(s)">
     
     <div class="card-scroll-item1" 
     [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"

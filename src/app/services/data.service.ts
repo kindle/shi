@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Group, Song } from './app.component';
+import { Group, Song } from '../app.component';
 
 import { Storage } from '@ionic/storage-angular';
-import { Platform } from '@ionic/angular';
+import { IonTabs, NavController, Platform } from '@ionic/angular';
 
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
@@ -14,8 +14,7 @@ import { catchError, tap } from 'rxjs';
 //import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
-import { Router } from '@angular/router';
-import { ModalEventService } from './modal-event.service';
+import { ActivatedRoute, Router } from '@angular/router';
 /*
 Preferences.set({
       key: this.PHOTO_STORAGE,
@@ -51,9 +50,9 @@ export class DataService {
   searchTopicData:any;
   currentTopicId = 0;
   poemListData:any;
-  currentListId = 0;
+  ////scurrentListId = 0;
   currentAuthor = "";
-  currentViewType = ViewType.Author;
+  ////currentViewType = ViewType.Author;
   currentImage = "";
 
   authorJsonData:any = [];
@@ -184,6 +183,13 @@ export class DataService {
         this.classicData.push(subArray);
       }
     });
+
+    //load topics
+    if(this.searchTopicData==null){
+      this.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
+        this.searchTopicData = data;
+      });
+    }
   }
 
 
@@ -254,9 +260,9 @@ export class DataService {
     private ui: UiService,
     platform: Platform,
     private router: Router,
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute,
 
-    private modalEventService: ModalEventService,
-    
   ){
     this.platform = platform;
   }
@@ -757,13 +763,23 @@ export class DataService {
     return Math.round(value)
   }
 
+  currentTab:any = null;
   goToAuthor(author:any){
-    this.currentViewType = ViewType.Author;
-    this.currentAuthor = author;
-    this.router.navigate(['/tabs/tab4/poet'], {
-      queryParams: {
-      }
-    });
+    this.navCtrl.navigateForward(`/tabs/${this.currentTab}/poet/${author}`);
+  }
+  goToList(id:any){
+    this.navCtrl.navigateForward(`/tabs/${this.currentTab}/list/${id}`);
+  }
+  //by tag or by id
+  goToListBy(item:any){
+    if(item.id){//有id诗单
+      this.navCtrl.navigateForward(`/tabs/${this.currentTab}/list/${item.id}`);
+    }
+    else{//tag诗单
+      this.currentAuthor = item.text;
+      this.currentImage = item.src;
+      this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${item.text}`);
+    }
   }
 
   play(){

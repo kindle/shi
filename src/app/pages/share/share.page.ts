@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../../services/data.service';
 import { NavController } from '@ionic/angular';
 
 
-import { UiService } from '../ui.service';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-share',

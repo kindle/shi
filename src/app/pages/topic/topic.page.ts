@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
-import { UiService } from '../services/ui.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
-  selector: 'app-tab5',
-  templateUrl: './tab5.page.html',
-  styleUrls: ['./tab5.page.scss'],
+  selector: 'app-topic',
+  templateUrl: './topic.page.html',
+  styleUrls: ['./topic.page.scss'],
 })
-export class Tab5Page {
+export class TopicPage {
 
   searchTopicData:any;
   
@@ -17,7 +17,6 @@ export class Tab5Page {
     public ui: UiService,
     private router: Router,
   ) {
-    this.data.currentTopicId = 201;
     this.searchTopicData = this.data.searchTopicData.filter((d:any)=>d.id==this.data.currentTopicId)[0];
   }
 
@@ -27,4 +26,6 @@ export class Tab5Page {
       queryParams: {}
     });
   }
+
 }
+

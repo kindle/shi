@@ -121,7 +121,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
   </ion-content>
 </ion-menu>
 
-<ion-tabs id="main-content">
+<ion-tabs id="main-content" (ionTabsDidChange)="onTabChange($event)">
   <div class="music-tab-bar" style="display: flex;flex-direction: column;">
     <!--<ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">-->
     <ion-toolbar style="--background:rgba(255,255,255,0.8);" *ngIf="data.currenttitle">
@@ -143,13 +143,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         <ion-icon name="book"></ion-icon>
         开卷有益
       </ion-tab-button>
-      <ion-tab-button tab="tab2">
+      <ion-tab-button tab="tab2" [class.active]="true">
         <ion-icon name="grid"></ion-icon>
         浏览
       </ion-tab-button>
       <ion-tab-button tab="tab5">
         <ion-icon name="radio-outline"></ion-icon>
-        地图
+        广播
       </ion-tab-button>
       <ion-tab-button tab="tab3">
         <ion-icon name="albums"></ion-icon>

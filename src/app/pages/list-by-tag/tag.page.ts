@@ -1,58 +1,41 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
-import { DataService, ViewType } from 'src/app/data.service';
-import { UiService } from 'src/app/ui.service';
+import { DataService, ViewType } from 'src/app/services/data.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
-  selector: 'app-poet',
-  templateUrl: './poet.page.html',
-  styleUrls: ['./poet.page.scss'],
+  selector: 'app-tag',
+  templateUrl: './tag.page.html',
+  styleUrls: ['./tag.page.scss'],
 })
-export class PoetPage {
+export class TagPage {
 
   localJsonData:any;
-  author:any;
+  tag:any;
   authorData:any;
 
   constructor(
     public data: DataService,
     public ui: UiService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { 
     
   }
 
 
   ionViewWillEnter() {
-    this.author = this.data.currentAuthor;
-    if(this.data.currentViewType == ViewType.Author){
-      this.localJsonData = this.data.JsonData
-        .filter((shici:any)=>shici.author===this.author);
-      let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);
-      if(foundAuthor.length===1)
-        this.authorData = foundAuthor[0];
-    }else if(this.data.currentViewType == ViewType.Tag){
-      console.log(this.author)
-      this.localJsonData = this.data.JsonData
-        .filter((shici:any)=>shici.tags.join("").indexOf(this.author)>=0);
-      //note: tags is array
-    }
+    this.tag = this.activatedRoute.snapshot.paramMap.get('tag');
+    this.localJsonData = this.data.JsonData
+      .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
+    //note: tags is array
 
     this.onSearchChanged();
   }
 
   getUrl(){
-    if(this.data.currentViewType == ViewType.Author){
-      return `/assets/img/poet/${this.author}.jpeg`
-    }
-    else if(this.data.currentViewType == ViewType.Tag){
-      return this.data.currentImage;
-    }
-    else
-    {
-      return "";
-    }
+    return this.data.currentImage;
   }
 
 

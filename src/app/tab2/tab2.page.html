@@ -1,211 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>诗单</ion-title>
+    <ion-title>浏览</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">诗单</ion-title>
+      <ion-title class="tab-title" mode="md">浏览</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-station [source]="musicStations"></app-station>
-  
-  <app-hot name="热门诗词" [source]="data.hotData"></app-hot>
-  <app-hot name="经典诗词" [source]="data.classicData"></app-hot>
-  <app-tile name="最近播放" [source]="musicStations"></app-tile>
-  <app-tile name="风格诗单" [source]="musicStations"></app-tile>
-  <app-tile name="风格诗单" [source]="musicStations"></app-tile>
+  <app-big [source]="searchTopicData.scroll"></app-big>
 
-  <!--居中对齐-->
-<!--
-  <swiper-container 
-      style="margin-top:10px;"
-      [loop]="false" navigation="false" scrollbar="false"
-      pagination="false" space-between="0" 
-      slides-per-view="1.1" centered-slides="true"
-      autoplay="false" speed="500">
-    <swiper-slide *ngFor="let s of musicStations" (click)="search(s.text)">
-      <div style="min-height: 300px;">
-        <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:5px;">
-          <ion-card-title class="station-text">{{s.text}}诗单</ion-card-title>
-          <ion-card-title class="station-type">Reddah 诗单</ion-card-title>
-        </ion-card-content>
+  <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
+  <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
 
-        <ion-card style="border-radius: 5px;margin-left:5px;margin-right:5px;">
-          <div class="station-bg-title">{{s.alias}}</div>
-          <ion-card-content class="station-content" 
-            style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
-            {{s.alias}}
-
-          </ion-card-content>
-        </ion-card>
-      </div>
-      
-    </swiper-slide>
-  </swiper-container>
--->
-
-  <!--左边20px-->
-<!---
-  <swiper-container 
-    style="margin-top:10px;"
-    [loop]="false" navigation="false" scrollbar="false" direction="horizontal"
-    pagination="false" space-between="10" 
-    slides-per-view="1.1" centered-slides="false"
-    slides-offset-before="20"
-    autoplay="false" speed="500">
-    <swiper-slide *ngFor="let s of musicStations" (click)="search(s.text)">
-      <div style="min-height: 300px;">
-        <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:5px;">
-          <ion-card-title class="station-text">{{s.text}}诗单</ion-card-title>
-          <ion-card-title class="station-type">Reddah 诗单</ion-card-title>
-        </ion-card-content>
-
-        <ion-card style="border-radius: 10px;margin-left:0px;margin-right:0px;">
-          <div class="station-bg-title">{{s.alias}}</div>
-          <ion-card-content class="station-content" 
-            style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
-            {{s.alias}}
-
-          </ion-card-content>
-        </ion-card>
-      </div>
-      
-    </swiper-slide>
-  </swiper-container>
--->
-  <!--use component more simple-->
-  
-
-  <!--one slide 4 poems-->
-<!--
-  <ion-toolbar style="--background: translucent;" *ngIf="data.hotData">
-    <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
-      <ion-buttons (click)="goStyleStations()">
-        <ion-card-title class="station-text" style="font-weight: bold;">测试诗单3- 热门诗歌 {{data.hotData.length}}</ion-card-title>
-        <ion-button>
-          <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-card-content>
-  </ion-toolbar>
-  <swiper-container style="margin-top:10px;margin-bottom: 20px;" *ngIf="data.hotData"
-      space-between="10"  direction="horizontal"
-      slides-per-view="1.1"
-      centered-slides="false"
-      slides-offset-before="20"
-      >
-    <swiper-slide *ngFor="let hot of data.hotData">
-      <ion-list>
-        <ion-item *ngFor="let p of hot" style="--padding-start:0;--inner-padding-end:0;" (click)="play(p)">
-          <ion-thumbnail slot="start">
-            <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>{{p.title}} - {{p.author}}</h2>
-            <p>{{p.sample}}</p>
-          </ion-label>
-          
-          <ion-button fill="clear" slot="end">
-            <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>
-          </ion-button>
-          
-        </ion-item>
-      </ion-list>
-    </swiper-slide>
-  </swiper-container>
--->
-  <!--use component more simple-->
-  
-
-  <!--test1-->
-<!--
-  <ion-toolbar style="--background: translucent;">
-    <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
-      <ion-buttons (click)="goStyleStations()">
-        <ion-card-title class="station-text" style="font-weight: bold;">测试诗单1-长宽相等</ion-card-title>
-        <ion-button>
-          <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-card-content>
-  </ion-toolbar>
-  <swiper-container style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
-      space-between="10" direction="horizontal"
-      slides-per-view="2.2"
-      centered-slides="false"
-      slides-offset-before="20"
-      >
-    <swiper-slide *ngFor="let s of musicStations" class="swiper-slide">
-      <div class="card-scroll-item1" style="background-color:{{s.color}};">
-      </div>
-      <div class="card-text-style">{{s.alias}}</div>
-    </swiper-slide>
-  </swiper-container>
--->
-
-  
-
-  <!--2 rows-->
-<!--
-  <ion-toolbar style="--background: translucent;">
-    <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
-      <ion-buttons (click)="goStyleStations()">
-        <ion-card-title class="station-text" style="font-weight: bold;">测试诗单2-长宽不等</ion-card-title>
-        <ion-button>
-          <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-card-content>
-  </ion-toolbar>
-  <swiper-container
-      style="margin-top:10px;margin-bottom: 20px;"
-      [loop]="false" navigation="false" scrollbar="false"
-      pagination="false" space-between="0" 
-      slides-per-view="2.2" centered-slides="false"
-      slides-offset-before="20"
-      grid="gridOption"
-      autoplay="false" speed="500">
-    <swiper-slide  *ngFor="let s of musicStations" (click)="search(s.text)">
-      <div class="card-scroll-item">
-        <div class="card-image contain" style="background-color:{{s.color}}"></div>
-        <div class="card-text-style">{{s.text}}</div>
-      </div>
-    </swiper-slide>
-  </swiper-container>
-
-
-
-
-
-  <div *ngFor="let station of stations;">
-    <ion-toolbar style="--background: translucent;">
-      <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
-        <ion-buttons (click)="goStyleStations()">
-          <ion-card-title class="station-text" style="font-weight: bold;">{{station.name}}</ion-card-title>
-          <ion-button>
-            <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-card-content>
-    </ion-toolbar>
-    <div class="card-scroll">
-      <ion-card-content style="margin-top:0;padding-top:5px;">
-        <div class="card-scroll-box">
-          <div class="card-scroll-item" (click)="search(c.text)"
-          *ngFor="let c of station.data">
-            <div class="card-image contain" style="background-image:{{c.src}};background-color:{{c.color}}"></div>
-            <div class="card-text-style">{{c.text}}</div>
-          </div>
-        </div>
-      </ion-card-content>
-    </div>
+  <div *ngFor="let list of searchTopicData.list;">
+    <app-tile [name]="list.name" [source]="list.data"></app-tile>
   </div>
--->
 
+
+  <app-text [name]="searchTopicData.desctitle" [text]="searchTopicData.desc">
+  </app-text>
   
   <div class="placeholder-playbox"></div>
 

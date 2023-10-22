@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService, ViewType } from 'src/app/data.service';
+import { DataService, ViewType } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-big',
@@ -26,22 +26,4 @@ export class BigComponent {
     });
   }
 
-  //by tag or by id
-  goToListBy(big:any){
-    if(big.id){//有id诗单
-      this.data.currentListId = big.id;
-      this.router.navigate(['/tabs/tab4/list'], {
-        queryParams: {}
-      });
-    }
-    else{//tag诗单
-      this.data.currentViewType = ViewType.Tag;
-      this.data.currentAuthor = big.text;
-      this.data.currentImage = big.src;
-      this.router.navigate(['/tabs/tab4/poet'], {
-        queryParams: {
-        }
-      });
-    }
-  }
 }

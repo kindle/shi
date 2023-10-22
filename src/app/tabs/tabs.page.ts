@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { RangeCustomEvent } from '@ionic/core';
 
-import { DataService } from '../data.service';
-import { UiService } from '../ui.service';
+import { DataService } from '../services/data.service';
+import { UiService } from '../services/ui.service';
 
 import { Solar } from 'lunar-typescript';
 
@@ -14,6 +13,11 @@ import { Solar } from 'lunar-typescript';
 })
 export class TabsPage {
 
+  onTabChange(event: any){
+    //const selectedTab = event.detail.tab;
+    //console.log(event.tab);
+    this.data.currentTab = event.tab;
+  }
 
   constructor(
     private router: Router,
