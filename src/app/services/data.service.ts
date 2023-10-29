@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Group, Song } from '../app.component';
 
 import { Storage } from '@ionic/storage-angular';
-import { IonTabs, NavController, Platform } from '@ionic/angular';
+import { ActionSheetController, IonTabs, NavController, Platform } from '@ionic/angular';
 
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
@@ -15,6 +15,7 @@ import { catchError, tap } from 'rxjs';
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PlayerPage } from '../pages/player/player.page';
 /*
 Preferences.set({
       key: this.PHOTO_STORAGE,
@@ -48,12 +49,14 @@ export class DataService {
   currentArticle:any;
 
   searchTopicData:any;
+  tab2BrowseTopicData:any;
   currentTopicId = 0;
   poemListData:any;
   ////scurrentListId = 0;
-  currentAuthor = "";
+  //currentAuthor = "";
   ////currentViewType = ViewType.Author;
-  currentImage = "";
+  //currentImage = "";
+  currentItem:any;
 
   authorJsonData:any = [];
   JsonData:any = [];
@@ -69,6 +72,9 @@ export class DataService {
       this.authorJsonData = this.authorJsonData.concat(result);
     });
     this.http.get<any>(`assets/db/全唐诗/authors.tang.json`).subscribe(result=>{
+      this.authorJsonData = this.authorJsonData.concat(result);
+    });
+    this.http.get<any>(`assets/db/全唐诗/authors.others.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });
 
@@ -151,7 +157,7 @@ export class DataService {
   //careful with JsonData
   jsonData:any;
   azureData:any;
-  async loadData(){
+  async loadArticleJsonData(){
 
     //let n = this.getRandom(1,3);
     let n=3;
@@ -187,9 +193,13 @@ export class DataService {
     //load topics
     if(this.searchTopicData==null){
       this.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
-        this.searchTopicData = data;
+        //hide:true is for tab2 browse
+        console.log(data)
+        this.searchTopicData = data.filter((d:any)=>d.hide!==true);
+        this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true);
       });
     }
+
   }
 
 
@@ -262,6 +272,7 @@ export class DataService {
     private router: Router,
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
+    private actionSheetController: ActionSheetController
 
   ){
     this.platform = platform;
@@ -330,7 +341,7 @@ export class DataService {
       //console.log(this.historyToday)
       let first = this.historyToday[0];
       this.displaySongName = this.historyToday[0].key;
-      this.qlyric = this.historyToday[0].text;
+      this.currentPoem.paragraphs = this.historyToday[0].text;
       this.todayImage = this.historyToday[0].image;
       this.currentTodayTextIndex = 0;
     });
@@ -345,7 +356,7 @@ export class DataService {
 
     let first = this.historyToday[this.currentTodayTextIndex];
     this.displaySongName = this.historyToday[this.currentTodayTextIndex].key;
-    this.qlyric = this.historyToday[this.currentTodayTextIndex].text;
+    this.currentPoem.paragraphs = this.historyToday[this.currentTodayTextIndex].text;
     this.todayImage = this.historyToday[this.currentTodayTextIndex].image;
     */
   }
@@ -357,7 +368,7 @@ export class DataService {
 
     let first = this.historyToday[this.currentTodayTextIndex];
     this.displaySongName = this.historyToday[this.currentTodayTextIndex].key;
-    this.qlyric = this.historyToday[this.currentTodayTextIndex].text;
+    this.currentPoem.paragraphs = this.historyToday[this.currentTodayTextIndex].text;
     this.todayImage = this.historyToday[this.currentTodayTextIndex].image;
     */
   }
@@ -386,11 +397,11 @@ export class DataService {
   }
 
   isPlaying=false;
-  qlyric = ["","","","",""];
+  //currentPoem.paragraphs = ["","","","",""];
   lrc:any;
   displaySongName = "";
-  currenttitle = "";
-  currentauthor = "";
+  //currenttitle = "";
+  //currentauthor = "";
   queueData: Song[] = [];
   queuePush(song:Song){
     //delete if exist
@@ -456,7 +467,7 @@ export class DataService {
 
     this.queuePush(song);
 
-    this.qlyric = ["","","","",""];
+    this.currentPoem.paragraphs = ["","","","",""];
     this.setAudio(song);
 
     this.displaySongName = song.desc;
@@ -773,17 +784,21 @@ export class DataService {
   //by tag or by id
   goToListBy(item:any){
     if(item.id){//有id诗单
-      this.navCtrl.navigateForward(`/tabs/${this.currentTab}/list/${item.id}`);
+      this.goToList(item.id);
     }
     else{//tag诗单
-      this.currentAuthor = item.text;
-      this.currentImage = item.src;
+      //this.currentAuthor = item.text;
+      //this.currentImage = item.src;
+      this.currentItem = item;
       this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${item.text}`);
     }
   }
+  goToTopic(id:any){
+    this.navCtrl.navigateForward(`/tabs/${this.currentTab}/topic/${id}`);
+  }
 
   play(){
-    if(this.qlyric&&this.currenttitle&&this.currentauthor)
+    if(this.currentPoem.paragraphs&&this.currentPoem.title&&this.currentPoem.author)
       this.ui.player();
   }
   
@@ -798,12 +813,117 @@ export class DataService {
     }
   }
 
+  currentPoem: any;
   playobj(poem:any){
     if(poem){
-      this.qlyric = poem.paragraphs;
-      this.currenttitle = poem.title;
-      this.currentauthor = poem.author;
+      this.currentPoem = poem;
       this.ui.player();
     }
   }
+
+  
+
+
+
+  collectList = [{group:"",data:null, create:Date.now()}];
+  recentCollection(){
+    return this.collectList.sort((a:any,b:any)=>{return b.create-a.create});
+  }
+  myList = [];
+  
+
+  LOCALSTORAGE_POEM_LIST = "shi_list";
+  async loadlikes(){
+    this.get(this.LOCALSTORAGE_POEM_LIST).then((value)=>{
+      if(value==null)
+        this.collectList = [];
+      else{
+        this.collectList = JSON.parse(value);
+      }
+    });
+  }
+
+  //group: idlist, taglist, poetlist, poem
+  likelist(listdata:any, group:any){
+    console.log(listdata)
+    if(!this.isliked(listdata, group)){
+      this.collectList.push({group:group, data:listdata, create: Date.now()});
+      this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+    }
+    
+    this.ui.toast("top", "已添加到诗词库")
+  }
+
+  isliked(listdata:any, group:any){
+    let allpoemlist = this.collectList.filter(l=>l.group==group);
+    let key = this.getKey(group);
+    return allpoemlist.find(pl=>pl.data?.[key]===listdata[key])
+  }
+
+  private getKey(group:any){
+    let key = "id";
+    if(group=='idlist'){
+      key = "id";
+    }
+    else if(group=='taglist'){
+      key = "text";
+    }
+    else if (group=='poetlist'){
+      key = "name";
+    }
+    else if(group=='poem'){
+      key = "id";
+    }
+    return key;
+  }
+
+  async unlikelist(listdata:any, group:any){
+    let text = "";
+    if(group=='idlist')
+      text = "诗单"
+    else if(group=='taglist')
+      text = "类型"
+    else if(group=='poetlist')
+      text = "诗人"
+    else if(group=='poem')
+      text = "诗词"
+
+    const actionSheet = await this.actionSheetController.create({
+      header: `你确定要从诗词库删除这个${text}吗？`,
+      buttons: [
+        {
+          text: `删除${text}`,
+          role: 'destructive',
+          handler: () => {
+            if(this.isliked(listdata, group)){
+              let key = this.getKey(group);
+              for (let i = 0; i < this.collectList.length; i++) {
+                let item = this.collectList[i];
+                if (item.group===group && item.data?.[key] === listdata[key]) {
+                  this.collectList.splice(i, 1);
+                    break;
+                }
+              }
+              this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+            }
+          }
+        },
+        {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {}
+        }
+      ]
+    });
+
+    await actionSheet.present();
+  }
+
+  //test method
+  clearLocalStorage(){
+    this.storage.clear();
+  }
+
+
+
 }

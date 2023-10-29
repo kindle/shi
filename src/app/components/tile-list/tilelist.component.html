@@ -10,13 +10,47 @@
 </ion-toolbar>
 <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
   <div style="margin:5px;" *ngFor="let s of source" >
-    <div class="card-scroll-item1" 
+    <div class="card-scroll-item1" *ngIf="s.group=='idlist'" 
+    (click)="data.goToListBy(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      style="background-image:url('{{s.src}}');
+      style="background-image:url('{{s.data.image}}');
       background-size:cover;
       background-repeat:no-repeat;
       background-color:{{s.color}};">
     </div>
-    <div class="card-text-style">{{s.text}}</div>
+    <div class="card-text-style" *ngIf="s.group=='idlist'">{{s.data.name}}</div>
+
+
+    <div class="card-scroll-item1" *ngIf="s.group=='taglist'" 
+    (click)="data.goToListBy(s.data)"
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="background-image:url('{{s.data.src}}');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-color:{{s.data.color}};">
+    </div>
+    <div class="card-text-style" *ngIf="s.group=='taglist'">{{s.data.text}}</div>
+
+
+    <div class="card-scroll-item1" *ngIf="s.group=='poetlist'" 
+    (click)="data.goToAuthor(s.data.name)"
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="background-image:url('/assets/img/poet/{{s.data.name}}.jpeg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-color:rgb(113,203,212);">
+    </div>
+    <div class="card-text-style" *ngIf="s.group=='poetlist'">关注诗人 - {{s.data.name}}</div>
+
+
+    <div class="card-scroll-item1" *ngIf="s.group=='poem'" 
+    (click)="data.playobj(s.data)"
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="background-image:url('/assets/img/poet/{{s.data.author}}.jpeg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-color:rgb(113,203,212);">
+    </div>
+    <div class="card-text-style" *ngIf="s.group=='poem'">诗词：{{s.data.title}}</div>
   </div>
 </div>

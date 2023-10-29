@@ -144,14 +144,14 @@
         ],
         "items":[
             {"author":"李白", "sample":"小时不识月，呼作白玉盘", "desc":"", "pid":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
-            {"author":"杜甫", "sample":"", "desc":"", "pid":""},
-            {"author":"白居易",  "sample":"", "desc":"", "pid":""},
-            {"author":"元稹",  "sample":"", "desc":"", "pid":""},
-            {"author":"刘禹锡",  "sample":"", "desc":"", "pid":""},
-            {"author":"卢照邻",  "sample":"", "desc":"", "pid":""},
+            {"author":"杜甫", "sample":"歧王宅里寻常见，崔九堂前几度闻", "desc":"", "pid":"ae5b1a15-0b5c-4578-8f31-1b60030633a4"},
+            {"author":"白居易",  "sample":"晚来天欲雪，能饮一杯无", "desc":"", "pid":"9972f7bb-ae5b-49e4-87df-381386af66b6"},
+            {"author":"元稹",  "sample":"曾经沧海难为水，除却巫山不是云", "desc":"", "pid":"de747326-60b6-4d83-9a80-ea9dc9faec13"},
+            {"author":"刘禹锡",  "sample":"旧时王谢堂前燕，飞入寻常百姓家", "desc":"", "pid":"4fa92777-9bd6-45ca-9272-bac30459cf5e"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "pid":"fecca913-ad91-4fab-b34d-5734a2533039"},
             {"author":"孟浩然",  "sample":"绿树村边合，青山郭外斜", "desc":"", "pid":"5aad66b7-2ed8-c615-f728-059b601d9620"},
-            {"author":"孟郊",  "sample":"", "desc":"", "pid":""},
-            {"author":"屈原",  "sample":"", "desc":"", "pid":""},
+            {"author":"孟郊",  "sample":"慈母手中线，游子身上衣", "desc":"", "pid":"22923091-18da-429d-9ef1-6b367fd74b1a"},
+            {"author":"屈原",  "sample":"路漫漫其修远兮，吾将上下而求索", "desc":"", "pid":"4b3934d9-72d7-463b-9980-915e32b2639e"},
             {"author":"岑参",  "sample":"", "desc":"", "pid":""},
             {"author":"岳飞",  "sample":"", "desc":"", "pid":""},
             {"author":"骆宾王",  "sample":"", "desc":"", "pid":""},
@@ -177,7 +177,7 @@
             {"author":"陈子昂",  "sample":"", "desc":"", "pid":""},
             {"author":"陶渊明",  "sample":"", "desc":"", "pid":""},
             {"author":"韩愈",  "sample":"", "desc":"", "pid":""},
-            {"author":"高适",  "sample":"莫愁前路无知己，天下无人不识君", "desc":"", "pid":""}
+            {"author":"高适",  "sample":"莫愁前路无知己，天下无人不识君", "desc":"", "pid":"36d65b5a-7b4d-4b3d-a1b7-6fd144360f8f"}
         ]
     },
     {

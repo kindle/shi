@@ -124,12 +124,14 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
 <ion-tabs id="main-content" (ionTabsDidChange)="onTabChange($event)">
   <div class="music-tab-bar" style="display: flex;flex-direction: column;">
     <!--<ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">-->
-    <ion-toolbar style="--background:rgba(255,255,255,0.8);" *ngIf="data.currenttitle">
+    <ion-toolbar style="--background:rgba(255,255,255,0.8);" *ngIf="data.currentPoem">
       <ion-buttons slot="start" expand="block" style="width:100%;" (click)="data.play()">
-        <div class="play-icon-box">
-          <img style="min-width: 40px;" src="/assets/img/poet/{{data.currentauthor}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+        <div class="play-icon-box" *ngIf="data.currentPoem">
+          <img style="min-width: 40px;" src="/assets/img/poet/{{data.currentPoem.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </div>
-        <ion-card-title style="font-size:18px;width:100%;font-weight: normal;">{{data.currenttitle}}</ion-card-title>
+        <ion-card-title style="font-size:18px;width:100%;font-weight: normal;overflow: hidden;text-overflow: ellipsis;max-height: 30px;">
+          <ion-label>上一首: {{data.currentPoem.title}}</ion-label>
+        </ion-card-title><!--data.currentPoem.paragraphs[0]-->
       </ion-buttons>
       <ion-buttons slot="end" style="display:none;">
         <ion-button [disabled]="false" (click)="next()">
@@ -153,7 +155,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-tab-button>
       <ion-tab-button tab="tab3">
         <ion-icon name="albums"></ion-icon>
-        诗词库
+        收藏
       </ion-tab-button>
       <ion-tab-button tab="tab4">
         <ion-icon name="search-outline"></ion-icon>

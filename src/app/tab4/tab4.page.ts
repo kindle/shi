@@ -36,14 +36,6 @@ export class Tab4Page implements OnInit {
     }*/
   }
 
-  goToTopic(topicid:any){
-    this.data.currentTopicId = topicid;
-    this.router.navigate(['/tabs/tab4/topic'], {
-      queryParams: {
-        id:topicid
-      }
-    });
-  }
 
   async ngOnInit() {
     /****test code*****/

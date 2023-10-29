@@ -4,6 +4,38 @@
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title>{{tag}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" shape="round" *ngIf="!data.isliked(data.currentItem,'taglist')"
+      (click)="data.likelist(data.currentItem,'taglist')"
+      style="background-color: rgb(247,247,247);border-radius: 50%;">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" id="popover-button-tag-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="popover-button-tag-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item lines="full" [button]="true" [detail]="false"
+              *ngIf="data.isliked(data.currentItem,'taglist')" 
+              (click)="data.unlikelist(data.currentItem,'taglist')">
+                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
+              </ion-item>
+              <ion-item lines="full" [button]="true" [detail]="false">
+                收藏
+                <ion-icon name="add-outline" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item lines="full" [button]="true" [detail]="false">
+                分享
+                <ion-icon name="share-outline" slot="end"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +77,7 @@
   </ion-list>
 
   <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult">
+    <ion-item *ngFor="let p of displayResult" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
         <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>
@@ -53,6 +85,10 @@
         <h2>{{p.title}} - {{p.author}}</h2>
         <p>{{p.paragraphs[0]}}</p><!--{{p.sample}} - -->
       </ion-label>
+      <ion-button slot="end" color="white"
+      style="margin-left:10px;margin-right:10px;">
+        <ion-icon name="ellipsis-horizontal" color="dark"></ion-icon>
+      </ion-button>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

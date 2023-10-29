@@ -8,12 +8,16 @@ const routes: Routes = [
     component: Tab3Page,
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
+    path: 'playlist',
+    loadChildren: () => import('./playlist/playlist.module').then( m => m.PlayListPageModule)
   },
   {
     path: 'author',
     loadChildren: () => import('./author/author.module').then( m => m.AuthorPageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./list/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'poem',
@@ -22,6 +26,24 @@ const routes: Routes = [
   {
     path: 'tag',
     loadChildren: () => import('./tag/tag.module').then( m => m.TagPageModule)
+  },
+
+
+  {
+    path: 'list/:id',
+    loadChildren: () => import('../pages/list-by-id/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'topic/:id',
+    loadChildren: () => import('../pages/topic/topic.module').then( m => m.TopicPageModule)
+  },
+  {
+    path: 'poet/:author',
+    loadChildren: () => import('../pages/list-by-poet/poet.module').then( m => m.PoetPageModule)
+  },
+  {
+    path: 'tag/:tag',
+    loadChildren: () => import('../pages/list-by-tag/tag.module').then( m => m.TagPageModule)
   }
 ];
 

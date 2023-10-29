@@ -144,8 +144,11 @@ export class UiService {
     const toast = await this.toastController.create({
       message: msg,
       duration: 1500,
-      position: position,
-      cssClass: 'custom-toast',
+      //position: position,
+      position: 'bottom',
+      cssClass: 'custom-bottom-toast',
+      icon: 'checkmark-circle-outline',
+      //color: 'primary'
     });
 
     await toast.present();

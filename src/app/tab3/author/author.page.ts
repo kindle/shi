@@ -13,4 +13,11 @@ export class AuthorPage {
     public data: DataService,
     public ui: UiService,
   ) { }
+
+  localJsonData:any;
+  ionViewWillEnter() {
+    this.localJsonData = this.data.collectList
+      .filter(l=>l.group=='poetlist');
+    
+  }
 }

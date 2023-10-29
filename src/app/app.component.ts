@@ -14,7 +14,7 @@ export class AppComponent {
     private data: DataService,
     private storage: Storage,
   ) {
-    this.data.loadData();
+    this.data.loadArticleJsonData();
   }
 
   async ngOnInit() {
@@ -23,7 +23,11 @@ export class AppComponent {
       //load local storage groups/targets
       //calculate targets days/target count in groups
       this.data.init();
-    })
+    }).finally(()=>{
+      //load likes after local storage db is created.
+      console.log('load likes in loaddata...')
+      this.data.loadlikes();
+    });
     //move it to tab1, as it's very slow when starts up
     await this.data.loadJsonData();
   }

@@ -4,7 +4,8 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
     <div
      style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
         
-        <ion-card-content style="z-index:1;position:fixed;width:100%;padding-inline-end:20px;padding-top:30px;">
+        <ion-card-content style="z-index:100;position:fixed;width:100%;
+        padding-inline-end:20px;padding-top:30px;">
           <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:right;background-color:rgba(128,128,128,0.5);border-radius: 50%;"
             (click)="goback()">
             <ion-button color="light">
@@ -12,6 +13,17 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
             </ion-button>
           </ion-buttons>
         </ion-card-content>
+        <!--
+        <ion-card-content style="z-index:1;position:fixed;width:100%;
+        padding-inline-start:5px;padding-inline-end:20px;padding-top:30px;">
+          <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:left;background-color:rgba(128,128,128,0.5);border-radius: 50%;"
+            (click)="goback()">
+            <ion-button color="light">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-card-content>
+        -->
 
         <ion-card-content style="z-index:0;">
           <ion-card-subtitle style="color:{{data.currentArticle.title_color}};font-size:18px;margin-top:20px;">{{data.currentArticle.small_title}}</ion-card-subtitle>
@@ -35,6 +47,7 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
             <swiper-slide *ngFor="let v of data.currentArticle.items;index as i" class="swiper-slide" 
             [ngStyle]="{'margin-left':(i === data.getInt(data.currentArticle.items.length/3)) ? '40px' : '0px' }">
               <img style="width: 80px;height:80px;border-radius: 10px;" src="/assets/img/poet/{{v.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+              <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
         </ion-card-content>

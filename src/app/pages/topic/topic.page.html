@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="searchTopicData">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md" *ngIf="searchTopicData">{{searchTopicData.name}}</ion-title>

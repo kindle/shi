@@ -5,24 +5,17 @@
     </ion-buttons>
     <ion-title *ngIf="authorData">{{authorData.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button slot="end" shape="round" *ngIf="authorData&&!data.isliked(authorData,'poetlist')"
-      (click)="data.likelist(authorData,'poetlist')"
+      <ion-button slot="end" shape="round" (click)="data.likelist(authorData,'poetlist')"
       style="background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="star-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-poet-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button slot="end" id="popover-button" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
-      <ion-popover trigger="popover-button-poet-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
+      <ion-popover trigger="popover-button" [dismissOnSelect]="true" arrow="false">
         <ng-template>
           <ion-content>
             <ion-list>
-              <ion-item lines="full" [button]="true" [detail]="false"
-              *ngIf="authorData&&data.isliked(authorData,'poetlist')" 
-              (click)="data.unlikelist(authorData,'poetlist')">
-                <ion-text color="danger">从诗词库中删除</ion-text>
-                <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
-              </ion-item>
               <ion-item lines="full" [button]="true" [detail]="false">
                 收藏
                 <ion-icon name="add-outline" slot="end"></ion-icon>
@@ -38,46 +31,28 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
-  <ion-card class="card card-img" *ngIf="!showFilter"
-      (click)="ui.imageviewer(getUrl())"
-      style="background-image: url('{{getUrl()}}');
-      background-size:cover;min-height: 300px;
-      margin-top:0;
-      margin-left:0;
-      margin-right:0;
-      border-radius: 0;
-      ">
-      <ion-card-content>
-        <ion-card-subtitle class="card-text" style="font-size:18px;"></ion-card-subtitle>
-        <ion-card-title class="card-text" style="color:white;"></ion-card-title>
-      </ion-card-content>
-  </ion-card>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
-      style="padding-left:15px;"
-      [(ngModel)]="searchText"
-      (ionFocus)="onSearchFocus()"
-      (ionCancel)="onSearchCancel()"
-      (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
-      ></ion-searchbar>
+<ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult"
+scrollEvents="true" (ionScroll)="onScroll($event)" 
+style="--background: url('{{getUrl()}}') top/100% {{defaultBgHeight}} no-repeat;">
+  <div style="background-color:rgba(0,0,0,0);
+    min-height: {{min_height}};">
+  </div>
+  <ion-header collapse="condense" style="height:1px;">
+    <ion-toolbar style="height:1px;">
+      <ion-title size="large"></ion-title>
     </ion-toolbar>
   </ion-header>
 
   <app-text [name]="authorData.name" [text]="authorData.desc" *ngIf="!showFilter&&authorData"></app-text>
 
-
-  <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
+  <ion-list style="padding-top:20px;padding-bottom: 20px;background-color:white;" *ngIf="!showFilter">
     <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
       {{localJsonData.length}}首诗词
     </ion-text>
   </ion-list>
 
-  <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult">
+  <ion-list *ngIf="displayResult" style="padding-left:5px;">
+    <ion-item *ngFor="let p of displayResult" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
         <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>
@@ -85,6 +60,10 @@
         <h2>{{p.title}}</h2>
         <p style="margin-top:5px;">{{p.paragraphs[0]}}</p><!--{{p.sample}} - -->
       </ion-label>
+      <ion-button slot="end" color="white"
+      style="margin-left:10px;margin-right:10px;">
+        <ion-icon name="ellipsis-horizontal" color="dark"></ion-icon>
+      </ion-button>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

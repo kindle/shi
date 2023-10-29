@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,9 +10,21 @@ export class TextComponent {
 
   @Input() name?: string;
   @Input() text?: string;
+  
+  @Input() max: number = 100;
+  fold:boolean = true;
 
   constructor(
     public data: DataService,
-    private router: Router,
   ){}
+
+  short(){
+    if(this.fold)
+      return this.text?.substring(0,this.max);
+    return this.text;
+  }
+
+  unfold(){
+    this.fold = false;
+  }
 }

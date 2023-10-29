@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -15,17 +15,13 @@ export class TopicPage {
   constructor(
     public data : DataService,
     public ui: UiService,
-    private router: Router,
-  ) {
-    this.searchTopicData = this.data.searchTopicData.filter((d:any)=>d.id==this.data.currentTopicId)[0];
-  }
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  goToList(listid:any){
-    //this.data.currentListId = listid;
-    this.router.navigate(['/tabs/tab4/list'], {
-      queryParams: {}
-    });
+  ionViewWillEnter() {
+    let topicId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.searchTopicData = this.data.searchTopicData
+      .filter((d:any)=>d.id==topicId)[0];
   }
-
 }
 

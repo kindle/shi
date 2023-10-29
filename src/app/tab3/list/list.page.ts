@@ -14,4 +14,11 @@ export class ListPage {
     public ui: UiService
   ) { }
 
+  localJsonData:any;
+  ionViewWillEnter() {
+    this.localJsonData = this.data.collectList
+      .filter(l=>l.group=='idlist');
+    
+  }
+
 }

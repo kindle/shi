@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 import { DataService, ViewType } from 'src/app/services/data.service';
@@ -20,19 +20,19 @@ export class PoetPage {
     public ui: UiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { 
-    
-  }
+    private cdRef: ChangeDetectorRef
+  ) {}
 
 
   ionViewWillEnter() {
+    //this.defaultBgHeight = "350px";
     this.author = this.activatedRoute.snapshot.paramMap.get('author');
-    
     this.localJsonData = this.data.JsonData
       .filter((shici:any)=>shici.author===this.author);
     let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);
-    if(foundAuthor.length===1)
+    if(foundAuthor.length>=1)
       this.authorData = foundAuthor[0];
+
 
     this.onSearchChanged();
   }
@@ -88,5 +88,22 @@ export class PoetPage {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 200);
+  }
+
+
+
+  defaultBgHeight:string|any;
+  min_height:any = "350px";
+  onScroll(event:any){
+    let offset = event.detail.scrollTop;
+
+    if(offset<=0){
+      this.defaultBgHeight = (this.min_height.replace("px","") - offset)+"px";
+    }else{
+      this.defaultBgHeight = this.min_height;
+    }
+
+    //bug fix for navigating back from other pages
+    this.cdRef.detectChanges();
   }
 }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
-import { DataService, ViewType } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -18,7 +18,6 @@ export class TagPage {
   constructor(
     public data: DataService,
     public ui: UiService,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
   ) { 
     
@@ -35,7 +34,7 @@ export class TagPage {
   }
 
   getUrl(){
-    return this.data.currentImage;
+    return this.data.currentItem.src;
   }
 
 

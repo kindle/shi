@@ -132,4 +132,13 @@ export class Tab1Page {
       }
     });
   }
+
+  goAuthorDirect(author:any, event:any){
+    this.data.goToAuthor(author);
+  }
+
+  stopBubble(event:any){
+    event.stopPropagation();
+    event.preventDefault();
+  }
 }

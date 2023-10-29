@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
   },
   {
+    path: 'addplayerlist',
+    loadChildren: () => import('./pages/add-playlist/add-playerlist.module').then( m => m.AddPlayerListPageModule)
+  },
+  {
     path: 'tab5',
     loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
   },

@@ -257,3 +257,12 @@
       height: 100%;
   }
 }
+
+
+.custom-bottom-toast {
+  top: -150px;
+  width: 200px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  //text-align:center;
+}

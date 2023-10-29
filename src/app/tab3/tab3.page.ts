@@ -36,11 +36,9 @@ export class Tab3Page {
         this.onSearchchange();
       }
       
-    //}
   }
 
   add(){
-    console.log('add')
     this.router.navigate(['/song'], {}); 
   }
 
@@ -179,6 +177,12 @@ export class Tab3Page {
     //{alias:"赠答",text:"赠答",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
   ];
   
+  goToPlayList(){
+    this.router.navigate(['/tabs/tab3/playlist'], {
+      queryParams: {
+      }
+    });
+  }
 
   goToList(){
     this.router.navigate(['/tabs/tab3/list'], {

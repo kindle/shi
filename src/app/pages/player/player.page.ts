@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { RangeCustomEvent } from '@ionic/angular';
+import { ModalController, RangeCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-player',
@@ -11,6 +11,7 @@ export class PlayerPage implements OnInit {
 
   constructor(
     public data: DataService,
+    private modalController: ModalController,
   ) { }
 
   ngOnInit() {
@@ -63,7 +64,7 @@ export class PlayerPage implements OnInit {
       this.data.audio.currentTime = this.data.currentTime;
 
       this.data.audio.play();
-      this.data.qlyric = ["","","","",""];
+      this.data.currentPoem.paragraphs = ["","","","",""];
       this.data.lrc.play(this.data.audio.currentTime * 1000);
       this.data.isPlaying = true;
     }
@@ -76,6 +77,11 @@ export class PlayerPage implements OnInit {
     
     let strseconds = (seconds >= 10) ? seconds : "0" + seconds;
     return str_minutes + ":" + strseconds;
+  }
+
+  checkAuthor(author:any){
+    this.modalController.dismiss();
+    this.data.goToAuthor(author);
   }
 
 }
