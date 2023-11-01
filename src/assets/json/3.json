@@ -4,12 +4,12 @@
         "min_height": "380px",
         "bg_image":"国庆.jpg",
         "title_color":"white",
-        "small_title":"哪里值得去",
-        "big_title":"不想人挤人？国庆高低得玩点不一样的！",
+        "small_title":"年青人的迷茫",
+        "big_title":"中年人的痛苦和焦虑是怎么来的？",
         "is_title_bottom":false,
         "desc":[
             {"type":"text", "value":"年轻人的迷茫是怎么来的？中年人的痛苦和焦虑是怎么来的？你的一生都不可能如你想要的有源源不断的财富和社会地位的提升的。如果没有了钱财，没有了社会地位，别人一直在批评你、羞辱你、讽刺你、打击你、抹黑你的时候你是不是就痛苦的活不下去了？因为你没有强力的精神支撑。"},
-            {"type":"image", "value":"smart.jpg"},
+            {"type":"image", "value":"winding-road.jpg"},
             {"type":"text", "value":"冯友兰说：学哲学的目的就是使人做为人能够成为人，而不是为了成为某种人，不为成为赚钱的机器，而是成为一个周全理性的人。"},
             {"type":"poem", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "pid":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
             {"type":"poem", "author":"孟浩然", "title":"宿建德江", "sample":"野旷天低树，江清月近人", "pid":"0bed9b02-991e-4e28-b631-86640147a712"},
@@ -27,8 +27,42 @@
         "link":""
     },
     {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"cloud.jpg",
+        "title_color":"white",
+        "small_title":"愿你有一种浪漫",
+        "big_title":"找到心生欢喜的良人，共享三餐四季，明月清风",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"如果都注定要这样平凡而快乐的度过一生的话，那希望我们找到的都是如自己所愿的人。"},
+            {"type":"text", "value":"一个灵魂高度契合的人，一个充满趣味的人。"},
+            {"type":"text", "value":"一个能够在漫长的、无聊的岁月里让你欣喜的人。"},
+            {"type":"image", "value":"tang.jpg"},
+            {"type":"poem", "author":"李商隐", "title":"无题二首 一", "sample":"身无彩凤双飞翼，心有灵犀一点通", "pid":"3410e7ce-df3a-4ab8-bea3-7f681661b240"},
+            {"type":"poem", "author":"苏轼", "title":"江城子", "sample":"十年生死两茫茫。不思量，自难忘", "pid":"410858c3-5473-4874-a019-4158bf233921"},
+            {"type":"text", "value":"她如一股春风，让你心生欢喜。"},
+            {"type":"text", "value":"她如一轮明月，让你时常去凝望。"},
+            {"type":"text", "value":"她偶尔也如夏天的狂风骤雨一样，可能让你有一些无所适从。"},
+            {"type":"image", "value":"辣椒.jpg"},
+            {"type":"text", "value":"但她更多时候，都静默的陪伴在你的身边。"},
+            {"type":"text", "value":"不多作声，但却显得特殊而浪漫。"},
+            {"type":"poem", "author":"纳兰性德", "title":"浣溪沙·谁念西风独自凉", "sample":"赌书消得泼茶香，当时只道是寻常", "pid":"a2d5ee9e-5da9-40eb-87f8-11fc20b4b1d8"},
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "pid":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    },
+    {
         "template": "group",
-        "min_height": "450px",
+        "min_height": "380px",
         "bg_image":"故宫瓦.jpg",
         "title_color":"white",
         "small_title":"唐宋八大家",

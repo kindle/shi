@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
-import { AddPlayerListPage } from '../../pages/add-playlist/add-playerlist.page'
+import { AddPlayerListPage } from './new-customlist/add-playerlist.page'
 
 @Component({
   selector: 'app-playlist',
@@ -15,14 +15,15 @@ export class PlayListPage {
   constructor(
     public data:DataService,
     public ui: UiService,
-    private modalController: ModalController
-  ) { }
+    private modalController: ModalController,
+    private cdRef: ChangeDetectorRef
+  ) {
+    this.data.updateLocalData('customlist');
+   }
 
-  localJsonData:any;
   ionViewWillEnter() {
-    this.localJsonData = this.data.collectList
-      .filter(l=>l.group=='idlist');
-    
+    //there's no will enter in modal
+    //this.data.updateLocalData('customlist');
   }
 
   async createPlayList() {
@@ -32,22 +33,21 @@ export class PlayListPage {
         },
         //cssClass: 'modal-fullscreen',
         //keyboardClose: true,
-        //showBackdrop: true,
-        //breakpoints: [0, 0.5, 1],
-        //initialBreakpoint: 0.5,
+        showBackdrop: true,
+        breakpoints: [0, 0.5, 1],
+        initialBreakpoint: 0.5,
         //enterAnimation: this.enterAnimation,
         //leaveAnimation: this.leaveAnimation,
         //presentingElement: await this.modalController.getTop(),
+        //presentingElement: this.presentingElement
     });
 
     await modal.present();
-    //modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-
     if (role === 'confirm') {
-      //this.message = `Hello, ${data}!`;
     }
-}
+    this.data.updateLocalData('customlist');
+  }
 
 }

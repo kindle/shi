@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>添加到诗单列表</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="cancel()" [strong]="true">取消</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="no-padding">
+    <ion-searchbar placeholder="在诗单列表中查找" show-cancel-button="focus" 
+        style="padding-left:20px;"
+        cancel-button-text="取消"
+    ></ion-searchbar>
+    <ion-list *ngIf="lastUpdatedCustomList&&lastUpdatedCustomList.length>0">
+        <ion-list-header>
+            <ion-label style="padding-left:5px;">最近诗单列表</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let like of lastUpdatedCustomList" 
+        (click)="addtocustomlist(like)"
+        style="--padding-start:20px;--inner-padding-end:20px;" detail="false">
+            <ion-thumbnail slot="start" *ngIf="like.data" style="background-color: {{like.data['color']}};">
+                <img style="border-radius: 10px;" [src]="like.data['image']" />
+            </ion-thumbnail>
+            <ion-label *ngIf="like.data" >
+                <h2>{{like.data['name']}}</h2>
+                <p style="margin-top:5px;">{{like.data['desc']}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
+            <ion-label style="padding-left:5px;">所有诗单列表</ion-label>
+          </ion-list-header>
+        <ion-item style="--padding-start:20px;--inner-padding-end:20px;"
+        (click)="createPlayList()">
+          <ion-thumbnail slot="start" class="add-center">
+            <ion-icon name="add-outline" size="large" color="primary"></ion-icon>
+          </ion-thumbnail>
+          <ion-label color="primary">
+            <h2>新建诗单列表...</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngFor="let like of data.localJsonData" 
+        (click)="addtocustomlist(like)"
+        style="--padding-start:20px;--inner-padding-end:20px;" detail="false">
+          <ion-thumbnail slot="start" *ngIf="like.data" style="background-color: {{like.data['color']}};">
+            <img style="border-radius: 10px;" [src]="like.data['image']" />
+          </ion-thumbnail>
+          <ion-label *ngIf="like.data" >
+            <h2>{{like.data['name']}}</h2>
+            <p style="margin-top:5px;">{{like.data['desc']}}</p>
+          </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

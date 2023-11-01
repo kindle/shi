@@ -24,15 +24,15 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let like of localJsonData" 
+    <ion-item *ngFor="let like of data.localJsonData" (click)="data.playobj(like.data)"
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start" *ngIf="like.data">
         <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['author'])"
         src="/assets/img/poet/{{like.data['author']}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>
-      <ion-label *ngIf="like.data" (click)="localPlayObj(like.data)">
+      <ion-label *ngIf="like.data">
         <h2>{{like.data['title']}}</h2>
-        <p style="margin-top:5px;">{{like.data['paragraphs'][0]}}</p>
+        <p style="margin-top:5px;" *ngIf="like.data['paragraphs']">{{like.data['paragraphs'][0]}}</p>
       </ion-label>
       <!--
       <ion-button fill="clear" slot="end">

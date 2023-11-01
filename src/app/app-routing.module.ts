@@ -12,11 +12,11 @@ const routes: Routes = [
   },
   {
     path: 'image-viewer',
-    loadChildren: () => import('./pages/image-viewer/image-viewer.module').then( m => m.ImageViewerPageModule)
+    loadChildren: () => import('./pages/viewer-image/image-viewer.module').then( m => m.ImageViewerPageModule)
   },
   {
     path: 'article-viewer',
-    loadChildren: () => import('./pages/article-viewer/article-viewer.module').then( m => m.ArticleViewerPageModule)
+    loadChildren: () => import('./pages/viewer-article/article-viewer.module').then( m => m.ArticleViewerPageModule)
   },
   {
     path: 'player',
@@ -24,7 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'addplayerlist',
-    loadChildren: () => import('./pages/add-playlist/add-playerlist.module').then( m => m.AddPlayerListPageModule)
+    loadChildren: () => import('./tab3/customlist/new-customlist/add-playerlist.module').then( m => m.AddPlayerListPageModule)
+  },
+  {
+    path: 'addtocustomlist',
+    loadChildren: () => import('./tab3/customlist/add-to-customlist/add-to-customlist.module').then( m => m.AddToCustomListPageModule)
   },
   {
     path: 'tab5',

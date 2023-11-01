@@ -178,7 +178,7 @@ export class Tab3Page {
   ];
   
   goToPlayList(){
-    this.router.navigate(['/tabs/tab3/playlist'], {
+    this.router.navigate(['/tabs/tab3/customlist'], {
       queryParams: {
       }
     });

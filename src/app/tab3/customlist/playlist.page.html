@@ -1,0 +1,63 @@
+<div class="ion-page">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+      </ion-buttons>
+      <ion-title>诗单列表</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title class="tab-title" mode="md">诗单列表</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-searchbar placeholder="在诗单列表中查找" show-cancel-button="focus" 
+        style="padding-left:15px;"
+        cancel-button-text="取消"
+        ></ion-searchbar>
+      </ion-toolbar>
+    </ion-header>
+
+
+    <ion-list>
+      <ion-item style="--padding-start:20px;--inner-padding-end:20px;"
+      (click)="createPlayList()">
+        <ion-thumbnail slot="start" class="add-center">
+          <ion-icon name="add-outline" size="large" color="primary"></ion-icon>
+        </ion-thumbnail>
+        <ion-label color="primary">
+          <h2>新建诗单列表...</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let like of data.localJsonData" (click)="data.goToPlayList(like.data['id'])"
+      style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
+        <ion-thumbnail slot="start" *ngIf="like.data" style="background-color: {{like.data['color']}};">
+          <img style="border-radius: 10px;" [src]="like.data['image']" />
+        </ion-thumbnail>
+        <ion-label *ngIf="like.data" >
+          <h2>{{like.data['name']}}</h2>
+          <p style="margin-top:5px;">{{like.data['desc']}}</p>
+        </ion-label>
+      </ion-item>
+      <!--
+      <ion-item *ngFor="let p of data.hotData[0]" 
+      style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
+        <ion-thumbnail slot="start">
+          <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{p.title}} - {{p.author}}</h2>
+          <p style="margin-top:5px;">{{p.sample}}</p>
+        </ion-label>
+      </ion-item>
+      -->
+    </ion-list>
+
+    <div class="placeholder-playbox"></div>
+  </ion-content>
+</div>

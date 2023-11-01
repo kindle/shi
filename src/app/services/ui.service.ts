@@ -6,7 +6,7 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { Capacitor } from '@capacitor/core';
 import { Location } from '@angular/common'
 import { AnimationController, ModalController } from '@ionic/angular';
-import { ImageViewerPage } from 'src/app/pages/image-viewer/image-viewer.page';
+import { ImageViewerPage } from 'src/app/pages/viewer-image/image-viewer.page';
 import { PlayerPage } from '../pages/player/player.page';
 
 @Injectable({

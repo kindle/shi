@@ -16,8 +16,8 @@ export class TagPage {
 
   localJsonData:any;
   ionViewWillEnter() {
-    this.localJsonData = this.data.collectList
-      .filter(l=>l.group=='taglist');
+    this.localJsonData = this.data.recentCollection()
+      .filter((l:any)=>l.group=='taglist');
     console.log(this.localJsonData)
   }
 

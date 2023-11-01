@@ -10,19 +10,19 @@ const routes: Routes = [
   },
   {
     path: 'list/:id',
-    loadChildren: () => import('../pages/list-by-id/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('../pages/by-id-shi-list/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'topic/:id',
-    loadChildren: () => import('../pages/topic/topic.module').then( m => m.TopicPageModule)
+    loadChildren: () => import('../pages/viewer-topic/topic.module').then( m => m.TopicPageModule)
   },
   {
     path: 'poet/:author',
-    loadChildren: () => import('../pages/list-by-poet/poet.module').then( m => m.PoetPageModule)
+    loadChildren: () => import('../pages/by-name-author-info/poet.module').then( m => m.PoetPageModule)
   },
   {
     path: 'tag/:tag',
-    loadChildren: () => import('../pages/list-by-tag/tag.module').then( m => m.TagPageModule)
+    loadChildren: () => import('../pages/by-tag-shi-list/tag.module').then( m => m.TagPageModule)
   }
 ];
 

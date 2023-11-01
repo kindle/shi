@@ -11,7 +11,7 @@ import { UiService } from 'src/app/services/ui.service';
 export class ArticleViewerPage {
   constructor(
     public data: DataService,
-    private ui: UiService,
+    public ui: UiService,
     private location: Location,
     private cdRef: ChangeDetectorRef
   ) {}

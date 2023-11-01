@@ -9,6 +9,7 @@ import { ArticleViewerPageRoutingModule } from './article-viewer-routing.module'
 import { ArticleViewerPage } from './article-viewer.page';
 import { HotComponentModule } from '../../components/hot/hot.module';
 import { TileComponentModule } from '../../components/tile/tile.module';
+import { TextComponentModule } from 'src/app/components/text/text.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { TileComponentModule } from '../../components/tile/tile.module';
     ArticleViewerPageRoutingModule,
     HotComponentModule,
     TileComponentModule,
+    TextComponentModule,
   ],
   declarations: [ArticleViewerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

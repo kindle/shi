@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
+import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/add-to-customlist.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -40,6 +42,7 @@ export class ListPage {
     public data: DataService,
     public ui: UiService,
     private activatedRoute: ActivatedRoute,
+    private modalController: ModalController,
   ) { }
 
   id:any;
@@ -51,6 +54,26 @@ export class ListPage {
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 
     // Convert back to an array
     this.poets = [...authorSet]; 
+  }
+
+  async addToCustomList(p:any){
+    this.data.collectCustom(p);
+    
+    const modal = await this.modalController.create({
+        component: AddToCustomListPage,
+        componentProps: {
+        },
+        //cssClass: 'modal-fullscreen',
+        //keyboardClose: true,
+        showBackdrop: true,
+        breakpoints: [0, 0.5, 0.75, 1],
+        initialBreakpoint: 0.75,
+        //enterAnimation: this.enterAnimation,
+        //leaveAnimation: this.leaveAnimation,
+        //presentingElement: await this.modalController.getTop(),
+        //presentingElement: this.presentingElement
+    });
+    await modal.present();
   }
 
   

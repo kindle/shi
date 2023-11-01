@@ -8,8 +8,8 @@ const routes: Routes = [
     component: Tab3Page,
   },
   {
-    path: 'playlist',
-    loadChildren: () => import('./playlist/playlist.module').then( m => m.PlayListPageModule)
+    path: 'customlist',
+    loadChildren: () => import('./customlist/playlist.module').then( m => m.PlayListPageModule)
   },
   {
     path: 'author',
@@ -30,20 +30,24 @@ const routes: Routes = [
 
 
   {
+    path: 'customlist/:id',
+    loadChildren: () => import('../pages/by-id-custom-list/list.module').then( m => m.ListPageModule)
+  },
+  {
     path: 'list/:id',
-    loadChildren: () => import('../pages/list-by-id/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('../pages/by-id-shi-list/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'topic/:id',
-    loadChildren: () => import('../pages/topic/topic.module').then( m => m.TopicPageModule)
+    loadChildren: () => import('../pages/viewer-topic/topic.module').then( m => m.TopicPageModule)
   },
   {
     path: 'poet/:author',
-    loadChildren: () => import('../pages/list-by-poet/poet.module').then( m => m.PoetPageModule)
+    loadChildren: () => import('../pages/by-name-author-info/poet.module').then( m => m.PoetPageModule)
   },
   {
     path: 'tag/:tag',
-    loadChildren: () => import('../pages/list-by-tag/tag.module').then( m => m.TagPageModule)
+    loadChildren: () => import('../pages/by-tag-shi-list/tag.module').then( m => m.TagPageModule)
   }
 ];
 

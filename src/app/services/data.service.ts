@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Group, Song } from '../app.component';
 
 import { Storage } from '@ionic/storage-angular';
-import { ActionSheetController, IonTabs, NavController, Platform } from '@ionic/angular';
+import { ActionSheetController, IonTabs, ModalController, NavController, Platform } from '@ionic/angular';
 
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
@@ -42,8 +42,13 @@ export enum ViewType{
 })
 export class DataService {
 
-  //开关
-  showSubscription = false;
+  //订阅广告开关
+  showSubscription = true;
+  subscriptionImage = "辣椒";
+  getSubscriptionImage(){
+    let images = ["辣椒","water"]
+    this.subscriptionImage = images[this.getRandom(0,images.length)];
+  }
 
 
   currentArticle:any;
@@ -86,8 +91,12 @@ export class DataService {
     this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操");
 
     //蒙学
+    //getMXObjects is 文章
     this.getMXObjects(`assets/db/蒙学/guwenguanzhi.json`);
     this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
+
+    //纳兰性德
+    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德');
 
     //全唐诗
     for(let i=0;i<=57;i++){
@@ -272,7 +281,8 @@ export class DataService {
     private router: Router,
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private modalController: ModalController,
 
   ){
     this.platform = platform;
@@ -781,6 +791,11 @@ export class DataService {
   goToList(id:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/list/${id}`);
   }
+  goToPlayList(id:any){
+    console.log(id)
+    //tab3
+    this.navCtrl.navigateForward(`/tabs/tab3/customlist/${id}`);
+  }
   //by tag or by id
   goToListBy(item:any){
     if(item.id){//有id诗单
@@ -803,6 +818,7 @@ export class DataService {
   }
   
   playbyid(pid:any=null){
+    console.log(pid)
     if(pid){
       let poem = this.JsonData
         .filter((shici:any)=>
@@ -825,9 +841,9 @@ export class DataService {
 
 
 
-  collectList = [{group:"",data:null, create:Date.now()}];
+  collectList:any = [{group:"",data:null, lastupdate:Date.now()}];
   recentCollection(){
-    return this.collectList.sort((a:any,b:any)=>{return b.create-a.create});
+    return this.collectList.sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
   }
   myList = [];
   
@@ -843,9 +859,68 @@ export class DataService {
     });
   }
 
-  //group: idlist, taglist, poetlist, poem
+  getRandomColor(){
+    let colors = [
+      "rgb(113,203,212)",
+      "rgb(240,209,246)",
+      "rgb(255,230,151)",
+      "rgb(255,222,194)",
+      "rgb(205,238,240)",
+      "rgb(240,209,246)",
+      "rgb(255,230,151)",
+      "rgb(255,222,194)",
+      "rgb(205,238,240)",
+      "rgb(113,203,212)",
+      "rgb(240,209,246)",
+      "rgb(255,230,151)",
+      "rgb(255,222,194)",
+      "rgb(205,238,240)",
+      "rgb(240,209,246)",
+      "rgb(255,230,151)"];
+    let randomIndex = this.getRandom(0, colors.length-1);
+    return colors[randomIndex];
+  }
+
+  generate_uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+  }
+
+  addcustomlist(name:any, desc:any){
+    if(name==null||name.trim()==""){
+      name = "未命名诗单列表";
+    }
+    let id = this.generate_uuid();
+    
+    this.collectList.push({
+      group:'customlist', 
+      data:{id:id, name:name,desc:desc,color:this.getRandomColor(),list:[]}, 
+      lastupdate: Date.now()
+    });
+    this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+  }
+
+  savecustomlist(data:any){
+    let findItem = this.collectList.filter((c:any)=>c.group==='customlist'&&c.data['id']===data.id);
+    if(findItem.length===1){
+      findItem[0].data = data;
+      this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+    }
+
+  }
+
+  //group: idlist, taglist, poetlist, poem, customlist
   likelist(listdata:any, group:any){
-    console.log(listdata)
+    //in case it's brief data from json
+    if(group==='poem'){
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      if(fullData.length===1){
+        listdata = fullData[0];
+      }
+    }
+
     if(!this.isliked(listdata, group)){
       this.collectList.push({group:group, data:listdata, create: Date.now()});
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
@@ -855,9 +930,17 @@ export class DataService {
   }
 
   isliked(listdata:any, group:any){
-    let allpoemlist = this.collectList.filter(l=>l.group==group);
+    //in case it's brief data from json
+    if(group==='poem'){
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      if(fullData.length===1){
+        listdata = fullData[0];
+      }
+    }
+
+    let allpoemlist = this.collectList.filter((l:any)=>l.group==group);
     let key = this.getKey(group);
-    return allpoemlist.find(pl=>pl.data?.[key]===listdata[key])
+    return allpoemlist.find((pl:any)=>pl.data?.[key]===listdata[key])
   }
 
   private getKey(group:any){
@@ -874,10 +957,21 @@ export class DataService {
     else if(group=='poem'){
       key = "id";
     }
+    else if(group=='customlist'){
+      key = "id";
+    }
     return key;
   }
 
   async unlikelist(listdata:any, group:any){
+    //in case it's brief data from json
+    if(group==='poem'){
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      if(fullData.length===1){
+        listdata = fullData[0];
+      }
+    }
+
     let text = "";
     if(group=='idlist')
       text = "诗单"
@@ -887,6 +981,8 @@ export class DataService {
       text = "诗人"
     else if(group=='poem')
       text = "诗词"
+    else if(group=='customlist')
+      text = "诗单列表"
 
     const actionSheet = await this.actionSheetController.create({
       header: `你确定要从诗词库删除这个${text}吗？`,
@@ -917,6 +1013,16 @@ export class DataService {
     });
 
     await actionSheet.present();
+    const { data, role } = await actionSheet.onWillDismiss();
+    //如果tab3 新建list打开的，点了从诗词库删除，关闭modal
+    //如果tab3 查看诗词打开的，点了从诗词库删除，关闭modal
+    console.log(group)
+    if(group==='customlist'||group==='poem'){
+      this.updateLocalData(group);
+      //this.modalController.dismiss();
+      //actionSheet.dismiss();
+      //this.navCtrl.navigateForward(`/tabs/tab3/poem`);
+    }
   }
 
   //test method
@@ -924,6 +1030,73 @@ export class DataService {
     this.storage.clear();
   }
 
+  localJsonData:any;
+  updateLocalData(group:any){
+    this.localJsonData = this.recentCollection()
+      .filter((l:any)=>l.group==group);
+  }
 
+  currentCollectPoem:any;
+  collectCustom(p:any){
+    let fullData = this.JsonData.filter((j:any)=>j.id===p.pid);
+    if(fullData.length===1){
+      this.currentCollectPoem = fullData[0];
+    }
+  }
+  addtocustomlist(like:any){
+    if(this.currentCollectPoem){
+      if(!like.data.list.find((d:any)=>d.id===this.currentCollectPoem.id))
+      {
+        like.data.list.push(this.currentCollectPoem);
+      }
+
+      like.lastupdate = Date.now();
+      if(like.data.list.length>0&&like.data.list.length<4){
+        let image = `/assets/img/poet/${like.data.list[0].author}.jpeg`;
+        like.data.image = [image];
+      }else if(like.data.list.length>=4){
+        like.data.image = [];
+        for(let i=0;i<4;i++){
+          let image = `/assets/img/poet/${like.data.list[i].author}.jpeg`;
+          like.data.image.push(image);
+        }
+      }
+      this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+      this.ui.toast("top", "已添加到诗词列表")
+    }
+
+  }
+  GetLastUpdatedCustomList(){
+    let result = this.collectList.filter((c:any)=>c.group==='customlist')
+      .sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
+
+    if(result.length>0)
+      return result[0];
+    return null;
+  }
+  updatecustomelist(customlistid:any, localList:any){
+    for(let i=0;i<this.collectList.length;i++){
+      if(this.collectList[i].group==='customlist'&&
+      this.collectList[i].data.id===customlistid){
+        this.collectList[i].data.list = localList;
+        //update image
+        if(this.collectList[i].data.list.length>0&&this.collectList[i].data.list.length<4){
+          let image = `/assets/img/poet/${this.collectList[i].data.list[0].author}.jpeg`;
+          this.collectList[i].data.image = [image];
+        }else if(this.collectList[i].data.list.length>=4){
+          this.collectList[i].data.image = [];
+          for(let k=0;k<4;k++){
+            let image = `/assets/img/poet/${this.collectList[i].data.list[k].author}.jpeg`;
+            this.collectList[i].data.image.push(image);
+          }
+        }else if(this.collectList[i].data.list.length==0){
+          this.collectList[i].data.image = [];
+        }
+        break;
+      }
+    }
+    
+    this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+  }
 
 }

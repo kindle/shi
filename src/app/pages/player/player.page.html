@@ -30,7 +30,7 @@
             <ion-list>
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="data.isliked(data.currentPoem,'poem')" 
-              (click)="data.unlikelist(data.currentPoem,'poem')">
+              (click)="unlikelist(data.currentPoem,'poem')">
                 <ion-text color="danger">从诗词库中删除</ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>

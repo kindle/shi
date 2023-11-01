@@ -84,4 +84,10 @@ export class PlayerPage implements OnInit {
     this.data.goToAuthor(author);
   }
 
+  unlikelist(p:any,group:any){
+    this.data.unlikelist(p,group);
+    this.modalController.dismiss();
+
+  }
+
 }

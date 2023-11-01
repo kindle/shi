@@ -16,8 +16,8 @@ export class AuthorPage {
 
   localJsonData:any;
   ionViewWillEnter() {
-    this.localJsonData = this.data.collectList
-      .filter(l=>l.group=='poetlist');
+    this.localJsonData = this.data.recentCollection()
+      .filter((l:any)=>l.group=='poetlist');
     
   }
 }

@@ -10,6 +10,38 @@
 </ion-toolbar>
 <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
   <div style="margin:5px;" *ngFor="let s of source" >
+    <div class="card-scroll-item1" *ngIf="s.group=='customlist'&&s.data.image.length>=4" 
+    (click)="data.goToPlayList(s.data['id'])"
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="margin:auto;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(247,247,247);
+      border-radius: 10px;
+      display: grid;
+      grid-gap:0px;
+      justify-content: space-evenly;
+      align-content: space-evenly;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      overflow: hidden;
+      background-color:{{s.data.color}};">
+      <div *ngFor="let i of [0,1,2,3]"
+      style="background-image: url({{s.data.image[i]}});
+      background-size:cover;
+      background-repeat: no-repeat;
+      "
+      ></div>
+    </div>
+    <div class="card-scroll-item1" *ngIf="s.group=='customlist'&&s.data.image.length<4" 
+    (click)="data.goToListBy(s.data)"
+      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+      style="background-image:url('{{s.data.image}}');
+      background-size:cover;padding-top: 100%; 
+      background-repeat:no-repeat;
+      background-color:{{s.data.color}};">
+    </div>
+    <div class="card-text-style" *ngIf="s.group=='customlist'">{{s.data.name}} - {{s.data.desc}}</div>
+
     <div class="card-scroll-item1" *ngIf="s.group=='idlist'" 
     (click)="data.goToListBy(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"

@@ -16,8 +16,8 @@ export class ListPage {
 
   localJsonData:any;
   ionViewWillEnter() {
-    this.localJsonData = this.data.collectList
-      .filter(l=>l.group=='idlist');
+    this.localJsonData = this.data.recentCollection()
+      .filter((l:any)=>l.group=='idlist');
     
   }
 

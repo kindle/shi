@@ -1,0 +1,179 @@
+
+<ion-header [translucent]="true" *ngIf="listdata">
+  <ion-toolbar *ngIf="!isEdit">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{listdata.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" shape="round" *ngIf="listdata&&!data.isliked(listdata,'customlist')"
+      (click)="data.likelist(listdata,'customlist')"
+      style="background-color: rgb(247,247,247);border-radius: 50%;">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item lines="full" [button]="true" [detail]="false" (click)="edit()">
+                编辑
+                <ion-icon name="pencil-outline" slot="end"></ion-icon>
+              </ion-item>
+              <ion-item lines="full" [button]="true" [detail]="false"
+              *ngIf="data.isliked(listdata,'customlist')" 
+              (click)="data.unlikelist(listdata,'customlist')">
+                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
+              </ion-item>
+              
+              <ion-item lines="full" [button]="true" [detail]="false">
+                分享
+                <ion-icon name="share-outline" slot="end"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isEdit">
+    <ion-buttons slot="start">
+        <ion-button color="primary" (click)="cancel()">取消</ion-button>
+    </ion-buttons>
+    <ion-title>{{listdata.name}}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button color="primary" (click)="save()" [strong]="true">完成</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="listdata">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-searchbar placeholder="搜索" show-cancel-button="focus" *ngIf="localList.length>10"
+      style="padding-left:15px;"
+      [(ngModel)]="searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionCancel)="onSearchCancel()"
+      (ionInput)="onSearchChanged()"
+      cancel-button-text="取消"
+      ></ion-searchbar>
+      <ion-card *ngIf="listdata.image.length>=4"
+        style="margin:auto;width:250px;height:250px;
+        background-color: {{listdata.color}};
+        border: 1px solid rgba(247,247,247);
+        border-radius: 10px;
+        display: grid;
+        grid-gap:0px;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        grid-template-columns: repeat(2, 124px);
+        grid-template-rows: repeat(2, 124px);
+        overflow: hidden;">
+        <div *ngFor="let i of [0,1,2,3]"
+        style="background-image: url({{listdata.image[i]}});
+        background-size:cover;
+        background-repeat: no-repeat;
+        "
+        ></div>
+      </ion-card>
+      <ion-card *ngIf="listdata.image.length<4&&listdata.image.length>0"
+      style="margin:auto;width:250px;height:250px;
+        background-image: url({{listdata.image[0]}});background-size:cover;
+        background-repeat: no-repeat;
+        border-radius: 10px;">
+      </ion-card>
+      <ion-card *ngIf="listdata.image.length==0"
+        style="margin:auto;width:250px;height:250px;
+          background-color: {{listdata.color}};background-size:cover;
+          background-repeat: no-repeat;
+          border-radius: 10px;">
+      </ion-card>
+
+      <div *ngIf="!showFilter"
+      style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:10px;margin-bottom:0px;">
+        <ion-text mode="ios" style="font-size:20px; margin:5px;text-align: center;" *ngIf="listdata&&!isEdit">
+          {{listdata.name}} 
+        </ion-text>
+        <ion-input style="font-size:20px; margin:5px;text-align: center;" *ngIf="!showFilter&&isEdit" 
+        [(ngModel)]="listdata.name" placeholder="诗词列表名称"></ion-input>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-text name="" [text]="listdata.desc" *ngIf="!showFilter&&!isEdit"></app-text>
+  <ion-input style="font-size:20px; margin:5px;margin-left:20px;" *ngIf="!showFilter&&isEdit"
+   [(ngModel)]="listdata.desc" placeholder="诗词列表描述"></ion-input>
+    
+  <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
+    <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
+      
+      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+        <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
+        <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
+      </ion-thumbnail>
+      
+      <ion-label (click)="data.playobj(p)">
+        <h2>{{p.title}} {{p.author}}</h2>
+        <p style="margin-top:5px;">{{p.sample?p.sample:p.paragraphs[0]}}</p>
+      </ion-label>
+
+      <!--
+      <ion-button slot="end" color="white"
+      style="margin-left:10px;margin-right:10px;">
+        <ion-icon name="ellipsis-horizontal" color="dark"></ion-icon>
+      </ion-button>-->
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngIf="listdata&&isEdit" style="margin-left:5px;">
+    <ion-item-sliding #slidingItem *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
+      <ion-item style="--padding-start:15px;--inner-padding-end:10px;">
+        <ion-icon slot="start" name="remove-circle" color="danger"
+        (click)="openSlidingItem(slidingItem, p)"></ion-icon>
+
+        <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+          <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
+          <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
+        </ion-thumbnail>
+        
+        <ion-label (click)="data.playbyid(p.pid)">
+          <h2>{{p.title}} - {{p.author}}</h2>
+          <p>{{p.sample}}</p>
+        </ion-label>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delfromcustomlist(p)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+
+  <ion-list  *ngIf="!showFilter"
+  style="margin-top:20px;margin-bottom: 20px;">
+    <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">{{listdata.list.length}}首诗词</ion-text>
+  </ion-list>
+
+  <ion-card-content *ngIf="localList.length==0"
+  style="text-align: center;font-weight: light;color:black;padding-bottom:0;">
+    此列表中还没有诗词。
+  </ion-card-content>
+
+  <ion-card-content *ngIf="localList.length==0"
+   style="text-align: center;display: flex;justify-content: center;">
+    <ion-button color="primary" style="width:90%;">添加诗词</ion-button>
+  </ion-card-content>
+    
+  <ion-toolbar *ngIf="!showFilter&&poets&&poets.length>0&&localList.length>0">
+    <app-author name="此诗单中的诗人" [source]="poets"></app-author>
+  </ion-toolbar>
+
+  <div class="placeholder-playbox"></div>
+</ion-content>
+
