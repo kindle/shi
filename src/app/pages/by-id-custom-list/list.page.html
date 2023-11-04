@@ -61,7 +61,7 @@
       (ionInput)="onSearchChanged()"
       cancel-button-text="取消"
       ></ion-searchbar>
-      <ion-card *ngIf="listdata.image.length>=4"
+      <ion-card *ngIf="listdata.image&&listdata.image.length>=4"
         style="margin:auto;width:250px;height:250px;
         background-color: {{listdata.color}};
         border: 1px solid rgba(247,247,247);
@@ -80,13 +80,13 @@
         "
         ></div>
       </ion-card>
-      <ion-card *ngIf="listdata.image.length<4&&listdata.image.length>0"
+      <ion-card *ngIf="listdata.image&&listdata.image.length<4&&listdata.image.length>0"
       style="margin:auto;width:250px;height:250px;
         background-image: url({{listdata.image[0]}});background-size:cover;
         background-repeat: no-repeat;
         border-radius: 10px;">
       </ion-card>
-      <ion-card *ngIf="listdata.image.length==0"
+      <ion-card *ngIf="listdata.image&&listdata.image.length==0"
         style="margin:auto;width:250px;height:250px;
           background-color: {{listdata.color}};background-size:cover;
           background-repeat: no-repeat;

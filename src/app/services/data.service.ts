@@ -843,7 +843,9 @@ export class DataService {
 
   collectList:any = [{group:"",data:null, lastupdate:Date.now()}];
   recentCollection(){
-    return this.collectList.sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
+    let result = this.collectList.sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
+    console.log(result)
+    return result;
   }
   myList = [];
   
@@ -896,7 +898,7 @@ export class DataService {
     
     this.collectList.push({
       group:'customlist', 
-      data:{id:id, name:name,desc:desc,color:this.getRandomColor(),list:[]}, 
+      data:{id:id, name:name,desc:desc,color:this.getRandomColor(),list:[],image:[]}, 
       lastupdate: Date.now()
     });
     this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
@@ -906,6 +908,7 @@ export class DataService {
     let findItem = this.collectList.filter((c:any)=>c.group==='customlist'&&c.data['id']===data.id);
     if(findItem.length===1){
       findItem[0].data = data;
+      findItem[0].lastupdate = Date.now();
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
 
@@ -922,7 +925,7 @@ export class DataService {
     }
 
     if(!this.isliked(listdata, group)){
-      this.collectList.push({group:group, data:listdata, create: Date.now()});
+      this.collectList.push({group:group, data:listdata, lastupdate: Date.now()});
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
@@ -1014,14 +1017,19 @@ export class DataService {
 
     await actionSheet.present();
     const { data, role } = await actionSheet.onWillDismiss();
+    console.log(role)
     //如果tab3 新建list打开的，点了从诗词库删除，关闭modal
     //如果tab3 查看诗词打开的，点了从诗词库删除，关闭modal
     console.log(group)
-    if(group==='customlist'||group==='poem'){
+    if(group==='customlist'){
       this.updateLocalData(group);
-      //this.modalController.dismiss();
-      //actionSheet.dismiss();
-      //this.navCtrl.navigateForward(`/tabs/tab3/poem`);
+      //role could be: cancel or destructive
+      if(role=='destructive'){
+        this.navCtrl.navigateForward(`/tabs/tab3/customlist`);
+      }
+    }
+    else if(group==='poem'){
+      this.updateLocalData(group);
     }
   }
 
@@ -1051,15 +1059,18 @@ export class DataService {
       }
 
       like.lastupdate = Date.now();
+      like.data.image = [];
       if(like.data.list.length>0&&like.data.list.length<4){
         let image = `/assets/img/poet/${like.data.list[0].author}.jpeg`;
-        like.data.image = [image];
+        like.data.image.push(image);
       }else if(like.data.list.length>=4){
-        like.data.image = [];
         for(let i=0;i<4;i++){
           let image = `/assets/img/poet/${like.data.list[i].author}.jpeg`;
           like.data.image.push(image);
         }
+      }
+      else{
+
       }
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
       this.ui.toast("top", "已添加到诗词列表")

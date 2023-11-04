@@ -36,8 +36,28 @@
       </ion-item>
       <ion-item *ngFor="let like of data.localJsonData" (click)="data.goToPlayList(like.data['id'])"
       style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
-        <ion-thumbnail slot="start" *ngIf="like.data" style="background-color: {{like.data['color']}};">
+        <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length<4" 
+        style="background-color: {{like.data['color']}};">
           <img style="border-radius: 10px;" [src]="like.data['image']" />
+        </ion-thumbnail>
+        <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length>=4" 
+        style="
+        aspect-ratio: 1 / 1;
+        border: 1px solid rgba(247,247,247);
+        border-radius: 10px;
+        display: grid;
+        grid-gap:0px;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        overflow: hidden;background-color: {{like.data['color']}};">
+          <div *ngFor="let i of [0,1,2,3]"
+            style="background-image: url({{like.data.image[i]}});
+            background-size:cover;
+            background-repeat: no-repeat;
+            ">
+          </div>
         </ion-thumbnail>
         <ion-label *ngIf="like.data" >
           <h2>{{like.data['name']}}</h2>
