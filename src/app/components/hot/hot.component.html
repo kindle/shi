@@ -18,7 +18,7 @@
     >
   <swiper-slide *ngFor="let hot of source">
     <ion-list>
-      <ion-item lines="none" *ngFor="let p of hot" style="--padding-start:0;--inner-padding-end:0px;" >
+      <ion-item *ngFor="let p of hot" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
           <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </ion-thumbnail>
@@ -26,6 +26,7 @@
           <h2>{{p.title}} - {{p.author}}</h2>
           <p>{{p.sample}}</p>
         </ion-label>
+        <app-button-end [p]="p" page="hotlist" slot="end"></app-button-end>
         <!--
         <ion-button fill="clear" slot="end">
           <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>

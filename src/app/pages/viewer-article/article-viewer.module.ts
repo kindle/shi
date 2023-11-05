@@ -10,6 +10,7 @@ import { ArticleViewerPage } from './article-viewer.page';
 import { HotComponentModule } from '../../components/hot/hot.module';
 import { TileComponentModule } from '../../components/tile/tile.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
+import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
     HotComponentModule,
     TileComponentModule,
     TextComponentModule,
+    ButtonEndComponentModule,
   ],
   declarations: [ArticleViewerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
@@ -12,19 +12,53 @@ import { AddPlayerListPage } from './new-customlist/add-playerlist.page'
 })
 export class PlayListPage {
 
+  //自定义诗单 max=100
   constructor(
     public data:DataService,
     public ui: UiService,
     private modalController: ModalController,
-    private cdRef: ChangeDetectorRef
-  ) {
-    this.data.updateLocalData('customlist');
-   }
+  ) {}
 
   ionViewWillEnter() {
-    //there's no will enter in modal
-    //this.data.updateLocalData('customlist');
+    this.data.updateLocalData('customlist');
+    this.onSearchChanged();
   }
+
+  searchResult:any;
+  searchResultCount=0;
+  localList:any;
+  searchText:any;
+  showFilter = false;
+  onSearchFocus(){
+    this.showFilter = true;
+  }
+  onSearchCancel(){
+    this.showFilter = false;
+  }
+  onSearchChanged(){
+    let key = "";
+    if(this.searchText!=null){
+      key = this.searchText.trim();
+    }
+    
+    this.searchResult = this.data.localJsonData.filter((e:any)=>
+      (e.data.name).indexOf(key)>=0
+    );
+    this.searchResultCount = this.searchResult.length;
+    
+    this.displayResult = [];
+    this.generateItems();
+  }
+  displayResult:any = [];
+  private generateItems() {
+    this.displayResult = this.displayResult.concat(
+      this.searchResult.splice(0,Math.min(this.searchResultCount,100))
+    );
+  }
+
+
+
+
 
   async createPlayList() {
     const modal = await this.modalController.create({

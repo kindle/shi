@@ -8,6 +8,7 @@ import { PoetPageRoutingModule } from './poet-routing.module';
 
 import { PoetPage } from './poet.page';
 import { TextComponentModule } from 'src/app/components/text/text.module';
+import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
     IonicModule,
     PoetPageRoutingModule,
     TextComponentModule,
+    ButtonEndComponentModule
   ],
   declarations: [PoetPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

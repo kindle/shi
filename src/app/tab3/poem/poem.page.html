@@ -15,16 +15,20 @@
   </ion-header>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
-      style="padding-left:15px;"
-      cancel-button-text="取消"
+      <ion-searchbar placeholder="在诗词中查找" show-cancel-button="focus" 
+        style="padding-left:15px;"
+        [(ngModel)]="searchText"
+        (ionFocus)="onSearchFocus()"
+        (ionCancel)="onSearchCancel()"
+        (ionInput)="onSearchChanged()"
+        cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
 
   <ion-list>
-    <ion-item *ngFor="let like of data.localJsonData" (click)="data.playobj(like.data)"
+    <ion-item *ngFor="let like of displayResult" (click)="data.playobj(like.data)"
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start" *ngIf="like.data">
         <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['author'])"

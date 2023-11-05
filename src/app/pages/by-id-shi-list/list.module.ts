@@ -9,6 +9,7 @@ import { ListPageRoutingModule } from './list-routing.module';
 import { ListPage } from './list.page';
 import { AuthorComponentModule } from 'src/app/components/author/author.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
+import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
     ListPageRoutingModule,
     AuthorComponentModule,
     TextComponentModule,
+    ButtonEndComponentModule
   ],
   declarations: [ListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

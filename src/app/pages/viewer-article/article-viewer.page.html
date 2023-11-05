@@ -72,6 +72,8 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
             <h2>{{it.sample}}</h2>
             <p>{{it.title}} - {{it.author}}</p>
           </ion-label>
+
+          <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
         </ion-item>
 
         <div *ngIf="it.type==='list'">

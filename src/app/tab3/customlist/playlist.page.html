@@ -16,8 +16,12 @@
     </ion-header>
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-searchbar placeholder="在诗单列表中查找" show-cancel-button="focus" 
+        <ion-searchbar placeholder="在诗单列表中查找" show-cancel-button="focus"
         style="padding-left:15px;"
+        [(ngModel)]="searchText"
+        (ionFocus)="onSearchFocus()"
+        (ionCancel)="onSearchCancel()"
+        (ionInput)="onSearchChanged()"
         cancel-button-text="取消"
         ></ion-searchbar>
       </ion-toolbar>
@@ -34,7 +38,7 @@
           <h2>新建诗单列表...</h2>
         </ion-label>
       </ion-item>
-      <ion-item *ngFor="let like of data.localJsonData" (click)="data.goToPlayList(like.data['id'])"
+      <ion-item *ngFor="let like of displayResult" (click)="data.goToPlayList(like.data['id'])"
       style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
         <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length<4" 
         style="background-color: {{like.data['color']}};">

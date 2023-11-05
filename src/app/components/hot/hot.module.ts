@@ -6,9 +6,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { HotComponent } from './hot.component';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
+import { ButtonEndComponentModule } from '../button-end/buttonend.module';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, SharedSwiperTouchModule],
+  imports: [ 
+    CommonModule,
+    FormsModule, 
+    IonicModule, 
+    SharedSwiperTouchModule, 
+    ButtonEndComponentModule
+  ],
   declarations: [HotComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   exports: [HotComponent]

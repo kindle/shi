@@ -844,7 +844,7 @@ export class DataService {
   collectList:any = [{group:"",data:null, lastupdate:Date.now()}];
   recentCollection(){
     let result = this.collectList.sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
-    console.log(result)
+    //console.log(result)
     return result;
   }
   myList = [];
@@ -918,7 +918,9 @@ export class DataService {
   likelist(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      let pid = listdata.pid ? listdata.pid : listdata.id;
+      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
+      console.log(fullData)
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -935,7 +937,8 @@ export class DataService {
   isliked(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      let pid = listdata.pid ? listdata.pid : listdata.id;
+      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -969,7 +972,8 @@ export class DataService {
   async unlikelist(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.pid);
+      let pid = listdata.pid ? listdata.pid : listdata.id;
+      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -1046,9 +1050,15 @@ export class DataService {
 
   currentCollectPoem:any;
   collectCustom(p:any){
-    let fullData = this.JsonData.filter((j:any)=>j.id===p.pid);
+    //id list has pid, but tag list/author list are using id
+    //if p.pid is null, use p.id instead
+    let pid = p.pid ? p.pid : p.id;
+    let fullData = this.JsonData.filter((j:any)=>j.id===pid);
     if(fullData.length===1){
       this.currentCollectPoem = fullData[0];
+    }
+    else{
+      console.log('did not find the poet data by id:'+p.pid)
     }
   }
   addtocustomlist(like:any){

@@ -85,10 +85,7 @@
         <h2>{{p.title}} - {{p.author}}</h2>
         <p>{{p.paragraphs[0]}}</p><!--{{p.sample}} - -->
       </ion-label>
-      <ion-button slot="end" color="white"
-      style="margin-left:10px;margin-right:10px;">
-        <ion-icon name="ellipsis-horizontal" color="dark"></ion-icon>
-      </ion-button>
+      <app-button-end [p]="p" page="taglist"></app-button-end>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

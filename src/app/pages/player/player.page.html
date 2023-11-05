@@ -21,6 +21,8 @@
       (click)="data.likelist(data.currentPoem,'poem')">
         <ion-icon name="star-outline" color="medium"></ion-icon>
       </ion-button>
+      <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+      <!--
       <ion-button slot="end" id="popover-button-player" color="transparent">
         <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>
       </ion-button>
@@ -46,7 +48,7 @@
             </ion-list>
           </ion-content>
         </ng-template>
-      </ion-popover>
+      </ion-popover>-->
     </ion-item>
   </ion-list>
 
