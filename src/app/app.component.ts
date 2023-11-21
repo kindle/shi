@@ -25,8 +25,13 @@ export class AppComponent {
       this.data.init();
     }).finally(()=>{
       //load likes after local storage db is created.
-      console.log('load likes in loaddata...')
       this.data.loadlikes();
+      //load poem play history
+      this.data.loadPlayHistory();
+      //load ep play history
+      this.data.loadRecentPlayedEP();
+      //load play style
+      this.data.loadPlayStyle();
     });
     //move it to tab1, as it's very slow when starts up
     await this.data.loadJsonData();

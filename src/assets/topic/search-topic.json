@@ -1,6 +1,33 @@
 [
   {
     "hide":true,
+    "id":199,
+    "name":"广播",
+    "image":"",
+    "desctitle":"",
+    "desc":"",
+    "scroll":[
+      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
+      "image":"/assets/img/tree.jpg"}
+    ],
+    "hot":[],
+    "list":[
+      {"name":"最新专辑", "data": [
+        {"id":803,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
+        {"id":804,"src":"/assets/img/海钓.jpg","display":"cover","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"},
+        {"id":801,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        
+        
+        {"id":800,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"}
+        
+        
+        ]
+      }
+      
+    ]
+  }, 
+  {
+    "hide":true,
     "id":200,
     "name":"浏览",
     "image":"/assets/img/smart.jpg",

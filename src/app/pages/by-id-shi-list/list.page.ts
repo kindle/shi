@@ -53,9 +53,22 @@ export class ListPage {
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 
     // Convert back to an array
     this.poets = [...authorSet]; 
+    //show play/playRandom button or not
+    this.isPlayList = this.CheckIsPlayList();
   }
 
-  
+  isPlayList:any = false;
+  CheckIsPlayList(){
+    let result = true;
+    this.localList.forEach((poem:any) => {
+      let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.pid)[0];
+      if(!fullData.audio)
+      {
+        result = false;
+      }
+    });
+    return result;
+  }
 
   
 }

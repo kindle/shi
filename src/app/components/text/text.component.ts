@@ -8,6 +8,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class TextComponent {
 
+  @Input() nofold?: boolean;
   @Input() name?: string;
   @Input() text?: string;
   
@@ -19,6 +20,9 @@ export class TextComponent {
   ){}
 
   short(){
+    if(this.nofold)
+      return this.text;
+    
     if(this.fold)
       return this.text?.substring(0,this.max);
     return this.text;

@@ -22,9 +22,14 @@
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
           <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </ion-thumbnail>
-        <ion-label (click)="data.playbyid(p.pid)">
+        <!--<ion-label (click)="data.playbyid(p.pid?p.pid:p.id, p.sample)">-->
+        <ion-label (click)="data.playbyid(p.pid?p.pid:p.id, p.sample)" *ngIf="audio!='yes'">
           <h2>{{p.title}} - {{p.author}}</h2>
-          <p>{{p.sample}}</p>
+          <p style="margin-top:5px;">{{p.sample?p.sample:p.paragraphs[0]}}</p>
+        </ion-label>
+        <ion-label (click)="data.playHotListByPoem(source, p)" *ngIf="audio=='yes'">
+          <h2>{{p.title}} - {{p.author}}</h2>
+          <p style="margin-top:5px;">{{p.sample?p.sample:p.paragraphs[0]}}</p>
         </ion-label>
         <app-button-end [p]="p" page="hotlist" slot="end"></app-button-end>
         <!--

@@ -20,7 +20,7 @@
     
     <div class="card-scroll-item1" 
     [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-    style="background-image:url('{{s.src}}');
+    style="background-image:url('{{s.src?s.src:s.image}}');
     background-size:cover;
     background-repeat:no-repeat;
     background-color:{{s.color}};">

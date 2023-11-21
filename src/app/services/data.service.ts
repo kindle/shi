@@ -16,6 +16,7 @@ import { catchError, tap } from 'rxjs';
 import { Preferences } from '@capacitor/preferences';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerPage } from '../pages/player/player.page';
+import { EventService } from './event.service';
 /*
 Preferences.set({
       key: this.PHOTO_STORAGE,
@@ -37,13 +38,14 @@ export enum ViewType{
   Id,
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
   //订阅广告开关
-  showSubscription = true;
+  showSubscription = false;
   subscriptionImage = "辣椒";
   getSubscriptionImage(){
     let images = ["辣椒","water"]
@@ -55,6 +57,7 @@ export class DataService {
 
   searchTopicData:any;
   tab2BrowseTopicData:any;
+  tab5RadioTopicData:any;
   currentTopicId = 0;
   poemListData:any;
   ////scurrentListId = 0;
@@ -79,7 +82,7 @@ export class DataService {
     this.http.get<any>(`assets/db/全唐诗/authors.tang.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });
-    this.http.get<any>(`assets/db/全唐诗/authors.others.json`).subscribe(result=>{
+    this.http.get<any>(`assets/db/others/authors.others.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });
 
@@ -89,6 +92,9 @@ export class DataService {
 
     //建安
     this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操");
+
+    //其他补录
+    this.getObjects(`assets/db/others/others.json`,"");
 
     //蒙学
     //getMXObjects is 文章
@@ -186,7 +192,7 @@ export class DataService {
       this.hotData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
-        console.log(subArray)
+        //console.log(subArray)
         this.hotData.push(subArray);
       }
     });
@@ -194,7 +200,7 @@ export class DataService {
       this.classicData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
-        console.log(subArray)
+        //console.log(subArray)
         this.classicData.push(subArray);
       }
     });
@@ -206,6 +212,7 @@ export class DataService {
         console.log(data)
         this.searchTopicData = data.filter((d:any)=>d.hide!==true);
         this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true);
+        this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true);
       });
     }
 
@@ -283,9 +290,11 @@ export class DataService {
     private activatedRoute: ActivatedRoute,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
+    private eventService: EventService
 
   ){
     this.platform = platform;
+    this.audio = new Audio();
   }
 
   /*--common start----*/
@@ -314,6 +323,18 @@ export class DataService {
     if(arr==null||arr.length==0)
       return 0;
     return Math.max(...arr.map(t=>t.id))+1;
+  }
+
+  private shuffleArray<T>(array: T[]): T[] {
+    const shuffledArray = [...array]; // Create a copy to avoid modifying the original array
+  
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      // Swap elements at indices i and j
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+  
+    return shuffledArray;
   }
   /*--common end----*/
 
@@ -434,33 +455,9 @@ export class DataService {
   }
 
 
-  playPrevious(song:any){
-    if(this.audio){
-      this.audio.pause();
-      this.lrc.pause();
-    }
-    if(song==null){
-      song = this.queueData[0];
-    }
-    let newIndex = song.id-2<0 ? this.queueData.length-1: song.id-2;
-    let nextSong = this.queueData[newIndex];
-    song.selected = false;
-    this.playSelected(nextSong);
-  }
+  
 
-  playNext(song:any){
-    if(this.audio){
-      this.audio.pause();
-      this.lrc.pause();
-    }
-    if(song==null){
-      song = this.queueData[0];
-    }
-    let newIndex = (song.id>this.queueData.length-1) ? 0: song.id;
-    let nextSong = this.queueData[newIndex];
-    song.selected = false;
-    this.playSelected(nextSong);
-  }
+  
 
 
   playSelected(song:Song){
@@ -478,7 +475,6 @@ export class DataService {
     this.queuePush(song);
 
     this.currentPoem.paragraphs = ["","","","",""];
-    this.setAudio(song);
 
     this.displaySongName = song.desc;
     this.updateSongSelection(song);
@@ -489,15 +485,22 @@ export class DataService {
     this.isPlaying = !this.isPlaying;
     if(this.audio){
       if(this.isPlaying){
-        this.audio.play();
-        this.lrc.play(this.audio.currentTime * 1000);
+        this.execPlay();
+        //this.lrc.play(this.audio.currentTime * 1000);
       }
       else{
-        this.audio.pause();
-        this.lrc.pause();
+        this.execPause();
+        //this.lrc.pause();
       }
     }
-    
+  }
+  execPlay(){
+    this.isPlaying = true;
+    this.audio.play();
+  }
+  execPause(){
+    this.isPlaying = false;
+    this.audio.pause();
   }
 
 
@@ -512,10 +515,160 @@ export class DataService {
     return fetch(lrc);
   }
 
+  dragWhere:any =false;
   currentSong:any;
-  setAudio(song:any){
-    
+  audioLoadedmetadataFn:any;
+  audioTimeupdateFn:any;
+  audioEndedFn:any;
+  setAudio(){
+    if(!this.currentPoem.audio){
+      return;
+    }
+
+    this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
+
+    this.audioLoadedmetadataFn = () => {
+      this.duration = this.audio.duration;
+      this.isPlaying = true;
+      this.audio.play();
+    }
+    this.audio.addEventListener('loadedmetadata', this.audioLoadedmetadataFn);
+
+    this.audioTimeupdateFn = () => {
+      //when dragging, do not update the progress bar.
+      if(this.dragWhere===false){
+        this.currentTime = this.audio.currentTime;
+      }
+    }
+    this.audio.addEventListener('timeupdate', this.audioTimeupdateFn);
+
+    this.audioEndedFn = () => {
+      this.isPlaying = false;
+      this.currentTime = 0;
+
+      this.audio.removeEventListener('loadedmetadata',this.audioLoadedmetadataFn);
+      this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
+      this.audio.removeEventListener('ended',this.audioEndedFn);
+
+      this.playNext(true);
+    }
+    this.audio.addEventListener('ended',this.audioEndedFn);
+
+  
   }
+
+
+  toPlayList:any = [];
+  playListByPoem(listdata:any, poem:any){
+    //console.log('currentlist:')
+    //console.log(listdata)
+    this.toPlayList = listdata.list;
+    if(this.toPlayList.length>0){
+      this.playbyid(poem.id?poem.id:poem.pid, poem.sample);
+    }
+  }
+  playHotListByPoem(source:any, poem:any){
+    console.log('current hot list:')
+    //console.log(source)
+    this.toPlayList = [];
+    source.forEach((group:any) => {
+      this.toPlayList = this.toPlayList.concat(group);
+    });
+    //console.log(this.toPlayList)
+    if(this.toPlayList.length>0){
+      this.playbyid(poem.id?poem.id:poem.pid, poem.sample);
+    }
+  }
+
+  playList(listdata:any){
+    //console.log('currentlist:')
+    console.log(listdata)
+    this.toPlayList = listdata.list;
+    if(this.toPlayList.length>0){
+      let first = this.toPlayList[0];
+      this.playbyid(first.id?first.id:first.pid, first.sample);
+    }
+  }
+  currentListData:any;
+  playListRandomly(listdata:any){
+    this.currentListData = listdata;
+    listdata.randomlist = this.shuffleArray(listdata.list);
+    this.toPlayList = listdata.randomlist;
+    if(this.toPlayList.length>0){
+      let first = this.toPlayList[0];
+      this.playbyid(first.id?first.id:first.pid, first.sample);
+    }
+    this.isShuffle = true;
+  }
+  togglePlayListRandomly(){
+    this.isShuffle = !this.isShuffle;
+    if(this.isShuffle)
+      this.playListRandomly(this.currentListData);
+    else 
+      this.playList(this.currentListData);
+  }
+  findNext(self:any=false){
+    for(let i=0;i<this.toPlayList.length-1;i++){
+      if((this.toPlayList[i].pid===this.currentPoem.id||this.toPlayList[i].id===this.currentPoem.id)
+      ||
+        (this.toPlayList[i].title===this.currentPoem.title&&
+        this.toPlayList[i].author===this.currentPoem.author)
+      ){
+          if(self===true)
+            return this.toPlayList[i];
+          return this.toPlayList[i+1];
+      }
+    }
+    if(this.isInfinite===true)
+    {
+      return this.toPlayList[0];
+    }
+
+    return null;
+  }
+
+  playNext(auto:any=false){
+    let nextPoem:any = this.findNext();
+
+    if(auto===true&&this.isRepeat===true){
+      //if auto play next and is repeat set, assign the poem it self
+      nextPoem = this.findNext(true);
+    }
+
+    if(nextPoem!=null){
+      this.playbyid(nextPoem.pid?nextPoem.pid:nextPoem.id, nextPoem.sample, false);
+    }
+
+    /*
+    if(this.audio){
+      this.audio.pause();
+      this.lrc.pause();
+    }
+    if(song==null){
+      song = this.queueData[0];
+    }
+    let newIndex = (song.id>this.queueData.length-1) ? 0: song.id;
+    let nextSong = this.queueData[newIndex];
+    song.selected = false;
+    this.playSelected(nextSong);
+    */
+  }
+
+  playPrevious(song:any){
+    if(this.audio){
+      this.audio.pause();
+      this.lrc.pause();
+    }
+    if(song==null){
+      song = this.queueData[0];
+    }
+    let newIndex = song.id-2<0 ? this.queueData.length-1: song.id-2;
+    let nextSong = this.queueData[newIndex];
+    song.selected = false;
+    this.playSelected(nextSong);
+  }
+
+  
 
   
 
@@ -798,6 +951,7 @@ export class DataService {
   }
   //by tag or by id
   goToListBy(item:any){
+    this.saveRecentPlayedEP(item);
     if(item.id){//有id诗单
       this.goToList(item.id);
     }
@@ -814,30 +968,75 @@ export class DataService {
 
   play(){
     if(this.currentPoem.paragraphs&&this.currentPoem.title&&this.currentPoem.author)
-      this.ui.player();
+      this.ui.player(this.currentPoem);
   }
   
-  playbyid(pid:any=null){
-    console.log(pid)
+  playbyid(pid:any=null, sample:any=null, pop:any=true){
+    //console.log(pid+sample)
     if(pid){
       let poem = this.JsonData
         .filter((shici:any)=>
           shici.id===pid
         )[0];
-
-      this.playobj(poem);
+        //console.log(poem)
+      poem.sample = sample;
+      //if 有mp3, do not show modal, play directly
+      this.playobj(poem, poem.audio?false:true);
     }
   }
 
   currentPoem: any;
-  playobj(poem:any){
+  playobj(poem:any, pop:any=true){
     if(poem){
+      if(poem.id){
+        poem = this.JsonData
+        .filter((shici:any)=>
+          shici.id===poem.id
+        )[0];
+      }
       this.currentPoem = poem;
-      this.ui.player();
+      if(poem.audio){
+        this.setAudio();
+      }else{
+        this.ui.player(this.currentPoem);
+      }
+      this.savePlayHistory(this.currentPoem);
     }
   }
 
+  LOCALSTORAGE_POEM_HIST = "poem_play_history";
+  playHistory:any = [];
+  async loadPlayHistory(){
+    this.get(this.LOCALSTORAGE_POEM_HIST).then((value)=>{
+      if(value==null)
+        this.playHistory = [];
+      else{
+        this.playHistory = JSON.parse(value);
+      }
+    });
+  }
+  savePlayHistory(poem:any){
+    if(this.playHistory.length>0){
+      let lastPlay = this.playHistory[this.playHistory.length-1];
+      if(lastPlay.id == poem.id||
+        (lastPlay.title==poem.title&&lastPlay.author==poem.author))
+      {
+        return;
+      }
+    }
+    
+    this.playHistory.push(poem);
+    if(this.playHistory.length>20){
+      this.playHistory.shift();
+    }
+    this.set(this.LOCALSTORAGE_POEM_HIST, JSON.stringify(this.playHistory));
+  }
+  clearHistory(){
+    this.playHistory = [];
+    this.set(this.LOCALSTORAGE_POEM_HIST, JSON.stringify(this.playHistory));
+  }
   
+
 
 
 
@@ -920,7 +1119,6 @@ export class DataService {
     if(group==='poem'){
       let pid = listdata.pid ? listdata.pid : listdata.id;
       let fullData = this.JsonData.filter((j:any)=>j.id===pid);
-      console.log(fullData)
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -1033,6 +1231,8 @@ export class DataService {
       }
     }
     else if(group==='poem'){
+     //console.log('update local data when unlike list')
+      this.eventService.triggerMyEvent({ someData: 'player click unlike list' });
       this.updateLocalData(group);
     }
   }
@@ -1046,8 +1246,10 @@ export class DataService {
   updateLocalData(group:any){
     this.localJsonData = this.recentCollection()
       .filter((l:any)=>l.group==group);
+    console.log(this.localJsonData)
   }
 
+  currentCollectLike:any;
   currentCollectPoem:any;
   collectCustom(p:any){
     //id list has pid, but tag list/author list are using id
@@ -1058,12 +1260,15 @@ export class DataService {
       this.currentCollectPoem = fullData[0];
     }
     else{
+      this.currentCollectPoem = p;
       console.log('did not find the poet data by id:'+p.pid)
     }
   }
   addtocustomlist(like:any){
     if(this.currentCollectPoem){
-      if(!like.data.list.find((d:any)=>d.id===this.currentCollectPoem.id))
+      if(!like.data.list.find((d:any)=>d.id===this.currentCollectPoem.id)||
+      this.currentCollectPoem.id==null
+      )
       {
         like.data.list.push(this.currentCollectPoem);
       }
@@ -1119,5 +1324,72 @@ export class DataService {
     
     this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
   }
+
+
+
+
+
+  isShuffle:any= false;
+  isRepeat:any= false;
+  isInfinite:any= false;
+  LOCALSTORAGE_PLAY_STYLE = "poem_play_style";
+  savePlayStyle(){
+    let style = {shuffle:this.isShuffle, repeat:this.isRepeat, infinite: this.isInfinite};
+    this.set(this.LOCALSTORAGE_PLAY_STYLE, JSON.stringify(style));
+  }
+  async loadPlayStyle(){
+    this.get(this.LOCALSTORAGE_PLAY_STYLE).then((value)=>{
+      if(value==null)
+      {}
+      else{
+        let style = JSON.parse(value);
+        this.isShuffle = style.shuffle;
+        this.isRepeat = style.repeat;
+        this.isInfinite = style.infinite;
+      }
+    });
+  }
+
+
+  /* EP hisotry start */
+  LOCALSTORAGE_EP_HIST = "ep_play_history";
+  MAX_HIS_COUNT_EP:number = 20;
+  playedEPHistory:any = [];
+  async loadRecentPlayedEP(){
+    this.get(this.LOCALSTORAGE_EP_HIST).then((value)=>{
+      if(value==null)
+        this.playedEPHistory = [];
+      else{
+        this.playedEPHistory = JSON.parse(value);
+      }
+    });
+  }
+  saveRecentPlayedEP(ep:any){
+    
+    if(this.playedEPHistory.length>0){
+      let lastPlay = this.playedEPHistory[0];
+
+      console.log('lastplay')
+      console.log(lastPlay)
+
+      if((lastPlay.id && lastPlay.id == ep.id)||lastPlay.text==ep.text)
+      {
+        
+        
+        return;
+      }
+    }
+    console.log(ep)
+    this.playedEPHistory.unshift(ep);
+    if(this.playedEPHistory.length>this.MAX_HIS_COUNT_EP){
+      this.playedEPHistory.pop();
+    }
+    this.set(this.LOCALSTORAGE_EP_HIST, JSON.stringify(this.playedEPHistory));
+  }
+  clearRecentPlayedEP(){
+    this.playedEPHistory = [];
+    this.set(this.LOCALSTORAGE_EP_HIST, JSON.stringify(this.playedEPHistory));
+  }
+  /* EP hisotry start */
 
 }

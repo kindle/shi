@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { IonicGestureConfig } from './utils/IonicGestureConfig';
+import { EventService } from './services/event.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { IonicGestureConfig } from './utils/IonicGestureConfig';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     SocialSharing,
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
+    EventService,
   ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

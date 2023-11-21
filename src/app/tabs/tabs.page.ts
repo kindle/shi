@@ -66,7 +66,6 @@ export class TabsPage {
     */
   }
   
-  next(){}
   
   lastIndex: number = 0;
   
@@ -96,6 +95,7 @@ export class TabsPage {
     this.curSub=id;
     let name = "";
     switch(id){
+      case 0: name="customlist";break;
       case 1: name="list";break;
       case 2: name="author";break;
       case 3: name="poem";break;

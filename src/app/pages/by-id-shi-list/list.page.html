@@ -72,25 +72,40 @@
     </ion-toolbar>
   </ion-header>
 
-  
+  <div style="display: flex;margin:0 20px;" *ngIf="isPlayList">
+    <ion-button color="light" style="width: 100%;margin-right:10px;"
+    (click)="data.playList(listdata)">
+      <ion-icon slot="start" name="play" color="primary"></ion-icon>
+      <ion-text color="primary">播放</ion-text>
+    </ion-button>
+    <ion-button color="light" style="width: 100%;margin-left:10px;"
+    (click)="data.playListRandomly(listdata)">
+      <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
+      <ion-text color="primary">随机播放</ion-text>
+    </ion-button>
+  </div>
 
-  <app-text name="简介" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
+  <app-text name="" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
     
   <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:10px;">
     <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
-      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+      style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
-        <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
+        <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
+          [ngStyle]="{'opacity':(data.currentPoem&&p.pid === data.currentPoem.id) ? '0.5' : '1' }" />
+        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.pid === data.currentPoem.id"
+          [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+        'height':(data.isPlaying) ? '' : '5px' }"
+        ></div>
       </ion-thumbnail>
-      
-      <ion-label (click)="data.playbyid(p.pid)">
+      <ion-label (click)="data.playListByPoem(listdata, p)">
         <h2>{{p.title}} - {{p.author}}</h2>
         <p>{{p.sample}}</p>
       </ion-label>
 
       <app-button-end [p]="p" page="idlist" slot="end"></app-button-end>
     </ion-item>
-
   </ion-list>
 
 
@@ -99,7 +114,7 @@
     <ion-text color="medium" *ngIf="listdata" style="margin:20px;">{{listdata.list.length}}首诗词</ion-text>
   </ion-list>
     
-  <ion-toolbar *ngIf="!showFilter">
+  <ion-toolbar *ngIf="!showFilter&&poets.length>2">
     <app-author name="此诗单中的诗人" [source]="poets"></app-author>
   </ion-toolbar>
 

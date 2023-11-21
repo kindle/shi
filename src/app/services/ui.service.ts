@@ -121,7 +121,7 @@ export class UiService {
       return await modal.present();
   }
 
-  async player() {
+  async player(poem:any) {
       const modal = await this.modalController.create({
           component: PlayerPage,
           componentProps: {
@@ -129,8 +129,9 @@ export class UiService {
           cssClass: 'modal-fullscreen',
           keyboardClose: true,
           showBackdrop: true,
-          breakpoints: [0, 0.5, 1],
-          initialBreakpoint: 0.5,
+          breakpoints: [0, 0.5, 0.75, 1],
+          //initialBreakpoint: poem.audio?1:0.5,
+          initialBreakpoint: poem.audio?1:0.5,
           //enterAnimation: this.enterAnimation,
           //leaveAnimation: this.leaveAnimation,
           presentingElement: await this.modalController.getTop(),

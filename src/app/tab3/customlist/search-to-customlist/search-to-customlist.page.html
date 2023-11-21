@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title style="font-size:12px;width: 100%;white-space: normal;">添加到"{{data.currentCollectLike.data.name}}"</ion-title>
+        <!--<ion-buttons slot="end">
+            <ion-button (click)="cancel()" [strong]="true">取消</ion-button>
+        </ion-buttons>-->
+    </ion-toolbar>
+</ion-header>
+<ion-content class="no-padding">
+    <ion-searchbar placeholder="诗人、诗词以及更多内容" show-cancel-button="focus" 
+      style="padding-left:15px;"
+      [(ngModel)]="searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionCancel)="onSearchCancel()"
+      (ionInput)="onSearchChanged()"
+      cancel-button-text="取消"
+    ></ion-searchbar>
+    
+    <ion-list>
+        <ion-item *ngFor="let p of displayResult" 
+        style="--padding-start:20px;--inner-padding-end:10px;" detail="false">
+          <ion-thumbnail slot="start">
+            <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2 [innerHTML]="getHighlight(p)"></h2>
+            <p style="margin-top:5px;">{{p.title}} - {{p.author}}</p>
+          </ion-label>
+          <ion-button fill="clear" slot="end" (click)="addtocustomlist(p)" *ngIf="!p.added">
+            <ion-icon name="add-circle-outline" color="danger" style="font-size:22px;"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" slot="end" *ngIf="p.added">
+            <ion-icon name="checkmark-outline" color="danger" style="font-size:22px;"></ion-icon>
+          </ion-button>
+        </ion-item>
+    </ion-list>
+</ion-content>

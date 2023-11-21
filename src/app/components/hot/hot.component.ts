@@ -10,9 +10,11 @@ export class HotComponent {
 
   @Input() name?: string;
   @Input() source?: any;
+  @Input() audio?: string;
 
   constructor(
     public data: DataService,
-  ){}
+  ){
+  }
 
 }

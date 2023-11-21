@@ -61,6 +61,7 @@ export class PlayListPage {
 
 
   async createPlayList() {
+    console.log('start createPlayList...')
     const modal = await this.modalController.create({
         component: AddPlayerListPage,
         componentProps: {
@@ -82,6 +83,7 @@ export class PlayListPage {
     if (role === 'confirm') {
     }
     this.data.updateLocalData('customlist');
+    this.onSearchChanged();
   }
 
 }

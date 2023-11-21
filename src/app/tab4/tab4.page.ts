@@ -139,4 +139,18 @@ export class Tab4Page implements OnInit {
     console.log(this.displayResult)
   }
 
+
+  getHighlight(p:any){
+    let result = "";
+    p.paragraphs.forEach((s:any) => {
+      if(s.indexOf(this.searchText)>-1)
+      {
+        result = s;
+      }
+    });
+    p.sample = this.searchText;
+    return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
+
+  }
+
 }

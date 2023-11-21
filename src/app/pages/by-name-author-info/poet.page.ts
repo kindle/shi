@@ -15,6 +15,16 @@ export class PoetPage {
   author:any;
   authorData:any;
 
+  hotPoemByAuthor:any = [];
+  getHotData(){
+    this.hotPoemByAuthor = [];
+    let result = this.localJsonData.filter((p:any)=>p.audio!=null);
+    for (let i = 0; i < result.length; i += 4) {
+      const subArray = result.slice(i, i + 4);
+      this.hotPoemByAuthor.push(subArray);
+    }
+  }
+
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -35,6 +45,8 @@ export class PoetPage {
 
 
     this.onSearchChanged();
+
+    this.getHotData();
   }
 
   getUrl(){

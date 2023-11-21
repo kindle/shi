@@ -1,5 +1,64 @@
 [
     {
+        "id":800,
+        "name":"音频诗单1",
+        "image":"/assets/img/tree.jpg",
+        "desc":"那些永不褪色的经典1",
+        "list":[
+            {"title":"春望","author":"杜甫","sample":"国破山河在，城春草木深","desc":"","pid":"e9e6425c-6c14-4f69-8694-87a8b96a43de"},
+            {"title":"卜算子·咏梅","author":"陆游","sample":"驿外断桥边，寂寞开无主","desc":"","pid":"cc7ac8fc-c34c-4c31-aadc-edfa171c4ef1"},
+            {"title":"行路难（其一）","author":"李白","sample":"长风破浪会有时，直挂云帆济沧海","desc":"","pid":"c348bc2e-f50d-436b-88b7-c198d63dacfc"},
+            {"title":"水调歌头","author":"苏轼","sample":"明月几时有，把酒问青天","desc":"","pid":"eb70dc6c-4509-43af-bcf6-5b862ac23082"}
+        ]
+    },
+    {
+        "id":801,
+        "name":"音频诗单2",
+        "image":"/assets/img/star.jpg",
+        "desc":"那些永不褪色的经典2",
+        "list":[
+            {"title":"定风波","author":"苏轼","sample":"莫听穿林打叶声，何妨吟啸且徐行","desc":"","pid":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
+            {"title":"子衿","author":"诗经","sample":"青青子衿，悠悠我心","desc":"","pid":"69f0bef8-fb95-446f-bb97-243a9c702510"},
+            {"title":"登京口北固亭有怀","author":"辛弃疾","sample":"生子当如孙仲谋","desc":"","pid":"ec3cf108-2919-4d6e-937d-3cb8196e9481"}
+        ]
+    },
+    {
+        "id":802,
+        "name":"思乡",
+        "image":"/assets/img/tree.jpg",
+        "desc":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。长大后，乡愁是一张窄窄的船票，我在这头，新娘在那头。后来啊，乡愁是一方矮矮的坟墓，我在外头，母亲在里头。而现在，乡愁是一湾浅浅的海峡，我在这头，大陆在那头。",
+        "list":[
+            {"title":"春夜洛城闻笛","author":"李白","sample":"谁家玉笛暗飞声，散入春风满洛城","desc":"","pid":"4838bc46-446b-44cb-8296-29eed12cf343"}
+        ]
+    },
+    {
+        "id":803,
+        "name":"诗经",
+        "image":"/assets/img/张大千荷花.jpg",
+        "desc":"关关雎鸠,在河之洲。窈窕淑女,君子好逑",
+        "list":[
+            {"title":"子衿","author":"诗经","sample":"青青子衿，悠悠我心","desc":"","pid":"69f0bef8-fb95-446f-bb97-243a9c702510"},
+            {"title":"关雎","author":"诗经","sample":"关关雎鸠，在河之洲","desc":"","pid":"4978bcad-1cd0-4e11-8a44-ae2fc7b1d296"},
+            {"title":"蒹葭","author":"诗经","sample":"所谓伊人，在水一方","desc":"","pid":"7ddd8ec0-9687-434c-82b1-652d6c92b527"}
+
+        ]
+    },
+    {
+        "id":804,
+        "name":"曹操",
+        "image":"/assets/img/海钓.jpg",
+        "desc":"往事越千年。魏武挥鞭，东临碣石有遗篇。曹操是个什么样的人？三首诗解读曹操。",
+        "list":[
+            {"title":"观沧海","author":"曹操","sample":"东临碣石，以观沧海","desc":"","pid":"7accd930-05ff-46f3-9b68-e5eacd382106"},
+            {"title":"龟虽寿","author":"曹操","sample":"神龟虽寿，犹有竟时","desc":"","pid":"51936db1-d013-4037-a7a0-dd904b4b5f67"},
+            {"title":"短歌行","author":"曹操","sample":"对酒当歌，人生几何","desc":"","pid":"7a2aa44e-035f-476a-8e5a-f4517b39b57b"}
+            
+        ]
+    },
+
+
+
+    {
         "id":900,
         "name":"古人emo时自嘲能有多绝",
         "image":"/assets/img/齐白石4.jpg",
@@ -44,7 +103,7 @@
             {"title":"古朗月行","author":"李白","sample":"小时不识月，呼作白玉盘","desc":"","pid":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
             {"title":"把酒问月","author":"李白","sample":"今人不见古时月，今月曾经照古人","desc":"","pid":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
             {"title":"月下独酌四首 一","author":"李白","sample":"举杯邀明月，对影成三人","desc":"","pid":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3"},
-            {"title":"相和歌辞 子夜四时歌四首 秋歌","author":"李白","sample":"长安一片月","desc":"","pid":"49194c4b-b775-4d21-a506-fc0a2ff308f1"}
+            {"title":"相和歌辞 子夜四时歌四首 秋歌","author":"李白","sample":"长安一片月，万户捣衣声","desc":"","pid":"49194c4b-b775-4d21-a506-fc0a2ff308f1"}
         ]
     },
     {
@@ -259,9 +318,9 @@
         "image":"",
         "desc":"邺下文人集团",
         "list":[
-            {"title":"观沧海","author":"曹操","sample":"大江东去，浪淘尽，千古风流人物","pid":""},
+            {"title":"观沧海","author":"曹操","sample":"东临碣石，以观沧海","pid":"7accd930-05ff-46f3-9b68-e5eacd382106"},
             {"title":"燕歌行","author":"曹丕","sample":"但愿人长久，千里共婵娟","pid":""},
-            {"title":"洛神赋","author":"曹植","sample":"会挽雕弓如满月，西北望，射天狼","pid":""}
+            {"title":"洛神赋","author":"曹植","sample":"翩若惊鸿，婉若游龙","pid":"cfbae213-8f93-4913-b331-bdd872a0b86e"}
         ]
     },
     {

@@ -56,8 +56,8 @@
         <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>
       <ion-label>
-        <h2>{{p.title}} - {{p.author}}</h2>
-        <p>{{p.sample}}</p>
+        <h2 [innerHTML]="getHighlight(p)"></h2>
+        <p style="margin-top:5px;">{{p.title}} - {{p.author}}</p>
       </ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>

@@ -70,9 +70,20 @@
   <app-text [name]="authorData.name" [text]="authorData.desc" *ngIf="!showFilter&&authorData"></app-text>
 
 
-  <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
+  <app-hot name="热门诗词" [source]="hotPoemByAuthor" audio="yes" *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>
+
+
+  <ion-toolbar style="--background: translucent;" *ngIf="!showFilter">
+    <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
+      <ion-buttons>
+        <ion-card-title class="station-text" style="font-weight: bold;">所有诗词</ion-card-title>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-toolbar>
+
+  <ion-list style="margin-top:10px;margin-bottom: 20px;" *ngIf="!showFilter">
     <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
-      {{localJsonData.length}}首诗词
+      {{localJsonData.length}}首
     </ion-text>
   </ion-list>
 

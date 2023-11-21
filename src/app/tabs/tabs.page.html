@@ -36,6 +36,14 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         <ion-icon name="radio-outline" class="menu-icon" color="primary"></ion-icon>
         <ion-label class="menu-text">广播</ion-label>
       </ion-item>
+      <ion-item lines="none" (click)="goTab(5)" class="menu-item" color="primary" *ngIf="isSelected(5)">
+        <ion-icon name="radio-outline" class="menu-icon"></ion-icon>
+        <ion-label class="menu-text">浏览</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="goTab(5)" class="menu-item" *ngIf="!isSelected(5)">
+        <ion-icon name="radio-outline" class="menu-icon" color="primary"></ion-icon>
+        <ion-label class="menu-text">浏览</ion-label>
+      </ion-item>
       <ion-item lines="none" (click)="goTab(4)" class="menu-item" color="primary" *ngIf="isSelected(4)">
         <ion-icon name="search-outline" class="menu-icon"></ion-icon>
         <ion-label class="menu-text">搜索</ion-label>
@@ -52,13 +60,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
           <ion-label style="font-size:20px;margin-left:0px;">诗词库</ion-label>
         </ion-item>
         <div class="ion-no-padding" slot="content">
-          <ion-item lines="none" (click)="goSub(1)" class="menu-item" color="primary" *ngIf="isSubSelected(1)">
+          <ion-item lines="none" (click)="goSub(0)" class="menu-item" color="primary" *ngIf="isSubSelected(0)">
             <ion-icon name="list-outline" class="menu-icon"></ion-icon>
-            <ion-label class="menu-text">诗单</ion-label>
+            <ion-label class="menu-text">诗单列表</ion-label>
           </ion-item>
-          <ion-item lines="none" (click)="goSub(1)" class="menu-item" *ngIf="!isSubSelected(1)">
+          <ion-item lines="none" (click)="goSub(0)" class="menu-item" *ngIf="!isSubSelected(0)">
             <ion-icon name="list-outline" class="menu-icon" color="primary"></ion-icon>
-            <ion-label class="menu-text">诗单</ion-label>
+            <ion-label class="menu-text">诗单列表</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(2)" class="menu-item" color="primary" *ngIf="isSubSelected(2)">
             <ion-icon name="people-outline" class="menu-icon"></ion-icon>
@@ -67,6 +75,14 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
           <ion-item lines="none" (click)="goSub(2)" class="menu-item" *ngIf="!isSubSelected(2)">
             <ion-icon name="people-outline" class="menu-icon" color="primary"></ion-icon>
             <ion-label class="menu-text">诗人</ion-label>
+          </ion-item>
+          <ion-item lines="none" (click)="goSub(1)" class="menu-item" color="primary" *ngIf="isSubSelected(1)">
+            <ion-icon name="list-outline" class="menu-icon"></ion-icon>
+            <ion-label class="menu-text">诗单</ion-label>
+          </ion-item>
+          <ion-item lines="none" (click)="goSub(1)" class="menu-item" *ngIf="!isSubSelected(1)">
+            <ion-icon name="list-outline" class="menu-icon" color="primary"></ion-icon>
+            <ion-label class="menu-text">诗单</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(3)" class="menu-item" color="primary" *ngIf="isSubSelected(3)">
             <ion-icon name="book-outline" class="menu-icon"></ion-icon>
@@ -127,14 +143,18 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     <ion-toolbar style="--background:rgba(255,255,255,0.8);" *ngIf="data.currentPoem">
       <ion-buttons slot="start" expand="block" style="width:100%;" (click)="data.play()">
         <div class="play-icon-box" *ngIf="data.currentPoem">
-          <img style="min-width: 40px;" src="/assets/img/poet/{{data.currentPoem.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+          <img style="min-width: 40px;aspect-ratio: 1;border-radius: 5px;" src="/assets/img/poet/{{data.currentPoem.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </div>
         <ion-card-title style="font-size:18px;width:100%;font-weight: normal;overflow: hidden;text-overflow: ellipsis;max-height: 30px;">
-          <ion-label>上一首: {{data.currentPoem.title}}</ion-label>
+          <ion-label>{{data.currentPoem.title}}</ion-label>
         </ion-card-title><!--data.currentPoem.paragraphs[0]-->
       </ion-buttons>
-      <ion-buttons slot="end" style="display:none;">
-        <ion-button [disabled]="false" (click)="next()">
+      <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:5px;">
+        <ion-button (click)="data.togglePlay()">
+          <ion-icon name="play" color="dark" *ngIf="!data.isPlaying"></ion-icon>
+          <ion-icon name="pause" color="dark" *ngIf="data.isPlaying" ></ion-icon>
+        </ion-button>
+        <ion-button [disabled]="false" (click)="data.playNext()">
           <ion-icon name="play-forward" color="dark"></ion-icon>
         </ion-button>
       </ion-buttons>

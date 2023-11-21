@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
+import { EventService } from 'src/app/services/event.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -13,10 +14,20 @@ export class PoemPage{
   //收藏诗词 max=1000
   constructor(
     public data: DataService,
-    public ui: UiService
-  ) { }
+    public ui: UiService,
+    private eventService: EventService
+  ) { 
+    this.eventService.myEvent.subscribe((data) => {
+      //console.log(data)
+      this.updateRemoteDataTolocal();
+    });
+  }
 
   ionViewWillEnter() {
+    this.updateRemoteDataTolocal();
+  }
+
+  updateRemoteDataTolocal(){
     this.data.updateLocalData('poem');
     this.onSearchChanged();
   }

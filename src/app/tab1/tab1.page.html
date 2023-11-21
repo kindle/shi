@@ -62,14 +62,16 @@
           <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
           <ion-card-subtitle style="margin-top:10px;">{{item.desc}}</ion-card-subtitle>
         </ion-card-content>
-      
         <ion-card-content>
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
-          *ngFor="let v of item.items" (click)="data.playbyid(v.pid)">
+          *ngFor="let v of item.items" (click)="data.playbyid(v.pid, v.sample)">
             <div style="width: 100%;text-align: center;">{{v.text}}</div>
           </ion-item>
         </ion-card-content>
       </ion-card>
+
+
+
 
       <ion-card class="card card-vote" card-shrink
       (click)="goToArticle(item)"
@@ -105,15 +107,22 @@
       </ion-card>
 
 
+
+
+
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='text'"
-        style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
+        style="background-image: url('/assets/img/{{item.bg_image}}');
+        background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
         </ion-card-content>
       </ion-card>
+
+
+
 
 
       <ion-card class="card card-img" card-shrink
@@ -150,18 +159,19 @@
       </ion-card>
 
 
+
+
+
       <ion-card class="card card-gif" id="modal-gif{{i}}" card-shrink
       *ngIf="item.template=='gif'">
         <ion-card-content>
           <ion-card-subtitle>{{item.small_title}}</ion-card-subtitle>
           <ion-card-title>{{item.big_title}}</ion-card-title>
         </ion-card-content>
-      
         <ion-modal trigger="modal-gif{{i}}" #modal [initialBreakpoint]="1" [breakpoints]="[0, 1]">
           <ng-template>
             <ion-content force-overscroll="false">
               <div class="card card-gif">
-
                 <ion-card-content style="z-index:1;position:fixed;width:100%;">
                   <ion-buttons style="display:flex;justify-content:center;width:35px;height:35px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" (click)="closeModal(i)">
                     <ion-button color="light">
@@ -169,14 +179,11 @@
                     </ion-button>
                   </ion-buttons>
                 </ion-card-content>
-
                 <ion-card-content>
                   <ion-card-subtitle>{{item.small_title}}</ion-card-subtitle>
                   <ion-card-title>{{item.big_title}}</ion-card-title>
                 </ion-card-content>
-              
                 <ion-card-content>
-                  
                 </ion-card-content>
               </div>
               <div style="padding:10px;">

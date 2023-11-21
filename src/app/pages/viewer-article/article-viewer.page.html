@@ -1,36 +1,36 @@
 <!--background image top/width_auto height_sameas_tab1-->
 <ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" 
 style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
-    <div
-     style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
-        
+    <div style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
         <ion-card-content style="z-index:100;position:fixed;width:100%;
-        padding-inline-end:20px;padding-top:30px;">
-          <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:right;background-color:rgba(128,128,128,0.5);border-radius: 50%;"
-            (click)="goback()">
-            <ion-button color="light">
-              <ion-icon name="close-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-card-content>
-        <!--
-        <ion-card-content style="z-index:1;position:fixed;width:100%;
-        padding-inline-start:5px;padding-inline-end:20px;padding-top:30px;">
-          <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:left;background-color:rgba(128,128,128,0.5);border-radius: 50%;"
+          padding-inline-start:10px;
+          padding-inline-end:20px;padding-top:30px;">
+          <ion-buttons style="display:flex;justify-content:center;
+            width:25px;height:25px;float:left;
+            background-color:rgba(128,128,128,0.5);
+            border-radius: 50%;"
             (click)="goback()">
             <ion-button color="light">
               <ion-icon name="chevron-back-outline"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-card-content>
-        -->
+
 
         <ion-card-content style="z-index:0;">
-          <ion-card-subtitle style="color:{{data.currentArticle.title_color}};font-size:18px;margin-top:20px;">{{data.currentArticle.small_title}}</ion-card-subtitle>
-          <ion-card-title style="color:{{data.currentArticle.title_color}};font-size:25px;">{{data.currentArticle.big_title}}</ion-card-title>
+          <ion-card-subtitle style="font-size:18px;margin-top:45px;
+            color:{{data.currentArticle.title_color}};">
+            {{data.currentArticle.small_title}}
+          </ion-card-subtitle>
+          <ion-card-title style="font-size:25px;
+            color:{{data.currentArticle.title_color}};">
+            {{data.currentArticle.big_title}}
+          </ion-card-title>
         </ion-card-content>
       
     </div>
+
+    <!--wall swiper-->
     <div *ngIf="data.currentArticle.template=='wall'">
         <ion-card-content>
           <swiper-container style="margin-top:0px;margin-bottom: 0px;"
@@ -53,11 +53,12 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
         </ion-card-content>
     </div>
     
+
     <div style="padding:0px 0;background-color:white;">
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
-        <app-text style="margin:10px 20px;" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
+        <app-text style="margin:10px 20px;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
           <img  src="/assets/img/{{it.value}}" (click)="ui.imageviewer('/assets/img/'+it.value)" >
@@ -68,9 +69,9 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
             <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
           </ion-thumbnail>
           
-          <ion-label (click)="data.playbyid(it.pid)">
+          <ion-label (click)="data.playbyid(it.pid, it.sample)">
             <h2>{{it.sample}}</h2>
-            <p>{{it.title}} - {{it.author}}</p>
+            <p style="margin-top:5px;">{{it.title}} - {{it.author}}</p>
           </ion-label>
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
@@ -90,7 +91,7 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
               <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
                 <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
               </ion-thumbnail>
-              <ion-label (click)="data.playbyid(p.pid)">
+              <ion-label (click)="data.playbyid(p.pid, p.sample)">
                 <h2>{{p.author}}  {{p.desc}}</h2>
                 <p>{{p.sample}}</p>
               </ion-label>

@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./tab3/customlist/add-to-customlist/add-to-customlist.module').then( m => m.AddToCustomListPageModule)
   },
   {
+    path: 'searchtocustomlist',
+    loadChildren: () => import('./tab3/customlist/search-to-customlist/search-to-customlist.module').then( m => m.SearchToCustomListPageModule)
+  },
+  {
     path: 'tab5',
     loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
   },

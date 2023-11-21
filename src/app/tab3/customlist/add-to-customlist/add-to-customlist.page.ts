@@ -88,6 +88,7 @@ export class AddToCustomListPage {
     if (role === 'confirm') {
     }
     this.data.updateLocalData('customlist');
+    this.onSearchChanged();
   }
 
   addtocustomlist(data:any){

@@ -13,12 +13,15 @@
 
   <app-big [source]="searchTopicData.scroll"></app-big>
 
+  <app-tile name="最近播放" [source]="data.playedEPHistory" *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+
   <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
   <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
 
   <div *ngFor="let list of searchTopicData.list;">
     <app-tile [name]="list.name" [source]="list.data"></app-tile>
   </div>
+
 
 
   <app-text [name]="searchTopicData.desctitle" [text]="searchTopicData.desc">
