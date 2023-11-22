@@ -29,10 +29,11 @@
                 收藏
                 <ion-icon name="add-outline" slot="end"></ion-icon>
               </ion-item>
+              <!--
               <ion-item lines="full" [button]="true" [detail]="false">
                 分享
                 <ion-icon name="share-outline" slot="end"></ion-icon>
-              </ion-item>
+              </ion-item>-->
             </ion-list>
           </ion-content>
         </ng-template>
@@ -72,14 +73,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="display: flex;margin:0 20px;" *ngIf="isPlayList">
-    <ion-button color="light" style="width: 100%;margin-right:10px;"
-    (click)="data.playList(listdata)">
+  <div style="display: flex;margin:0 20px;">
+    <ion-button color="light" style="width: 100%;margin-right:10px;" [disabled]="noAudio"
+    (click)="data.playList(getAudio(listdata))">
       <ion-icon slot="start" name="play" color="primary"></ion-icon>
       <ion-text color="primary">播放</ion-text>
     </ion-button>
-    <ion-button color="light" style="width: 100%;margin-left:10px;"
-    (click)="data.playListRandomly(listdata)">
+    <ion-button color="light" style="width: 100%;margin-left:10px;" [disabled]="noAudio"
+    (click)="data.playListRandomly(getAudio(listdata))">
       <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
       <ion-text color="primary">随机播放</ion-text>
     </ion-button>
@@ -93,15 +94,18 @@
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
         <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
-          [ngStyle]="{'opacity':(data.currentPoem&&p.pid === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.pid === data.currentPoem.id"
+          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.pid === data.currentPoem.id) ? '0.5' : '1' }" />
+        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.pid === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
         'height':(data.isPlaying) ? '' : '5px' }"
         ></div>
       </ion-thumbnail>
       <ion-label (click)="data.playListByPoem(listdata, p)">
-        <h2>{{p.title}} - {{p.author}}</h2>
-        <p>{{p.sample}}</p>
+        <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+        <p style="margin-top:5px;display: flex;align-items: end;">
+          {{p.author}}《{{p.title}}》
+          <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+        </p>
       </ion-label>
 
       <app-button-end [p]="p" page="idlist" slot="end"></app-button-end>

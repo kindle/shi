@@ -19,24 +19,33 @@
   <swiper-slide *ngFor="let hot of source">
     <ion-list>
       <ion-item *ngFor="let p of hot" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
-        <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
-          <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+        <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+        style="display: flex;justify-content: center;align-items: center;">
+          <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+            [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&(p.pid?p.pid:p.id) === data.currentPoem.id) ? '0.5' : '1' }" />
+          <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&(p.pid?p.pid:p.id) === data.currentPoem.id"
+            [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+            'height':(data.isPlaying) ? '' : '5px' }"
+          ></div>
+          <!--
+          <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"
+          style="position: absolute;left:2px;bottom:5px;"></ion-icon>-->
         </ion-thumbnail>
-        <!--<ion-label (click)="data.playbyid(p.pid?p.pid:p.id, p.sample)">-->
         <ion-label (click)="data.playbyid(p.pid?p.pid:p.id, p.sample)" *ngIf="audio!='yes'">
-          <h2>{{p.title}} - {{p.author}}</h2>
-          <p style="margin-top:5px;">{{p.sample?p.sample:p.paragraphs[0]}}</p>
+          <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+          <p style="margin-top:5px;display: flex;align-items: end;">
+            {{p.author}}《{{p.title}}》
+            <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+          </p>
         </ion-label>
         <ion-label (click)="data.playHotListByPoem(source, p)" *ngIf="audio=='yes'">
-          <h2>{{p.title}} - {{p.author}}</h2>
-          <p style="margin-top:5px;">{{p.sample?p.sample:p.paragraphs[0]}}</p>
+          <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+          <p style="margin-top:5px;display: flex;align-items: end;">
+            {{p.author}}《{{p.title}}》
+            <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+          </p>
         </ion-label>
         <app-button-end [p]="p" page="hotlist" slot="end"></app-button-end>
-        <!--
-        <ion-button fill="clear" slot="end">
-          <ion-icon name="ellipsis-horizontal" color="medium"></ion-icon>
-        </ion-button>
-        -->
       </ion-item>
     </ion-list>
   </swiper-slide>

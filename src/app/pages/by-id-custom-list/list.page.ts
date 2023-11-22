@@ -13,6 +13,10 @@ import { EventService } from '../../services/event.service';
 })
 export class ListPage {
 
+  getAudio(listdata:any){
+    return {list:this.listdata.list.filter((d:any)=>d.audio!=null)};
+  }
+
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -23,7 +27,6 @@ export class ListPage {
       this.eventService.myEvent.subscribe((data) => {
         //console.log(data)
         this.updateRemoteDataTolocal();
-
         this.updateIsPlayListFlag();
       });
   }
@@ -64,21 +67,19 @@ export class ListPage {
   }
 
   private updateIsPlayListFlag(){
-    //show play/playRandom button or not
-    this.isPlayList = this.CheckIsPlayList();
+    //update audio info.
+    this.CheckIsPlayList();
   }
 
-  isPlayList:any = false;
+  noAudio:any = true;
   CheckIsPlayList(){
-    let result = true;
     this.localList.forEach((poem:any) => {
       let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-      if(!fullData.audio)
-      {
-        result = false;
+      if(fullData.audio!=null){
+        poem.audio = fullData.audio;
+        this.noAudio = false;
       }
     });
-    return result;
   }
 
   singleImage:any;

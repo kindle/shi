@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { EventService } from 'src/app/services/event.service';
 import { UiService } from 'src/app/services/ui.service';
@@ -58,10 +57,14 @@ export class PoemPage{
     this.generateItems();
   }
   displayResult:any = [];
+  listdata:any = [];
   private generateItems() {
     this.displayResult = this.displayResult.concat(
       this.searchResult.splice(0,Math.min(this.searchResultCount,1000))
     );
+    
+    let flatpoemdata = this.displayResult.map((r:any)=>r.data);
+    this.listdata = {list:flatpoemdata.filter((d:any)=>d.audio!=null)};
   }
 
 }

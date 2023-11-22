@@ -14,7 +14,7 @@ export class AppComponent {
     private data: DataService,
     private storage: Storage,
   ) {
-    this.data.loadArticleJsonData();
+    
   }
 
   async ngOnInit() {
@@ -35,6 +35,8 @@ export class AppComponent {
     });
     //move it to tab1, as it's very slow when starts up
     await this.data.loadJsonData();
+
+    this.data.loadArticleJsonData();
 
     this.data.getSubscriptionImage();
   }

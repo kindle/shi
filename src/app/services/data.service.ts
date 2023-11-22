@@ -192,7 +192,15 @@ export class DataService {
       this.hotData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
-        //console.log(subArray)
+        subArray.forEach((e:any) => {
+          let poem = this.JsonData.filter((shici:any)=>shici.id===e.pid)[0];
+          console.log(e.pid)
+          if(poem&&poem.audio){
+            e.audio = poem.audio;
+          }
+        });
+        console.log('hot')
+        console.log(subArray)
         this.hotData.push(subArray);
       }
     });
@@ -200,7 +208,12 @@ export class DataService {
       this.classicData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
-        //console.log(subArray)
+        subArray.forEach((e:any) => {
+          let poem = this.JsonData.filter((shici:any)=>shici.id===e.pid)[0];
+          if(poem&&poem.audio){
+            e.audio = poem.audio;
+          }
+        });
         this.classicData.push(subArray);
       }
     });
@@ -998,6 +1011,7 @@ export class DataService {
       if(poem.audio){
         this.setAudio();
       }else{
+        this.execPause();
         this.ui.player(this.currentPoem);
       }
       this.savePlayHistory(this.currentPoem);

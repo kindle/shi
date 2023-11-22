@@ -26,7 +26,25 @@ export class Tab1Page {
   }
   goToArticle(item:any){
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
-
+console.log(item)
+    if(item.items){
+      //update audio info..
+      item.items.forEach((poem:any) => {
+        let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.pid)[0];
+        if(fullData.audio!=null){
+          poem.audio = fullData.audio;
+        }
+      });
+    }
+    if(item.desc){
+      //update audio info..
+      item.desc.filter((i:any)=>i.type=='poem').forEach((poem:any) => {
+        let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.pid)[0];
+        if(fullData.audio!=null){
+          poem.audio = fullData.audio;
+        }
+      });
+    }
     this.data.currentArticle = item;
     this.router.navigate(['article-viewer'], {
       queryParams: {

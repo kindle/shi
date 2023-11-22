@@ -12,6 +12,9 @@ import { ModalController } from '@ionic/angular';
 })
 export class ListPage {
 
+  getAudio(listdata:any){
+    return {list:this.listdata.list.filter((d:any)=>d.audio!=null)};
+  }
 
   localList:any;
   searchText:any;
@@ -53,21 +56,19 @@ export class ListPage {
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 
     // Convert back to an array
     this.poets = [...authorSet]; 
-    //show play/playRandom button or not
-    this.isPlayList = this.CheckIsPlayList();
+    //update audio info.
+    this.CheckIsPlayList();
   }
 
-  isPlayList:any = false;
+  noAudio:any = true;
   CheckIsPlayList(){
-    let result = true;
     this.localList.forEach((poem:any) => {
       let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.pid)[0];
-      if(!fullData.audio)
-      {
-        result = false;
+      if(fullData.audio!=null){
+        poem.audio = fullData.audio;
+        this.noAudio = false;
       }
     });
-    return result;
   }
 
   

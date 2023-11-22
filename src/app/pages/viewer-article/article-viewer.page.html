@@ -65,13 +65,22 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
         </div>
         <ion-item *ngIf="it.type==='poem'" lines="none" 
         style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;">
-          <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)">
-            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+          <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)"
+            style="display: flex;justify-content: center;align-items: center;">
+            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+              [ngStyle]="{'opacity':(data.currentPoem&&it.audio&&it.pid === data.currentPoem.id) ? '0.5' : '1' }" />
+            <div class="playing" style="position: absolute;" *ngIf="data.currentPoem&&it.audio&&it.pid === data.currentPoem.id"
+              [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+              'height':(data.isPlaying) ? '' : '5px' }">
+            </div>
           </ion-thumbnail>
           
           <ion-label (click)="data.playbyid(it.pid, it.sample)">
-            <h2>{{it.sample}}</h2>
-            <p style="margin-top:5px;">{{it.title}} - {{it.author}}</p>
+            <h2>{{it.sample?it.sample:it.paragraphs[0]}}</h2>
+            <p style="margin-top:5px;display: flex;align-items: end;">
+              {{it.author}}《{{it.title}}》
+              <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>
+            </p>
           </ion-label>
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
@@ -88,12 +97,21 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
           <ion-list style="margin-left:5px;padding-top:0px;">
             <ion-item *ngFor="let p of data.currentArticle.items"
             style="--padding-start:15px;--inner-padding-end:20px;">
-              <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
-                <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
-              </ion-thumbnail>
+            <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+            style="display: flex;justify-content: center;align-items: center;">
+              <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+                [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.pid === data.currentPoem.id) ? '0.5' : '1' }" />
+              <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.pid === data.currentPoem.id"
+                [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                'height':(data.isPlaying) ? '' : '5px' }"
+              ></div>
+            </ion-thumbnail>
               <ion-label (click)="data.playbyid(p.pid, p.sample)">
-                <h2>{{p.author}}  {{p.desc}}</h2>
-                <p>{{p.sample}}</p>
+                <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+                <p style="margin-top:5px;display: flex;align-items: end;">
+                  {{p.author}}
+                  <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+                </p>
               </ion-label>
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">
                 <ion-text color="primary">所有作品</ion-text>

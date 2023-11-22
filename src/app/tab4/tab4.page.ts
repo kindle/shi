@@ -134,7 +134,7 @@ export class Tab4Page implements OnInit {
     }
     //get search result
     this.displayResult = this.displayResult.concat(
-      this.searchResult.splice(0,Math.min(this.searchResultCount,10))
+      this.searchResult.splice(0,Math.min(this.searchResultCount,30))
     );
     console.log(this.displayResult)
   }
