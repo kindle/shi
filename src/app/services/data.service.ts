@@ -193,14 +193,14 @@ export class DataService {
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
         subArray.forEach((e:any) => {
-          let poem = this.JsonData.filter((shici:any)=>shici.id===e.pid)[0];
-          console.log(e.pid)
+          let poem = this.JsonData.filter((shici:any)=>shici.id===e.id)[0];
+          //console.log(e.id)
           if(poem&&poem.audio){
             e.audio = poem.audio;
           }
         });
-        console.log('hot')
-        console.log(subArray)
+        //console.log('hot')
+        //console.log(subArray)
         this.hotData.push(subArray);
       }
     });
@@ -209,7 +209,7 @@ export class DataService {
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
         subArray.forEach((e:any) => {
-          let poem = this.JsonData.filter((shici:any)=>shici.id===e.pid)[0];
+          let poem = this.JsonData.filter((shici:any)=>shici.id===e.id)[0];
           if(poem&&poem.audio){
             e.audio = poem.audio;
           }
@@ -577,7 +577,7 @@ export class DataService {
     //console.log(listdata)
     this.toPlayList = listdata.list;
     if(this.toPlayList.length>0){
-      this.playbyid(poem.id?poem.id:poem.pid, poem.sample);
+      this.playbyid(poem.id, poem.sample);
     }
   }
   playHotListByPoem(source:any, poem:any){
@@ -589,7 +589,7 @@ export class DataService {
     });
     //console.log(this.toPlayList)
     if(this.toPlayList.length>0){
-      this.playbyid(poem.id?poem.id:poem.pid, poem.sample);
+      this.playbyid(poem.id, poem.sample);
     }
   }
 
@@ -599,7 +599,7 @@ export class DataService {
     this.toPlayList = listdata.list;
     if(this.toPlayList.length>0){
       let first = this.toPlayList[0];
-      this.playbyid(first.id?first.id:first.pid, first.sample);
+      this.playbyid(first.id, first.sample);
     }
   }
   currentListData:any;
@@ -609,7 +609,7 @@ export class DataService {
     this.toPlayList = listdata.randomlist;
     if(this.toPlayList.length>0){
       let first = this.toPlayList[0];
-      this.playbyid(first.id?first.id:first.pid, first.sample);
+      this.playbyid(first.id, first.sample);
     }
     this.isShuffle = true;
   }
@@ -622,7 +622,7 @@ export class DataService {
   }
   findNext(self:any=false){
     for(let i=0;i<this.toPlayList.length-1;i++){
-      if((this.toPlayList[i].pid===this.currentPoem.id||this.toPlayList[i].id===this.currentPoem.id)
+      if(this.toPlayList[i].id===this.currentPoem.id
       ||
         (this.toPlayList[i].title===this.currentPoem.title&&
         this.toPlayList[i].author===this.currentPoem.author)
@@ -649,7 +649,7 @@ export class DataService {
     }
 
     if(nextPoem!=null){
-      this.playbyid(nextPoem.pid?nextPoem.pid:nextPoem.id, nextPoem.sample, false);
+      this.playbyid(nextPoem.id, nextPoem.sample, false);
     }
 
     /*
@@ -984,12 +984,12 @@ export class DataService {
       this.ui.player(this.currentPoem);
   }
   
-  playbyid(pid:any=null, sample:any=null, pop:any=true){
-    //console.log(pid+sample)
-    if(pid){
+  playbyid(id:any=null, sample:any=null, pop:any=true){
+    //console.log(id+sample)
+    if(id){
       let poem = this.JsonData
         .filter((shici:any)=>
-          shici.id===pid
+          shici.id===id
         )[0];
         //console.log(poem)
       poem.sample = sample;
@@ -1131,8 +1131,7 @@ export class DataService {
   likelist(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let pid = listdata.pid ? listdata.pid : listdata.id;
-      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -1149,8 +1148,7 @@ export class DataService {
   isliked(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let pid = listdata.pid ? listdata.pid : listdata.id;
-      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -1184,8 +1182,7 @@ export class DataService {
   async unlikelist(listdata:any, group:any){
     //in case it's brief data from json
     if(group==='poem'){
-      let pid = listdata.pid ? listdata.pid : listdata.id;
-      let fullData = this.JsonData.filter((j:any)=>j.id===pid);
+      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
       if(fullData.length===1){
         listdata = fullData[0];
       }
@@ -1266,16 +1263,13 @@ export class DataService {
   currentCollectLike:any;
   currentCollectPoem:any;
   collectCustom(p:any){
-    //id list has pid, but tag list/author list are using id
-    //if p.pid is null, use p.id instead
-    let pid = p.pid ? p.pid : p.id;
-    let fullData = this.JsonData.filter((j:any)=>j.id===pid);
+    let fullData = this.JsonData.filter((j:any)=>j.id===p.id);
     if(fullData.length===1){
       this.currentCollectPoem = fullData[0];
     }
     else{
       this.currentCollectPoem = p;
-      console.log('did not find the poet data by id:'+p.pid)
+      console.log('did not find the poet data by id:'+p.id)
     }
   }
   addtocustomlist(like:any){

@@ -5,10 +5,10 @@
         "image":"",
         "desc":"",
         "list":[
-            {"title":"望月怀远","author":"张九龄","sample":"海上生明月，天涯共此时","pid":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
-            {"title":"十五夜望月寄杜郎中","author":"王建","sample":"今夜月明人尽望，不知秋思落谁家","pid":"7d6c16de-1d7e-4564-979b-e93e42ab176b"},
-            {"title":"嫦娥","author":"李商隐","sample":"嫦娥应悔偷灵药，碧海青天夜夜心","pid":"e98d0107-2f19-48bf-a408-6f399b24f6a3"},
-            {"title":"水调歌头·丙辰中秋","author":"苏轼","sample":"但愿人长久，千里共婵娟","pid":"eb70dc6c-4509-43af-bcf6-5b862ac23082"}
+            {"title":"望月怀远","author":"张九龄","sample":"海上生明月，天涯共此时","id":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
+            {"title":"十五夜望月寄杜郎中","author":"王建","sample":"今夜月明人尽望，不知秋思落谁家","id":"7d6c16de-1d7e-4564-979b-e93e42ab176b"},
+            {"title":"嫦娥","author":"李商隐","sample":"嫦娥应悔偷灵药，碧海青天夜夜心","id":"e98d0107-2f19-48bf-a408-6f399b24f6a3"},
+            {"title":"水调歌头·丙辰中秋","author":"苏轼","sample":"但愿人长久，千里共婵娟","id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"}
         ]
     },
     {

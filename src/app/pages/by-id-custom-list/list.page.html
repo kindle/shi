@@ -170,7 +170,7 @@
             <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
               
           </ion-thumbnail>
-          <ion-label (click)="data.playbyid(p.pid, p.sample)">
+          <ion-label (click)="data.playbyid(p.id, p.sample)">
             <h2>{{p.title}} - {{p.author}}</h2>
             <p>{{p.sample}}</p>
           </ion-label>

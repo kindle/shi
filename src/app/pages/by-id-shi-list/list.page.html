@@ -94,8 +94,8 @@
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
         <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
-          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.pid === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.pid === data.currentPoem.id"
+          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
         'height':(data.isPlaying) ? '' : '5px' }"
         ></div>

@@ -11,7 +11,7 @@
           <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </ion-thumbnail>
         
-        <ion-label (click)="data.playbyid(it.pid, it.sample)">
+        <ion-label (click)="data.playbyid(it.id, it.sample)">
           <h2>{{it.sample}}</h2>
           <p style="margin-top:5px;">{{it.title}} - {{it.author}}</p>
         </ion-label>
