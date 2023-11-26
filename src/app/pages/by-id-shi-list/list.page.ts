@@ -12,10 +12,6 @@ import { ModalController } from '@ionic/angular';
 })
 export class ListPage {
 
-  getAudio(listdata:any){
-    return {list:this.listdata.list.filter((d:any)=>d.audio!=null)};
-  }
-
   localList:any;
   searchText:any;
   showFilter = false;

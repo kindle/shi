@@ -148,6 +148,9 @@ export class Tab4Page implements OnInit {
         result = s;
       }
     });
+    if(result===""){
+      result = p.paragraphs[0];
+    }
     p.sample = this.searchText;
     return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
 

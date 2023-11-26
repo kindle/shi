@@ -13,10 +13,6 @@ import { EventService } from '../../services/event.service';
 })
 export class ListPage {
 
-  getAudio(listdata:any){
-    return {list:this.listdata.list.filter((d:any)=>d.audio!=null)};
-  }
-
   constructor(
     public data: DataService,
     public ui: UiService,

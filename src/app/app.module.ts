@@ -11,6 +11,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { IonicGestureConfig } from './utils/IonicGestureConfig';
 import { EventService } from './services/event.service';
+import { Media } from '@awesome-cordova-plugins/media/ngx'
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EventService } from './services/event.service';
     SocialSharing,
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
     EventService,
+    Media,
   ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

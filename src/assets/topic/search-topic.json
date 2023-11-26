@@ -61,7 +61,8 @@
         ]
       },
       {"name":"趣味诗单", "data": [
-        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
+        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球 | 我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
+        {"id":907,"src":"/assets/img/money.jpg","display":"cover","text":"跟着央视练文笔，山河月明，碎银几两","desc":"","color":"rgb(98,166,243)"},
         {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
         {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
         {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},

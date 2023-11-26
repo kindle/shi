@@ -8,7 +8,7 @@ import { ActionSheetController, IonTabs, ModalController, NavController, Platfor
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
 import { catchError, tap } from 'rxjs';
-
+import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
 
 
 //import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
@@ -303,8 +303,8 @@ export class DataService {
     private activatedRoute: ActivatedRoute,
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
-    private eventService: EventService
-
+    private eventService: EventService,
+    private media: Media,
   ){
     this.platform = platform;
     this.audio = new Audio();
@@ -533,12 +533,24 @@ export class DataService {
   audioLoadedmetadataFn:any;
   audioTimeupdateFn:any;
   audioEndedFn:any;
+  audioMedia:any;
   setAudio(){
     if(!this.currentPoem.audio){
       return;
     }
 
     this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
+    
+    /*
+    const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);
+    const mediaMetadataOpt = {
+      title: this.currentPoem.title,
+      artist: this.currentPoem.author,
+      album: 'Your Album Name',
+      // ... other metadata properties you want to set
+    };
+    file.setMetaData(mediaMetadataOpt);
+    //this.audioMedia.play();*/
 
     this.audioLoadedmetadataFn = () => {
       this.duration = this.audio.duration;
@@ -563,7 +575,8 @@ export class DataService {
       this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
       this.audio.removeEventListener('ended',this.audioEndedFn);
 
-      this.playNext(true);
+      this.playNext();
+
     }
     this.audio.addEventListener('ended',this.audioEndedFn);
 
@@ -571,82 +584,142 @@ export class DataService {
   }
 
 
-  toPlayList:any = [];
-  playListByPoem(listdata:any, poem:any){
-    //console.log('currentlist:')
-    //console.log(listdata)
-    this.toPlayList = listdata.list;
-    if(this.toPlayList.length>0){
-      this.playbyid(poem.id, poem.sample);
-    }
-  }
-  playHotListByPoem(source:any, poem:any){
-    console.log('current hot list:')
-    //console.log(source)
-    this.toPlayList = [];
-    source.forEach((group:any) => {
-      this.toPlayList = this.toPlayList.concat(group);
-    });
-    //console.log(this.toPlayList)
-    if(this.toPlayList.length>0){
-      this.playbyid(poem.id, poem.sample);
-    }
-  }
 
-  playList(listdata:any){
-    //console.log('currentlist:')
-    console.log(listdata)
-    this.toPlayList = listdata.list;
+
+
+  toPlayList:any = [];
+  orgToPlayList:any = [];
+  toPlayListName = "";
+  //hot list click poem
+  playListHot(list:any, poem:any, name:any){
+    if(poem.audio){
+      this.orgToPlayList = list.flat().filter((l:any)=>l.audio!=null);
+      this.toPlayList = list.flat().filter((l:any)=>l.audio!=null);
+      this.toPlayListName = name;
+    }
+
+    this.playbyid(poem.id, poem.sample);
+  }
+  //by-id-custom-list,by-id-shi-list click poem
+  playListByPoem(list:any, poem:any, name:any){
+    if(poem.audio){
+      this.orgToPlayList = list.filter((l:any)=>l.audio!=null);
+      this.toPlayList = list.filter((l:any)=>l.audio!=null);
+      this.toPlayListName = name;
+    }
+    
+    this.playbyid(poem.id, poem.sample);
+  }
+  //by-id-custom-list,by-id-shi-list,收藏诗词tab3/poem click button
+  playList(list:any, name:any){
+    this.orgToPlayList = list.filter((l:any)=>l.audio!=null)
+    this.toPlayList = this.orgToPlayList;
+    this.toPlayListName = name;
     if(this.toPlayList.length>0){
       let first = this.toPlayList[0];
       this.playbyid(first.id, first.sample);
     }
+    this.isShuffle = false;
+    this.savePlayStyle();
   }
-  currentListData:any;
-  playListRandomly(listdata:any){
-    this.currentListData = listdata;
-    listdata.randomlist = this.shuffleArray(listdata.list);
-    this.toPlayList = listdata.randomlist;
+  playListRandomly(list:any, name:any){
+    this.orgToPlayList = list.filter((l:any)=>l.audio!=null);
+    let randomToPlaylist = this.shuffleArray(this.orgToPlayList);
+    
+    this.toPlayList = randomToPlaylist;
+    this.toPlayListName = name;
     if(this.toPlayList.length>0){
       let first = this.toPlayList[0];
       this.playbyid(first.id, first.sample);
     }
     this.isShuffle = true;
+    this.savePlayStyle();
   }
   togglePlayListRandomly(){
     this.isShuffle = !this.isShuffle;
-    if(this.isShuffle)
-      this.playListRandomly(this.currentListData);
-    else 
-      this.playList(this.currentListData);
+    if(this.isShuffle===true){
+      this.playListRandomly(this.orgToPlayList, this.toPlayListName);
+    }
+    else {
+      this.playList(this.orgToPlayList, this.toPlayListName);
+    }
   }
-  findNext(self:any=false){
-    for(let i=0;i<this.toPlayList.length-1;i++){
+
+
+
+
+  findPrev(){
+    for(let i=0;i<this.toPlayList.length;i++){
+      console.log(this.toPlayList[i])
+      console.log(this.currentPoem)
       if(this.toPlayList[i].id===this.currentPoem.id
       ||
         (this.toPlayList[i].title===this.currentPoem.title&&
         this.toPlayList[i].author===this.currentPoem.author)
       ){
-          if(self===true)
-            return this.toPlayList[i];
-          return this.toPlayList[i+1];
+          if(i==0){
+            if(this.isInfinite===true){
+              return this.toPlayList[this.toPlayList.length-1];
+            }else{
+              return null;
+            }
+          }
+          return this.toPlayList[i-1];
       }
     }
-    if(this.isInfinite===true)
-    {
-      return this.toPlayList[0];
-    }
-
     return null;
   }
+  playPrev(){
+    let prevPoem:any = this.findPrev();
 
-  playNext(auto:any=false){
-    let nextPoem:any = this.findNext();
-
-    if(auto===true&&this.isRepeat===true){
-      //if auto play next and is repeat set, assign the poem it self
-      nextPoem = this.findNext(true);
+    if(prevPoem!=null){
+      this.playbyid(prevPoem.id, prevPoem.sample, false);
     }
+  }
+  findNext(){
+    let currentIndex = -1;
+    for(let i=0;i<this.toPlayList.length;i++){
+      if(this.toPlayList[i].id===this.currentPoem.id
+      ||
+        (this.toPlayList[i].title===this.currentPoem.title&&
+        this.toPlayList[i].author===this.currentPoem.author)
+      ){
+          currentIndex = i;
+      }
+    }
+
+    if(currentIndex===-1){
+      console.log('sth. went wrong, could not find the current poem index...')
+      return null;
+    }
+    
+    if(this.isRepeat===true){
+      return this.toPlayList[currentIndex];
+    }
+    
+    if(this.isInfinite===true)
+    {
+      if(currentIndex===this.toPlayList.length-1){
+        return this.toPlayList[0];
+      }
+      else{
+        return this.toPlayList[currentIndex+1];
+      }
+    }
+    else{
+      if(currentIndex===this.toPlayList.length-1){
+        return null;
+      }
+      else{
+        return this.toPlayList[currentIndex+1];
+      }
+    }
+    
+    return null;
+  }
+  
+  playNext(){
+    let nextPoem = this.findNext();
 
     if(nextPoem!=null){
       this.playbyid(nextPoem.id, nextPoem.sample, false);
@@ -667,19 +740,6 @@ export class DataService {
     */
   }
 
-  playPrevious(song:any){
-    if(this.audio){
-      this.audio.pause();
-      this.lrc.pause();
-    }
-    if(song==null){
-      song = this.queueData[0];
-    }
-    let newIndex = song.id-2<0 ? this.queueData.length-1: song.id-2;
-    let nextSong = this.queueData[newIndex];
-    song.selected = false;
-    this.playSelected(nextSong);
-  }
 
   
 
@@ -1287,9 +1347,21 @@ export class DataService {
         let image = `/assets/img/poet/${like.data.list[0].author}.jpeg`;
         like.data.image.push(image);
       }else if(like.data.list.length>=4){
-        for(let i=0;i<4;i++){
+        /*for(let i=0;i<4;i++){
           let image = `/assets/img/poet/${like.data.list[i].author}.jpeg`;
           like.data.image.push(image);
+        }*/
+        let maxNumber = 4;
+        let curNumber = 0;
+        for(let k=0;k<like.data.list.length;k++){
+          let image = `/assets/img/poet/${like.data.list[k].author}.jpeg`;
+          if(!like.data.image.includes(image))
+          {
+            like.data.image.push(image);
+            curNumber ++;
+            if(curNumber ==maxNumber)
+              break;
+          }
         }
       }
       else{
@@ -1319,9 +1391,21 @@ export class DataService {
           this.collectList[i].data.image = [image];
         }else if(this.collectList[i].data.list.length>=4){
           this.collectList[i].data.image = [];
-          for(let k=0;k<4;k++){
+          /*for(let k=0;k<4;k++){
             let image = `/assets/img/poet/${this.collectList[i].data.list[k].author}.jpeg`;
             this.collectList[i].data.image.push(image);
+          }*/
+          let maxNumber = 4;
+          let curNumber = 0;
+          for(let k=0;k<this.collectList[i].data.list.length;k++){
+            let image = `/assets/img/poet/${this.collectList[i].data.list[k].author}.jpeg`;
+            if(!this.collectList[i].data.image.includes(image))
+            {
+              this.collectList[i].data.image.push(image);
+              curNumber ++;
+              if(curNumber ==maxNumber)
+                break;
+            }
           }
         }else if(this.collectList[i].data.list.length==0){
           this.collectList[i].data.image = [];
