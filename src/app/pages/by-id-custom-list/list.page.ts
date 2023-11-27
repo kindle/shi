@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
 import { IonItemSliding, ItemReorderEventDetail, ModalController } from '@ionic/angular';
 import { SearchToCustomListPage } from 'src/app/tab3/customlist/search-to-customlist/search-to-customlist.page';
 import { EventService } from '../../services/event.service';
+import { Swiper } from 'swiper';
 
 @Component({
   selector: 'app-list',
@@ -12,6 +13,53 @@ import { EventService } from '../../services/event.service';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage {
+
+  sysImages = [
+    "assets/img/bird.jpg",
+    "assets/img/cao3.jpg",
+    "assets/img/money.jpg",
+    "assets/img/redbsj.jpg",
+    "assets/img/road.jpg"
+  ];
+
+  @ViewChild('swiperpickimg')
+  swiperRef: ElementRef | undefined;
+
+/*
+  navigationOpt = {
+    //el: ".swiper-pagination",
+    clickable: true,
+  };
+  */
+
+  mySwiper:any;
+  selectcustomimage(){
+    setTimeout(()=>{
+      let index = this.sysImages.findIndex((str:any)=>str==this.listdata.customimage);
+        
+      this.swiperRef?.nativeElement.swiper.on('slideChange', () => {
+        const activeIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
+        //console.log('Active Index changed:', activeIndex);
+      });
+      this.swiperRef?.nativeElement.swiper.update();
+      this.swiperRef?.nativeElement.swiper.slideTo(index+1, 1000, false);
+
+    },100);
+  }
+
+  updatecustomimage(){
+    const activeIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
+    
+    if(activeIndex==0){
+      //photo 
+      console.log('use org logic')
+    }
+    else{
+      let sysimgpath = this.sysImages[activeIndex-1];
+      this.listdata.customimage = sysimgpath;
+    }
+  }
+
 
   constructor(
     public data: DataService,
@@ -95,12 +143,14 @@ export class ListPage {
   isEdit = false;
   edit(){
     this.isEdit = true;
+    this.selectcustomimage();
   }
   cancel(){
     this.updateRemoteDataTolocal();
     this.isEdit = false;
   }
   save(){
+    this.updatecustomimage();
     this.data.savecustomlist(this.listdata);
     //update remote with locallist
     this.data.updatecustomelist(this.customData.data.id, this.localList);
@@ -118,7 +168,9 @@ export class ListPage {
   delfromcustomlist(data:any){
     //delete local
     for(let i=0;i<this.localList.length;i++){
-      if(this.localList[i].id===data.id){
+      if(this.localList[i].id===data.id||
+        (this.localList[i].title===data.title
+          )){
         this.localList.splice(i,1);
         break;
       }
@@ -162,5 +214,7 @@ export class ListPage {
   if (role === 'confirm') {
   }
   }
+
+  test(){}
 
 }

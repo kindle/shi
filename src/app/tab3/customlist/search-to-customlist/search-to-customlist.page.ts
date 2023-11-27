@@ -97,10 +97,10 @@ export class SearchToCustomListPage {
       }
       
     });
-    console.log('this.data.currentCollectLike')
-    console.log(this.data.currentCollectLike)
-    console.log('displayResult')
-    console.log(this.displayResult)
+    //console.log('this.data.currentCollectLike')
+    //console.log(this.data.currentCollectLike)
+    //console.log('displayResult')
+    //console.log(this.displayResult)
   }
 
   addtocustomlist(p:any){
@@ -122,6 +122,7 @@ export class SearchToCustomListPage {
       }
     });
     p.sample = this.searchText;
+    result = result ===""?p.paragraphs[0]:result;
     return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
 
   }

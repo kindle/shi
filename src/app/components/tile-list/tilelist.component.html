@@ -12,7 +12,7 @@
   <div style="margin:5px;" *ngFor="let s of source" >
     <!--culstomelist start-->
     <div class="card-scroll-item1" 
-      *ngIf="s.group=='customlist'&&s.data.image&&s.data.image.length>=4" 
+      *ngIf="s.group=='customlist'&&!s.data.customimage&&s.data.image&&s.data.image.length>=4" 
       (click)="data.goToPlayList(s.data['id'])"
         [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
         style="margin:auto;
@@ -35,10 +35,19 @@
         ></div>
     </div>
     <div class="card-scroll-item1" 
-      *ngIf="s.group=='customlist'&&s.data.image&&s.data.image.length<4" 
+      *ngIf="s.group=='customlist'&&!s.data.customimage&&s.data.image&&s.data.image.length<4" 
       (click)="data.goToPlayList(s.data['id'])"
         [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
         style="background-image:url({{s.data.image[0]}});
+        background-size:cover;padding-top: 100%; 
+        background-repeat:no-repeat;
+        background-color:{{s.data.color}};">
+    </div>
+    <div class="card-scroll-item1" 
+      *ngIf="s.group=='customlist'&&s.data.customimage" 
+      (click)="data.goToPlayList(s.data['id'])"
+        [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+        style="background-image:url({{s.data.customimage}});
         background-size:cover;padding-top: 100%; 
         background-repeat:no-repeat;
         background-color:{{s.data.color}};">

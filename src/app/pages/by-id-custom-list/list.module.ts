@@ -9,6 +9,7 @@ import { ListPageRoutingModule } from './list-routing.module';
 import { ListPage } from './list.page';
 import { AuthorComponentModule } from 'src/app/components/author/author.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
+import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
     ListPageRoutingModule,
     AuthorComponentModule,
     TextComponentModule,
+    SharedSwiperTouchModule,
   ],
   declarations: [ListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -61,37 +61,128 @@
       (ionInput)="onSearchChanged()"
       cancel-button-text="取消"
       ></ion-searchbar>
-      <ion-card *ngIf="listdata.image&&listdata.image.length>=4"
-        style="margin:auto;width:250px;height:250px;
-        background-color: {{listdata.color}};
-        border: 1px solid rgba(247,247,247);
-        border-radius: 10px;
-        display: grid;
-        grid-gap:0px;
-        justify-content: space-evenly;
-        align-content: space-evenly;
-        grid-template-columns: repeat(2, 124px);
-        grid-template-rows: repeat(2, 124px);
-        overflow: hidden;">
-        <div *ngFor="let i of [0,1,2,3]"
-        style="background-image: url({{listdata.image[i]}});
-        background-size:cover;
-        background-repeat: no-repeat;
-        "
-        ></div>
-      </ion-card>
-      <ion-card *ngIf="listdata.image&&listdata.image.length<4&&listdata.image.length>0"
-      style="margin:auto;width:250px;height:250px;
-        background-image: url({{listdata.image[0]}});background-size:cover;
-        background-repeat: no-repeat;
-        border-radius: 10px;">
-      </ion-card>
-      <ion-card *ngIf="listdata.image&&listdata.image.length==0"
-        style="margin:auto;width:250px;height:250px;
-          background-color: {{listdata.color}};background-size:cover;
+
+
+      <div *ngIf="!isEdit" style="display: grid;position: relative;">
+        <ion-card *ngIf="listdata.customimage"
+          style="margin:auto;width:250px;height:250px;
+          background-image: url({{listdata.customimage}});background-size:cover;
           background-repeat: no-repeat;
           border-radius: 10px;">
-      </ion-card>
+        </ion-card>
+
+        <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length>=4"
+          style="margin:auto;width:250px;height:250px;
+          background-color: {{listdata.color}};
+          border: 1px solid rgba(247,247,247);
+          border-radius: 10px;
+          display: grid;
+          grid-gap:0px;
+          justify-content: space-evenly;
+          align-content: space-evenly;
+          grid-template-columns: repeat(2, 124px);
+          grid-template-rows: repeat(2, 124px);
+          overflow: hidden;">
+          <div *ngFor="let i of [0,1,2,3]"
+          style="background-image: url({{listdata.image[i]}});
+          background-size:cover;
+          background-repeat: no-repeat;
+          "
+          ></div>
+        </ion-card>
+        <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length<4&&listdata.image.length>0"
+        style="margin:auto;width:250px;height:250px;
+          background-image: url({{listdata.image[0]}});background-size:cover;
+          background-repeat: no-repeat;
+          border-radius: 10px;">
+        </ion-card>
+        <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length==0"
+          style="margin:auto;width:250px;height:250px;
+            background-color: {{listdata.color}};background-size:cover;
+            background-repeat: no-repeat;
+            border-radius: 10px;">
+        </ion-card>
+      </div>
+      <div *ngIf="isEdit">
+        <swiper-container style="width:100%;height:250px;" 
+        pagination="true" #swiperpickimg class=".swiperpickimg"
+        slides-per-view="1.1" centered-slides="true"
+        swiper-touch
+        >
+          <swiper-slide style="display: grid;position: relative;">
+            <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length>=4"
+              style="margin:auto;width:250px;height:250px;
+              background-color: {{listdata.color}};
+              border: 1px solid rgba(247,247,247);
+              border-radius: 10px;
+              display: grid;
+              grid-gap:0px;
+              justify-content: space-evenly;
+              align-content: space-evenly;
+              grid-template-columns: repeat(2, 124px);
+              grid-template-rows: repeat(2, 124px);
+              overflow: hidden;">
+              <div *ngFor="let i of [0,1,2,3]"
+              style="background-image: url({{listdata.image[i]}});
+              background-size:cover;
+              background-repeat: no-repeat;
+              "
+              ></div>
+            </ion-card>
+            <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length<4&&listdata.image.length>0"
+            style="margin:auto;width:250px;height:250px;
+              background-image: url({{listdata.image[0]}});background-size:cover;
+              background-repeat: no-repeat;
+              border-radius: 10px;">
+            </ion-card>
+            <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length==0"
+              style="margin:auto;width:250px;height:250px;
+                background-color: {{listdata.color}};background-size:cover;
+                background-repeat: no-repeat;
+                border-radius: 10px;">
+            </ion-card>
+            <ion-card *ngIf="listdata.customimage"
+              style="margin:auto;width:250px;height:250px;
+                background-image: url({{listdata.customimage}});background-size:cover;
+                background-repeat: no-repeat;
+                border-radius: 10px;">
+              </ion-card>
+            <div style="position: fixed;display:flex;justify-content: center;
+            align-items: center;width: 100%;height: 250px;">
+              <ion-buttons id="chooseimg">
+                <button style="padding:5px;border-radius: 5px;">
+                  <ion-icon name="camera" size="large"></ion-icon>
+                </button>
+              </ion-buttons>
+              <ion-popover trigger="chooseimg" [dismissOnSelect]="true" arrow="false">
+                <ng-template>
+                  <ion-content>
+                    <ion-list>
+                      <ion-item lines="full" [button]="true" [detail]="false" 
+                      (click)="data.addNewToGallery(listdata)">
+                        拍照
+                        <ion-icon name="camera-outline" slot="end"></ion-icon>
+                      </ion-item>
+                      <ion-item lines="full" [button]="true" [detail]="false" 
+                      (click)="data.pickFromPhotos(listdata)">
+                        照片
+                        <ion-icon name="image-outline" slot="end"></ion-icon>
+                      </ion-item>
+                    </ion-list>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+            </div>
+          </swiper-slide>
+          <swiper-slide *ngFor="let image of sysImages">
+            <ion-card style="margin:auto;width:250px;height:250px;
+                background-image: url({{image}});background-size:cover;
+                background-repeat: no-repeat;
+                border-radius: 10px;">
+            </ion-card>
+          </swiper-slide>
+        </swiper-container>
+      </div>
 
       <div *ngIf="!showFilter"
       style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:10px;margin-bottom:0px;">
@@ -136,7 +227,7 @@
         ></div>
       </ion-thumbnail>
       <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
-        <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+        <h2>{{p.paragraphs[0]}}</h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
           {{p.author}}《{{p.title}}》
           <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
@@ -165,14 +256,19 @@
           <ion-icon slot="start" name="remove-circle" color="danger"
           (click)="openSlidingItem(slidingItem, p)"></ion-icon>
 
-          <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)">
+          <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+          style="display: flex;justify-content: center;align-items: center;">
             <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
-            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" />
+            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
+            />
               
           </ion-thumbnail>
-          <ion-label (click)="data.playbyid(p.id, p.sample)">
-            <h2>{{p.title}} - {{p.author}}</h2>
-            <p>{{p.sample}}</p>
+          <ion-label>
+            <h2>{{p.paragraphs[0]}}</h2>
+            <p style="margin-top:5px;display: flex;align-items: end;">
+              {{p.author}}《{{p.title}}》
+              <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+            </p>
           </ion-label>
 
           <ion-reorder slot="end">

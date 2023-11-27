@@ -20,10 +20,11 @@ export class ButtonEndComponent {
     private modalController: ModalController
   ){
     this.uuid = this.data.generate_uuid();
+    //console.log('button-end:'+this.uuid)
   }
 
   async addToCustomList(p:any){
-    console.log(p)
+    //console.log(p)
     this.data.collectCustom(p);
     
     const modal = await this.modalController.create({
