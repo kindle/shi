@@ -8,7 +8,7 @@
       <ion-button slot="end" shape="round" *ngIf="!data.isliked(data.currentItem,'taglist')"
       (click)="data.likelist(data.currentItem,'taglist')"
       style="background-color: rgb(247,247,247);border-radius: 50%;">
-        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="add-outline"></ion-icon>
       </ion-button>
       <ion-button slot="end" id="popover-button-tag-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -81,7 +81,7 @@
     <ion-item *ngFor="let p of displayResult" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
         style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+        <img style="border-radius: 10px;" src="{{'/assets/img/'+(p.image?p.image:'poet/'+p.author+'.jpeg')}}" onerror="javascript:this.src='/assets/img/default.jpg'" 
           [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
         <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',

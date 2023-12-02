@@ -1,0 +1,488 @@
+[
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"regret.jpg",
+        "title_color":"white",
+        "small_title":"醉美古诗词",
+        "big_title":"古人笔下的遗憾，谁的遗憾更胜一筹？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"陆游的遗憾："},
+            {"type":"poem", "author":"陆游", "title":"示儿", "sample":"死去元知万事空，但悲不见九州同", "id":"785fbae0-bf51-4ad6-adf1-b74a69a32d81"},
+            
+            {"type":"text", "value":"纳兰性德的遗憾："},
+            {"type":"poem", "author":"纳兰性德", "title":"木兰花", "sample":"人生若只如初见，何事秋风悲画扇", "id":"8f6634eb-af17-41c4-a372-76cf27333748"},
+            
+            {"type":"text", "value":"李白的遗憾："},
+            {"type":"poem", "author":"李白", "title":"秋风词", "sample":"早知如此绊人心，何如当初莫相识", "id":"05ab8907-1e1b-4f9b-932f-5ca1444adc1f"},
+            
+            {"type":"text", "value":"晏殊的遗憾："},
+            {"type":"poem", "author":"晏殊", "title":"假中示判官张寺丞王校勘", "sample":"无可奈何花落去，似曾相识燕归来", "id":"0ffa2534-b36f-4732-a715-560e822ce861"},
+            
+            {"type":"text", "value":"崔护的遗憾："},
+            {"type":"poem", "author":"崔护", "title":"题都城南庄", "sample":"人面不知何处去，桃花依旧笑春风", "id":"0c41ce6b-948a-456a-9c4d-f0c767e61cd7"},
+            
+            {"type":"text", "value":"白居易的遗憾："},
+            {"type":"poem", "author":"白居易", "title":"梦微之", "sample":"君埋泉下泥销骨，我寄人间雪满头", "id":"a3b11d99-9994-4ff0-a8db-d85d1b7ed065"},
+            
+            {"type":"text", "value":"贺铸的遗憾："},
+            {"type":"poem", "author":"贺铸", "title":"芳心苦・踏莎行", "sample":"当年不肯嫁春风，无端却被秋风误", "id":"3af912f9-0ae9-43a8-bf1b-2913a665cebb"},
+            
+            {"type":"text", "value":"李商隐的遗憾："},
+            {"type":"poem", "author":"李商隐", "title":"锦瑟", "sample":"此情可待成追忆，只是当时已惘然", "id":"e0eb3016-9288-4dc0-9257-3de36e5ad73c"},
+            
+            {"type":"text", "value":"辛弃疾的遗憾："},
+            {"type":"poem", "author":"辛弃疾", "title":"破阵子", "sample":"了却君王天下事，赢得生前身后名", "id":"297885be-161f-48ea-b86b-0d0443c84068"},
+            
+            {"type":"text", "value":"岳飞的遗憾："},
+            {"type":"poem", "author":"岳飞", "title":"满江红", "sample":"靖康耻，犹未雪。臣子恨，何时灭", "id":"93d5ed9e-5a9b-41b5-9128-48320259a12a"},
+
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            }
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"qiushui.jpg",
+        "title_color":"white",
+        "small_title":"醉美古诗词",
+        "big_title":"曹子建与王勃谁与争锋？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"一篇《洛神赋》盖压后世文坛数百年，直到《滕王阁序》出世，天下才有一石，曹子建独占八斗。"},
+            
+            {"type":"poem", "author":"曹植", "title":"洛神赋", "sample":"翩若惊鸿，婉若游龙", "id":"cfbae213-8f93-4913-b331-bdd872a0b86e"},
+            {"type":"poem", "author":"王勃", "title":"滕王阁", "sample":"落霞与孤鹜齐飞，秋水共长天一色", "id":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            }
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"bird.jpg",
+        "title_color":"white",
+        "small_title":"醉美古诗词",
+        "big_title":"古人是怎么说时间过得真快的？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"黄庭坚的："},
+            {"type":"poem", "author":"黄庭坚", "title":"寄黄几复", "sample":"桃李春风一杯酒，江湖夜雨十年灯", "id":"0a724d86-c903-40b8-9598-b152f5f6ce71"},
+            
+            {"type":"text", "value":"是秦观的："},
+            {"type":"poem", "author":"秦观", "title":"江城子", "sample":"韶华不为少年留。恨悠悠。几时休", "id":"d41068c4-daaa-45c7-9ddc-6deb943d2ebd"},
+            
+            {"type":"text", "value":"是王国维的："},
+            {"type":"poem", "author":"王国维", "title":"蝶恋花", "sample":"最是人间留不住，朱颜辞镜花辞树", "id":"c01d1ca2-74e7-4314-af2f-2d0fd54668da"},
+            
+            {"type":"text", "value":"是王勃的："},
+            {"type":"poem", "author":"王勃", "title":"滕王阁", "sample":"闲云潭影日悠悠，物换星移几度秋", "id":"9f023a30-3a31-4262-9ee7-ade9e4e591c8"},
+            
+            {"type":"text", "value":"是曹雪芹的："},
+            {"type":"poem", "author":"曹雪芹", "title":"葬花吟", "sample":"一朝春尽红颜老，花落人亡两不知", "id":"382fc771-45db-4077-be67-081faf3d2050"},
+            
+            {"type":"text", "value":"是刘过的："},
+            {"type":"poem", "author":"刘过", "title":"唐多令", "sample":"欲买桂花同载酒，终不似、少年游", "id":"db986209-26d0-4e8f-ac1d-5aae034fbb7e"},
+            
+            {"type":"text", "value":"是钱福的："},
+            {"type":"poem", "author":"钱福", "title":"明日歌", "sample":"世人若被明日累，春去秋来老将至", "id":"1e9a7621-e1b5-49ca-8629-f969f69a22b2"},
+            
+            {"type":"text", "value":"是陶渊明的："},
+            {"type":"poem", "author":"陶渊明", "title":"杂诗", "sample":"盛年不重来，一日难再晨", "id":"aa4e1f0c-ffaa-491a-9772-46fba3690cf6"},
+            
+            {"type":"text", "value":"还是是吴文英的："},
+            {"type":"poem", "author":"吴文英", "title":"思佳客", "sample":"十年旧梦无寻处，几度新春不在家", "id":"8220ebb0-d3c0-4a5c-a41f-0fdb063eda1a"},
+
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            }
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"race.jpg",
+        "title_color":"white",
+        "small_title":"醉美古诗词",
+        "big_title":"苏轼与李白的巅峰对决，谁才是第一才子？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"他们写豪迈"},
+            {"type":"poem", "author":"苏轼", "title":"念奴娇", "sample":"大江东去浪淘尽，千古风流人物", "id":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"type":"poem", "author":"李白", "title":"上李邕", "sample":"大鹏一日同风起，扶摇直上九万里", "id":"ac06cfdc-adad-4ca5-9304-ee48522b8172"},
+            
+            {"type":"text", "value":"他们写享受生活"},
+            {"type":"poem", "author":"苏轼", "title":"临江曲", "sample":"且将新火试新茶，诗酒趁年华", "id":"f322e7a8-aba4-47ac-b402-86cf85b86d48"},
+            {"type":"poem", "author":"李白", "title":"将进酒", "sample":"人生得意须尽欢，莫使金樽空对月", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
+            
+            {"type":"text", "value":"他们写豪迈"},
+            {"type":"poem", "author":"苏轼", "title":"念奴娇", "sample":"大江东去浪淘尽，千古风流人物", "id":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"type":"poem", "author":"李白", "title":"上李邕", "sample":"大鹏一日同风起，扶摇直上九万里", "id":"ac06cfdc-adad-4ca5-9304-ee48522b8172"},
+            
+            {"type":"text", "value":"他们写相思"},
+            {"type":"poem", "author":"苏轼", "title":"江城子", "sample":"十年生死两茫茫，不思量，自难忘", "id":"410858c3-5473-4874-a019-4158bf233921"},
+            {"type":"poem", "author":"李白", "title":"秋风词", "sample":"长相思兮长相忆，短相思兮无穷极", "id":"05ab8907-1e1b-4f9b-932f-5ca1444adc1f"},
+            
+            {"type":"text", "value":"他们写忧愁"},
+            {"type":"poem", "author":"苏轼", "title":"木兰花令", "sample":"梧桐叶上三更雨，惊破梦魂无觅处", "id":"3488c2a1-bd21-4688-b6b1-603e20f4732d"},
+            {"type":"poem", "author":"李白", "title":"宣州谢朓楼饯别校书叔云", "sample":"抽刀断水水更流，举杯消愁愁更愁", "id":"5593d522-b820-4c06-bab6-0ab5a0fc1d46"},
+            
+            {"type":"text", "value":"他们写感慨"},
+            {"type":"poem", "author":"苏轼", "title":"和子由渑池怀旧", "sample":"人生到处知何似，应似飞鸿踏雪泥", "id":"7277fc57-e102-4465-bbc1-ea40716a7f40"},
+            {"type":"poem", "author":"李白", "title":"把酒问月", "sample":"今人不见古时月，今月曾经照古人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
+            
+            {"type":"text", "value":"他们写自勉"},
+            {"type":"poem", "author":"苏轼", "title":"和董传留别", "sample":"粗缯大布裹生涯，腹有诗书气自华", "id":"015afdc6-ba39-45f0-972e-096ae84cca57"},
+            {"type":"poem", "author":"李白", "title":"将进酒", "sample":"天生我材必有用，千金散尽还复来", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
+            
+            {"type":"text", "value":"他们写失意"},
+            {"type":"poem", "author":"苏轼", "title":"临江仙", "sample":"小舟从此逝，江海寄余生", "id":"8858eb25-4f15-4cd7-84a8-9631904f17ff"},
+            {"type":"poem", "author":"李白", "title":"行路难", "sample":"大道如青天，我独不得出", "id":"e12edd83-36cd-4e8a-a630-91874631c51f"},
+            
+
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            }
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"国庆.jpg",
+        "title_color":"white",
+        "small_title":"年青人的迷茫",
+        "big_title":"中年人的痛苦和焦虑是怎么来的？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"年轻人的迷茫是怎么来的？中年人的痛苦和焦虑是怎么来的？你的一生都不可能如你想要的有源源不断的财富和社会地位的提升的。如果没有了钱财，没有了社会地位，别人一直在批评你、羞辱你、讽刺你、打击你、抹黑你的时候你是不是就痛苦的活不下去了？因为你没有强力的精神支撑。"},
+            {"type":"image", "value":"winding-road.jpg"},
+            {"type":"text", "value":"冯友兰说：学哲学的目的就是使人做为人能够成为人，而不是为了成为某种人，不为成为赚钱的机器，而是成为一个周全理性的人。"},
+            {"type":"poem", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
+            {"type":"poem", "author":"孟浩然", "title":"宿建德江", "sample":"野旷天低树，江清月近人", "id":"0bed9b02-991e-4e28-b631-86640147a712"},
+            {"type":"text", "value":"我们终将会把自己的生活卷进去，像一个无尽的漩涡一样，因为贫穷所以痛苦，因为籍籍无名所以压抑。当有一点点财富的时候，又开始患得患失，担心保护不住这点财富。当你拥有巨额财富的时候，又开始内心焦虑，害怕被夺走财富。你始终无法找到内心的平静。所以得找到精神的一片安息之地。"},
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"王昭君.png",
+        "title_color":"black",
+        "small_title":"说不尽的王昭君",
+        "big_title":"古人在诗里都是怎么说王昭君的？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"“明妃”一词的来历主要与晋朝皇帝司马昭有关。因两人所用“昭”字相同,为避讳所以称王昭君为“明君”,于是她便有了“明妃”的称号。"},
+            {"type":"text", "value":"历来文人拿王昭君说事儿，写了好多诗。最有代表性的就是唐代的三大诗人：李白、杜甫，白居易。"},
+            {"type":"poem", "author":"李白", "title":"相和歌辞 王昭君二首 一", "sample":"汉家秦地月，流影照明妃", "id":"7351694b-3849-44b6-a7b6-8f46e00f8041"},
+            {"type":"poem", "author":"杜甫", "title":"咏怀古迹五首 三", "sample":"群山万壑赴荆门，生长明妃尚有村", "id":"3b5db620-1964-4674-a01d-ad70ba3ebd2a"},
+            {"type":"poem", "author":"白居易", "title":"王昭君二首 二", "sample":"君王若问妾颜色，莫道不知宫里时", "id":"5a3a31d1-2ebc-47b3-ba5b-38a6553a68d1"},
+            {"type":"text", "value":"这三首诗有一个共同的特点，都在说：王昭君出塞是一个屈辱的事情，是一个不情愿的事。因为这个原因，王昭君一直思念故土，思念家乡，心里头有怨恨。直到与众不同的王安石写了两首明妃曲。"},
+            
+            {"type":"poem", "author":"王安石", "title":"明妃曲二首  其一", "sample":"君不见咫尺长门闭阿娇，人生失意无南北", "id":"f1b1fe0b-feb3-4e98-82a3-0a61b2d3780d"},
+            {"type":"poem", "author":"王安石", "title":"明妃曲二首  其二", "sample":"汉恩自浅胡自深，人生乐在相知心", "id":"236f60a1-a8d6-47d5-89a4-5813aee6e275"},
+            {"type":"text", "value":"这里批评了昏庸眼拙的汉元帝，提到了画师毛延寿，口口声声说的是王昭君，其实讲的是久逢知己的王介甫。当时的文坛大鳄纷纷唱和。"},
+            
+            {"type":"poem", "author":"欧阳修", "title":"再和明妃曲", "sample":"汉宫有佳人，天子初未识", "id":"559a26f9-36f6-4515-941f-a2eaebb31dc0"},
+            {"type":"poem", "author":"司马光", "title":"和王介甫明妃曲", "sample":"目前美丑良易知，咫尺掖庭犹可欺", "id":"7f81da86-0b56-4f05-9054-1d7e1a6d6ae3"},
+            {"type":"poem", "author":"曾巩", "title":"明妃曲二首  其一", "sample":"丹青有迹尚如此，何况无形论是非", "id":"7caa07d0-6fe6-4848-9a8c-e4c346f14b5b"},
+            {"type":"poem", "author":"梅尧臣", "title":"和介甫明妃曲", "sample":"一别汉宫空掩泪，便随胡马向胡尘", "id":"b4d55803-5fb4-422b-826e-e0c96eaa6279"},
+
+            {"type":"text", "value":"从此，写昭君的诗上了一个新高度。"},
+
+            {"type":"image", "value":"winding-road.jpg"},
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            }
+            
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"cloud.jpg",
+        "title_color":"white",
+        "small_title":"愿你有一种浪漫",
+        "big_title":"找到心生欢喜的良人，共享三餐四季，明月清风",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"如果都注定要这样平凡而快乐的度过一生的话，那希望我们找到的都是如自己所愿的人。"},
+            {"type":"text", "value":"一个灵魂高度契合的人，一个充满趣味的人。一个能够在漫长的、无聊的岁月里让你欣喜的人。"},
+            {"type":"image", "value":"tang.jpg"},
+            {"type":"poem", "author":"李商隐", "title":"无题二首 一", "sample":"身无彩凤双飞翼，心有灵犀一点通", "id":"3410e7ce-df3a-4ab8-bea3-7f681661b240"},
+            {"type":"poem", "author":"苏轼", "title":"江城子", "sample":"十年生死两茫茫。不思量，自难忘", "id":"410858c3-5473-4874-a019-4158bf233921"},
+            {"type":"text", "value":"她如一股春风，让你心生欢喜。她如一轮明月，让你时常去凝望。她偶尔也如夏天的狂风骤雨一样，可能让你有一些无所适从。"},
+            {"type":"image", "value":"辣椒.jpg"},
+            {"type":"poem", "author":"纳兰性德", "title":"浣溪沙·谁念西风独自凉", "sample":"赌书消得泼茶香，当时只道是寻常", "id":"a2d5ee9e-5da9-40eb-87f8-11fc20b4b1d8"},
+            {"type":"text", "value":"但她更多时候，都静默的陪伴在你的身边。不多作声，但却显得特殊而浪漫。"},
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"故宫瓦.jpg",
+        "title_color":"white",
+        "small_title":"唐宋八大家",
+        "big_title":"古文运动的领袖以及核心人物都有谁？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"唐宋八大家，又称为“唐宋散文八大家”，是唐代和宋代八位散文家的合称，分别为唐代韩愈、柳宗元和宋代欧阳修、苏洵、苏轼、苏辙、王安石、曾巩八位。其中韩愈、柳宗元是唐代古文运动的领袖，欧阳修、三苏（苏轼、苏辙、苏洵）等四人是宋代古文运动的核心人物，王安石、曾巩是临川文学的代表人物。他们先后掀起的古文革新浪潮，使诗文发展的陈旧面貌焕然一新。"}   
+        ],
+        "items":[
+            {"author":"韩愈", "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "id":"d7cb4244-143b-403b-8599-b10c6763d032"},
+            {"author":"柳宗元",  "sample":"千山鸟飞绝，万迳人踪灭", "desc":"", "id":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
+            {"author":"欧阳修",  "sample":"月上柳梢头，人约黄昏后", "desc":"", "id":"407688bf-75d1-4063-9e2b-e0673e823b73"},
+            {"author":"苏洵",  "sample":"六国论", "desc":"", "id":"85c8677e-398d-4b6e-bd9a-a4911519fe26"},
+            {"author":"苏轼",  "sample":"大江东去，浪淘尽，千古风流人物", "desc":"", "id":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"author":"苏辙",  "sample":"逍遥堂后千寻木，长送中宵风雨声", "desc":"", "id":"984b06ab-b4b5-4917-9c30-0cac89b6bfa2"},
+            {"author":"王安石",  "sample":"京口瓜洲一水间，锺山祇隔数重山", "desc":"", "id":"1f202323-f293-4c01-bcb6-8d7fb45b941f"},
+            {"author":"曾巩",  "sample":"解把飞花蒙日月，不知天地有清霜", "desc":"", "id":"95d75f69-a301-4c8b-ad04-8935b5dfdaab"}
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"定格秋天.jpg",
+        "title_color":"white",
+        "small_title":"定格多彩秋天",
+        "big_title":"一首首诗词，藏着秋日的美好",
+        "desc":[
+            {"type":"text", "value":"有人说：秋天是枯槁的。可杜牧却说：霜叶红于二月花。有人说：秋天是低沉的。刘禹锡却说：我言秋日胜春朝。"},
+            {"type":"image", "value":"leavesyellow.jpg"},
+            {"type":"poem", "author":"贾岛", "title":"忆江上吴处士", "sample":"秋风生渭水，落叶满长安", "id":"58d0214a-58d8-4066-a12f-50ff7e4aae1f"},
+            {"type":"poem", "author":"陆游", "title":"自笑", "sample":"镜湖五月秋萧爽，剩傍滩头把钓竿", "id":"c305420f-adf9-4e98-8b1b-6c72a7ef0beb"},
+            {"type":"text", "value":"四时流转，每一个季节都有独特的风景，桂花飘香、柿子红了，秋天也是绚丽的时候。"},
+            {"type":"image", "value":"qiu.jpg"},
+            {"type":"poem", "author":"李白", "title":"观鱼潭", "sample":"凉烟浮竹尽，秋月照沙明", "id":"938a1650-678a-4b9f-b554-7adba5ad4f21"},
+            {"type":"poem", "author":"白居易", "title":"暮江吟", "sample":"可怜九月初三夜，露似真珠月似弓", "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e"},
+            {"type":"text", "value":"秋天，有一万种美丽的模样，你喜欢哪一种呢？"},
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "400px",
+        "bg_image":"italian-cuisine-2378729_1280.jpg",
+        "title_color":"white",
+        "small_title":"美味正当时",
+        "big_title":"人间烟火气，最抚凡人心",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"高原的黄馒头、深山里的松茸、铁板上的烤豆腐、稻田里的荷花鱼、晶莹剔透的烧腊……每一种美食都让人垂涎欲滴。"},
+            {"type":"image", "value":"food-712665_1280.jpg"},
+            {"type":"text", "value":"事实上，吃饱了，确实可以治愈人生的伤痛。"},
+            {"type":"poem", "author":"李白", "title":"梁园吟", "sample":"玉盘杨梅为君设，吴盐如花皎白雪", "id":"14febea6-9b81-4ef4-9b50-b1b6138a161c"},
+            {"type":"poem", "author":"苏轼", "title":"闻子由瘦", "sample":"五日一见花猪肉，十日一遇黄鸡粥", "id":"6bf47c87-eb9a-457c-abae-5fab0f105c75"},
+            {"type":"text", "value":"一想到油脂爆满的瞬间，就觉得满足。人生短暂，大口吃肉，才是幸福"},
+            {"type":"poem", "author":"张志和", "title":"杂歌谣辞 渔父歌 一", "sample":"西塞山边白鹭飞，桃花流水鳜鱼肥", "id":"9c5c45b3-3e85-4eeb-b9de-eba380e530b6"},
+            {"type":"poem", "author":"李白", "title":"南陵别儿童入京", "sample":"呼童烹鸡酌白酒，儿女嬉笑牵人衣", "id":"0b826256-9c22-40b7-b797-669974fac0bc"},
+            
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    },
+    {
+        "template": "wall",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"诗人",
+        "big_title":"这些诗人你能看上一天",
+        "desc":[
+            {"type":"text", "value":"“诗仙”李白，“诗圣”杜甫，“诗祖”屈原，“诗神”苏轼，“诗魔”白居易，“诗隐”、“诗星”孟浩然，“词龙”辛弃疾，“诗佛”王维，“情诗之圣”李商隐，这些你都听说过吗？"}
+        ],
+        "items":[
+            {"author":"李白", "sample":"小时不识月，呼作白玉盘", "desc":"", "id":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
+            {"author":"杜甫", "sample":"歧王宅里寻常见，崔九堂前几度闻", "desc":"", "id":"ae5b1a15-0b5c-4578-8f31-1b60030633a4"},
+            {"author":"白居易",  "sample":"晚来天欲雪，能饮一杯无", "desc":"", "id":"9972f7bb-ae5b-49e4-87df-381386af66b6"},
+            {"author":"元稹",  "sample":"曾经沧海难为水，除却巫山不是云", "desc":"", "id":"de747326-60b6-4d83-9a80-ea9dc9faec13"},
+            {"author":"刘禹锡",  "sample":"旧时王谢堂前燕，飞入寻常百姓家", "desc":"", "id":"4fa92777-9bd6-45ca-9272-bac30459cf5e"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "id":"fecca913-ad91-4fab-b34d-5734a2533039"},
+            {"author":"孟浩然",  "sample":"绿树村边合，青山郭外斜", "desc":"", "id":"5aad66b7-2ed8-c615-f728-059b601d9620"},
+            {"author":"孟郊",  "sample":"慈母手中线，游子身上衣", "desc":"", "id":"22923091-18da-429d-9ef1-6b367fd74b1a"},
+            {"author":"屈原",  "sample":"路漫漫其修远兮，吾将上下而求索", "desc":"", "id":"4b3934d9-72d7-463b-9980-915e32b2639e"},
+            {"author":"岑参",  "sample":"北风捲地白草折，胡天八月即飞雪", "desc":"白雪歌送武判官归京", "id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"},
+            {"author":"岳飞",  "sample":"怒发冲冠，凭阑处、潇潇雨歇", "desc":"", "id":"93d5ed9e-5a9b-41b5-9128-48320259a12a"},
+            {"author":"骆宾王",  "sample":"山河千里国，城阙九重门", "desc":"", "id":"1073d277-650a-4736-a248-952252e4e342"},
+            {"author":"张九龄",  "sample":"海上生明月，天涯共此时", "desc":"", "id":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
+            {"author":"张籍",  "sample":"洛阳城里见秋风，欲作归书意万重", "desc":"", "id":"7191c0c6-7b3a-47cb-9fe6-1ef51857319a"},
+            {"author":"曹操",  "sample":"对酒当歌，人生几何", "desc":"", "id":"7a2aa44e-035f-476a-8e5a-f4517b39b57b"},
+            {"author":"李商隐",  "sample":"何当共剪西窗烛，却话巴山夜雨时", "desc":"", "id":"75db753d-e7da-48a1-a6c0-6ed9147e58db"},
+            {"author":"李清照",  "sample":"生当作人杰，死亦为鬼雄", "desc":"", "id":"ba2fe8ca-41aa-466a-b268-fa3526daafb5"},
+            {"author":"李煜",  "sample":"春花秋月何时了？往事知多少", "desc":"", "id":"b769cd89-478e-40af-9cdc-80cdc7423473"},
+            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "id":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
+            {"author":"柳宗元",  "sample":"千山鸟飞绝，万径人踪灭", "desc":"", "id":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
+            {"author":"王之涣",  "sample":"白日依山尽，黄河入海流", "desc":"", "id":"63950163-6a10-4e74-af8a-09886e4ef2a8"},
+            {"author":"王勃",  "sample":"落霞与孤鹜齐飞，秋水共长天一色", "desc":"", "id":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
+            {"author":"王昌龄",  "sample":"秦时明月汉时关，万里长征人未还", "desc":"", "id":"2d0385e7-0c72-423f-a538-f66acc9d4c46"},
+            {"author":"王维",  "sample":"独在异乡为异客，每逢佳节倍思亲", "desc":"", "id":"EC12F5D4-1541-DC46-4B52-B75E70C85A81"},
+            {"author":"秦观",  "sample":"韶华不为少年留。恨悠悠，几时休", "desc":"", "id":"d41068c4-daaa-45c7-9ddc-6deb943d2ebd"},
+            {"author":"苏轼",  "sample":"明月几时有，把酒问青天", "desc":"", "id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"},
+            {"author":"贺知章",  "sample":"少小离家老大回，乡音无改鬓毛衰", "desc":"", "id":"599b8a93-47ab-4426-94c0-ca16eea0ca37"},
+            {"author":"诗经",  "sample":"关关雎鸠，在河之洲。窈窕淑女，君子好逑", "desc":"", "id":"4978bcad-1cd0-4e11-8a44-ae2fc7b1d296"},
+            {"author":"贾岛",  "sample":"松下问童子，言师采药去", "desc":"", "id":"4f6575cc-12cc-4986-8bfc-5cedac7bb68f"},
+            {"author":"辛弃疾",  "sample":"醉里挑灯看剑，梦回吹角连营", "desc":"", "id":"297885be-161f-48ea-b86b-0d0443c84068"},
+            {"author":"陆游",  "sample":"死去元知万事空，但悲不见九州同", "desc":"", "id":"785fbae0-bf51-4ad6-adf1-b74a69a32d81"},
+            {"author":"陈子昂",  "sample":"前不见古人，后不见来者", "desc":"", "id":"c244a5b4-0ed0-48fe-8694-95309acac184"},
+            {"author":"韩愈",  "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "id":"d7cb4244-143b-403b-8599-b10c6763d032"},
+            {"author":"高适",  "sample":"莫愁前路无知己，天下谁人不识君", "desc":"", "id":"36d65b5a-7b4d-4b3d-a1b7-6fd144360f8f"}
+        ]
+    },
+    {
+        "template": "scroll",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"长安三万里",
+        "big_title":"数数他们一生写过多少首诗!",
+        "desc":"",
+        "items":[
+            {"image":"url('/assets/img/p1.jpg')", "text":"李白", "color":"rgb(255,230,151)", "link":""},
+            {"image":"url('/assets/img/p2.jpg')", "text":"高适", "color":"rgb(255,222,194)", "link":""},
+            {"image":"url('/assets/img/z2.jpg')", "text":"杜甫", "color":"rgb(205,238,240)", "link":""},
+            {"image":"url('/assets/img/z4.jpg')", "text":"贺知章", "color":"rgb(240,209,246)", "link":""}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"王维五言的巅峰之作，你最喜欢哪一句？",
+        "desc":"读王维的诗，就像在欣赏一幅画",
+        "lid":906,
+        "items":[
+            {"text":"行到水穷处，坐看云起时","id":"6d098c75-038d-45f4-8f86-73976c355e44"},
+            {"text":"大漠孤烟直，长河落日圆","id":"8ec59c80-46dc-4916-b069-a25ed8f144ec"},
+            {"text":"明月松间照，清泉石上流","id":"00f12a19-bb96-4980-a4f5-11a1b9d604dd"},
+            {"text":"月出惊山鸟，时鸣春涧中","id":"e4f16516-db22-4a20-90cb-917c66c4afbd"}
+        ]
+    },
+    {
+        "template": "group",
+        "min_height": "450px",
+        "bg_image":"郑板桥.jpg",
+        "title_color":"white",
+        "small_title":"初唐四杰",
+        "big_title":"海内称为王杨卢骆，亦号为四杰",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。"}
+        ],
+        "items":[
+            {"author":"王勃", "sample":"海内存知己，天涯若比邻", "desc":"", "id":"fe6f4b72-855c-43b9-8883-8b3fe3cd8bd4"},
+            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "id":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "id":"fecca913-ad91-4fab-b34d-5734a2533039"},
+            {"author":"骆宾王",  "sample":"无人信高洁，谁为表予心", "desc":"", "id":"c65539db-4e2b-4ce4-a22b-563b6ef3f4f1"}
+        ],
+        "link":""
+    },
+    {
+        "template": "text",
+        "min_height": "380px",
+        "bg_image":"romatic.jpg",
+        "title_color":"white",
+        "small_title":"居家男人",
+        "big_title":"人生有两种悲剧，得不到的和得到的",
+        "desc":[
+            {"type":"text", "value":"人生有两种悲剧，得不到的和得到的。人生也有两种喜剧，得到的和得不到的。"},
+            {"type":"image", "value":"road.jpg"},
+            {"type":"text", "value":"悲剧和喜剧的人生在于我们怎么选择。有人过着平平淡淡的生活，从来不曾轰轰烈烈。有人度过波澜壮阔的半生，却渴望回归平凡。"},
+            {"type":"poem", "author":"诗经", "title":"关雎", "sample":"悠哉悠哉，辗转反侧", "id":"4978bcad-1cd0-4e11-8a44-ae2fc7b1d296"},
+            {"type":"poem", "author":"崔郊", "title":"赠去婢", "sample":"侯门一入深如海，从此萧郎是路人", "id":"4c3d2d11-ba89-4153-95d0-454d492f27d6"},
+            {"type":"text", "value":"现实中的我们，在携妻伴子中生活中浮沉，每个人都向往醉生梦死的奢靡生活，幻想着如过当时做了另外的选择，日子或许会完全不一样。"},
+            {"type":"poem", "author":"纳兰性德", "title":"木兰花·令拟古决绝词", "sample":"人生若只如初见，何事秋风悲画扇", "id":"8f6634eb-af17-41c4-a372-76cf27333748"},
+            {"type":"poem", "author":"王安石", "title":"明妃曲二首  其一", "sample":"君不见咫尺长门闭阿娇，人生失意无南北", "id":"f1b1fe0b-feb3-4e98-82a3-0a61b2d3780d"},
+            {"type":"text", "value":"现实中，或许做着送孩子去学校，重复着无聊且薪水微薄的工作，吃顿大餐都犹豫不决，买件衣服都望而却步。"},
+            {"type":"image", "value":"redbsj.jpg"},
+            {"type":"text", "value":"很多时候我们总是希望拥有，却时常或略我们已经拥有。"},
+            {"type":"poem", "author":"纳兰性德", "title":"浣溪沙·谁念西风独自凉", "sample":"赌书消得泼茶香，当时只道是寻常", "id":"a2d5ee9e-5da9-40eb-87f8-11fc20b4b1d8"},
+            {"type":"text", "value":""},
+            
+            {"type":"list", "name":"趣味诗单", "data":[
+                {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+                {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+                {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+                {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+                ]
+            },
+            {"type":"topic", "author":"李白", "title":"月下独酌四首 一", "sample":"举杯邀明月，对影成三人", "id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"}
+            
+        ],
+        "link":""
+    }
+]

@@ -1,22 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>广播</ion-title>
+    <ion-title>现在就听</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">广播</ion-title>
+      <ion-title class="tab-title" mode="md">现在就听</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <app-big [source]="searchTopicData.scroll"></app-big>
 
-  <app-tile name="最近播放" [source]="data.playedEPHistory" *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
-
-  <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
-  <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
+<!--
+  <app-hot name="热门诗词" [source]="data.hotData" *ngIf="data.hotData"></app-hot>
+-->  
+  <app-hot name="经典诗词" [source]="data.classicData" *ngIf="data.classicData"></app-hot>
 
   <div *ngFor="let list of searchTopicData.list;">
     <app-tile [name]="list.name" [source]="list.data"></app-tile>

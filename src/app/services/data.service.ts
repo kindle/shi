@@ -179,7 +179,7 @@ export class DataService {
   async loadArticleJsonData(){
 
     //let n = this.getRandom(1,3);
-    let n=3;
+    let n=0;
     this.http.get<any>(`/assets/json/${n}.json`).subscribe(result=>{
       this.jsonData = result;
     });
@@ -226,10 +226,10 @@ export class DataService {
     if(this.searchTopicData==null){
       this.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
         //hide:true is for tab2 browse
-        console.log(data)
+        //console.log(data)
         this.searchTopicData = data.filter((d:any)=>d.hide!==true);
-        this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true);
-        this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true);
+        this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true&&d.id==200);
+        this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true&&d.id==199);
       });
     }
 
@@ -940,6 +940,7 @@ export class DataService {
 
 
   initData(){
+    /*
     //reset groups
     this.group = [
       {id:0, name: "我的跑步歌单", img:"", icon:"bag-outline", cover:"cover1", count:0, color:"rgb(247,54,65)", src:"url('/assets/img/p1.jpg')"},
@@ -962,6 +963,7 @@ export class DataService {
       {id:9, groupId:1, name:"月半小夜曲 - 陈乐基", desc:"月半小夜曲 - 陈乐基", mediaUrl:"", lyricUrl:"", lyricText:"", img:"", file:"", selected: false, create:createTime },
       {id:10, groupId:1, name:"东京爱情故事", desc:"东京爱情故事", mediaUrl:"", lyricUrl:"", lyricText:"", img:"", file:"", selected: false, create:createTime },
     ];
+    */
   }
 
 
@@ -970,7 +972,7 @@ export class DataService {
   /*template start*/
   async getSlides(id:any){
     let json = `assets/template/${id}.json`;
-    console.log(json)
+    //console.log(json)
     /*
     this.http.get<any>(json)
       .subscribe(result =>{
@@ -1468,8 +1470,8 @@ export class DataService {
     if(this.playedEPHistory.length>0){
       let lastPlay = this.playedEPHistory[0];
 
-      console.log('lastplay')
-      console.log(lastPlay)
+      //console.log('lastplay')
+      //console.log(lastPlay)
 
       if((lastPlay.id && lastPlay.id == ep.id)||lastPlay.text==ep.text)
       {
@@ -1478,7 +1480,7 @@ export class DataService {
         return;
       }
     }
-    console.log(ep)
+    //console.log(ep)
     this.playedEPHistory.unshift(ep);
     if(this.playedEPHistory.length>this.MAX_HIS_COUNT_EP){
       this.playedEPHistory.pop();
@@ -1495,11 +1497,12 @@ export class DataService {
 
 
   /*custom image for custom list start */
-  public async addNewToGallery(listdata:any) {
+  public async addNewToGallery(listdata:any, from:any) {
+    let source = from=='camera'?CameraSource.Camera:CameraSource.Photos;
     // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
+      source: source,
       quality: 100
     });
   
@@ -1507,34 +1510,10 @@ export class DataService {
     const savedImageFile = await this.savePicture(capturedPhoto);
     
     listdata.customimage = savedImageFile.webviewPath;
-    //this.photos.unshift(savedImageFile);
-
-    /*Preferences.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos),
-    });*/
+    //console.log(savedImageFile.webviewPath)
   }
 
-  public async pickFromPhotos(listdata:any) {
-    // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos,
-      quality: 100
-    });
-  
-    // Save the picture and add it to photo collection
-    const savedImageFile = await this.savePicture(capturedPhoto);
-    
-    listdata.customimage = savedImageFile.webviewPath;
-    //this.photos.unshift(savedImageFile);
-
-    /*Preferences.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos),
-    });*/
-  }
-
+/*
   public async loadSaved() {
     // Retrieve cached photo array data
     const { value } = await Preferences.get({ key: this.PHOTO_STORAGE });
@@ -1556,7 +1535,7 @@ export class DataService {
       }
     }
   }
-
+*/
   // Save picture to file on device
   private async savePicture(photo: Photo) {
     // Convert photo to base64 format, required by Filesystem API to save
@@ -1564,18 +1543,22 @@ export class DataService {
 
     // Write the file to the data directory
     const fileName = Date.now() + '.jpeg';
+    //const appIdentifier = 'com.reddah.shi';
     const savedFile = await Filesystem.writeFile({
+      //path: appIdentifier+"/"+fileName,
       path: fileName,
       data: base64Data,
       directory: Directory.Data
     });
+    //console.log("Directory.Cache"+Directory.Cache)
 
     if (this.platform.is('hybrid')) {
       // Display the new image by rewriting the 'file://' path to HTTP
       // Details: https://ionicframework.com/docs/building/webview#file-protocol
       return {
         filepath: savedFile.uri,
-        webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        //webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        webviewPath: `data:image/jpeg;base64,${base64Data}`
       };
     }
     else {
@@ -1583,7 +1566,8 @@ export class DataService {
       // already loaded into memory
       return {
         filepath: fileName,
-        webviewPath: photo.webPath
+        //webviewPath: photo.webPath
+        webviewPath: `data:image/jpeg;base64,${base64Data}`
       };
     }
   }

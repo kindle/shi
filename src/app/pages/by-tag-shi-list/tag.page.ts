@@ -29,7 +29,7 @@ export class TagPage {
     this.localJsonData = this.data.JsonData
       .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
     //note: tags is array
-
+console.log(this.localJsonData)
     this.onSearchChanged();
   }
 

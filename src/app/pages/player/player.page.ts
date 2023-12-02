@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent } from '@ionic/angular';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-player',
@@ -11,6 +12,7 @@ export class PlayerPage implements OnInit {
 
   constructor(
     public data: DataService,
+    public ui: UiService,
     private modalController: ModalController,
   ) { }
 
@@ -19,10 +21,6 @@ export class PlayerPage implements OnInit {
       this.data.setAudio();
   }
 
-  bigimg = false;
-  toggleView(){
-    this.bigimg = !this.bigimg;
-  }
 
   prev(){
     //this.data.prevTodayText();
@@ -112,6 +110,11 @@ export class PlayerPage implements OnInit {
 
 
 
+  bigimg = false;
+  toggleView(){
+    this.showHistory = false;
+    this.bigimg = !this.bigimg;
+  }
   showHistory = false;
   history(){
     this.showHistory = !this.showHistory;

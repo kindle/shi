@@ -32,13 +32,15 @@
       <ion-card class="card card-scroll" id="modal-scroll" card-shrink
       *ngIf="item.template=='scroll'">
         <ion-card-content>
-          <ion-card-title> {{item.big_title}} </ion-card-title>
-          <ion-card-subtitle class="card-text">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-subtitle class="card-text" style="font-size:18px;">
+            {{item.small_title}}
+          </ion-card-subtitle>
+          <ion-card-title>{{item.big_title}}</ion-card-title>
         </ion-card-content>
       
         <ion-card-content style="margin-top:0;">
           <div class="card-scroll-box">
-            <div class="card-scroll-item" *ngFor="let c of item.items" (click)="goSearch(c.text)">
+            <div class="card-scroll-item" *ngFor="let c of item.items" (click)="goAuthorDirect(c.text)">
               <div class="card-image contain" style="background-image:{{c.image}};background-color:{{c.color}}"></div>
               <div class="card-text">{{c.text}}</div>
             </div>
@@ -57,10 +59,10 @@
         <ion-card-content>
           <ion-card-subtitle style="display: flex;">
             <!--<ion-badge style="padding-left:0;" color="transparent">{{item.small_title}}</ion-badge>-->
-            <ion-badge color="danger">{{item.small_title}}</ion-badge>
+            <ion-badge color="danger" style="font-size:18px;">{{item.small_title}}</ion-badge>
           </ion-card-subtitle>
           <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
-          <ion-card-subtitle style="margin-top:10px;">{{item.desc}}</ion-card-subtitle>
+          <ion-card-subtitle style="margin-top:10px;font-size: 18px;">{{item.desc}}</ion-card-subtitle>
         </ion-card-content>
         <ion-card-content>
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 

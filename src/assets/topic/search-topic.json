@@ -2,7 +2,7 @@
   {
     "hide":true,
     "id":199,
-    "name":"广播",
+    "name":"现在就听",
     "image":"",
     "desctitle":"",
     "desc":"",
@@ -61,6 +61,11 @@
         ]
       },
       {"name":"趣味诗单", "data": [
+        {"id":20,"src":"/assets/img/郑板桥.jpg","display":"cover","text":"元献遗文 | 晏殊最经典的八首诗词，哪一首让你心动呢？","desc":"","color":"rgb(98,166,243)"},
+        {"id":21,"src":"/assets/img/bamboo-1224035_1280.jpg","display":"cover","text":"东坡集 | 苏轼的绝世文笔，你用哪句当签名？","desc":"","color":"rgb(98,166,243)"},
+        {"id":22,"src":"/assets/img/cyclone-2102397_1280.jpg","display":"cover","text":"你读过，最燃的一句诗？","desc":"","color":"rgb(98,166,243)"},
+        {"id":23,"src":"/assets/img/sea-1850228_1280.jpg","display":"cover","text":"理想境界，虽不能至，心向往之","desc":"","color":"rgb(98,166,243)"},
+
         {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球 | 我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
         {"id":907,"src":"/assets/img/money.jpg","display":"cover","text":"跟着央视练文笔，山河月明，碎银几两","desc":"","color":"rgb(98,166,243)"},
         {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},

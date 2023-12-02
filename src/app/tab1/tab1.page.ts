@@ -26,7 +26,7 @@ export class Tab1Page {
   }
   goToArticle(item:any){
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
-console.log(item)
+
     if(item.items){
       //update audio info..
       item.items.forEach((poem:any) => {
@@ -151,7 +151,7 @@ console.log(item)
     });
   }
 
-  goAuthorDirect(author:any, event:any){
+  goAuthorDirect(author:any){
     this.data.goToAuthor(author);
   }
 

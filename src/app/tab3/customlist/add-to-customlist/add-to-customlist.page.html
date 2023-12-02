@@ -22,11 +22,15 @@
         <ion-item *ngFor="let like of lastUpdatedCustomList" 
         (click)="addtocustomlist(like)"
         style="--padding-start:20px;--inner-padding-end:20px;" detail="false">
-            <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length<4" 
-            style="background-color: {{like.data['color']}};">
+            <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 
+              style="background-color: {{like.data['color']}};">
+              <img style="border-radius: 10px;" [src]="like.data['customimage']" />
+            </ion-thumbnail>
+            <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
+              style="background-color: {{like.data['color']}};">
               <img style="border-radius: 10px;" [src]="like.data['image']" />
             </ion-thumbnail>
-            <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length>=4" 
+            <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length>=4" 
               style="
               aspect-ratio: 1 / 1;
               border: 1px solid rgba(247,247,247);
@@ -68,11 +72,15 @@
         <ion-item *ngFor="let like of displayResult" 
         (click)="addtocustomlist(like)"
         style="--padding-start:20px;--inner-padding-end:20px;" detail="false">
-          <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length<4" 
-          style="background-color: {{like.data['color']}};">
+          <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 
+            style="background-color: {{like.data['color']}};">
+            <img style="border-radius: 10px;" [src]="like.data['customimage']" />
+          </ion-thumbnail>
+          <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
+            style="background-color: {{like.data['color']}};">
             <img style="border-radius: 10px;" [src]="like.data['image']" />
           </ion-thumbnail>
-          <ion-thumbnail slot="start" *ngIf="like.data&&like.data.image&&like.data.image.length>=4" 
+          <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length>=4" 
             style="
             aspect-ratio: 1 / 1;
             border: 1px solid rgba(247,247,247);

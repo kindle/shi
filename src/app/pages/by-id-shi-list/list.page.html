@@ -9,7 +9,7 @@
       <ion-button slot="end" shape="round" *ngIf="listdata&&!data.isliked(listdata,'idlist')"
       (click)="data.likelist(listdata,'idlist')"
       style="margin-left:5px;background-color: rgb(247,247,247);border-radius: 50%;">
-        <ion-icon name="star-outline"></ion-icon>
+        <ion-icon name="add-outline"></ion-icon>
       </ion-button>
       <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" 
       style="margin-left:5px;margin-right:10px;background-color: rgb(247,247,247);border-radius: 50%;">
@@ -68,6 +68,9 @@
         </ion-text>
         <ion-text mode="ios" color="primary" style="font-size:20px; margin:5px;text-align: center;" *ngIf="listdata">
           {{listdata.sub}} 
+        </ion-text>
+        <ion-text mode="ios" color="medium" style="font-size:15px; margin:5px;text-align: center;" *ngIf="listdata&&listdata.more">
+          {{listdata.more}} 
         </ion-text>
       </div>
     </ion-toolbar>

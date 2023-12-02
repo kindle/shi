@@ -58,11 +58,14 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
-        <app-text style="margin:10px 20px;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
+        <app-text style="margin:0px 20px;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
+
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
           <img  src="/assets/img/{{it.value}}" (click)="ui.imageviewer('/assets/img/'+it.value)" >
         </div>
+
+
         <ion-item *ngIf="it.type==='poem'" lines="none" 
         style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;">
           <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)"

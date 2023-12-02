@@ -29,20 +29,20 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         <ion-label class="menu-text">开卷有益</ion-label>
       </ion-item>
       <ion-item lines="none" (click)="goTab(2)" class="menu-item" color="primary" *ngIf="isSelected(2)">
-        <ion-icon name="radio-outline" class="menu-icon"></ion-icon>
-        <ion-label class="menu-text">广播</ion-label>
+        <ion-icon name="grid-outline" class="menu-icon"></ion-icon>
+        <ion-label class="menu-text">浏览</ion-label>
       </ion-item>
       <ion-item lines="none" (click)="goTab(2)" class="menu-item" *ngIf="!isSelected(2)">
-        <ion-icon name="radio-outline" class="menu-icon" color="primary"></ion-icon>
-        <ion-label class="menu-text">广播</ion-label>
+        <ion-icon name="grid-outline" class="menu-icon" color="primary"></ion-icon>
+        <ion-label class="menu-text">浏览</ion-label>
       </ion-item>
       <ion-item lines="none" (click)="goTab(5)" class="menu-item" color="primary" *ngIf="isSelected(5)">
-        <ion-icon name="radio-outline" class="menu-icon"></ion-icon>
-        <ion-label class="menu-text">浏览</ion-label>
+        <ion-icon name="play-circle-outline" class="menu-icon"></ion-icon>
+        <ion-label class="menu-text">现在就听</ion-label>
       </ion-item>
       <ion-item lines="none" (click)="goTab(5)" class="menu-item" *ngIf="!isSelected(5)">
-        <ion-icon name="radio-outline" class="menu-icon" color="primary"></ion-icon>
-        <ion-label class="menu-text">浏览</ion-label>
+        <ion-icon name="play-circle-outline" class="menu-icon" color="primary"></ion-icon>
+        <ion-label class="menu-text">现在就听</ion-label>
       </ion-item>
       <ion-item lines="none" (click)="goTab(4)" class="menu-item" color="primary" *ngIf="isSelected(4)">
         <ion-icon name="search-outline" class="menu-icon"></ion-icon>
@@ -116,12 +116,12 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             <ion-label class="menu-text">开卷有益</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goTab(2)" class="menu-item" color="primary" *ngIf="isSelected(2)">
-            <ion-icon name="radio-outline" class="menu-icon"></ion-icon>
-            <ion-label class="menu-text">广播</ion-label>
+            <ion-icon name="play-circle" class="menu-icon"></ion-icon>
+            <ion-label class="menu-text">现在就听</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goTab(2)" class="menu-item" *ngIf="!isSelected(2)">
-            <ion-icon name="radio-outline" class="menu-icon" color="primary"></ion-icon>
-            <ion-label class="menu-text">广播</ion-label>
+            <ion-icon name="play-circle" class="menu-icon" color="primary"></ion-icon>
+            <ion-label class="menu-text">现在就听</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goTab(4)" class="menu-item" color="primary" *ngIf="isSelected(4)">
             <ion-icon name="search-outline" class="menu-icon"></ion-icon>
@@ -145,9 +145,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         <div class="play-icon-box" *ngIf="data.currentPoem">
           <img style="min-width: 40px;aspect-ratio: 1;border-radius: 5px;" src="/assets/img/poet/{{data.currentPoem.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
         </div>
-        <ion-card-title style="font-size:18px;width:100%;font-weight: normal;overflow: hidden;text-overflow: ellipsis;max-height: 30px;">
-          <ion-label>《{{data.currentPoem.title}}》</ion-label>
-        </ion-card-title><!--data.currentPoem.paragraphs[0]-->
+        <div style="font-size:18px;width:100%;font-weight: normal;
+        overflow: hidden;text-overflow: ellipsis;max-height: 30px;
+        display: -webkit-box;
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:1;">
+          《{{data.currentPoem.title}}》
+        </div><!--data.currentPoem.paragraphs[0]-->
       </ion-buttons>
       <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:5px;">
         <ion-button (click)="data.togglePlay()">
@@ -170,8 +174,8 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         浏览
       </ion-tab-button>
       <ion-tab-button tab="tab5">
-        <ion-icon name="radio-outline"></ion-icon>
-        广播
+        <ion-icon name="play-circle"></ion-icon>
+        现在就听
       </ion-tab-button>
       <ion-tab-button tab="tab3">
         <ion-icon name="albums"></ion-icon>
