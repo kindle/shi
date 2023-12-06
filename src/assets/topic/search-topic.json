@@ -61,6 +61,11 @@
         ]
       },
       {"name":"趣味诗单", "data": [
+        {"id":28,"src":"/assets/img/african-lion-2888519_1280.jpg","display":"cover","text":"你听过最狂的一句古诗词？","desc":"","color":"rgb(98,166,243)"},
+        {"id":27,"src":"/assets/img/countryside-1846774_1280.jpg","display":"cover","text":"少年感诗词，有哪句让你回忆起了自己的年少时光？","desc":"","color":"rgb(98,166,243)"},
+        {"id":26,"src":"/assets/img/sand-7564466_1280.jpg","display":"cover","text":"古人笔下的时光流影","desc":"","color":"rgb(98,166,243)"},
+        {"id":25,"src":"/assets/img/corn-field-440338_1280.jpg","display":"cover","text":"古人如何表达“我想开了”","desc":"","color":"rgb(98,166,243)"},
+        {"id":24,"src":"/assets/img/lego-933036_1280.jpg","display":"cover","text":"反emo第一人，主打一个乐观心态","desc":"","color":"rgb(98,166,243)"},
         {"id":20,"src":"/assets/img/郑板桥.jpg","display":"cover","text":"元献遗文 | 晏殊最经典的八首诗词，哪一首让你心动呢？","desc":"","color":"rgb(98,166,243)"},
         {"id":21,"src":"/assets/img/bamboo-1224035_1280.jpg","display":"cover","text":"东坡集 | 苏轼的绝世文笔，你用哪句当签名？","desc":"","color":"rgb(98,166,243)"},
         {"id":22,"src":"/assets/img/cyclone-2102397_1280.jpg","display":"cover","text":"你读过，最燃的一句诗？","desc":"","color":"rgb(98,166,243)"},

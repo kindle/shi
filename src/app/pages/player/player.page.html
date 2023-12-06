@@ -83,8 +83,9 @@
   </ion-content>
 
 
+  <!--小于10行*********start*******************-->
   <!--img   ...-->
-  <ion-list *ngIf="!showHistory">
+  <ion-list *ngIf="!showHistory&&data.currentPoem.paragraphs.length<=10">
     <ion-item lines="none" *ngIf="bigimg"
     (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
       style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
@@ -115,9 +116,8 @@
     </ion-item>
   </ion-list>
 
-
   <!--title author paragraphs-->
-  <ion-list  *ngIf="!showHistory" 
+  <ion-list *ngIf="!showHistory&&data.currentPoem.paragraphs.length<=10" 
   style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
           
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
@@ -136,12 +136,73 @@
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
           <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
-          <!--<div *ngIf="data.currentPoem.sample" [innerHTML]="text"></div>-->
         <div *ngIf="!data.currentPoem.sample">{{text}}</div>
       </div>
     </ion-item>
     
   </ion-list>
+  <!--小于10行*********end*******************-->
+
+
+  <!--大于10行*********content start*******************-->
+  <ion-content class="no-padding" [fullscreen]="true" 
+    *ngIf="!showHistory&&data.currentPoem.paragraphs.length>10">
+    <ion-list *ngIf="!showHistory">
+      <ion-item lines="none" *ngIf="bigimg"
+      (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
+        style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
+        <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
+          <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
+          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='/assets/img/default.jpg'" />
+        </div>
+      </ion-item>
+      <ion-item lines="none" 
+      style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+        <div class="play-icon-box" *ngIf="!bigimg" 
+          (click)="toggleView()">
+          <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
+          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='/assets/img/default.jpg'" />
+        </div>
+        <ion-label>
+          <h2>{{data.currentPoem.title}}</h2>
+          <p>{{data.currentPoem.author}}</p>
+        </ion-label>
+        <ion-button slot="end" color="transparent" 
+        *ngIf="!data.isliked(data.currentPoem,'poem')"
+        (click)="data.likelist(data.currentPoem,'poem')">
+          <ion-icon name="add-outline" color="dark"></ion-icon>
+        </ion-button>
+        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+      </ion-item>
+    </ion-list>
+
+    <ion-list style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
+            
+      <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+        <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+          {{data.currentPoem.title}}
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+          {{data.currentPoem.author}}
+        </div>
+      </ion-item>
+
+      <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+        [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
+            <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
+          <div *ngIf="!data.currentPoem.sample">{{text}}</div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <!--大于10行*********content end*******************-->
+
 
   
   <div class="placeholder-playbox"></div>

@@ -170,7 +170,7 @@
             {"title":"兵车行","author":"杜甫","sample":"车辚辚，马萧萧，行人弓箭各在腰","id":"bd57a0b0-28a1-4d53-bc09-51899d2dac38"},
             {"title":"卖炭翁","author":"白居易","sample":"满面尘灰烟火色，两鬓苍苍十指黑","id":"e0677c90-ea54-4de6-94cf-e6af2eea1755"},
             {"title":"琵琶行","author":"白居易","sample":"浔阳江头夜送客，枫叶荻花秋瑟瑟","id":"0fb0189c-8ff3-4106-af94-f6d26d528a1d"},
-            {"title":"长恨歌","author":"白居易","sample":"在天愿作比翼鸟，在地愿爲连理枝","id":"0a0f9231-d88c-4f81-b941-83b67a736194"},
+            {"title":"长恨歌","author":"白居易","sample":"在天愿作比翼鸟，在地愿为连理枝","id":"0a0f9231-d88c-4f81-b941-83b67a736194"},
             {"title":"田家词","author":"元稹","sample":"牛吒吒，田确确","id":"3ebfbcd5-a4e9-4e05-9396-82b390c73091"},
             {"title":"野老歌","author":"张籍","sample":"老农家贫在山住，耕种山田三四亩","id":"b0b8c9b0-e68f-444e-b99c-c8733efe43b2"}
         ]
@@ -269,6 +269,102 @@
             {"title":"浪淘沙","author":"刘禹锡","sample":"千淘万漉虽辛苦，吹尽狂沙始到金","id":"1f4d7c75-238b-4f92-917c-bcdf16e8c7a4"},
             {"title":"病牛","author":"李纲","sample":"但愿众生皆得饱，不辞羸病卧残阳","id":"35fe6f1e-0b64-47c5-a6c2-9c53a5bc803f"}
         ]
+    },
+    {
+        "id":24,
+        "name":"",
+        "sub":"刘禹锡",
+        "image":"/assets/img/lego-933036_1280.jpg",
+        "more":"唐·842年·彭城刘梦得·诗豪·监察御史",
+        "desc":"反emo第一人，主打一个乐观心态",
+        "list":[
+            {"title":"陋室铭","author":"刘禹锡","sample":"山不在高，有仙则名","id":"357eec6f-bbd9-4101-89a0-ebebe6f73ebe"},
+            {"title":"秋词","author":"刘禹锡","sample":"自古逢秋悲寂寥，我言秋日胜春朝","id":"aa22a168-1c3f-48e1-b7d4-1aa143d66335"},
+            {"title":"酬乐天扬州初逢席上见赠","author":"刘禹锡","sample":"沉舟侧畔千帆过，病树前头万木春","id":"9c955427-5806-4e78-949e-0cff513bc8e7"},
+            {"title":"再游玄都观","author":"刘禹锡","sample":"种桃道士归何处，前度刘郎今又来","id":"82833199-92e1-4499-8d37-92a78299f1a4"},
+            {"title":"詶乐天咏老见示","author":"刘禹锡","sample":"莫道桑榆晚，微霞尚满天","id":"d90bc824-730a-4fb6-b910-28f4ad514141"}
+        ]
+    },
+    {
+        "id":25,
+        "name":"",
+        "sub":"豁然开朗",
+        "image":"/assets/img/corn-field-440338_1280.jpg",
+        "more":"",
+        "desc":"古人如何表达“我想开了”",
+        "list":[
+            {"title":"酌酒与裴迪","author":"王维","sample":"世事浮云何足问，不如高卧且加餐","id":"0e7afbc5-fa58-41f9-8af4-1b2db6dc3c03"},
+            {"title":"杂诗七首  其一","author":"黄庭坚","sample":"毕竟几人真得鹿，不知终日梦为鱼","id":"bed6cbe7-c229-418d-aef5-595f128a9c3c"},
+            {"title":"满庭芳","author":"王以宁","sample":"我自人间漫浪，平生事、南北西东","id":"e11ea6ca-6d9c-4756-9f85-50f4c93d87c0"},
+            {"title":"定风波","author":"刘禹锡","sample":"回首向来潇洒处，也无风雨也无晴","id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"}
+        ]
+    },
+    {
+        "id":26,
+        "name":"",
+        "sub":"时光流影",
+        "image":"/assets/img/sand-7564466_1280.jpg",
+        "more":"",
+        "desc":"古人笔下的时光流影",
+        "list":[
+            {"title":"蝶恋花","author":"王国维","sample":"最是人间留不住，朱颜辞镜花辞树","id":"c01d1ca2-74e7-4314-af2f-2d0fd54668da"},
+            {"title":"滕王阁序","author":"王勃","sample":"闲云潭影日悠悠，物换星移几度秋","id":"9f023a30-3a31-4262-9ee7-ade9e4e591c8"},
+            {"title":"西江月","author":"苏轼","sample":"世事一场大梦，人生几度秋凉","id":"10F007D6-6701-467B-99BB-39EA7C2E24D2"},
+            {"title":"短歌行","author":"李白","sample":"白日何短短，百年苦易满","id":"308de8c1-a614-42e8-aff9-11cb4a5c08d2"},
+            {"title":"唐多令","author":"刘过","sample":"欲买桂花同载酒，终不似、少年游","id":"db986209-26d0-4e8f-ac1d-5aae034fbb7e"}
+        ]
+    },
+    {
+        "id":27,
+        "name":"",
+        "sub":"少年感",
+        "image":"/assets/img/countryside-1846774_1280.jpg",
+        "more":"",
+        "desc":"少年感诗词，有哪句让你回忆起了自己的年少时光？",
+        "list":[
+            {"title":"登科后","author":"孟郊","sample":"春风得意马蹄疾，一日看尽长安花","id":"6e34d23e-7bcd-437b-8a3e-0a4bb1c2cda8"},
+            {"title":"忆长安曲二章寄庞","author":"岑参","sample":"长安何处在，只在马蹄下","id":"a1a56379-8eca-4fc8-8b53-d5b756292ff1"},
+            {"title":"宣州谢朓楼饯别校书叔云","author":"李白","sample":"俱怀逸兴壮思飞，欲上青天览日月","id":"5593d522-b820-4c06-bab6-0ab5a0fc1d46"},
+            {"title":"陇头吟","author":"王维","sample":"长安少年游侠客，夜上戍楼看太白","id":"cc0d85da-2fc0-4cd0-9163-b23561e07541"},
+            {"title":"少年行四首 三","author":"令狐楚","sample":"弓背霞明劒照霜，秋风走马出咸阳","id":"133359e4-c7c2-4a43-9adc-e5e8ea4e2e41"}
+        ]
+    },
+    {
+        "id":27,
+        "name":"",
+        "sub":"人的一生",
+        "image":"/assets/img/countryside-1846774_1280.jpg",
+        "more":"",
+        "desc":"这些诗词道尽了人的一生，你现在正处于哪个阶段？",
+        "list":[
+            {"title":"宿新市徐公店二首  其一","author":"杨万里","sample":"儿童急走追黄蝶，飞入菜花无处寻","id":"1cd7ede2-d77a-44ab-ade1-a9979ce1b4e6"},
+            {"title":"劝学","author":"孟郊","sample":"青春须早为，岂能长少年","id":"fb023af2-c8ba-4778-9a81-c9a9e617279f"},
+            {"title":"登科后","author":"孟郊","sample":"春风得意马蹄疾，一日看尽长安花","id":"6e34d23e-7bcd-437b-8a3e-0a4bb1c2cda8"},
+            {"title":"南园十三首 五","author":"李贺","sample":"请君暂上凌烟阁，若箇书生万户侯","id":"b810b1ca-557d-4589-bebb-766e3bec858d"},
+            {"title":"南陵别儿童入京","author":"李白","sample":"仰天大笑出门去，我辈岂是蓬蒿人","id":"0b826256-9c22-40b7-b797-669974fac0bc"},
+            {"title":"竹石","author":"郑燮","sample":"千磨万击还坚劲，任尔东南西北风","id":"47cc7adc-a819-4fac-b0c6-5e3a589c4c27"},
+            {"title":"登高","author":"杜甫","sample":"万里悲秋常作客，百年多病独登台","id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
+            {"title":"清平乐","author":"辛弃疾","sample":"最喜小儿亡赖，溪头卧倒剥莲蓬","id":"2acaab2a-b820-4f43-85ad-b7fe1d192dcf"},
+            {"title":"西江月","author":"苏轼","sample":"世事一场大梦，人生几度秋凉","id":"10F007D6-6701-467B-99BB-39EA7C2E24D2"},
+            {"title":"颂古九首  其一","author":"释梵思","sample":"若无闲事在心头，便是人间好时节","id":"aeae8004-df4a-4c87-90c0-686a85dedc4f"}
+        ]
+    },
+    {
+        "id":28,
+        "name":"",
+        "sub":"狂",
+        "image":"/assets/img/african-lion-2888519_1280.jpg",
+        "more":"",
+        "desc":"你听过最狂的一句古诗词？",
+        "list":[
+            {"title":"饮中八仙歌","author":"杜甫","sample":"天子呼来不上船，自称臣是酒中仙","id":"7cb1e181-617c-4e12-b818-48666992ebf6"},
+            {"title":"鹤冲天","author":"柳永","sample":"才子诗人，自是白衣卿相","id":"43f0501c-fb40-426a-ac27-369981f5b815"},
+            {"title":"鹧鸪天","author":"朱敦儒","sample":"诗万首，酒千觞，几曾着眼看侯王","id":"4f1c283c-52d9-4bca-bfe1-1bd9c98141b3"},
+            {"title":"出老","author":"林则徐","sample":"海到尽头天作岸，山登绝顶我为峰","id":"3c74ba69-6bb1-4f0e-ae82-e94e9fe54260"},
+            {"title":"不第后赋菊","author":"黄巢","sample":"冲天香阵透长安，满城尽带黄金甲","id":"4a38ccaa-e3e3-4920-9f22-3a686c934000"},
+            {"title":"狂夫","author":"杜甫","sample":"欲填沟壑唯疏放，自笑狂夫老更狂","id":"81c77b01-47cd-4aba-a980-5bc74b5b9711"},
+            {"title":"桃花庵歌","author":"唐寅","sample":"世人笑我太疯癫，我笑他人看不穿","id":"0985901d-c554-402b-8334-8b8b4c6c86f2"},
+            {"title":"江城子","author":"苏轼","sample":"老夫聊发少年狂，左牵黄，右擎苍","id":"3bf03388-77c7-48a1-bfa2-6ee757f961ad"}
+        ]
     }
-    
 ]

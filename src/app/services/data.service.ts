@@ -926,7 +926,7 @@ export class DataService {
           this.initData();
         }
 
-        this.globalCurrentTargetGroup = this.group[0];
+        //this.globalCurrentTargetGroup = this.group[0];
         //this.save();
       });
     });
