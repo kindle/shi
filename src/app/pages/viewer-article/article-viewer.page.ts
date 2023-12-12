@@ -9,12 +9,15 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./article-viewer.page.scss'],
 })
 export class ArticleViewerPage {
+  localFunData:any;
   constructor(
     public data: DataService,
     public ui: UiService,
     private location: Location,
     private cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+    this.localFunData = this.data.getFunData('article_'+data.currentArticle.big_title);
+  }
 
   gridopt={
     rows: 3,
@@ -32,7 +35,6 @@ export class ArticleViewerPage {
 
   ionViewWillEnter() {
     this.ui.hideStatusBar();
-
     this.defaultBgHeight = this.data.currentArticle.min_height;
   }
 

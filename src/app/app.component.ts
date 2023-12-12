@@ -26,6 +26,8 @@ export class AppComponent {
     }).finally(()=>{
       //load likes after local storage db is created.
       this.data.loadlikes();
+      //load fun data
+      this.data.loadFunData();
       //load poem play history
       this.data.loadPlayHistory();
       //load ep play history

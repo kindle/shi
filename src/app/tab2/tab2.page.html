@@ -21,7 +21,9 @@
   <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
 -->
   <div *ngFor="let list of searchTopicData.list;">
-    <app-tile [name]="list.name" [source]="list.data"></app-tile>
+    <app-tile [name]="list.name" [source]="list.data" *ngIf="list.name!='趣味诗单'"></app-tile>
+
+    <app-tile [name]="list.name" [source]="localFunData" *ngIf="list.name=='趣味诗单'"></app-tile>
   </div>
 
 

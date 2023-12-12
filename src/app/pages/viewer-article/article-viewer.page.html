@@ -1,6 +1,5 @@
-<!--background image top/width_auto height_sameas_tab1-->
 <ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" 
-style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
+  style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
     <div style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
         <ion-card-content style="z-index:100;position:fixed;width:100%;
           padding-inline-start:10px;
@@ -90,7 +89,7 @@ style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/aut
         </ion-item>
 
         <div *ngIf="it.type==='list'">
-          <app-tile [name]="it.name" [source]="it.data" ></app-tile>
+          <app-tile [name]="it.name" [source]="localFunData" ></app-tile>
         </div>
       </div>
 

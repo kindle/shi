@@ -40,7 +40,7 @@ export class Tab1Page {
       //update audio info..
       item.desc.filter((i:any)=>i.type=='poem').forEach((poem:any) => {
         let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-        if(fullData.audio!=null){
+        if(fullData&&fullData.audio!=null){
           poem.audio = fullData.audio;
         }
       });

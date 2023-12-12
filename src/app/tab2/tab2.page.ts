@@ -10,6 +10,7 @@ import { UiService } from '../services/ui.service';
 export class Tab2Page {
 
   searchTopicData:any;
+  localFunData:any;
   
   constructor(
     public data : DataService,
@@ -18,5 +19,6 @@ export class Tab2Page {
     this.data.currentTopicId = 200;
     this.searchTopicData = this.data.tab2BrowseTopicData
       .filter((d:any)=>d.id==this.data.currentTopicId)[0];
+    this.localFunData = this.data.getFunData('tab2_');
   }
 }

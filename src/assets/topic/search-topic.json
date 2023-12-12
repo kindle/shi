@@ -1,33 +1,6 @@
 [
   {
     "hide":true,
-    "id":199,
-    "name":"现在就听",
-    "image":"",
-    "desctitle":"",
-    "desc":"",
-    "scroll":[
-      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
-      "image":"/assets/img/tree.jpg"}
-    ],
-    "hot":[],
-    "list":[
-      {"name":"最新专辑", "data": [
-        {"id":803,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
-        {"id":804,"src":"/assets/img/海钓.jpg","display":"cover","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"},
-        {"id":801,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
-        
-        
-        {"id":800,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"}
-        
-        
-        ]
-      }
-      
-    ]
-  }, 
-  {
-    "hide":true,
     "id":200,
     "name":"浏览",
     "image":"/assets/img/smart.jpg",
@@ -60,25 +33,7 @@
         {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
         ]
       },
-      {"name":"趣味诗单", "data": [
-        {"id":28,"src":"/assets/img/african-lion-2888519_1280.jpg","display":"cover","text":"你听过最狂的一句古诗词？","desc":"","color":"rgb(98,166,243)"},
-        {"id":27,"src":"/assets/img/countryside-1846774_1280.jpg","display":"cover","text":"少年感诗词，有哪句让你回忆起了自己的年少时光？","desc":"","color":"rgb(98,166,243)"},
-        {"id":26,"src":"/assets/img/sand-7564466_1280.jpg","display":"cover","text":"古人笔下的时光流影","desc":"","color":"rgb(98,166,243)"},
-        {"id":25,"src":"/assets/img/corn-field-440338_1280.jpg","display":"cover","text":"古人如何表达“我想开了”","desc":"","color":"rgb(98,166,243)"},
-        {"id":24,"src":"/assets/img/lego-933036_1280.jpg","display":"cover","text":"反emo第一人，主打一个乐观心态","desc":"","color":"rgb(98,166,243)"},
-        {"id":20,"src":"/assets/img/郑板桥.jpg","display":"cover","text":"元献遗文 | 晏殊最经典的八首诗词，哪一首让你心动呢？","desc":"","color":"rgb(98,166,243)"},
-        {"id":21,"src":"/assets/img/bamboo-1224035_1280.jpg","display":"cover","text":"东坡集 | 苏轼的绝世文笔，你用哪句当签名？","desc":"","color":"rgb(98,166,243)"},
-        {"id":22,"src":"/assets/img/cyclone-2102397_1280.jpg","display":"cover","text":"你读过，最燃的一句诗？","desc":"","color":"rgb(98,166,243)"},
-        {"id":23,"src":"/assets/img/sea-1850228_1280.jpg","display":"cover","text":"理想境界，虽不能至，心向往之","desc":"","color":"rgb(98,166,243)"},
-
-        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球 | 我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
-        {"id":907,"src":"/assets/img/money.jpg","display":"cover","text":"跟着央视练文笔，山河月明，碎银几两","desc":"","color":"rgb(98,166,243)"},
-        {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
-        {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
-        {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
-        {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
-        
-        ]
+      {"name":"趣味诗单", "data": []
       },
       {"name":"风格诗单", "data": [
         {"src":"assets/img/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
@@ -101,6 +56,37 @@
       }
     ]
   }, 
+  {
+    "hide":true,
+    "id":199,
+    "name":"现在就听",
+    "image":"",
+    "desctitle":"",
+    "desc":"",
+    "scroll":[
+      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
+      "image":"/assets/img/tree.jpg"}
+    ],
+    "hot":[],
+    "list":[
+      {"name":"最新专辑", "data": [
+        {"id":803,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
+        {"id":804,"src":"/assets/img/海钓.jpg","display":"cover","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"},
+        {"id":801,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        
+        
+        {"id":800,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"}
+        
+        
+        ]
+      }
+      
+    ]
+  }, 
+  
+
+
+
   {
     "id":201,
     "name":"大语文",
@@ -468,6 +454,154 @@
     {
         "id":12,
         "name":"亲子",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    }
+
+
+
+    ,
+    {
+        "id":20,
+        "name":"爱情",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    },
+    {
+        "id":21,
+        "name":"遗憾",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    },
+    {
+        "id":22,
+        "name":"真相",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    },
+    {
+        "id":23,
+        "name":"心情",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    },
+    {
+        "id":24,
+        "name":"忠告",
+        "image":"/assets/img/smart.jpg",
+        "scroll":[
+            {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"建安诗歌","text":"建安诗歌","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"魏晋南北朝","text":"魏晋南北朝","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"边塞","text":"边塞","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"爱国","text":"爱国","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"悼亡","text":"悼亡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"闺怨","text":"闺怨","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"思乡","text":"思乡","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"哲理","text":"哲理","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
+            {"alias":"怀古","text":"怀古","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"羁旅","text":"羁旅","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"},
+            {"alias":"咏物","text":"咏物","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)"},
+            {"alias":"励志","text":"励志","color":"rgb(205,238,240)","light":"rgb(205,238,240,60%)"},
+            {"alias":"讽刺","text":"讽刺","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
+            {"alias":"赞美","text":"赞美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)"}
+          ],
+        "list":[]
+    },
+    {
+        "id":25,
+        "name":"孤独",
         "image":"/assets/img/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},

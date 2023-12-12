@@ -127,6 +127,9 @@ export class DataService {
     //水墨唐诗
     this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗");
 
+    //元曲
+    this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲");
+
     /*
     this.http.get<any>('https://reddah.blob.core.windows.net/cache/202385.json').subscribe(result=>{
       
@@ -170,6 +173,56 @@ export class DataService {
   }
 
   hotData:any;
+  funData:any;
+  funDataMap = new Map();
+  disableRandomFunData = true;
+
+  LOCALSTORAGE_HOURLY_FUN = "LOCALSTORAGE_HOURLY_FUN"
+  async loadFunData(){
+    this.get(this.LOCALSTORAGE_HOURLY_FUN).then((value)=>{
+      if(value==null){
+        this.funDataMap = new Map();
+      }
+      else{
+        this.funDataMap = this.jsonStrToMap(value);
+      }
+    });
+  }
+  getFunData(nameSeed:any){
+    if(this.disableRandomFunData){//for test adding new poem list
+      return this.funData;
+    }
+    let myDate = new Date();
+    let hourSeed = myDate.getHours();
+    let seed = nameSeed+hourSeed;
+    //console.log(seed)
+    if(!this.funDataMap.has(seed)){
+      this.funDataMap.set(seed, this.getRandomArray(this.funData, 6));
+      this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
+    }
+
+    return this.funDataMap.get(seed);
+  }
+
+  jsonStrToMap(jsonStr:string){
+    const jsonObj = JSON.parse(jsonStr)
+    const map = new Map()
+    for(const k of Object.keys(jsonObj)){
+      map.set(k, jsonObj[k])
+    }
+    return map;
+  }
+  mapToJsonStr(newMap: Map<string, any>){
+    const obj:any = {};
+    newMap.forEach((v:any,k:any) => {
+      obj[k]=v
+    });
+    const JsonStr = JSON.stringify(obj)
+    return JsonStr
+
+  }
+
+
   classicData:any;
   timelineData:any;
   pickData:any;
@@ -192,6 +245,9 @@ export class DataService {
       this.timelineData = result;
     });
 
+    this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
+      this.funData = result;
+    });
     this.http.get<any>('/assets/topic/hot.json').subscribe(result=>{
       this.hotData = [];
       for (let i = 0; i < result.length; i += 4) {

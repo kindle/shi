@@ -87,7 +87,7 @@
         "id":902,
         "name":"我们都在阴沟里，但总有人仰望天空",
         "image":"/assets/img/star.jpg",
-        "desc":"we are all in the gutter, but some of us are looking at the stars",
+        "desc":"we are all in the gutter, but some of us are looking at the stars, 一个民族有一群仰望星空的人，他们才有希望。",
         "list":[
             {"title":"古朗月行","author":"李白","sample":"小时不识月，呼作白玉盘","desc":"","id":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
             {"title":"把酒问月","author":"李白","sample":"今人不见古时月，今月曾经照古人","desc":"","id":"cd0e68fe-0e16-4b10-9345-ac567ce9cb62"},
@@ -159,7 +159,7 @@
         "desc":"那些永不褪色的经典",
         "list":[
             {"title":"滕王阁序","author":"王勃","sample":"落霞与孤鹜齐飞，秋水共长天一色","id":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
-            {"title":"送杜少府之任蜀州","author":"王勃","sample":"海内存知己，天涯若比邻","id":"fe6f4b72-855c-43b9-8883-8b3fe3cd8bd4"},
+            {"title":"送杜少府之任蜀州","author":"王勃","sample":"海内存知己，天涯若比邻","id":"1b5433df-57f0-2280-acc8-f29f0cee8e5e"},
             {"title":"出塞","author":"杨炯","sample":"塞外欲纷纭，雌雄犹未分","id":"153ddc69-4ed3-4c91-a13f-01fd8abab905"},
             {"title":"从军行","author":"杨炯","sample":"烽火照西京，心中自不平","id":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
             {"title":"紫骝马","author":"杨炯","sample":"侠客重周游，金鞭控紫骝","id":"5d5bda08-dd9e-43cd-820e-ed52b77f35fd"},
