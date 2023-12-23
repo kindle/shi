@@ -31,7 +31,8 @@ export class Tab1Page {
       //update audio info..
       item.items.forEach((poem:any) => {
         let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-        if(fullData.audio!=null){
+        
+        if(fullData&&fullData.audio){
           poem.audio = fullData.audio;
         }
       });

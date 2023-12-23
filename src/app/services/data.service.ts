@@ -48,8 +48,15 @@ export enum ViewType{
 })
 export class DataService {
 
+  
   //订阅广告开关
   showSubscription = false;
+  //趣味诗单开关
+  disableRandomFunData = false;
+  //开卷有益开关
+  disableRandomArticleData = false;
+
+
   subscriptionImage = "辣椒";
   getSubscriptionImage(){
     let images = ["辣椒","water"]
@@ -150,6 +157,8 @@ export class DataService {
     this.getData(`/assets/topic/list-normal.json`).subscribe(data=>{
       //经典传统 诗单
       this.poemListData = data;
+      //console.log('load list-normal')
+      /*
       this.getData(`/assets/topic/list-idea.json`).subscribe(ideaData=>{
         //自定义花样诗单 id 1000 开头
         this.poemListData =this.poemListData.concat(ideaData);
@@ -161,6 +170,7 @@ export class DataService {
           });
         });
       });
+      */
     });
   }
 
@@ -175,7 +185,7 @@ export class DataService {
   hotData:any;
   funData:any;
   funDataMap = new Map();
-  disableRandomFunData = true;
+  
 
   LOCALSTORAGE_HOURLY_FUN = "LOCALSTORAGE_HOURLY_FUN"
   async loadFunData(){
@@ -186,6 +196,8 @@ export class DataService {
       else{
         this.funDataMap = this.jsonStrToMap(value);
       }
+
+      this.loadArticleJsonData();
     });
   }
   getFunData(nameSeed:any){
@@ -230,23 +242,31 @@ export class DataService {
   jsonData:any;
   azureData:any;
   async loadArticleJsonData(){
-
-    //let n = this.getRandom(1,3);
-    let n=0;
-    this.http.get<any>(`/assets/json/${n}.json`).subscribe(result=>{
-      this.jsonData = result;
-    });
-
     this.http.get<any>('/assets/json/pick.json').subscribe(result=>{
       this.pickData = result;
     });
-
     this.http.get<any>('/assets/json/timeline.json').subscribe(result=>{
       this.timelineData = result;
     });
 
-    this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
+    //this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
+    this.http.get<any>('/assets/topic/list-normal.json').subscribe(result=>{
+      //给趣味诗单随机5个tile用的
       this.funData = result;
+      /*
+      this.funData.forEach((fun:any) => {
+        let items = this.poemListData.filter((p:any)=>p.id === fun.id)
+        if(items&&items[0]){
+          let moreInfo = items[0];
+          fun.image = moreInfo.image;
+          fun.name = moreInfo.name;
+          fun.sub  = moreInfo.sub;
+          fun.more = moreInfo.more;
+          fun.desc = moreInfo.desc;
+        }
+      });*/
+      
+      
     });
     this.http.get<any>('/assets/topic/hot.json').subscribe(result=>{
       this.hotData = [];
@@ -289,6 +309,91 @@ export class DataService {
       });
     }
 
+    this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
+      this.jsonData = result;
+      console.log('start to load article data...')
+      this.poemListData.forEach((fun:any) => {
+        let descArray:any = [];
+        fun.list.forEach((p:any) => {
+          descArray.push({
+            "type":"poem", 
+            "author":p.author, 
+            "title":p.title, 
+            "sample":p.sample, 
+            "id":p.id
+          })
+        });
+        this.jsonData.push({
+          template:"text",
+          min_height:"380px",
+          bg_image:fun.image.replace("/assets/img/",""),
+          title_color:fun.color?fun.color:"white",
+          small_title:fun.sub,
+          big_title:fun.desc,
+          desc:[{
+            "type":"text", 
+            "value":fun.more,
+            "name":""
+          }].concat(descArray).concat(
+            [{
+              "type":"list",
+              "value":"",
+              "name":"趣味诗单"
+            }]
+          ),
+          link:"",
+        })
+      });
+
+      this.jsonData = this.getArticleData("article");
+    });
+
+  }
+  
+  getArticleData(nameSeed:any){
+    let myDate = new Date();
+    let hourSeed = myDate.getHours();
+    //let hourSeed = myDate.getMinutes();
+    let seed = nameSeed+hourSeed;
+    //console.log(""+seed)
+    //console.log(this.funDataMap)
+
+    if(this.disableRandomArticleData){
+      return this.jsonData;
+    }
+
+    if(!this.funDataMap.has(seed)){
+      //console.log('not find article'+this.jsonData.length)
+      let tempdata = this.setRandomArticles(this.jsonData);
+      //console.log(tempdata)
+      this.funDataMap.set(seed, tempdata);
+      this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
+      //console.log(this.funDataMap)
+    }
+    else{
+      //console.log('find article')
+    }
+
+    return this.funDataMap.get(seed);
+  }
+
+  setRandomArticles(data:any){
+
+    let temp:any = [];
+    //get 5 fun articles
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'), 5));
+    
+    //get 1 group/wall/scroll
+    temp = temp.concat(this.getRandomArray(data.filter(
+      (d:any)=>d.template==='group'
+      //||d.template==='wall'
+      ||d.template==='scroll'
+      ), 1));
+    
+    //get 1 vote article
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='vote'), 1));
+   
+    return this.getRandomArray(temp, 7);
   }
 
 
@@ -1054,7 +1159,7 @@ export class DataService {
 
 
   getRandomArray(arr:any,n:any){
-    if(!arr || arr.length<=4)
+    if(!arr || arr.length==0)
       return arr;
     
     let localArr = JSON.parse(JSON.stringify(arr));

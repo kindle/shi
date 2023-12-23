@@ -25,6 +25,6 @@
     background-repeat:no-repeat;
     background-color:{{s.color}};">
     </div>
-    <div class="card-text-style">{{s.text}}</div>
+    <div class="card-text-style">{{s.text?s.text:s.desc}}</div>
   </swiper-slide>
 </swiper-container>

@@ -123,6 +123,9 @@
         </div>
       </div>
 
+      <div *ngIf="data.currentArticle.template==='group'">
+        <app-tile name="趣味诗单" [source]="localFunData" ></app-tile>
+      </div>
 <!--
       <app-hot name="热门诗词" [source]="data.hotData"></app-hot>
       <app-hot name="经典诗词" [source]="data.classicData"></app-hot>

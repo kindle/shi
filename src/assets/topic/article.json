@@ -1,0 +1,280 @@
+[
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"mountains-190055_1280.jpg",
+        "title_color":"white",
+        "small_title":"四大边塞诗人",
+        "big_title":"边塞诗在唐诗灿烂的星河里无比耀眼",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"边塞四大诗人分别是高适、王昌龄、岑参、王之涣。这四位均属于盛唐时期的诗人。边塞诗人，以描绘边塞风光、反映戍边将士生活为主。边塞诗又称出塞诗是唐代汉族诗歌的主要题材。边塞诗是唐诗当中思想性最深刻，想象力最丰富，艺术性最强的一部分，一些有切身边塞生活经历和军旅生活体验的作家，以亲历的见闻来写作，边塞诗在唐诗灿烂的星河里，无比耀眼。"}
+        ],
+        "items":[
+            {"author":"高适", "sample":"莫愁前路无知己，天下无人不识君","desc":"","id":"bbeb1e68-eb13-729a-dfa8-925ead877783"},
+            {"author":"王昌龄","sample":"但使龙城飞将在，不教胡马度阴山","desc":"","id":"2d0385e7-0c72-423f-a538-f66acc9d4c46"},
+            {"author":"岑参","sample":"将军角弓不得控，都护铁衣冷难着","desc":"","id":"f18a4118-8e2e-f140-bfa9-e4eca924b76c"},
+            {"author":"王之涣","sample":"羌笛何须怨杨柳，春风不度玉门关","desc":"","id":"bcdf6f13-4cb9-418f-9279-c690522e0a27"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"seedlings-7110591_1280.jpg",
+        "title_color":"white",
+        "small_title":"济南二安",
+        "big_title":"宋代词坛“婉约派”与“豪放派”代表人物",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"济南二安指李清照（号易安居士）和辛弃疾（字幼安），是宋代词坛“婉约派”与“豪放派”代表人物，同为济南（李清照章丘人，辛弃疾历城人）人。清代神韵派大师王士禛称李易安与辛幼安为“济南二安”，云：“婉约以易安为宗，豪放为幼安称首，皆吾济南人，难乎为继矣。”"}
+        ],
+        "items":[
+            {"author":"李清照","sample":"红藕香残玉簟秋。轻解罗裳，独上兰舟","desc":"","id":"472a9121-8176-49c6-9597-0f093c8f49c6"},
+            {"author":"辛弃疾","sample":"众里寻他千百度。蓦然回首，那人却在，灯火阑珊处","desc":"","id":"04b2e061-d1ba-459d-8126-df13752e9cec"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"forest-5442598_1280.jpg",
+        "title_color":"white",
+        "small_title":"三苏",
+        "big_title":"一门父子三词客，千古文章四大家",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"三苏，是指北宋文学家苏洵、苏轼、苏辙的合称。北宋散文家苏洵（号老泉，字明允）和他的儿子苏轼（字子瞻，号东坡居士，世人称为苏东坡）、苏辙（ 字子由，自号颍滨遗老。1039～1112） 。三苏祠位于眉山市东坡区，是北宋著名文学家苏洵、苏轼、苏辙（史称“三苏”）的故居。"}
+        ],
+        "items":[
+            {"author":"苏洵", "sample":"六国破灭，非兵不利，战不善，弊在赂秦", "desc":"", "id":"c7bf3e28-37fb-4bee-8054-0ccc5ccccb97"},
+            {"author":"苏轼",  "sample":"挟飞仙以遨游，抱明月而长终", "desc":"", "id":"36a29278-711e-45d9-9099-e84fce8750c2"},
+            {"author":"苏辙",  "sample":"闭门不出十年久，湖上重游一梦回", "desc":"", "id":"e631fd43-8d07-4ea3-8f6b-1aa54c32f1f3"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"leaves-318743_1280.jpg",
+        "title_color":"white",
+        "small_title":"三曹",
+        "big_title":"汉魏政治诗坛三领袖",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"三曹指汉魏间曹操与其子曹丕、曹植的合称。因他们父子兄弟间在政治上的地位和文学上的成就，都对当时的文坛很有影响，是建安文学的代表，所以后人合称之为“三曹”。"}
+        ],
+        "items":[
+            {"author":"曹操", "sample":"对酒当歌，人生几何", "desc":"", "id":"7a2aa44e-035f-476a-8e5a-f4517b39b57b"},
+            {"author":"曹丕",  "sample":"秋风萧瑟天气凉，草木摇落露为霜", "desc":"", "id":"94a38052-ee80-4d07-80fc-c47c1c0d89de"},
+            {"author":"曹植",  "sample":"本自同根生，相煎何太急", "desc":"", "id":"2bf5dcac-9dfe-4317-a7e2-bd7791173849"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"nature-7175030_1280.jpg",
+        "title_color":"white",
+        "small_title":"吴中四士",
+        "big_title":"初、盛唐时期吴中四位诗人",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"指张若虚、贺知章、张旭和包融。在初、盛唐之交，四人齐名，他们又都是江浙一带人，这一带在古代也叫吴中，因此人们称他们为“吴中四士”。其中贺知章、张若虚是当时著名的诗人，张旭是书法家，也是诗人，包融所传诗不多。诗作以张若虚的《春江花月夜》最为著名。“四士”性格狂放，诗多具有浪漫主义色彩，往往透露出一些新的气息、新的情趣，体现了唐诗从初唐到盛唐过渡的特色。"}
+        ],
+        "items":[
+            {"author":"张若虚", "sample":"春江潮水连海平，海上明月共潮生", "desc":"", "id":"91019fe2-b58e-4320-a986-6a323847e944"},
+            {"author":"贺知章",  "sample":"不知细叶谁裁出，二月春风似剪刀", "desc":"", "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8"},
+            {"author":"张旭",  "sample":"桃花尽日随流水，洞在清溪何处边", "desc":"", "id":"1f28ab03-8388-4a2f-8c4f-3ce47789e221"},
+            {"author":"包融",  "sample":"武陵川径入幽遐，中有鸡犬秦人家", "desc":"", "id":"a01291fb-dbf6-478b-a177-2e8bbb9c5584"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"earth-3355931_1280.jpg",
+        "title_color":"white",
+        "small_title":"苏门四学士",
+        "big_title":"中国古典诗歌的黄金时代",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"即黄庭坚、秦观、晁补之、张耒四人合称，都出自苏轼门下，最先将此四人并称加以宣传即苏轼本人。他说:“如黄庭坚鲁直、晁补之无咎、秦观太虚、张耒文潜之流，皆世未之知，而轼独先知。”"}
+        ],
+        "items":[
+            {"author":"黄庭坚", "sample":"桃李春风一杯酒，江湖夜雨十年灯", "desc":"", "id":"0a724d86-c903-40b8-9598-b152f5f6ce71"},
+            {"author":"秦观",  "sample":"韶华不为少年留。恨悠悠。几时休", "desc":"", "id":"d41068c4-daaa-45c7-9ddc-6deb943d2ebd"},
+            {"author":"晁补之",  "sample":"人间花老，天涯春去，扬州别是风光", "desc":"", "id":"0b315bdd-3d00-4304-937b-3ef9315fd52f"},
+            {"author":"张耒",  "sample":"迟日花光乱，东风酒浪深", "desc":"", "id":"14386c9c-334e-487d-8d08-a3061f426985"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"butterflies-1127666_1280.jpg",
+        "title_color":"white",
+        "small_title":"大小李杜",
+        "big_title":"中国古典诗歌的黄金时代",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"大李杜为唐朝大诗人“诗仙”李白和“诗圣”杜甫的并称。李白主要成就：创造了古代积极浪漫主义文学高峰，为唐诗的繁荣与发展打开了新局面，批判继承前人传统并形成独特风格，歌行体和七绝达到后人难及的高度，开创了中国古典诗歌的黄金时代。小李杜为李商隐和杜牧的合称。杜牧的诗、赋、古文都负盛名，而以诗的成就最大，与李商隐齐名，世称“小李杜”。其诗风格俊爽清丽，独树一帜。尤其长于七言律诗和绝句。"}
+        ],
+        "items":[
+            {"author":"李白", "sample":"银鞍照白马，飒沓如流星", "desc":"", "id":"016daf19-f22d-4933-9582-3d91c4f9aeab"},
+            {"author":"杜甫",  "sample":"天子呼来不上船，自称臣是酒中仙", "desc":"", "id":"7cb1e181-617c-4e12-b818-48666992ebf6"},
+            {"author":"李商隐",  "sample":"相见时难别亦难，东风无力百花残", "desc":"", "id":"ed79f9bc-d5d1-4251-b22d-d091e0758a3f"},
+            {"author":"杜牧",  "sample":"长安回望绣成堆，山顶千门次第开", "desc":"", "id":"14316b5b-cba2-41e0-84bd-3c3ed0c02407"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"forest-6761846_1280.jpg",
+        "title_color":"white",
+        "small_title":"南宋四大家",
+        "big_title":"宋代诗歌第二个最繁荣的时期",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"南宋四大家又称中兴四大诗人（也可以称为中兴四大家，但经常称为南宋四大家），是中国南宋前期陆游、杨万里、范成大、尤袤四位爱国诗人的合称。他们能摆脱江西诗派的牢笼，写出思想、艺术各有特色的作品，影响很大，代表了宋代诗歌第二个最繁荣的时期。"}
+        ],
+        "items":[
+            {"author":"陆游", "sample":"山重水复疑无路，柳暗花明又一村", "desc":"", "id":"53f7d126-b9ad-443b-b054-1e2ae8e0e05c"},
+            {"author":"杨万里",  "sample":"儿童急走追黄蝶，飞入菜花无处寻", "desc":"", "id":"1cd7ede2-d77a-44ab-ade1-a9979ce1b4e6"},
+            {"author":"范成大",  "sample":"梅子金黄杏子肥，麦花雪白菜花稀", "desc":"", "id":"ecba162a-186c-4491-ab57-3cefa4c89438"},
+            {"author":"尤袤",  "sample":"只欠孤篷听雨，恍如身在潇湘", "desc":"", "id":"a10d354b-2c0d-4a6d-98dd-05070e8b54bb"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"tree-3137482_1280.jpg",
+        "title_color":"white",
+        "small_title":"初唐四杰",
+        "big_title":"海内称为王杨卢骆，亦号为四杰",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"初唐四杰是指中国唐代初年，文学家王勃、杨炯、卢照邻、骆宾王的合称，简称“王杨卢骆”。四杰齐名，原并非指其诗文，而主要指骈文和赋而言。后遂主要用以评其诗。杜甫《戏为六绝句》有“王杨卢骆当时体”句，一般即认为指他们的诗歌而言；但也有认为指文，如清代宗廷辅《古今论诗绝句》谓“此首论四六”；或认为兼指诗文，如刘克庄《后村诗话·续集》论此首时，举赋、檄、诗等为例。"}
+        ],
+        "items":[
+            {"author":"王勃", "sample":"海内存知己，天涯若比邻", "desc":"", "id":"1b5433df-57f0-2280-acc8-f29f0cee8e5e"},
+            {"author":"杨炯",  "sample":"烽火照西京，心中自不平", "desc":"", "id":"c989738d-cb18-4f0d-a353-56e6bc3a3ab3"},
+            {"author":"卢照邻",  "sample":"得成比目何辞死，愿作鸳鸯不羡仙", "desc":"", "id":"fecca913-ad91-4fab-b34d-5734a2533039"},
+            {"author":"骆宾王",  "sample":"无人信高洁，谁为表予心", "desc":"", "id":"c65539db-4e2b-4ce4-a22b-563b6ef3f4f1"}
+        ],
+        "link":""
+    },
+    {
+        "template": "group",
+        "min_height": "380px",
+        "bg_image":"故宫瓦.jpg",
+        "title_color":"white",
+        "small_title":"唐宋八大家",
+        "big_title":"古文运动的领袖以及核心人物都有谁？",
+        "is_title_bottom":false,
+        "desc":[
+            {"type":"text", "value":"唐宋八大家，又称唐宋古文八大家，是中国唐代韩愈，柳宗元和宋代苏轼、苏洵、苏辙、王安石、曾巩、欧阳修八位散文家的合称。其中韩愈、柳宗元是唐代古文运动的领袖，欧阳修、三苏等四人是宋代古文运动的核心人物，王安石、曾巩是临川文学的代表人物。韩愈是“古文运动”的倡导者，他们先后掀起的古文革新浪潮，使诗文发展的陈旧面貌焕然一新。"}   
+        ],
+        "items":[
+            {"author":"韩愈", "sample":"天街小雨润如酥，草色遥看近却无", "desc":"", "id":"d7cb4244-143b-403b-8599-b10c6763d032"},
+            {"author":"柳宗元",  "sample":"千山鸟飞绝，万迳人踪灭", "desc":"", "id":"1f92134b-bca9-46eb-b2fe-87b30413041a"},
+            {"author":"欧阳修",  "sample":"月上柳梢头，人约黄昏后", "desc":"", "id":"407688bf-75d1-4063-9e2b-e0673e823b73"},
+            {"author":"苏洵",  "sample":"六国论", "desc":"", "id":"85c8677e-398d-4b6e-bd9a-a4911519fe26"},
+            {"author":"苏轼",  "sample":"大江东去，浪淘尽，千古风流人物", "desc":"", "id":"c5e3d9a0-2e0a-4daf-a009-63197d2e471b"},
+            {"author":"苏辙",  "sample":"逍遥堂后千寻木，长送中宵风雨声", "desc":"", "id":"984b06ab-b4b5-4917-9c30-0cac89b6bfa2"},
+            {"author":"王安石",  "sample":"京口瓜洲一水间，锺山祇隔数重山", "desc":"", "id":"1f202323-f293-4c01-bcb6-8d7fb45b941f"},
+            {"author":"曾巩",  "sample":"解把飞花蒙日月，不知天地有清霜", "desc":"", "id":"95d75f69-a301-4c8b-ad04-8935b5dfdaab"}
+        ],
+        "link":""
+    },
+
+
+
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"陆游的巅峰之作，你最喜欢哪一句？",
+        "desc":"读陆游的诗，感受家国情怀",
+        "items":[
+            {"text":"夜阑卧听风吹雨，铁马冰河入梦来","id":"c1a3f241-6cdd-41f9-a6c2-e4eb4a153c9e"},
+            {"text":"山重水复疑无路，柳暗花明又一村","id":"53f7d126-b9ad-443b-b054-1e2ae8e0e05c"},
+            {"text":"王师北定中原日，家祭无忘告乃翁","id":"785fbae0-bf51-4ad6-adf1-b74a69a32d81"},
+            {"text":"纸上得来终觉浅，绝知此事要躬行","id":"1057cee4-bf1d-4c46-bf73-8ed5357f7790"}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"刘禹锡的巅峰之作，你最喜欢哪一句？",
+        "desc":"读刘禹锡的诗，整个人都变得通透了",
+        "items":[
+            {"text":"晴空一鹤排云上，便引诗情到碧霄","id":"aa22a168-1c3f-48e1-b7d4-1aa143d66335"},
+            {"text":"东边日出西边雨，道是无晴却有晴","id":"7b000fd9-b9ce-4215-8777-32267dcc5456"},
+            {"text":"沉舟侧畔千帆过，病树前头万木春","id":"9c955427-5806-4e78-949e-0cff513bc8e7"},
+            {"text":"旧时王谢堂前燕，飞入寻常百姓家","id":"4fa92777-9bd6-45ca-9272-bac30459cf5e"}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"黄庭坚的巅峰之作，你最喜欢哪一句？",
+        "desc":"黄庭坚的诗，道尽了成年人的辛酸",
+        "items":[
+            {"text":"桃李春风一杯酒，江湖夜雨十年灯","id":"0a724d86-c903-40b8-9598-b152f5f6ce71"},
+            {"text":"毕竟几人真得鹿，不知终日梦为鱼","id":"bed6cbe7-c229-418d-aef5-595f128a9c3c"},
+            {"text":"多少长安名利客，机关用尽不如君","id":"db370d6f-203b-4761-b7bd-baa4da2f4d1e"},
+            {"text":"清风明月无人管，并作南楼一味凉","id":"992cd895-ace2-4ae2-a8f1-c483ccdc776b"}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"王维五言的巅峰之作，你最喜欢哪一句？",
+        "desc":"读王维的诗，就像在欣赏一幅画",
+        "items":[
+            {"text":"行到水穷处，坐看云起时","id":"6d098c75-038d-45f4-8f86-73976c355e44"},
+            {"text":"大漠孤烟直，长河落日圆","id":"8ec59c80-46dc-4916-b069-a25ed8f144ec"},
+            {"text":"明月松间照，清泉石上流","id":"00f12a19-bb96-4980-a4f5-11a1b9d604dd"},
+            {"text":"月出惊山鸟，时鸣春涧中","id":"e4f16516-db22-4a20-90cb-917c66c4afbd"}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"杜甫的那句诗最让你感动？",
+        "desc":"安得广厦千万间，大庇天下寒士俱欢颜",
+        "items":[
+            {"text":"人生不相见，动如参与商","id":"6c7c45a6-c944-4ff3-aa99-f5cb0440436f"},
+            {"text":"亲朋无一字，老病有孤舟","id":"5d05fef6-e4aa-48e5-917d-c29d0e6d6b33"},
+            {"text":"同学少年多不贱，五陵衣马自轻肥","id":"0758afd3-8514-4ce5-a716-6c5b1d4ddb41"},
+            {"text":"纨袴不饿死，儒冠多误身","id":"bce77cf0-244d-435a-8a25-8d28a83bc4b9"}
+        ]
+    },
+    {
+        "template": "vote",
+        "bg_color":"white",
+        "title_color":"black",
+        "small_title":"精选",
+        "big_title":"“诗魔”白居易的意难平",
+        "desc":"天长地久有时尽，此恨绵绵无绝期",
+        "items":[
+            {"text":"我有所念人，隔在远远乡","id":"a9d53bcc-3270-4d07-8231-c562f2ac6ab1"},
+            {"text":"平生忆念消磨尽，昨夜因何入梦来","id":"bf33f5b7-bdc3-4aaf-b3a1-090b9ebc0089"},
+            {"text":"君埋泉下泥销骨，我寄人间雪满头","id":"a3b11d99-9994-4ff0-a8db-d85d1b7ed065"},
+            {"text":"夜深忽梦少年事，梦啼妆泪红阑干","id":"0fb0189c-8ff3-4106-af94-f6d26d528a1d"},
+            {"text":"遥知别后西楼上，应凭栏干独自愁","id":"9cf12c73-a403-4d2f-bfa4-392e5c843745"}
+        ]
+    }
+]

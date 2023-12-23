@@ -17,11 +17,12 @@
     slides-offset-after="10"
     >
   <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToAuthor(s)">
-    <div class="card-scroll-item" 
-    style="background-image:url('/assets/img/poet/{{s}}.jpeg');
-    background-size:cover;
-    background-repeat:no-repeat;">
+    <div style="display: flex; justify-content: center; flex-direction: column;width:120px;">
+      <img width="120" height="120" style="border-radius: 10px;" 
+        style="border-radius: 50%;"
+        src="/assets/img/poet/{{s}}.jpeg" 
+        onerror="javascript:this.src='/assets/img/default.jpg'" />
+      <div class="card-text-style" style="text-align: center;margin-top: 10px;">{{s}}</div>
     </div>
-    <div class="card-text-style" style="text-align: center;">{{s}}</div>
   </swiper-slide>
 </swiper-container>

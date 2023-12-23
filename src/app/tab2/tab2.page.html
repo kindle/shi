@@ -11,7 +11,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-big [source]="searchTopicData.scroll"></app-big>
+  <!--<app-big [source]="searchTopicData.scroll"></app-big>-->
+  <app-big [source]="localScrollData"></app-big>
 
   <app-tile name="最近浏览" [source]="data.playedEPHistory" 
   *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>

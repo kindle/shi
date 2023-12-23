@@ -19,7 +19,12 @@ export class ListPage {
     "assets/img/cao3.jpg",
     "assets/img/money.jpg",
     "assets/img/redbsj.jpg",
-    "assets/img/road.jpg"
+    "assets/img/road.jpg",
+    "assets/img/海钓.jpg",
+    "assets/img/man-3915438_1280.jpg",
+    "assets/img/lotus-1205631_1280.jpg",
+    "assets/img/swan-4013225_1280.jpg",
+    "assets/img/chalk-4829602_1280.jpg"
   ];
 
   @ViewChild('swiperpickimg')

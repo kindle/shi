@@ -11,6 +11,7 @@ export class Tab2Page {
 
   searchTopicData:any;
   localFunData:any;
+  localScrollData:any;
   
   constructor(
     public data : DataService,
@@ -20,5 +21,14 @@ export class Tab2Page {
     this.searchTopicData = this.data.tab2BrowseTopicData
       .filter((d:any)=>d.id==this.data.currentTopicId)[0];
     this.localFunData = this.data.getFunData('tab2_');
+    this.localScrollData = this.data.getFunData('tab2_scroll_');
+    console.log(this.localScrollData);
+    console.log(this.searchTopicData.scroll)
+    this.localScrollData.forEach((e:any) => {
+      e.alias = e.sub;
+      e.text = e.desc;
+      e.desc = "";
+      //e.desc = "desc:"+ (e.more.length>0?e.more:e.desc);
+    });
   }
 }

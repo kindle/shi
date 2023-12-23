@@ -38,8 +38,6 @@ export class AppComponent {
     //move it to tab1, as it's very slow when starts up
     await this.data.loadJsonData();
 
-    this.data.loadArticleJsonData();
-
     this.data.getSubscriptionImage();
   }
 }
