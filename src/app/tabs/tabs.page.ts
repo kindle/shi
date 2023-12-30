@@ -14,9 +14,7 @@ import { Solar } from 'lunar-typescript';
 export class TabsPage {
 
   onTabChange(event: any){
-    //const selectedTab = event.detail.tab;
-    //console.log(event.tab);
-    this.data.currentTab = event.tab;
+    this.data.setLastVisitTab(event.tab);
   }
 
   constructor(
@@ -29,6 +27,7 @@ export class TabsPage {
     
     
     var solar = Solar.fromYmd(2023,9,23);
+    console.log('lunar 节气：')
     console.log(solar.getLunar().getJieQi());
     console.log(solar.getLunar().getAnimal());
     console.log(solar.getLunar().getOtherFestivals());

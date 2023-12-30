@@ -77,8 +77,8 @@
             </div>
           </ion-thumbnail>
           
-          <ion-label (click)="data.playbyid(it.id, it.sample)">
-            <h2>{{it.sample?it.sample:it.paragraphs[0]}}</h2>
+          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)">
+            <h2>{{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
             <p style="margin-top:5px;display: flex;align-items: end;">
               {{it.author}}《{{it.title}}》
               <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>

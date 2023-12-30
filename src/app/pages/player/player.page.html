@@ -19,7 +19,7 @@
               ></div>
             </ion-thumbnail>
             
-            <ion-label (click)="data.playbyid(p.id, p.sample)">
+            <ion-label>
               <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
               <p style="margin-top:5px;display: flex;align-items: end;">
                 {{p.author}}《{{p.title}}》
@@ -29,6 +29,8 @@
           </ion-item>
         </ion-list>
       </swiper-slide>
+
+
       <swiper-slide>
         <ion-list style="margin:10px 25px;">
           <ion-list-header>

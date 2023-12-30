@@ -5,7 +5,7 @@
     "name":"浏览",
     "image":"/assets/img/smart.jpg",
     "desctitle":"搜索更多精彩内容",
-    "desc":"大语文时代，古诗文猛增87%：比不努力更可怕的，是死记硬背",
+    "desc":"在真正的运气到来之前，请你积累知识，认真生活。",
     "scroll":[
         {"id":10, "alias":"诗词之源","text":"关关雎鸠，在河之洲","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
         "image":"/assets/img/张大千荷花.jpg"},
@@ -64,8 +64,10 @@
     "desctitle":"",
     "desc":"",
     "scroll":[
-      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
-      "image":"/assets/img/tree.jpg"}
+      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/tree.jpg"},
+      {"id":803, "alias":"推荐专辑","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"诗经","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/张大千荷花.jpg"},
+      {"id":804, "alias":"推荐专辑","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"曹操","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/海钓.jpg"}
+        
     ],
     "hot":[],
     "list":[

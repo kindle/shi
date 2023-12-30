@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
-import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/add-to-customlist.page';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',

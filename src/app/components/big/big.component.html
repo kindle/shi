@@ -1,6 +1,6 @@
 <swiper-container swiper-touch
     style="margin-top:10px;width: 100%;"
-    [loop]="false" navigation="false" scrollbar="false"
+    [loop]="data.TestMode" navigation="false" scrollbar="false"
     pagination="false" space-between="10" 
     slides-per-view="1.1" centered-slides="false"
     slides-offset-before="20"
@@ -10,7 +10,9 @@
       <div style="min-height: 300px;">
         <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:0;">
           <ion-card-title class="station-text" style="margin-bottom:5px;">{{s.alias}}</ion-card-title>
-          <ion-card-title class="station-type" style="white-space: nowrap;">{{s.text}}</ion-card-title>
+          <ion-card-title class="station-type" style="white-space: nowrap;">
+            <div class="card-text-style" style="margin-left:0;">{{s.desc}}</div>
+          </ion-card-title>
         </ion-card-content>
 <!--background-color: rgba(0,0,0,0.5)-->
         <ion-card style="border-radius: 10px;margin-left:0px;margin-right:0px;margin-top:15px;margin-bottom:15px;">
@@ -20,8 +22,8 @@
             
             <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
-            ;font-size:13px;width:100%;" *ngIf="s.desc"
-            >{{s.desc}}</div>
+            ;font-size:13px;width:100%;" *ngIf="s.text"
+            >{{s.text}}</div>
           </ion-card-content>
           <ion-card-content class="station-content" style="z-index:1;" *ngIf="!s.image"
             style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">

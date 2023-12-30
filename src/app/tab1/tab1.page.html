@@ -66,7 +66,7 @@
         </ion-card-content>
         <ion-card-content>
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
-          *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.sample)">
+          *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.text)">
             <div style="width: 100%;text-align: center;">{{v.text}}</div>
           </ion-item>
         </ion-card-content>
@@ -119,7 +119,9 @@
         background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
         </ion-card-content>
       </ion-card>
 

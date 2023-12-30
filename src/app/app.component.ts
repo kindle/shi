@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { Storage } from '@ionic/storage-angular';
+import { SplashScreen } from '@capacitor/splash-screen';
 import { DataService } from './services/data.service';
+import { NavController } from '@ionic/angular';
 register();
 
 @Component({
@@ -13,32 +15,30 @@ export class AppComponent {
   constructor(
     private data: DataService,
     private storage: Storage,
+    private navController: NavController,
   ) {
     
   }
 
   async ngOnInit() {
-    //init localstorage
-    this.storage.create().then(()=>{
-      //load local storage groups/targets
-      //calculate targets days/target count in groups
+    SplashScreen.show({
+      showDuration: 2000,
+      autoHide: true,
+    });
+
+    await this.storage.create().then(()=>{
       this.data.init();
     }).finally(()=>{
-      //load likes after local storage db is created.
-      this.data.loadlikes();
-      //load fun data
-      this.data.loadFunData();
-      //load poem play history
-      this.data.loadPlayHistory();
-      //load ep play history
-      this.data.loadRecentPlayedEP();
-      //load play style
-      this.data.loadPlayStyle();
+      
     });
-    //move it to tab1, as it's very slow when starts up
-    await this.data.loadJsonData();
 
-    this.data.getSubscriptionImage();
+    const lastVisitedTab = await this.storage.get(this.data.LOCALSTORAGE_LAST_VISIT_TAB);
+    const cleanTabIdentifier = lastVisitedTab.replace(/"/g, '');
+    if (lastVisitedTab) {
+      this.navController.navigateRoot(`/tabs/${cleanTabIdentifier}`);
+    } else {
+      this.navController.navigateRoot('/tabs/tab1');
+    }
   }
 }
 

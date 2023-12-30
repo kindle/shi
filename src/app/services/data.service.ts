@@ -10,6 +10,7 @@ import { UiService } from './ui.service';
 import { catchError, tap } from 'rxjs';
 import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
 
+import { Solar } from 'lunar-typescript';
 
 //import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
@@ -48,6 +49,7 @@ export enum ViewType{
 })
 export class DataService {
 
+  TestMode = false;
   
   //订阅广告开关
   showSubscription = false;
@@ -56,13 +58,40 @@ export class DataService {
   //开卷有益开关
   disableRandomArticleData = false;
 
+  constructor(
+    private storage: Storage,
+    private http: HttpClient,
+
+    private ui: UiService,
+    platform: Platform,
+    private router: Router,
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute,
+    private actionSheetController: ActionSheetController,
+    private modalController: ModalController,
+    private eventService: EventService,
+    private media: Media,
+  ){
+    this.platform = platform;
+    this.audio = new Audio();
+
+    if(this.TestMode === true){
+      this.showSubscription = true;
+      this.disableRandomFunData = true;
+      this.disableRandomArticleData = true;
+    }else{
+      this.showSubscription = false;
+      this.disableRandomFunData = false;
+      this.disableRandomArticleData = false;
+    }
+  }
 
   subscriptionImage = "辣椒";
   getSubscriptionImage(){
-    let images = ["辣椒","water"]
+    //let images = ["辣椒","water"]
+    let images = ["water"]
     this.subscriptionImage = images[this.getRandom(0,images.length)];
   }
-
 
   currentArticle:any;
 
@@ -70,7 +99,7 @@ export class DataService {
   tab2BrowseTopicData:any;
   tab5RadioTopicData:any;
   currentTopicId = 0;
-  poemListData:any;
+  poemListData:any=[];
   ////scurrentListId = 0;
   //currentAuthor = "";
   ////currentViewType = ViewType.Author;
@@ -153,25 +182,30 @@ export class DataService {
   }
 
   loadPoemList(){
-    //load all the lists
-    this.getData(`/assets/topic/list-normal.json`).subscribe(data=>{
-      //经典传统 诗单
-      this.poemListData = data;
-      //console.log('load list-normal')
-      /*
-      this.getData(`/assets/topic/list-idea.json`).subscribe(ideaData=>{
-        //自定义花样诗单 id 1000 开头
-        this.poemListData =this.poemListData.concat(ideaData);
-        this.getData(`/assets/topic/list-holiday.json`).subscribe(holidayData=>{
-          //自定义节日诗单 id 2000 开头
-          this.poemListData =this.poemListData.concat(holidayData);
-          this.getData(`/assets/topic/list-food.json`).subscribe(foodData=>{
-            this.poemListData =this.poemListData.concat(foodData);
-          });
-        });
-      });
-      */
-    });
+    const jsonFiles = [
+      `/assets/topic/list-fun.json`,
+      `/assets/topic/list-audio.json`,
+      //`/assets/topic/list-holiday.json`,
+      //`/assets/topic/list-food.json`
+      //24 节气
+    ];
+
+    this.loadNextJSON(jsonFiles, 0);
+  }
+  loadNextJSON(jsonFiles: string[], index: number): void {
+    if (index < jsonFiles.length) {
+      this.http.get<any>(jsonFiles[index]).subscribe(
+        result => {
+          this.poemListData = this.poemListData.concat(result); 
+          this.loadNextJSON(jsonFiles, index + 1); 
+        },
+        error => {
+          console.error('Error loading JSON file:'+jsonFiles[index], error);
+        }
+      );
+    } else {
+      //console.log('All JSON files loaded:', this.poemListData);
+    }
   }
 
   getData(json:any){
@@ -201,6 +235,8 @@ export class DataService {
     });
   }
   getFunData(nameSeed:any){
+    console.log("this.disableRandomFunData:"+this.disableRandomFunData)
+    console.log(this.funData)
     if(this.disableRandomFunData){//for test adding new poem list
       return this.funData;
     }
@@ -209,12 +245,15 @@ export class DataService {
     let seed = nameSeed+hourSeed;
     //console.log(seed)
     if(!this.funDataMap.has(seed)){
-      this.funDataMap.set(seed, this.getRandomArray(this.funData, 6));
+      this.funDataMap.set(seed, this.getRandomArray(this.funData, 10));
       this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
     }
 
     return this.funDataMap.get(seed);
   }
+
+  tab2LocalFunData:any = [];// this.data.getFunData('tab2_');
+  tab2LocalScrollData:any = [];// this.data.getFunData('tab2_scroll_');
 
   jsonStrToMap(jsonStr:string){
     const jsonObj = JSON.parse(jsonStr)
@@ -250,9 +289,18 @@ export class DataService {
     });
 
     //this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
-    this.http.get<any>('/assets/topic/list-normal.json').subscribe(result=>{
+    this.http.get<any>('/assets/topic/list-fun.json').subscribe(result=>{
       //给趣味诗单随机5个tile用的
       this.funData = result;
+
+      this.tab2LocalFunData = this.getFunData('tab2_');
+      this.tab2LocalScrollData = this.getFunData('tab2_scroll_');
+      this.tab2LocalScrollData.forEach((e:any) => {
+        e.alias = e.sub;
+        //e.text = e.desc;
+        //e.desc = "";
+        //e.desc = "desc:"+ (e.more.length>0?e.more:e.desc);
+      });
       /*
       this.funData.forEach((fun:any) => {
         let items = this.poemListData.filter((p:any)=>p.id === fun.id)
@@ -269,6 +317,7 @@ export class DataService {
       
     });
     this.http.get<any>('/assets/topic/hot.json').subscribe(result=>{
+      result = this.getRandomArray(result, 16);
       this.hotData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
@@ -285,6 +334,7 @@ export class DataService {
       }
     });
     this.http.get<any>('/assets/topic/classic.json').subscribe(result=>{
+      result = this.getRandomArray(result, 16);
       this.classicData = [];
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
@@ -298,20 +348,12 @@ export class DataService {
       }
     });
 
-    //load topics
-    if(this.searchTopicData==null){
-      this.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
-        //hide:true is for tab2 browse
-        //console.log(data)
-        this.searchTopicData = data.filter((d:any)=>d.hide!==true);
-        this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true&&d.id==200);
-        this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true&&d.id==199);
-      });
-    }
+    
 
     this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
+      //把article.json放入jsonData作为开卷有益文章展示
       this.jsonData = result;
-      console.log('start to load article data...')
+      //把list-fun.json等放入jsonData做为开卷有益文章展示
       this.poemListData.forEach((fun:any) => {
         let descArray:any = [];
         fun.list.forEach((p:any) => {
@@ -332,7 +374,7 @@ export class DataService {
           big_title:fun.desc,
           desc:[{
             "type":"text", 
-            "value":fun.more,
+            "value":fun.more?fun.more:fun.desc,
             "name":""
           }].concat(descArray).concat(
             [{
@@ -345,6 +387,7 @@ export class DataService {
         })
       });
 
+      //把jsonData文章随机排序，取前5个文章+1group+1vote展示
       this.jsonData = this.getArticleData("article");
     });
 
@@ -392,8 +435,99 @@ export class DataService {
     
     //get 1 vote article
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='vote'), 1));
+
+    //get 二十四节气诗单
+    console.log('test:///')
+    let today = new Date();
+    console.log(today.getFullYear()+""+today.getMonth()+""+today.getDay())
+    let solar = Solar.fromYmd(today.getFullYear(),today.getMonth(),today.getDay());
+    //let solar = Solar.fromYmd(2023,9,23);
+    let solarTermName = solar.getLunar().getJieQi();//example: "夏至";
+    console.log("today节气："+solarTermName)
+    if(!this.disableRandomFunData&&solarTermName.length>0)
+    {
+      temp = temp.concat(this.getSolarTermPoem(solarTermName));
+    }
+
+    //test
+    if(this.TestMode)
+    {
+      for (let [key, value] of this.solarTermMap) {
+        console.log(key, value);
+        temp = temp.concat(this.getSolarTermPoem(key));
+      }
+    }
    
-    return this.getRandomArray(temp, 7);
+    return temp;
+  }
+
+  solarTermMap:any = new Map([
+    ["立春",{image:"bird.jpg", title:"", desc:""}],
+    ["雨水",{image:"leaf-1001679_1280.jpg", title:"", desc:""}],
+    ["惊蛰",{image:"bee-4913122_1280.jpg", title:"", desc:""}],
+    ["春分",{image:"flowers-4917370_1280.jpg", title:"", desc:""}],
+    ["清明",{image:"water-815271_1280.jpg", title:"清明时节雨纷纷，路上行人欲断魂", desc:"清明节气因为节令期间“气清景明、万物皆显”而得名。清明是反映自然界物候变化的节气，这个时节阳光明媚、草木萌动、百花盛开，自然界呈现一派生机勃勃的景象。"}],
+    ["谷雨",{image:"ornamental-apple-tree-4162359_1280.jpg", title:"", desc:""}],
+    ["立夏",{image:"corn-field-440338_1280.jpg", title:"", desc:""}],
+    ["小满",{image:"wheat-865152_1280.jpg", title:"", desc:""}],
+    ["芒种",{image:"rape-blossom-502973_1280.jpg", title:"", desc:""}],
+    ["夏至",{image:"stonehenge-2326750_1280.jpg", title:"", desc:""}],
+    ["小暑",{image:"lotus-7511897_1280.jpg", title:"", desc:""}],
+    ["大暑",{image:"lotus-978659_1280.jpg", title:"", desc:""}],
+    ["立秋",{image:"leaves-318743_1280.jpg", title:"", desc:""}],
+    ["处暑",{image:"woman-1807533_1280.jpg", title:"", desc:""}],
+    ["白露",{image:"raindrops-574971_1280.jpg", title:"", desc:""}],
+    ["秋分",{image:"colorful-2609978_1280.jpg", title:"", desc:""}],
+    ["寒露",{image:"flower-2438754_1280.jpg", title:"", desc:""}],
+    ["霜降",{image:"cold-3967895_1280.jpg", title:"", desc:""}],
+    ["立冬",{image:"snow-5910822_1280.jpg", title:"", desc:""}],
+    ["小雪",{image:"aurora-1197753_1280.jpg", title:"", desc:""}],
+    ["大雪",{image:"forest-2964073_1280.jpg", title:"", desc:""}],
+    ["冬至",{image:"tree-2532679_1280.jpg", title:"", desc:""}],
+    ["小寒",{image:"24大寒.jpg", title:"", desc:""}],
+    ["大寒",{image:"ice-570500_1280.jpg", title:"", desc:""}],
+  ]);
+
+  getSolarTermPoem(solarTermName:any){
+    let solarTermInfo = this.solarTermMap.get(solarTermName);
+    //如果今天是二十四节气 +1
+    let tempSolarTermPoems = this.JsonData.filter((j:any)=>
+      j.text.indexOf(solarTermName)>-1&&
+      j.id!=null).slice(0,50);
+    let solarTermPoems:any = [];
+    tempSolarTermPoems.forEach((p:any) => {
+      solarTermPoems.push({
+        "type":"poem", 
+        "author":p.author, 
+        "title":p.title, 
+        "sample":"", 
+        "solarterm":solarTermName,
+        "paragraphs":p.paragraphs,
+        "id":p.id
+      })
+    });
+    let result = {
+      template:"text",
+      min_height:"380px",
+      bg_image:solarTermInfo.image,
+      title_color:"white",
+      small_title:solarTermName,
+      big_title:solarTermInfo.title,
+      desc:[{
+        "type":"text", 
+        "value":solarTermInfo.desc?solarTermInfo.desc:
+        (solarTermInfo.title?solarTermInfo.title:solarTermName),
+        "name":""
+      }].concat(solarTermPoems).concat(
+        [{
+          "type":"list",
+          "value":"",
+          "name":"趣味诗单"
+        }]
+      ),
+      link:"",
+    };
+    return result;
   }
 
 
@@ -457,23 +591,6 @@ export class DataService {
   private PHOTO_STORAGE: string = 'photos';
   private platform: Platform;
 
-  constructor(
-    private storage: Storage,
-    private http: HttpClient,
-
-    private ui: UiService,
-    platform: Platform,
-    private router: Router,
-    private navCtrl: NavController,
-    private activatedRoute: ActivatedRoute,
-    private actionSheetController: ActionSheetController,
-    private modalController: ModalController,
-    private eventService: EventService,
-    private media: Media,
-  ){
-    this.platform = platform;
-    this.audio = new Audio();
-  }
 
   /*--common start----*/
   get(key: string){
@@ -1077,24 +1194,23 @@ export class DataService {
     this.set(this.LocalQueueKey, JSON.stringify(this.queueData));
   }
   init(){
-    this.get(this.LocalTargetKey).then((value:any)=>{
-      this.targetData = JSON.parse(value);
-      this.get(this.LocalGroupKey).then((value:any)=>{
-        this.group = JSON.parse(value);
-
-        //first time install
-        if(this.targetData==null||this.targetData.length==0){
-          this.initData();
-        }
-
-        //this.globalCurrentTargetGroup = this.group[0];
-        //this.save();
-      });
-    });
-
-    this.get(this.LocalQueueKey).then((value:any)=>{
-      this.queueData = JSON.parse(value);
-    })
+    //诗词数据 很大
+    this.loadJsonData();
+    
+    //
+    this.loadTopicData();
+    this.loadlikes();
+    //load hourly fun data
+    this.loadFunData();
+    //load poem play history
+    this.loadPlayHistory();
+    //load ep play history
+    this.loadRecentPlayedEP();
+    //load play style
+    this.loadPlayStyle();
+    
+    //tab4 订阅随机图片
+    this.getSubscriptionImage();
   }
   
   /*--mix end----*/
@@ -1177,6 +1293,12 @@ export class DataService {
     return Math.round(value)
   }
 
+
+  LOCALSTORAGE_LAST_VISIT_TAB = "app_last_visit_tab";
+  setLastVisitTab(tab:any){
+    this.currentTab = tab;
+    this.set(this.LOCALSTORAGE_LAST_VISIT_TAB, JSON.stringify(this.currentTab));
+  }
   currentTab:any = null;
   goToAuthor(author:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/poet/${author}`);
@@ -1239,7 +1361,9 @@ export class DataService {
         this.setAudio();
       }else{
         this.execPause();
-        this.ui.player(this.currentPoem);
+        if(pop){
+          this.ui.player(this.currentPoem);
+        }
       }
       this.savePlayHistory(this.currentPoem);
     }
@@ -1289,6 +1413,18 @@ export class DataService {
   }
   myList = [];
   
+  async loadTopicData(){
+    //load topics
+    if(this.searchTopicData==null){
+      this.getData(`/assets/topic/search-topic.json`).subscribe(data=>{
+        //hide:true is for tab2 browse
+        //console.log(data)
+        this.searchTopicData = data.filter((d:any)=>d.hide!==true);
+        this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true&&d.id==200);
+        this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true&&d.id==199);
+      });
+    }
+  }
 
   LOCALSTORAGE_POEM_LIST = "shi_list";
   async loadlikes(){
