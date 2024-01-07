@@ -3,19 +3,19 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>类型</ion-title>
+    <ion-title>主题</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">类型</ion-title>
+      <ion-title class="tab-title" mode="md">主题</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-searchbar placeholder="在类型中查找" show-cancel-button="focus" 
+      <ion-searchbar placeholder="在主题中查找" show-cancel-button="focus" 
         style="padding-left:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"

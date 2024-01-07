@@ -7,6 +7,10 @@
       </ion-button>
     </ion-buttons>
   </ion-card-content>
+
+  <ion-buttons slot="end" (click)="data.goToSearch()" style="margin-right:10px;">
+    <ion-button>搜索更多</ion-button>
+  </ion-buttons>
 </ion-toolbar>
 <swiper-container swiper-touch
     style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
@@ -26,6 +30,6 @@
     background-repeat:no-repeat;
     background-color:{{s.color}};">
     </div>
-    <div class="card-text-style">{{s.text?s.text:s.desc}}</div>
+    <div class="card-text-style">{{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}</div>
   </swiper-slide>
 </swiper-container>

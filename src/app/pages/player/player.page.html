@@ -87,9 +87,9 @@
 
   <!--小于10行*********start*******************-->
   <!--img   ...-->
+  <!--(click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"-->
   <ion-list *ngIf="!showHistory&&data.currentPoem.paragraphs.length<=10">
     <ion-item lines="none" *ngIf="bigimg"
-    (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
       style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
       <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
         <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
@@ -136,8 +136,14 @@
 
     <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+      [ngClass]="{'select-line':currentIndex===i}"
+      (click)="select(i)"
       [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
-          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
+        <ion-icon name="search-outline" *ngIf="currentIndex===i"
+        (click)="data.search(text)"
+        style="position: absolute;left:5px;margin:2px;"
+        ></ion-icon>
+        <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
         <div *ngIf="!data.currentPoem.sample">{{text}}</div>
       </div>
     </ion-item>
@@ -196,8 +202,14 @@
 
       <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
         <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
-        [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
-            <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
+        [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
+        [ngClass]="{'select-line':currentIndex===i}"
+        (click)="select(i)">
+          <ion-icon name="search-outline" *ngIf="currentIndex===i"
+          (click)="data.search(text)"
+          style="position: absolute;left:5px;margin:2px;"
+          ></ion-icon>
+          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
           <div *ngIf="!data.currentPoem.sample">{{text}}</div>
         </div>
       </ion-item>

@@ -26,10 +26,14 @@ export class TagPage {
 
   ionViewWillEnter() {
     this.tag = this.activatedRoute.snapshot.paramMap.get('tag');
+    //by tag
+    //this.localJsonData = this.data.JsonData
+    //  .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
+    //by text: more than tag
     this.localJsonData = this.data.JsonData
-      .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
+      .filter((shici:any)=>shici.text.indexOf(this.tag)>=0);
     //note: tags is array
-console.log(this.localJsonData)
+    //console.log(this.localJsonData)
     this.onSearchChanged();
   }
 

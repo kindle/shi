@@ -12,6 +12,8 @@ import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
 
 import { Solar } from 'lunar-typescript';
 
+import { Browser } from '@capacitor/browser';
+
 //import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 //import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
@@ -166,6 +168,10 @@ export class DataService {
     //元曲
     this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲");
 
+
+    //论语
+    this.getObjects(`assets/db/论语/lunyu.json`,"论语");
+
     /*
     this.http.get<any>('https://reddah.blob.core.windows.net/cache/202385.json').subscribe(result=>{
       
@@ -186,7 +192,7 @@ export class DataService {
       `/assets/topic/list-fun.json`,
       `/assets/topic/list-audio.json`,
       //`/assets/topic/list-holiday.json`,
-      //`/assets/topic/list-food.json`
+      `/assets/topic/list-food.json`
       //24 节气
     ];
 
@@ -273,12 +279,13 @@ export class DataService {
 
   }
 
+  gameNextData:any=[];
 
   classicData:any;
   timelineData:any;
   pickData:any;
   //careful with JsonData
-  jsonData:any;
+  jsonData:any=[];
   azureData:any;
   async loadArticleJsonData(){
     this.http.get<any>('/assets/json/pick.json').subscribe(result=>{
@@ -286,6 +293,10 @@ export class DataService {
     });
     this.http.get<any>('/assets/json/timeline.json').subscribe(result=>{
       this.timelineData = result;
+    });
+
+    this.http.get<any>('/assets/topic/game-next.json').subscribe(result=>{
+      this.gameNextData = result;
     });
 
     //this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
@@ -353,7 +364,7 @@ export class DataService {
     this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
       //把article.json放入jsonData作为开卷有益文章展示
       this.jsonData = result;
-      //把list-fun.json等放入jsonData做为开卷有益文章展示
+      //把list-fun.json,list-audio.json等放入jsonData做为开卷有益文章展示
       this.poemListData.forEach((fun:any) => {
         let descArray:any = [];
         fun.list.forEach((p:any) => {
@@ -395,14 +406,16 @@ export class DataService {
   
   getArticleData(nameSeed:any){
     let myDate = new Date();
-    let hourSeed = myDate.getHours();
+    let dateSeed = (myDate.getMonth()+1)+"_"+myDate.getDay();
+    let hourSeed = dateSeed+"_"+myDate.getHours();
     //let hourSeed = myDate.getMinutes();
     let seed = nameSeed+hourSeed;
-    //console.log(""+seed)
+    //console.log("seed:"+seed)
     //console.log(this.funDataMap)
 
     if(this.disableRandomArticleData){
-      return this.jsonData;
+      let tempdata = this.setRandomArticles(this.jsonData);
+      return this.jsonData.concat(tempdata);
     }
 
     if(!this.funDataMap.has(seed)){
@@ -439,14 +452,20 @@ export class DataService {
     //get 二十四节气诗单
     console.log('test:///')
     let today = new Date();
-    console.log(today.getFullYear()+""+today.getMonth()+""+today.getDay())
-    let solar = Solar.fromYmd(today.getFullYear(),today.getMonth(),today.getDay());
+    console.log(today.getFullYear()+""+(today.getMonth()+1)+""+today.getDate())
+    let solar = Solar.fromYmd(today.getFullYear(),(today.getMonth()+1),today.getDate());
     //let solar = Solar.fromYmd(2023,9,23);
     let solarTermName = solar.getLunar().getJieQi();//example: "夏至";
+    console.log('更多信息')
+
+    console.log(solar.getLunar().getMonthInChinese())
+    console.log(solar.getLunar().getDayInChinese());
+    let dateStrChinese = solar.getLunar().getMonthInChinese() + "月" + solar.getLunar().getDayInChinese();
     console.log("today节气："+solarTermName)
     if(!this.disableRandomFunData&&solarTermName.length>0)
     {
-      temp = temp.concat(this.getSolarTermPoem(solarTermName));
+      //temp = temp.concat(this.getSolarTermPoem(solarTermName));
+      temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
     }
 
     //test
@@ -454,7 +473,7 @@ export class DataService {
     {
       for (let [key, value] of this.solarTermMap) {
         console.log(key, value);
-        temp = temp.concat(this.getSolarTermPoem(key));
+        temp = temp.concat(this.getSolarTermPoem(key, "某月某日"));
       }
     }
    
@@ -462,7 +481,7 @@ export class DataService {
   }
 
   solarTermMap:any = new Map([
-    ["立春",{image:"bird.jpg", title:"", desc:""}],
+    ["立春",{image:"bird.jpg", title:"忽对林亭雪，瑶华处处开", desc:"立春，为二十四节气之首。立，是“开始”之意；春，代表着温暖、生长。立春标志着万物闭藏的冬季已过去，开始进入风和日暖、万物生长的春季。在自然界，立春最显著的特点就是万物开始有复苏的迹象。"}],
     ["雨水",{image:"leaf-1001679_1280.jpg", title:"", desc:""}],
     ["惊蛰",{image:"bee-4913122_1280.jpg", title:"", desc:""}],
     ["春分",{image:"flowers-4917370_1280.jpg", title:"", desc:""}],
@@ -488,8 +507,10 @@ export class DataService {
     ["大寒",{image:"ice-570500_1280.jpg", title:"", desc:""}],
   ]);
 
-  getSolarTermPoem(solarTermName:any){
+  getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
+
+    
     //如果今天是二十四节气 +1
     let tempSolarTermPoems = this.JsonData.filter((j:any)=>
       j.text.indexOf(solarTermName)>-1&&
@@ -511,8 +532,8 @@ export class DataService {
       min_height:"380px",
       bg_image:solarTermInfo.image,
       title_color:"white",
-      small_title:solarTermName,
-      big_title:solarTermInfo.title,
+      small_title:dateStrChinese,//solarTermInfo.title,
+      big_title:"今日"+solarTermName,
       desc:[{
         "type":"text", 
         "value":solarTermInfo.desc?solarTermInfo.desc:
@@ -1313,19 +1334,31 @@ export class DataService {
   }
   //by tag or by id
   goToListBy(item:any){
-    this.saveRecentPlayedEP(item);
-    if(item.id){//有id诗单
-      this.goToList(item.id);
+    if(item.author!=null){
+      this.goToAuthor(item.author)
     }
-    else{//tag诗单
-      //this.currentAuthor = item.text;
-      //this.currentImage = item.src;
-      this.currentItem = item;
-      this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${item.text}`);
+    else if(item.game!=null){//名句接龙
+      this.navCtrl.navigateForward(`/tabs/${this.currentTab}/gamenext/${item.id}`);
+    }
+    else
+    {
+      this.saveRecentPlayedEP(item);
+      if(item.id){//有id诗单
+        this.goToList(item.id);
+      }
+      else{//tag诗单
+        //this.currentAuthor = item.text;
+        //this.currentImage = item.src;
+        this.currentItem = item;
+        this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${item.text}`);
+      }
     }
   }
   goToTopic(id:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/topic/${id}`);
+  }
+  goToSearch(){
+    this.navCtrl.navigateForward(`/tabs/tab4`);
   }
 
   play(){
@@ -1556,7 +1589,7 @@ export class DataService {
     if(group=='idlist')
       text = "诗单"
     else if(group=='taglist')
-      text = "类型"
+      text = "主题"
     else if(group=='poetlist')
       text = "诗人"
     else if(group=='poem')
@@ -1897,4 +1930,9 @@ export class DataService {
     reader.readAsDataURL(blob);
   });
   /*custom image for custom list end */
+
+  search(key:any){
+    console.log(key)
+    Browser.open({ url: `http://www.bing.com/search?q=${key}` });
+  } 
 }

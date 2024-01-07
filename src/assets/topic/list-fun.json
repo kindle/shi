@@ -113,7 +113,7 @@
         "id":8,
         "name":"",
         "sub":"婉约派",
-        "image":"/assets/img/balloons-1046658_1280.jpg",
+        "image":"/assets/img/rape-blossom-502973_1280.jpg",
         "more":"婉约派内容侧重儿女风情，结构深细缜密，重视音律，语言圆润，清新绮丽，具有一种柔婉之美。",
         "desc":"问君能有几多愁，恰似一江春水向东流",
         "list":[
@@ -233,7 +233,7 @@
         "name":"",
         "sub":"时光如水",
         "image":"/assets/img/bird.jpg",
-        "more":"",
+        "more":"时光的绝情之处是，它让你熬到真相，却不给你任何补偿。",
         "desc":"古人是怎么说时间过得真快的？",
         "list":[
             {"title":"寄黄几复","author":"黄庭坚","sample":"桃李春风一杯酒，江湖夜雨十年灯", "id":"0a724d86-c903-40b8-9598-b152f5f6ce71"},
@@ -789,7 +789,7 @@
         "id":51,
         "name":"",
         "sub":"风景",
-        "image":"/assets/img/rape-blossom-502973_1280.jpg",
+        "image":"/assets/img/balloons-1046658_1280.jpg",
         "more":"",
         "desc":"你读过些风景最惊艳的一句诗是什么？",
         "list":[

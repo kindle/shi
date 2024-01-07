@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <swiper-container swiper-touch style="width:100%;height:100%;"
+    [loop]="false" navigation="false" scrollbar="false"
+    autoplay="false" speed="500">
+    <swiper-slide *ngFor="let s of localGameData.list;index as i" (click)="show(s);data.playbyid(s.id, s.sample, false)">
+      <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;">
+        
+        <div style="text-align: center;padding:30px 0;font-size: xx-large;">
+          {{s.sample.split('，')[0]}}
+        </div>
+
+        <div style="text-align: center;padding:30px 0;font-size: xx-large;" *ngIf="s.display">
+          {{s.sample.split('，')[1]}}
+        </div>
+      </div>
+      
+      <div style="position:absolute;left:0;top:40%;">
+        <ion-fab slot="fixed" vertical="center" horizontal="start">
+          <ion-fab-button style="margin:10px;" color="{{s.display?'primary':'light'}}"
+          (click)="show(s);data.playbyid(s.id, s.sample, false)">
+            <ion-icon name="bulb-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

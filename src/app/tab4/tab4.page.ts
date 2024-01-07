@@ -115,6 +115,7 @@ export class Tab4Page implements OnInit {
 
     this.searchResult = this.localJsonData.filter((e:any)=>
       (e.text).indexOf(key)>=0
+      //&&e.audio
     );
     this.searchResultCount = this.searchResult.length;
     

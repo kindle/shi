@@ -76,7 +76,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="display: flex;margin:0 20px;">
+  <div style="display: flex;margin:10px 20px;">
     <ion-button color="light" style="width: 100%;margin-right:10px;" [disabled]="noAudio"
     (click)="data.playList(listdata.list, listdata.name)">
       <ion-icon slot="start" name="play" color="primary"></ion-icon>
@@ -91,7 +91,7 @@
 
   <app-text name="" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
     
-  <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:10px;">
+  <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:20px;">
     <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">

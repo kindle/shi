@@ -13,9 +13,6 @@
 
   <div style="display: flex;flex-wrap: wrap;justify-content: center;">
     <div class="card-wrap" *ngFor="let item of data.jsonData;index as i">
-      
-      
-
       <ion-card class="card card-img" (click)="goTemplateSlide(item.link)" card-shrink
       *ngIf="item.template=='slide'"
         style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">

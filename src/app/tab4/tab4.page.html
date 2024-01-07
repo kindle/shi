@@ -151,7 +151,7 @@
     <ion-card *ngFor="let topic of this.data.searchTopicData" 
     style="margin:5px;
     background-image: url('{{topic.image}}');
-    background-size:auto;"
+    background-size:cover;"
     
     id="{{topic.id}}"
     (click)="data.goToTopic(topic.id)"

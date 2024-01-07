@@ -21,6 +21,10 @@ export class PlayerPage implements OnInit {
       this.data.setAudio();
   }
 
+  currentIndex:any;
+  select(i:any){
+    this.currentIndex = i;
+  }
 
   prev(){
     //this.data.prevTodayText();

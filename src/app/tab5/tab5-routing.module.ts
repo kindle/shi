@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'tag/:tag',
     loadChildren: () => import('../pages/by-tag-shi-list/tag.module').then( m => m.TagPageModule)
+  },
+  {
+    path: 'gamenext/:id',
+    loadChildren: () => import('../pages/game-next/next.module').then( m => m.NextPageModule)
   }
 ];
 
