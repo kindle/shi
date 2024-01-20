@@ -24,7 +24,7 @@ export class Tab3Page {
     //}
     //else{
 
-    console.log("total poems:"+this.data.JsonData.length)
+    //console.log("total poems:"+this.data.JsonData.length)
 
       let ptype = this.activatedRoute.snapshot.queryParams["type"];
       let text = this.activatedRoute.snapshot.queryParams["text"];
@@ -89,7 +89,7 @@ export class Tab3Page {
   //source is from timeline, the value is author, search by auther name
   //other source, search by text, full search
   async onSearchchange(source:string=""){
-    console.log('on search change')
+    //console.log('on search change')
     if(this.searchKeywordModel!=null)
       this.searchKeywordModel = this.searchKeywordModel.trim();
 

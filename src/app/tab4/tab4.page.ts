@@ -41,10 +41,12 @@ export class Tab4Page implements OnInit {
     /****test code*****/
     var arrayObj=Array.from(this.data.tagsStat);
     //按照value值降序排序
-    arrayObj.sort(function(a,b){return a[1]-b[1]});
-    for (var [key, value] of arrayObj) 
-    {
-        console.log(key + ' = ' + value);
+    if(this.data.TestMode){
+      arrayObj.sort(function(a,b){return a[1]-b[1]});
+      for (var [key, value] of arrayObj) 
+      {
+          console.log(key + ' = ' + value);
+      }
     }
     /****test code*****/
   }

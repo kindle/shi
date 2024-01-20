@@ -242,8 +242,8 @@ export class DataService {
     });
   }
   getFunData(nameSeed:any){
-    console.log("this.disableRandomFunData:"+this.disableRandomFunData)
-    console.log(this.funData)
+    //console.log("this.disableRandomFunData:"+this.disableRandomFunData)
+    //console.log(this.funData)
     if(this.disableRandomFunData){//for test adding new poem list
       return this.funData;
     }
@@ -453,18 +453,18 @@ export class DataService {
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='vote'), 1));
 
     //get 二十四节气诗单
-    console.log('test:///')
+    //console.log('test:///')
     let today = new Date();
-    console.log(today.getFullYear()+""+(today.getMonth()+1)+""+today.getDate())
+    //console.log(today.getFullYear()+""+(today.getMonth()+1)+""+today.getDate())
     let solar = Solar.fromYmd(today.getFullYear(),(today.getMonth()+1),today.getDate());
     //let solar = Solar.fromYmd(2023,9,23);
     let solarTermName = solar.getLunar().getJieQi();//example: "夏至";
-    console.log('更多信息')
+    //console.log('更多信息')
 
-    console.log(solar.getLunar().getMonthInChinese())
-    console.log(solar.getLunar().getDayInChinese());
+    //console.log(solar.getLunar().getMonthInChinese())
+    //console.log(solar.getLunar().getDayInChinese());
     let dateStrChinese = solar.getLunar().getMonthInChinese() + "月" + solar.getLunar().getDayInChinese();
-    console.log("today节气："+solarTermName)
+    //console.log("today节气："+solarTermName)
     if(!this.disableRandomFunData&&solarTermName.length>0)
     {
       //temp = temp.concat(this.getSolarTermPoem(solarTermName));
@@ -475,7 +475,7 @@ export class DataService {
     if(this.TestMode)
     {
       for (let [key, value] of this.solarTermMap) {
-        console.log(key, value);
+        //console.log(key, value);
         temp = temp.concat(this.getSolarTermPoem(key, "某月某日"));
       }
     }
@@ -561,7 +561,7 @@ export class DataService {
       .subscribe(result =>{
           this.importData(result, category);
       }, error =>{
-          console.log(error);
+          //console.log(error);
       });
   }
 
@@ -575,7 +575,7 @@ export class DataService {
           this.importData(c.content, result.title);
         });
       }, error =>{
-          console.log(error);
+          //console.log(error);
       });
   }
 
@@ -956,8 +956,8 @@ export class DataService {
 
   findPrev(){
     for(let i=0;i<this.toPlayList.length;i++){
-      console.log(this.toPlayList[i])
-      console.log(this.currentPoem)
+      //console.log(this.toPlayList[i])
+      //console.log(this.currentPoem)
       if(this.toPlayList[i].id===this.currentPoem.id
       ||
         (this.toPlayList[i].title===this.currentPoem.title&&
@@ -995,7 +995,7 @@ export class DataService {
     }
 
     if(currentIndex===-1){
-      console.log('sth. went wrong, could not find the current poem index...')
+      //console.log('sth. went wrong, could not find the current poem index...')
       return null;
     }
     
@@ -1331,7 +1331,7 @@ export class DataService {
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/list/${id}`);
   }
   goToPlayList(id:any){
-    console.log(id)
+    //console.log(id)
     //tab3
     this.navCtrl.navigateForward(`/tabs/tab3/customlist/${id}`);
   }
@@ -1529,7 +1529,7 @@ export class DataService {
   savecustomlist(data:any){
     let findItem = this.collectList.filter((c:any)=>c.group==='customlist'&&c.data['id']===data.id);
     if(findItem.length===1){
-      console.log(findItem[0])
+      //console.log(findItem[0])
       findItem[0].data = data;
       findItem[0].lastupdate = Date.now();
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
@@ -1640,10 +1640,10 @@ export class DataService {
 
     await actionSheet.present();
     const { data, role } = await actionSheet.onWillDismiss();
-    console.log(role)
+    //console.log(role)
     //如果tab3 新建list打开的，点了从诗词库删除，关闭modal
     //如果tab3 查看诗词打开的，点了从诗词库删除，关闭modal
-    console.log(group)
+    //console.log(group)
     if(group==='customlist'){
       this.updateLocalData(group);
       //role could be: cancel or destructive
@@ -1667,7 +1667,7 @@ export class DataService {
   updateLocalData(group:any){
     this.localJsonData = this.recentCollection()
       .filter((l:any)=>l.group==group);
-    console.log(this.localJsonData)
+    //console.log(this.localJsonData)
   }
 
   currentCollectLike:any;
@@ -1945,7 +1945,7 @@ export class DataService {
   /*custom image for custom list end */
 
   search(key:any){
-    console.log(key)
+    //console.log(key)
     Browser.open({ url: `http://www.bing.com/search?q=${key}` });
   } 
 }

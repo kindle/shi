@@ -21,7 +21,7 @@ export class TabsPage {
   }
 
   tab4Click(){
-    console.log('change tab ...')
+    //console.log('change tab ...')
     this.data.onSearchCancel();
   }
 
@@ -35,11 +35,13 @@ export class TabsPage {
     
     
     var solar = Solar.fromYmd(2023,9,23);
+    /*
     console.log('lunar 节气：')
     console.log(solar.getLunar().getJieQi());
     console.log(solar.getLunar().getAnimal());
     console.log(solar.getLunar().getOtherFestivals());
     console.log(solar.getLunar().toFullString());
+    */
     /*
     this.data.getCachedJsonFromAzure().then(data=>{
       if(data){
