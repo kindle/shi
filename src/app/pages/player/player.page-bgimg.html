@@ -1,0 +1,341 @@
+<div style="background-image: url({{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}});
+height:100%;
+" class="blur-background">
+  <ion-list style="position: fixed; top:0; width: -webkit-fill-available;z-index:200;
+  margin:0px;padding: 10px 25px;background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
+    -webkit-backdrop-filter:saturate(210%) blur(20px);
+    backdrop-filter:saturate(210%) blur(20px);" *ngIf="!showText">
+    <ion-list-header *ngIf="showHistory">
+      <ion-label><h2>历史记录</h2></ion-label>
+      <ion-button (click)="data.clearHistory()">清除</ion-button>
+    </ion-list-header>
+    <ion-list-header *ngIf="showPlaylist">
+      <ion-label>
+        <h2>待播清单</h2>
+        <p style="margin-top:5px;">{{data.toPlayListName}}</p>
+      </ion-label>
+      <ion-buttons>
+        <ion-button (click)="shuffle()" 
+        [ngStyle]="{'background-color':data.isShuffle ? 'rgb(247,247,247)' : '' }">
+          <ion-icon name="shuffle-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="repeat()" 
+        [ngStyle]="{'background-color':data.isRepeat ? 'rgb(247,247,247)' : '' }">
+        <ion-text style="font-size: 8px;position: fixed;top:7px;right:6px;" color="primary">1</ion-text>
+          <ion-icon name="repeat-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="infinite()" 
+        [ngStyle]="{'background-color':data.isInfinite ? 'rgb(247,247,247)' : '' }">
+          <ion-icon name="infinite-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-list-header>
+  </ion-list>
+  <!--history-->
+  <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText">
+    <swiper-container>
+      <swiper-slide *ngIf="showHistory">
+        <ion-list style="margin:35px 25px;">
+          <ion-list-header>
+            <ion-label><h2></h2></ion-label>
+            <ion-button></ion-button>
+          </ion-list-header>
+          <ion-item lines="none" *ngFor="let p of data.playHistory" (click)="play(p)">
+            <ion-thumbnail style="width:40px;height:40px;" slot="start"
+            style="display: flex;justify-content: center;align-items: center;">
+              <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+                [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+              <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+                [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                'height':(data.isPlaying) ? '' : '5px' }"
+              ></div>
+            </ion-thumbnail>
+            
+            <ion-label>
+              <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+              <p style="margin-top:5px;display: flex;align-items: end;">
+                {{p.author}}《{{p.title}}》
+                <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </swiper-slide>
+
+
+      <swiper-slide *ngIf="showPlaylist">
+        <ion-list style="margin:35px 25px;">
+          <ion-list-header>
+            <ion-label><h2></h2></ion-label>
+            <ion-button></ion-button>
+          </ion-list-header>
+          <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
+            <ion-item lines="none" (click)="play(p)" *ngFor="let p of data.toPlayList"
+            style="--padding-start:15px;--inner-padding-end:3px;">
+              <ion-thumbnail style="width:40px;height:40px;" slot="start"
+              style="display: flex;justify-content: center;align-items: center;">
+                <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+                  [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+                <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+                  [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                  'height':(data.isPlaying) ? '' : '5px' }"
+                ></div>
+              </ion-thumbnail>
+              
+              <ion-label>
+                <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+                <p style="margin-top:5px;display: flex;align-items: end;">
+                  {{p.author}}《{{p.title}}》
+                  <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+                </p>
+              </ion-label>
+    
+              <ion-reorder slot="end">
+              </ion-reorder>
+            </ion-item>
+          </ion-reorder-group>
+        </ion-list>
+      </swiper-slide>
+    </swiper-container>
+  </ion-content>
+
+
+  <!--小于10行*********start*******************-->
+  <!--img   ...-->
+  <!--(click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"-->
+  <ion-list *ngIf="showText&&data.currentPoem.paragraphs.length<=10"
+  style="background:transparent;">
+    <ion-item lines="none" *ngIf="bigimg"
+      style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
+      <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
+        <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
+        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+        onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </div>
+    </ion-item>
+    <ion-item lines="none" 
+    style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+      <div class="play-icon-box" *ngIf="!bigimg" 
+        (click)="text()">
+        <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
+        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+        onerror="javascript:this.src='/assets/img/default.jpg'" />
+      </div>
+      <ion-label>
+        <h2>{{data.currentPoem.title}}</h2>
+        <p>{{data.currentPoem.author}}</p>
+      </ion-label>
+      <ion-button slot="end" color="transparent" 
+      *ngIf="!data.isliked(data.currentPoem,'poem')"
+      (click)="data.likelist(data.currentPoem,'poem')">
+        <ion-icon name="add-outline" color="dark"></ion-icon>
+      </ion-button>
+      <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+    </ion-item>
+  </ion-list>
+
+  <!--title author paragraphs-->
+  <ion-list *ngIf="showText&&data.currentPoem.paragraphs.length<=10" 
+  style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;
+  background:transparent;">
+          
+    <ion-item class="transparent-item" lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
+      <div class="transparent-item" style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+        {{data.currentPoem.title}}
+      </div>
+    </ion-item>
+
+    <ion-item class="transparent-item" lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
+      <div class="transparent-item" style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+        {{data.currentPoem.author}}
+      </div>
+    </ion-item>
+
+    <ion-item class="transparent-item" *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+      <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+      [ngClass]="{'select-line':currentIndex===i}"
+      (click)="select(i)"
+      [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
+        <ion-icon name="search-outline" *ngIf="currentIndex===i"
+        (click)="data.search(text)"
+        style="position: absolute;left:5px;margin:2px;"
+        ></ion-icon>
+        <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
+        <div *ngIf="!data.currentPoem.sample">{{text}}</div>
+      </div>
+    </ion-item>
+    
+  </ion-list>
+  <!--小于10行*********end*******************-->
+
+
+  <!--大于10行*********content start*******************-->
+  <ion-content class="no-padding" [fullscreen]="true" 
+    *ngIf="showText&&data.currentPoem.paragraphs.length>10">
+    <ion-list *ngIf="showText">
+      <ion-item lines="none" *ngIf="bigimg"
+      (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
+        style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
+        <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
+          <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
+          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='/assets/img/default.jpg'" />
+        </div>
+      </ion-item>
+      <ion-item lines="none" 
+      style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+        <div class="play-icon-box" *ngIf="!bigimg" 
+          (click)="text()">
+          <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
+          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='/assets/img/default.jpg'" />
+        </div>
+        <ion-label>
+          <h2>{{data.currentPoem.title}}</h2>
+          <p>{{data.currentPoem.author}}</p>
+        </ion-label>
+        <ion-button slot="end" color="transparent" 
+        *ngIf="!data.isliked(data.currentPoem,'poem')"
+        (click)="data.likelist(data.currentPoem,'poem')">
+          <ion-icon name="add-outline" color="dark"></ion-icon>
+        </ion-button>
+        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+      </ion-item>
+    </ion-list>
+
+    <ion-list style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
+            
+      <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+        <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+          {{data.currentPoem.title}}
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+          {{data.currentPoem.author}}
+        </div>
+      </ion-item>
+
+      <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+        [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
+        [ngClass]="{'select-line':currentIndex===i}"
+        (click)="select(i)">
+          <ion-icon name="search-outline" *ngIf="currentIndex===i"
+          (click)="data.search(text)"
+          style="position: absolute;left:5px;margin:2px;"
+          ></ion-icon>
+          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
+          <div *ngIf="!data.currentPoem.sample">{{text}}</div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <!--大于10行*********content end*******************-->
+
+
+  
+  <div class="placeholder-playbox"></div>
+
+
+
+  <ion-list style="margin-top:0px;z-index: 1;bottom:0;position: fixed;width: 100%;background:transparent;" 
+    [ngStyle]="{
+    'background-color':showText?'':'rgba(var(--ion-background-color-rgb,255,255,255),0.8)',
+    '-webkit-backdrop-filter':showText?'':'saturate(210%) blur(20px)',
+    'backdrop-filter':showText?'':'saturate(210%) blur(20px)',
+    'background':showText?'transparent':''
+  }">
+
+
+    <!--00:00   ***hide   00:00-->
+    <ion-item lines="none" style="--background:transparent" *ngIf="data.currentPoem.audio&&showText">
+      <div style="display: flex;justify-content: space-around;flex-direction: column;width:100%;">
+        <ion-range min="0" step="1" [max]="data.duration" [value]="data.currentTime"
+          style="height:30px;margin-bottom:0px;"
+          color="primary"
+          (ionInput)="test($event)"
+          (ionChange)="onChange($event)"
+          (ionKnobMoveStart)="onDragStart($event)" 
+          (ionKnobMoveEnd)="onDragEnd($event)">
+        </ion-range>
+        <div style="width:100%;">
+          <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="!dragWhere">{{formatTime(data.currentTime)}}</ion-text>
+          <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="dragWhere">{{formatTime(dragvalue)}}</ion-text>
+          <div style="font-size: 18px;width: 100%;text-align: center;font-size:13px;">{{data.displaySongName}}</div>
+          <ion-text color="medium" style="margin-right:0px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.audio.duration)}}</ion-text>
+          
+          <!--<ion-text color="medium" style="margin-right:20px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.leftTime)}}</ion-text>-->
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item lines="none" style="--background:transparent" *ngIf="data.currentPoem.audio">
+      <!--prev   play   next-->
+      <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
+        <div style="display: flex;justify-content: space-around;margin-left:20px;margin-right:20px;">
+          <ion-buttons>
+            <ion-button [disabled]="isFirstPlaying()" (click)="data.playPrev()" style="font-size: 30px;">
+              <ion-icon name="play-back"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons>
+            <ion-button  size="large" (click)="data.togglePlay()">
+              <ion-icon name="pause-outline" *ngIf="data.isPlaying" style="font-size: 60px;"></ion-icon>
+              <ion-icon name="play" *ngIf="!data.isPlaying" style="font-size: 60px;"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons>
+            <ion-button [disabled]="isLastPlaying()" (click)="data.playNext()" style="font-size: 30px;">
+              <ion-icon name="play-forward"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+    </ion-item>
+
+    <!--volume ***hide-->
+    <ion-item lines="none" style="--background:transparent" *ngIf="false">
+      <ion-range min="0" step="1" 
+        style="height: 30px;"
+        color="primary">
+        <ion-icon slot="start" name="volume-off" color="medium" style="font-size: 15px;"></ion-icon>
+        <ion-icon slot="end" name="volume-high" color="medium" style="font-size: 15px;"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+    <!--text  history  nowplaying-->
+    <ion-item lines="none" style="--background:transparent">
+      <div style="display: flex;justify-content: space-around;width:100%;height: 60px;">
+        <ion-buttons>
+          <ion-button [disabled]="isFirstPlaying()"
+          [ngStyle]="{'background-color':showText ? 'rgb(247,247,247)' : '' }"
+          (click)="text()" size="large">
+            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-button [disabled]="isLastPlaying()" 
+          [ngStyle]="{'background-color':showHistory ? 'rgb(247,247,247)' : '' }"
+          (click)="history()" size="large">
+            <ion-icon name="list-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-button [disabled]="isLastPlaying()" 
+          [ngStyle]="{'background-color':showPlaylist ? 'rgb(247,247,247)' : '' }"
+          (click)="playlist()" size="large">
+            <ion-icon name="repeat-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-item>
+    
+
+    <div style="height:calc(env(safe-area-inset-bottom));"></div>
+  </ion-list>
+</div>
+
+
+

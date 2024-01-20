@@ -9,6 +9,7 @@ import { PlayerPageRoutingModule } from './player-routing.module';
 import { PlayerPage } from './player.page';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 
+
 @NgModule({
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@
         "id":3000,
         "name":"",
         "sub":"诗人都是美食家",
-        "image":"assets/img/spaghetti-1932466_1280.jpg",
+        "image":"/assets/img/spaghetti-1932466_1280.jpg",
         "desc":"美食诗词句句诱人",
         "more":"中国人是最会吃的民族，欢喜时，我们在食物中寻找幸福；悲伤时，我们在食物中寻找慰藉。",
         "list":[
@@ -20,7 +20,7 @@
         "id":3001,
         "name":"",
         "sub":"爱吃鱼的诗人们",
-        "image":"assets/img/fish-3622319_1280.jpg",
+        "image":"/assets/img/fish-3622319_1280.jpg",
         "desc":"那些描写鱼的美味诗词",
         "more":"如临其境，口齿留香",
         "list":[
@@ -34,7 +34,7 @@
         "id":3002,
         "name":"",
         "sub":"爱喝酒的诗人们",
-        "image":"assets/img/water-5366496_1280.jpg",
+        "image":"/assets/img/water-5366496_1280.jpg",
         "desc":"那些描写酒的美味诗词",
         "more":"飘香的清冽，是时间和酒釉的奇妙相遇",
         "list":[

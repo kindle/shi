@@ -87,29 +87,25 @@ export class Tab4Page implements OnInit {
   searchResult:any;
   searchResultCount=0;
   localList:any;
-  searchText:any;
-  showFilter = false;
+  
   onSearchFocus(){
-    this.showFilter = true;
+    this.data.showFilter = true;
   }
   onLoseFocus(){
-    if(this.searchText==null||this.searchText==""){
-      this.showFilter = false;
+    if(this.data.searchText==null||this.data.searchText==""){
+      this.data.showFilter = false;
     }
   }
-  onSearchCancel(){
-    this.showFilter = false;
-    this.displayResult = [];
-  }
+  
   onSearchChanged(){
     let key = "";
-    if(this.searchText!=null){
-      key = this.searchText.trim();
+    if(this.data.searchText!=null){
+      key = this.data.searchText.trim();
     }
 
     if(key=="")
     {
-      this.displayResult = [];
+      this.data.displayResult = [];
       return;
     }
 
@@ -119,14 +115,14 @@ export class Tab4Page implements OnInit {
     );
     this.searchResultCount = this.searchResult.length;
     
-    this.displayResult = [];
+    this.data.displayResult = [];
     this.generateItems();
   }
-  displayResult:any = [];
+  
   isAuthor = false;
   private generateItems() {
     //check if keyword is author
-    let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name==this.searchText)
+    let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name==this.data.searchText)
     if(foundAuthor.length===1){
       this.isAuthor = true;
     }
@@ -134,17 +130,17 @@ export class Tab4Page implements OnInit {
       this.isAuthor = false;
     }
     //get search result
-    this.displayResult = this.displayResult.concat(
+    this.data.displayResult = this.data.displayResult.concat(
       this.searchResult.splice(0,Math.min(this.searchResultCount,30))
     );
-    console.log(this.displayResult)
+    //console.log(this.data.displayResult)
   }
 
 
   getHighlight(p:any){
     let result = "";
     p.paragraphs.forEach((s:any) => {
-      if(s.indexOf(this.searchText)>-1)
+      if(s.indexOf(this.data.searchText)>-1)
       {
         result = s;
       }
@@ -152,8 +148,8 @@ export class Tab4Page implements OnInit {
     if(result===""){
       result = p.paragraphs[0];
     }
-    p.sample = this.searchText;
-    return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
+    p.sample = this.data.searchText;
+    return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
 
   }
 

@@ -48,7 +48,9 @@
         {"src":"/assets/img/西安塔楼.jpg","display":"cover","text":"西安","color":"rgb(121,196,131)"},
         {"src":"/assets/img/扬州.jpg","display":"cover","text":"扬州","color":"rgb(121,196,131)"},
         {"src":"/assets/img/洛阳.jpg","display":"cover","text":"洛阳","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/南京.jpg","display":"cover","text":"南京","color":"rgb(121,196,131)"}
+        {"src":"/assets/img/南京.jpg","display":"cover","text":"南京","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/广州.jpg","display":"cover","text":"广州","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/敦煌.jpg","display":"cover","text":"敦煌","color":"rgb(98,166,243)"}
         ]
       },
       {"name":"趣味诗单", "data": []
@@ -97,7 +99,8 @@
         {"id":804,"src":"/assets/img/海钓.jpg","display":"cover","text":"观沧海 | 东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"}
       ]},
 
-      {"name":"名句接龙", "data": [
+      {"name":"名句接龙", "display":false,
+       "data": [
         {"id":1002,"src":"/assets/img/horse-1804425_1280.jpg","display":"cover","text":"初级1","desc":"","color":"rgb(98,166,243)", "game":"next"},
         {"id":1001,"src":"/assets/img/white-horse-1136093_1280.jpg","display":"cover","text":"初级2","desc":"","color":"rgb(98,166,243)", "game":"next"},
         {"id":1003,"src":"/assets/img/horse-3198112_1280.jpg","display":"cover","text":"初级3","desc":"","color":"rgb(98,166,243)", "game":"next"},
@@ -115,7 +118,7 @@
       "image":"/assets/img/balloons-1046658_1280.jpg",
       "scroll":[
         {"id":51, "alias":"风景","text":"你读过些风景最惊艳的一句诗是什么？","desc":"满载一船秋色，平铺十里湖光","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/balloons-1046658_1280.jpg"},
-        {"id":55, "alias":"定格多彩秋天","text":"一首首诗词，藏着秋日的美好","desc":"秋风生渭水，落叶满长安","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/定格秋天.jpg"},
+        {"id":55, "alias":"多彩秋天","text":"一首首诗词，藏着秋日的美好","desc":"秋风生渭水，落叶满长安","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/定格秋天.jpg"},
         {"id":56, "alias":"人间烟火","text":"人间烟火气，最抚凡人心","desc":"玉盘杨梅为君设，吴盐如花皎白雪","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/italian-cuisine-2378729_1280.jpg"}
           
       ],
@@ -135,10 +138,11 @@
         ]},
 
         {"name":"精选诗单", "data": [
-          {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-          {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-          {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-          {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+          {"id":2,"src":"/assets/img/leaf-1001679_1280.jpg","text":"山水田园 | 绿树村边合，青山郭外斜","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":19,"src":"/assets/img/poppies-3422252_1280.jpg","text":"温柔美好 | 那些温柔美好的古风祝福","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":26,"src":"/assets/img/sand-7564466_1280.jpg","text":"时光流影 | 古人笔下的时光流影","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":38,"src":"/assets/img/water-815271_1280.jpg","text":"秋雨 | 一场秋雨一场凉，诗人们有着千种风情","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","text":"四季之美 | 古人笔下的四季之美，你最喜欢哪一句？","display":"cover","desc":"","color":"rgb(98,166,243)"}
         ]}
       ],
       "hot":[],
@@ -153,7 +157,7 @@
     "scroll":[
       {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/war.jpg"},
       {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
+      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/flower-2438754_1280.jpg"},
       {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
         
     ],
@@ -173,10 +177,11 @@
       ]},
 
       {"name":"精选诗单", "data": [
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+        {"id":100,"src":"/assets/img/great-wall-7389299_1280.jpg","text":"边塞 | 唐代边塞诗的巅峰之作，你最喜欢哪句？","display":"cover","desc":"","color":"rgb(98,166,243)"},
+        {"id":50,"src":"/assets/img/horses-430441_1280.jpg","text":"骨气 | 原来这就是辛弃疾的一生啊","display":"cover","desc":"","color":"rgb(98,166,243)"},
+        {"id":97,"src":"/assets/img/dragon-238931_1280.jpg","text":"帝王诗 | 古代帝王诗最有文采的是哪位？","display":"cover","desc":"","color":"rgb(98,166,243)"},
+        {"id":81,"src":"/assets/img/fisherman-1559753_1280.jpg","text":"孤独 | 那些古人笔下的孤独","display":"cover","desc":"","color":"rgb(98,166,243)"},
+        {"id":27,"src":"/assets/img/father-and-son-2258681_1280.jpg","text":"少年感 | 有哪句让你回忆起了自己的年少时光？","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
     "hot":[],
@@ -189,11 +194,9 @@
     "name":"励志",
     "image":"/assets/img/african-lion-2888519_1280.jpg",
     "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/african-lion-2888519_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
-        
+      {"id":28, "alias":"最狂古诗词","text":"你听过最狂的一句古诗词？","desc":"我需要，最狂的风，和最静的海","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/african-lion-2888519_1280.jpg"},
+      {"id":23, "alias":"理想境界","text":"虽不能至，心向往之","desc":"当你看不见月亮的时候，你一定要知道，其实月亮一直在天上","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-1850228_1280.jpg"},
+      {"id":61, "alias":"金榜题名","text":"上岸","desc":"描写考中上岸的古诗，你最喜欢哪一句？","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/glowing-686871_1280.jpg"} 
     ],
     "list":[
       {"name":"推荐诗人", "data": [
@@ -212,15 +215,15 @@
       ]},
 
       {"name":"精选诗单", "data": [
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+        {"id":48,"src":"/assets/img/iceland-2111811_1280.jpg","display":"cover","text":"年少有为 | 初唐四杰","desc":"","color":"rgb(98,166,243)"},
+        {"id":4,"src":"/assets/img/fountain-3412242_1280.jpg","display":"cover","text":"功成名就 | 给诗人们起个外号儿","desc":"","color":"rgb(98,166,243)"},
+        {"id":12,"src":"/assets/img/ocean-1867285_1280.jpg","display":"cover","text":"建安诗歌 | 对酒当歌，人生几何","desc":"","color":"rgb(98,166,243)"},
+        {"id":46,"src":"/assets/img/lotus-978659_1280.jpg","display":"cover","text":"神龙摆尾 | 长风破浪会有时，直挂云帆济沧海","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
     "hot":[],
     "desctitle":"简介",
-    "desc":"厚爱加身，犹如身披铠甲，优如手执利剑，将军赶路不追野兔，如果你留恋这世间的花花草草，你就会找到一万个驻足停留的借口，但你头脑清醒意志坚定，四肢有力，你要知道你前往何方，所以请你一路前行，披星戴月，手执利剑便不再惧怕人间的任何黑暗。"
+    "desc":"厚爱加身，犹如身披铠甲，犹如手执利剑，将军赶路不追野兔，如果你留恋这世间的花花草草，你就会找到一万个驻足停留的借口，但你头脑清醒意志坚定，四肢有力，你要知道你前往何方，所以请你一路前行，披星戴月，手执利剑便不再惧怕人间的任何黑暗。"
     
   },
   {
@@ -228,32 +231,31 @@
     "name":"浪漫",
     "image":"/assets/img/daisy-144677_1280.jpg",
     "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/lotus-1205631_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
-        
+      {"id":31, "alias":"一见钟情","text":"古人是如何写一见钟情的？","desc":"金风玉露一相逢，便胜却人间无数","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/daisy-144677_1280.jpg"},
+      {"id":44, "alias":"爱有多深","text":"不读宋词，不知爱有多深","desc":"两情若是长久时，又岂在、朝朝暮暮","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/tulips-2254970_1280.jpg"},
+      {"id":70, "alias":"风花雪月","text":"古人逛青楼都写下了哪些千古名句？","desc":"如今却忆江南乐，当时年少春衫薄","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/pink-peony-111909_1280.jpg"},
+      {"id":79, "alias":"宋词的浪漫","text":"宋词里无法超越的中式浪漫","desc":"今宵酒醒何处，杨柳岸、晓风残月","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/seagulls-654046_1280.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"/assets/img/poet/屈原.jpeg","display":"cover","text":"屈原","sample":"路曼曼其修远兮，吾将上下而求索","desc":"","color":"rgb(98,166,243)","author":"屈原"},
-        {"src":"/assets/img/poet/曹植.jpeg","display":"cover","text":"曹植","sample":"翩若惊鸿，婉若游龙","desc":"","color":"rgb(98,166,243)","author":"曹植"},
-        {"src":"/assets/img/poet/李白.jpeg","display":"cover","text":"李白","sample":"安能摧眉折腰事权贵，使我不得开心颜","desc":"","color":"rgb(98,166,243)","author":"李白"},
-        {"src":"/assets/img/poet/李贺.jpeg","display":"cover","text":"李贺","sample":"黑云压城城欲摧，甲光向日金鳞开","desc":"","color":"rgb(98,166,243)","author":"李贺"}
+        {"src":"/assets/img/poet/柳永.jpeg","display":"cover","text":"柳永","sample":"今宵酒醒何处，杨柳岸、晓风残月","desc":"","color":"rgb(98,166,243)","author":"柳永"},
+        {"src":"/assets/img/poet/韦庄.jpeg","display":"cover","text":"韦庄","sample":"如今却忆江南乐，当时年少春衫薄","desc":"","color":"rgb(98,166,243)","author":"韦庄"},
+        {"src":"/assets/img/poet/李之仪.jpeg","display":"cover","text":"李之仪","sample":"我住长江头，君住长江尾","desc":"","color":"rgb(98,166,243)","author":"李之仪"},
+        {"src":"/assets/img/poet/白居易.jpeg","display":"cover","text":"白居易","sample":"墙头马上遥相顾，一见知君即断肠","desc":"","color":"rgb(98,166,243)","author":"白居易"}
       ]},
 
       {"name":"风格诗单", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"边塞","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"爱国","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"战争","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"忧国忧民","desc":"","color":"rgb(98,166,243)"}
+        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"爱情","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"浪漫","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"相思","desc":"","color":"rgb(98,166,243)"}
       ]},
 
       {"name":"精选诗单", "data": [
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+        {"id":5,"src":"/assets/img/tree-736877_1280.jpg","display":"cover","text":"浪漫诗派 | 举杯邀明月，对影成三人","desc":"","color":"rgb(98,166,243)"},
+        {"id":14,"src":"/assets/img/cloud.jpg","display":"cover","text":"明月清风 | 找到心生欢喜的良人，共享三餐四季","desc":"","color":"rgb(98,166,243)"},
+        {"id":29,"src":"/assets/img/flower-4287580_1280.jpg","display":"cover","text":"神伤 | 爱而不得是怎样的神伤？","desc":"","color":"rgb(98,166,243)"},
+        {"id":41,"src":"/assets/img/forest-3409907_1280.jpg","display":"cover","text":"一往情深 | 情场浪子柳永的顶级深情","desc":"","color":"rgb(98,166,243)"},
+        {"id":99,"src":"/assets/img/light-bulbs-1407610_1280.jpg","display":"cover","text":"纸短情长 | 宋词里的纸短情长，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
     "hot":[],
@@ -261,44 +263,73 @@
     "desc":"浪漫诗派是我国诗词四大流派之一。这些诗色彩绚丽，既有奇幻的想象，又有奔放的笔调，融合继承了楚辞、乐府诗的浪漫传统，开创了奇险创新的艺术风格。他们崇尚自我，注重情感流泻，发挥想象灵感。古典浪漫诗派以屈原、曹植、李白、李贺、龚自珍等为代表，代表作有屈原的《离骚》，曹植的《洛神赋》、李白的《梦游天姥吟留别》，李贺的《雁门太守行》、龚自珍的《己亥杂诗》等。"
     
   },
+  
   {
     "id":5,
-    "name":"心情",
-    "image":"/assets/img/man-3915438_1280.jpg",
+    "name":"自然",
+    "image":"/assets/img/peach-4739923_1280.jpg",
     "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/man-3915438_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
-        
+      {"id":13, "alias":"桃花源记","text":"不知有汉，无论魏晋","desc":"悟已往之不谏，知来者之可追","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/peach-4739923_1280.jpg"},
+      {"id":19, "alias":"温柔美好","text":"那些温柔美好的古风祝福","desc":"把酒祝东风，且共从容","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/poppies-3422252_1280.jpg"},
+      {"id":26, "alias":"时光流影","text":"古人笔下的时光流影","desc":"最是人间留不住，朱颜辞镜花辞树","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sand-7564466_1280.jpg"},
+      {"id":51, "alias":"风景","text":"你读过些风景最惊艳的一句诗是什么？","desc":"疏影横斜水清浅，暗香浮动月黄昏","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/balloons-1046658_1280.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"/assets/img/poet/高适.jpeg","display":"cover","text":"高适","desc":"","color":"rgb(98,166,243)","author":"高适"},
-        {"src":"/assets/img/poet/岑参.jpeg","display":"cover","text":"岑参","desc":"","color":"rgb(98,166,243)","author":"岑参"},
-        {"src":"/assets/img/poet/李颀.jpeg","display":"cover","text":"李颀","desc":"","color":"rgb(98,166,243)","author":"李颀"},
-        {"src":"/assets/img/poet/王昌龄.jpeg","display":"cover","text":"王昌龄","desc":"","color":"rgb(98,166,243)","author":"王昌龄"}
+        {"src":"/assets/img/poet/张孝祥.jpeg","display":"cover","text":"张孝祥","sample":"满载一船秋色，平铺十里湖光","desc":"","color":"rgb(98,166,243)","author":"张孝祥"},
+        {"src":"/assets/img/poet/王维.jpeg","display":"cover","text":"王维","sample":"大漠孤烟直，长河落日圆","desc":"","color":"rgb(98,166,243)","author":"王维"},
+        {"src":"/assets/img/poet/林逋.jpeg","display":"cover","text":"林逋","sample":"疏影横斜水清浅，暗香浮动月黄昏","desc":"","color":"rgb(98,166,243)","author":"林逋"},
+        {"src":"/assets/img/poet/张若虚.jpeg","display":"cover","text":"张若虚","sample":"春江潮水连海平，海上明月共潮生","desc":"","color":"rgb(98,166,243)","author":"张若虚"}
       ]},
 
-      {"name":"风格诗单", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"边塞","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"爱国","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"战争","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"忧国忧民","desc":"","color":"rgb(98,166,243)"}
+      {"name":"花卉", "data": [
+        {"src":"/assets/img/peach-4739923_1280.jpg","display":"cover","text":"桃花","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/natural-7582669_1280.jpg","display":"cover","text":"桂花","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/lotus-614421_1280.jpg","display":"cover","text":"荷花","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/chrysanthemum-5668882_1280.jpg","display":"cover","text":"菊花","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/pink-peony-111909_1280.jpg","display":"cover","text":"牡丹","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/ornamental-plum-7115659_1280.jpg","display":"cover","text":"梅花","desc":"","color":"rgb(98,166,243)"}
       ]},
 
-      {"name":"精选诗单", "data": [
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+      {"name":"水果", "data": [
+        {"src":"/assets/img/cherry-212601_1280.jpg","display":"cover","text":"樱桃","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/lychees-4584834_1280.jpg","display":"cover","text":"荔枝","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/arbutus-unedo-883824_1280.jpg","display":"cover","text":"杨梅","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/peaches-7395591_1280.jpg","display":"cover","text":"桃子","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/bamboo-3382545_1280.jpg","display":"cover","text":"竹笋","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/red-beans-7228265_1280.jpg","display":"cover","text":"红豆","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/apricot-871493_1280.jpg","display":"cover","text":"杏","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"湖", "data": [
+        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"洞庭湖","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/image-2474185_1280.jpg","display":"cover","text":"西湖","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/suzhou-2639283_1280.jpg","display":"cover","text":"太湖","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"山", "data": [
+        {"src":"/assets/img/lushan-5897708_1280.jpg","display":"cover","text":"庐山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/nanyue-hengshan-mountain-1712163_1280.jpg","display":"cover","text":"衡山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/the-scenery-1736672_1280.jpg","display":"cover","text":"泰山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/pinus-armandii-2713406_1280.jpg","display":"cover","text":"华山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/monument-2026285_1280.jpg","display":"cover","text":"九华山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/antler-beam-2217416_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/nature-3329358_1280.jpg","display":"cover","text":"黄山","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"江河", "data": [
+        {"src":"/assets/img/yangtze-3984504_1280.jpg","display":"cover","text":"长江","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/landscape-659894_1280.jpg","display":"cover","text":"黄河","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/hangzhou-7520885_1280.jpg","display":"cover","text":"钱塘江","desc":"","color":"rgb(98,166,243)"}
       ]}
+
     ],
     "hot":[],
     "desctitle":"简介",
-    "desc":"边塞诗派是中国唐代诗歌流派。汉魏六朝时已有一些边塞诗，至隋代数量不断增多，初唐四杰和陈子昂又进一步予以发展，到盛唐则全面成熟。该派诗人以高适、岑参、李颀、王昌龄最为知名，而高、岑成就最高，所以也叫高岑诗派。他们的诗歌主要是描写边塞战争和边塞风土人情，以及战争带来的各种矛盾如离别、思乡、闺怨等，形式上多为七言歌行和五、七言绝句，诗风悲壮，格调雄浑，最足以表现盛唐气象。其诗人除高适、岑参外，还有王昌龄、李颀、崔颢、王之涣、王翰等。"
+    "desc":"驯鹿逐苔藓而居，月光下萨满起舞。缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。我们在自然中相遇，也在自然中分离；在山谷中获得，也在山谷中失去。"
     
   },
+  
 
   {
     "id":6,
@@ -338,34 +369,155 @@
       },
 
       {"name":"精选诗单", "data": [
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"},
-        {"id":60,"src":"/assets/img/nature-3151869_1280.jpg","display":"cover","text":"古人笔下的四季之美，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+        {"id":5,"src":"/assets/img/tree-736877_1280.jpg","display":"cover","text":"浪漫诗派，代表人物李白","desc":"","color":"rgb(98,166,243)"},
+        {"id":6,"src":"/assets/img/leavesyellow.jpg","display":"cover","text":"现实诗派，代表人物杜甫","desc":"","color":"rgb(98,166,243)"},
+        {"id":7,"src":"/assets/img/cao3.jpg","display":"cover","text":"可怜身上衣正单，心忧炭贱愿天寒","desc":"","color":"rgb(98,166,243)"},
+        {"id":20,"src":"/assets/img/郑板桥.jpg","display":"cover","text":"晏殊最经典的八首诗词，哪一首让你心动呢？","desc":"","color":"rgb(98,166,243)"},
+        {"id":21,"src":"/assets/img/bamboo-1224035_1280.jpg","display":"cover","text":"苏轼的绝世文笔，你用哪句当签名？","desc":"","color":"rgb(98,166,243)"},
+        {"id":24,"src":"/assets/img/lego-933036_1280.jpg","display":"cover","text":"反emo第一人，主打一个乐观心态","desc":"","color":"rgb(98,166,243)"},
+        {"id":47,"src":"/assets/img/nature-3520280_1280.jpg","display":"cover","text":"史上最惊艳的七律","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
     "hot":[],
     "desctitle":"简介",
-    "desc":"边塞诗派是中国唐代诗歌流派。汉魏六朝时已有一些边塞诗，至隋代数量不断增多，初唐四杰和陈子昂又进一步予以发展，到盛唐则全面成熟。该派诗人以高适、岑参、李颀、王昌龄最为知名，而高、岑成就最高，所以也叫高岑诗派。他们的诗歌主要是描写边塞战争和边塞风土人情，以及战争带来的各种矛盾如离别、思乡、闺怨等，形式上多为七言歌行和五、七言绝句，诗风悲壮，格调雄浑，最足以表现盛唐气象。其诗人除高适、岑参外，还有王昌龄、李颀、崔颢、王之涣、王翰等。"
+    "desc":"教育是点燃一团火，而不是灌满一桶水。每个人心里都有一团火。"
     
   },
 
   {
     "id":7,
-    "name":"时节",
-    "image":"/assets/img/bird.jpg",
+    "name":"心情",
+    "image":"/assets/img/man-3915438_1280.jpg",
     "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/lotus-7511897_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
+      {"id":43, "alias":"精神内耗","text":"停止精神内耗","desc":"有哪些古诗词，让你停止了精神内耗？","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/man-3915438_1280.jpg"},
+      {"id":16, "alias":"时光如水","text":"古人是怎么说时间过得真快的？","desc":"桃李春风一杯酒，江湖夜雨十年灯","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/man-3915438_1280.jpg"},
+      {"id":25, "alias":"豁然开朗","text":"古人如何表达“我想开了”","desc":"世事浮云何足问，不如高卧且加餐","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/corn-field-440338_1280.jpg"},
+      {"id":62, "alias":"和解","text":"那些与自己和解的古诗词","desc":"我自人间漫浪，平生事、南北西东","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/lotus-1205631_1280.jpg"},
+      {"id":63, "alias":"闲愁","text":"李清照笔下的闲愁，那一句能触动你的心弦？","desc":"红藕香残玉簟秋。轻解罗裳，独上兰舟","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/daisies-712892_1280.jpg"},
+      {"id":63, "alias":"遗憾","text":"古人笔下的遗憾，谁的遗憾更胜一筹？","desc":"人生若只如初见，何事秋风悲画扇","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/regret.jpg"},
+      {"id":63, "alias":"思乡","text":"古人笔下的思乡","desc":"洛阳城里春光好，洛阳才子他乡老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/winter-1936638_1280.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"/assets/img/poet/王维.jpeg","display":"cover","text":"王维","sample":"独在异乡为异客，每逢佳节倍思亲","desc":"","color":"rgb(98,166,243)","author":"王维"},
-        {"src":"/assets/img/poet/杜牧.jpeg","display":"cover","text":"杜牧","sample":"清明时节雨纷纷，路上行人欲断魂","desc":"","color":"rgb(98,166,243)","author":"杜牧"},
+        {"src":"/assets/img/poet/刘禹锡.jpeg","display":"cover","text":"刘禹锡","sample":"回首向来潇洒处，也无风雨也无晴","desc":"","color":"rgb(98,166,243)","author":"刘禹锡"},
+        {"src":"/assets/img/poet/黄庭坚.jpeg","display":"cover","text":"黄庭坚","sample":"桃李春风一杯酒，江湖夜雨十年灯","desc":"","color":"rgb(98,166,243)","author":"黄庭坚"},
+        {"src":"/assets/img/poet/李商隐.jpeg","display":"cover","text":"李商隐","sample":"世界微尘里，吾宁爱与憎","desc":"","color":"rgb(98,166,243)","author":"李商隐"},
+        {"src":"/assets/img/poet/李清照.jpeg","display":"cover","text":"李清照","sample":"","desc":"","color":"rgb(98,166,243)","author":"李清照"}
+      ]},
+
+      {"name":"心情氛围", "data": [
+        {"src":"/assets/img/tree-696839_1280.jpg","display":"cover","text":"励志","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/train-tracks-1226546_1280.jpg","display":"cover","text":"怀旧","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/daisy-144677_1280.jpg","display":"cover","text":"减压","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/people-821624_1280.jpg","display":"cover","text":"愉快","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/girl-447701_1280.jpg","display":"cover","text":"伤感","color":"rgb(121,196,131)"},
+        {"src":"/assets/img/colorful-2609978_1280.jpg","display":"cover","text":"浪漫","color":"rgb(121,196,131)"}
+        ]
+      },
+
+      {"name":"风格诗单", "data": [
+        {"src":"assets/img/winding-road.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"assets/img/swan-2077219_1280.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/burning-candles-6768469_1280.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"assets/img/leaf-1001679_1280.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"assets/img/water-815271_1280.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"assets/img/forest-2964073_1280.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/bamboo-1224035_1280.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"assets/img/chile-4786066_1280.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"assets/img/wheat-865152_1280.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
+        ]
+      }
+    ],
+    "hot":[],
+    "desctitle":"Passions",
+    "desc":"What I have lived for? Three passions, simply but overwhelmingly strong, have governed my life: the longing for love, the search for knowledge, and unbearable pity for the suffering of mankind."
+    
+  },
+  
+
+  {
+    "id":8,
+    "name":"旅行",
+    "image":"/assets/img/sunrise-1014712_1280.jpg",
+    "scroll":[
+      {"id":37, "alias":"离别","text":"古人笔下的离别到底有多难？","desc":"相见时难别亦难，东风无力百花残","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/sunrise-1014712_1280.jpg"},
+      {"id":52, "alias":"人的一生","text":"这些诗词道尽了人的一生，你现在正处于哪个阶段？","desc":"儿童急走追黄蝶，飞入菜花无处寻","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/countryside-1846774_1280.jpg"},
+      {"id":67, "alias":"意境绝美","text":"这些意境绝美的古诗，你最喜欢哪句？","desc":"云青青兮欲雨，水澹澹兮生烟","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/beach-1851101_1280.jpg"},
+      {"id":68, "alias":"无边风月","text":"诗人笔下的无边风月，你最喜欢哪句？","desc":"日色欲尽花含烟，月明如素愁不眠","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/mountain-5678172_1280.jpg"},
+      {"id":76, "alias":"江南烟雨","text":"哪些忘不掉的江南烟雨","desc":"人人尽说江南好，游人只合江南老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/road-4730553_1280.jpg"},
+      {"id":86, "alias":"潇洒","text":"诗人笔下的顶级潇洒，你最爱哪一句?","desc":"莫愁千里路，自有到来风","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wild-wine-7496359_1280.jpg"},
+      {"id":87, "alias":"自由","text":"诗人笔下的顶级自由，你最爱哪一句?","desc":"我自人间漫浪，平生事、南北西东","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/salmon-3704543_1280.jpg"}
+    ],
+    "list":[
+      {"name":"推荐诗人", "data": [
+        {"src":"/assets/img/poet/欧阳修.jpeg","display":"cover","text":"欧阳修","sample":"我来携酒醉其下，卧看千峰秋月明","desc":"","color":"rgb(98,166,243)","author":"欧阳修"},
+        {"src":"/assets/img/poet/晏几道.jpeg","display":"cover","text":"晏几道","sample":"梦入江南烟水路。行尽江南，不与离人遇","desc":"","color":"rgb(98,166,243)","author":"晏几道"},
+        {"src":"/assets/img/poet/张孝祥.jpeg","display":"cover","text":"张孝祥","sample":"星稀河影转，霜重月华孤","desc":"","color":"rgb(98,166,243)","author":"张孝祥"},
+        {"src":"/assets/img/poet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"相逢一醉是前缘，风雨散、飘然何处","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
+        {"src":"/assets/img/poet/李白.jpeg","display":"cover","text":"李白","sample":"云青青兮欲雨，水澹澹兮生烟","desc":"","color":"rgb(98,166,243)","author":"李白"}
+      ]},
+
+      {"name":"湖泊", "data": [
+        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"洞庭湖","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/image-2474185_1280.jpg","display":"cover","text":"西湖","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/suzhou-2639283_1280.jpg","display":"cover","text":"太湖","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"名山", "data": [
+        {"src":"/assets/img/nature-3329358_1280.jpg","display":"cover","text":"黄山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/lushan-5897708_1280.jpg","display":"cover","text":"庐山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/nanyue-hengshan-mountain-1712163_1280.jpg","display":"cover","text":"衡山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/the-scenery-1736672_1280.jpg","display":"cover","text":"泰山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/pinus-armandii-2713406_1280.jpg","display":"cover","text":"华山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/monument-2026285_1280.jpg","display":"cover","text":"九华山","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/antler-beam-2217416_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"大川", "data": [
+        {"src":"/assets/img/yangtze-3984504_1280.jpg","display":"cover","text":"长江","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/landscape-659894_1280.jpg","display":"cover","text":"黄河","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/hangzhou-7520885_1280.jpg","display":"cover","text":"钱塘江","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"楼阁", "data": [
+        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"岳阳楼","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"滕王阁","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"黄鹤楼","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"鹳雀楼","desc":"","color":"rgb(98,166,243)"}
+      ]},
+
+      {"name":"城市", "data": [
+        {"src":"/assets/img/故宫角.jpg","display":"cover","text":"北京","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/西安塔楼.jpg","display":"cover","text":"西安","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/洛阳.jpg","display":"cover","text":"洛阳","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/杭州.jpg","display":"cover","text":"杭州","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/扬州.jpg","display":"cover","text":"扬州","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/南京.jpg","display":"cover","text":"南京","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/广州.jpg","display":"cover","text":"广州","desc":"","color":"rgb(98,166,243)"},
+        {"src":"/assets/img/敦煌.jpg","display":"cover","text":"敦煌","desc":"","color":"rgb(98,166,243)"}
+      ]}
+    ],
+    "hot":[],
+    "desctitle":"简介",
+    "desc":"人生没有白走的路，每一步都算数。当你背单词的时候，阿拉斯加的鳕鱼正跃出水面；当你算数学的时候，南太平洋的海鸥正掠过海岸；当你晚自习的时候，地球的极圈正五彩斑斓。少年，梦要你亲自实现，世界，你要亲自去看。未来可期，拼尽全力！当你为未来踏踏实实努力的时候，那些你觉得看不到的人和遇不到的风景都终将在你的生命力出现。"
+    
+  },
+
+  {
+    "id":9,
+    "name":"时节",
+    "image":"/assets/img/24小寒.jpg",
+    "scroll":[
+      {"id":35, "alias":"大雪","text":"只字不提雪如何形容雪下得很大？","desc":"应是天仙狂醉，乱把白云揉碎","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/snow-5910822_1280.jpg"},
+      {"id":98, "alias":"下雨","text":"只字不提雨如何形容雨下得很大？","desc":"恰似银针倾泻，杀尽世间残叶","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/leaf-1001679_1280.jpg"},
+      {"id":32, "alias":"禅意","text":"那些一语惊醒梦中人的禅意诗句","desc":"若无闲事挂心头，便是人间好时节","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/meditate-5375835_1280.jpg"}
+    ],
+    "list":[
+      {"name":"推荐诗人", "data": [
         {"src":"/assets/img/poet/杜甫.jpeg","display":"cover","text":"杜甫","sample":"正是江南好风景，落花时节又逢君","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
-        {"src":"/assets/img/poet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"但愿人长久，千里共婵娟","desc":"","color":"rgb(98,166,243)","author":"苏轼"}
+        {"src":"/assets/img/poet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"唤起谪仙泉洒面，倒倾鲛室泻琼瑰","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
+        {"src":"/assets/img/poet/岑参.jpeg","display":"cover","text":"岑参","sample":"忽如一夜春风来，千树万树梨花开","desc":"","color":"rgb(98,166,243)","author":"岑参"},
+        {"src":"/assets/img/poet/韦庄.jpeg","display":"cover","text":"韦庄","sample":"两岸严风吹玉树，一滩明月晒银砂","desc":"","color":"rgb(98,166,243)","author":"韦庄"}
       ]},
 
       {"name":"节日", "data": [
@@ -385,7 +537,7 @@
         {"src":"/assets/img/stonehenge-2326750_1280.jpg","display":"cover","text":"夏至","desc":"","color":"rgb(98,166,243)"},
         {"src":"/assets/img/raindrops-574971_1280.jpg","display":"cover","text":"白露","desc":"","color":"rgb(98,166,243)"},
         {"src":"/assets/img/snow-5910822_1280.jpg","display":"cover","text":"立冬","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/24大寒.jpg","display":"cover","text":"大寒","desc":"","color":"rgb(98,166,243)"}
+        {"src":"/assets/img/24小寒.jpg","display":"cover","text":"小寒","desc":"","color":"rgb(98,166,243)"}
       ]},
 
       {"name":"水果", "data": [
@@ -414,124 +566,6 @@
   },
 
   {
-    "id":8,
-    "name":"旅行",
-    "image":"/assets/img/sunrise-1014712_1280.jpg",
-    "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/sunrise-1014712_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
-    ],
-    "list":[
-      {"name":"推荐诗人", "data": [
-        {"src":"/assets/img/poet/苏轼.jpeg","display":"cover","text":"苏轼","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
-        {"src":"/assets/img/poet/李清照.jpeg","display":"cover","text":"李清照","desc":"","color":"rgb(98,166,243)","author":"李清照"},
-        {"src":"/assets/img/poet/孟郊.jpeg","display":"cover","text":"孟郊","desc":"","color":"rgb(98,166,243)","author":"孟郊"},
-        {"src":"/assets/img/poet/杜甫.jpeg","display":"cover","text":"杜甫","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
-        {"src":"/assets/img/poet/李白.jpeg","display":"cover","text":"李白","desc":"","color":"rgb(98,166,243)","author":"李白"}
-      ]},
-
-      {"name":"名山", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"庐山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"衡山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"泰山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"九华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"黄山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"江河", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"长江","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"黄河","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"钱塘江","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"湖泊", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"西湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"洞庭湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"太湖","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"楼阁", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"岳阳楼","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"滕王阁","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"黄鹤楼","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"鹳雀楼","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"城市", "data": [
-        {"src":"/assets/img/故宫角.jpg","display":"cover","text":"北京","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/西安塔楼.jpg","display":"cover","text":"西安","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/洛阳.jpg","display":"cover","text":"洛阳","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/杭州.jpg","display":"cover","text":"杭州","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/扬州.jpg","display":"cover","text":"扬州","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/南京.jpg","display":"cover","text":"南京","desc":"","color":"rgb(98,166,243)"}
-      ]}
-    ],
-    "hot":[],
-    "desctitle":"简介",
-    "desc":"古代交通不便众所周知，交通基本靠走，通讯基本靠吼。但是，这并没有影响我们伟大的诗人们旅行的步伐。"
-    
-  },
-
-  {
-    "id":9,
-    "name":"自然",
-    "image":"/assets/img/tree.jpg",
-    "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"/assets/img/sunrise-1014712_1280.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过，最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/wave-4119271_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"/assets/img/sea-540123_1280.jpg"}
-        
-    ],
-    "list":[
-      {"name":"推荐诗人", "data": [
-        {"src":"/assets/img/poet/高适.jpeg","display":"cover","text":"高适","desc":"","color":"rgb(98,166,243)","author":"高适"},
-        {"src":"/assets/img/poet/岑参.jpeg","display":"cover","text":"岑参","desc":"","color":"rgb(98,166,243)","author":"岑参"},
-        {"src":"/assets/img/poet/李颀.jpeg","display":"cover","text":"李颀","desc":"","color":"rgb(98,166,243)","author":"李颀"},
-        {"src":"/assets/img/poet/王昌龄.jpeg","display":"cover","text":"王昌龄","desc":"","color":"rgb(98,166,243)","author":"王昌龄"}
-      ]},
-
-      {"name":"湖", "data": [
-        {"src":"/assets/img/image-2474185_1280.jpg","display":"cover","text":"西湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"洞庭湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/suzhou-2639283_1280.jpg","display":"cover","text":"太湖","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"山", "data": [
-        {"src":"/assets/img/lushan-5897708_1280.jpg","display":"cover","text":"庐山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/nanyue-hengshan-mountain-1712163_1280.jpg","display":"cover","text":"衡山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/the-scenery-1736672_1280.jpg","display":"cover","text":"泰山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/pinus-armandii-2713406_1280.jpg","display":"cover","text":"华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/monument-2026285_1280.jpg","display":"cover","text":"九华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/antler-beam-2217416_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/nature-3329358_1280.jpg","display":"cover","text":"黄山","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"江河", "data": [
-        {"src":"/assets/img/yangtze-3984504_1280.jpg","display":"cover","text":"长江","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/landscape-659894_1280.jpg","display":"cover","text":"黄河","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/hangzhou-7520885_1280.jpg","display":"cover","text":"钱塘江","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"楼阁", "data": [
-        {"src":"/assets/img/带我去月球.jpg","display":"cover","text":"岳阳楼","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/swan-2077219_1280.jpg","display":"cover","text":"滕王阁","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/tree-3137482_1280.jpg","display":"cover","text":"黄鹤楼","desc":"","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/mountains-190055_1280.jpg","display":"cover","text":"鹳雀楼","desc":"","color":"rgb(98,166,243)"}
-      ]}
-    ],
-    "hot":[],
-    "desctitle":"简介",
-    "desc":"边塞诗派是中国唐代诗歌流派。汉魏六朝时已有一些边塞诗，至隋代数量不断增多，初唐四杰和陈子昂又进一步予以发展，到盛唐则全面成熟。该派诗人以高适、岑参、李颀、王昌龄最为知名，而高、岑成就最高，所以也叫高岑诗派。他们的诗歌主要是描写边塞战争和边塞风土人情，以及战争带来的各种矛盾如离别、思乡、闺怨等，形式上多为七言歌行和五、七言绝句，诗风悲壮，格调雄浑，最足以表现盛唐气象。其诗人除高适、岑参外，还有王昌龄、李颀、崔颢、王之涣、王翰等。"
-    
-  },
-
-  {
     "id":10,
     "name":"美食",
     "image":"/assets/img/mediterranean-cuisine-2378758_1280.jpg",
@@ -550,25 +584,22 @@
         {"src":"/assets/img/poet/白居易.jpeg","display":"cover","text":"白居易","sample":"绿蚁新醅酒，红泥小火炉","desc":"","color":"rgb(98,166,243)","author":"白居易"}
       ]},
 
-      {"name":"明星诗单", "data": [
+      {"name":"风格诗单", "data": [
         {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"白菜","desc":"白菜有个美丽的名字叫做“菘”，看看古诗里的大白菜","color":"rgb(121,196,131)"},
         {"src":"/assets/img/vegetables-711380_1280.jpg","display":"cover","text":"韭菜","desc":"韭菜","color":"rgb(121,196,131)"},
         {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"水果","desc":"水果都有什么","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"美食","desc":"美食有哪些","color":"rgb(232,188,78)"}
+        {"src":"/assets/img/IMG_4052.jpg","display":"cover","text":"螃蟹","desc":"","color":"rgb(121,196,131)"}
         ]
       },
-      {"name":"热门诗单", "data": [
-        {"src":"/assets/img/crab-63084_1280.jpg","display":"cover","text":"螃蟹","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"饮酒","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"鱼","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"肉","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"茶","color":"rgb(232,188,78)"}
-        ]
+      {"name":"精选诗单", "data": [
+        {"id":72,"src":"/assets/img/wave-4119271_1280.jpg","display":"cover","text":"美酒 | 哪些关于酒的诗句，让你觉得特别惊艳","desc":"","color":"rgb(98,166,243)"},
+        {"id":91,"src":"/assets/img/masterpiece-4359010_1280.jpg","display":"cover","text":"清欢 | 梅子金黄杏子肥，麦花雪白菜花稀","desc":"","color":"rgb(98,166,243)"}
+      ]
       }
     ],
     "hot":[],
     "desctitle":"简介",
-    "desc":"边塞诗派是中国唐代诗歌流派。汉魏六朝时已有一些边塞诗，至隋代数量不断增多，初唐四杰和陈子昂又进一步予以发展，到盛唐则全面成熟。该派诗人以高适、岑参、李颀、王昌龄最为知名，而高、岑成就最高，所以也叫高岑诗派。他们的诗歌主要是描写边塞战争和边塞风土人情，以及战争带来的各种矛盾如离别、思乡、闺怨等，形式上多为七言歌行和五、七言绝句，诗风悲壮，格调雄浑，最足以表现盛唐气象。其诗人除高适、岑参外，还有王昌龄、李颀、崔颢、王之涣、王翰等。"
+    "desc":"岁月静好 看淡繁华。"
     
   }
 ]

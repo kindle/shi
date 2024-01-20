@@ -5,6 +5,7 @@ import { DataService } from '../services/data.service';
 import { UiService } from '../services/ui.service';
 
 import { Solar } from 'lunar-typescript';
+import { Tab4Page } from '../tab4/tab4.page';
 
 @Component({
   selector: 'app-tabs',
@@ -13,8 +14,15 @@ import { Solar } from 'lunar-typescript';
 })
 export class TabsPage {
 
+  @ViewChild('tab4') tab4Instance: Tab4Page|any; 
+
   onTabChange(event: any){
     this.data.setLastVisitTab(event.tab);
+  }
+
+  tab4Click(){
+    console.log('change tab ...')
+    this.data.onSearchCancel();
   }
 
   constructor(

@@ -22,14 +22,13 @@ export class AppComponent {
 
   async ngOnInit() {
     SplashScreen.show({
-      showDuration: 2000,
+      showDuration: 3000,
       autoHide: true,
     });
 
     await this.storage.create().then(()=>{
       this.data.init();
     }).finally(()=>{
-      
     });
 
     const lastVisitedTab = await this.storage.get(this.data.LOCALSTORAGE_LAST_VISIT_TAB);

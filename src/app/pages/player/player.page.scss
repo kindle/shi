@@ -16,3 +16,30 @@
     border-radius: 5px;
     padding:5px;
 }
+
+
+
+.blur-background {
+    width: 100%; /* Set width as needed */
+    height: 300px; /* Set height as needed */
+    //background-image: url('path/to/your/image.jpg'); /* Replace with your image path */
+    background-size: cover;
+    position: relative;
+  }
+  
+  .blur-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(64px); /* Adjust the blur intensity as needed */
+  }
+  .transparent-item {
+    --background: transparent; /* Set the background to transparent */
+    --border-style: none; /* Remove the border */
+  
+    // Optional: You can customize other properties like text color, etc.
+    --color: #ffffff; /* Set text color to white or any preferred color */
+  }

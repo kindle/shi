@@ -171,6 +171,7 @@ export class DataService {
 
     //论语
     this.getObjects(`assets/db/论语/lunyu.json`,"论语");
+    this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子");
 
     /*
     this.http.get<any>('https://reddah.blob.core.windows.net/cache/202385.json').subscribe(result=>{
@@ -191,7 +192,7 @@ export class DataService {
     const jsonFiles = [
       `/assets/topic/list-fun.json`,
       `/assets/topic/list-audio.json`,
-      //`/assets/topic/list-holiday.json`,
+      `/assets/topic/list-holiday.json`,
       `/assets/topic/list-food.json`
       //24 节气
     ];
@@ -382,10 +383,12 @@ export class DataService {
           bg_image:fun.image.replace("/assets/img/",""),
           title_color:fun.color?fun.color:"white",
           small_title:fun.sub,
-          big_title:fun.desc,
+          //big_title:fun.desc,
+          big_title:fun.more.length==0?fun.desc:fun.more,
           desc:[{
             "type":"text", 
-            "value":fun.more?fun.more:fun.desc,
+            //"value":fun.more?fun.more:fun.desc,
+            "value":fun.desc?fun.desc:fun.more,
             "name":""
           }].concat(descArray).concat(
             [{
@@ -503,7 +506,7 @@ export class DataService {
     ["小雪",{image:"aurora-1197753_1280.jpg", title:"", desc:""}],
     ["大雪",{image:"forest-2964073_1280.jpg", title:"", desc:""}],
     ["冬至",{image:"tree-2532679_1280.jpg", title:"", desc:""}],
-    ["小寒",{image:"24大寒.jpg", title:"", desc:""}],
+    ["小寒",{image:"24小寒.jpg", title:"", desc:""}],
     ["大寒",{image:"ice-570500_1280.jpg", title:"", desc:""}],
   ]);
 
@@ -1360,6 +1363,16 @@ export class DataService {
   goToSearch(){
     this.navCtrl.navigateForward(`/tabs/tab4`);
   }
+  //tab4 related start
+  searchText:any;
+  showFilter = false;
+  displayResult:any = [];
+  onSearchCancel(){
+    this.showFilter = false;
+    this.displayResult = [];
+    this.searchText = "";
+  }
+  //tab4 related end
 
   play(){
     if(this.currentPoem.paragraphs&&this.currentPoem.title&&this.currentPoem.author)

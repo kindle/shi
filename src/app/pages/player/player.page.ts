@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
+
+import { register } from 'swiper/element/bundle';
+register();
 
 @Component({
   selector: 'app-player',
@@ -10,6 +13,9 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class PlayerPage implements OnInit {
 
+  @ViewChild('swiperplayer', { static: false }) swiperRef: ElementRef | undefined;
+  curSlide = "todo";
+
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -17,8 +23,10 @@ export class PlayerPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(!this.data.isPlaying)
+    if(!this.data.isPlaying){
       this.data.setAudio();
+    }
+    
   }
 
   currentIndex:any;
@@ -115,18 +123,51 @@ export class PlayerPage implements OnInit {
 
 
   bigimg = false;
-  toggleView(){
-    this.showHistory = false;
-    this.bigimg = !this.bigimg;
+  showText = true;
+  text(){
+    if(this.showText == true){
+      this.bigimg = !this.bigimg;
+    }
+    else
+    {
+      this.showText = true;
+      this.showHistory = false;
+      this.showPlaylist = false;
+      this.bigimg = false;
+    }
   }
+
   showHistory = false;
   history(){
-    this.showHistory = !this.showHistory;
+    //this.showHistory = !this.showHistory;
+    if(this.showHistory==true){
+      console.log('init swiper change...')
+      console.log(this.swiperRef)
+      this.swiperRef?.nativeElement.swiper.on('slideChange', () => {
+        console.log('on slide change$$$')
+        const activeIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
+        console.log('Active Index changed:', activeIndex);
+      });
+    }
+    this.showText = false;
+    this.showHistory = true;
+    this.showPlaylist = false;
+    //this.bigimg = false;
+  }
+  showPlaylist = false;
+  playlist(){
+    this.showText = false;
+    this.showHistory = false;
+    this.showPlaylist = true;
+    //this.bigimg = false;
   }
 
   play(poem:any){
     this.data.playobj(poem, false);
+    this.showText = true;
     this.showHistory = false;
+    this.showPlaylist = false;
+    this.bigimg = false;
   }
   
 

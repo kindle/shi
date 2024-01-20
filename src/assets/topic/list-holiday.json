@@ -1,23 +1,21 @@
 [
     {
         "id":2000,
-        "name":"中秋诗单列表",
-        "image":"",
-        "desc":"",
+        "name":"",
+        "sub":"中秋",
+        "image":"/assets/img/带我去月球.jpg",
+        "more":"但愿人长久，千里共婵娟",
+        "desc":"古人笔下的中秋",
         "list":[
-            {"title":"望月怀远","author":"张九龄","sample":"海上生明月，天涯共此时","id":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
+            {"title":"水调歌头·丙辰中秋","author":"苏轼","sample":"但愿人长久，千里共婵娟","id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"},
             {"title":"十五夜望月寄杜郎中","author":"王建","sample":"今夜月明人尽望，不知秋思落谁家","id":"7d6c16de-1d7e-4564-979b-e93e42ab176b"},
-            {"title":"嫦娥","author":"李商隐","sample":"嫦娥应悔偷灵药，碧海青天夜夜心","id":"e98d0107-2f19-48bf-a408-6f399b24f6a3"},
-            {"title":"水调歌头·丙辰中秋","author":"苏轼","sample":"但愿人长久，千里共婵娟","id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"}
-        ]
-    },
-    {
-        "id":2001,
-        "name":"中秋诗单tag",
-        "image":"",
-        "desc":"",
-        "tag":"中秋",
-        "list":[
+            {"title":"秋歌","author":"李白","sample":"长安一片月，万户捣衣声","id":"49194c4b-b775-4d21-a506-fc0a2ff308f1"},
+            {"title":"望月怀远","author":"张九龄","sample":"海上生明月，天涯共此时","id":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
+            {"title":"八月十五夜月","author":"杜甫","sample":"满月飞明镜，归心折大刀","id":"e68896e5-b85b-4a0b-abf4-4b732cd230e4"},
+            {"title":"中秋","author":"司空图","sample":"此夜若无月，一年虚过秋","id":"3319c91e-c9de-4525-bf10-f4e20620460b"},
+            {"title":"八月十五日夜湓亭望月","author":"白居易","sample":"西北望乡何处是，东南见月几回圆","id":"1f8e55f9-e589-4bfd-8dcd-40ae58c8e4bb"},
+            {"title":"中秋月","author":"苏轼","sample":"此生此夜不长好，明月明年何处看","id":"16986fb6-d025-4ce1-83ff-10e036967042"},
+            {"title":"嫦娥","author":"李商隐","sample":"嫦娥应悔偷灵药，碧海青天夜夜心","id":"e98d0107-2f19-48bf-a408-6f399b24f6a3"}
         ]
     }
     

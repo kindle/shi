@@ -18,7 +18,7 @@
 -->
 
 <ion-content [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" force-overscroll="false">
-  <ion-header [translucent]="true" collapse="condense" *ngIf="!showFilter" style="margin-top:5px;">
+  <ion-header [translucent]="true" collapse="condense" *ngIf="!data.showFilter" style="margin-top:5px;">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md">搜索</ion-title>
     </ion-toolbar>
@@ -27,30 +27,30 @@
   <ion-header style="position:sticky;top:0;" collapse="fade" [translucent]="true">
     <ion-toolbar style="padding-top:15px;">
       <ion-searchbar placeholder="诗人、诗词以及更多内容" show-cancel-button="focus"
-      [(ngModel)]="searchText"
+      [(ngModel)]="data.searchText"
       (ionFocus)="onSearchFocus()"
       (ionBlur)="onLoseFocus()"
-      (ionCancel)="onSearchCancel()"
+      (ionCancel)="data.onSearchCancel()"
       (ionInput)="onSearchChanged()"
       cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
-  <ion-list *ngIf="showFilter">
-    <ion-item *ngIf="isAuthor&&searchText" (click)="data.goToAuthor(searchText)">
+  <ion-list *ngIf="data.showFilter">
+    <ion-item *ngIf="isAuthor&&data.searchText" (click)="data.goToAuthor(data.searchText)">
       <ion-thumbnail slot="start">
-        <img style="border-radius: 50%;margin:0 2px;" src="/assets/img/poet/{{searchText}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+        <img style="border-radius: 50%;margin:0 2px;" src="/assets/img/poet/{{data.searchText}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
       </ion-thumbnail>
       <ion-label>
-        <h2>{{searchText}}</h2>
+        <h2>{{data.searchText}}</h2>
         <p>作者</p>
       </ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline" color="medium"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-item *ngFor="let p of displayResult" style="--padding-start:20px;--inner-padding-end:15px;"
+    <ion-item *ngFor="let p of data.displayResult" style="--padding-start:20px;--inner-padding-end:15px;"
     (click)="data.playobj(p)">
       <ion-thumbnail slot="start"
       style="display: flex;justify-content: center;align-items: center;">
@@ -88,7 +88,7 @@
   </ion-list>
 -->
 
-  <ion-card *ngIf="!showFilter&&showSubscription">
+  <ion-card *ngIf="!data.showFilter&&showSubscription">
     <ion-card-content style="z-index:1;position:fixed;width:100%;padding-top:10px;padding-right:10px;">
       <ion-buttons style="display:flex;justify-content:center;width:30px;height:30px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" 
       (click)="closeSub()">
@@ -112,7 +112,7 @@
   </ion-card>
 
 
-  <div *ngIf="!showFilter">
+  <div *ngIf="!data.showFilter">
     <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 0;">
       <ion-card-title style="font-size: 20px;">类别浏览</ion-card-title>
     </ion-card-content>
@@ -147,7 +147,7 @@
   <!--(longPressed)="active(topic.id)" -->
   <!---->
   <div style="display: grid;grid-template-columns: repeat({{ui.isiphone?2:3}}, 1fr);grid-gap:0px;padding:0 10px;"
-  *ngIf="!showFilter">
+  *ngIf="!data.showFilter">
     <ion-card *ngFor="let topic of this.data.searchTopicData" 
     style="margin:5px;
     background-image: url('{{topic.image}}');
