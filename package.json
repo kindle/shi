@@ -2,7 +2,7 @@
   "name": "shi",
   "version": "1.0.1",
   "author": "Bailin Wei",
-  "homepage": "https://reddah.com/",
+  "homepage": "https://shi.reddah.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

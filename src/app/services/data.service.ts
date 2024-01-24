@@ -53,6 +53,8 @@ export class DataService {
 
   TestMode = false;
   
+  //引导评分开关
+  showRatingsAndReviews = true;
   //订阅广告开关
   showSubscription = false;
   //趣味诗单开关
@@ -78,10 +80,12 @@ export class DataService {
     this.audio = new Audio();
 
     if(this.TestMode === true){
+      this.showRatingsAndReviews = true;
       this.showSubscription = true;
       this.disableRandomFunData = true;
       this.disableRandomArticleData = true;
     }else{
+      this.showRatingsAndReviews = true;
       this.showSubscription = false;
       this.disableRandomFunData = false;
       this.disableRandomArticleData = false;
@@ -1235,6 +1239,8 @@ export class DataService {
     
     //tab4 订阅随机图片
     this.getSubscriptionImage();
+
+    this.initRatings();
   }
   
   /*--mix end----*/
@@ -1948,4 +1954,41 @@ export class DataService {
     //console.log(key)
     Browser.open({ url: `http://www.bing.com/search?q=${key}` });
   } 
+
+  async RatingsAndReviews() {
+    this.closeRatings();
+    let iosId = 6476442565;
+    //let iosId = 1481532281;//reddah
+    let storeAppURL = `itms-apps://itunes.apple.com/app/id${iosId}`;
+    window.open(storeAppURL);
+  }
+
+  //日期个位是5的显示
+  LOCALSTORAGE_RATINGS:any = "LOCALSTORAGE_RATINGS";
+  initRatings(){
+    let today = new Date();
+    let todayNumber = today.getDate();
+    if(todayNumber%5==0){
+      this.storage.get(this.LOCALSTORAGE_RATINGS).then(data=>{
+          if(data==null){
+            this.showRatingsAndReviews = true;
+          }
+          else if(data==todayNumber){
+            this.showRatingsAndReviews = false;
+          }
+          else{
+            this.showRatingsAndReviews = true;
+          }
+      });
+    }
+    else{
+      this.showRatingsAndReviews = false;
+    }
+  }
+  closeRatings(){
+    this.showRatingsAndReviews = false;
+    let today = new Date();
+    let todayNumber = today.getDate();
+    this.set(this.LOCALSTORAGE_RATINGS, JSON.stringify(todayNumber));
+  }
 }

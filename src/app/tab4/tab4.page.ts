@@ -14,7 +14,6 @@ export class Tab4Page implements OnInit {
   constructor(
     public data: DataService,
     public ui: UiService,
-    private router: Router,
   ) { 
     this.showSubscription = this.data.showSubscription;
     this.localJsonData = this.data.JsonData;

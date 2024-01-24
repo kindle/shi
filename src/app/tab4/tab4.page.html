@@ -88,6 +88,29 @@
   </ion-list>
 -->
 
+  <ion-card *ngIf="!data.showFilter&&data.showRatingsAndReviews">
+    <ion-card-content style="z-index:1;position:fixed;width:100%;padding-top:10px;padding-right:10px;">
+      <ion-buttons style="display:flex;justify-content:center;width:30px;height:30px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" 
+      (click)="data.closeRatings()">
+        <ion-button color="light">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-content>
+    <img src="/assets/img/chalk-4829602_1280.jpg" />
+    <ion-card-header>
+      <ion-card-title style="text-align: center;font-size:22px;">您的点赞，是我前行的动力</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content style="text-align: center;font-weight: light;color:black;">
+      去给名诗佳作点个赞吧
+    </ion-card-content>
+
+    <ion-card-content style="text-align: center;display: flex;justify-content: center;" (click)="data.RatingsAndReviews();">
+      <ion-button color="primary" style="width:80%;">立即评价</ion-button>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngIf="!data.showFilter&&showSubscription">
     <ion-card-content style="z-index:1;position:fixed;width:100%;padding-top:10px;padding-right:10px;">
       <ion-buttons style="display:flex;justify-content:center;width:30px;height:30px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" 
@@ -99,7 +122,7 @@
     </ion-card-content>
     <img src="/assets/img/{{data.subscriptionImage}}.jpg" />
     <ion-card-header>
-      <ion-card-title style="text-align: center;font-size:22px;">畅享名师佳作，全无广告干扰</ion-card-title>
+      <ion-card-title style="text-align: center;font-size:22px;">畅享名师佳句，全无广告干扰</ion-card-title>
     </ion-card-header>
   
     <ion-card-content style="text-align: center;font-weight: light;color:black;">
