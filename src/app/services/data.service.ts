@@ -9,8 +9,10 @@ import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
 import { catchError, tap } from 'rxjs';
 import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
-
 import { Solar } from 'lunar-typescript';
+
+import { Share } from '@capacitor/share';
+
 
 import { Browser } from '@capacitor/browser';
 
@@ -1922,6 +1924,7 @@ export class DataService {
   }
 
   private async readAsBase64(photo: Photo) {
+    console.log(photo)
     // "hybrid" will detect Cordova or Capacitor
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
@@ -1990,5 +1993,38 @@ export class DataService {
     let today = new Date();
     let todayNumber = today.getDate();
     this.set(this.LOCALSTORAGE_RATINGS, JSON.stringify(todayNumber));
+  }
+
+
+  async share(title:any, text:any, url:any, dialogTitle:any){
+    //微信禁止此类分享
+    await Share.share({
+      title: title,//'See cool stuff',
+      text: text, //'Really awesome thing you need to see right meow',
+      url: url,//'http://ionicframework.com/',
+      dialogTitle: dialogTitle, //'Share with buddies',
+    });
+  }
+
+
+  public async share1(from:any) {
+    let source = from=='camera'?CameraSource.Camera:CameraSource.Photos;
+    // Take a photo
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: source,
+      quality: 100
+    });
+    
+    const base64Data = await this.readAsBase64(capturedPhoto);
+    //console.log(base64Data)
+    this.ui.share("data:image/jpeg;base64,"+base64Data);
+    /*
+    // Save the picture and add it to photo collection
+    const savedImageFile = await this.savePicture(capturedPhoto);
+    
+    listdata.customimage = savedImageFile.webviewPath;
+    //console.log(savedImageFile.webviewPath)
+    */
   }
 }

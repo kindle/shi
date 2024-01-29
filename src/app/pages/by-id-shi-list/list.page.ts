@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ListPage {
 
   localList:any;
-  searchText:any;
+  searchText:any="";
   showFilter = false;
   onSearchFocus(){
     this.showFilter = true;
@@ -22,6 +22,7 @@ export class ListPage {
   }
   onSearchChanged(){
     let key = this.searchText.trim();
+    /*
     if(key==""){
       this.localList = this.listdata.list;
     }
@@ -29,6 +30,42 @@ export class ListPage {
       this.localList = this.listdata.list.filter((e:any)=>
         (e.title+e.author+e.sample).indexOf(key)>=0
       );
+    }*/
+
+    //最多支持5个关键字 空格分隔 缩小查询范围
+    let keys = key.split(' ');
+
+    if(key.length==0){
+      this.localList = this.listdata.list.filter((e:any)=>
+        (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(key)>=0
+      );
+    }
+    else{
+      this.localList = this.listdata.list.filter((e:any)=>
+        (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(key[0])>=0
+      );
+      if(keys.length>1){
+        this.localList = this.localList.filter((e:any)=>
+          (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[1])>=0
+        );
+        if(keys.length>2){
+          this.localList = this.localList.filter((e:any)=>
+            (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[2])>=0
+          );
+
+          if(keys.length>3){
+            this.localList = this.localList.filter((e:any)=>
+              (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[3])>=0
+            );
+            
+            if(keys.length>4){
+              this.localList = this.localList.filter((e:any)=>
+                (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[4])>=0
+              );
+            }
+          }
+        }
+      }
     }
   }
 

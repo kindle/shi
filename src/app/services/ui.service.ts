@@ -9,6 +9,8 @@ import { AnimationController, ModalController } from '@ionic/angular';
 import { ImageViewerPage } from 'src/app/pages/viewer-image/image-viewer.page';
 import { PlayerPage } from '../pages/player/player.page';
 
+import domtoimage from 'dom-to-image';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -181,7 +183,15 @@ export class UiService {
   }
 
   share(base64ImageData:any){
-    this.socialSharing.share(undefined, "share", base64ImageData, undefined);
+    this.socialSharing.share('mymessage', "my subject", base64ImageData, 'reddah.com');
+  }
+
+  share1(message:any, subject:any, base64ImageData:any, url:any){
+    this.socialSharing.share(message, subject, base64ImageData, url);
+  }
+
+  share2(){
+    
   }
 
   saveShareImage(dataUrl:any){
@@ -241,5 +251,6 @@ export class UiService {
   goback(){
     this.location.back();
   }
+
 
 }

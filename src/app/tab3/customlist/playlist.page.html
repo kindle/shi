@@ -46,7 +46,7 @@
         </ion-thumbnail>  
         <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
           style="background-color: {{like.data['color']}};">
-          <img style="border-radius: 10px;" [src]="like.data['image']" />
+          <img style="border-radius: 10px;" [src]="like.data['image'][0]" />
         </ion-thumbnail>
         <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length>=4" 
         style="

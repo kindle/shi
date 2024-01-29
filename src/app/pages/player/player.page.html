@@ -142,7 +142,13 @@
     </ion-item>
 
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
-      <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+      <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+      [ngClass]="{'select-line':authorSelected===true}"
+      (click)="selectAuthor()">
+        <ion-icon name="search-outline" *ngIf="authorSelected===true"
+        (click)="data.search(data.currentPoem.author)"
+        style="position: absolute;left:5px;margin:2px;"
+        ></ion-icon>
         {{data.currentPoem.author}}
       </div>
     </ion-item>

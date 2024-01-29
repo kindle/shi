@@ -32,6 +32,12 @@ export class PlayerPage implements OnInit {
   currentIndex:any;
   select(i:any){
     this.currentIndex = i;
+    this.authorSelected = false;
+  }
+  authorSelected= false;
+  selectAuthor(){
+    this.authorSelected = true;
+    this.currentIndex = null;
   }
 
   prev(){

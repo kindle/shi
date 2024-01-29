@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
+import { UiService } from 'src/app/services/ui.service';
 import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/add-to-customlist.page';
 
 @Component({
@@ -17,6 +18,7 @@ export class ButtonEndComponent {
   uuid:any;
   constructor(
     public data: DataService,
+    public ui: UiService,
     private modalController: ModalController
   ){
     this.uuid = this.data.generate_uuid();
@@ -52,5 +54,22 @@ export class ButtonEndComponent {
     });
       
     this.data.goToAuthor(author);
+  }
+    
+  share(){
+    this.data.share1('camera1')
+    /*
+    const historyBlock:any = document.getElementById("sharetest");
+    
+    const options = { 
+      background: "white", 
+      width: historyBlock.clientWidth, 
+      height: historyBlock.clientHeight 
+    };
+
+    domtoimage.toPng(historyBlock, options).then((file) => {
+      this.ui.share(file);
+    });*/
+
   }
 }

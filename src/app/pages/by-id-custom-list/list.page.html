@@ -187,10 +187,10 @@
 
       <div *ngIf="!showFilter"
       style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:10px;margin-bottom:0px;">
-        <ion-text mode="ios" style="font-size:20px; margin:5px;text-align: center;" *ngIf="listdata&&!isEdit">
+        <ion-text mode="ios" style="font-size:20px; margin:15px;text-align: center;" *ngIf="listdata&&!isEdit">
           {{listdata.name}} 
         </ion-text>
-        <ion-input style="font-size:20px; margin:5px;text-align: center;" *ngIf="!showFilter&&isEdit" 
+        <ion-input style="font-size:20px; margin:15px;text-align: center;" *ngIf="!showFilter&&isEdit" 
         [(ngModel)]="listdata.name" placeholder="诗词列表名称"></ion-input>
       </div>
     </ion-toolbar>

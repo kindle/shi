@@ -110,10 +110,44 @@ export class Tab4Page implements OnInit {
       return;
     }
 
-    this.searchResult = this.localJsonData.filter((e:any)=>
-      (e.text).indexOf(key)>=0
-      //&&e.audio
-    );
+    //最多支持5个关键字 空格分隔 缩小查询范围
+    let keys = key.split(' ');
+    
+    if(key.length==0){
+      this.searchResult = this.localJsonData.filter((e:any)=>
+        (e.text).indexOf(key)>-1
+        //&&e.audio
+      );
+    }
+    else{
+      this.searchResult = this.localJsonData.filter((e:any)=>
+        (e.text).indexOf(keys[0])>-1
+      );
+    }
+
+    if(keys.length>1){
+        this.searchResult = this.searchResult.filter((e:any)=>
+          (e.text).indexOf(keys[1])>-1
+        );
+        if(keys.length>2){
+          this.searchResult = this.searchResult.filter((e:any)=>
+            (e.text).indexOf(keys[2])>-1
+          );
+
+          if(keys.length>3){
+            this.searchResult = this.searchResult.filter((e:any)=>
+              (e.text).indexOf(keys[3])>-1
+            );
+            
+            if(keys.length>4){
+              this.searchResult = this.searchResult.filter((e:any)=>
+                (e.text).indexOf(keys[4])>-1
+              );
+            }
+          }
+        }
+    }
+    
     this.searchResultCount = this.searchResult.length;
     
     this.data.displayResult = [];

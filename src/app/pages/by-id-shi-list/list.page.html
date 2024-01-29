@@ -58,7 +58,7 @@
 <ion-content [fullscreen]="true" *ngIf="listdata">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" *ngIf="localList.length>10"
+      <ion-searchbar placeholder="搜索" show-cancel-button="focus" *ngIf="localList.length>10||searchText.length>0"
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
