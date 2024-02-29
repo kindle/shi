@@ -57,7 +57,7 @@
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
-        <app-text style="margin:0px 20px;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
+       <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
 
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
@@ -66,7 +66,7 @@
 
 
         <ion-item *ngIf="it.type==='poem'" lines="none" 
-        style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;">
+        style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;--background:white;">
           <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)"
             style="display: flex;justify-content: center;align-items: center;">
             <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
@@ -77,9 +77,9 @@
             </div>
           </ion-thumbnail>
           
-          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)">
+          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
             <h2>{{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
-            <p style="margin-top:5px;display: flex;align-items: end;">
+            <p style="margin-top:5px;display: flex;align-items: end;color:black;">
               {{it.author}}《{{it.title}}》
               <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>
             </p>

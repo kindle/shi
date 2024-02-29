@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Injectable, NgModule } from '@angular/core';
 import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -23,7 +23,7 @@ import { Media } from '@awesome-cordova-plugins/media/ngx'
     AppRoutingModule, 
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    HammerModule
+    HammerModule,
   ],
   providers: 
   [

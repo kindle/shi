@@ -169,7 +169,7 @@
   <!--[ngStyle]="{'-webkit-filter':currentLpId === topic.id ? 'blur(1px)' : '' }"-->
   <!--(longPressed)="active(topic.id)" -->
   <!---->
-  <div style="display: grid;grid-template-columns: repeat({{ui.isiphone?2:3}}, 1fr);grid-gap:0px;padding:0 10px;"
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
     <ion-card *ngFor="let topic of this.data.searchTopicData" 
     style="margin:5px;

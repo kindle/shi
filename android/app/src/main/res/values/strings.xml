@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">名诗佳句</string>
+    <string name="title_activity_main">名诗佳句</string>
+    <string name="package_name">com.reddah.shi</string>
+    <string name="custom_url_scheme">com.reddah.shi</string>
+</resources>

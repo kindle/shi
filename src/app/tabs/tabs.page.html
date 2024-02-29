@@ -149,6 +149,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         </div>
         <div style="font-size:18px;width:100%;font-weight: normal;
         overflow: hidden;text-overflow: ellipsis;max-height: 30px;
+        color:black;
         display: -webkit-box;
         -webkit-box-orient:vertical;
         -webkit-line-clamp:1;">
@@ -157,16 +158,16 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-buttons>
       <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:5px;">
         <ion-button (click)="data.togglePlay()">
-          <ion-icon name="play" color="dark" *ngIf="!data.isPlaying"></ion-icon>
-          <ion-icon name="pause" color="dark" *ngIf="data.isPlaying" ></ion-icon>
+          <ion-icon name="play" style="color:black;" *ngIf="!data.isPlaying"></ion-icon>
+          <ion-icon name="pause" style="color:black;" *ngIf="data.isPlaying" ></ion-icon>
         </ion-button>
         <ion-button [disabled]="false" (click)="data.playNext()">
-          <ion-icon name="play-forward" color="dark"></ion-icon>
+          <ion-icon name="play-forward" style="color:black;"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
 
-    <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="ui.isiphone" style="padding-top:3px;">
+    <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="!ui.isipad" style="padding-top:3px;">
       <ion-tab-button tab="tab1" style="--background: transparent;">
         <ion-icon name="book"></ion-icon>
         开卷有益
