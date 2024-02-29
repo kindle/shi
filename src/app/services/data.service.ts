@@ -1395,9 +1395,12 @@ export class DataService {
           shici.id===id
         )[0];
         //console.log(poem)
-      poem.sample = sample;
-      //if 有mp3, do not show modal, play directly
-      this.playobj(poem, poem.audio?false:true);
+
+      //if(poem){
+        poem.sample = sample;
+        //if 有mp3, do not show modal, play directly
+        this.playobj(poem, poem.audio?false:true);
+      //}
     }
   }
 
@@ -1410,6 +1413,14 @@ export class DataService {
           shici.id===poem.id
         )[0];
       }
+      
+      if(!poem){
+        //poem list has id, but poem has no id...
+        //do nothing
+        this.ui.toast('top','诗词ID没找到~')
+        return;
+      }
+
       this.currentPoem = poem;
       if(poem.audio){
         this.setAudio();
@@ -1437,10 +1448,12 @@ export class DataService {
   savePlayHistory(poem:any){
     if(this.playHistory.length>0){
       let lastPlay = this.playHistory[this.playHistory.length-1];
-      if(lastPlay.id == poem.id||
-        (lastPlay.title==poem.title&&lastPlay.author==poem.author))
-      {
-        return;
+      if(lastPlay){
+        if(lastPlay.id == poem.id||
+          (lastPlay.title==poem.title&&lastPlay.author==poem.author))
+        {
+          return;
+        }
       }
     }
     

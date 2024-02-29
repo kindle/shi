@@ -49,7 +49,7 @@ export class PoemPage{
     }
     
     this.searchResult = this.data.localJsonData.filter((e:any)=>
-      (e.data.author+e.data.title+e.data.paragraphs.join('')).indexOf(key)>=0
+      (e.data.author+e.data.title+e.data.paragraphs?.join('')).indexOf(key)>=0
     );
     this.searchResultCount = this.searchResult.length;
     
