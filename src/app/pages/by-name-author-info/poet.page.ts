@@ -51,7 +51,7 @@ export class PoetPage {
   }
 
   getUrl(){
-    return `/assets/img/poet/${this.author}.jpeg`
+    return `https://reddah.blob.core.windows.net/msjjpoet/${this.author}.jpeg`
   }
 
 

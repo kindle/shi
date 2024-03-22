@@ -10,6 +10,7 @@ import { ListPage } from './list.page';
 import { AuthorComponentModule } from 'src/app/components/author/author.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
     ListPageRoutingModule,
     AuthorComponentModule,
     TextComponentModule,
-    ButtonEndComponentModule
+    ButtonEndComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [ListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

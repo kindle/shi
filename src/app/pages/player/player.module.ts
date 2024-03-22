@@ -8,6 +8,7 @@ import { PlayerPageRoutingModule } from './player-routing.module';
 
 import { PlayerPage } from './player.page';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
     IonicModule,
     PlayerPageRoutingModule,
     ButtonEndComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [PlayerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

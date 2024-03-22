@@ -85,3 +85,31 @@ ion-range::part(knob) {
     80% {background-size: 20% 50% ,20% 50% ,20% 100%}
     100%{background-size: 20% 50% ,20% 50% ,20% 50% }
 }
+
+
+
+img.ng-lazyloaded {
+    animation: fadein 1s;
+}
+
+div.ng-lazyloaded {
+    animation: fadein 1s;
+}
+
+ion-card.ng-lazyloaded {
+    animation: fadein 1s;
+}
+
+ion-card-content.ng-lazyloaded {
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}

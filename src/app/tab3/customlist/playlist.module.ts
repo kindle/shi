@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PlayListPageRoutingModule } from './playlist-routing.module';
 
 import { PlayListPage } from './playlist.page';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlayListPageRoutingModule
+    PlayListPageRoutingModule,
+    LazyLoadImageModule,
   ],
   declarations: [PlayListPage]
 })

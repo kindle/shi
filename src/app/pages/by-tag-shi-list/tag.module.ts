@@ -9,6 +9,7 @@ import { TagPageRoutingModule } from './tag-routing.module';
 import { TagPage } from './tag.page';
 import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
     IonicModule,
     TagPageRoutingModule,
     TextComponentModule,
-    ButtonEndComponentModule
+    ButtonEndComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [TagPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchToCustomListPage } from './search-to-customlist.page';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    LazyLoadImageModule,
   ],
   declarations: [SearchToCustomListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

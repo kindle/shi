@@ -101,10 +101,10 @@
         "big_title":"数数他们一生写过多少首诗!",
         "desc":"",
         "items":[
-            {"image":"url('/assets/img/p1.jpg')", "text":"李白", "color":"rgb(255,230,151)", "link":""},
-            {"image":"url('/assets/img/p2.jpg')", "text":"高适", "color":"rgb(255,222,194)", "link":""},
-            {"image":"url('/assets/img/z2.jpg')", "text":"杜甫", "color":"rgb(205,238,240)", "link":""},
-            {"image":"url('/assets/img/z4.jpg')", "text":"贺知章", "color":"rgb(240,209,246)", "link":""}
+            {"image":"url('https://reddah.blob.core.windows.net/msjjimg/p1.jpg')", "text":"李白", "color":"rgb(255,230,151)", "link":""},
+            {"image":"url('https://reddah.blob.core.windows.net/msjjimg/p2.jpg')", "text":"高适", "color":"rgb(255,222,194)", "link":""},
+            {"image":"url('https://reddah.blob.core.windows.net/msjjimg/z2.jpg')", "text":"杜甫", "color":"rgb(205,238,240)", "link":""},
+            {"image":"url('https://reddah.blob.core.windows.net/msjjimg/z4.jpg')", "text":"贺知章", "color":"rgb(240,209,246)", "link":""}
         ]
     },
 

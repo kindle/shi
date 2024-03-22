@@ -8,6 +8,7 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { StationComponentModule } from '../components/big-station/station.module';
 import { HotComponentModule } from '../components/hot/hot.module';
 import { TileListComponentModule } from '../components/tile-list/tilelist.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { TileListComponentModule } from '../components/tile-list/tilelist.module
     HotComponentModule,
     StationComponentModule,
     TileListComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [Tab3Page],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

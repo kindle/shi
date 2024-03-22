@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AuthorPageRoutingModule } from './author-routing.module';
 
 import { AuthorPage } from './author.page';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AuthorPageRoutingModule
+    AuthorPageRoutingModule,
+    LazyLoadImageModule
   ],
   declarations: [AuthorPage]
 })

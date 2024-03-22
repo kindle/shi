@@ -145,7 +145,11 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     <ion-toolbar style="--background:rgba(255,255,255,0.8);" *ngIf="data.currentPoem">
       <ion-buttons slot="start" expand="block" style="width:100%;" (click)="data.play()">
         <div class="play-icon-box" *ngIf="data.currentPoem">
-          <img style="min-width: 40px;aspect-ratio: 1;border-radius: 5px;" src="/assets/img/poet/{{data.currentPoem.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+          <img style="min-width: 40px;aspect-ratio: 1;border-radius: 5px;" 
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{data.currentPoem.author}}.jpeg" 
+            onerror="javascript:this.src='assets/img/default.jpg'"
+          />
         </div>
         <div style="font-size:18px;width:100%;font-weight: normal;
         overflow: hidden;text-overflow: ellipsis;max-height: 30px;

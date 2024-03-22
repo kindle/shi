@@ -32,7 +32,9 @@
     <ion-item *ngFor="let like of displayResult" 
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start" *ngIf="like.data">
-        <img style="border-radius: 10px;" [src]="like.data['image']"
+        <img style="border-radius: 10px;"
+          defaultImage="" 
+          lazyLoad="{{like.data['image']}}"
         (click)="data.goToList(like.data['id'])" />
       </ion-thumbnail>
       <ion-label *ngIf="like.data" (click)="data.goToList(like.data['id'])">
@@ -44,7 +46,7 @@
     <ion-item *ngFor="let p of data.hotData[0]" 
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start">
-        <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
+        <img style="border-radius: 10px;" src="https://reddah.blob.core.windows.net/msjjimg/smart.jpg"  />
       </ion-thumbnail>
       <ion-label>
         <h2>{{p.title}} - {{p.author}}</h2>

@@ -45,8 +45,10 @@
       <ion-thumbnail slot="start" *ngIf="like.data"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['author'])"
-        src="/assets/img/poet/{{like.data['author']}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
-        [ngStyle]="{'opacity':(data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id) ? '0.5' : '1' }" />
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['author']}}.jpeg" 
+          onerror="javascript:this.src='assets/img/default.jpg'"
+          [ngStyle]="{'opacity':(data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id) ? '0.5' : '1' }" />
         <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
           'height':(data.isPlaying) ? '' : '5px' }"

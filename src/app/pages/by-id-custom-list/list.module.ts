@@ -10,6 +10,7 @@ import { ListPage } from './list.page';
 import { AuthorComponentModule } from 'src/app/components/author/author.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.mod
     AuthorComponentModule,
     TextComponentModule,
     SharedSwiperTouchModule,
+    LazyLoadImageModule,
   ],
   declarations: [ListPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

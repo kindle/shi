@@ -6,9 +6,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { StationComponent } from './station.component';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, SharedSwiperTouchModule],
+  imports: [ 
+    CommonModule,
+    FormsModule, 
+    IonicModule, 
+    SharedSwiperTouchModule,
+    LazyLoadImageModule,
+  ],
   declarations: [StationComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   exports: [StationComponent]

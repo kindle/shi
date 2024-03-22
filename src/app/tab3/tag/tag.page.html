@@ -31,8 +31,10 @@
     <ion-item *ngFor="let like of displayResult" 
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start" *ngIf="like.data">
-        <img style="border-radius: 10px;" [src]="like.data['src']"
-        (click)="data.goToListBy(like.data)"/>
+        <img style="border-radius: 10px;" 
+          defaultImage="" 
+          lazyLoad="{{like.data['src']}}"
+          (click)="data.goToListBy(like.data)"/>
       </ion-thumbnail>
       <ion-label *ngIf="like.data" (click)="data.goToListBy(like.data)">
         <h2>{{like.data['text']}}</h2>

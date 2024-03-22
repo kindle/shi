@@ -1,5 +1,5 @@
 <ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" 
-  style="--background: url('/assets/img/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
+  style="--background: url('https://reddah.blob.core.windows.net/msjjimg/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
     <div style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
         <ion-card-content style="z-index:100;position:fixed;width:100%;
           padding-inline-start:10px;
@@ -45,7 +45,11 @@
             <!--(click)="data.goToAuthor(v)" -->
             <swiper-slide *ngFor="let v of data.currentArticle.items;index as i" class="swiper-slide" 
             [ngStyle]="{'margin-left':(i === data.getInt(data.currentArticle.items.length/3)) ? '40px' : '0px' }">
-              <img style="width: 80px;height:80px;border-radius: 10px;" src="/assets/img/poet/{{v.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+              <img style="width: 80px;height:80px;border-radius: 10px;"
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg" 
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              />
               <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
@@ -61,7 +65,7 @@
 
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
-          <img  src="/assets/img/{{it.value}}" (click)="ui.imageviewer('/assets/img/'+it.value)" >
+          <img  src="https://reddah.blob.core.windows.net/msjjimg/{{it.value}}" (click)="ui.imageviewer('https://reddah.blob.core.windows.net/msjjimg/'+it.value)" >
         </div>
 
 
@@ -69,7 +73,10 @@
         style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;--background:white;">
           <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)"
             style="display: flex;justify-content: center;align-items: center;">
-            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{it.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+            <img id="authorimg" style="border-radius: 10px;"
+              defaultImage="assets/img/default.jpg" 
+              lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{it.author}}.jpeg" 
+              onerror="javascript:this.src='assets/img/default.jpg'"
               [ngStyle]="{'opacity':(data.currentPoem&&it.audio&&it.id === data.currentPoem.id) ? '0.5' : '1' }" />
             <div class="playing" style="position: absolute;" *ngIf="data.currentPoem&&it.audio&&it.id === data.currentPoem.id"
               [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -101,7 +108,10 @@
             style="--padding-start:15px;--inner-padding-end:20px;">
             <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
             style="display: flex;justify-content: center;align-items: center;">
-              <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+              <img style="border-radius: 10px;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"  
+                onerror="javascript:this.src='assets/img/default.jpg'"
                 [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
               <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
                 [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',

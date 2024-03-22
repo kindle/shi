@@ -1,4 +1,4 @@
-<div style="background-image: url({{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}});
+<div style="background-image: url({{'https://reddah.blob.core.windows.net/msjjimg/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}});
 height:100%;
 " class="blur-background">
   <ion-list style="position: fixed; top:0; width: -webkit-fill-available;z-index:200;
@@ -43,7 +43,7 @@ height:100%;
           <ion-item lines="none" *ngFor="let p of data.playHistory" (click)="play(p)">
             <ion-thumbnail style="width:40px;height:40px;" slot="start"
             style="display: flex;justify-content: center;align-items: center;">
-              <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+              <img id="authorimg" style="border-radius: 10px;" src="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" 
                 [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
               <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
                 [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -74,7 +74,7 @@ height:100%;
             style="--padding-start:15px;--inner-padding-end:3px;">
               <ion-thumbnail style="width:40px;height:40px;" slot="start"
               style="display: flex;justify-content: center;align-items: center;">
-                <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+                <img id="authorimg" style="border-radius: 10px;" src="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" 
                   [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
                 <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
                   [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -102,15 +102,15 @@ height:100%;
 
   <!--小于10行*********start*******************-->
   <!--img   ...-->
-  <!--(click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"-->
+  <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
   <ion-list *ngIf="showText&&data.currentPoem.paragraphs.length<=10"
   style="background:transparent;">
     <ion-item lines="none" *ngIf="bigimg"
       style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
       <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
         <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
-        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-        onerror="javascript:this.src='/assets/img/default.jpg'" />
+        src="{{'https://reddah.blob.core.windows.net/msjjimg/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+        onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" />
       </div>
     </ion-item>
     <ion-item lines="none" 
@@ -118,8 +118,8 @@ height:100%;
       <div class="play-icon-box" *ngIf="!bigimg" 
         (click)="text()">
         <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
-        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-        onerror="javascript:this.src='/assets/img/default.jpg'" />
+        src="{{'https://reddah.blob.core.windows.net/msjjimg/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+        onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" />
       </div>
       <ion-label>
         <h2>{{data.currentPoem.title}}</h2>
@@ -174,12 +174,12 @@ height:100%;
     *ngIf="showText&&data.currentPoem.paragraphs.length>10">
     <ion-list *ngIf="showText">
       <ion-item lines="none" *ngIf="bigimg"
-      (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
+      (click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"
         style="--background:transparent;margin:0 5px;margin-top:15px;--padding-start:0;">
         <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
           <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
-          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-          onerror="javascript:this.src='/assets/img/default.jpg'" />
+          src="{{'https://reddah.blob.core.windows.net/msjjimg/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" />
         </div>
       </ion-item>
       <ion-item lines="none" 
@@ -187,8 +187,8 @@ height:100%;
         <div class="play-icon-box" *ngIf="!bigimg" 
           (click)="text()">
           <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
-          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-          onerror="javascript:this.src='/assets/img/default.jpg'" />
+          src="{{'https://reddah.blob.core.windows.net/msjjimg/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='https://reddah.blob.core.windows.net/msjjimg/default.jpg'" />
         </div>
         <ion-label>
           <h2>{{data.currentPoem.title}}</h2>

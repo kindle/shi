@@ -15,16 +15,16 @@ import { Swiper } from 'swiper';
 export class ListPage {
 
   sysImages = [
-    "assets/img/bird.jpg",
-    "assets/img/cao3.jpg",
-    "assets/img/money.jpg",
-    "assets/img/redbsj.jpg",
-    "assets/img/road.jpg",
-    "assets/img/海钓.jpg",
-    "assets/img/man-3915438_1280.jpg",
-    "assets/img/lotus-1205631_1280.jpg",
-    "assets/img/swan-4013225_1280.jpg",
-    "assets/img/chalk-4829602_1280.jpg"
+    "https://reddah.blob.core.windows.net/msjjimg/bird.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/cao3.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/money.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/redbsj.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/road.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/海钓.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/lotus-1205631_1280.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/swan-4013225_1280.jpg",
+    "https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg"
   ];
 
   @ViewChild('swiperpickimg')
@@ -176,7 +176,7 @@ export class ListPage {
     this.listActualLength = this.localList.length;
     
     if(this.localList.length>0&&this.localList.length<4){
-      this.singleImage = `/assets/img/poet/${this.localList[0].author}.jpeg`;
+      this.singleImage = `https://reddah.blob.core.windows.net/msjjpoet/${this.localList[0].author}.jpeg`;
     }
   }
 

@@ -8,6 +8,7 @@ import { Tab4PageRoutingModule } from './tab4-routing.module';
 
 import { Tab4Page } from './tab4.page';
 import { LongPressDirective } from '../directives/long-press.directive';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { LongPressDirective } from '../directives/long-press.directive';
     FormsModule,
     IonicModule,
     Tab4PageRoutingModule,
+    LazyLoadImageModule,
   ],
   declarations: [
     Tab4Page,

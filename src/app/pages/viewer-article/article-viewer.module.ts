@@ -11,6 +11,7 @@ import { HotComponentModule } from '../../components/hot/hot.module';
 import { TileComponentModule } from '../../components/tile/tile.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
     TileComponentModule,
     TextComponentModule,
     ButtonEndComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [ArticleViewerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

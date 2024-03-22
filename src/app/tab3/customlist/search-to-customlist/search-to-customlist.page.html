@@ -21,7 +21,11 @@
         style="--padding-start:20px;--inner-padding-end:10px;" detail="false">
           <ion-thumbnail slot="start"
           style="display: flex;justify-content: center;align-items: center;">
-            <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+            <img style="border-radius: 10px;" 
+              defaultImage="assets/img/default.jpg" 
+              lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"  
+              onerror="javascript:this.src='assets/img/default.jpg'"
+            />
           </ion-thumbnail>
           <ion-label>
             <h2 [innerHTML]="getHighlight(p)"></h2>

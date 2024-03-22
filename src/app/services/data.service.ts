@@ -386,7 +386,7 @@ export class DataService {
         this.jsonData.push({
           template:"text",
           min_height:"380px",
-          bg_image:fun.image.replace("/assets/img/",""),
+          bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
           title_color:fun.color?fun.color:"white",
           small_title:fun.sub,
           //big_title:fun.desc,
@@ -851,7 +851,8 @@ export class DataService {
       return;
     }
 
-    this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
+    //this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
+    this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
     
     /*
     const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);
@@ -1252,10 +1253,10 @@ export class DataService {
     /*
     //reset groups
     this.group = [
-      {id:0, name: "我的跑步歌单", img:"", icon:"bag-outline", cover:"cover1", count:0, color:"rgb(247,54,65)", src:"url('/assets/img/p1.jpg')"},
-      {id:1, name: "中文歌单", img:"", icon:"barbell-outline", cover:"cover2", count:0, color:"rgb(119,117,118)", src:"url('/assets/img/p2.jpg')"},
-      {id:2, name: "英文歌单", img:"", icon:"fitness-outline", cover:"cover3", count:0, color:"rgb(73,71,64)", src:"url('/assets/img/p3.jpg')"},
-      {id:3, name: "骑车", img:"", icon:"diamond-outline", cover:"cover1", count:0, color:"rgb(138,132,124)", src:"url('/assets/img/p4.jpg')"},
+      {id:0, name: "我的跑步歌单", img:"", icon:"bag-outline", cover:"cover1", count:0, color:"rgb(247,54,65)", src:"url('https://reddah.blob.core.windows.net/msjjimg/p1.jpg')"},
+      {id:1, name: "中文歌单", img:"", icon:"barbell-outline", cover:"cover2", count:0, color:"rgb(119,117,118)", src:"url('https://reddah.blob.core.windows.net/msjjimg/p2.jpg')"},
+      {id:2, name: "英文歌单", img:"", icon:"fitness-outline", cover:"cover3", count:0, color:"rgb(73,71,64)", src:"url('https://reddah.blob.core.windows.net/msjjimg/p3.jpg')"},
+      {id:3, name: "骑车", img:"", icon:"diamond-outline", cover:"cover1", count:0, color:"rgb(138,132,124)", src:"url('https://reddah.blob.core.windows.net/msjjimg/p4.jpg')"},
     ];
     //reset targets
     let createTime = new Date().getTime();
@@ -1715,17 +1716,17 @@ export class DataService {
       like.lastupdate = Date.now();
       like.data.image = [];
       if(like.data.list.length>0&&like.data.list.length<4){
-        let image = `/assets/img/poet/${like.data.list[0].author}.jpeg`;
+        let image = `https://reddah.blob.core.windows.net/msjjpoet/${like.data.list[0].author}.jpeg`;
         like.data.image.push(image);
       }else if(like.data.list.length>=4){
         /*for(let i=0;i<4;i++){
-          let image = `/assets/img/poet/${like.data.list[i].author}.jpeg`;
+          let image = `https://reddah.blob.core.windows.net/msjjpoet/${like.data.list[i].author}.jpeg`;
           like.data.image.push(image);
         }*/
         let maxNumber = 4;
         let curNumber = 0;
         for(let k=0;k<like.data.list.length;k++){
-          let image = `/assets/img/poet/${like.data.list[k].author}.jpeg`;
+          let image = `https://reddah.blob.core.windows.net/msjjpoet/${like.data.list[k].author}.jpeg`;
           
           if(!like.data.image.includes(image))
           {
@@ -1759,18 +1760,18 @@ export class DataService {
         this.collectList[i].data.list = localList;
         //update image
         if(this.collectList[i].data.list.length>0&&this.collectList[i].data.list.length<4){
-          let image = `/assets/img/poet/${this.collectList[i].data.list[0].author}.jpeg`;
+          let image = `https://reddah.blob.core.windows.net/msjjpoet/${this.collectList[i].data.list[0].author}.jpeg`;
           this.collectList[i].data.image = [image];
         }else if(this.collectList[i].data.list.length>=4){
           this.collectList[i].data.image = [];
           /*for(let k=0;k<4;k++){
-            let image = `/assets/img/poet/${this.collectList[i].data.list[k].author}.jpeg`;
+            let image = `https://reddah.blob.core.windows.net/msjjpoet/${this.collectList[i].data.list[k].author}.jpeg`;
             this.collectList[i].data.image.push(image);
           }*/
           let maxNumber = 4;
           let curNumber = 0;
           for(let k=0;k<this.collectList[i].data.list.length;k++){
-            let image = `assets/img/poet/${this.collectList[i].data.list[k].author}.jpeg`;
+            let image = `https://reddah.blob.core.windows.net/msjj/poet/${this.collectList[i].data.list[k].author}.jpeg`;
             
             if(!this.collectList[i].data.image.includes(image))
             {

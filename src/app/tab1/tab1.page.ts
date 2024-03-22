@@ -12,6 +12,10 @@ import { UiService } from '../services/ui.service';
 })
 export class Tab1Page {
 
+  //test code
+  defaultImage = 'https://www.placecage.com/1000/1000';
+  image = 'https://reddah.blob.core.windows.net/msjjimg/sand-7564466_1280.jpg';
+
   gridopt={
     rows: 3,
     fill: "row"

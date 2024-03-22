@@ -2,9 +2,9 @@
     "template": "slide",
     "title": "美到窒息的小众诗词，99%的人没读过",
     "sub": "多愁善感",
-    "src": "/assets/img/smart.jpg",
+    "src": "https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "music":"/assets/music/slidebg1.mp3",
-    "bg":"/assets/img/bg.jpg",
+    "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg",
     "slides": [
         {
             "title":["晚风吹尽朝来雨，","夕阳烟树，万里山光暮"],

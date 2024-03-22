@@ -16,9 +16,21 @@
         </ion-card-content>
 <!--background-color: rgba(0,0,0,0.5)-->
         <ion-card style="border-radius: 10px;margin-left:0px;margin-right:0px;margin-top:15px;margin-bottom:15px;">
-          <div class="station-bg-title">{{s.alias}}</div>
+          <!--
+          <div class="station-bg-title">{{s.alias}}</div>-->
+          <!--card-content-bak
           <ion-card-content class="station-content" style="z-index:1;" *ngIf="s.image"
             style="background-image: url('{{s.image}}');background-size: cover;background-repeat: no-repeat;">
+            
+            <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
+            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+            ;font-size:13px;width:100%;" *ngIf="s.text"
+            >{{s.text}}</div>
+          </ion-card-content>-->
+          <ion-card-content class="station-content" style="z-index:1;" *ngIf="s.image"
+            defaultImage="" 
+            lazyLoad="{{s.image}}"
+            style="background-size: cover;background-repeat: no-repeat;">
             
             <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));

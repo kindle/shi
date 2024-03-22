@@ -57,12 +57,14 @@
 <ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
   <ion-card class="card card-img" *ngIf="!showFilter"
       (click)="ui.imageviewer(getUrl())"
-      style="background-image: url('{{getUrl()}}');
-      background-size:cover;min-height: 300px;
-      margin-top:0;
-      margin-left:0;
-      margin-right:0;
-      border-radius: 0;
+      defaultImage="" 
+      lazyLoad="{{getUrl()}}"
+      style="
+        background-size:cover;min-height: 300px;
+        margin-top:0;
+        margin-left:0;
+        margin-right:0;
+        border-radius: 0;
       ">
       <ion-card-content>
         <ion-card-subtitle class="card-text" style="font-size:18px;"></ion-card-subtitle>
@@ -107,7 +109,10 @@
     <ion-item *ngFor="let p of displayResult">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+        <img style="border-radius: 10px;" 
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+          onerror="javascript:this.src='assets/img/default.jpg'"
           [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
         <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',

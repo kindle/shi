@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HotComponent } from './hot.component';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
 import { ButtonEndComponentModule } from '../button-end/buttonend.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [ 
@@ -14,7 +15,8 @@ import { ButtonEndComponentModule } from '../button-end/buttonend.module';
     FormsModule, 
     IonicModule, 
     SharedSwiperTouchModule, 
-    ButtonEndComponentModule
+    ButtonEndComponentModule,
+    LazyLoadImageModule,
   ],
   declarations: [HotComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

@@ -2,9 +2,9 @@
     "template": "slide",
     "title": "因为一句诗词，想去一座城市",
     "sub": "醉美古诗词",
-    "src": "/assets/img/smart.jpg",
+    "src": "https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "music":"/assets/music/slidebg1.mp3",
-    "bg":"/assets/img/bg.jpg",
+    "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg",
     "slides": [
         {
             "tag":"洛阳",

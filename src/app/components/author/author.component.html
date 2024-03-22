@@ -1,4 +1,4 @@
-<ion-toolbar style="--background: translucent;">
+<ion-header style="--background: translucent;">
   <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
     <ion-buttons>
       <ion-card-title class="station-text" style="font-weight: bold;">{{name}}</ion-card-title>
@@ -7,9 +7,9 @@
       </ion-button>
     </ion-buttons>
   </ion-card-content>
-</ion-toolbar>
+</ion-header>
 <swiper-container swiper-touch
-    style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
+    style="margin-top:20px;margin-bottom: 20px;" class="swiper-container"
     space-between="10" direction="horizontal"
     slides-per-view="2.2"
     centered-slides="false"
@@ -20,8 +20,9 @@
     <div style="display: flex; justify-content: center; flex-direction: column;width:120px;">
       <img width="120" height="120" style="border-radius: 10px;" 
         style="border-radius: 50%;"
-        src="/assets/img/poet/{{s}}.jpeg" 
-        onerror="javascript:this.src='/assets/img/default.jpg'" />
+        defaultImage="assets/img/default.jpg" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s}}.jpeg"  
+        onerror="javascript:this.src='assets/img/default.jpg'" />
       <div class="card-text-style" style="text-align: center;margin-top: 10px;">{{s}}</div>
     </div>
   </swiper-slide>

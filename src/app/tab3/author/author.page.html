@@ -31,8 +31,10 @@
     <ion-item *ngFor="let like of displayResult" 
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start" *ngIf="like.data">
-        <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['name'])" 
-        src="/assets/img/poet/{{like.data['name']}}.jpeg"  />
+        <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['name'])"
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['name']}}.jpeg"  
+          onerror="javascript:this.src='assets/img/default.jpg'"  />
       </ion-thumbnail>
       <ion-label *ngIf="like.data" (click)="data.goToAuthor(like.data['name'])">
         <h2>{{like.data['name']}}</h2>

@@ -10,12 +10,65 @@
     </ion-toolbar>
   </ion-header>
 
+  <!--lazy load image sample -- test code--
+  <ion-card [defaultImage]="defaultImage" [lazyLoad]="image">
+    <ion-card-content class="station-content" style="z-index:1;" *ngIf="image"
+        defaultImage="assets/img/default.jpg" 
+        [lazyLoad]="image"
+        style="background-size: cover;background-repeat: no-repeat;">
+        
+        <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
+        background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+        ;font-size:13px;width:100%;"
+        >hello</div>
+      </ion-card-content>
+  </ion-card>
+  <div [defaultImage]="defaultImage" [lazyLoad]="image" style="border:1px solid red;height:300px;"></div> 
+  <img [defaultImage]="defaultImage" [lazyLoad]="image" />-->
+
 
   <div style="display: flex;flex-wrap: wrap;justify-content: center;">
     <div class="card-wrap" *ngFor="let item of data.jsonData;index as i">
+
+      <!--text template bak
+      <ion-card class="card card-img" card-shrink
+      (click)="goToArticle(item)"
+      *ngIf="item.template=='text'"
+        style="background-image: url('https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}');
+        background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+      -->
+
+      <!--text template-->
+      <ion-card class="card card-img" card-shrink
+      (click)="goToArticle(item)"
+        *ngIf="item.template=='text'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="
+        background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+      
+
+
+      <!--slide template-->
       <ion-card class="card card-img" (click)="goTemplateSlide(item.link)" card-shrink
-      *ngIf="item.template=='slide'"
-        style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
+        *ngIf="item.template=='slide'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content>
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
@@ -25,7 +78,7 @@
 
 
 
-
+      <!--scroll template-->
       <ion-card class="card card-scroll" id="modal-scroll" card-shrink
       *ngIf="item.template=='scroll'">
         <ion-card-content>
@@ -48,7 +101,7 @@
 
 
 
-
+      <!--vote template-->
 <!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
       <ion-card class="card card-vote" id="modal-vote" card-shrink
       *ngIf="item.template=='vote'">
@@ -71,7 +124,7 @@
 
 
 
-
+      <!--wall template-->
       <ion-card class="card card-vote" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='wall'">
@@ -98,7 +151,11 @@
             <!--(click)="data.goToAuthor(v)" -->
             <swiper-slide *ngFor="let v of item.items;index as i" class="swiper-slide" 
             [ngStyle]="{'margin-left':(i === data.getInt(item.items.length/3)) ? '40px' : '0px' }">
-              <img style="width: 80px;height:80px;border-radius: 10px;" src="/assets/img/poet/{{v.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+              <img style="width: 80px;height:80px;border-radius: 10px;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"   
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              />
               <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
@@ -109,27 +166,14 @@
 
 
 
-      <ion-card class="card card-img" card-shrink
-      (click)="goToArticle(item)"
-      *ngIf="item.template=='text'"
-        style="background-image: url('/assets/img/{{item.bg_image}}');
-        background-size:cover;min-height: {{item.min_height}};">
-        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
-          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}">
-            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
 
-
-
-
-
+      <!--group template-->
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='group'"
-        style="background-image: url('/assets/img/{{item.bg_image}}');background-size:cover;min-height: {{item.min_height}};">
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
@@ -151,8 +195,10 @@
             (click)="data.goToAuthor(v.author)"
             >
               <img style="width: 65px;height:65px;border-radius: 10px;border:1px solid lightgoldenrodyellow;" 
-              src="/assets/img/poet/{{v.author}}.jpeg" 
-              onerror="javascript:this.src='/assets/img/default.jpg'" />
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"  
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              />
               <div style="text-align: center;width: 65px;background-color: rgb(247,247,247);">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
@@ -162,7 +208,7 @@
 
 
 
-
+      <!--git template-->
       <ion-card class="card card-gif" id="modal-gif{{i}}" card-shrink
       *ngIf="item.template=='gif'">
         <ion-card-content>

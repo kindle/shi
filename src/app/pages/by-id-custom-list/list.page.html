@@ -51,7 +51,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="listdata">
-  <ion-header collapse="condense">
+  <ion-header collapse="{{ui.isIos?'condense':'fade'}}" style="box-shadow: none;">
     <ion-toolbar>
       <ion-searchbar placeholder="搜索" show-cancel-button="focus"
       style="padding-left:15px;"
@@ -65,11 +65,13 @@
 
       <div *ngIf="!isEdit" style="display: grid;position: relative;">
         <ion-card *ngIf="listdata.customimage"
+          defaultImage="" 
+          lazyLoad="{{listdata.customimage}}"
           (click)="ui.imageviewer(listdata.customimage)"
           style="margin:auto;width:250px;height:250px;
-          background-image: url({{listdata.customimage}});background-size:cover;
-          background-repeat: no-repeat;
-          border-radius: 10px;">
+            background-size:cover;
+            background-repeat: no-repeat;
+            border-radius: 10px;">
         </ion-card>
 
         <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length>=4"
@@ -85,17 +87,20 @@
           grid-template-rows: repeat(2, 124px);
           overflow: hidden;">
           <div *ngFor="let i of [0,1,2,3]"
-          style="background-image: url({{listdata.image[i]}});
-          background-size:cover;
-          background-repeat: no-repeat;
-          "
+            defaultImage="" 
+            lazyLoad="{{listdata.image[i]}}"
+            style="
+              background-size:cover;
+              background-repeat: no-repeat;"
           ></div>
         </ion-card>
         <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length<4&&listdata.image.length>0"
-        style="margin:auto;width:250px;height:250px;
-          background-image: url({{listdata.image[0]}});background-size:cover;
-          background-repeat: no-repeat;
-          border-radius: 10px;">
+          defaultImage="" 
+          lazyLoad="{{listdata.image[0]}}"
+          style="margin:auto;width:250px;height:250px;
+            background-size:cover;
+            background-repeat: no-repeat;
+            border-radius: 10px;">
         </ion-card>
         <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length==0"
           style="margin:auto;width:250px;height:250px;
@@ -124,17 +129,20 @@
               grid-template-rows: repeat(2, 124px);
               overflow: hidden;">
               <div *ngFor="let i of [0,1,2,3]"
-              style="background-image: url({{listdata.image[i]}});
-              background-size:cover;
-              background-repeat: no-repeat;
-              "
+                defaultImage="" 
+                lazyLoad="{{listdata.image[i]}}"
+                style="
+                  background-size:cover;
+                  background-repeat: no-repeat;"
               ></div>
             </ion-card>
             <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length<4&&listdata.image.length>0"
-            style="margin:auto;width:250px;height:250px;
-              background-image: url({{listdata.image[0]}});background-size:cover;
-              background-repeat: no-repeat;
-              border-radius: 10px;">
+              defaultImage="" 
+              lazyLoad="{{listdata.image[0]}}"
+              style="margin:auto;width:250px;height:250px;
+                background-size:cover;
+                background-repeat: no-repeat;
+                border-radius: 10px;">
             </ion-card>
             <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length==0"
               style="margin:auto;width:250px;height:250px;
@@ -143,8 +151,10 @@
                 border-radius: 10px;">
             </ion-card>
             <ion-card *ngIf="listdata.customimage"
+              defaultImage="" 
+              lazyLoad="{{listdata.customimage}}"
               style="margin:auto;width:250px;height:250px;
-                background-image: url({{listdata.customimage}});background-size:cover;
+                background-size:cover;
                 background-repeat: no-repeat;
                 border-radius: 10px;">
               </ion-card>
@@ -176,8 +186,11 @@
             </div>
           </swiper-slide>
           <swiper-slide *ngFor="let image of sysImages">
-            <ion-card style="margin:auto;width:250px;height:250px;
-                background-image: url({{image}});background-size:cover;
+            <ion-card 
+              defaultImage="" 
+              lazyLoad="{{image}}"
+              style="margin:auto;width:250px;height:250px;
+                background-size:cover;
                 background-repeat: no-repeat;
                 border-radius: 10px;">
             </ion-card>
@@ -219,8 +232,15 @@
       
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
-        <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
+        <img style="border-radius: 10px;"
+          defaultImage="" 
+          lazyLoad="{{p.txtimg}}"
+          *ngIf="p.txtimg" />
+        <img id="authorimg" style="border-radius: 10px;"
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"
+          onerror="javascript:this.src='assets/img/default.jpg'" 
+          *ngIf="!p.txtimg" 
           [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
         <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -259,8 +279,15 @@
 
           <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
           style="display: flex;justify-content: center;align-items: center;">
-            <img style="border-radius: 10px;" src="{{p.txtimg}}" *ngIf="p.txtimg" />
-            <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" *ngIf="!p.txtimg" 
+            <img style="border-radius: 10px;"
+              defaultImage="" 
+              lazyLoad="{{p.txtimg}}" 
+              *ngIf="p.txtimg" />
+            <img id="authorimg" style="border-radius: 10px;" 
+              defaultImage="assets/img/default.jpg" 
+              lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"
+              onerror="javascript:this.src='assets/img/default.jpg'" 
+              *ngIf="!p.txtimg" 
             />
               
           </ion-thumbnail>
@@ -304,9 +331,9 @@
     <ion-button color="primary" style="width:90%;">添加诗词</ion-button>
   </ion-card-content>
     
-  <ion-toolbar *ngIf="!showFilter&&poets&&poets.length>0&&listActualLength>0">
+  <ion-header *ngIf="!showFilter&&poets&&poets.length>0&&listActualLength>0">
     <app-author name="此诗单中的诗人" [source]="poets"></app-author>
-  </ion-toolbar>
+  </ion-header>
 
   <div class="placeholder-playbox"></div>
 </ion-content>

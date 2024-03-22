@@ -40,7 +40,11 @@
   <ion-list *ngIf="data.showFilter">
     <ion-item *ngIf="isAuthor&&data.searchText" (click)="data.goToAuthor(data.searchText)">
       <ion-thumbnail slot="start">
-        <img style="border-radius: 50%;margin:0 2px;" src="/assets/img/poet/{{data.searchText}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" />
+        <img style="border-radius: 50%;margin:0 2px;"
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{data.searchText}}.jpeg" 
+          onerror="javascript:this.src='assets/img/default.jpg'"
+        />
       </ion-thumbnail>
       <ion-label>
         <h2>{{data.searchText}}</h2>
@@ -54,8 +58,11 @@
     (click)="data.playobj(p)">
       <ion-thumbnail slot="start"
       style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
-        [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+        <img style="border-radius: 10px;" 
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+          onerror="javascript:this.src='assets/img/default.jpg'"
+          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
         <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
           'height':(data.isPlaying) ? '' : '5px' }"
@@ -78,7 +85,7 @@
   <ion-list *ngIf="showFilter">
     <ion-item *ngFor="let p of displayResult" style="--padding-start:20px;--inner-padding-end:0px;">
       <ion-thumbnail slot="start">
-        <img style="border-radius: 10px;" src="/assets/img/smart.jpg"  />
+        <img style="border-radius: 10px;" src="https://reddah.blob.core.windows.net/msjjimg/smart.jpg"  />
       </ion-thumbnail>
       <ion-label>
         <h2>{{p.title}} - {{p.author}}</h2>
@@ -97,7 +104,8 @@
         </ion-button>
       </ion-buttons>
     </ion-card-content>
-    <img src="/assets/img/chalk-4829602_1280.jpg" />
+    <img defaultImage="" 
+      lazyLoad="https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg" />
     <ion-card-header>
       <ion-card-title style="text-align: center;font-size:22px;">您的点赞，是我前行的动力</ion-card-title>
     </ion-card-header>
@@ -120,7 +128,8 @@
         </ion-button>
       </ion-buttons>
     </ion-card-content>
-    <img src="/assets/img/{{data.subscriptionImage}}.jpg" />
+    <img defaultImage=""
+      lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{data.subscriptionImage}}.jpg" />
     <ion-card-header>
       <ion-card-title style="text-align: center;font-size:22px;">畅享名师佳句，全无广告干扰</ion-card-title>
     </ion-card-header>
@@ -171,17 +180,18 @@
   <!---->
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
-    <ion-card *ngFor="let topic of this.data.searchTopicData" 
-    style="margin:5px;
-    background-image: url('{{topic.image}}');
-    background-size:cover;"
-    
-    id="{{topic.id}}"
-    (click)="data.goToTopic(topic.id)"
-    ion-long-press 
-    (pressed)="pressed(topic.id)" 
-    (longPressed)="active(topic.id)"
-    (pressEnded)="released(topic.id)"
+    <ion-card *ngFor="let topic of this.data.searchTopicData"
+      defaultImage="" 
+      lazyLoad="{{topic.image}}" 
+      style="margin:5px;
+      background-size:cover;"
+      class="search-tile-img"
+      id="{{topic.id}}"
+      (click)="data.goToTopic(topic.id)"
+      ion-long-press 
+      (pressed)="pressed(topic.id)" 
+      (longPressed)="active(topic.id)"
+      (pressEnded)="released(topic.id)"
     >
       <ion-card-header [ngClass]="{'gray-mask': currentLpId === topic.id }">
         <ion-card-title>&nbsp;</ion-card-title>

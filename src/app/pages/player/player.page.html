@@ -41,7 +41,10 @@
           <ion-item lines="none" *ngFor="let p of data.playHistory" (click)="play(p)">
             <ion-thumbnail style="width:40px;height:40px;" slot="start"
             style="display: flex;justify-content: center;align-items: center;">
-              <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+              <img id="authorimg" style="border-radius: 10px;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+                onerror="javascript:this.src='assets/img/default.jpg'"
                 [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
               <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&data.currentPoem.audio&&p.id === data.currentPoem.id"
                 [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -72,7 +75,10 @@
             style="--padding-start:15px;--inner-padding-end:3px;">
               <ion-thumbnail style="width:40px;height:40px;" slot="start"
               style="display: flex;justify-content: center;align-items: center;">
-                <img id="authorimg" style="border-radius: 10px;" src="/assets/img/poet/{{p.author}}.jpeg" onerror="javascript:this.src='/assets/img/default.jpg'" 
+                <img id="authorimg" style="border-radius: 10px;" 
+                  defaultImage="assets/img/default.jpg" 
+                  lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+                  onerror="javascript:this.src='assets/img/default.jpg'"
                   [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
                 <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
                   [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
@@ -100,14 +106,16 @@
 
   <!--小于10行*********start*******************-->
   <!--img   ...-->
-  <!--(click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"-->
+  <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
   <ion-list *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <ion-item lines="none" *ngIf="bigimg"
       style="margin:0 5px;margin-top:15px;--padding-start:0;">
       <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
         <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
-        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-        onerror="javascript:this.src='/assets/img/default.jpg'" />
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='assets/img/default.jpg'"
+        />
       </div>
     </ion-item>
     <ion-item lines="none" 
@@ -115,8 +123,10 @@
       <div class="play-icon-box" *ngIf="!bigimg" 
         (click)="text()">
         <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
-        src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-        onerror="javascript:this.src='/assets/img/default.jpg'" />
+          defaultImage="assets/img/default.jpg" 
+          lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+          onerror="javascript:this.src='assets/img/default.jpg'"
+        />
       </div>
       <ion-label>
         <h2>{{data.currentPoem.title}}</h2>
@@ -176,21 +186,24 @@
     *ngIf="showText&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <ion-list *ngIf="showText">
       <ion-item lines="none" *ngIf="bigimg"
-      (click)="ui.imageviewer(data.currentPoem.image?'/assets/img/'+data.currentPoem.image : '/assets/img/poet/'+data.currentPoem.author+'.jpeg')"
+      (click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"
         style="margin:0 5px;margin-top:15px;--padding-start:0;">
         <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
           <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
-          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-          onerror="javascript:this.src='/assets/img/default.jpg'" />
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+            onerror="javascript:this.src='assets/img/default.jpg'"
+          />
         </div>
       </ion-item>
       <ion-item lines="none" 
       style="margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
         <div class="play-icon-box" *ngIf="!bigimg" 
           (click)="text()">
-          <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
-          src="{{'/assets/img/'+(data.currentPoem.image?data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-          onerror="javascript:this.src='/assets/img/default.jpg'" />
+          <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;"
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+            onerror="javascript:this.src='assets/img/default.jpg'" />
         </div>
         <ion-label>
           <h2>{{data.currentPoem.title}}</h2>

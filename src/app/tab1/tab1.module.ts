@@ -6,6 +6,7 @@ import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SharedCardShrinkModule } from '../modules/shared-card-shrink.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SharedCardShrinkModule } from '../modules/shared-card-shrink.module';
     FormsModule,
     Tab1PageRoutingModule,
     SharedCardShrinkModule,
+    LazyLoadImageModule,
   ],
   declarations: [
     Tab1Page

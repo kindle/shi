@@ -28,29 +28,35 @@
         overflow: hidden;
         background-color:{{s.data.color}};">
         <div *ngFor="let i of [0,1,2,3]"
-        style="background-image: url({{s.data.image[i]}});
-        background-size:cover;
-        background-repeat: no-repeat;
-        "
+          defaultImage="" 
+          lazyLoad="{{s.data.image[i]}}"
+          style="
+            background-size:cover;
+            background-repeat: no-repeat;
+          "
         ></div>
     </div>
     <div class="card-scroll-item1" 
       *ngIf="s.group=='customlist'&&!s.data.customimage&&s.data.image&&s.data.image.length<4" 
       (click)="data.goToPlayList(s.data['id'])"
         [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-        style="background-image:url({{s.data.image[0]}});
-        background-size:cover;padding-top: 100%; 
-        background-repeat:no-repeat;
-        background-color:{{s.data.color}};">
+        defaultImage="" 
+        lazyLoad="{{s.data.image[0]}}"
+        style="
+          background-size:cover;padding-top: 100%; 
+          background-repeat:no-repeat;
+          background-color: {{s.data.color}};">
     </div>
     <div class="card-scroll-item1" 
       *ngIf="s.group=='customlist'&&s.data.customimage" 
       (click)="data.goToPlayList(s.data['id'])"
         [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-        style="background-image:url({{s.data.customimage}});
-        background-size:cover;padding-top: 100%; 
-        background-repeat:no-repeat;
-        background-color:{{s.data.color}};">
+        defaultImage="" 
+        lazyLoad="{{s.data.customimage}}"
+        style="
+          background-size:cover;padding-top: 100%; 
+          background-repeat:no-repeat;
+          background-color: {{s.data.color}};">
     </div>
     <div
     class="card-text-style" *ngIf="s.group=='customlist'">{{s.data.name}} {{s.data.desc}}</div>
@@ -61,10 +67,12 @@
     <div class="card-scroll-item1" *ngIf="s.group=='idlist'" 
     (click)="data.goToListBy(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      style="background-image:url('{{s.data.image}}');
-      background-size:cover;padding-top: 100%; 
-      background-repeat:no-repeat;
-      background-color:{{s.color}};">
+      defaultImage="" 
+      lazyLoad="{{s.data.image}}"
+      style="
+        background-size:cover;padding-top: 100%; 
+        background-repeat:no-repeat;
+        background-color: {{s.color}};">
     </div>
     <div class="card-text-style" *ngIf="s.group=='idlist'">{{s.data.name?s.data.name:s.data.sub}}</div>
 
@@ -72,10 +80,12 @@
     <div class="card-scroll-item1" *ngIf="s.group=='taglist'" 
     (click)="data.goToListBy(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      style="background-image:url('{{s.data.src}}');
-      background-size:cover;padding-top: 100%; 
-      background-repeat:no-repeat;
-      background-color:{{s.data.color}};">
+      defaultImage="" 
+      lazyLoad="{{s.data.src}}"
+      style="
+        background-size:cover;padding-top: 100%; 
+        background-repeat:no-repeat;
+        background-color: {{s.data.color}};">
     </div>
     <div class="card-text-style" *ngIf="s.group=='taglist'">{{s.data.text}}</div>
 
@@ -83,10 +93,12 @@
     <div class="card-scroll-item1" *ngIf="s.group=='poetlist'" 
     (click)="data.goToAuthor(s.data.name)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      style="background-image:url('/assets/img/poet/{{s.data.name}}.jpeg');
-      background-size:cover;padding-top: 100%; 
-      background-repeat:no-repeat;
-      background-color:rgb(113,203,212);">
+      defaultImage="" 
+      lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s.data.name}}.jpeg"
+      style="
+        background-size:cover;padding-top: 100%; 
+        background-repeat:no-repeat;
+        background-color:rgb(113,203,212);">
     </div>
     <div class="card-text-style" *ngIf="s.group=='poetlist'">关注诗人 - {{s.data.name}}</div>
 
@@ -94,10 +106,12 @@
     <div class="card-scroll-item1" *ngIf="s.group=='poem'" 
     (click)="data.playobj(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      style="background-image:url('/assets/img/poet/{{s.data.author}}.jpeg');
-      background-size:cover;padding-top: 100%; 
-      background-repeat:no-repeat;
-      background-color:rgb(113,203,212);">
+      defaultImage="" 
+      lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s.data.author}}.jpeg"
+      style="
+        background-size:cover;padding-top: 100%; 
+        background-repeat:no-repeat;
+        background-color:rgb(113,203,212);">
     </div>
     <div class="card-text-style" *ngIf="s.group=='poem'">{{s.data.author}}《{{s.data.title}}》</div>
   </div>

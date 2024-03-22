@@ -13,6 +13,9 @@ import { IonicGestureConfig } from './utils/IonicGestureConfig';
 import { EventService } from './services/event.service';
 import { Media } from '@awesome-cordova-plugins/media/ngx'
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,7 @@ import { Media } from '@awesome-cordova-plugins/media/ngx'
     HttpClientModule,
     IonicStorageModule.forRoot(),
     HammerModule,
+    LazyLoadImageModule
   ],
   providers: 
   [

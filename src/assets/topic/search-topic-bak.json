@@ -3,55 +3,55 @@
     "hide":true,
     "id":200,
     "name":"浏览",
-    "image":"/assets/img/smart.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "desctitle":"搜索更多精彩内容",
     "desc":"大语文时代，古诗文猛增87%：比不努力更可怕的，是死记硬背",
     "scroll":[
         {"id":10, "alias":"诗词之源","text":"关关雎鸠，在河之洲","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
-        "image":"/assets/img/张大千荷花.jpg"},
+        "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
         {"id":1, "alias":"初唐四大天王","text":"海内存知己，天涯若比邻","desc":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
-        "image":"/assets/img/梅花大千.jpg"},
+        "image":"https://reddah.blob.core.windows.net/msjjimg/梅花大千.jpg"},
         {"id":3, "alias":"诗人也是热血男儿","text":"黄沙百战穿金甲，不破楼兰终不还","desc":"激情澎湃的边塞诗","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", 
-        "image": "/assets/img/腊梅大千.jpg"},
+        "image": "https://reddah.blob.core.windows.net/msjjimg/腊梅大千.jpg"},
         {"id":4, "alias":"诗人称号","text":"给诗人们起个外号儿","desc":"给诗人们起个外号儿---看看全了吗？","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", 
-        "image": "/assets/img/竹鸟大千.jpg"},
+        "image": "https://reddah.blob.core.windows.net/msjjimg/竹鸟大千.jpg"},
         {"id":2, "alias":"奔跑吧兄弟","text":"山水田园诗派","desc":"王维、孟浩然等","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
-        "image":"/assets/img/菊花大千.jpg"}
+        "image":"https://reddah.blob.core.windows.net/msjjimg/菊花大千.jpg"}
     ],
     "hot":[],
     "classic":[],
     "list":[
       {"name":"年级诗单", "data": [
-        {"src":"/assets/img/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"四年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石5.jpg","display":"cover","text":"五年级","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石6.jpg","display":"cover","text":"六年级","color":"rgb(232,188,78)"},
-        {"src":"/assets/img/齐白石7.jpg","display":"cover","text":"七年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石8.jpg","display":"cover","text":"八年级","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"四年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石5.jpg","display":"cover","text":"五年级","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石6.jpg","display":"cover","text":"六年级","color":"rgb(232,188,78)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石7.jpg","display":"cover","text":"七年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石8.jpg","display":"cover","text":"八年级","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
         ]
       },
       {"name":"趣味诗单", "data": []
       },
       {"name":"风格诗单", "data": [
-        {"src":"assets/img/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
-        {"src":"assets/img/corn-field-440338_1280.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/winding-road.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/lotus-1205631_1280.jpg", "alias":"爱情", "text":"爱情", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/带我去月球.jpg", "alias":"边塞", "text":"边塞", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/swan-2077219_1280.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/burning-candles-6768469_1280.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/leaf-1001679_1280.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/water-815271_1280.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/fountain-3412242_1280.jpg", "alias":"哲理", "text":"哲理", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
-        {"src":"assets/img/forest-2964073_1280.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/war.jpg", "alias":"羁旅", "text":"羁旅", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/bamboo-1224035_1280.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/countryside-1846774_1280.jpg", "alias":"励志", "text":"励志", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/chile-4786066_1280.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/wheat-865152_1280.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/corn-field-440338_1280.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/winding-road.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/lotus-1205631_1280.jpg", "alias":"爱情", "text":"爱情", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg", "alias":"边塞", "text":"边塞", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/swan-2077219_1280.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/burning-candles-6768469_1280.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/leaf-1001679_1280.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/water-815271_1280.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/fountain-3412242_1280.jpg", "alias":"哲理", "text":"哲理", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/forest-2964073_1280.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/war.jpg", "alias":"羁旅", "text":"羁旅", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/bamboo-1224035_1280.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/countryside-1846774_1280.jpg", "alias":"励志", "text":"励志", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/chile-4786066_1280.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/wheat-865152_1280.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
         ]
       }
     ]
@@ -65,17 +65,17 @@
     "desc":"",
     "scroll":[
       {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头...","desc":"春夜洛城闻笛","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
-      "image":"/assets/img/tree.jpg"}
+      "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"}
     ],
     "hot":[],
     "list":[
       {"name":"最新专辑", "data": [
-        {"id":803,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
-        {"id":804,"src":"/assets/img/海钓.jpg","display":"cover","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"},
-        {"id":801,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        {"id":803,"src":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg","display":"cover","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
+        {"id":804,"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg","display":"cover","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"},
+        {"id":801,"src":"https://reddah.blob.core.windows.net/msjjimg/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
         
         
-        {"id":800,"src":"/assets/img/张大千荷花.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"}
+        {"id":800,"src":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"}
         
         
         ]
@@ -90,61 +90,61 @@
   {
     "id":201,
     "name":"大语文",
-    "image":"/assets/img/smart.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "desctitle":"大语文哪些事儿",
     "desc":"大语文时代，古诗文猛增87%：比不努力更可怕的，是死记硬背",
     "scroll":[
         {"id":10, "alias":"诗词之源","text":"关关雎鸠，在河之洲","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
-        "image":"/assets/img/张大千荷花.jpg"},
+        "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
         {"id":1, "alias":"初唐四大天王","text":"海内存知己，天涯若比邻","desc":"杨炯与王勃、卢照邻、骆宾王以文诗齐名，海内称为王杨卢骆，亦号为四杰。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
-        "image":"/assets/img/梅花大千.jpg"},
+        "image":"https://reddah.blob.core.windows.net/msjjimg/梅花大千.jpg"},
         {"id":3, "alias":"诗人也是热血男儿","text":"黄沙百战穿金甲，不破楼兰终不还","desc":"激情澎湃的边塞诗","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", 
-        "image": "/assets/img/腊梅大千.jpg"},
+        "image": "https://reddah.blob.core.windows.net/msjjimg/腊梅大千.jpg"},
         {"id":4, "alias":"诗人称号","text":"给诗人们起个外号儿","desc":"给诗人们起个外号儿---看看全了吗？","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", 
-        "image": "/assets/img/竹鸟大千.jpg"},
+        "image": "https://reddah.blob.core.windows.net/msjjimg/竹鸟大千.jpg"},
         {"id":2, "alias":"奔跑吧兄弟","text":"山水田园诗派","desc":"王维、孟浩然等","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", 
-        "image":"/assets/img/菊花大千.jpg"}
+        "image":"https://reddah.blob.core.windows.net/msjjimg/菊花大千.jpg"}
     ],
     "classic":[],
     "list":[
       {"name":"年级诗单", "data": [
-        {"src":"/assets/img/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"四年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石5.jpg","display":"cover","text":"五年级","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石6.jpg","display":"cover","text":"六年级","color":"rgb(232,188,78)"},
-        {"src":"/assets/img/齐白石7.jpg","display":"cover","text":"七年级","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石8.jpg","display":"cover","text":"八年级","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"四年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石5.jpg","display":"cover","text":"五年级","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石6.jpg","display":"cover","text":"六年级","color":"rgb(232,188,78)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石7.jpg","display":"cover","text":"七年级","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石8.jpg","display":"cover","text":"八年级","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
         ]
       },
       {"name":"趣味诗单", "data": [
-        {"id":905,"src":"/assets/img/带我去月球.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
-        {"id":902,"src":"/assets/img/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
-        {"id":903,"src":"/assets/img/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
-        {"id":900,"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
-        {"id":901,"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
+        {"id":905,"src":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg","display":"cover","text":"带我去月球|我要背向地球，希望寄托整个宇宙","desc":"","color":"rgb(98,166,243)"},
+        {"id":902,"src":"https://reddah.blob.core.windows.net/msjjimg/star.jpg","display":"cover","text":"我们都在阴沟里，但总有人仰望天空","desc":"","color":"rgb(98,166,243)"},
+        {"id":903,"src":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg","display":"cover","text":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。","desc":"","color":"rgb(232,188,78)"},
+        {"id":900,"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"古人emo时自嘲能有多绝","desc":"","color":"rgb(121,196,131)"},
+        {"id":901,"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫2.jpg","display":"cover","text":"你可曾因一句诗，想背下整首诗词？","desc":"总有一句诗，能让你久久回味或黯然神伤。","color":"rgb(121,196,131)"}
         
         ]
       },
       {"name":"风格诗单", "data": [
-        {"src":"assets/img/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
-        {"src":"assets/img/海钓.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/海钓.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/海钓.jpg", "alias":"爱情", "text":"爱情", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/海钓.jpg", "alias":"边塞", "text":"边塞", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"哲理", "text":"哲理", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"羁旅", "text":"羁旅", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"励志", "text":"励志", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
-        {"src":"assets/img/smart.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"爱情", "text":"爱情", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"边塞", "text":"边塞", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"爱国", "text":"爱国", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"悼亡", "text":"悼亡", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"闺怨", "text":"闺怨", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"思乡", "text":"思乡", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"哲理", "text":"哲理", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"怀古", "text":"怀古", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"羁旅", "text":"羁旅", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"咏物", "text":"咏物", "color":"rgb(255,222,194)", "light":"rgb(255,222,194,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"励志", "text":"励志", "color":"rgb(205,238,240)", "light":"rgb(205,238,240,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"讽刺", "text":"讽刺", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg", "alias":"赞美", "text":"赞美", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"}
         ]
       }
     ]
@@ -152,31 +152,31 @@
   {
     "id":101,
     "name":"美食",
-    "image":"/assets/img/smart.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "desctitle":"诗中美食",
     "desc":"那些藏在古诗词中的美食，也太美了吧",
     "scroll":[
         {"id":3001, "alias":"诗词之源","text":"蔬菜","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", "image": 
-          "/assets/img/齐白石4.jpg"},
-        {"id":11, "alias":"乐府","text":"水果","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "/assets/img/张大千.jpg"},
-        {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "/assets/img/观沧海.jpg"},
-        {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "/assets/img/郑板桥.jpg"}
+          "https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg"},
+        {"id":11, "alias":"乐府","text":"水果","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/张大千.jpg"},
+        {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/观沧海.jpg"},
+        {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/郑板桥.jpg"}
     ],
     "hot":[],
     "list":[
       {"name":"明星诗单", "data": [
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"白菜","desc":"白菜有个美丽的名字叫做“菘”，看看古诗里的大白菜","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"韭菜","desc":"韭菜","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"水果","desc":"水果都有什么","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"美食","desc":"美食有哪些","id":3000,"color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"白菜","desc":"白菜有个美丽的名字叫做“菘”，看看古诗里的大白菜","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"韭菜","desc":"韭菜","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"水果","desc":"水果都有什么","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"美食","desc":"美食有哪些","id":3000,"color":"rgb(232,188,78)"}
         ]
       },
       {"name":"热门诗单", "data": [
-        {"src":"/assets/img/齐白石3.jpg","display":"cover","text":"螃蟹","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"酒","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"鱼","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"肉","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"茶","color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","text":"螃蟹","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"酒","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"鱼","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫2.jpg","display":"cover","text":"肉","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫3.jpg","display":"cover","text":"茶","color":"rgb(232,188,78)"}
         ]
       }
     ]
@@ -184,40 +184,40 @@
   {
     "id":102,
     "name":"旅行",
-    "image":"/assets/img/smart.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "desctitle":"智者乐水，仁者乐山",
     "desc":"名山大川",
     "scroll":[
         {"id":3001, "alias":"诗词之源","text":"蔬菜","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", "image": 
-          "/assets/img/齐白石4.jpg"},
-        {"id":11, "alias":"乐府","text":"水果","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "/assets/img/张大千.jpg"},
-        {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "/assets/img/观沧海.jpg"},
-        {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "/assets/img/郑板桥.jpg"}
+          "https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg"},
+        {"id":11, "alias":"乐府","text":"水果","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/张大千.jpg"},
+        {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/观沧海.jpg"},
+        {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/郑板桥.jpg"}
     ],
     "list":[
       {"name":"名山", "data": [
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"庐山","desc":"庐山","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"衡山","desc":"衡山","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"泰山","desc":"泰山","id":3000,"color":"rgb(232,188,78)"},
-        {"src":"/assets/img/齐白石4.jpg","display":"cover","text":"华山","desc":"华山","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石2.jpg","display":"cover","text":"终南山","desc":"终南山","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"九华山","desc":"九华山","id":3000,"color":"rgb(232,188,78)"},
-        {"src":"/assets/img/齐白石9.jpg","display":"cover","text":"峨眉山","desc":"峨眉山","id":3000,"color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"庐山","desc":"庐山","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"衡山","desc":"衡山","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"泰山","desc":"泰山","id":3000,"color":"rgb(232,188,78)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"华山","desc":"华山","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"终南山","desc":"终南山","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"九华山","desc":"九华山","id":3000,"color":"rgb(232,188,78)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"峨眉山","desc":"峨眉山","id":3000,"color":"rgb(232,188,78)"}
         ]
       },
       {"name":"大川", "data": [
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"西湖","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"洞庭湖","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"太湖","color":"rgb(232,188,78)"},
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"长江","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"黄河","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"钱塘江","color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"西湖","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫2.jpg","display":"cover","text":"洞庭湖","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫3.jpg","display":"cover","text":"太湖","color":"rgb(232,188,78)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"长江","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫2.jpg","display":"cover","text":"黄河","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫3.jpg","display":"cover","text":"钱塘江","color":"rgb(232,188,78)"}
         ]
       },
       {"name":"名楼", "data": [
-        {"src":"/assets/img/齐白石虫1.jpg","display":"cover","text":"岳阳楼","color":"rgb(121,196,131)"},
-        {"src":"/assets/img/齐白石虫2.jpg","display":"cover","text":"滕王阁","color":"rgb(98,166,243)"},
-        {"src":"/assets/img/齐白石虫3.jpg","display":"cover","text":"黄鹤楼","color":"rgb(232,188,78)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫1.jpg","display":"cover","text":"岳阳楼","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫2.jpg","display":"cover","text":"滕王阁","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石虫3.jpg","display":"cover","text":"黄鹤楼","color":"rgb(232,188,78)"}
         ]
       }
     ]
@@ -225,19 +225,19 @@
   {
         "id":1,
         "name":"古典",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
-            {"id":10, "alias":"诗词之源","text":"诗经与楚辞","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", "image": "/assets/img/张大千荷花.jpg"},
-            {"id":11, "alias":"乐府","text":"乐府与新乐府","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "/assets/img/张大千.jpg"},
-            {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "/assets/img/观沧海.jpg"},
-            {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "/assets/img/郑板桥.jpg"}
+            {"id":10, "alias":"诗词之源","text":"诗经与楚辞","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
+            {"id":11, "alias":"乐府","text":"乐府与新乐府","desc":"新乐府是一种用新题写时事的乐府体诗。虽辞为乐府，已不被声律。","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/张大千.jpg"},
+            {"id":12, "alias":"建安诗歌","text":"建安诗歌","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/观沧海.jpg"},
+            {"id":13, "alias":"魏晋南北朝","text":"魏晋南北朝","desc":"","color":"rgb(255,222,194)","light":"rgb(255,222,194,60%)", "image": "https://reddah.blob.core.windows.net/msjjimg/郑板桥.jpg"}
         ],
         "list":[]
     },
     {
         "id":2,
         "name":"唐诗",
-        "image":"/assets/img/tang.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tang.jpg",
         "scroll":[
             {"id":1, "alias":"初唐四杰","text":"初唐四杰","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"id":2, "alias":"山水田园诗派","text":"山水田园诗派","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -252,7 +252,7 @@
     {
         "id":3,
         "name":"宋词",
-        "image":"/assets/img/清明上河图.png",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/清明上河图.png",
         "scroll":[
             {"id":8,"alias":"婉约派","text":"婉约派","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"id":9,"alias":"豪放派","text":"豪放派","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"}
@@ -262,7 +262,7 @@
     {
         "id":4,
         "name":"浪漫",
-        "image":"/assets/img/romatic.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/romatic.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -286,7 +286,7 @@
     {
         "id":5,
         "name":"战争",
-        "image":"/assets/img/war.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -310,7 +310,7 @@
     {
         "id":6,
         "name":"中秋",
-        "image":"/assets/img/qiu.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/qiu.jpg",
         "scroll":[
             {"id":3000,"alias":"中秋诗单列表","text":"中秋诗单列表","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"id":3001,"alias":"中秋诗单列表","text":"中秋诗单列表","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -334,7 +334,7 @@
     {
         "id":7,
         "name":"爱情",
-        "image":"/assets/img/slidebg.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/slidebg.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -358,7 +358,7 @@
     {
         "id":8,
         "name":"家庭",
-        "image":"/assets/img/cardn1.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -382,7 +382,7 @@
     {
         "id":9,
         "name":"励志",
-        "image":"/assets/img/cardn2.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/cardn2.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -406,7 +406,7 @@
     {
         "id":10,
         "name":"蓝调",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -430,7 +430,7 @@
     {
         "id":11,
         "name":"愉快",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -454,7 +454,7 @@
     {
         "id":12,
         "name":"亲子",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -482,7 +482,7 @@
     {
         "id":20,
         "name":"爱情",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -506,7 +506,7 @@
     {
         "id":21,
         "name":"遗憾",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -530,7 +530,7 @@
     {
         "id":22,
         "name":"真相",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -554,7 +554,7 @@
     {
         "id":23,
         "name":"心情",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -578,7 +578,7 @@
     {
         "id":24,
         "name":"忠告",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},
@@ -602,7 +602,7 @@
     {
         "id":25,
         "name":"孤独",
-        "image":"/assets/img/smart.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
         "scroll":[
             {"alias":"诗词之源","text":"诗词之源","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)"},
             {"alias":"乐府","text":"乐府","color":"rgb(240,209,246)","light":"rgb(240,209,246,60%)"},

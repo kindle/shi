@@ -3,7 +3,7 @@
         "id":800,
         "name":"登高",
         "sub":"登高",
-        "image":"/assets/img/mountains-190055_1280.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg",
         "desc":"杜甫现存一千四百多首诗，是他动荡转徙一生的真实写照，同时又客观且深刻地反映了唐朝安史之乱前后二十多年的社会现实。杜甫众体兼工，并能推陈出新，形式和内容都表现出极高的功力。特别是《登高》清人杨伦评价：高浑一气，古今独步，当为杜集七言律诗第一",
         "more":"诗圣·770年·少陵野老·杜拾遗·杜工部",
         "ep":"杜甫",
@@ -20,7 +20,7 @@
         "id":801,
         "name":"春泥",
         "sub":"春泥",
-        "image":"/assets/img/flower-5170924_1280.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg",
         "desc":"那些痛的记忆，落在春的泥土里，滋养了大地，开出下一个花季。",
         "more":"落红不是无情物，化作春泥更护花",
         "list":[
@@ -32,7 +32,7 @@
         "id":802,
         "name":"思乡",
         "sub":"思乡",
-        "image":"/assets/img/tree.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg",
         "desc":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。长大后，乡愁是一张窄窄的船票，我在这头，新娘在那头。后来啊，乡愁是一方矮矮的坟墓，我在外头，母亲在里头。而现在，乡愁是一湾浅浅的海峡，我在这头，大陆在那头。",
         "more":"谁家玉笛暗飞声，散入春风满洛城",
         "list":[
@@ -46,7 +46,7 @@
         "id":803,
         "name":"蒹葭",
         "sub":"蒹葭",
-        "image":"/assets/img/张大千荷花.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg",
         "desc":"《诗经》堪称中华文化之美的底板，是中国古代诗歌的开端，是最早的一部诗歌总集。相传为孔子编订，并取名为《诗》，又称为《诗三百》。到了西汉，《诗》被尊为儒家经典，并正式更名为《诗经》。它收集了从西周初期至春秋中期的大部分诗歌，共计305篇，分风、雅、颂三部分，集中反映了周王朝500年间由盛转衰的社会风貌和风土人情。其中有帝王颂歌，有祭祀乐章，有宴饮之乐，亦有怨愤之乐，还有事农、婚恋以及反映民风习俗之乐，堪称一部优美的古典歌词本。",
         "more":"诗经·春秋·孔丘·诗三百",
         "list":[
@@ -60,7 +60,7 @@
         "id":804,
         "name":"观沧海",
         "sub":"观沧海",
-        "image":"/assets/img/海钓.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg",
         "desc":"往事越千年。魏武挥鞭，东临碣石有遗篇",
         "more":"孟德·155年·三国·魏武帝",
         "list":[

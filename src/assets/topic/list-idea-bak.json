@@ -2,7 +2,7 @@
     {
         "id":800,
         "name":"音频诗单1",
-        "image":"/assets/img/tree.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg",
         "desc":"那些永不褪色的经典1",
         "list":[
             {"title":"春望","author":"杜甫","sample":"国破山河在，城春草木深","desc":"","id":"e9e6425c-6c14-4f69-8694-87a8b96a43de"},
@@ -14,7 +14,7 @@
     {
         "id":801,
         "name":"音频诗单2",
-        "image":"/assets/img/star.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/star.jpg",
         "desc":"那些永不褪色的经典2",
         "list":[
             {"title":"定风波","author":"苏轼","sample":"莫听穿林打叶声，何妨吟啸且徐行","desc":"","id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
@@ -25,7 +25,7 @@
     {
         "id":802,
         "name":"思乡",
-        "image":"/assets/img/tree.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg",
         "desc":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。长大后，乡愁是一张窄窄的船票，我在这头，新娘在那头。后来啊，乡愁是一方矮矮的坟墓，我在外头，母亲在里头。而现在，乡愁是一湾浅浅的海峡，我在这头，大陆在那头。",
         "list":[
             {"title":"春夜洛城闻笛","author":"李白","sample":"谁家玉笛暗飞声，散入春风满洛城","desc":"","id":"4838bc46-446b-44cb-8296-29eed12cf343"}
@@ -34,7 +34,7 @@
     {
         "id":803,
         "name":"诗经",
-        "image":"/assets/img/张大千荷花.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg",
         "desc":"关关雎鸠,在河之洲。窈窕淑女,君子好逑",
         "list":[
             {"title":"子衿","author":"诗经","sample":"青青子衿，悠悠我心","desc":"","id":"69f0bef8-fb95-446f-bb97-243a9c702510"},
@@ -46,7 +46,7 @@
     {
         "id":804,
         "name":"曹操",
-        "image":"/assets/img/海钓.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg",
         "desc":"往事越千年。魏武挥鞭，东临碣石有遗篇。曹操是个什么样的人？三首诗解读曹操。",
         "list":[
             {"title":"观沧海","author":"曹操","sample":"东临碣石，以观沧海","desc":"","id":"7accd930-05ff-46f3-9b68-e5eacd382106"},
@@ -61,7 +61,7 @@
     {
         "id":900,
         "name":"古人emo时自嘲能有多绝",
-        "image":"/assets/img/齐白石4.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg",
         "desc":"那些永不褪色的经典",
         "list":[
             {"title":"秋风词","author":"李白","sample":"早知如此绊人心，何如当初莫相识","desc":"早知道就不谈恋爱了","id":"05ab8907-1e1b-4f9b-932f-5ca1444adc1f"},
@@ -73,7 +73,7 @@
     {
         "id":901,
         "name":"你可曾因一句诗，想背下整首诗词？",
-        "image":"/assets/img/齐白石9.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg",
         "desc":"总有一句诗，能让你久久回味或黯然神伤。",
         "list":[
             {"title":"定风波","author":"苏轼","sample":"莫听穿林打叶声，何妨吟啸且徐行","desc":"","id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
@@ -86,7 +86,7 @@
     {
         "id":902,
         "name":"我们都在阴沟里，但总有人仰望天空",
-        "image":"/assets/img/star.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/star.jpg",
         "desc":"we are all in the gutter, but some of us are looking at the stars, 一个民族有一群仰望星空的人，他们才有希望。",
         "list":[
             {"title":"古朗月行","author":"李白","sample":"小时不识月，呼作白玉盘","desc":"","id":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
@@ -97,7 +97,7 @@
     {
         "id":903,
         "name":"额尔古纳河右岸",
-        "image":"/assets/img/tree.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg",
         "desc":"月光下萨满起舞，缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。",
         "list":[
             {"title":"古朗月行","author":"李白","sample":"小时不识月，呼作白玉盘","desc":"","id":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
@@ -109,7 +109,7 @@
     {
         "id":904,
         "name":"珍惜|你凭什么抱怨你的命运",
-        "image":"/assets/img/star.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/star.jpg",
         "desc":"即使明天就会毁灭，但我门前仍有半亩花田，这本身就是一种浪漫",
         "list":[
             {"title":"古朗月行","author":"李白","sample":"小时不识月，呼作白玉盘","desc":"","id":"c35c203f-69aa-42f9-ba07-77e7ea2975f5"},
@@ -120,7 +120,7 @@
     {
         "id":905,
         "name":"带我去月球|我要背向地球，希望寄托整个宇宙",
-        "image":"/assets/img/带我去月球.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg",
         "desc":"带我去月球",
         "list":[
             {"title":"将进酒","author":"李白","sample":"将进酒，杯莫停","desc":"","id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
@@ -133,7 +133,7 @@
     {
         "id":906,
         "name":"王维五言的巅峰之作，你最喜欢哪一句？",
-        "image":"/assets/img/带我去月球.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg",
         "desc":"读王维的诗，就像在欣赏一幅画",
         "list":[
             {"title":"终南别业","author":"王维","sample":"行到水穷处，坐看云起时","desc":"","id":"6d098c75-038d-45f4-8f86-73976c355e44"},
@@ -145,7 +145,7 @@
     {
         "id":907,
         "name":"跟着央视练文笔",
-        "image":"/assets/img/money.jpg",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/money.jpg",
         "desc":"【央视】:这世上有两个我，一个举杯邀明月，一个跪地捡碎银。【仿写】:这世上有两个我，一个躺又躺不平，一个卷又卷不动。",
         "list":[
             {"title":"月下独酌四首 一","author":"李白","sample":"举杯邀明月，对影成三人","desc":"","id":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3"},
