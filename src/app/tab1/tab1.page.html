@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>开卷有益</ion-title>
+    <ion-title>{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content #pageTop [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">开卷有益</ion-title>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -26,6 +26,51 @@
   <div [defaultImage]="defaultImage" [lazyLoad]="image" style="border:1px solid red;height:300px;"></div> 
   <img [defaultImage]="defaultImage" [lazyLoad]="image" />-->
 
+  <!--AI template-->
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    <ion-card class="card card-gif" card-shrink (click)="tutorial()"
+      defaultImage="" 
+      lazyLoad="/assets/img/question.png"
+      style="background-size:cover;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">一目了然</ion-card-subtitle>
+          <ion-card-title class="card-text">App使用教程</ion-card-title>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card card-gif" card-shrink (click)="chat('hello')"
+      defaultImage="" 
+      lazyLoad="/assets/img/faq.png"
+      style="background-size:cover;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">功夫在诗外</ion-card-subtitle>
+          <ion-card-title class="card-text">AI诗词助手</ion-card-title>
+        </ion-card-content>
+    </ion-card>
+
+     <!--
+    <ion-card class="card card-scroll" card-shrink>
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size:18px;">
+            功夫在诗外
+          </ion-card-subtitle>
+          <ion-card-title>sdf</ion-card-title>
+        </ion-card-content>
+      
+       
+        <ion-card-content style="margin-top:0;">
+          <div class="card-scroll-box">
+            <div class="card-scroll-item" *ngFor="let c of [1,2,3]" (click)="goAuthorDirect(c)">
+              <div class="card-image contain" style="background-image:url('/assets/img/water.jpg');background-color:lightgreen"></div>
+              <div class="card-text">talk</div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      -->
+  </div>
 
   <div style="display: flex;flex-wrap: wrap;justify-content: center;">
     <div class="card-wrap" *ngFor="let item of data.jsonData;index as i">
@@ -244,6 +289,7 @@
       
     </div>
   </div>
+  
   
 
 

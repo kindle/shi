@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { Song } from '../app.component';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-tab3',
@@ -12,6 +13,7 @@ import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 export class Tab3Page {
 
   constructor(
+    public ui: UiService,
     public router:  Router,
     public data: DataService,
     private activatedRoute: ActivatedRoute

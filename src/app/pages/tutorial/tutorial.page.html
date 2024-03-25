@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border" style="--background:transparent;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>基础设置</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <swiper-container swiper-touch pagination="true">
+    <swiper-slide>
+      <div class="slide">
+        <img src="./assets/tutorial/translate.png" />
+        <h2>{{ ui.instant('Tutorial.Language') }}<!--语言--></h2>
+        <ion-list>
+          <ion-item [color]="data.currentLocale=='zh-CN'?'primary':''" (click)="setLocale('zh-CN')">
+            <ion-label>简体中文</ion-label>
+          </ion-item>
+          <ion-item [color]="data.currentLocale=='en-US'?'primary':''" (click)="setLocale('en-US')">
+            <ion-label>English</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide">
+        <img src="./assets/tutorial/slide-2.png" />
+        <h2>字体</h2>
+        <p>
+          <b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps
+          with web technologies like HTML, CSS, and JavaScript.
+        </p>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide">
+        <img src="./assets/tutorial/slide-3.png" />
+        <h2>What is Appflow?</h2>
+        <p>
+          <b>Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a
+          totally new level of app development agility to mobile dev teams.
+        </p>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="slide" style="text-align: center;">
+        <img src="./assets/tutorial/slide-4.png" />
+        <h2>Ready to Play?</h2>
+        <ion-button fill="clear" (click)="home()">
+          Continue <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

@@ -1,0 +1,146 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>AI诗词助手</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--
+<ion-item color="light" style="--padding-start:0;" lines="none">
+  <ion-label *ngIf="writing==0">reddah.instant('Menu.Mystic')</ion-label>
+  <ion-label *ngIf="writing==1">reddah.instant('Mystic.Typing')</ion-label>
+  <ion-label *ngIf="writing==2">reddah.instant('Mystic.Thinking')</ion-label>
+</ion-item>
+-->
+<ion-content [scrollEvents]="true" class="common-content" #pageTop > <!--(ionScroll)="onScroll($event)" (click)="chatbox.hide()"-->
+  <ion-grid *ngFor="let comment of messages" style="margin:0 10px;">
+      <ion-row *ngIf="comment.Type==0||comment.Type==1000">
+          <ion-col style="padding:0;">
+              <div class="chatTime" *ngIf="checkIsToday(comment.CreatedOn)">{{comment.CreatedOn | date:'HH:mm'}}</div>
+              <div class="chatTime" *ngIf="!checkIsToday(comment.CreatedOn)">{{comment.CreatedOn | date:'MM-dd HH:mm'}}</div>
+          </ion-col>
+      </ion-row>
+      <ion-row *ngIf="comment.Type==1000">
+          <ion-col style="padding:0;">
+              <div class="chatTime">{{comment.Content}}</div>
+          </ion-col>
+      </ion-row>
+      <ion-row *ngIf="comment.Type==0||comment.Type==1||comment.Type==4||comment.Type==5">
+          <ion-col style="padding:0;">
+              <div class="container-right" *ngIf="userName==comment.UserName">
+                  <img defaultImage="" 
+                  [lazyLoad]="myImage"
+                  class="portrait" (click)="ui.imageviewer(myImage)"/><!--(click)="viewer(0, [reddah.appData('userphoto_'+comment.UserName)])"-->
+                  <div class="arrow-box-right"> <!--*ngIf="comment.Type<2">-->
+                      <div style="margin-right:-40px;margin-top:5px;" *ngIf="comment.Type==0&&comment.Id==null">
+                          <ion-spinner name="crescent"></ion-spinner>
+                      </div>
+                       <!--(press)="showChatMenu($event, comment.Content)" (click)="copyToInput(comment)"-->
+                      <div class="chat-box-me" *ngIf="comment.Type==0"
+                        [innerHTML]="htmldecode(comment.Content)">
+                      </div>
+                      
+                      <!--
+                      <div class="chat-box-me-1" *ngIf="comment.Type==1" (click)="play(comment)">
+                          <ion-icon slot="start" name="wifi-outline"size="large" 
+                          style="width:20px;height:18px;transform: rotate(-90deg);margin:auto;"
+                          *ngIf="!comment.isPlaying"></ion-icon>
+                          <div class="bg-right voicePlay" *ngIf="comment.isPlaying"></div>
+                          <div style="display: flex; line-height:38px;">
+                              <div style="width:5px;" *ngFor="let i of getArray(comment.Duration)">&nbsp;</div>
+                              <div>{{comment.Duration<1?1:comment.Duration}}''</div>
+                          </div>
+                      </div>
+                      -->
+                      <div class="chat-arrow-right" style="flex:auto 0;"></div>
+                  </div>
+                  <!--
+                  <div class="arrow-box-right" *ngIf="comment.Type==4||comment.Type==5">
+                      <div class="chat-box-me-link">
+                          <app-share-article-chat [abstract]="comment.Abstract"
+                           [image]="comment.Content" [id]="comment.Duration" [type]="comment.Type"></app-share-article-chat>
+                      </div>
+                      <div class="chat-arrow-right-link" style="flex:auto 0;"></div>
+                  </div>
+                  -->
+              </div>
+              <div class="container-left" *ngIf="userName!=comment.UserName">
+                  <img defaultImage="" 
+                  [lazyLoad]="mysticPhoto" class="portrait" (click)="ui.imageviewer(mysticPhoto)"> <!-- (click)="viewer(0, [mysticPhoto])"-->
+                  <div style="display: flex;margin-left:5px;">
+                      <div class="chat-arrow-left" style="flex:0 auto;" *ngIf="comment.Type==0"></div>
+                      <div class="chat-box-others" *ngIf="comment.Type==0" 
+                           ><!--  (press)="showChatMenu($event, comment.Content)"  (click)="copyToInput(comment)"-->
+                          <div [innerHTML]="html(comment.Content)"></div>
+                          <!--<pre>{{comment.Content}}</pre>-->
+                          <br>
+                          <!--
+                          <ion-button class="actionButton" size="small" color="primary" 
+                          *ngIf="comment.Action!=null" (click)="setInfo(comment.Action)">reddah.instant('Confirm.ClickMe')</ion-button>
+                          -->
+                      </div>
+                      <!--
+                      <div class="chat-box-others-1" *ngIf="comment.Type==1" (click)="play(comment)">
+                          <ion-icon name="wifi-outline"size="large" style="width:20px;height:18px;transform: rotate(90deg);margin:auto;"
+                          *ngIf="!comment.isPlaying"></ion-icon>
+                          <div class="bg-left voicePlay" *ngIf="comment.isPlaying"></div>
+                          <div style="display: flex; line-height:38px;">
+                              <div>{{comment.Duration<1?1:comment.Duration}}''</div>
+                              <div style="width:5px;" *ngFor="let i of getArray(comment.Duration)">&nbsp;</div>
+                          </div>
+                      </div>
+                      -->
+                      <!--
+                      <div *ngIf="comment.Type==1&&!comment.Played" style="margin: 20px 0 0 10px;" class="new-point"></div>
+                      <div class="chat-arrow-left" style="flex:0 auto;" *ngIf="comment.Type==4||comment.Type==5"></div>
+                      
+                      <div class="chat-box-others-link" *ngIf="comment.Type==4||comment.Type==5">
+                          <app-share-article-chat [abstract]="comment.Abstract"
+                          [image]="comment.Content" [id]="comment.Duration" [type]="comment.Type"></app-share-article-chat>
+                      </div>
+                      -->
+                  </div>
+              </div>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!--
+<app-chat-mystic-box #chatbox [(selectedArticleId)]="chatId" selectedCommentId="-1"
+  (reloadComments)="childReloadComments($event)" (localComments)="childLocalComments($event)"></app-chat-mystic-box>
+-->
+<ion-footer class="safe-area-bottom chat-footer" style="--background:white;background-color: white;">
+  <ion-item lines="none" color="light">
+      <!--<ion-icon name="mic" size="medium" (click)="switchSpeak()" *ngIf="!showSpeakBox"></ion-icon>-->
+      <ion-icon name="create-outline"size="medium"></ion-icon>
+      <ion-textarea class="newChatComment" autoresize rows="1" cols="21" (click)="hide()"
+      #newChatComment id="newChatComment" [(ngModel)]="commentContent"></ion-textarea>
+      <!--<ion-icon name="apps" size="medium" (click)="switchSpeak()" *ngIf="showSpeakBox"></ion-icon>
+      <ion-textarea [class.audio-pressed]="isPressed" class="newChatComment" autoresize readonly rows="1" cols="21" text-center
+      placeholder="{{speakDesc}}" *ngIf="showSpeakBox" (press)="startSpeak()" (pressup)="stopSpeak()"></ion-textarea>
+      -->
+      <ion-icon slot="end" name="happy-outline"size="medium" (click)="toggleFacePanel()" *ngIf="!showFacePanel"></ion-icon>
+      <!--<ion-icon slot="end" name="apps" size="medium" (click)="toggleFacePanel()" *ngIf="showFacePanel"></ion-icon>
+      <ion-icon slot="end" name="add-circle-outline" size="medium" (click)="toggleFunctionPanel()" *ngIf="!commentContent"></ion-icon>-->
+      <ion-button slot="end" (click)="submit()" color="primary" *ngIf="commentContent" style="text-transform: capitalize;">发送</ion-button>
+  </ion-item>
+  <!--
+  <app-share-face *ngIf="showFacePanel" (select)="faceSelection($event)"></app-share-face>
+  
+  <ion-slides [options]="slideOpts" [pager]="true" *ngIf="showFunctionPanel" class="optionPanel">
+      <ion-slide *ngFor="let chatFunctions of chatFunctionGroups">
+          <div class="funGrid">
+              <div *ngFor="let col of chatFunctions" style="display: flex;flex-direction: column;">
+                  <div class="funCard">
+                      <ion-icon name="{{col.icon}}" (click)="funSelection(col.id)" size="large"></ion-icon>
+                  </div>
+                  <ion-text class="funName" *ngIf="col.name">{{col.name}}</ion-text>
+              </div>
+          </div>
+      </ion-slide>
+  </ion-slides>
+  -->
+</ion-footer>

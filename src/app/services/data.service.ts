@@ -2041,4 +2041,28 @@ export class DataService {
     //console.log(savedImageFile.webviewPath)
     */
   }
+
+
+
+
+
+  /* Current Locale start */
+  currentLocale = "zh-CN";
+  LOCALSTORAGE_LOCALE = "msjj_locale";
+  async loadLocale(){
+    this.get(this.LOCALSTORAGE_LOCALE).then((value)=>{
+      if(value==null){
+        this.currentLocale = "zh-CN";
+      }
+      else{
+        this.currentLocale = JSON.parse(value);
+      }
+      this.ui.loadTranslate(this.currentLocale);
+    });
+  }
+  saveLocale(locale:any){
+    this.currentLocale = locale;
+    this.set(this.LOCALSTORAGE_LOCALE, JSON.stringify(this.currentLocale));
+  }
+  /* Current Locale start */
 }

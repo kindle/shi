@@ -45,7 +45,11 @@ ion-card {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
-    background-image: url('https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg');
+    //background-image: url('https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg');
+
+    .card-text{
+        color:white;
+    }
 }
 
 .card-vote {

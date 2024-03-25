@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { DataService } from './services/data.service';
 import { NavController } from '@ionic/angular';
+import { UiService } from './services/ui.service';
 register();
 
 @Component({
@@ -13,6 +14,7 @@ register();
 })
 export class AppComponent {
   constructor(
+    private ui: UiService,
     private data: DataService,
     private storage: Storage,
     private navController: NavController,
@@ -29,6 +31,7 @@ export class AppComponent {
     await this.storage.create().then(()=>{
       this.data.init();
     }).finally(()=>{
+      this.data.loadLocale();
     });
 
     const lastVisitedTab = await this.storage.get(this.data.LOCALSTORAGE_LAST_VISIT_TAB);

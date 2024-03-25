@@ -1,7 +1,7 @@
 
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>搜索</ion-title>
+    <ion-title>{{ ui.instant('Tabs.Search') }}<!--搜索--></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +20,7 @@
 <ion-content [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" force-overscroll="false">
   <ion-header [translucent]="true" collapse="condense" *ngIf="!data.showFilter" style="margin-top:5px;">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">搜索</ion-title>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Search') }}<!--搜索--></ion-title>
     </ion-toolbar>
   </ion-header>
 

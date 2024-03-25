@@ -10,6 +10,7 @@ import { ImageViewerPage } from 'src/app/pages/viewer-image/image-viewer.page';
 import { PlayerPage } from '../pages/player/player.page';
 
 import domtoimage from 'dom-to-image';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class UiService {
   isipad = false;
   
   constructor(
+    private http: HttpClient,
     private toastController: ToastController,
     private alertController: AlertController,
     private platform: Platform,
@@ -250,6 +252,34 @@ export class UiService {
 
   goback(){
     this.location.back();
+  }
+
+  localeData:any;
+  loadTranslate(locale:any){
+      this.http.get<any>(`assets/i18n/${locale}.json`)
+      .subscribe((res:any) =>{
+          this.localeData=this.flatten(res);
+      }, (error:any) =>{
+          console.log(error);
+      });
+  }
+
+  instant(key:any){
+      if(this.localeData)
+          return this.localeData[key];
+      return key;
+  }
+
+  flatten (obj:any, prefix:any = [], current:any = {}) {
+      if (typeof (obj) === 'object' && obj !== null) {
+        Object.keys(obj).forEach(key => {
+          this.flatten(obj[key], prefix.concat(key), current)
+        })
+      } else {
+        current[prefix.join('.')] = obj
+      }
+    
+      return current
   }
 
 

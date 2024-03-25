@@ -71,13 +71,13 @@ export class Tab1Page {
   
 
   constructor(
+    public ui: UiService,
     private animationCtrl: AnimationController,
     private router: Router,
     private el: ElementRef, 
     private gestureCtrl: GestureController,
     private navCtrl: NavController,
     public data:DataService,
-    private ui: UiService,
   ) {
 
      
@@ -150,6 +150,20 @@ export class Tab1Page {
 
   goSearch(text:any){
     this.router.navigate(['/tabs/tab3'], {
+      queryParams: {
+        text:text
+      }
+    });
+  }
+
+  tutorial(){
+    this.router.navigate(['/tutorial'], {
+      queryParams: {}
+    });
+  }
+
+  chat(text:any){
+    this.router.navigate(['/chat'], {
       queryParams: {
         text:text
       }

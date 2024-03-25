@@ -1,0 +1,13 @@
+{
+    "Tabs":{
+        "Discovery":"Discovery",
+        "Browse": "Browse",
+        "ListenNow": "Listen Now",
+        "Library": "Library",
+        "Search":"Search"
+    },
+
+    "Tutorial":{
+        "Language":"Language"
+    }
+}

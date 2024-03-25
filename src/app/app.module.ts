@@ -15,6 +15,7 @@ import { Media } from '@awesome-cordova-plugins/media/ngx'
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonModule } from '@angular/common';
+import { AutoresizeDirective } from './directives/autoresize-textarea.directive';
 
 @NgModule({
   declarations: [
