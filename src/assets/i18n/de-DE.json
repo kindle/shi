@@ -1,0 +1,118 @@
+{
+    "Tabs":{
+        "Discovery":"Entdecken",
+        "Browse": "Durchsuchen",
+        "ListenNow": "Jetzt hören",
+        "Library": "Bibliothek",
+        "Search":"Suche"
+    },
+
+    "Tutorial":{
+        "Language":"Sprache"
+    },
+
+    "AI":{
+        "Title":"AI-Gedichtagent",
+        "Hello":"Hallo! Wie kann ich Ihnen heute helfen?",
+        "Submit":"Senden",
+        "Status0":"AI-Agent",
+        "Status1":"Tippt...",
+        "SaySth":"Lass uns reden...",
+        "History":"Verlauf",
+        "Today":"Heute",
+        "Yesterday":"Gestern",
+        "DaysAgo":"Tage zuvor"
+    },
+
+    "Action":{
+        "Search":"Suche",
+        "Clear":"Löschen",
+        "Delete":"Löschen",
+        "DelFromLib":"Aus Bibliothek entfernen",
+        "Cancel":"Abbrechen",
+        "Edit":"Bearbeiten",
+        "Done":"Fertig",
+        "Camera":"Kamera",
+        "Albums":"Alben",
+        "Play":"Abspielen",
+        "Shuffle":"Mischen",
+        "AddPoem":"Gedicht hinzufügen",
+        "NewList":"Neue Gedichtsliste...",
+        "Interpret":"AI",
+        "MoreToExplore":"Mehr entdecken",
+        "DeleteFromLib":"Aus Bibliothek löschen",
+        "AddToLib":"Zur Bibliothek hinzufügen",
+        "AddToAPoemList":"Zu einer Gedichtsliste hinzufügen...",
+        "ViewPoet":"Dichter"
+    },
+
+    "Message":{
+        "LibAdded":"Zur Bibliothek hinzugefügt",
+        "PoemlistAdded":"Zur Gedichtsliste hinzugefügt"
+    },
+
+    "Lib":{
+        "Poemlists":"Gedichtslisten",
+        "Poets":"Dichter",
+        "Albums":"Alben",
+        "Poems":"Gedichte",
+        "Topics":"Themen"
+    },
+    
+    "Title":{
+        "App":"Poesie",
+        "Recent":"Neueste",
+        "Hot":"Beliebt",
+        "Classical":"Klassisch",
+        "AllPoems":"Alle Gedichte",
+        "RecentlyAdded":"Kürzlich hinzugefügt",
+        "Settings":"Einstellungen",
+        "BrowseCategories":"Kategorien durchsuchen",
+        "Description":"Beschreibung",
+        "NoPoem":"Es ist leer",
+        "FeaturedPoets":"Ausgewählte Dichter",
+        "PoemCount":" Gedichte",
+        "NewList":"Neue Gedichtsliste",
+        "NewListName":"Name der Gedichtsliste",
+        "NewListDesc":"Beschreibung",
+        "History":"Verlauf",
+        "PlayingNext":"Als nächstes abspielen",
+        "Author":"Autor"
+    },
+
+    "Search":{
+        "Tab4":"Dichter, Gedichte und Mehr",
+        "CustomList":"In Gedichtslisten suchen",
+        "Poets":"In Dichtern suchen",
+        "Albums":"In Alben suchen",
+        "Poems":"In Gedichten suchen",
+        "Topics":"In Themen suchen"
+    },
+
+    "Feedback":{
+        "Title":"Ihre Likes sind meine Motivation.",
+        "Sub":"Geben Sie mir ein Daumen hoch!",
+        "Go":"Jetzt bewerten"
+    },
+
+    "Sub":{
+        "Title":"Genießen Sie Dichter, Gedichte und Mehr",
+        "Content":"Monatliches Abonnement",
+        "BuyNow":"Jetzt kaufen"
+    },
+
+    "Game":{
+        "Best":"Ergebnisse",
+        "Time":"Zeit",
+        "ConfirmTitle":"Bitte bestätigen Sie",
+        "ConfirmMessage":"Möchten Sie wirklich gehen?",
+        "ConfirmYes":"Ja",
+        "ConfirmCancel":"Abbrechen",
+        "ConfirmClose":"Herunterfahren",
+        "Congrats":"Herzlichen glückwunsch!",
+        "Coins":"Gold",
+        "CoinsToUnlock":"{0} Münzen zu entsperren",
+        "NotEnoughCoins":"Du brauchst {0} Münzen, um dich zu entsperren!",
+        "GiveFeedback":"Wie dieses Spiel, schreiben Sie einfach eine gute Bewertung, nicht wahr?"
+    }
+}

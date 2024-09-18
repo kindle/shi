@@ -112,8 +112,8 @@ export class SearchToCustomListPage {
     this.displayResult = this.displayResult.concat(
       this.searchResult.splice(0,Math.min(this.searchResultCount,10))
     );
-    console.log('before set add')
-    console.log(this.displayResult)
+    //console.log('before set add')
+    //console.log(this.displayResult)
 
     let poemIdsInCustomList = this.data.currentCollectLike.data.list.map((obj:any)=>obj.id);
     let poemTextInCustomList = this.data.currentCollectLike.data.list.map((obj:any)=>

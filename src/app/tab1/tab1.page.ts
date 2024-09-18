@@ -129,7 +129,6 @@ export class Tab1Page {
     });
   }
 
-
   //can not add lifecycle ionViewDidEnter event in directive.
   @ViewChildren("autoswiper") autoSwipers: any;
   ionViewDidEnter(){
@@ -138,14 +137,6 @@ export class Tab1Page {
     this.autoSwipers.forEach((swiper:any) => {
       swiper.nativeElement.swiper.autoplay.start();
     });
-    
-    
-  }
-
-  ionViewDidLeave(){
-  }
-
-  ngAfterViewInit() {
   }
 
   goSearch(text:any){
@@ -162,10 +153,9 @@ export class Tab1Page {
     });
   }
 
-  chat(text:any){
+  chat(){
     this.router.navigate(['/chat'], {
       queryParams: {
-        text:text
       }
     });
   }
@@ -178,4 +168,6 @@ export class Tab1Page {
     event.stopPropagation();
     event.preventDefault();
   }
+
+
 }

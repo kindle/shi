@@ -1,0 +1,220 @@
+[
+    {
+        "id":1,
+        "level":1,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg",
+        "more":"杜甫",
+        "desc":"绝句",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"绝句","author":"杜甫","sample":"两个黄鹂鸣翠柳，一行白鹭上青天", "id":"abf4daf0-0c7b-4b0c-87a2-2c48097d6a65", "start":4.6, "end":8 },
+            {"title":"绝句","author":"杜甫","sample":"窗含西岭千秋雪，门泊东吴万里船", "id":"abf4daf0-0c7b-4b0c-87a2-2c48097d6a65", "start":15.4, "end":21.7 }
+        ]
+    },
+    {
+        "id":2,
+        "level":1,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg",
+        "more":"李白",
+        "desc":"望庐山瀑布",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"望庐山瀑布","author":"李白","sample":"日照香炉生紫烟，遥看瀑布挂前川", "id":"c155ff88-deac-4c17-8648-91f478d77ef9", "start":5, "end":10.5 },
+            {"title":"望庐山瀑布","author":"李白","sample":"飞流直下三千尺，疑是银河落九天", "id":"c155ff88-deac-4c17-8648-91f478d77ef9", "start":15.8, "end":20 }
+        ]
+    },
+    {
+        "id":3,
+        "level":1,
+        "name":"春晓",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/孟浩然.jpeg",
+        "more":"孟浩然",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"春晓","author":"孟浩然","sample":"春眠不觉晓，处处闻啼鸟", "id":"cb168b3b-d104-4df7-9868-1e1225ddb941", "start":5.9, "end":9.4 },
+            {"title":"春晓","author":"孟浩然","sample":"夜来风雨声，花落知多少", "id":"cb168b3b-d104-4df7-9868-1e1225ddb941", "start":15.2, "end":19.1 }
+        ]
+    },
+    {
+        "id":4,
+        "level":1,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/王翰.jpeg",
+        "more":"王翰",
+        "desc":"凉州词",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"凉州词","author":"王翰","sample":"葡萄美酒夜光杯，欲饮琵琶马上催", "id":"0445f296-5816-4ab9-a617-7d8ed29088ea", "start":4.7, "end":9.2 },
+            {"title":"凉州词","author":"王翰","sample":"醉卧沙场君莫笑，古来征战几人回", "id":"0445f296-5816-4ab9-a617-7d8ed29088ea", "start":15, "end":18.8 }
+        ]
+    },
+
+
+    {
+        "id":5,
+        "level":2,
+        "name":"悯农",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/李绅.jpeg",
+        "more":"李绅",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"悯农","author":"李绅","sample":"锄禾日当午，汗滴禾下土", "id":"ab5ec1e2-084a-486d-bd84-39b320bf4d88", "start":4.4, "end":8.1 },
+            {"title":"悯农","author":"李绅","sample":"谁知盘中餐，粒粒皆辛苦", "id":"ab5ec1e2-084a-486d-bd84-39b320bf4d88", "start":14.5, "end":18.4 }
+        ]
+    },
+    
+    {
+        "id":6,
+        "level":2,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg",
+        "more":"白居易",
+        "desc":"赋得古原草送别",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"赋得古原草送别","author":"白居易","sample":"离离原上草，一岁一枯荣", "id":"0174cbbc-31fa-4daf-b1cf-7f91c6a646a9", "start":6.7, "end":10.9 },
+            {"title":"赋得古原草送别","author":"白居易","sample":"野火烧不尽，春风吹又生", "id":"0174cbbc-31fa-4daf-b1cf-7f91c6a646a9", "start":14.5, "end":17.3 }
+        ]
+    },
+    {
+        "id":7,
+        "level":2,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/杜牧.jpeg",
+        "more":"杜牧",
+        "desc":"山行",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"山行","author":"杜牧","sample":"远上寒山石径斜，白云深处有人家", "id":"56da3304-439a-400b-b283-16de3add74ce", "start":6.9, "end":13 },
+            {"title":"山行","author":"杜牧","sample":"停车坐爱枫林晚，霜叶红于二月花", "id":"56da3304-439a-400b-b283-16de3add74ce", "start":21, "end":26.8 }
+        ]
+    },
+    {
+        "id":8,
+        "level":2,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/孟郊.jpeg",
+        "more":"孟郊",
+        "desc":"游子吟",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"游子吟","author":"孟郊","sample":"慈母手中线，游子身上衣", "id":"22923091-18da-429d-9ef1-6b367fd74b1a", "start":5.2, "end":10.1 },
+            {"title":"游子吟","author":"孟郊","sample":"临行密密缝，意恐迟迟归", "id":"22923091-18da-429d-9ef1-6b367fd74b1a", "start":16.9, "end":20.4 },
+            {"title":"游子吟","author":"孟郊","sample":"谁言寸草心，报得三春晖", "id":"22923091-18da-429d-9ef1-6b367fd74b1a", "start":25.7, "end":29.2 }
+        ]
+    },
+    {
+        "id":9,
+        "level":2,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/王维.jpeg",
+        "more":"王维",
+        "desc":"九月九日忆山东兄弟",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"九月九日忆山东兄弟","author":"王维","sample":"独在异乡为异客，每逢佳节倍思亲", "id":"6bbd1c2c-8c43-4ffb-b7b3-506d74266cee", "start":6.8, "end":10.7 },
+            {"title":"九月九日忆山东兄弟","author":"王维","sample":"遥知兄弟登高处，遍插茱萸少一人", "id":"6bbd1c2c-8c43-4ffb-b7b3-506d74266cee", "start":17.8, "end":21.4 }
+        ]
+    },
+    {
+        "id":10,
+        "level":2,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/贺知章.jpeg",
+        "more":"贺知章",
+        "desc":"咏柳",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"咏柳","author":"贺知章","sample":"碧玉妆成一树高，万条垂下绿丝绦", "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8", "start":5.7, "end":10.9 },
+            {"title":"咏柳","author":"贺知章","sample":"不知细叶谁裁出，二月春风似剪刀", "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8", "start":18, "end":23.5 }
+        ]
+    },
+    {
+        "id":11,
+        "level":3,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg",
+        "more":"李白",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"黄鹤楼送孟浩然之广陵","author":"李白","sample":"故人西辞黄鹤楼，烟花三月下扬州", "id":"d43a4767-2240-44b7-8d5b-c2acdc689839", "start":21.7, "end":27.2 },
+            {"title":"黄鹤楼送孟浩然之广陵","author":"李白","sample":"孤帆远影碧山尽，唯见长江天际流", "id":"d43a4767-2240-44b7-8d5b-c2acdc689839", "start":36.4, "end":40.5 },
+            {"title":"秋浦歌","author":"李白","sample":"白发三千丈，缘愁似个长", "id":"f08c617d-fb86-4c2d-92ea-b5662ae1fe88", "start":23.6, "end":28.4 },
+            {"title":"秋浦歌","author":"李白","sample":"不知明镜里，何处得秋霜", "id":"f08c617d-fb86-4c2d-92ea-b5662ae1fe88", "start":42.4, "end":48.1 }
+        ]
+    },
+    {
+        "id":12,
+        "level":3,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg",
+        "more":"杜甫",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"春夜喜雨","author":"杜甫","sample":"好雨知时节，当春乃发生", "id":"c6ddd64d-606c-421e-8912-7f37568020b1", "start":22.3, "end":26.1 },
+            {"title":"春夜喜雨","author":"杜甫","sample":"随风潜入夜，润物细无声", "id":"c6ddd64d-606c-421e-8912-7f37568020b1", "start":31.2, "end":35 },
+            {"title":"江畔独步寻花","author":"杜甫","sample":"黄四娘家花满蹊，千朵万朵压枝低", "id":"573bb059-28f0-4ff4-aaed-619bb2924198", "start":8.2, "end":12.5 },
+            {"title":"江畔独步寻花","author":"杜甫","sample":"留连戏蝶时时舞，自在娇莺恰恰啼", "id":"573bb059-28f0-4ff4-aaed-619bb2924198", "start":19.6, "end":23 }
+        ]
+    },
+    {
+        "id":13,
+        "level":3,
+        "name":"",
+        "sub":"简单",
+        "image":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg",
+        "more":"白居易",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {"title":"钱唐湖春行","author":"白居易","sample":"孤山寺北贾亭西，水面初平云脚低", "id":"32021394-9342-4eb9-b5c0-f98c6e3beece", "start":10.6, "end":14.7 },
+            {"title":"钱唐湖春行","author":"白居易","sample":"几处早莺争暖树，谁家新燕啄春泥", "id":"32021394-9342-4eb9-b5c0-f98c6e3beece", "start":20.2, "end":23.7 },
+            {"title":"暮江吟","author":"白居易","sample":"一道残阳铺水中，半江瑟瑟半江红", "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e", "start":6.8, "end":11 },
+            {"title":"暮江吟","author":"白居易","sample":"可怜九月初三夜，露似珍珠月似弓", "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e", "start":18, "end":22.3 }
+        ]
+    }
+]

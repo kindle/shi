@@ -147,12 +147,12 @@ export class PlayerPage implements OnInit {
   history(){
     //this.showHistory = !this.showHistory;
     if(this.showHistory==true){
-      console.log('init swiper change...')
-      console.log(this.swiperRef)
+      //console.log('init swiper change...')
+      //console.log(this.swiperRef)
       this.swiperRef?.nativeElement.swiper.on('slideChange', () => {
-        console.log('on slide change$$$')
+        //console.log('on slide change$$$')
         const activeIndex = this.swiperRef?.nativeElement.swiper.activeIndex;
-        console.log('Active Index changed:', activeIndex);
+        //console.log('Active Index changed:', activeIndex);
       });
     }
     this.showText = false;

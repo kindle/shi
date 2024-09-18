@@ -10,7 +10,8 @@
       style="background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-poet-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button slot="end" id="popover-button-poet-{{data.currentTab}}" shape="round" 
+      style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-poet-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -20,7 +21,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="authorData&&data.isliked(authorData,'poetlist')" 
               (click)="data.unlikelist(authorData,'poetlist')">
-                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-text color="danger">{{ ui.instant('Action.DeleteFromLib') }}<!--从诗词库中删除--></ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>
               <!--
@@ -32,7 +33,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="!data.isliked(authorData,'poetlist')"  
               (click)="data.likelist(authorData, 'poetlist')">
-                添加到诗词库
+                {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
                 <ion-icon name="add-outline" slot="end"></ion-icon>
               </ion-item>
               <!--
@@ -72,14 +73,13 @@
       </ion-card-content>
   </ion-card>
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
+    <ion-toolbar><!--搜索-->
+      <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
@@ -87,21 +87,23 @@
   <app-text [name]="authorData.name" [text]="authorData.desc"
   *ngIf="!showFilter&&authorData">
   </app-text>
-
-  <app-hot name="热门诗词" [source]="hotPoemByAuthor" audio="yes"
+  <!--热门诗词-->
+  <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"
   *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>
 
   <ion-toolbar style="--background: translucent;" *ngIf="!showFilter">
     <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
       <ion-buttons>
-        <ion-card-title class="station-text" style="font-weight: bold;">所有诗词</ion-card-title>
+        <ion-card-title class="station-text" style="font-weight: bold;">
+          {{ ui.instant('Title.AllPoems') }}<!--所有诗词-->
+        </ion-card-title>
       </ion-buttons>
     </ion-card-content>
   </ion-toolbar>
 
   <ion-list style="margin-top:10px;margin-bottom: 20px;" *ngIf="!showFilter">
     <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
-      {{localJsonData.length}}首
+      {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
     </ion-text>
   </ion-list>
 

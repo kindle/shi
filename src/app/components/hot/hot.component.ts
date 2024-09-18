@@ -11,6 +11,7 @@ export class HotComponent {
   @Input() name?: string;
   @Input() source?: any;
   @Input() audio?: string;
+  @Input() hideAuthor?: boolean;
 
   constructor(
     public data: DataService,

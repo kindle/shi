@@ -1,0 +1,81 @@
+<!-- <ion-toolbar style="--background: translucent;">
+    <ion-card-content style="display: flex;direction:row;padding-top:15px;padding-bottom: 0;padding-left:15px;">
+        <ion-buttons>
+            <ion-card-title class="station-text" style="font-weight: bold;">{{section}}</ion-card-title>
+        </ion-buttons>
+    </ion-card-content>
+</ion-toolbar> -->
+<ion-card style="margin-top:15px;" class="card card-gif" card-shrink (click)="loonglist()">
+  <ion-card-content class="container">
+    <ion-card-subtitle class="card-text" 
+    style="font-size: 18px;position:absolute;bottom: 10px;right:15px;z-index: 10;">
+        <!-- <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;">
+            {{data.mycoins}}<ion-img src="/assets/img/coin.png" style="margin-right:10px;width: 25px;"></ion-img>
+            {{data.mystars}}/{{data.totalstars}}<ion-img src="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;"></ion-img>
+        </ion-label> -->
+    </ion-card-subtitle>
+    <ion-card-title class="card-text" style="z-index: 10;">{{title}}</ion-card-title>
+        <div class="container1">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="asciiart-wrap">
+                        <div class="asciiart art-1">李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                            李白 君不见 黄河之水 天上来 奔流到海 不复回 王之涣 黄砂 直上 白云间 一片孤城 万仞山 王维 谓城朝雨 浥轻尘 客舍青青 柳色新 张九龄 海上 生明月 天涯 共此时
+                            王勃 城阙 辅三秦 风烟 望五津 李白 我本 楚狂人 凤歌 笑孔丘 凤凰台上 凤凰游 凤去台空 江自流 花间 一壶酒 独酌 无相亲 岑参 北风捲地 白草折 胡天八月 即飞雪 杜甫 风急天高猿啸哀，渚清沙白鸟飞回
+                            绝代 有佳人 幽居 在空谷 白居易 浔阳江头夜送客 枫叶荻花秋瑟瑟 绿螘新醅酒 红泥小火垆 高阁 客竟去 小园花乱飞 多情却似总无情 唯觉尊前笑不成
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="asciiart-wrap">
+                        <div class="asciiart art-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate
+                            velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor
+                            sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
+                            ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
+                            zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                            ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat
+                            nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit
+                            in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber
+                            tempor cum soluta nobis eleifend option congue.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </ion-card-content>
+</ion-card>

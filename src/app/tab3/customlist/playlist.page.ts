@@ -61,7 +61,7 @@ export class PlayListPage {
 
 
   async createPlayList() {
-    console.log('start createPlayList...')
+    //console.log('start createPlayList...')
     const modal = await this.modalController.create({
         component: AddPlayerListPage,
         componentProps: {

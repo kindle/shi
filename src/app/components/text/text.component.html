@@ -6,6 +6,6 @@
   </ion-card-content>
 </ion-header>
 <ion-card-content style="padding-top:10px;padding-bottom:0px;">
-  <div *ngIf="short()!=text">{{short()}}<ion-text (click)="unfold()" color="primary">...更多</ion-text></div>
-  <div *ngIf="short()==text">{{text}}</div>
+  <div *ngIf="short()!=text" class="selectableText" (click)="ui.selectText()">{{short()}}<ion-text (click)="unfold()" color="primary">...更多</ion-text></div>
+  <div *ngIf="short()==text" class="selectableText" (click)="ui.selectText()">{{text}}</div>
 </ion-card-content>

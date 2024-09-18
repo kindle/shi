@@ -4,25 +4,24 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
       </ion-buttons>
-      <ion-title>诗单列表</ion-title>
+      <ion-title>{{ ui.instant('Lib.Poemlists') }}<!--诗单列表--></ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title class="tab-title" mode="md">诗单列表</ion-title>
+        <ion-title class="tab-title" mode="md">{{ ui.instant('Lib.Poemlists') }}<!--诗单列表--></ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-searchbar placeholder="在诗单列表中查找" show-cancel-button="focus"
+      <ion-toolbar><!--在诗单列表中查找-->
+        <ion-searchbar placeholder="{{ ui.instant('Search.CustomList') }}"
         style="padding-left:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"
         (ionInput)="onSearchChanged()"
-        cancel-button-text="取消"
         ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
@@ -35,7 +34,7 @@
           <ion-icon name="add-outline" size="large" color="primary"></ion-icon>
         </ion-thumbnail>
         <ion-label color="primary">
-          <h2>新建诗单列表...</h2>
+          <h2>{{ ui.instant('Action.NewList') }}<!--新建诗单列表...--></h2>
         </ion-label>
       </ion-item>
       <ion-item *ngFor="let like of displayResult" (click)="data.goToPlayList(like.data['id'])"
@@ -45,13 +44,15 @@
           <img style="border-radius: 10px;" 
             [lazyLoad]="like.data['customimage']"/>
         </ion-thumbnail>  
-        <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
+        <ion-thumbnail slot="start" 
+        *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
           style="background-color: {{like.data['color']}};">
           <img style="border-radius: 10px;" 
             [lazyLoad]="like.data['image'][0]" 
             *ngIf="like.data['image'].length>0"/>
         </ion-thumbnail>
-        <ion-thumbnail slot="start" *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length>=4" 
+        <ion-thumbnail slot="start" 
+        *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length>=4" 
         style="
         aspect-ratio: 1 / 1;
         border: 1px solid rgba(247,247,247);

@@ -1,102 +1,1174 @@
 [
     {
-        "id":1001,
+        "id":1,
+        "level":1,
         "name":"",
-        "sub":"侠气十足1",
-        "image":"https://reddah.blob.core.windows.net/msjjimg/sea-540123_1280.jpg",
-        "more":"满堂花醉三千客，一剑霜寒十四州",
-        "desc":"你读过哪些江湖侠气味儿十足的诗句？",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp1-鼠.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
-            {"title":"静夜思","author":"李白","sample":"床前明月光，疑是地上霜", "id":"c46b7e7b-d1b2-5f54-b0b0-05c99bc0c230"},
-            {"title":"静夜思","author":"李白","sample":"举头望明月，低头思故乡", "id":"c46b7e7b-d1b2-5f54-b0b0-05c99bc0c230"},
-            {"title":"游山西村","author":"杜甫","sample":"山重水复疑无路，柳暗花明又一村", "id":"53f7d126-b9ad-443b-b054-1e2ae8e0e05c"},
-            {"title":"将进酒","author":"李白","sample":"天生我材必有用，千金散尽还复来", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"定风波","author":"苏轼","sample":"莫听穿林打叶声，何妨吟啸且徐行", "id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
-            {"title":"定风波","author":"苏轼","sample":"竹杖芒鞋轻胜马，谁怕 一蓑烟雨任平生", "id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
-            {"title":"定风波","author":"苏轼","sample":"回首向来潇洒处，归去 也无风雨也无晴", "id":"45a936d1-0c0e-4931-b06d-2fdbda01cee5"},
-            {"title":"七律·长征","author":"毛泽东","sample":"红军不怕远征难，万水千山只等闲", "id":"7afa104d-e493-4764-8fc1-53c531c46de7"},
-            {"title":"七律·长征","author":"毛泽东","sample":"金沙水拍云崖暖，大渡桥横铁索寒", "id":"7afa104d-e493-4764-8fc1-53c531c46de7"},
-            {"title":"七律·长征","author":"毛泽东","sample":"更喜岷山千里雪，三军过后尽开颜", "id":"7afa104d-e493-4764-8fc1-53c531c46de7"},
-            {"title":"忆秦娥·娄山关","author":"毛泽东","sample":"雄关漫道真如铁，而今迈步从头越", "id":"dfdcfe51-132d-46d2-b090-a8899d8fed06"},
-            {"title":"七律·人民解放军占领南京","author":"毛泽东","sample":"钟山风雨起苍黄，百万雄师过大江", "id":"00201261-1578-46fb-a58a-f182486f81a6"},
-            {"title":"七律·人民解放军占领南京","author":"毛泽东","sample":"虎踞龙盘今胜昔，天翻地覆慨而慷", "id":"00201261-1578-46fb-a58a-f182486f81a6"},
-            {"title":"七律·人民解放军占领南京","author":"毛泽东","sample":"宜将剩勇追穷寇，不可沽名学霸王", "id":"00201261-1578-46fb-a58a-f182486f81a6"},
-            {"title":"七律·人民解放军占领南京","author":"毛泽东","sample":"天若有情天亦老，人间正道是沧桑", "id":"00201261-1578-46fb-a58a-f182486f81a6"},
-            {"title":"清平乐·会昌","author":"毛泽东","sample":"踏遍青山人未老，风景这边独好", "id":"f328d3e4-4c2a-4572-89bc-e1c310a30ecf"},
-            {"title":"月下独酌","author":"李白","sample":"花间一壶酒，独酌无相亲", "id":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3"},
-            {"title":"月下独酌","author":"李白","sample":"举杯邀明月，对影成三人", "id":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3"},
-            {"title":"西江月","author":"苏轼","sample":"世事一场大梦，人生几度秋凉", "id":"10F007D6-6701-467B-99BB-39EA7C2E24D2"},
-            {"title":"和董传留别","author":"苏轼","sample":"粗缯大布裹生涯，腹有诗书气自华", "id":"015afdc6-ba39-45f0-972e-096ae84cca57"},
-            {"title":"沁园春·长沙","author":"毛泽东","sample":"恰同学少年，风华正茂", "id":"655b685e-7963-43a9-b562-0b02bebd41e2"},
-            {"title":"沁园春·长沙","author":"毛泽东","sample":"书生意气，挥斥方遒", "id":"655b685e-7963-43a9-b562-0b02bebd41e2"},
-            {"title":"沁园春·长沙","author":"毛泽东","sample":"指点江山，激扬文字", "id":"655b685e-7963-43a9-b562-0b02bebd41e2"},
-            {"title":"沁园春·长沙","author":"毛泽东","sample":"粪土当年，万户侯", "id":"655b685e-7963-43a9-b562-0b02bebd41e2"},
-            {"title":"沁园春·长沙","author":"毛泽东","sample":"曾记否，到中流击水 浪遏飞舟", "id":"655b685e-7963-43a9-b562-0b02bebd41e2"},
-            {"title":"七古·残句","author":"毛泽东","sample":"自信人生二百年，会当水击三千里", "id":"6089bcb6-8735-4b40-ae4b-ada9050b7937"},
-            {"title":"上李邕","author":"李白","sample":"大鹏一日同风起，抟摇直上九万里", "id":"ac06cfdc-adad-4ca5-9304-ee48522b8172"},
-            {"title":"望岳","author":"杜甫","sample":"会当凌绝顶，一览众山小", "id":"4f337f33-ef4b-62de-60c5-e87faaeb0d17"}
+            {
+                "title":"春晓","author":"孟浩然",
+                "sample":"夜来风雨声，花落知多少", 
+                "id":"cb168b3b-d104-4df7-9868-1e1225ddb941", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"花多又知逢时雨少落",
+                "answer":"花落知多少"
+            }
         ]
     },
     {
-        "id":1002,
+        "id":2,
+        "level":1,
         "name":"",
-        "sub":"侠气十足2",
-        "image":"https://reddah.blob.core.windows.net/msjjimg/sea-540123_1280.jpg",
-        "more":"满堂花醉三千客，一剑霜寒十四州",
-        "desc":"你读过哪些江湖侠气味儿十足的诗句？",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp2-牛.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
-            {"title":"凉州词","author":"王翰","sample":"葡萄美酒夜光杯，欲饮琵琶马上催", "id":"0445f296-5816-4ab9-a617-7d8ed29088ea"},
-            {"title":"凉州词","author":"王翰","sample":"醉卧沙场君莫笑，古来征战几人回", "id":"0445f296-5816-4ab9-a617-7d8ed29088ea"},
-            {"title":"出塞","author":"王昌龄","sample":"秦时明月汉时关，万里长征人未还", "id":"2d0385e7-0c72-423f-a538-f66acc9d4c46"},
-            {"title":"出塞","author":"王昌龄","sample":"但使龙城飞将在，不教胡马度阴山", "id":"2d0385e7-0c72-423f-a538-f66acc9d4c46"},
-            {"title":"浪淘沙","author":"刘禹锡","sample":"九曲黄河万里沙，浪淘风簸自天涯", "id":"52598ca7-8d4b-40c4-9814-e82a51ec379d"},
-            {"title":"凉州词","author":"王之涣","sample":"黄河远上白云间，一片孤城万仞山", "id":"52598ca7-8d4b-40c4-9814-e82a51ec379d"},
-            {"title":"凉州词","author":"王之涣","sample":"羌笛何须怨杨柳，春光不度玉门关", "id":"52598ca7-8d4b-40c4-9814-e82a51ec379d"},
-            {"title":"独坐敬亭山","author":"李白","sample":"众鸟高飞尽，孤云独去闲", "id":"52598ca7-8d4b-40c4-9814-e82a51ec379d"},
-            {"title":"青玉案","author":"辛弃疾","sample":"蛾儿雪柳黄金缕，笑语盈盈暗香去", "id":"04b2e061-d1ba-459d-8126-df13752e9cec"},
-            {"title":"题都城南庄","author":"崔护","sample":"人面不知何处去，桃花依旧笑春风", "id":"0c41ce6b-948a-456a-9c4d-f0c767e61cd7"},
-            {"title":"秋词","author":"刘禹锡","sample":"自古逢秋悲寂寥，我言秋日胜春朝", "id":"aa22a168-1c3f-48e1-b7d4-1aa143d66335"},
-            {"title":"秋词","author":"刘禹锡","sample":"晴空一鹤排云上，便引诗情到碧霄", "id":"aa22a168-1c3f-48e1-b7d4-1aa143d66335"},
-            {"title":"早春呈水部张十八员外","author":"韩愈","sample":"天街小雨润如酥，草色遥看近却无", "id":"d7cb4244-143b-403b-8599-b10c6763d032"},
-            {"title":"早春呈水部张十八员外","author":"韩愈","sample":"最是一年春好处，绝胜烟柳满皇都", "id":"d7cb4244-143b-403b-8599-b10c6763d032"},
-            {"title":"渭城曲","author":"王维","sample":"渭城朝雨浥轻尘，客舍青青柳色新", "id":"1575c835-1241-4d7b-99dc-6d700549ac65"},
-            {"title":"渭城曲","author":"王维","sample":"劝君更尽一杯酒，西出阳关无故人", "id":"1575c835-1241-4d7b-99dc-6d700549ac65"},
-            {"title":"别董大","author":"高适","sample":"千里黄云白日曛，北风吹雁雪纷纷", "id":"bbeb1e68-eb13-729a-dfa8-925ead877783"},
-            {"title":"别董大","author":"高适","sample":"莫愁前路无知己，天下谁人不识君", "id":"bbeb1e68-eb13-729a-dfa8-925ead877783"},
-            {"title":"将进酒","author":"李白","sample":"君不见黄河之水天上来，奔流到海不复回", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"君不见高堂明镜悲白发，朝如青丝暮成雪", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"人生得意须尽欢，莫使金尊空对月", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"天生我材必有用，千金散尽还复来", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"烹羊宰牛且爲乐，会须一饮三百杯", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"岑夫子，丹丘生", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"将进酒，杯莫停", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"与君歌一曲，请君为我侧耳听", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"钟鼓馔玉不足贵，但愿长醉不复醒", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"古来圣贤皆寂寞，惟有饮者留其名", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"陈王昔时宴平乐，斗酒十千恣欢谑", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"主人何爲言少钱，径须酤取对君酌", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"五花马，千金裘", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"将进酒","author":"李白","sample":"呼儿将出换美酒，与尔同销万古愁", "id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"},
-            {"title":"登高","author":"杜甫","sample":"无边落木萧萧下，不尽长江滚滚来", "id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
-            {"title":"登高","author":"杜甫","sample":"万里悲秋常作客，百年多病独登台", "id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
-            {"title":"登高","author":"杜甫","sample":"艰难苦恨繁霜鬓，潦倒新停浊酒杯", "id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
-            {"title":"春望","author":"杜甫","sample":"感时花溅泪，恨别鸟惊心", "id":"e9e6425c-6c14-4f69-8694-87a8b96a43de"},
-            {"title":"登高","author":"杜甫","sample":"烽火连三月，家书抵万金", "id":"e9e6425c-6c14-4f69-8694-87a8b96a43de"},
-            {"title":"使至塞上","author":"王维","sample":"大漠孤烟直，长河落日圆", "id":"8ec59c80-46dc-4916-b069-a25ed8f144ec"},
-            {"title":"望月怀远","author":"张九龄","sample":"海上生明月，天涯共此时", "id":"2c152693-c25f-45ce-8ef2-cbedce1a62bc"},
-            {"title":"送杜少府之任蜀州","author":"王勃","sample":"海内存知己，天涯若比邻", "id":"1b5433df-57f0-2280-acc8-f29f0cee8e5e"},
-            {"title":"次北固山下","author":"王湾","sample":"海日生残夜，江春入旧年", "id":"5bb5c590-5de8-4bfb-aee6-30bc4bcdf99a"},
-            {"title":"次北固山下","author":"王湾","sample":"乡书何处达，归雁洛阳边", "id":"5bb5c590-5de8-4bfb-aee6-30bc4bcdf99a"},
-            {"title":"大林寺桃花","author":"白居易","sample":"人间四月芳菲尽，山寺桃花始盛开", "id":"f5f726ac-2edd-44c1-bebf-1cc8476fad4c"},
-            {"title":"不第后赋菊","author":"黄巢","sample":"待到秋来九月八，我花开后百花杀", "id":"4a38ccaa-e3e3-4920-9f22-3a686c934000"},
-            {"title":"不第后赋菊","author":"黄巢","sample":"冲天香阵透长安，满城尽带黄金甲", "id":"4a38ccaa-e3e3-4920-9f22-3a686c934000"},
-            {"title":"登科后","author":"孟郊","sample":"昔日龌龊不足夸，今朝放荡思无涯", "id":"6e34d23e-7bcd-437b-8a3e-0a4bb1c2cda8"},
-            {"title":"登科后","author":"孟郊","sample":"春风得意马蹄疾，一日看尽长安花", "id":"6e34d23e-7bcd-437b-8a3e-0a4bb1c2cda8"},
-            {"title":"秋歌","author":"李白","sample":"长安一片月，万户捣衣声", "id":"49194c4b-b775-4d21-a506-fc0a2ff308f1"},
-            {"title":"锦瑟","author":"李商隐","sample":"锦瑟无端五十弦，一弦一柱思华年", "id":"e0eb3016-9288-4dc0-9257-3de36e5ad73c"},
-            {"title":"锦瑟","author":"李商隐","sample":"庄生晓梦迷蝴蝶，望帝春心托杜鹃", "id":"e0eb3016-9288-4dc0-9257-3de36e5ad73c"},
-            {"title":"锦瑟","author":"李商隐","sample":"沧海月明珠有泪，蓝田日暖玉生烟", "id":"e0eb3016-9288-4dc0-9257-3de36e5ad73c"},
-            {"title":"锦瑟","author":"李商隐","sample":"此情可待成追忆，只是当时已惘然", "id":"e0eb3016-9288-4dc0-9257-3de36e5ad73c"}
+            {
+                "title":"望庐山瀑布","author":"李白",
+                "sample":"飞流直下三千尺，疑是银河落九天", 
+                "id":"c155ff88-deac-4c17-8648-91f478d77ef9", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 7字",
+                "ask":"飞江芳三尺甸流绕直千宛下",
+                "answer":"飞流直下三千尺"
+            }
+        ]
+    },
+    {
+        "id":3,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp3-虎.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"游子吟","author":"孟郊","sample":"谁言寸草心，报得三春晖", 
+                "id":"22923091-18da-429d-9ef1-6b367fd74b1a", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"#####报得三春晖",
+                "answer":"谁言寸草心"
+            }
+        ]
+    },
+    {
+        "id":4,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp4-兔.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"送杜少府之任蜀州","author":"王勃",
+                "sample":"无为在歧路，儿女共沾巾", 
+                "id":"1b5433df-57f0-2280-acc8-f29f0cee8e5e", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“无为在歧路，儿女共沾襟” 中哪一个字是错的？",
+                "options":["A、为 -> 违","B、岐 -> 其","C、襟 -> 巾"],
+                "answer":"C、襟 -> 巾"
+            }
+        ]
+    },
+    {
+        "id":5,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp5-龙.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"题李凝幽居","author":"贾岛",
+                "sample":"鸟宿池边树，僧敲月下门", 
+                "id":"b07455d5-c662-4c95-ae96-d4d106a43db0", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“鸟宿池边树，僧(?)月下门” 中应该填哪一个字？",
+                "options":["A、推","B、敲","C、开"],
+                "answer":"B、敲"
+            }
+        ]
+    },
+    {
+        "id":6,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp6-蛇.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"题李凝幽居","author":"贾岛",
+                "sample":"鸟宿池边树，僧敲月下门", 
+                "id":"b07455d5-c662-4c95-ae96-d4d106a43db0", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“千门万户曈曈日，总把新桃换旧符” 中的“新桃”是什么意思？",
+                "options":["A、早开的桃花","B、新的桃符","C、新年的寿桃馒头"],
+                "answer":"B、新的桃符"
+            }
+        ]
+    },
+    {
+        "id":7,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp7-马.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开", 
+                "id":"22923091-18da-429d-9ef1-6b367fd74b1a", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"忽如一夜春风来########",
+                "answer":"千树万树梨花开"
+            }
+        ]
+    },
+    {
+        "id":8,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp8-羊.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"泊秦淮","author":"杜牧",
+                "sample":"商女不知亡国恨，隔江犹唱后庭花", 
+                "id":"8de30193-fba7-4aef-9ff9-c3726a22104d", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“商女不知亡国恨，隔江犹唱后庭花” 中的“国”是指哪个朝代？",
+                "options":["A、商朝","B、陈朝","C、唐朝"],
+                "answer":"B、陈朝"
+            }
+        ]
+    },
+    {
+        "id":9,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp9-猴.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"红豆","author":"王维",
+                "sample":"愿君多采撷，此物最相思", 
+                "id":"8baa7c35-9afb-40bf-b5e4-41d9895e2710", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"竞思最相长安物夕此",
+                "answer":"此物最相思"
+            }
+        ]
+    },
+    {
+        "id":10,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp10-鸡.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"清明","author":"杜牧",
+                "sample":"借问酒家何处有？牧童遥指杏花村", 
+                "id":"7caa16cd-cb1b-4325-a0d8-def1002375fc", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 7字",
+                "ask":"风遥水杏村酒花牧童旗指郭",
+                "answer":"牧童遥指杏花村"
+            }
+        ]
+    },
+    {
+        "id":11,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp11-狗.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"回乡偶书","author":"贺知章",
+                "sample":"少小离家老大回，乡音无改鬓毛衰", 
+                "id":"599b8a93-47ab-4426-94c0-ca16eea0ca37", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"########乡音无改鬓毛衰",
+                "answer":"少小离家老大回"
+            }
+        ]
+    },
+    {
+        "id":12,
+        "level":1,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game1_12生肖/yp12-猪.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"月下独酌","author":"李白",
+                "sample":"举杯邀明月，对影成三人", 
+                "id":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"#####对影成三人",
+                "answer":"举杯邀明月"
+            }
+        ]
+    },
+    {
+        "id":13,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/1.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"送元二使安西","author":"王维",
+                "sample":"劝君更尽一杯酒，西出阳关无故人", 
+                "id":"1575c835-1241-4d7b-99dc-6d700549ac65", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“劝君更(?)一杯酒，西出阳关无故人” 中应该填哪一个字？",
+                "options":["A、饮","B、进","C、尽"],
+                "answer":"C、尽"
+            }
+        ]
+    },
+    {
+        "id":14,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/2.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"琵琶行","author":"白居易",
+                "sample":"同是天涯沦落人，相逢何必曾相识", 
+                "id":"0fb0189c-8ff3-4106-af94-f6d26d528a1d", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"########相逢何必曾相识",
+                "answer":"同是天涯沦落人"
+            }
+        ]
+    },
+    {
+        "id":15,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/3.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"江雪","author":"柳宗元",
+                "sample":"孤舟蓑笠翁，独钓寒江雪", 
+                "id":"1f92134b-bca9-46eb-b2fe-87b30413041a", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"夜钓江独入雪连雨寒",
+                "answer":"独钓寒江雪"
+            }
+        ]
+    },
+    {
+        "id":16,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/4.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"泊船瓜洲","author":"王安石",
+                "sample":"春风又绿江南岸，明月何时照我还", 
+                "id":"1f202323-f293-4c01-bcb6-8d7fb45b941f", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"依南笑绿又春桃花江红风岸",
+                "answer":"春风又绿江南岸"
+            }
+        ]
+    },
+    {
+        "id":17,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/5.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"长恨歌","author":"白居易",
+                "sample":"在天愿作比翼鸟，在地愿为连理枝", 
+                "id":"0a0f9231-d88c-4f81-b941-83b67a736194", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"在天愿作比翼鸟，在地愿(?)连理枝” 中应该填哪一个字？",
+                "options":["A、结","B、为","C、作"],
+                "answer":"B、为"
+            }
+        ]
+    },
+    {
+        "id":18,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/6.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"咏柳","author":"贺知章",
+                "sample":"不知细叶谁裁出，二月春风似剪刀", 
+                "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"########二月春风似剪刀",
+                "answer":"不知细叶谁裁出"
+            }
+        ]
+    },
+    {
+        "id":19,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/7.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"西江月","author":"辛弃疾",
+                "sample":"稻花香里说丰年，听取蛙声一片", 
+                "id":"0f1996d7-8397-4d6d-a7cb-13fd7736b3aa", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"(?)花香里说丰年，听取蛙声一片” 中应该填哪一个字？",
+                "options":["A、菜","B、鲜","C、稻"],
+                "answer":"C、稻"
+            }
+        ]
+    },
+    {
+        "id":20,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/8.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"水龙吟","author":"辛弃疾",
+                "sample":"休说鲈鱼堪鲙。尽西风、季鹰归未", 
+                "id":"a0cda58c-9148-4657-8952-b18f48a1260a", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"下列诗句，那一句是正确的？",
+                "options":["A、休说鲈鱼滋味。尽西风、季鹰归未？","B、休说鲤鱼滋味。尽西风、季鹰归未？","C、休说鲈鱼堪鲙。尽西风、季鹰归未？"],
+                "answer":"C、休说鲈鱼堪鲙。尽西风、季鹰归未？"
+            }
+        ]
+    },
+    {
+        "id":21,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/9.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"食荔枝","author":"苏轼",
+                "sample":"日啖荔枝三百颗，不辞长作岭南人", 
+                "id":"91bf538d-6ba7-45f2-a3e4-f179e0780bb9", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"苏东坡被贬岭南，照样享受生活。他有首诗称每天能吃300颗水果，请问这是什么水果？",
+                "options":["A、龙眼","B、荔枝","C、葡萄"],
+                "answer":"B、荔枝"
+            }
+        ]
+    },
+    {
+        "id":22,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/10.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"如梦令","author":"李清照",
+                "sample":"知否？知否？应是绿肥红瘦", 
+                "id":"e293111b-1a4e-40e9-9174-8249ebe0e979", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"李清照《如梦令》中有“知否？知否？应是绿肥红瘦”，这里的“红”指的是什么？",
+                "options":["A、牡丹","B、芍药","C、海棠"],
+                "answer":"C、海棠"
+            }
+        ]
+    },
+    {
+        "id":23,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/11.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"春望","author":"杜甫",
+                "sample":"白头搔更短，浑欲不胜簪", 
+                "id":"e9e6425c-6c14-4f69-8694-87a8b96a43de", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“白头搔更短，混欲不胜簪”中哪个字是错的？",
+                "options":["A、搔 -> 梢","B、混 -> 浑","C、胜 -> 剩"],
+                "answer":"B、混 -> 浑"
+            }
+        ]
+    },
+    {
+        "id":24,
+        "level":2,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game2_国画/12.JPG",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"黄鹤楼送孟浩然之广陵","author":"李白",
+                "sample":"故人西辞黄鹤楼，烟花三月下扬州", 
+                "id":"d43a4767-2240-44b7-8d5b-c2acdc689839", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"从“故人西辞黄鹤楼”中“西辞”二字来看，作者的朋友要往哪里去？",
+                "options":["A、向东去","B、向西去","C、辞别西方向黄鹤楼去"],
+                "answer":"A、向东去"
+            }
+        ]
+    },
+    {
+        "id":25,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/1.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"虞美人","author":"李煜",
+                "sample":"春花秋月何时了，往事知多少", 
+                "id":"b769cd89-478e-40af-9cdc-80cdc7423473", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"人知多世几花少往事",
+                "answer":"往事知多少"
+            }
+        ]
+    },
+    {
+        "id":26,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/2.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"凉州词","author":"王翰",
+                "sample":"醉卧沙场君莫笑，古来征战几人回", 
+                "id":"0445f296-5816-4ab9-a617-7d8ed29088ea", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"醉笑场出去卧莫仰门沙天君",
+                "answer":"醉卧沙场君莫笑"
+            }
+        ]
+    },
+    {
+        "id":27,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/3.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"鹊桥仙","author":"秦观",
+                "sample":"两情若是长久时，又岂在朝朝暮暮", 
+                "id":"798d0eba-34f2-4821-898e-1ec4c8091a8c", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"两情若是长久时#######",
+                "answer":"又岂在朝朝暮暮"
+            }
+        ]
+    },
+    {
+        "id":28,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/4.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"无题","author":"李商隐",
+                "sample":"春蚕到死丝方尽，蜡炬成灰泪始干", 
+                "id":"ed79f9bc-d5d1-4251-b22d-d091e0758a3f", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"#######蜡炬成灰泪始干",
+                "answer":"春蚕到死丝方尽"
+            }
+        ]
+    },
+    {
+        "id":29,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/5.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"赠去婢","author":"崔郊",
+                "sample":"侯门一入深似海，从此萧郎是路人", 
+                "id":"4c3d2d11-ba89-4153-95d0-454d492f27d6", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“侯门一入深似海，从此(?)郎是路人” 中应该填哪一个字？",
+                "options":["A、萧","B、肖","C、崔"],
+                "answer":"A、萧"
+            } 
+        ]
+    },
+    {
+        "id":30,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/6.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"乐游原","author":"李商隐",
+                "sample":"夕阳无限好，只是近黄昏", 
+                "id":"d7c6d072-6e84-482e-856a-5a4c21226a3c", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"限阳下儿好西时无夕",
+                "answer":"夕阳无限好"
+            }
+        ]
+    },
+    {
+        "id":31,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/7.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"枫桥夜泊","author":"张继",
+                "sample":"月落乌啼霜满天，江枫渔火对愁眠", 
+                "id":"3cda5a92-ffa2-4af0-9217-97ce36113705", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"停眠车枫渔坐愁火对爱江林",
+                "answer":"江枫渔火对愁眠"
+            }
+        ]
+    },
+    {
+        "id":32,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/8.jpg",
+        "more":"居易",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"钱唐湖春行","author":"白居易",
+                "sample":"乱花渐欲迷人眼，浅草才能没马蹄", 
+                "id":"32021394-9342-4eb9-b5c0-f98c6e3beece", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"乱花渐欲迷人眼#######",
+                "answer":"浅草才能没马蹄"
+            }
+        ]
+    },
+    {
+        "id":33,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/9.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"暮江吟","author":"白居易",
+                "sample":"一道残阳铺水中，半江瑟瑟半江红", 
+                "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“一道残阳铺水中，半江瑟瑟半江红”中的“瑟瑟”是什么意思？",
+                "options":["A、碧绿","B、寒冷","C、寂寥"],
+                "answer":"A、碧绿"
+            }
+        ]
+    },
+    {
+        "id":34,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/10.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"纵游淮南","author":"张祜",
+                "sample":"人生只合扬州死，禅智山光好墓田", 
+                "id":"4dd58129-5865-4990-9c13-23dea0823ac7", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"下列诗句，哪一项是正确的？",
+                "options":["A、人生只合苏州死，禅智山光好墓田。","B、人生只合扬州死，禅智山光好墓田。","C、人生只合杭州死，禅智山光好墓田。"],
+                "answer":"B、人生只合扬州死，禅智山光好墓田。"
+            }
+        ]
+    },
+    {
+        "id":35,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/11.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"送友人","author":"李白",
+                "sample":"挥手自兹去，萧萧班马鸣", 
+                "id":"1f83fccf-7476-464b-8cd4-8a2b4569c7a0", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"请问“挥手自兹去，萧萧班马鸣”中“班马”指什么？",
+                "options":["A、有花纹的马","B、离群的马","C、以班固、司马迁喻人"],
+                "answer":"B、离群的马"
+            }
+        ]
+    },
+    {
+        "id":36,
+        "level":3,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game3_京剧脸谱/12.jpg",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"夜泊牛渚怀古","author":"李白",
+                "sample":"登舟望秋月，空忆谢将军", 
+                "id":"7e1be9c9-fa2f-44c2-a6bc-3edcece745fe", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"李白《夜泊牛渚怀古》：“登舟望秋月，空忆谢将军”中“谢将军”指的是谁？",
+                "options":["A、谢安","B、谢尚","C、谢玄"],
+                "answer":"B、谢尚"
+            }
+        ]
+    },
+
+    {
+        "id":37,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/1.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"寻隐者不遇","author":"贾岛",
+                "sample":"只在此山中，云深不知处", 
+                "id":"4f6575cc-12cc-4986-8bfc-5cedac7bb68f", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"白云处山深不知人家",
+                "answer":"云深不知处"
+            }
+        ]
+    },
+    {
+        "id":38,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/2.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"咏柳","author":"贺知章",
+                "sample":"不知细叶谁裁出，二月春风似剪刀", 
+                "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"潮水月刀连春江似二剪风平",
+                "answer":"二月春风似剪刀"
+            }
+        ]
+    },
+    {
+        "id":39,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/3.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"枫桥夜泊","author":"张继",
+                "sample":"月落乌啼霜满天，江枫渔火对愁眠", 
+                "id":"3cda5a92-ffa2-4af0-9217-97ce36113705", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"月落乌啼霜满天#######",
+                "answer":"江枫渔火对愁眠"
+            }
+        ]
+    },
+    {
+        "id":40,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/4.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"山居秋暝","author":"王维",
+                "sample":"空山新雨后，天气晚来秋", 
+                "id":"00f12a19-bb96-4980-a4f5-11a1b9d604dd", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"#####天气晚来秋",
+                "answer":"空山新雨后"
+            }
+        ]
+    },
+    {
+        "id":41,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/5.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"赠去婢","author":"崔郊",
+                "sample":"侯门一入深似海，从此萧郎是路人", 
+                "id":"4c3d2d11-ba89-4153-95d0-454d492f27d6", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“衰兰送客咸阳道，天若有(?)天亦老” 中应该填哪一个字？",
+                "options":["A、情","B、晴","C、擎"],
+                "answer":"A、情"
+            } 
+        ]
+    },
+    {
+        "id":42,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/6.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"鹊桥仙","author":"秦观",
+                "sample":"两情若是长久时，又岂在朝朝暮暮", 
+                "id":"798d0eba-34f2-4821-898e-1ec4c8091a8c", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"秦观《鹊桥仙》（纤云弄巧）一词是围绕哪个民间故事展开的？",
+                "options":["A、白蛇传","B、梁山伯与祝英台","C、牛郎织女"],
+                "answer":"C、牛郎织女"
+            }
+        ]
+    },
+    {
+        "id":43,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/7.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"登快阁","author":"黄庭坚",
+                "sample":"朱弦已为佳人绝，青眼聊因美酒横", 
+                "id":"89c9bfb8-4fc9-42c6-b03e-0383e9ba9bae", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"下列诗句，哪一项是正确的？",
+                "options":["A、朱弦已为佳人绝，醉眼聊因美酒横","B、朱弦已为佳人绝，老眼聊因美酒横","C、朱弦已为佳人绝，青眼聊因美酒横"],
+                "answer":"C、朱弦已为佳人绝，青眼聊因美酒横"
+            }
+        ]
+    },
+    {
+        "id":44,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/8.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"夏日绝句","author":"李清照",
+                "sample":"至今思项羽，不肯过江东", 
+                "id":"ba2fe8ca-41aa-466a-b268-fa3526daafb5", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 5字",
+                "ask":"江子不大东俊多过肯",
+                "answer":"不肯过江东"
+            }
+        ]
+    },
+    {
+        "id":45,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/9.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"琵琶行","author":"白居易",
+                "sample":"千呼万唤始出来，犹抱琵琶半遮面", 
+                "id":"0fb0189c-8ff3-4106-af94-f6d26d528a1d", 
+                "start":4.6, "end":8,
+                "type":1,
+                "type desc":"识别诗句题 7字",
+                "ask":"是半闺梦抱深犹遮人琵面琶",
+                "answer":"犹抱琵琶半遮面"
+            }
+        ]
+    },
+    {
+        "id":46,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/10.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"春望","author":"杜甫",
+                "sample":"感时花溅泪，恨别鸟惊心", 
+                "id":"e9e6425c-6c14-4f69-8694-87a8b96a43de", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"感时花溅泪#####",
+                "answer":"恨别鸟惊心"
+            }
+        ]
+    },
+    {
+        "id":47,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/11.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 8,
+        "seconds2star": 6,
+        "seconds3star": 4,
+        "list":[
+            {
+                "title":"春夜洛城闻笛","author":"李白",
+                "sample":"谁家玉笛暗飞声，散入春风满洛城", 
+                "id":"4838bc46-446b-44cb-8296-29eed12cf343", 
+                "start":5.9, "end":9.4,
+                "type":3,
+                "type desc":"对句题",
+                "ask":"#######散入春风满洛城",
+                "answer":"谁家玉笛暗飞声"
+            }
+        ]
+    },
+    {
+        "id":48,
+        "level":4,
+        "name":"",
+        "sub":"",
+        "image":"/assets/img/game4_水果/12.png",
+        "more":"",
+        "desc":"",
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
+        "list":[
+            {
+                "title":"夜泊牛渚怀古","author":"李白",
+                "sample":"登舟望秋月，空忆谢将军", 
+                "id":"7e1be9c9-fa2f-44c2-a6bc-3edcece745fe", 
+                "start":4.6, "end":8,
+                "type":5,
+                "type desc":"单项选择题",
+                "ask":"“(?)中闻折柳，春色未曾看”中应该填什么？",
+                "options":["A、曲","B、笛","C、风"],
+                "answer":"B、笛"
+            }
         ]
     }
 ]

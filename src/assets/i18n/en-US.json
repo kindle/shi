@@ -9,5 +9,110 @@
 
     "Tutorial":{
         "Language":"Language"
+    },
+
+    "AI":{
+        "Title":"AI Poetry Agent",
+        "Hello":"Hello! How can I assist you today?",
+        "Submit":"Submit",
+        "Status0":"AI Agent",
+        "Status1":"Typing...",
+        "SaySth":"Let's talk...",
+        "History":"History",
+        "Today":"Today",
+        "Yesterday":"Yesterday",
+        "DaysAgo":"days ago"
+    },
+
+    "Action":{
+        "Search":"Search",
+        "Clear":"Clear",
+        "Delete":"Delete",
+        "DelFromLib":"Delete from Library",
+        "Cancel":"Cancel",
+        "Edit":"Edit",
+        "Done":"Done",
+        "Camera":"Camera",
+        "Albums":"Albums",
+        "Play":"Play",
+        "Shuffle":"Shuffle",
+        "AddPoem":"Add Poem",
+        "NewList":"New Poemlist...",
+        "Interpret":"AI",
+        "MoreToExplore":"More to Explore",
+        "DeleteFromLib":"Delete from Library",
+        "AddToLib":"Add to Library",
+        "AddToAPoemList":"Add to a Poemlist...",
+        "ViewPoet":"Poet"
+    },
+
+    "Message":{
+        "LibAdded":"Added to Library",
+        "PoemlistAdded":"Added to Poemlist"
+    },
+
+    "Lib":{
+        "Poemlists":"Poemlists",
+        "Poets":"Poets",
+        "Albums":"Albums",
+        "Poems":"Poems",
+        "Topics":"Topics"
+    },
+    
+    "Title":{
+        "App":"Poetry",
+        "Recent":"Recent",
+        "Hot":"Hot",
+        "Classical":"Classical",
+        "AllPoems":"All Poems",
+        "RecentlyAdded":"Recently Added",
+        "Settings":"Settings",
+        "BrowseCategories":"Browse Categories",
+        "Description":"Description",
+        "NoPoem":"It's empty",
+        "FeaturedPoets":"Featured Poets",
+        "PoemCount":" Poems",
+        "NewList":"New Poemlist",
+        "NewListName":"Poemlist Name",
+        "NewListDesc":"Description",
+        "History":"History",
+        "PlayingNext":"PlayingNext",
+        "Author":"Author"
+    },
+
+    "Search":{
+        "Tab4":"Poets, Poems and More",
+        "CustomList":"Find in Poemlists",
+        "Poets":"Find in Poets",
+        "Albums":"Find in Albums",
+        "Poems":"Find in Poems",
+        "Topics":"Find in Topics"
+    },
+
+    "Feedback":{
+        "Title":"Your likes are my motivation.",
+        "Sub":"Give me a thumbs up!",
+        "Go":"Rate Now"
+    },
+
+    "Sub":{
+        "Title":"Enjoy Poets, Poems and More",
+        "Content":"Monthly Subscription",
+        "BuyNow":"Buy Now"
+    },
+
+    "Game":{
+        "Best":"Best",
+        "Time":"Time",
+        "ConfirmTitle":"Please Confirm",
+        "ConfirmMessage":"Confirm to leave?",
+        "ConfirmYes":"Yes",
+        "ConfirmCancel":"Cancel",
+        "ConfirmClose":"Close",
+        "Congrats":"Congrats!",
+        "Coins":"Coins",
+        "CoinsToUnlock":"{0} coins to unlock",
+        "NotEnoughCoins":"You need {0} coins to unlock!",
+        "GiveFeedback":"You like this game? Write a good comment"
     }
 }

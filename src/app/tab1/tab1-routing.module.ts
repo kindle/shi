@@ -22,6 +22,18 @@ const routes: Routes = [
   {
     path: 'tag/:tag',
     loadChildren: () => import('../pages/by-tag-shi-list/tag.module').then( m => m.TagPageModule)
+  },
+  {
+    path: 'me',
+    loadChildren: () => import('../me/me.module').then( m => m.MePageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./dahui/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'level',
+    loadChildren: () => import('./dahui/level/level.module').then( m => m.LevelPageModule)
   }
 ];
 

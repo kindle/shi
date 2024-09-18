@@ -1,0 +1,156 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="background-color: transparent;">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="" (click)="goLevels()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start"></ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" shape="round" 
+      (click)="play()"
+      style="background-color: rgb(247,247,247);border-radius: 50%;">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" style="--background: url('/assets/img/dahuibg.jpeg') top/auto 300px;">
+  
+  <!-- <div style="padding:0 30%;">
+    <img src="/assets/img/title.png">
+  </div> -->
+  <div *ngFor="let s of localGameData.list;index as i">
+    <div *ngIf="s.type==1" style="padding:30px;font-size: 25px;"><!-- 识别诗句题 5/7字 -->
+      <div class="ask" style="display: flex;justify-content: center;">识别诗句</div>
+      <div class="queue" style="display: flex;justify-content: center;margin-top:30px;">
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="wordback()" >
+          <div *ngFor="let index of getArray()" style="
+            background-color: white;
+            border: 1px solid #ddd;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+            {{selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]}}
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;justify-content: center;">
+        <div class="option"
+          style="margin:30px 0;background-color: transparent;
+          display:grid;grid-template-columns: repeat(3, 1fr); 
+          grid-gap: 10px; 
+          width: 240px; 
+          height: 240px;">
+          <div *ngFor="let opt of s.ask.split('')" style="
+          background-color: white;
+          border: 1px solid #ddd;
+          display: flex;
+          justify-content: center;
+          align-items: center;"
+          (click)="wordSelected(opt)"
+          [ngStyle]="{'background-color':opt==currentWord ? '#ffc409' : 'white'}">
+            {{opt}}
+          </div>
+        </div>
+      </div> 
+      <div class="answer" style="display: flex;flex-direction:column;justify-content: center;padding-top:30px;
+      width: 150px;float:right;">
+        <div class="countdown-container">
+          <div class="countdown" *ngIf="countdownseconds>0">{{ countdownseconds }}</div>
+        </div>
+        <ion-button color="warning" style="min-width: 120px;"
+        [disabled]="countdownseconds==0||selectedOpt==''||selectedOpt.length!=answer.length||submitted===true"
+        (click)="submit(s)"
+        >提交</ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="s.type==3" style="padding:30px;font-size: 25px;"><!-- 对句题 -->
+      <div class="ask" style="display: flex;justify-content: center;">对句</div>
+      <div class="empty" *ngIf="s.ask.indexOf('#')==0"
+      style="display: flex;justify-content: center;margin-top:30px;">
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="clearwords()" >
+          <div *ngFor="let index of getArray()" style="
+            background-color: white;
+            border: 1px solid #ddd;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+            {{selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]}}
+          </div>
+        </div>
+      </div>
+      <div class="existing" style="display: flex;justify-content: center;margin-top:30px;">
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" >
+          <div *ngFor="let index of getArray()" style="
+            background-color: white;
+            border: 1px solid #ddd;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+            {{removesharps(s.ask).split('')[index]}}
+          </div>
+        </div>
+      </div>
+      <div class="empty" *ngIf="s.ask.indexOf('#')>0"
+      style="display: flex;justify-content: center;margin-top:30px;">
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="clearwords()" >
+          <div *ngFor="let index of getArray()" style="
+            background-color: white;
+            border: 1px solid #ddd;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+            {{selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]}}
+          </div>
+        </div>
+      </div>
+      <div class="answer" style="display: flex;flex-direction:column;justify-content: center;padding-top:30px;
+      width: 150px;float:right;bottom:0;">
+        <div class="countdown-container">
+          <div class="countdown" *ngIf="countdownseconds>0">{{ countdownseconds }}</div>
+        </div>
+        <ion-button color="warning" style="min-width: 120px;"
+        [disabled]="true"
+        (click)="submit(s)"
+        >录音中</ion-button>
+        <!-- <ion-button color="warning" style="min-width: 120px;"
+        [disabled]="countdownseconds==0||selectedOpt!=''||submitted===true"
+        (click)="submit(s)"
+        >语音</ion-button> -->
+      </div>
+    </div>
+
+    <div *ngIf="s.type==5" style="padding:30px;font-size: 25px;"><!-- 单项选择题 -->
+      <div class="ask">{{s.ask}}</div>
+      <div class="option" style="margin:30px 0;background-color: transparent;">
+        <div *ngFor="let opt of s.options" style="padding: 10px;margin:10px 0;
+        background-color: white;"
+        (click)="optionSelected(opt)"
+        [ngStyle]="{'background-color':opt==selectedOpt ? '#ffc409' : 'white'}">
+          {{opt}}
+        </div>
+      </div>
+      <div class="answer" style="display: flex;flex-direction:column;justify-content: center;padding-top:30px;
+      width: 150px;float:right;bottom:0;">
+        <div class="countdown-container">
+          <div class="countdown" *ngIf="countdownseconds>0">{{ countdownseconds }}</div>
+        </div>
+        <ion-button color="warning" style="min-width: 120px;"
+        [disabled]="countdownseconds==0||selectedOpt==''||submitted===true"
+        (click)="submit(s)"
+        >提交</ion-button>
+      </div>
+    </div>
+    
+    
+  </div>
+</ion-content>

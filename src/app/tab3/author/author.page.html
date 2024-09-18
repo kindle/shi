@@ -3,25 +3,24 @@
     <ion-buttons slot="start">
       <ion-back-button icon="chevron-back" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>诗人</ion-title>
+    <ion-title>{{ ui.instant('Lib.Poets') }}<!--诗人--></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">诗人</ion-title>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Lib.Poets') }}<!--诗人--></ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-searchbar placeholder="在诗人中查找" show-cancel-button="focus" 
+    <ion-toolbar><!--在诗人中查找-->
+      <ion-searchbar placeholder="{{ ui.instant('Search.Poets') }}"
         style="padding-left:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"
         (ionInput)="onSearchChanged()"
-        cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>

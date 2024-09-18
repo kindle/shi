@@ -10,7 +10,8 @@
       style="background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-tag-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button slot="end" id="popover-button-tag-{{data.currentTab}}" shape="round" 
+      style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-tag-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -20,7 +21,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="data.isliked(data.currentItem,'taglist')" 
               (click)="data.unlikelist(data.currentItem,'taglist')">
-                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-text color="danger">{{ ui.instant('Action.DeleteFromLib') }}<!--从诗词库中删除--></ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>
               <!--
@@ -32,7 +33,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="!data.isliked(data.currentItem,'taglist')"  
               (click)="data.likelist(data.currentItem, 'taglist')">
-                添加到诗词库
+                {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
                 <ion-icon name="add-outline" slot="end"></ion-icon>
               </ion-item>
               <!--
@@ -71,14 +72,13 @@
       </ion-card-content>
   </ion-card>
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" 
+    <ion-toolbar><!--搜索-->
+      <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
@@ -88,7 +88,7 @@
 
   <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
     <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
-      {{localJsonData.length}}首诗词
+      {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
     </ion-text>
   </ion-list>
 

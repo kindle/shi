@@ -14,10 +14,11 @@
   <!--<app-big [source]="searchTopicData.scroll"></app-big>-->
   <app-big [source]="data.tab2LocalScrollData"></app-big>
 
-  <app-tile name="最近浏览" [source]="data.playedEPHistory" 
+  <!--最近浏览-->
+  <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
   *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
-
-  <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
+  <!--热门诗词-->
+  <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
   <!--
   <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
 -->

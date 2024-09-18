@@ -11,6 +11,10 @@ import { HotComponentModule } from '../components/hot/hot.module';
 import { BigComponentModule } from '../components/big/big.module';
 import { TileComponentModule } from '../components/tile/tile.module';
 import { TextComponentModule } from '../components/text/text.module';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SharedCardShrinkModule } from '../modules/shared-card-shrink.module';
+import { StarCardComponentModule } from '../components/star-card/star-card.module';
+import { TreeCardComponentModule } from '../components/tree-card/tree-card.module';
 
 @NgModule({
   imports: [
@@ -21,7 +25,11 @@ import { TextComponentModule } from '../components/text/text.module';
     HotComponentModule,
     BigComponentModule,
     TileComponentModule,
-    TextComponentModule
+    TextComponentModule,
+    SharedCardShrinkModule,
+    LazyLoadImageModule,
+    StarCardComponentModule,
+    TreeCardComponentModule,
   ],
   declarations: [Tab5Page],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

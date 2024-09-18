@@ -1,0 +1,105 @@
+.station-text{
+    font-size:20px;
+    font-weight: normal;
+}
+
+.card {
+    min-height: 350px;
+    width: 400px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+//screen width smaller than 400px, use the following css
+@media screen and (max-width: 400px){  
+    .card {
+        min-height: 350px;
+        width:100%;
+    }
+
+    .card-wrap{
+        width: 100%;
+        display: flex;
+    }
+}
+
+.card-gif {
+    background-color: rgb(187,205,253);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    //background-image: url('https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg');
+
+    .card-text{
+        color:white;
+    }
+}
+
+figure {
+    margin: 0;
+}
+.absolute-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 50%;
+    width: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+.fog {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+}
+.fog__container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.fog__img {
+    position: absolute;
+    height: 100vh;
+    width: 300vw;
+}
+.fog__img--first {
+    background: url("/assets/img/fog-1.png") repeat-x;
+    background-size: cover;
+    background-position: center;
+    -webkit-animation: marquee 60s linear infinite;
+    animation: marquee 60s linear infinite;
+}
+.fog__img--second {
+    background: url("/assets/img/fog-2.png") repeat-x;
+    background-size: cover;
+    background-position: center;
+    -webkit-animation: marquee 40s linear infinite;
+    animation: marquee 40s linear infinite;
+}
+@-webkit-keyframes marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-200vw, 0, 0);
+        transform: translate3d(-200vw, 0, 0);
+    }
+}
+@keyframes marquee {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-200vw, 0, 0);
+        transform: translate3d(-200vw, 0, 0);
+    }
+}

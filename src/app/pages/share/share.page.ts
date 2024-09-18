@@ -58,7 +58,7 @@ export class SharePage implements OnInit {
 
 
   goToStyle(id: any){
-   console.log(id)
+   //console.log(id)
    this.swiperRef?.nativeElement.slideTo(id-1,1000,false);
   }
 

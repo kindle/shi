@@ -1,0 +1,119 @@
+<!--
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>me</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content no-padding class="common-content">
+  <ion-item lines="none" class="no-padding-end">
+    <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon color="primary" name="today-outline" style="font-size: 25px;"></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon color="primary" name="camera-outline" style="font-size: 25px;"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-item>
+  <ion-item lines="none" style="height:10px;">
+  </ion-item>
+  <ion-item lines="none" class="borderBottom">
+      <ion-thumbnail style="padding: 5px;">
+        <!--<img src="{{reddah.appData('userphoto_'+userName)}}" class="portrait"
+          onerror="this.src='assets/icon/anonymous.png';">-->
+        <img src="/assets/img/default.jpg" class="portrait"
+          onerror="this.src='assets/icon/anonymous.png';">
+      </ion-thumbnail>
+      <ion-label style="margin-left:15px;">
+          <div style="display: flex;padding:0 0 5px 0;">
+              <ion-label class="user-name">100<!--{{reddah.getDisplayName(userName, 100)}}--></ion-label>
+              <!--
+              <ion-icon class="cmd-title" name="male-outline" size="small" *ngIf="reddah.appData('usersex_'+userName)==1" color="diamond"></ion-icon>
+              <ion-icon class="cmd-title" name="female-outline" size="small" *ngIf="reddah.appData('usersex_'+userName)==0" color="danger"></ion-icon>
+              -->
+          </div>
+          <div style="display: flex;margin-top:5px;">
+            <!--
+              <ion-icon (click)="goCredit($event)" 
+              *ngFor="let i of reddah.userLevelIconNumber(userName)" 
+              name="{{reddah.userLevelIcon(userName)}}" 
+              color="{{reddah.userLevelIconColor(userName)}}" size="small"></ion-icon>
+              <span (click)="goCredit($event)" style="color: gray;margin-left:5px;vertical-align: top;line-height: 18px;">
+                  {{ reddah.appData('userpoint_'+userName) }} {{ reddah.userLevel(userName) }}
+              </span>
+              -->
+          </div>
+      </ion-label>
+      <ion-icon name="qr-code-outline" slot="end"></ion-icon>
+      <ion-icon name="chevron-forward-outline" slot="end" size="small"></ion-icon>
+  </ion-item>
+<!--
+  <ion-item lines="none" class="common-splitter">
+  </ion-item>
+  <ion-item lines="none" class="borderTop borderBottom" (click)="goCredit($event)">
+      <ion-icon class="menuIcon" name="ribbon" slot="start" color="point" size="medium"></ion-icon>
+      <ion-label>{{ ui.instant('Point.PointHistory') }}</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+-->
+  
+  <ion-item lines="none" class="common-splitter">
+  </ion-item>
+  <ion-item class="borderTop">
+      <ion-icon class="menuIcon" slot="start" name="person" color="primary" size="medium"></ion-icon>
+      <ion-label>{{ ui.instant('Menu.About') }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" size="small"></ion-icon>
+  </ion-item>
+  <ion-item>
+      <ion-icon class="menuIcon" slot="start" name="bookmark" color="danger" size="medium"></ion-icon>
+      <ion-label>{{ ui.instant('Menu.Mark') }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" size="small"></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+      <ion-icon class="menuIcon" name="flask" color="mini" slot="start"></ion-icon>
+      <ion-label>{{ ui.instant('Menu.Platform') }}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end" size="small"></ion-icon>
+  </ion-item>
+
+<!--
+  <ion-item class="borderItem">
+      <ion-icon slot="start" name="images" color="secondary" size="medium"></ion-icon>
+      <ion-label>相册</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+  <ion-item class="borderItem">
+      <ion-icon slot="start" name="card" color="warning" size="medium"></ion-icon>
+      <ion-label>卡包</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none" class="borderItem borderBottom">
+      <ion-icon class="menuIcon" slot="start" name="happy" color="default" size="medium"></ion-icon>
+      <ion-label>表情</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+-->
+
+  <!--
+  <ion-item class="borderTop" (click)="goPlatform()">
+      <ion-icon class="menuIcon" name="ios-flask" color="mini" slot="start"></ion-icon>
+      <ion-label>{{ ui.instant('Menu.Platform') }}</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>-->
+  <ion-item lines="none" class="common-splitter">
+  </ion-item>
+  <ion-item class="borderTop">
+      <ion-icon class="menuIcon" slot="start" name="logo-twitch"color="dark" size="medium"></ion-icon>
+      <ion-label>{{ ui.instant('Common.MyFeedback') }}</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+  <ion-item lines="none" class="borderBottom" (click)="goSettings()">
+      <ion-icon class="menuIcon" slot="start" name="settings"color="primary" size="medium"></ion-icon>
+      <ion-label>{{ ui.instant('Title.Settings') }}</ion-label>
+      <ion-icon name="chevron-forward-outline"slot="end" size="small"></ion-icon>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="padding-right: 15px;">
+      <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;"
+      >
+        {{data.mycoins}}<img lazyLoad="/assets/img/coin.png" style="margin-right:10px;width: 25px;">
+        {{data.myLevelTotalStars[levelId-1]}}/{{data.levelTotalStars[levelId-1]}}<img lazyLoad="/assets/img/star.png" style="margin-right:0px;width: 25px;">
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <!--
+      <ion-title class="tab-title" mode="md">Challenges</ion-title>
+      -->
+      <ion-title style="padding-right: 15px;">
+        <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;"
+        >
+          {{data.mycoins}}<img lazyLoad="/assets/img/coin.png" style="margin-right:10px;width: 25px;">
+          {{data.myLevelTotalStars[levelId-1]}}/{{data.levelTotalStars[levelId-1]}}<img lazyLoad="/assets/img/star.png" style="margin-right:0px;width: 25px;">
+        </ion-label>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
+    <div style="margin:5px;" *ngFor="let task of data.currentTasks" >
+      <div class="card-scroll-item1" (click)="goTask(task)"
+        [ngStyle]="{'background-size':'cover' }"
+        defaultImage="" 
+        lazyLoad="{{task.unlock?task.image:'/assets/img/lock.png'}}"
+        [ngClass]="{'lock':!task.unlock}"
+        style="
+          background-size:cover;padding-top: 100%; 
+          background-repeat:no-repeat;
+          background-color:rgb(113,203,212);">
+      </div>
+      <div class="card-text-style" style="margin-top:-15px;">
+        <ion-label *ngIf="!task.unlock">
+          <img lazyLoad="" style="margin-right:0px;width: 30px;">
+        </ion-label>
+        <ion-label *ngIf="task.unlock"
+          style="display: flex;justify-content:center;align-items: center;font-size: medium;font-weight: normal;">
+          <!--{{this.task.unlock}}-->
+          <img lazyLoad="/assets/img/star.png" style="margin-right:0px;width: 30px;" 
+          *ngFor="let i of [].constructor(data.myLevelStars[task.id-1])">
+          <img lazyLoad="/assets/img/stardark.png" style="margin-right:0px;width: 30px;" 
+          *ngFor="let i of [].constructor(3-data.myLevelStars[task.id-1])">
+        </ion-label>
+      </div>
+    </div>
+  </div>
+  
+  <div class="placeholder-playbox"></div>
+</ion-content>

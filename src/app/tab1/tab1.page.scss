@@ -2,14 +2,15 @@
 
 
 
-ion-card {
-    transition: transform 0.2s;
-}
-  
-.shrink-card {
-    transform: scale(0.95);
-}
 
+.custom-card{
+    width: 100%;
+    display: contents;
+    // position: relative;
+    // width: -webkit-fill-available;
+    // padding-right:15px;
+    // margin-right:15px;
+}
 
 
 
@@ -70,7 +71,7 @@ ion-card {
     background-color: rgb(187,205,253);
     background-repeat: no-repeat;
     background-position: bottom;
-    background-image: url('/assets/img/water.jpg');
+    //background-image: url('/assets/img/water.jpg');
 
     .card-text{
         color:white;
@@ -140,5 +141,6 @@ ion-card {
     justify-content: end;
     height: 100%;
 }
+
 
 

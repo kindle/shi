@@ -1,0 +1,3506 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
+    <ion-buttons slot="end" *ngIf="ui.isAndroid">
+      <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet-android">
+        <ion-icon name="language-outline" size="large"></ion-icon>
+      </ion-button>
+      <ion-action-sheet class="language-setting" trigger="open-action-sheet-android" 
+      header="{{ui.instant('Tutorial.Language')}}" [buttons]="data.actionSheetButtons">
+      </ion-action-sheet>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content #pageTop [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
+      <ion-buttons slot="end">
+        <!--
+        <ion-button shape="round" style="margin-right: 10px;" (click)="data.goMe()">
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+        </ion-button>-->
+        <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet">
+          <ion-icon name="language-outline" size="large"></ion-icon>
+        </ion-button>
+        <ion-action-sheet class="language-setting" trigger="open-action-sheet" 
+        header="{{ui.instant('Tutorial.Language')}}" [buttons]="data.actionSheetButtons">
+        </ion-action-sheet>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--lazy load image sample -- test code--
+  <ion-card [defaultImage]="defaultImage" [lazyLoad]="image">
+    <ion-card-content class="station-content" style="z-index:1;" *ngIf="image"
+        defaultImage="assets/img/default.jpg" 
+        [lazyLoad]="image"
+        style="background-size: cover;background-repeat: no-repeat;">
+        
+        <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
+        background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+        ;font-size:13px;width:100%;"
+        >hello</div>
+      </ion-card-content>
+  </ion-card>
+  <div [defaultImage]="defaultImage" [lazyLoad]="image" style="border:1px solid red;height:300px;"></div> 
+  <img [defaultImage]="defaultImage" [lazyLoad]="image" />-->
+
+  <!--AI template-->
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    <!--tutorial()-->
+    <!--
+    <ion-card class="card card-gif" card-shrink (click)="data.goMe()"
+      defaultImage="" 
+      lazyLoad="/assets/img/question.png"
+      style="background-size:cover;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">一目了然</ion-card-subtitle>
+          <ion-card-title class="card-text">App使用教程</ion-card-title>
+        </ion-card-content>
+    </ion-card>
+    -->
+
+    <ion-card class="card card-gif" card-shrink (click)="chat()"
+      defaultImage="" 
+      lazyLoad="/assets/img/faq.png"
+      style="background-size:cover;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">功夫在诗外</ion-card-subtitle>
+          <ion-card-title class="card-text">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
+        </ion-card-content>
+    </ion-card>
+
+    <!--template nerd-->
+    <!--https://wow.techbrood.com/fiddle/10-->
+    <ion-card class="card card-gif" card-shrink (click)="game()"
+      defaultImage="" 
+      lazyLoad=""
+      style="background-size:cover;background-color:#55acee;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">小游戏，考考你</ion-card-subtitle>
+          <ion-card-title class="card-text">名句接龙</ion-card-title>
+          <style>
+            .bart *
+            {
+                position: absolute;
+                box-sizing:content-box;
+                -moz-box-sizing:content-box;
+            }
+
+            .bart
+            {
+                position: relative;
+                width: 80px;
+                height: 130px;
+                margin: 0 auto;
+            }
+
+            .bart .head *
+            {
+                border: 1px solid #110b00;
+            }
+
+            .bart .head .no-border
+            {
+                border: none;
+            }
+
+            .bart .head .body
+            {
+                background: #fbd800;
+            }
+            .bart.brown .head .body
+            {
+                background: #f3dda5;
+            }
+            .bart.green .head .body
+            {
+                background: #a3f57a;
+            }
+
+            .bart.colourless .head .body {
+                background: #ffffff;
+            }
+
+            .bart .head .hair
+            {
+                border-top: 1px solid #110b00;
+                border-left: 1px solid #110b00;
+                -webkit-border-radius: 2px 0 0 0;
+                -moz-border-radius: 2px 0 0 0;
+                border-radius: 2px 0 0 0;
+            }
+
+            .bart .head .hair1
+            {
+                top: 22px;
+                left: 0px;
+                width: 6px;
+                height: 7px;
+                -webkit-transform: rotate(-22deg) skew(-7deg, 51deg);
+                -ms-transform: rotate(-22deg) skew(-7deg, 51deg);
+                transform: rotate(-22deg) skew(-7deg, 51deg);
+            }
+
+            .bart .head .hair2
+            {
+                top: 20px;
+                left: 5px;
+                width: 9px;
+                height: 7px;
+                -webkit-transform: rotate(25deg) skew(23deg, 16deg);
+                -ms-transform: rotate(25deg) skew(23deg, 16deg);
+                transform: rotate(25deg) skew(23deg, 16deg);
+            }
+
+            .bart .head .hair3
+            {
+                top: 17px;
+                left: 12px;
+                width: 9px;
+                height: 8px;
+                -webkit-transform: rotate(27deg) skew(22deg, 16deg);
+                -ms-transform: rotate(27deg) skew(22deg, 16deg);
+                transform: rotate(27deg) skew(22deg, 16deg);
+            }
+
+            .bart .head .hair4
+            {
+                top: 15px;
+                left: 20px;
+                width: 10px;
+                height: 9px;
+                -webkit-transform: rotate(35deg) skew(22deg, 16deg);
+                -ms-transform: rotate(35deg) skew(22deg, 16deg);
+                transform: rotate(35deg) skew(22deg, 16deg);
+            }
+
+            .bart .head .hair5
+            {
+                top: 13px;
+                left: 29px;
+                width: 9px;
+                height: 9px;
+                -webkit-transform: rotate(37deg) skew(22deg, 16deg);
+                -ms-transform: rotate(37deg) skew(22deg, 16deg);
+                transform: rotate(37deg) skew(22deg, 16deg);
+            }
+
+            .bart .head .hair6
+            {
+                top: 12px;
+                left: 37px;
+                width: 10px;
+                height: 9px;
+                -webkit-transform: rotate(50deg) skew(24deg, 16deg);
+                -ms-transform: rotate(50deg) skew(24deg, 16deg);
+                transform: rotate(50deg) skew(24deg, 16deg);
+            }
+
+            .bart .head .hair7
+            {
+                top: 12px;
+                left: 45px;
+                width: 10px;
+                height: 8px;
+                -webkit-transform: rotate(51deg) skew(24deg, 10deg);
+                -ms-transform: rotate(51deg) skew(24deg, 10deg);
+                transform: rotate(51deg) skew(24deg, 10deg);
+            }
+
+            .bart .head .hair8
+            {
+                top: 14px;
+                left: 54px;
+                width: 9px;
+                height: 7px;
+                -webkit-transform: rotate(51deg) skew(24deg, 10deg);
+                -ms-transform: rotate(51deg) skew(24deg, 10deg);
+                transform: rotate(51deg) skew(24deg, 10deg);
+            }
+
+            .bart .head .hair9
+            {
+                top: 15px;
+                left: 61px;
+                width: 9px;
+                height: 7px;
+                -webkit-transform: rotate(79deg) skew(35deg, 10deg);
+                -ms-transform: rotate(79deg) skew(35deg, 10deg);
+                transform: rotate(79deg) skew(35deg, 10deg);
+            }
+
+            .bart .head .head-left1
+            {
+                top: 24px;
+                left: 1px;
+                width: 17px;
+                height: 15px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(-13deg);
+                -ms-transform: rotate(-13deg);
+                transform: rotate(-13deg);
+            }
+
+            .bart .head .head-left2
+            {
+                top: 33px;
+                left: 3px;
+                width: 17px;
+                height: 18px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(-11deg);
+                -ms-transform: rotate(-11deg);
+                transform: rotate(-11deg);
+            }
+
+            .bart .head .head-left3
+            {
+                top: 46px;
+                left: 5px;
+                width: 17px;
+                height: 16px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(-9deg);
+                -ms-transform: rotate(-9deg);
+                transform: rotate(-9deg);
+            }
+
+            .bart .head .head-left4
+            {
+                top: 61px;
+                left: 7px;
+                width: 17px;
+                height: 16px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(-7deg);
+                -ms-transform: rotate(-7deg);
+                transform: rotate(-7deg);
+            }
+
+            .bart .head .head-left5
+            {
+                top: 76px;
+                left: 9px;
+                width: 20px;
+                height: 16px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(-8deg);
+                -ms-transform: rotate(-8deg);
+                transform: rotate(-8deg);
+            }
+
+            .bart .head .head-left6
+            {
+                top: 90px;
+                left: 11px;
+                width: 28px;
+                height: 31px;
+                border-left: 1px solid #110b00;
+                -webkit-transform: rotate(2deg);
+                -ms-transform: rotate(2deg);
+                transform: rotate(2deg);
+            }
+
+            .bart .head .head-left7
+            {
+                top: 119px;
+                left: 10px;
+                width: 27px;
+                height: 8px;
+                border-left: 1px solid #110b00;
+                border-right: 1px solid #110b00;
+                -webkit-transform: rotate(6deg);
+                -ms-transform: rotate(6deg);
+                transform: rotate(6deg);
+            }
+
+            .bart .head .head-right1
+            {
+                top: 20px;
+                left: 19px;
+                width: 50px;
+                height: 37px;
+                border-right: 1px solid #000000;
+                -webkit-transform: rotate(-2deg);
+                -ms-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            .bart .head .head-right2
+            {
+                top: 46px;
+                left: 19px;
+                width: 51px;
+                height: 24px;
+                -webkit-transform: rotate(-2deg);
+                -ms-transform: rotate(-2deg);
+                transform: rotate(-2deg);
+            }
+
+            .bart .head .head-right3
+            {
+                top: 83px;
+                left: 24px;
+                width: 50px;
+                height: 27px;
+                border-right: 1px solid #000000;
+                -webkit-transform: rotate(-8deg);
+                -ms-transform: rotate(-8deg);
+                transform: rotate(-8deg);
+            }
+
+            .bart .head .ear
+            {
+                top: 88px;
+                left: 5px;
+                width: 11px;
+                height: 13px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            .bart .head .ear .inner1
+            {
+                top: 3px;
+                left: 2px;
+                width: 7px;
+                height: 5px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                border-top: 1px solid #110b00;
+                -webkit-transform: rotate(-21deg);
+                -ms-transform: rotate(-21deg);
+                transform: rotate(-21deg);
+            }
+
+            .bart .head .ear .inner2
+            {
+                top: 3px;
+                left: 4px;
+                width: 7px;
+                height: 5px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                border-top: 1px solid #110b00;
+                -webkit-transform: rotate(-109deg);
+                -ms-transform: rotate(-109deg);
+                transform: rotate(-109deg);
+            }
+
+            .bart .head .ear .clip
+            {
+                top: 1px;
+                left: 9px;
+                width: 3px;
+                height: 10px;
+            }
+
+            .bart .head .eyelid
+            {
+                top: 55px;
+                left: 63px;
+                width: 10px;
+                height: 10px;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            .bart .head .right-eye
+            {
+                top: 60px;
+                left: 51px;
+                width: 27px;
+                height: 27px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background: #ffffff;
+                overflow: hidden;
+            }
+
+            .bart .head .right-eye .right-eye-pupil
+            {
+                top: 11px;
+                left: 8px;
+                width: 4px;
+                height: 4px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background: #110b00;
+            }
+
+            .bart .head .right-eye .eyelid-top
+            {
+                top: -18px;
+                left: 0px;
+                width: 30px;
+                height: 17px;
+                border-bottom: 1px solid #110b00;
+                border-radius: 50% 50% 0 0;
+                
+                -webkit-animation-name: bartrighteyelidtop;
+                -webkit-animation-duration: 10s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-delay: 2.5s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-play-state: running;
+                animation-name: bartrighteyelidtop;
+                animation-duration: 10s;
+                animation-timing-function: linear;
+                animation-delay: 2.5s;
+                animation-iteration-count: infinite;
+                animation-play-state: running;
+            }
+
+            .bart .head .right-eye .eyelid-bottom
+            {
+                bottom: -11px;
+                left: 0px;
+                width: 30px;
+                height: 10px;
+                border-top: 1px solid #110b00;
+                border-radius: 0 0 50% 50%;
+                
+                -webkit-animation-name: bartrighteyelidbottom;
+                -webkit-animation-duration: 10s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-delay: 2.5s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-play-state: running;
+                animation-name: bartrighteyelidbottom;
+                animation-duration: 10s;
+                animation-timing-function: linear;
+                animation-delay: 2.5s;
+                animation-iteration-count: infinite;
+                animation-play-state: running;
+            }
+
+            @-webkit-keyframes bartrighteyelidtop
+            {
+            0% {top: -18px;}
+            2% {top: 0px;}
+            4% {top: -18px;}
+            100% {top: -18px;}
+            }
+
+            @keyframes bartrighteyelidtop
+            {
+            0% {top: -18px;}
+            2% {top: 0px;}
+            4% {top: -18px;}
+            100% {top: -18px;}
+            }
+
+            @-webkit-keyframes bartrighteyelidbottom
+            {
+            0% {bottom: -11px;}
+            2% {bottom: 0px;}
+            4% {bottom: -11px;}
+            100% {bottom: -11px;}
+            }
+
+            @keyframes bartrighteyelidbottom
+            {
+            0% {bottom: -11px;}
+            2% {bottom: 0px;}
+            4% {bottom: -11px;}
+            100% {bottom: -11px;}
+            }
+
+            .bart .head .left-eye
+            {
+                top: 60px;
+                left: 24px;
+                width: 30px;
+                height: 30px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background: #ffffff;
+                overflow: hidden;
+            }
+
+            .bart .head .left-eye .left-eye-pupil
+            {
+                top: 13px;
+                left: 9px;
+                width: 4px;
+                height: 4px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background: #110b00;
+            }
+
+            .bart .head .left-eye .eyelid-top
+            {
+                top: -21px;
+                left: 0px;
+                width: 30px;
+                height: 20px;
+                border-bottom: 1px solid #110b00;
+                border-radius: 50% 50% 0 0;
+                
+                -webkit-animation-name: bartlefteyelidtop;
+                -webkit-animation-duration: 10s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-delay: 2.5s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-play-state: running;
+                animation-name: bartlefteyelidtop;
+                animation-duration: 10s;
+                animation-timing-function: linear;
+                animation-delay: 2.5s;
+                animation-iteration-count: infinite;
+                animation-play-state: running;
+            }
+
+            .bart .head .left-eye .eyelid-bottom
+            {
+                bottom: -11px;
+                left: 0px;
+                width: 30px;
+                height: 10px;
+                border-top: 1px solid #110b00;
+                border-radius: 0 0 50% 50%;
+                
+                -webkit-animation-name: bartlefteyelidbottom;
+                -webkit-animation-duration: 10s;
+                -webkit-animation-timing-function: linear;
+                -webkit-animation-delay: 2.5s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-play-state: running;
+                animation-name: bartlefteyelidbottom;
+                animation-duration: 10s;
+                animation-timing-function: linear;
+                animation-delay: 2.5s;
+                animation-iteration-count: infinite;
+                animation-play-state: running;
+            }
+
+            @-webkit-keyframes bartlefteyelidtop
+            {
+            0% {top: -21px;}
+            2% {top: 0px;}
+            4% {top: -21px;}
+            100% {top: -21px;}
+            }
+
+            @keyframes bartlefteyelidtop
+            {
+            0% {top: -21px;}
+            2% {top: 0px;}
+            4% {top: -21px;}
+            100% {top: -21px;}
+            }
+
+            @-webkit-keyframes bartlefteyelidbottom
+            {
+            0% {bottom: -11px;}
+            2% {bottom: 0px;}
+            4% {bottom: -11px;}
+            100% {bottom: -11px;}
+            }
+
+            @keyframes bartlefteyelidbottom
+            {
+            0% {bottom: -11px;}
+            2% {bottom: 0px;}
+            4% {bottom: -11px;}
+            100% {bottom: -11px;}
+            }
+
+            .bart .head .nose
+            {
+                top: 83px;
+                left: 55px;
+                width: 12px;
+                height: 12px;
+                border-top: 1px solid #110b00;
+            }
+
+            .bart .head .nose-tip
+            {
+                top: 82px;
+                left: 60px;
+                width: 14px;
+                height: 12px;
+                border-left: none;
+                -moz-border-radius: 0 50% 50% 0%;
+                -webkit-border-radius: 0 50% 50% 0;
+                border-radius: 0 50% 50% 0;
+                -webkit-transform: rotate(-6deg);
+                -ms-transform: rotate(-6deg);
+                transform: rotate(-6deg);
+            }
+
+            .bart .head .mouth
+            {
+                top: 101px;
+                left: 27px;
+                width: 50px;
+                height: 15px;
+                border-bottom: 1px solid #110b00;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            .bart .head .mouth-smile
+            {
+                top: 111px;
+                left: 28px;
+                width: 7px;
+                height: 5px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                border-top: 1px solid #110b00;
+                -webkit-transform: rotate(-52deg);
+                -ms-transform: rotate(-52deg);
+                transform: rotate(-52deg);
+            }
+
+            .bart .head .mouth-lip
+            {
+                top: 101px;
+                left: 26px;
+                width: 50px;
+                height: 14px;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            .bart .head .mouth-lip2
+            {
+                top: 106px;
+                left: 17px;
+                width: 30px;
+                height: 14px;
+                -moz-border-radius: 32%;
+                -webkit-border-radius: 32%;
+                border-radius: 32%;
+            }
+                        .btn-twitter,
+            .btn-twitter:hover {
+                color: #fff;
+                background-color: #55acee;
+            }
+            #wrap {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto -60px;
+                text-align: center;
+            }
+            .header,
+            .characters .character-row {
+                padding-top: 90px;
+                text-align: center;
+            }
+            #push,
+            #footer {
+                height: 60px;
+            }
+            #footer {
+                background-color: #f5f5f5;
+                text-align: center;
+            }
+            #footer p {
+                margin: 0;
+                padding: 15px 0 0 0;
+            }
+            @media (max-width: 767px) {
+                #footer {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+          </style>
+          <div id="wrap" style="height:350px;">
+            <div class="container characters">
+                <div class="row character-row" style="padding-top:50px;">
+                    <div class="col-md-3">
+                        <div class="bart">
+                            <div class="head">
+                                <div class="no-border body hair hair1"></div>
+                                <div class="no-border body hair hair2"></div>
+                                <div class="no-border body hair hair3"></div>
+                                <div class="no-border body hair hair4"></div>
+                                <div class="no-border body hair hair5"></div>
+                                <div class="no-border body hair hair6"></div>
+                                <div class="no-border body hair hair7"></div>
+                                <div class="no-border body hair hair8"></div>
+                                <div class="no-border body hair hair9"></div>
+                                <div class="body mouth-lip2"></div>
+                                <div class="no-border body head-left1"></div>
+                                <div class="no-border body head-left2"></div>
+                                <div class="no-border body head-left3"></div>
+                                <div class="no-border body head-left4"></div>
+                                <div class="no-border body head-left5"></div>
+                                <div class="no-border body head-left6"></div>
+                                <div class="no-border body head-left7"></div>
+                                <div class="body eyelid"></div>
+                                <div class="no-border body mouth"></div>
+                                <div class="body mouth-lip"></div>
+                                <div class="no-border body head-right2"></div>
+                                <div class="no-border body head-right1"></div>
+                                <div class="no-border body head-right3"></div>
+        
+                                <!-- The ear -->
+                                <div class="body ear">
+                                    <div class="no-border inner1"></div>
+                                    <div class="no-border inner2"></div>
+                                    <div class="no-border body clip"></div>
+                                </div>
+        
+                                <!-- The right eye -->
+                                <div class="right-eye">
+                                    <div class="no-border right-eye-pupil"></div>
+                                    <div class="no-border body eyelid-top"></div>
+                                    <div class="no-border body eyelid-bottom"></div>
+                                </div>
+        
+                                <!-- The nose -->
+                                <div class="no-border body nose"></div>
+                                <div class="body nose-tip"></div>
+        
+                                <!-- The left eye -->
+                                <div class="left-eye">
+                                    <div class="no-border left-eye-pupil"></div>
+                                    <div class="no-border body eyelid-top"></div>
+                                    <div class="no-border body eyelid-bottom"></div>
+                                </div>
+        
+                                <div class="no-border mouth-smile"></div>
+                            </div>
+                        </div>
+        
+                        <h2></h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div id="push"></div>
+        </div>
+        </ion-card-content>
+    </ion-card>
+
+
+    <!--template fire-->
+    <!--https://wow.techbrood.com/fiddle/43057-->
+    <ion-card class="card card-gif" card-shrink
+      defaultImage="" 
+      lazyLoad=""
+      style="background-size:cover;"
+    >
+        <ion-card-content style="background: #1b1e23;">
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">small title</ion-card-subtitle>
+          <ion-card-title class="card-text">Big Title</ion-card-title>
+          <style>
+            .fireplace {
+                width: 320px;
+                height: 320px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+            }
+            .fireplace__flame,
+            .fireplace__flame_big {
+                height: 250px;
+                width: 180px;
+                background: linear-gradient(0deg, #ecdd42 10%, #edae34 20%, #ed6434 50%, #fa4708 59%);
+                position: relative;
+                margin-bottom: -10px;
+                -webkit-animation: burn 0.3s linear alternate infinite;
+                animation: burn 0.3s linear alternate infinite;
+                z-index: 3;
+                opacity: 0.7;
+            }
+            .fireplace__flame {
+                width: 350px;
+                margin-left: 10px;
+            }
+            .fireplace__flame_big {
+                position: absolute;
+                z-index: -1;
+                opacity: 1;
+                -webkit-animation: burn_alt .5s linear alternate infinite;
+                animation: burn_alt .5s linear alternate infinite;
+            }
+            .fireplace__log {
+                background: linear-gradient(#e66465, #5d5e55);
+                height: 100px;
+                width: 20px;
+                position: absolute;
+                bottom: 0;
+                border-radius: 10px;
+                -webkit-transform-origin: bottom center;
+                transform-origin: bottom center;
+                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+            }
+            .fireplace__log:after {
+                content: "";
+                display: block;
+                background: #ff915b;
+                width: 100%;
+                height: 20px;
+                border-radius: 20px;
+                -webkit-transform-origin: top center;
+                transform-origin: top center;
+                -webkit-transform: scale(1, 0.5);
+                transform: scale(1, 0.5);
+            }
+            .fireplace section:nth-of-type(1) {
+                left: 70px;
+                -webkit-transform: rotateZ(45deg);
+                transform: rotateZ(45deg);
+            }
+            .fireplace section:nth-of-type(2) {
+                left: 100px;
+                -webkit-transform: rotateZ(25deg);
+                transform: rotateZ(25deg);
+            }
+            .fireplace section:nth-of-type(3) {
+                left: 140px;
+                -webkit-transform: rotateZ(5deg);
+                transform: rotateZ(5deg);
+            }
+            .fireplace section:nth-of-type(4) {
+                left: 140px;
+                -webkit-transform: rotateZ(-5deg);
+                transform: rotateZ(-5deg);
+            }
+            .fireplace section:nth-of-type(5) {
+                left: 170px;
+                -webkit-transform: rotateZ(-15deg);
+                transform: rotateZ(-15deg);
+            }
+            .fireplace section:nth-of-type(6) {
+                left: 200px;
+                -webkit-transform: rotateZ(-35deg);
+                transform: rotateZ(-35deg);
+            }
+            .fireplace section:nth-of-type(7) {
+                left: 230px;
+                -webkit-transform: rotateZ(-45deg);
+                transform: rotateZ(-45deg);
+            }
+            .fireplace__spark {
+                position: absolute;
+                height: 4px;
+                width: 4px;
+                border-radius: 1px;
+                top: 0;
+                left: 0;
+                -webkit-filter: blur(1px);
+                filter: blur(1px);
+                background: yellow;
+                z-index: 10;
+            }
+            .fireplace main:nth-of-type(1) {
+                -webkit-animation: spark_1 1s forwards infinite;
+                animation: spark_1 1s forwards infinite;
+            }
+            .fireplace main:nth-of-type(2) {
+                -webkit-animation: spark_2 1s 0.5s forwards infinite;
+                animation: spark_2 1s 0.5s forwards infinite;
+            }
+            .fireplace main:nth-of-type(3) {
+                -webkit-animation: spark_3 1s 0.25s forwards infinite;
+                animation: spark_3 1s 0.25s forwards infinite;
+            }
+            .fireplace main:nth-of-type(4) {
+                -webkit-animation: spark_4 1s 0.33s forwards infinite;
+                animation: spark_4 1s 0.33s forwards infinite;
+            }
+            .fireplace__light {
+                height: 100%;
+                width: 100%;
+                border-radius: 50% 50% 30% 30%;
+                -webkit-transform: scale(1.1, 1.2);
+                transform: scale(1.1, 1.2);
+                -webkit-filter: blur(50px);
+                filter: blur(50px);
+                background: orange;
+                position: absolute;
+                top: 40px;
+                left: 0;
+                z-index: -1;
+                opacity: 0.4;
+            }
+            @-webkit-keyframes burn {
+                0% {
+                    -webkit-clip-path: polygon(51% 94%, 44% 93%, 40% 92%, 35% 89%, 31% 83%, 32% 77%, 34% 71%, 38% 62%, 38% 55%, 38% 47%, 42% 52%, 45% 56%, 45% 53%, 45% 47%, 45% 42%, 46% 40%, 49% 35%, 50% 44%, 51% 49%, 54% 54%, 56% 59%, 58% 62%, 59% 56%, 60% 52%, 63% 57%, 63% 62%, 61% 68%, 63% 72%, 65% 77%, 67% 81%, 66% 86%, 63% 90%, 60% 92%);
+                    clip-path: polygon(51% 94%, 44% 93%, 40% 92%, 35% 89%, 31% 83%, 32% 77%, 34% 71%, 38% 62%, 38% 55%, 38% 47%, 42% 52%, 45% 56%, 45% 53%, 45% 47%, 45% 42%, 46% 40%, 49% 35%, 50% 44%, 51% 49%, 54% 54%, 56% 59%, 58% 62%, 59% 56%, 60% 52%, 63% 57%, 63% 62%, 61% 68%, 63% 72%, 65% 77%, 67% 81%, 66% 86%, 63% 90%, 60% 92%);
+                }
+                25% {
+                    -webkit-clip-path: polygon(49% 97%, 41% 97%, 35% 92%, 33% 86%, 34% 80%, 30% 74%, 34% 77%, 38% 81%, 38% 78%, 36% 72%, 35% 67%, 37% 61%, 37% 54%, 39% 61%, 39% 67%, 43% 63%, 43% 58%, 45% 44%, 44% 58%, 48% 66%, 51% 67%, 51% 59%, 54% 67%, 56% 72%, 57% 79%, 59% 77%, 60% 71%, 61% 77%, 61% 83%, 60% 89%, 61% 94%, 57% 97%, 52% 98%);
+                    clip-path: polygon(49% 97%, 41% 97%, 35% 92%, 33% 86%, 34% 80%, 30% 74%, 34% 77%, 38% 81%, 38% 78%, 36% 72%, 35% 67%, 37% 61%, 37% 54%, 39% 61%, 39% 67%, 43% 63%, 43% 58%, 45% 44%, 44% 58%, 48% 66%, 51% 67%, 51% 59%, 54% 67%, 56% 72%, 57% 79%, 59% 77%, 60% 71%, 61% 77%, 61% 83%, 60% 89%, 61% 94%, 57% 97%, 52% 98%);
+                }
+                50% {
+                    -webkit-clip-path: polygon(46% 97%, 39% 96%, 35% 89%, 36% 84%, 34% 77%, 30% 73%, 30% 65%, 30% 70%, 35% 75%, 38% 68%, 37% 61%, 40% 53%, 41% 42%, 42% 56%, 44% 65%, 50% 67%, 51% 57%, 53% 68%, 52% 74%, 51% 81%, 55% 78%, 57% 72%, 58% 79%, 57% 85%, 55% 88%, 60% 87%, 63% 82%, 63% 89%, 59% 94%, 55% 98%, 51% 92%, 50% 99%, 45% 96%);
+                    clip-path: polygon(46% 97%, 39% 96%, 35% 89%, 36% 84%, 34% 77%, 30% 73%, 30% 65%, 30% 70%, 35% 75%, 38% 68%, 37% 61%, 40% 53%, 41% 42%, 42% 56%, 44% 65%, 50% 67%, 51% 57%, 53% 68%, 52% 74%, 51% 81%, 55% 78%, 57% 72%, 58% 79%, 57% 85%, 55% 88%, 60% 87%, 63% 82%, 63% 89%, 59% 94%, 55% 98%, 51% 92%, 50% 99%, 45% 96%);
+                }
+                75% {
+                    -webkit-clip-path: polygon(45% 97%, 38% 97%, 33% 93%, 31% 87%, 31% 81%, 29% 76%, 25% 69%, 29% 61%, 30% 69%, 35% 71%, 35% 62%, 34% 54%, 38% 45%, 38% 54%, 43% 62%, 47% 57%, 48% 49%, 44% 38%, 50% 46%, 53% 60%, 54% 71%, 53% 79%, 59% 76%, 60% 66%, 64% 73%, 63% 79%, 59% 85%, 64% 90%, 68% 84%, 68% 92%, 60% 97%, 53% 98%, 48% 99%);
+                    clip-path: polygon(45% 97%, 38% 97%, 33% 93%, 31% 87%, 31% 81%, 29% 76%, 25% 69%, 29% 61%, 30% 69%, 35% 71%, 35% 62%, 34% 54%, 38% 45%, 38% 54%, 43% 62%, 47% 57%, 48% 49%, 44% 38%, 50% 46%, 53% 60%, 54% 71%, 53% 79%, 59% 76%, 60% 66%, 64% 73%, 63% 79%, 59% 85%, 64% 90%, 68% 84%, 68% 92%, 60% 97%, 53% 98%, 48% 99%);
+                }
+                100% {
+                    -webkit-clip-path: polygon(48% 97%, 42% 97%, 37% 93%, 31% 92%, 28% 88%, 26% 81%, 29% 84%, 34% 84%, 33% 79%, 30% 74%, 31% 67%, 34% 57%, 34% 65%, 39% 71%, 43% 65%, 43% 55%, 40% 45%, 48% 59%, 49% 69%, 51% 76%, 55% 71%, 54% 65%, 54% 58%, 58% 64%, 61% 72%, 57% 82%, 61% 87%, 64% 78%, 66% 85%, 64% 93%, 57% 96%, 54% 93%, 48% 97%);
+                    clip-path: polygon(48% 97%, 42% 97%, 37% 93%, 31% 92%, 28% 88%, 26% 81%, 29% 84%, 34% 84%, 33% 79%, 30% 74%, 31% 67%, 34% 57%, 34% 65%, 39% 71%, 43% 65%, 43% 55%, 40% 45%, 48% 59%, 49% 69%, 51% 76%, 55% 71%, 54% 65%, 54% 58%, 58% 64%, 61% 72%, 57% 82%, 61% 87%, 64% 78%, 66% 85%, 64% 93%, 57% 96%, 54% 93%, 48% 97%);
+                }
+            }
+            @keyframes burn {
+                0% {
+                    -webkit-clip-path: polygon(51% 94%, 44% 93%, 40% 92%, 35% 89%, 31% 83%, 32% 77%, 34% 71%, 38% 62%, 38% 55%, 38% 47%, 42% 52%, 45% 56%, 45% 53%, 45% 47%, 45% 42%, 46% 40%, 49% 35%, 50% 44%, 51% 49%, 54% 54%, 56% 59%, 58% 62%, 59% 56%, 60% 52%, 63% 57%, 63% 62%, 61% 68%, 63% 72%, 65% 77%, 67% 81%, 66% 86%, 63% 90%, 60% 92%);
+                    clip-path: polygon(51% 94%, 44% 93%, 40% 92%, 35% 89%, 31% 83%, 32% 77%, 34% 71%, 38% 62%, 38% 55%, 38% 47%, 42% 52%, 45% 56%, 45% 53%, 45% 47%, 45% 42%, 46% 40%, 49% 35%, 50% 44%, 51% 49%, 54% 54%, 56% 59%, 58% 62%, 59% 56%, 60% 52%, 63% 57%, 63% 62%, 61% 68%, 63% 72%, 65% 77%, 67% 81%, 66% 86%, 63% 90%, 60% 92%);
+                }
+                25% {
+                    -webkit-clip-path: polygon(49% 97%, 41% 97%, 35% 92%, 33% 86%, 34% 80%, 30% 74%, 34% 77%, 38% 81%, 38% 78%, 36% 72%, 35% 67%, 37% 61%, 37% 54%, 39% 61%, 39% 67%, 43% 63%, 43% 58%, 45% 44%, 44% 58%, 48% 66%, 51% 67%, 51% 59%, 54% 67%, 56% 72%, 57% 79%, 59% 77%, 60% 71%, 61% 77%, 61% 83%, 60% 89%, 61% 94%, 57% 97%, 52% 98%);
+                    clip-path: polygon(49% 97%, 41% 97%, 35% 92%, 33% 86%, 34% 80%, 30% 74%, 34% 77%, 38% 81%, 38% 78%, 36% 72%, 35% 67%, 37% 61%, 37% 54%, 39% 61%, 39% 67%, 43% 63%, 43% 58%, 45% 44%, 44% 58%, 48% 66%, 51% 67%, 51% 59%, 54% 67%, 56% 72%, 57% 79%, 59% 77%, 60% 71%, 61% 77%, 61% 83%, 60% 89%, 61% 94%, 57% 97%, 52% 98%);
+                }
+                50% {
+                    -webkit-clip-path: polygon(46% 97%, 39% 96%, 35% 89%, 36% 84%, 34% 77%, 30% 73%, 30% 65%, 30% 70%, 35% 75%, 38% 68%, 37% 61%, 40% 53%, 41% 42%, 42% 56%, 44% 65%, 50% 67%, 51% 57%, 53% 68%, 52% 74%, 51% 81%, 55% 78%, 57% 72%, 58% 79%, 57% 85%, 55% 88%, 60% 87%, 63% 82%, 63% 89%, 59% 94%, 55% 98%, 51% 92%, 50% 99%, 45% 96%);
+                    clip-path: polygon(46% 97%, 39% 96%, 35% 89%, 36% 84%, 34% 77%, 30% 73%, 30% 65%, 30% 70%, 35% 75%, 38% 68%, 37% 61%, 40% 53%, 41% 42%, 42% 56%, 44% 65%, 50% 67%, 51% 57%, 53% 68%, 52% 74%, 51% 81%, 55% 78%, 57% 72%, 58% 79%, 57% 85%, 55% 88%, 60% 87%, 63% 82%, 63% 89%, 59% 94%, 55% 98%, 51% 92%, 50% 99%, 45% 96%);
+                }
+                75% {
+                    -webkit-clip-path: polygon(45% 97%, 38% 97%, 33% 93%, 31% 87%, 31% 81%, 29% 76%, 25% 69%, 29% 61%, 30% 69%, 35% 71%, 35% 62%, 34% 54%, 38% 45%, 38% 54%, 43% 62%, 47% 57%, 48% 49%, 44% 38%, 50% 46%, 53% 60%, 54% 71%, 53% 79%, 59% 76%, 60% 66%, 64% 73%, 63% 79%, 59% 85%, 64% 90%, 68% 84%, 68% 92%, 60% 97%, 53% 98%, 48% 99%);
+                    clip-path: polygon(45% 97%, 38% 97%, 33% 93%, 31% 87%, 31% 81%, 29% 76%, 25% 69%, 29% 61%, 30% 69%, 35% 71%, 35% 62%, 34% 54%, 38% 45%, 38% 54%, 43% 62%, 47% 57%, 48% 49%, 44% 38%, 50% 46%, 53% 60%, 54% 71%, 53% 79%, 59% 76%, 60% 66%, 64% 73%, 63% 79%, 59% 85%, 64% 90%, 68% 84%, 68% 92%, 60% 97%, 53% 98%, 48% 99%);
+                }
+                100% {
+                    -webkit-clip-path: polygon(48% 97%, 42% 97%, 37% 93%, 31% 92%, 28% 88%, 26% 81%, 29% 84%, 34% 84%, 33% 79%, 30% 74%, 31% 67%, 34% 57%, 34% 65%, 39% 71%, 43% 65%, 43% 55%, 40% 45%, 48% 59%, 49% 69%, 51% 76%, 55% 71%, 54% 65%, 54% 58%, 58% 64%, 61% 72%, 57% 82%, 61% 87%, 64% 78%, 66% 85%, 64% 93%, 57% 96%, 54% 93%, 48% 97%);
+                    clip-path: polygon(48% 97%, 42% 97%, 37% 93%, 31% 92%, 28% 88%, 26% 81%, 29% 84%, 34% 84%, 33% 79%, 30% 74%, 31% 67%, 34% 57%, 34% 65%, 39% 71%, 43% 65%, 43% 55%, 40% 45%, 48% 59%, 49% 69%, 51% 76%, 55% 71%, 54% 65%, 54% 58%, 58% 64%, 61% 72%, 57% 82%, 61% 87%, 64% 78%, 66% 85%, 64% 93%, 57% 96%, 54% 93%, 48% 97%);
+                }
+            }
+            @-webkit-keyframes burn_alt {
+                0% {
+                    -webkit-clip-path: polygon(48% 97%, 43% 97%, 38% 97%, 34% 94%, 33% 91%, 32% 87%, 29% 83%, 26% 80%, 21% 75%, 20% 71%, 20% 66%, 20% 59%, 20% 65%, 24% 68%, 28% 67%, 28% 62%, 25% 60%, 21% 52%, 21% 43%, 24% 32%, 23% 39%, 24% 46%, 28% 48%, 33% 44%, 33% 39%, 31% 32%, 28% 23%, 30% 14%, 31% 22%, 35% 28%, 39% 28%, 41% 25%, 40% 21%, 39% 13%, 41% 6%, 42% 15%, 45% 23%, 49% 25%, 52% 22%, 51% 13%, 54% 21%, 56% 29%, 53% 35%, 50% 41%, 53% 46%, 58% 46%, 60% 39%, 60% 34%, 64% 39%, 65% 45%, 63% 51%, 61% 56%, 64% 61%, 68% 59%, 71% 55%, 73% 48%, 73% 40%, 76% 48%, 77% 56%, 76% 62%, 74% 66%, 69% 71%, 71% 74%, 75% 74%, 79% 71%, 81% 65%, 82% 72%, 81% 77%, 77% 82%, 73% 86%, 73% 89%, 78% 89%, 82% 85%, 81% 91%, 78% 95%, 72% 97%, 65% 98%, 59% 98%, 53% 99%, 47% 97%);
+                    clip-path: polygon(48% 97%, 43% 97%, 38% 97%, 34% 94%, 33% 91%, 32% 87%, 29% 83%, 26% 80%, 21% 75%, 20% 71%, 20% 66%, 20% 59%, 20% 65%, 24% 68%, 28% 67%, 28% 62%, 25% 60%, 21% 52%, 21% 43%, 24% 32%, 23% 39%, 24% 46%, 28% 48%, 33% 44%, 33% 39%, 31% 32%, 28% 23%, 30% 14%, 31% 22%, 35% 28%, 39% 28%, 41% 25%, 40% 21%, 39% 13%, 41% 6%, 42% 15%, 45% 23%, 49% 25%, 52% 22%, 51% 13%, 54% 21%, 56% 29%, 53% 35%, 50% 41%, 53% 46%, 58% 46%, 60% 39%, 60% 34%, 64% 39%, 65% 45%, 63% 51%, 61% 56%, 64% 61%, 68% 59%, 71% 55%, 73% 48%, 73% 40%, 76% 48%, 77% 56%, 76% 62%, 74% 66%, 69% 71%, 71% 74%, 75% 74%, 79% 71%, 81% 65%, 82% 72%, 81% 77%, 77% 82%, 73% 86%, 73% 89%, 78% 89%, 82% 85%, 81% 91%, 78% 95%, 72% 97%, 65% 98%, 59% 98%, 53% 99%, 47% 97%);
+                }
+                25% {
+                    -webkit-clip-path: polygon(44% 99%, 41% 99%, 35% 98%, 29% 97%, 24% 93%, 21% 86%, 20% 80%, 16% 74%, 16% 64%, 16% 71%, 21% 75%, 25% 72%, 25% 65%, 22% 59%, 19% 53%, 19% 44%, 21% 52%, 25% 59%, 29% 57%, 29% 51%, 26% 44%, 26% 38%, 30% 32%, 31% 26%, 30% 18%, 34% 25%, 33% 35%, 33% 44%, 34% 50%, 39% 53%, 44% 52%, 45% 49%, 44% 44%, 42% 38%, 44% 33%, 48% 26%, 45% 35%, 47% 41%, 50% 44%, 51% 52%, 49% 60%, 48% 65%, 53% 69%, 58% 65%, 57% 59%, 58% 51%, 62% 41%, 66% 40%, 64% 47%, 61% 58%, 63% 66%, 66% 68%, 70% 67%, 72% 62%, 73% 57%, 71% 48%, 75% 53%, 79% 57%, 79% 64%, 76% 70%, 72% 75%, 70% 78%, 74% 80%, 78% 79%, 82% 76%, 84% 71%, 85% 66%, 84% 62%, 88% 67%, 89% 72%, 89% 79%, 87% 83%, 84% 89%, 81% 93%, 76% 97%, 69% 98%, 60% 99%, 54% 99%, 48% 100%, 45% 97%);
+                    clip-path: polygon(44% 99%, 41% 99%, 35% 98%, 29% 97%, 24% 93%, 21% 86%, 20% 80%, 16% 74%, 16% 64%, 16% 71%, 21% 75%, 25% 72%, 25% 65%, 22% 59%, 19% 53%, 19% 44%, 21% 52%, 25% 59%, 29% 57%, 29% 51%, 26% 44%, 26% 38%, 30% 32%, 31% 26%, 30% 18%, 34% 25%, 33% 35%, 33% 44%, 34% 50%, 39% 53%, 44% 52%, 45% 49%, 44% 44%, 42% 38%, 44% 33%, 48% 26%, 45% 35%, 47% 41%, 50% 44%, 51% 52%, 49% 60%, 48% 65%, 53% 69%, 58% 65%, 57% 59%, 58% 51%, 62% 41%, 66% 40%, 64% 47%, 61% 58%, 63% 66%, 66% 68%, 70% 67%, 72% 62%, 73% 57%, 71% 48%, 75% 53%, 79% 57%, 79% 64%, 76% 70%, 72% 75%, 70% 78%, 74% 80%, 78% 79%, 82% 76%, 84% 71%, 85% 66%, 84% 62%, 88% 67%, 89% 72%, 89% 79%, 87% 83%, 84% 89%, 81% 93%, 76% 97%, 69% 98%, 60% 99%, 54% 99%, 48% 100%, 45% 97%);
+                }
+                50% {
+                    -webkit-clip-path: polygon(45% 99%, 40% 98%, 34% 98%, 31% 96%, 28% 93%, 26% 89%, 27% 84%, 26% 81%, 23% 77%, 20% 73%, 18% 70%, 19% 65%, 19% 60%, 20% 53%, 20% 43%, 24% 41%, 28% 32%, 28% 40%, 28% 48%, 29% 53%, 33% 52%, 35% 49%, 36% 42%, 36% 35%, 36% 27%, 39% 19%, 42% 12%, 40% 23%, 39% 29%, 41% 37%, 43% 41%, 44% 47%, 45% 52%, 47% 55%, 50% 57%, 52% 54%, 53% 48%, 52% 42%, 51% 33%, 50% 26%, 54% 36%, 55% 39%, 57% 46%, 57% 52%, 55% 58%, 55% 61%, 58% 65%, 62% 64%, 64% 60%, 65% 54%, 64% 49%, 65% 43%, 68% 38%, 67% 44%, 69% 51%, 72% 53%, 72% 59%, 70% 65%, 68% 69%, 68% 74%, 71% 75%, 74% 73%, 76% 69%, 78% 63%, 82% 58%, 81% 63%, 81% 69%, 81% 75%, 76% 80%, 75% 85%, 79% 87%, 82% 84%, 83% 91%, 79% 94%, 75% 96%, 71% 97%, 64% 98%, 58% 99%, 53% 98%, 46% 100%);
+                    clip-path: polygon(45% 99%, 40% 98%, 34% 98%, 31% 96%, 28% 93%, 26% 89%, 27% 84%, 26% 81%, 23% 77%, 20% 73%, 18% 70%, 19% 65%, 19% 60%, 20% 53%, 20% 43%, 24% 41%, 28% 32%, 28% 40%, 28% 48%, 29% 53%, 33% 52%, 35% 49%, 36% 42%, 36% 35%, 36% 27%, 39% 19%, 42% 12%, 40% 23%, 39% 29%, 41% 37%, 43% 41%, 44% 47%, 45% 52%, 47% 55%, 50% 57%, 52% 54%, 53% 48%, 52% 42%, 51% 33%, 50% 26%, 54% 36%, 55% 39%, 57% 46%, 57% 52%, 55% 58%, 55% 61%, 58% 65%, 62% 64%, 64% 60%, 65% 54%, 64% 49%, 65% 43%, 68% 38%, 67% 44%, 69% 51%, 72% 53%, 72% 59%, 70% 65%, 68% 69%, 68% 74%, 71% 75%, 74% 73%, 76% 69%, 78% 63%, 82% 58%, 81% 63%, 81% 69%, 81% 75%, 76% 80%, 75% 85%, 79% 87%, 82% 84%, 83% 91%, 79% 94%, 75% 96%, 71% 97%, 64% 98%, 58% 99%, 53% 98%, 46% 100%);
+                }
+                75% {
+                    -webkit-clip-path: polygon(45% 99%, 41% 99%, 35% 98%, 30% 98%, 25% 94%, 22% 89%, 21% 84%, 23% 77%, 23% 70%, 19% 63%, 23% 66%, 27% 71%, 28% 76%, 32% 78%, 35% 72%, 32% 67%, 28% 64%, 24% 58%, 24% 49%, 27% 42%, 30% 34%, 31% 24%, 29% 13%, 33% 18%, 38% 25%, 38% 36%, 37% 44%, 41% 48%, 45% 48%, 48% 45%, 48% 39%, 46% 33%, 48% 27%, 52% 20%, 50% 29%, 51% 38%, 53% 44%, 54% 52%, 56% 57%, 61% 57%, 64% 55%, 65% 48%, 63% 39%, 63% 32%, 66% 37%, 69% 44%, 70% 52%, 68% 59%, 66% 64%, 67% 69%, 73% 72%, 76% 71%, 77% 66%, 76% 58%, 76% 51%, 80% 57%, 82% 62%, 82% 68%, 80% 73%, 77% 78%, 74% 82%, 75% 87%, 78% 87%, 81% 84%, 84% 79%, 86% 74%, 88% 78%, 87% 83%, 84% 89%, 82% 92%, 78% 97%, 74% 97%, 69% 97%, 66% 98%, 61% 98%, 57% 97%, 53% 99%, 49% 96%, 47% 99%, 48% 99%);
+                    clip-path: polygon(45% 99%, 41% 99%, 35% 98%, 30% 98%, 25% 94%, 22% 89%, 21% 84%, 23% 77%, 23% 70%, 19% 63%, 23% 66%, 27% 71%, 28% 76%, 32% 78%, 35% 72%, 32% 67%, 28% 64%, 24% 58%, 24% 49%, 27% 42%, 30% 34%, 31% 24%, 29% 13%, 33% 18%, 38% 25%, 38% 36%, 37% 44%, 41% 48%, 45% 48%, 48% 45%, 48% 39%, 46% 33%, 48% 27%, 52% 20%, 50% 29%, 51% 38%, 53% 44%, 54% 52%, 56% 57%, 61% 57%, 64% 55%, 65% 48%, 63% 39%, 63% 32%, 66% 37%, 69% 44%, 70% 52%, 68% 59%, 66% 64%, 67% 69%, 73% 72%, 76% 71%, 77% 66%, 76% 58%, 76% 51%, 80% 57%, 82% 62%, 82% 68%, 80% 73%, 77% 78%, 74% 82%, 75% 87%, 78% 87%, 81% 84%, 84% 79%, 86% 74%, 88% 78%, 87% 83%, 84% 89%, 82% 92%, 78% 97%, 74% 97%, 69% 97%, 66% 98%, 61% 98%, 57% 97%, 53% 99%, 49% 96%, 47% 99%, 48% 99%);
+                }
+                100% {
+                    -webkit-clip-path: polygon(47% 99%, 42% 99%, 37% 98%, 32% 96%, 28% 92%, 26% 89%, 26% 83%, 26% 80%, 26% 72%, 23% 67%, 16% 63%, 14% 52%, 16% 46%, 16% 53%, 20% 60%, 26% 58%, 27% 51%, 25% 46%, 20% 41%, 19% 36%, 19% 30%, 21% 26%, 24% 20%, 23% 13%, 22% 7%, 26% 11%, 28% 17%, 28% 24%, 26% 30%, 30% 34%, 34% 34%, 39% 32%, 40% 27%, 38% 21%, 43% 28%, 43% 36%, 41% 41%, 46% 44%, 51% 41%, 53% 35%, 53% 26%, 57% 26%, 59% 33%, 60% 39%, 57% 46%, 55% 53%, 58% 57%, 64% 56%, 66% 52%, 69% 41%, 70% 48%, 69% 56%, 66% 63%, 64% 67%, 65% 71%, 70% 71%, 74% 68%, 76% 62%, 77% 54%, 79% 60%, 81% 66%, 80% 71%, 76% 75%, 72% 78%, 71% 82%, 75% 84%, 80% 83%, 84% 78%, 86% 83%, 83% 89%, 78% 92%, 74% 92%, 73% 96%, 69% 97%, 65% 96%, 62% 98%, 57% 99%, 54% 97%, 51% 99%, 46% 99%);
+                    clip-path: polygon(47% 99%, 42% 99%, 37% 98%, 32% 96%, 28% 92%, 26% 89%, 26% 83%, 26% 80%, 26% 72%, 23% 67%, 16% 63%, 14% 52%, 16% 46%, 16% 53%, 20% 60%, 26% 58%, 27% 51%, 25% 46%, 20% 41%, 19% 36%, 19% 30%, 21% 26%, 24% 20%, 23% 13%, 22% 7%, 26% 11%, 28% 17%, 28% 24%, 26% 30%, 30% 34%, 34% 34%, 39% 32%, 40% 27%, 38% 21%, 43% 28%, 43% 36%, 41% 41%, 46% 44%, 51% 41%, 53% 35%, 53% 26%, 57% 26%, 59% 33%, 60% 39%, 57% 46%, 55% 53%, 58% 57%, 64% 56%, 66% 52%, 69% 41%, 70% 48%, 69% 56%, 66% 63%, 64% 67%, 65% 71%, 70% 71%, 74% 68%, 76% 62%, 77% 54%, 79% 60%, 81% 66%, 80% 71%, 76% 75%, 72% 78%, 71% 82%, 75% 84%, 80% 83%, 84% 78%, 86% 83%, 83% 89%, 78% 92%, 74% 92%, 73% 96%, 69% 97%, 65% 96%, 62% 98%, 57% 99%, 54% 97%, 51% 99%, 46% 99%);
+                }
+            }
+            @keyframes burn_alt {
+                0% {
+                    -webkit-clip-path: polygon(48% 97%, 43% 97%, 38% 97%, 34% 94%, 33% 91%, 32% 87%, 29% 83%, 26% 80%, 21% 75%, 20% 71%, 20% 66%, 20% 59%, 20% 65%, 24% 68%, 28% 67%, 28% 62%, 25% 60%, 21% 52%, 21% 43%, 24% 32%, 23% 39%, 24% 46%, 28% 48%, 33% 44%, 33% 39%, 31% 32%, 28% 23%, 30% 14%, 31% 22%, 35% 28%, 39% 28%, 41% 25%, 40% 21%, 39% 13%, 41% 6%, 42% 15%, 45% 23%, 49% 25%, 52% 22%, 51% 13%, 54% 21%, 56% 29%, 53% 35%, 50% 41%, 53% 46%, 58% 46%, 60% 39%, 60% 34%, 64% 39%, 65% 45%, 63% 51%, 61% 56%, 64% 61%, 68% 59%, 71% 55%, 73% 48%, 73% 40%, 76% 48%, 77% 56%, 76% 62%, 74% 66%, 69% 71%, 71% 74%, 75% 74%, 79% 71%, 81% 65%, 82% 72%, 81% 77%, 77% 82%, 73% 86%, 73% 89%, 78% 89%, 82% 85%, 81% 91%, 78% 95%, 72% 97%, 65% 98%, 59% 98%, 53% 99%, 47% 97%);
+                    clip-path: polygon(48% 97%, 43% 97%, 38% 97%, 34% 94%, 33% 91%, 32% 87%, 29% 83%, 26% 80%, 21% 75%, 20% 71%, 20% 66%, 20% 59%, 20% 65%, 24% 68%, 28% 67%, 28% 62%, 25% 60%, 21% 52%, 21% 43%, 24% 32%, 23% 39%, 24% 46%, 28% 48%, 33% 44%, 33% 39%, 31% 32%, 28% 23%, 30% 14%, 31% 22%, 35% 28%, 39% 28%, 41% 25%, 40% 21%, 39% 13%, 41% 6%, 42% 15%, 45% 23%, 49% 25%, 52% 22%, 51% 13%, 54% 21%, 56% 29%, 53% 35%, 50% 41%, 53% 46%, 58% 46%, 60% 39%, 60% 34%, 64% 39%, 65% 45%, 63% 51%, 61% 56%, 64% 61%, 68% 59%, 71% 55%, 73% 48%, 73% 40%, 76% 48%, 77% 56%, 76% 62%, 74% 66%, 69% 71%, 71% 74%, 75% 74%, 79% 71%, 81% 65%, 82% 72%, 81% 77%, 77% 82%, 73% 86%, 73% 89%, 78% 89%, 82% 85%, 81% 91%, 78% 95%, 72% 97%, 65% 98%, 59% 98%, 53% 99%, 47% 97%);
+                }
+                25% {
+                    -webkit-clip-path: polygon(44% 99%, 41% 99%, 35% 98%, 29% 97%, 24% 93%, 21% 86%, 20% 80%, 16% 74%, 16% 64%, 16% 71%, 21% 75%, 25% 72%, 25% 65%, 22% 59%, 19% 53%, 19% 44%, 21% 52%, 25% 59%, 29% 57%, 29% 51%, 26% 44%, 26% 38%, 30% 32%, 31% 26%, 30% 18%, 34% 25%, 33% 35%, 33% 44%, 34% 50%, 39% 53%, 44% 52%, 45% 49%, 44% 44%, 42% 38%, 44% 33%, 48% 26%, 45% 35%, 47% 41%, 50% 44%, 51% 52%, 49% 60%, 48% 65%, 53% 69%, 58% 65%, 57% 59%, 58% 51%, 62% 41%, 66% 40%, 64% 47%, 61% 58%, 63% 66%, 66% 68%, 70% 67%, 72% 62%, 73% 57%, 71% 48%, 75% 53%, 79% 57%, 79% 64%, 76% 70%, 72% 75%, 70% 78%, 74% 80%, 78% 79%, 82% 76%, 84% 71%, 85% 66%, 84% 62%, 88% 67%, 89% 72%, 89% 79%, 87% 83%, 84% 89%, 81% 93%, 76% 97%, 69% 98%, 60% 99%, 54% 99%, 48% 100%, 45% 97%);
+                    clip-path: polygon(44% 99%, 41% 99%, 35% 98%, 29% 97%, 24% 93%, 21% 86%, 20% 80%, 16% 74%, 16% 64%, 16% 71%, 21% 75%, 25% 72%, 25% 65%, 22% 59%, 19% 53%, 19% 44%, 21% 52%, 25% 59%, 29% 57%, 29% 51%, 26% 44%, 26% 38%, 30% 32%, 31% 26%, 30% 18%, 34% 25%, 33% 35%, 33% 44%, 34% 50%, 39% 53%, 44% 52%, 45% 49%, 44% 44%, 42% 38%, 44% 33%, 48% 26%, 45% 35%, 47% 41%, 50% 44%, 51% 52%, 49% 60%, 48% 65%, 53% 69%, 58% 65%, 57% 59%, 58% 51%, 62% 41%, 66% 40%, 64% 47%, 61% 58%, 63% 66%, 66% 68%, 70% 67%, 72% 62%, 73% 57%, 71% 48%, 75% 53%, 79% 57%, 79% 64%, 76% 70%, 72% 75%, 70% 78%, 74% 80%, 78% 79%, 82% 76%, 84% 71%, 85% 66%, 84% 62%, 88% 67%, 89% 72%, 89% 79%, 87% 83%, 84% 89%, 81% 93%, 76% 97%, 69% 98%, 60% 99%, 54% 99%, 48% 100%, 45% 97%);
+                }
+                50% {
+                    -webkit-clip-path: polygon(45% 99%, 40% 98%, 34% 98%, 31% 96%, 28% 93%, 26% 89%, 27% 84%, 26% 81%, 23% 77%, 20% 73%, 18% 70%, 19% 65%, 19% 60%, 20% 53%, 20% 43%, 24% 41%, 28% 32%, 28% 40%, 28% 48%, 29% 53%, 33% 52%, 35% 49%, 36% 42%, 36% 35%, 36% 27%, 39% 19%, 42% 12%, 40% 23%, 39% 29%, 41% 37%, 43% 41%, 44% 47%, 45% 52%, 47% 55%, 50% 57%, 52% 54%, 53% 48%, 52% 42%, 51% 33%, 50% 26%, 54% 36%, 55% 39%, 57% 46%, 57% 52%, 55% 58%, 55% 61%, 58% 65%, 62% 64%, 64% 60%, 65% 54%, 64% 49%, 65% 43%, 68% 38%, 67% 44%, 69% 51%, 72% 53%, 72% 59%, 70% 65%, 68% 69%, 68% 74%, 71% 75%, 74% 73%, 76% 69%, 78% 63%, 82% 58%, 81% 63%, 81% 69%, 81% 75%, 76% 80%, 75% 85%, 79% 87%, 82% 84%, 83% 91%, 79% 94%, 75% 96%, 71% 97%, 64% 98%, 58% 99%, 53% 98%, 46% 100%);
+                    clip-path: polygon(45% 99%, 40% 98%, 34% 98%, 31% 96%, 28% 93%, 26% 89%, 27% 84%, 26% 81%, 23% 77%, 20% 73%, 18% 70%, 19% 65%, 19% 60%, 20% 53%, 20% 43%, 24% 41%, 28% 32%, 28% 40%, 28% 48%, 29% 53%, 33% 52%, 35% 49%, 36% 42%, 36% 35%, 36% 27%, 39% 19%, 42% 12%, 40% 23%, 39% 29%, 41% 37%, 43% 41%, 44% 47%, 45% 52%, 47% 55%, 50% 57%, 52% 54%, 53% 48%, 52% 42%, 51% 33%, 50% 26%, 54% 36%, 55% 39%, 57% 46%, 57% 52%, 55% 58%, 55% 61%, 58% 65%, 62% 64%, 64% 60%, 65% 54%, 64% 49%, 65% 43%, 68% 38%, 67% 44%, 69% 51%, 72% 53%, 72% 59%, 70% 65%, 68% 69%, 68% 74%, 71% 75%, 74% 73%, 76% 69%, 78% 63%, 82% 58%, 81% 63%, 81% 69%, 81% 75%, 76% 80%, 75% 85%, 79% 87%, 82% 84%, 83% 91%, 79% 94%, 75% 96%, 71% 97%, 64% 98%, 58% 99%, 53% 98%, 46% 100%);
+                }
+                75% {
+                    -webkit-clip-path: polygon(45% 99%, 41% 99%, 35% 98%, 30% 98%, 25% 94%, 22% 89%, 21% 84%, 23% 77%, 23% 70%, 19% 63%, 23% 66%, 27% 71%, 28% 76%, 32% 78%, 35% 72%, 32% 67%, 28% 64%, 24% 58%, 24% 49%, 27% 42%, 30% 34%, 31% 24%, 29% 13%, 33% 18%, 38% 25%, 38% 36%, 37% 44%, 41% 48%, 45% 48%, 48% 45%, 48% 39%, 46% 33%, 48% 27%, 52% 20%, 50% 29%, 51% 38%, 53% 44%, 54% 52%, 56% 57%, 61% 57%, 64% 55%, 65% 48%, 63% 39%, 63% 32%, 66% 37%, 69% 44%, 70% 52%, 68% 59%, 66% 64%, 67% 69%, 73% 72%, 76% 71%, 77% 66%, 76% 58%, 76% 51%, 80% 57%, 82% 62%, 82% 68%, 80% 73%, 77% 78%, 74% 82%, 75% 87%, 78% 87%, 81% 84%, 84% 79%, 86% 74%, 88% 78%, 87% 83%, 84% 89%, 82% 92%, 78% 97%, 74% 97%, 69% 97%, 66% 98%, 61% 98%, 57% 97%, 53% 99%, 49% 96%, 47% 99%, 48% 99%);
+                    clip-path: polygon(45% 99%, 41% 99%, 35% 98%, 30% 98%, 25% 94%, 22% 89%, 21% 84%, 23% 77%, 23% 70%, 19% 63%, 23% 66%, 27% 71%, 28% 76%, 32% 78%, 35% 72%, 32% 67%, 28% 64%, 24% 58%, 24% 49%, 27% 42%, 30% 34%, 31% 24%, 29% 13%, 33% 18%, 38% 25%, 38% 36%, 37% 44%, 41% 48%, 45% 48%, 48% 45%, 48% 39%, 46% 33%, 48% 27%, 52% 20%, 50% 29%, 51% 38%, 53% 44%, 54% 52%, 56% 57%, 61% 57%, 64% 55%, 65% 48%, 63% 39%, 63% 32%, 66% 37%, 69% 44%, 70% 52%, 68% 59%, 66% 64%, 67% 69%, 73% 72%, 76% 71%, 77% 66%, 76% 58%, 76% 51%, 80% 57%, 82% 62%, 82% 68%, 80% 73%, 77% 78%, 74% 82%, 75% 87%, 78% 87%, 81% 84%, 84% 79%, 86% 74%, 88% 78%, 87% 83%, 84% 89%, 82% 92%, 78% 97%, 74% 97%, 69% 97%, 66% 98%, 61% 98%, 57% 97%, 53% 99%, 49% 96%, 47% 99%, 48% 99%);
+                }
+                100% {
+                    -webkit-clip-path: polygon(47% 99%, 42% 99%, 37% 98%, 32% 96%, 28% 92%, 26% 89%, 26% 83%, 26% 80%, 26% 72%, 23% 67%, 16% 63%, 14% 52%, 16% 46%, 16% 53%, 20% 60%, 26% 58%, 27% 51%, 25% 46%, 20% 41%, 19% 36%, 19% 30%, 21% 26%, 24% 20%, 23% 13%, 22% 7%, 26% 11%, 28% 17%, 28% 24%, 26% 30%, 30% 34%, 34% 34%, 39% 32%, 40% 27%, 38% 21%, 43% 28%, 43% 36%, 41% 41%, 46% 44%, 51% 41%, 53% 35%, 53% 26%, 57% 26%, 59% 33%, 60% 39%, 57% 46%, 55% 53%, 58% 57%, 64% 56%, 66% 52%, 69% 41%, 70% 48%, 69% 56%, 66% 63%, 64% 67%, 65% 71%, 70% 71%, 74% 68%, 76% 62%, 77% 54%, 79% 60%, 81% 66%, 80% 71%, 76% 75%, 72% 78%, 71% 82%, 75% 84%, 80% 83%, 84% 78%, 86% 83%, 83% 89%, 78% 92%, 74% 92%, 73% 96%, 69% 97%, 65% 96%, 62% 98%, 57% 99%, 54% 97%, 51% 99%, 46% 99%);
+                    clip-path: polygon(47% 99%, 42% 99%, 37% 98%, 32% 96%, 28% 92%, 26% 89%, 26% 83%, 26% 80%, 26% 72%, 23% 67%, 16% 63%, 14% 52%, 16% 46%, 16% 53%, 20% 60%, 26% 58%, 27% 51%, 25% 46%, 20% 41%, 19% 36%, 19% 30%, 21% 26%, 24% 20%, 23% 13%, 22% 7%, 26% 11%, 28% 17%, 28% 24%, 26% 30%, 30% 34%, 34% 34%, 39% 32%, 40% 27%, 38% 21%, 43% 28%, 43% 36%, 41% 41%, 46% 44%, 51% 41%, 53% 35%, 53% 26%, 57% 26%, 59% 33%, 60% 39%, 57% 46%, 55% 53%, 58% 57%, 64% 56%, 66% 52%, 69% 41%, 70% 48%, 69% 56%, 66% 63%, 64% 67%, 65% 71%, 70% 71%, 74% 68%, 76% 62%, 77% 54%, 79% 60%, 81% 66%, 80% 71%, 76% 75%, 72% 78%, 71% 82%, 75% 84%, 80% 83%, 84% 78%, 86% 83%, 83% 89%, 78% 92%, 74% 92%, 73% 96%, 69% 97%, 65% 96%, 62% 98%, 57% 99%, 54% 97%, 51% 99%, 46% 99%);
+                }
+            }
+            @-webkit-keyframes spark_1 {
+                0% {
+                    left: 100px;
+                    top: 210px;
+                }
+                100% {
+                    top: 60px;
+                    left: 110px;
+                    opacity: 0;
+                }
+            }
+            @keyframes spark_1 {
+                0% {
+                    left: 100px;
+                    top: 210px;
+                }
+                100% {
+                    top: 60px;
+                    left: 110px;
+                    opacity: 0;
+                }
+            }
+            @-webkit-keyframes spark_2 {
+                0% {
+                    left: 180px;
+                    top: 210px;
+                }
+                100% {
+                    top: 20px;
+                    left: 150px;
+                    opacity: 0;
+                }
+            }
+            @keyframes spark_2 {
+                0% {
+                    left: 180px;
+                    top: 210px;
+                }
+                100% {
+                    top: 20px;
+                    left: 150px;
+                    opacity: 0;
+                }
+            }
+            @-webkit-keyframes spark_3 {
+                0% {
+                    left: 220px;
+                    top: 210px;
+                }
+                100% {
+                    top: 30px;
+                    left: 170px;
+                    opacity: 0;
+                }
+            }
+            @keyframes spark_3 {
+                0% {
+                    left: 220px;
+                    top: 210px;
+                }
+                100% {
+                    top: 30px;
+                    left: 170px;
+                    opacity: 0;
+                }
+            }
+            @-webkit-keyframes spark_4 {
+                0% {
+                    left: 120px;
+                    top: 210px;
+                }
+                100% {
+                    top: 30px;
+                    left: 40px;
+                    opacity: 0;
+                }
+            }
+            @keyframes spark_4 {
+                0% {
+                    left: 120px;
+                    top: 210px;
+                }
+                100% {
+                    top: 30px;
+                    left: 40px;
+                    opacity: 0;
+                }
+            }
+          </style>
+          <div class="fireplace">
+            <div class="fireplace__flame_big"></div>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <section class="fireplace__log"></section>
+            <main class="fireplace__spark"></main>
+            <main class="fireplace__spark"></main>
+            <main class="fireplace__spark"></main>
+            <main class="fireplace__spark"></main>
+            <div class="fireplace__flame"></div>
+            <div class="fireplace__light"></div>
+        </div>
+        </ion-card-content>
+    </ion-card>
+
+    <!--template name-->
+    <!---->
+    <ion-card class="card card-gif" card-shrink
+      defaultImage="" 
+      lazyLoad=""
+      style="background-size:cover;"
+    >
+        <ion-card-content style="background: #fee300;">
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">small title</ion-card-subtitle>
+          <ion-card-title class="card-text">Big Title</ion-card-title>
+          <style>
+            .section-center {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                display: block;
+                z-index: 6;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+            .section-up {
+                position: absolute;
+                width: 100%;
+                height: 270px;
+                left: 0;
+                top: 0;
+                display: block;
+                z-index: 5;
+            }
+            .hill {
+                position: absolute;
+                width: 115px;
+                height: 27px;
+                left: 30px;
+                bottom: 0;
+                display: block;
+                z-index: 15;
+            }
+            .hill.snd {
+                left: 115px;
+                z-index: 14;
+            }
+            .hill.trd {
+                transform: rotateY(180deg);
+                left: auto;
+                right: 30px;
+            }
+            .hill.frt {
+                transform: rotateY(180deg);
+                left: auto;
+                right: 110px;
+                z-index: 14;
+            }
+            .hill span {
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                background-color: #fff;
+                left: 4px;
+                top: 0;
+                display: block;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: #030308 transparent transparent transparent;
+            }
+            .hill span:nth-child(2) {
+                width: 110px;
+                height: 110px;
+                left: -6px;
+                top: -5px;
+                background-color: transparent;
+                transform: rotate(5deg);
+                border-color: transparent transparent transparent #030308;
+            }
+            .hill span:nth-child(3) {
+                width: 10px;
+                height: 10px;
+                left: 2px;
+                top: 22px;
+                transform: rotate(-55deg);
+                border: none;
+                border-radius: 0;
+            }
+            .hill span:nth-child(4) {
+                width: 40px;
+                height: 40px;
+                left: auto;
+                top: 11px;
+                right: 5px;
+                border-color: #030308 transparent transparent transparent;
+            }
+            .hill span:nth-child(5) {
+                width: 110px;
+                height: 110px;
+                left: auto;
+                top: 3px;
+                right: -8px;
+                background-color: transparent;
+                transform: rotate(85deg);
+                border-color: #030308 transparent transparent transparent;
+            }
+            .hill span:nth-child(6) {
+                width: 24px;
+                height: 24px;
+                left: auto;
+                top: -5px;
+                right: 31px;
+                background-color: transparent;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .hill span:nth-child(7) {
+                width: 17px;
+                height: 4px;
+                left: auto;
+                top: 10px;
+                right: 49px;
+                background-color: transparent;
+                border-radius: 0;
+                transform: rotate(33deg);
+                border-color: #030308 transparent transparent transparent;
+            }
+            .hill span:nth-child(8) {
+                width: 20px;
+                height: 10px;
+                left: 65px;
+                top: 21px;
+                transform: rotate(-35deg);
+                border: none;
+                border-radius: 0;
+            }
+            .hill span:nth-child(9) {
+                width: 30px;
+                height: 10px;
+                left: 46px;
+                top: 15px;
+                transform: rotate(33deg);
+                border: none;
+                border-radius: 0;
+            }
+            .hill span:nth-child(10) {
+                width: 20px;
+                height: 10px;
+                left: 60px;
+                top: 19px;
+                border: none;
+                border-radius: 0;
+            }
+            .hill span:nth-child(11) {
+                width: 20px;
+                height: 10px;
+                left: 101px;
+                top: 29px;
+                border: none;
+                border-radius: 0;
+                transform: rotate(45deg);
+            }
+            .left-tree {
+                position: absolute;
+                width: 20px;
+                height: 33px;
+                left: 33px;
+                bottom: 8px;
+                display: block;
+                z-index: 10;
+                transform: rotate(11deg) skewX(3deg);
+                transform-origin: center bottom;
+                animation: moveTree 1.6s ease infinite;
+            }
+            @keyframes moveTree {
+                0%, 100% {
+                    transform: rotate(11deg) skewX(3deg);
+                }
+                50% {
+                    transform: rotate(-11deg) skewX(-3deg);
+                }
+                100% {
+                    transform: rotate(11deg) skewX(3deg);
+                }
+            }
+            .left-tree span {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 0;
+                top: 0;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                background-color: #fff;
+            }
+            .left-tree span:nth-child(2) {
+                width: 2px;
+                height: 25px;
+                left: 9px;
+                top: auto;
+                bottom: 0;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+            }
+            .left-tree span:nth-child(3) {
+                width: 2px;
+                height: 5px;
+                left: 7px;
+                top: auto;
+                bottom: 20px;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+                transform: rotate(-45deg);
+            }
+            .left-tree span:nth-child(4) {
+                width: 2px;
+                height: 5px;
+                left: 11px;
+                top: auto;
+                bottom: 17px;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+                transform: rotate(45deg);
+            }
+            .right-tree {
+                position: absolute;
+                width: 20px;
+                height: 33px;
+                right: 25px;
+                bottom: 3px;
+                display: block;
+                z-index: 10;
+                transform: rotate(11deg) skewX(3deg);
+                transform-origin: center bottom;
+                animation: moveTree 1.6s ease infinite;
+            }
+            .right-tree span {
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                left: 1px;
+                top: 2px;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                background-color: #fff;
+            }
+            .right-tree span:nth-child(2) {
+                width: 2px;
+                height: 25px;
+                left: 9px;
+                top: auto;
+                bottom: 0;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+            }
+            .right-tree span:nth-child(3) {
+                width: 2px;
+                height: 5px;
+                left: 7px;
+                top: auto;
+                bottom: 20px;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+                transform: rotate(-45deg);
+            }
+            .right-tree span:nth-child(4) {
+                width: 2px;
+                height: 5px;
+                left: 11px;
+                top: auto;
+                bottom: 17px;
+                border-radius: 0;
+                border: none;
+                background-color: #030308;
+                transform: rotate(45deg);
+            }
+            .right-tree span:nth-child(5) {
+                position: absolute;
+                width: 14px;
+                height: 14px;
+                left: 3px;
+                top: -6px;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                background-color: #fff;
+                border-bottom-color: transparent;
+            }
+            .building-left {
+                position: absolute;
+                left: 62px;
+                bottom: 3px;
+                display: block;
+                z-index: 9;
+            }
+            .building-left span {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                border: 2px solid #030308;
+                background-color: #fff;
+                width: 17px;
+                height: 42px;
+            }
+            .building-left span:nth-child(2) {
+                left: 20px;
+                width: 30px;
+                height: 64px;
+            }
+            .building-left span:nth-child(3) {
+                left: 23px;
+                bottom: 62px;
+                width: 24px;
+                height: 9px;
+            }
+            .building-left span:nth-child(4) {
+                left: 54px;
+                width: 20px;
+                height: 46px;
+            }
+            .building-left span:nth-child(5) {
+                left: 56px;
+                bottom: 44px;
+                width: 16px;
+                height: 7px;
+            }
+            .building-left span:nth-child(6) {
+                left: 2px;
+                bottom: 27px;
+                border: none;
+                background-color: #030308;
+                width: 6px;
+                height: 2px;
+            }
+            .building-left span:nth-child(7) {
+                left: 22px;
+                bottom: 44px;
+                border: none;
+                background-color: #030308;
+                width: 11px;
+                height: 2px;
+            }
+            .building-left span:nth-child(8) {
+                left: 39px;
+                bottom: 20px;
+                border: none;
+                background-color: #030308;
+                width: 11px;
+                height: 2px;
+            }
+            .building-left span:nth-child(9) {
+                left: 56px;
+                bottom: 31px;
+                border: none;
+                background-color: #030308;
+                width: 8px;
+                height: 2px;
+            }
+            .building-left span:nth-child(10) {
+                left: 29px;
+                bottom: 71px;
+                border: none;
+                background-color: #030308;
+                width: 2px;
+                height: 17px;
+            }
+            .building-left span:nth-child(11) {
+                left: 39px;
+                bottom: 71px;
+                border: none;
+                background-color: #030308;
+                width: 2px;
+                height: 17px;
+            }
+            .building-right {
+                position: absolute;
+                right: 67px;
+                bottom: 0;
+                display: block;
+                z-index: 8;
+            }
+            .building-right span {
+                position: absolute;
+                right: 18px;
+                bottom: 0;
+                border: 2px solid #030308;
+                background-color: #fff;
+                width: 86px;
+                height: 24px;
+            }
+            .building-right span:nth-child(2) {
+                right: 18px;
+                bottom: 22px;
+                width: 96px;
+                height: 22px;
+                transform-origin: center bottom;
+                transform: skewX(-20deg);
+            }
+            .building-right span:nth-child(3) {
+                right: 0;
+                bottom: 0;
+                width: 22px;
+                height: 52px;
+            }
+            .building-right span:nth-child(4) {
+                right: 2px;
+                bottom: 42px;
+                background-color: #030308;
+                border: none;
+                width: 7px;
+                height: 2px;
+            }
+            .building-right span:nth-child(5) {
+                right: 13px;
+                bottom: 32px;
+                background-color: #030308;
+                border: none;
+                width: 7px;
+                height: 2px;
+            }
+            .building-right span:nth-child(6) {
+                right: 10px;
+                bottom: 52px;
+                background-color: #030308;
+                border: none;
+                width: 2px;
+                height: 32px;
+            }
+            .building-right span:nth-child(7) {
+                right: -4px;
+                bottom: 74px;
+                border: none;
+                background-color: transparent;
+                width: 0;
+                height: 0;
+                border-bottom: 10px solid #030308;
+                border-left: 0 solid transparent;
+                border-right: 15px solid transparent;
+                transform: skewY(-15deg);
+                transform-origin: left center;
+                animation: moveFlag 1.5s ease infinite;
+            }
+            .building-right span:nth-child(8) {
+                right: 2px;
+                bottom: 76px;
+                border: none;
+                background-color: transparent;
+                width: 0;
+                height: 0;
+                border-bottom: 5px solid #fff;
+                border-left: 0 solid transparent;
+                border-right: 8px solid transparent;
+                transform: skewY(-15deg);
+                transform-origin: left center;
+                animation: moveFlag 1.5s ease infinite;
+            }
+            @keyframes moveFlag {
+                0% {
+                    transform: skewY(-15deg);
+                }
+                50% {
+                    transform: skewY(5deg);
+                }
+                100% {
+                    transform: skewY(-15deg);
+                }
+            }
+            .building-right span:nth-child(9) {
+                right: 31px;
+                bottom: 0;
+                width: 33px;
+                height: 65px;
+                perspective: 70px;
+                background-color: transparent;
+                border: none;
+            }
+            .building-right span:nth-child(9) span {
+                right: 0;
+                bottom: 0;
+                width: 33px;
+                height: 65px;
+                transform-origin: bottom center;
+                transform: rotateX(13deg);
+            }
+            .building-right span:nth-child(10) {
+                right: 31px;
+                bottom: 55px;
+                width: 33px;
+                height: 10px;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .building-right span:nth-child(11) {
+                right: 36px;
+                bottom: 63px;
+                width: 23px;
+                height: 30px;
+                border-top-left-radius: 11px;
+                border-top-right-radius: 11px;
+            }
+            .building-right span:nth-child(12) {
+                right: 42px;
+                bottom: 91px;
+                width: 11px;
+                height: 7px;
+            }
+            .building-right span:nth-child(13) {
+                right: 46px;
+                bottom: 98px;
+                width: 3px;
+                border: none;
+                background-color: #030308;
+                height: 18px;
+            }
+            .building-right span:nth-child(14) {
+                right: 43px;
+                bottom: 17px;
+                width: 9px;
+                height: 11px;
+            }
+            .building-right span:nth-child(15) {
+                right: 43px;
+                bottom: 35px;
+                width: 9px;
+                height: 11px;
+            }
+            .building-right span:nth-child(16) {
+                right: 43px;
+                bottom: 63px;
+                width: 9px;
+                height: 13px;
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
+            }
+            .bird-wrapper {
+                position: absolute;
+                left: 166px;
+                bottom: 46px;
+                display: block;
+                z-index: 8;
+                animation: birdFly 3.5s ease infinite;
+                animation-delay: 0.4s;
+            }
+            .bird-wrapper.snd {
+                left: 340px;
+                bottom: 65px;
+                animation-delay: 0s;
+            }
+            .bird-wrapper.trd {
+                left: 420px;
+                bottom: 132px;
+                animation-delay: 1s;
+            }
+            @keyframes birdFly {
+                0% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-40px);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+            .left-wing {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 14px;
+                height: 14px;
+                transform-origin: right bottom;
+                animation: wingLeft 0.4s ease infinite;
+            }
+            .left-wing span {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                border: 2px solid #030308;
+                border-radius: 50%;
+                width: 14px;
+                height: 14px;
+                border-color: #030308 transparent transparent transparent;
+                transform: translate(4px, 12px);
+            }
+            @keyframes wingLeft {
+                0% {
+                    transform: rotate(0);
+                }
+                50% {
+                    transform: rotate(40deg);
+                }
+                100% {
+                    transform: rotate(0);
+                }
+            }
+            .right-wing {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 14px;
+                height: 14px;
+                transform-origin: left bottom;
+                animation: wingRight 0.4s ease infinite;
+            }
+            .right-wing span {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                border: 2px solid #030308;
+                border-radius: 50%;
+                width: 14px;
+                height: 14px;
+                border-color: #030308 transparent transparent transparent;
+                transform: translate(-4px, 12px);
+            }
+            @keyframes wingRight {
+                0% {
+                    transform: rotate(0);
+                }
+                50% {
+                    transform: rotate(-40deg);
+                }
+                100% {
+                    transform: rotate(0);
+                }
+            }
+            .sun {
+                position: absolute;
+                left: 200px;
+                top: 50px;
+                z-index: 4;
+            }
+            .sun span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                background-color: #fff;
+                width: 37px;
+                height: 37px;
+                animation: sunShine 3.5s linear infinite;
+            }
+            @keyframes sunShine {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.14);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+            .cloud-left {
+                position: absolute;
+                left: 124px;
+                top: 113px;
+                z-index: 4;
+                width: 30px;
+                height: 20px;
+                animation: cloudMove 1.7s linear infinite;
+            }
+            .cloud-left span {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #fff;
+                border: 2px solid #030308;
+                border-color: #030308 #030308 #030308 transparent;
+            }
+            .cloud-left span:nth-child(2) {
+                right: auto;
+                left: 0;
+                top: 3px;
+                width: 14px;
+                height: 17px;
+                border-radius: 0;
+                border: none;
+                border-top: 2px solid #030308;
+                border-bottom: 2px solid #030308;
+                border-left: 2px solid #030308;
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+            .cloud-left span:nth-child(3) {
+                right: 12px;
+                top: auto;
+                bottom: 0;
+                width: 10px;
+                height: 8px;
+                border-radius: 0;
+                border: none;
+                border-bottom: 2px solid #030308;
+            }
+            @keyframes cloudMove {
+                0% {
+                    transform: translateX(0);
+                }
+                50% {
+                    transform: translateX(10px);
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+            .cloud-middle {
+                position: absolute;
+                left: 285px;
+                top: 117px;
+                z-index: 4;
+                width: 40px;
+                height: 28px;
+                animation: cloudMove 1.7s linear infinite;
+                animation-delay: 0.4s;
+            }
+            .cloud-middle span {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background-color: #fff;
+                border: 2px solid #030308;
+                border-color: #030308 #030308 #030308 transparent;
+            }
+            .cloud-middle span:nth-child(2) {
+                right: auto;
+                left: 0;
+                top: 4px;
+                width: 17px;
+                height: 24px;
+                border-radius: 0;
+                border: none;
+                border-top: 2px solid #030308;
+                border-bottom: 2px solid #030308;
+                border-left: 2px solid #030308;
+                border-top-left-radius: 12px;
+                border-bottom-left-radius: 12px;
+            }
+            .cloud-middle span:nth-child(3) {
+                right: 14px;
+                top: auto;
+                bottom: 0;
+                width: 10px;
+                height: 8px;
+                border-radius: 0;
+                border: none;
+                border-bottom: 2px solid #030308;
+            }
+            .cloud-right {
+                position: absolute;
+                right: 64px;
+                top: 73px;
+                z-index: 4;
+                width: 23px;
+                height: 16px;
+                animation: cloudMove 1.7s linear infinite;
+                animation-delay: 0.6s;
+            }
+            .cloud-right span {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: #fff;
+                border: 2px solid #030308;
+                border-color: #030308 #030308 #030308 transparent;
+            }
+            .cloud-right span:nth-child(2) {
+                right: auto;
+                left: 0;
+                top: 3px;
+                width: 10px;
+                height: 13px;
+                border-radius: 0;
+                border: none;
+                border-top: 2px solid #030308;
+                border-bottom: 2px solid #030308;
+                border-left: 2px solid #030308;
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+            }
+            .cloud-right span:nth-child(3) {
+                right: 7px;
+                top: auto;
+                bottom: 0;
+                width: 8px;
+                height: 8px;
+                border-radius: 0;
+                border: none;
+                border-bottom: 2px solid #030308;
+            }
+            .section-down {
+                position: absolute;
+                width: 100%;
+                height: 180px;
+                left: 0;
+                top: 270px;
+                display: block;
+                z-index: 6;
+                border-top: 2px solid #030308;
+                background-color: #fee300;
+            }
+            .water-wrapper {
+                position: absolute;
+                left: 65px;
+                bottom: 0;
+                height: 70px;
+                width: 77px;
+                display: block;
+                z-index: 6;
+                overflow: hidden;
+            }
+            .water-wrapper.right {
+                left: 450px;
+                bottom: -20px;
+            }
+            .water-wrapper.top.right {
+                left: 454.5px;
+                bottom: -10px;
+            }
+            .water-wrap {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 70px;
+                width: 231px;
+                display: block;
+                z-index: 6;
+                transform: translateX(0);
+                animation: moveWater 1.6s linear infinite;
+            }
+            @keyframes moveWater {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-33.333333333333%);
+                }
+            }
+            .water {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 70px;
+                width: 77px;
+                display: block;
+                z-index: 6;
+                background-color: #fee300;
+            }
+            .water.snd {
+                left: 77px;
+            }
+            .water.trd {
+                left: 154px;
+            }
+            .water span {
+                position: absolute;
+                left: -4px;
+                top: 12px;
+                height: 20px;
+                width: 20px;
+                display: block;
+                z-index: 6;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: #030308 transparent transparent transparent;
+            }
+            .water span:nth-child(2) {
+                left: 9px;
+                top: -1px;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .water span:nth-child(3) {
+                left: 22px;
+            }
+            .water span:nth-child(4) {
+                left: 35px;
+                top: -1px;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .water span:nth-child(5) {
+                left: 48px;
+            }
+            .water span:nth-child(6) {
+                left: 61px;
+                top: -1px;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .water-wrapper.top {
+                width: 68px;
+                left: 69.5px;
+                bottom: 10px;
+                z-index: 7;
+            }
+            .water-wrapper.top .water-wrap {
+                width: 204px;
+            }
+            .water-wrapper.top .water {
+                height: 70px;
+                width: 68px;
+                background-color: transparent;
+            }
+            .water-wrapper.top .water.snd {
+                left: 68px;
+            }
+            .water-wrapper.top .water.trd {
+                left: 136px;
+            }
+            .water-wrapper.top .water span {
+                position: absolute;
+                left: -3px;
+                top: 12px;
+                height: 18px;
+                width: 18px;
+                display: block;
+                z-index: 6;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: #030308 transparent transparent transparent;
+            }
+            .water-wrapper.top .water span:nth-child(2) {
+                left: 8px;
+                top: 0;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .water-wrapper.top .water span:nth-child(3) {
+                left: 19px;
+            }
+            .water-wrapper.top .water span:nth-child(4) {
+                left: 30px;
+                top: 0;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .water-wrapper.top .water span:nth-child(5) {
+                left: 41px;
+            }
+            .water-wrapper.top .water span:nth-child(6) {
+                left: 53px;
+                top: 0;
+                border-color: transparent transparent #030308 transparent;
+            }
+            .fish-wrapper {
+                position: absolute;
+                left: 82px;
+                bottom: 85px;
+                height: 20px;
+                width: 54px;
+                display: block;
+                z-index: 4;
+            }
+            .fish-wrapper.right {
+                left: 467px;
+                bottom: 70px;
+            }
+            .fish-wrapper.right .fish-wrap {
+                transform: translate(-35px, 60px) rotate(-90deg);
+                animation: moveFish-higher 3.5s linear infinite;
+                animation-delay: 1s;
+            }
+            .fish-wrap {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 20px;
+                width: 54px;
+                display: block;
+                z-index: 4;
+                transform-origin: center center;
+                transform: translate(-35px, 60px) rotate(-90deg);
+                animation: moveFish 3.5s linear infinite;
+            }
+            @keyframes moveFish {
+                0% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+                5% {
+                    transform: translate(20px, 60px) rotate(90deg);
+                }
+                45% {
+                    transform: translate(20px, 60px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(10px, 10px) rotate(35deg);
+                }
+                58% {
+                    transform: translate(0, 0) rotate(0);
+                }
+                67% {
+                    transform: translate(0, 0) rotate(0);
+                }
+                75% {
+                    transform: translate(-20px, 10px) rotate(-65deg);
+                }
+                80% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+                100% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+            }
+            @keyframes moveFish-higher {
+                0% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+                5% {
+                    transform: translate(20px, 60px) rotate(90deg);
+                }
+                45% {
+                    transform: translate(20px, 60px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(10px, 10px) rotate(35deg);
+                }
+                58% {
+                    transform: translate(0, -7px) rotate(0);
+                }
+                67% {
+                    transform: translate(0, -7px) rotate(0);
+                }
+                75% {
+                    transform: translate(-20px, 10px) rotate(-65deg);
+                }
+                80% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+                100% {
+                    transform: translate(-35px, 60px) rotate(-90deg);
+                }
+            }
+            .fish {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 20px;
+                width: 54px;
+                display: block;
+                z-index: 4;
+                transform: scale(1, 0.45);
+            }
+            .fish span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 36px;
+                width: 36px;
+                background-color: #fff;
+                border: 4px solid #030308;
+                border-top-left-radius: 60%;
+                border-bottom-right-radius: 60%;
+                border-bottom-left-radius: 53%;
+                transform: rotate(45deg);
+            }
+            .fish span:nth-child(2) {
+                position: absolute;
+                left: 39px;
+                top: 16px;
+                height: 4px;
+                width: 13px;
+                background-color: #030308;
+                border: none;
+                border-radius: 0;
+                transform-origin: left center;
+                transform: rotate(45deg);
+                animation: fishTail-bottom 3.5s linear infinite;
+            }
+            .fish-wrapper.right .fish span:nth-child(2) {
+                animation-delay: 1s;
+            }
+            @keyframes fishTail-bottom {
+                0% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                59% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                60% {
+                    transform: rotate(25deg);
+                    left: 37px;
+                    top: 15px;
+                }
+                61% {
+                    transform: rotate(25deg);
+                    left: 37px;
+                    top: 15px;
+                }
+                62% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                64% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                65% {
+                    transform: rotate(25deg);
+                    left: 37px;
+                    top: 15px;
+                }
+                66% {
+                    transform: rotate(25deg);
+                    left: 37px;
+                    top: 15px;
+                }
+                67% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                100% {
+                    transform: rotate(45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+            }
+            .fish span:nth-child(3) {
+                position: absolute;
+                left: 39px;
+                top: 16px;
+                height: 4px;
+                width: 13px;
+                background-color: #030308;
+                border: none;
+                border-radius: 0;
+                transform-origin: left center;
+                transform: rotate(-45deg);
+                animation: fishTail-top 3.5s linear infinite;
+            }
+            .fish-wrapper.right .fish span:nth-child(3) {
+                animation-delay: 1s;
+            }
+            @keyframes fishTail-top {
+                0% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                59% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                60% {
+                    transform: rotate(-25deg);
+                    left: 37px;
+                    top: 17px;
+                }
+                61% {
+                    transform: rotate(-25deg);
+                    left: 37px;
+                    top: 17px;
+                }
+                62% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                64% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                65% {
+                    transform: rotate(-25deg);
+                    left: 37px;
+                    top: 17px;
+                }
+                66% {
+                    transform: rotate(-25deg);
+                    left: 37px;
+                    top: 17px;
+                }
+                67% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+                100% {
+                    transform: rotate(-45deg);
+                    left: 39px;
+                    top: 16px;
+                }
+            }
+            .fish span:nth-child(4) {
+                position: absolute;
+                left: 9px;
+                top: 14px;
+                height: 7px;
+                width: 4px;
+                background-color: #030308;
+                border: none;
+                border-radius: 50%;
+                transform-origin: center center;
+                transform: rotate(0);
+                animation: fishEye 3.5s linear infinite;
+            }
+            .fish-wrapper.right .fish span:nth-child(4) {
+                animation-delay: 1s;
+            }
+            @keyframes fishEye {
+                0% {
+                    height: 7px;
+                    top: 14px;
+                }
+                59% {
+                    height: 7px;
+                    top: 14px;
+                }
+                60% {
+                    height: 0;
+                    top: 17px;
+                }
+                61% {
+                    height: 7px;
+                    top: 14px;
+                }
+                64% {
+                    height: 7px;
+                    top: 14px;
+                }
+                65% {
+                    height: 0;
+                    top: 17px;
+                }
+                66% {
+                    height: 7px;
+                    top: 14px;
+                }
+                100% {
+                    height: 7px;
+                    top: 14px;
+                }
+            }
+            .water-lines-wrapper {
+                position: absolute;
+                top: 18px;
+                left: 33px;
+                z-index: 2;
+            }
+            .water-lines-wrapper.right {
+                left: 500px;
+                top: 24px;
+            }
+            .water-lines {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .water-lines span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 2px;
+                background-color: #030308;
+                animation: water-lines-1 3.5s ease infinite;
+            }
+            @keyframes water-lines-1 {
+                0% {
+                    transform: translateX(0) scaleX(1);
+                }
+                50% {
+                    transform: translateX(21px) scaleX(0.75);
+                }
+                100% {
+                    transform: translateX(0) scaleX(1);
+                }
+            }
+            .water-lines span:nth-child(2) {
+                left: 49px;
+                width: 17px;
+                animation-name: water-lines-2;
+            }
+            @keyframes water-lines-2 {
+                0% {
+                    transform: translateX(0) scaleX(1);
+                }
+                50% {
+                    transform: translateX(15px) scaleX(1.29);
+                }
+                100% {
+                    transform: translateX(0) scaleX(1);
+                }
+            }
+            .water-lines span:nth-child(3) {
+                top: 12px;
+                left: 14px;
+                width: 14px;
+                animation-name: water-lines-3;
+                animation-delay: 0.1s;
+            }
+            @keyframes water-lines-3 {
+                0% {
+                    transform: translateX(0) scaleX(1);
+                }
+                50% {
+                    transform: translateX(8px) scaleX(1.21);
+                }
+                100% {
+                    transform: translateX(0) scaleX(1);
+                }
+            }
+            .water-lines span:nth-child(4) {
+                top: 12px;
+                left: 47px;
+                width: 11px;
+                animation-name: water-lines-4;
+                animation-delay: 0.1s;
+            }
+            @keyframes water-lines-4 {
+                0% {
+                    transform: translateX(0) scaleX(1);
+                }
+                50% {
+                    transform: translateX(11px) scaleX(1.18);
+                }
+                100% {
+                    transform: translateX(0) scaleX(1);
+                }
+            }
+            .water-lines span:nth-child(5) {
+                top: 24px;
+                left: 32px;
+                width: 10px;
+                animation-name: water-lines-5;
+                animation-delay: 0.2s;
+            }
+            @keyframes water-lines-5 {
+                0% {
+                    transform: translateX(0) scaleX(1);
+                }
+                50% {
+                    transform: translateX(7px) scaleX(1.2);
+                }
+                100% {
+                    transform: translateX(0) scaleX(1);
+                }
+            }
+            .water-big-wrapper {
+                position: absolute;
+                left: 240px;
+                bottom: 0;
+                height: 140px;
+                width: 114px;
+                display: block;
+                z-index: 6;
+                overflow: hidden;
+            }
+            .water-big-wrap {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 114px;
+                width: 348px;
+                display: block;
+                z-index: 6;
+                animation: moveWater 2s linear infinite;
+            }
+            .water-big {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 140px;
+                width: 116px;
+                display: block;
+                z-index: 1;
+            }
+            .water-big.snd {
+                left: 116px;
+            }
+            .water-big.trd {
+                left: 232px;
+            }
+            .water-big span {
+                position: absolute;
+                left: 0;
+                top: 20px;
+                height: 50px;
+                width: 116px;
+                display: block;
+                z-index: 1;
+                background-color: #fee300;
+            }
+            .water-big span:nth-child(2) {
+                left: -2px;
+                top: -20px;
+                height: 40px;
+                width: 40px;
+                z-index: 2;
+                background-color: transparent;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: transparent #030308 #030308 transparent;
+                transform: rotate(45deg);
+            }
+            .water-big span:nth-child(3) {
+                left: 37px;
+                top: -20px;
+                height: 40px;
+                width: 40px;
+                z-index: 2;
+                background-color: transparent;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: transparent #030308 #030308 transparent;
+                transform: rotate(45deg);
+            }
+            .water-big span:nth-child(4) {
+                left: 75px;
+                top: -20px;
+                height: 40px;
+                width: 40px;
+                z-index: 2;
+                background-color: transparent;
+                border-radius: 50%;
+                border: 2px solid #030308;
+                border-color: transparent #030308 #030308 transparent;
+                transform: rotate(45deg);
+            }
+            .water-big span:nth-child(5) {
+                left: 8px;
+                top: 14px;
+                height: 60px;
+                width: 60px;
+                border-top-left-radius: 60%;
+                border-bottom-right-radius: 60%;
+                border-bottom-left-radius: 53%;
+                transform: scale(0.45, 1) rotate(-45deg);
+            }
+            .water-big span:nth-child(6) {
+                left: 46px;
+                top: 14px;
+                height: 60px;
+                width: 60px;
+                border-top-left-radius: 60%;
+                border-bottom-right-radius: 60%;
+                border-bottom-left-radius: 53%;
+                transform: scale(0.45, 1) rotate(-45deg);
+            }
+            .water-big span:nth-child(7) {
+                left: 84px;
+                top: 14px;
+                height: 60px;
+                width: 60px;
+                border-top-left-radius: 60%;
+                border-bottom-right-radius: 60%;
+                border-bottom-left-radius: 53%;
+                transform: scale(0.45, 1) rotate(-45deg);
+            }
+            .water-big span:nth-child(8) {
+                left: -30px;
+                top: 14px;
+                height: 60px;
+                width: 60px;
+                border-top-left-radius: 60%;
+                border-bottom-right-radius: 60%;
+                border-bottom-left-radius: 53%;
+                transform: scale(0.45, 1) rotate(-45deg);
+            }
+            .water-big span:nth-child(9) {
+                left: 5px;
+                top: 15px;
+                height: 15px;
+                width: 10px;
+                transform: rotate(-55deg);
+            }
+            .water-big span:nth-child(10) {
+                left: 43px;
+                top: 14px;
+                height: 15px;
+                width: 10px;
+                transform: rotate(-55deg);
+            }
+            .water-big span:nth-child(11) {
+                left: 81px;
+                top: 14px;
+                height: 15px;
+                width: 10px;
+                transform: rotate(-55deg);
+            }
+            .water-big span:nth-child(12) {
+                left: 23px;
+                top: 13px;
+                height: 17px;
+                width: 10px;
+                transform: rotate(55deg);
+            }
+            .water-big span:nth-child(13) {
+                left: 62px;
+                top: 14px;
+                height: 15px;
+                width: 10px;
+                transform: rotate(55deg);
+            }
+            .water-big span:nth-child(14) {
+                left: 100px;
+                top: 14px;
+                height: 15px;
+                width: 10px;
+                transform: rotate(55deg);
+            }
+            .ship-wrapper {
+                position: absolute;
+                left: 260px;
+                bottom: 116px;
+                display: block;
+                z-index: 4;
+            }
+            .ship {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                display: block;
+                z-index: 6;
+                width: 86px;
+                height: 34px;
+                transform-origin: center center;
+                animation: shipFloat 1.6s linear infinite;
+            }
+            @keyframes shipFloat {
+                0% {
+                    transform: translateY(0) rotate(0);
+                }
+                25% {
+                    transform: translateY(0) rotate(-10deg);
+                }
+                40% {
+                    transform: translateY(4px) rotate(-10deg);
+                }
+                85% {
+                    transform: translateY(1px) rotate(10deg);
+                }
+                100% {
+                    transform: translateY(0) rotate(0);
+                }
+            }
+            .ship span {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                display: block;
+                width: 86px;
+                height: 34px;
+                border: 3px solid #030308;
+                border-bottom-right-radius: 40px;
+                border-bottom-left-radius: 20px;
+                background-color: #fff;
+                z-index: 1;
+            }
+            .ship span:nth-child(2) {
+                left: 30px;
+                bottom: 34px;
+                width: 3px;
+                height: 85px;
+                border: none;
+                border-radius: 0;
+                background-color: #030308;
+            }
+            .ship span:nth-child(3) {
+                left: 21px;
+                bottom: 57px;
+                width: 0;
+                height: 0;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                border-bottom: 62px solid #030308;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                transform: rotate(-16.5deg);
+                border-bottom-right-radius: 5px;
+            }
+            .ship span:nth-child(4) {
+                left: 21px;
+                bottom: 55px;
+                width: 0;
+                height: 0;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                border-bottom: 62px solid #fff;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                transform: rotate(-17.5deg) scale(0.85);
+                border-bottom-right-radius: 3px;
+                z-index: 2;
+            }
+            .ship span:nth-child(5) {
+                left: -1px;
+                bottom: 60px;
+                width: 0;
+                height: 0;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                border-bottom: 48px solid #030308;
+                border-left: 31px solid transparent;
+                border-right: 0 solid transparent;
+                border-bottom-left-radius: 5px;
+            }
+            .ship span:nth-child(6) {
+                left: 1px;
+                bottom: 58px;
+                width: 0;
+                height: 0;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                border-bottom: 48px solid #fff;
+                border-left: 31px solid transparent;
+                border-right: 0 solid transparent;
+                border-bottom-left-radius: 3px;
+                transform: scale(0.80);
+                z-index: 2;
+            }
+            /* #Link to profile
+            ================================================== */
+
+            .link-to-portfolio {
+                position: fixed;
+                top: 30px;
+                right: 30px;
+                z-index: 20;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                border-radius: 3px;
+                background-position: center center;
+                background-size: 30px 30px;
+                background-repeat: no-repeat;
+                background-color: #212121;
+                background-image: url('https://blog.codepen.io/wp-content/uploads/2012/06/Button-White-Small.png');
+                box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
+                transition: opacity .2s, border-radius .2s, box-shadow .2s;
+                transition-timing-function: ease-out;
+            }
+            .link-to-portfolio:hover {
+                opacity: 0.8;
+                border-radius: 50%;
+                box-shadow: 0 0 0 20px rgba(0, 0, 0, .1);
+            }
+          </style>
+          <div class="section-center">
+            <div class="section-up">
+                <div class="sun">
+                    <span></span>
+                </div>
+                <div class="cloud-left">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="cloud-middle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="cloud-right">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="bird-wrapper">
+                    <div class="left-wing">
+                        <span></span>
+                    </div>
+                    <div class="right-wing">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="bird-wrapper snd">
+                    <div class="left-wing">
+                        <span></span>
+                    </div>
+                    <div class="right-wing">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="bird-wrapper trd">
+                    <div class="left-wing">
+                        <span></span>
+                    </div>
+                    <div class="right-wing">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="building-left">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="building-right">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span><span></span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="left-tree">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="right-tree">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="hill">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="hill snd">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="hill trd">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="hill frt">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="section-down">
+                <div class="ship-wrapper">
+                    <div class="ship">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="water-big-wrapper">
+                    <div class="water-big-wrap">
+                        <div class="water-big">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water-big snd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water-big trd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="water-lines-wrapper">
+                    <div class="water-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="water-lines-wrapper right">
+                    <div class="water-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="fish-wrapper">
+                    <div class="fish-wrap">
+                        <div class="fish">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fish-wrapper right">
+                    <div class="fish-wrap">
+                        <div class="fish">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="water-wrapper top">
+                    <div class="water-wrap">
+                        <div class="water">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water snd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water trd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="water-wrapper">
+                    <div class="water-wrap">
+                        <div class="water">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water snd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water trd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="water-wrapper top right">
+                    <div class="water-wrap">
+                        <div class="water">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water snd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water trd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="water-wrapper right">
+                    <div class="water-wrap">
+                        <div class="water">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water snd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="water trd">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </ion-card-content>
+    </ion-card>
+
+    <!--益达-->
+    <ion-card class="card card-gif" card-shrink
+      defaultImage="" 
+      lazyLoad=""
+      style="background-size:cover;"
+    >
+        <ion-card-content style="background: #45277ad9;height:100%;">
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">small title</ion-card-subtitle>
+          <ion-card-title class="card-text">Big Title</ion-card-title>
+          <style>
+            .gooey {
+                margin-top:50px;
+                background-image: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
+                border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+                width: 150px;
+                height: 144px;
+                animation: morph 3s linear infinite;
+                transform-style: preserve-3d;
+                outline: 1px solid transparent;
+                will-change: border-radius;
+            }
+            .gooey:before,
+            .gooey:after {
+                content: '';
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+                box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+                will-change: border-radius, transform, opacity;
+                animation-delay: 200ms;
+                background-image: linear-gradient(120deg, rgba(0, 67, 255, .55) 0%, rgba(0, 103, 255, .89) 100%);
+            }
+            .gooey:before {
+                animation: morph 3s linear infinite;
+                opacity: .21;
+                animation-duration: 1.5s;
+            }
+            .gooey:after {
+                animation: morph 3s linear infinite;
+                animation-delay: 400ms;
+                opacity: .89;
+                content: "名诗佳句";
+                color:white;
+                line-height: 120px;
+                text-indent: 26px;
+            }
+            @keyframes morph {
+                0%, 100% {
+                    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+                    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+                }
+                34% {
+                    border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+                    transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
+                }
+                50% {
+                    opacity: .89;
+                    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+                }
+                67% {
+                    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+                    transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+                }
+            }
+            @keyframes fadeIn {
+                100% {
+                    transform: scale(1.03);
+                    opacity: 0;
+                }
+            }
+          </style>
+          <div style="display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          color: #fff;
+          font-family: 'Exo 2';
+          font-size: 24px;
+          animation: fadeIn 500ms reverse;">
+            <div class="gooey"></div>
+          </div>
+        </ion-card-content>
+    </ion-card>
+
+    <!--
+
+    <ion-card class="card card-gif" card-shrink
+      defaultImage="" 
+      lazyLoad=""
+      style="background-size:cover;"
+    >
+        <ion-card-content style="background: #1b1e23;">
+          <ion-card-subtitle class="card-text" style="font-size: 18px;">small title</ion-card-subtitle>
+          <ion-card-title class="card-text">Big Title</ion-card-title>
+          <style>
+            
+          </style>
+
+        </ion-card-content>
+    </ion-card>
+    -->
+
+     <!--
+    <ion-card class="card card-scroll" card-shrink>
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size:18px;">
+            功夫在诗外
+          </ion-card-subtitle>
+          <ion-card-title>sdf</ion-card-title>
+        </ion-card-content>
+      
+       
+        <ion-card-content style="margin-top:0;">
+          <div class="card-scroll-box">
+            <div class="card-scroll-item" *ngFor="let c of [1,2,3]" (click)="goAuthorDirect(c)">
+              <div class="card-image contain" style="background-image:url('/assets/img/water.jpg');background-color:lightgreen"></div>
+              <div class="card-text">talk</div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      -->
+  </div>
+
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    <div class="card-wrap" *ngFor="let item of data.articleData;index as i">
+
+      <!--text template bak
+      <ion-card class="card card-img" card-shrink
+      (click)="goToArticle(item)"
+      *ngIf="item.template=='text'"
+        style="background-image: url('https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}');
+        background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+      -->
+
+      <!--text template-->
+      <ion-card class="card card-img" card-shrink
+      (click)="goToArticle(item)"
+        *ngIf="item.template=='text'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="
+        background-size:cover;min-height: {{item.min_height}};background-color:{{data.getbgcolor()}}">
+        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+      
+
+
+      <!--slide template-->
+      <ion-card class="card card-img" (click)="goTemplateSlide(item.link)" card-shrink
+        *ngIf="item.template=='slide'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+
+
+
+
+      <!--scroll template-->
+      <ion-card class="card card-scroll" id="modal-scroll" card-shrink
+      *ngIf="item.template=='scroll'">
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size:18px;">
+            {{item.small_title}}
+          </ion-card-subtitle>
+          <ion-card-title>{{item.big_title}}</ion-card-title>
+        </ion-card-content>
+      
+        <ion-card-content style="margin-top:0;">
+          <div class="card-scroll-box">
+            <div class="card-scroll-item" *ngFor="let c of item.items" (click)="goAuthorDirect(c.text)">
+              <div class="card-image contain" style="background-image:{{c.image}};background-color:{{c.color}}"></div>
+              <div class="card-text">{{c.text}}</div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      
+
+
+
+      <!--vote template-->
+<!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
+      <ion-card class="card card-vote" id="modal-vote" card-shrink
+      *ngIf="item.template=='vote'">
+        <div class="card-vote-bg">{{item.small_title}}</div>
+        <ion-card-content>
+          <ion-card-subtitle style="display: flex;">
+            <!--<ion-badge style="padding-left:0;" color="transparent">{{item.small_title}}</ion-badge>-->
+            <ion-badge color="danger" style="font-size:18px;">{{item.small_title}}</ion-badge>
+          </ion-card-subtitle>
+          <ion-card-title style="margin-top:10px;color:black;">{{item.big_title}}</ion-card-title>
+          <ion-card-subtitle style="margin-top:10px;font-size: 18px;">{{item.desc}}</ion-card-subtitle>
+        </ion-card-content>
+        <ion-card-content>
+          <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
+          *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.text)">
+            <div style="width: 100%;text-align: center;">{{v.text}}</div>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+
+      <!--wall template-->
+      <ion-card class="card card-vote" card-shrink
+      (click)="goToArticle(item)"
+      *ngIf="item.template=='wall'">
+        <div class="card-vote-bg">{{item.small_title}}</div>
+        <ion-card-content>
+          <ion-card-subtitle style="display: flex;">
+            <ion-badge color="danger">{{item.small_title}}</ion-badge>
+          </ion-card-subtitle>
+          <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
+        </ion-card-content>
+        <!--[autoplay]="autoplayopt" -->
+        <ion-card-content>
+          <swiper-container #autoswiper
+            style="margin-top:0px;margin-bottom: 0px;"
+            [autoplay]="autoplayopt"
+            [grid]="gridopt"
+            slides-Per-View="3.5"
+            speed="5000"
+            interval="5000"
+            duration="5000"
+            freeMode="true"
+            allow-Touch-Move="false"
+            >
+            <!--(click)="data.goToAuthor(v)" -->
+            <swiper-slide *ngFor="let v of item.items;index as i" class="swiper-slide" 
+            [ngStyle]="{'margin-left':(i === data.getInt(item.items.length/3)) ? '40px' : '0px' }">
+              <img style="width: 80px;height:80px;border-radius: 10px;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"   
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              />
+              <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);">{{v.author}}</div>
+            </swiper-slide>
+          </swiper-container>
+        </ion-card-content>
+      </ion-card>
+
+
+
+
+
+
+      <!--group template-->
+      <ion-card class="card card-img" card-shrink
+      (click)="goToArticle(item)"
+      *ngIf="item.template=='group'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
+        </ion-card-content>
+        <ion-card-content style="bottom:0;position: absolute;width: 100%; background-color: white;padding-bottom: 20px;"
+        (click)="stopBubble($event)">
+          <swiper-container #autoswiper
+            style="margin-top:0px;margin-bottom: 0px;"
+            autoplay="true"
+            [grid]="gridopt1"
+            slides-Per-View="4"
+            speed="5000"
+            interval="5000"
+            duration="5000"
+            freeMode="true"
+            allow-Touch-Move="false"
+            >
+            <swiper-slide *ngFor="let v of item.items;index as i" class="swiper-slide"
+            (click)="data.goToAuthor(v.author)"
+            >
+              <img style="width: 65px;height:65px;border-radius: 10px;border:1px solid lightgoldenrodyellow;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"  
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              />
+              <div style="text-align: center;width: 65px;background-color: rgb(247,247,247);">{{v.author}}</div>
+            </swiper-slide>
+          </swiper-container>
+        </ion-card-content>
+      </ion-card>
+
+
+
+
+      <!--git template-->
+      <ion-card class="card card-gif" id="modal-gif{{i}}" card-shrink
+      *ngIf="item.template=='gif'">
+        <ion-card-content>
+          <ion-card-subtitle>{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title>{{item.big_title}}</ion-card-title>
+        </ion-card-content>
+        <ion-modal trigger="modal-gif{{i}}" #modal [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+          <ng-template>
+            <ion-content force-overscroll="false">
+              <div class="card card-gif">
+                <ion-card-content style="z-index:1;position:fixed;width:100%;">
+                  <ion-buttons style="display:flex;justify-content:center;width:35px;height:35px;float:right;background-color:rgba(207,207,296,0.5);border-radius: 50%;" (click)="closeModal(i)">
+                    <ion-button color="light">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-card-content>
+                <ion-card-content>
+                  <ion-card-subtitle>{{item.small_title}}</ion-card-subtitle>
+                  <ion-card-title>{{item.big_title}}</ion-card-title>
+                </ion-card-content>
+                <ion-card-content>
+                </ion-card-content>
+              </div>
+              <div style="padding:10px;">
+                {{item.desc}}
+                
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-card>
+      
+    </div>
+  </div>
+  
+  
+
+
+  <div class="placeholder-playbox"></div>
+
+</ion-content>

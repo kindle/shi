@@ -1,0 +1,57 @@
+<!-- <ion-toolbar style="--background: translucent;">
+    <ion-card-content style="display: flex;direction:row;padding-top:15px;padding-bottom: 0;padding-left:15px;">
+        <ion-buttons>
+            <ion-card-title class="station-text" style="font-weight: bold;">{{section}}</ion-card-title>
+        </ion-buttons>
+    </ion-card-content>
+</ion-toolbar> -->
+<ion-card style="margin-top:15px;" class="card card-gif" card-shrink (click)="loonglist()">
+  <ion-card-content class="container">
+    <ion-card-subtitle class="card-text" 
+    style="font-size: 18px;position:absolute;bottom: 10px;right:15px;z-index: 10;">
+        <!--{{sub}}-->
+        <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;">
+            <!-- {{data.mycoins}}<ion-img src="/assets/img/coin.png" style="margin-right:10px;width: 25px;"></ion-img> -->
+            {{data.mystars}}/{{data.totalstars}}<ion-img src="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;"></ion-img>
+        </ion-label>
+    </ion-card-subtitle>
+    <ion-card-title class="card-text" style="z-index: 10;">{{title}}</ion-card-title>
+        <div class="content">
+            <div class="dog">
+                <div class="dog-body">
+                    <div class="dog-tail">
+                        <div class="dog-tail">
+                            <div class="dog-tail">
+                                <div class="dog-tail">
+                                    <div class="dog-tail">
+                                        <div class="dog-tail">
+                                            <div class="dog-tail">
+                                                <div class="dog-tail"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-torso"></div>
+                <div class="dog-head">
+                    <div class="dog-ears">
+                        <div class="dog-ear"></div>
+                        <div class="dog-ear"></div>
+                    </div>
+                    <div class="dog-eyes">
+                        <div class="dog-eye"></div>
+                        <div class="dog-eye"></div>
+                    </div>
+                    <div class="dog-muzzle">
+                        <div class="dog-tongue"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ball" tabindex="0"></div>
+        </div>
+  </ion-card-content>
+</ion-card>

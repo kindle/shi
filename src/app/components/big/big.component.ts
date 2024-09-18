@@ -16,7 +16,6 @@ export class BigComponent {
     private router: Router,
   ){}
 
-
   search(key:any){
     this.router.navigate(['/tabs/tab3'], {
       queryParams: {

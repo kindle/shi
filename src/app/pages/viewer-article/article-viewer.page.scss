@@ -1,15 +1,16 @@
 
 
+// .no-background{
+//     //--background: initial !important;
+//     background-size: auto 380px !important;
+//     --offset-top:0 !important;
+//     --offset-bottom:0 !important;
+// }
 
-
-ion-card {
-    transition: transform 0.2s;
+.custom-card{
+    width:-webkit-fill-available;margin-right: 15px;padding-right:15px;
+    margin-top: calc(var(--ion-safe-area-top))
 }
-  
-.shrink-card {
-    transform: scale(0.95);
-}
-
 
 
 

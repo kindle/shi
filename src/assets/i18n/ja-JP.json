@@ -1,0 +1,118 @@
+{
+    "Tabs": {
+        "Discovery": "開くと有益",
+        "Browse": "閲覧",
+        "ListenNow": "今すぐ聴く",
+        "Library": "詩庫",
+        "Search": "検索"
+    },
+
+    "Tutorial": {
+        "Language": "言語"
+    },
+
+    "AI": {
+        "Title": "AI詩助手",
+        "Hello": "こんにちは！何かお手伝いできることはありますか？",
+        "Submit": "送信",
+        "Status0": "AIアシスタント",
+        "Status1": "相手が入力中...",
+        "SaySth": "何か言ってください...",
+        "History": "履歴",
+        "Today": "今日",
+        "Yesterday": "昨日",
+        "DaysAgo": "日前"
+    },
+
+    "Action": {
+        "Search": "検索",
+        "Clear": "クリア",
+        "Delete": "削除",
+        "DelFromLib": "詩庫から削除",
+        "Cancel": "キャンセル",
+        "Edit": "編集",
+        "Done": "完了",
+        "Camera": "カメラ",
+        "Albums": "アルバム",
+        "Play": "再生",
+        "Shuffle": "シャッフル再生",
+        "AddPoem": "詩を追加",
+        "NewList": "新しい詩リストを作成...",
+        "Interpret": "AI",
+        "MoreToExplore": "さらに検索",
+        "DeleteFromLib": "詩庫から削除",
+        "AddToLib": "詩庫に追加",
+        "AddToAPoemList": "詩リストに追加...",
+        "ViewPoet": "詩人を見る"
+    },
+
+    "Message": {
+        "LibAdded": "詩庫に追加されました",
+        "PoemlistAdded": "詩リストに追加されました"
+    },
+
+    "Lib": {
+        "Poemlists": "詩リスト",
+        "Poets": "詩人",
+        "Albums": "アルバム",
+        "Poems": "詩",
+        "Topics": "トピック"
+    },
+
+    "Title": {
+        "App": "名詩佳句",
+        "Recent": "最近閲覧した",
+        "Hot": "人気詩",
+        "Classical": "古典詩",
+        "AllPoems": "すべての詩",
+        "RecentlyAdded": "最近追加された",
+        "Settings": "設定",
+        "BrowseCategories": "カテゴリを閲覧",
+        "Description": "説明",
+        "NoPoem": "このリストにはまだ詩がありません",
+        "FeaturedPoets": "この詩リストの詩人",
+        "PoemCount": "詩の数",
+        "NewList": "新しい詩リストを作成",
+        "NewListName": "詩リストの名前",
+        "NewListDesc": "説明",
+        "History": "履歴",
+        "PlayingNext": "次に再生するもの",
+        "Author": "著者"
+    },
+
+    "Search": {
+        "Tab4": "詩人、詩、その他のコンテンツ",
+        "CustomList": "カスタムリストで検索",
+        "Poets": "詩人で検索",
+        "Albums": "アルバムで検索",
+        "Poems": "詩で検索",
+        "Topics": "トピックで検索"
+    },
+
+    "Feedback": {
+        "Title": "あなたの評価は私の進む力です",
+        "Sub": "名詩佳句にいいねを押しましょう",
+        "Go": "今すぐ評価する"
+    },
+
+    "Sub": {
+        "Title": "広告なしで名詩佳句をお楽しみください",
+        "Content": "プランは月額料金で自動更新されます",
+        "BuyNow": "今すぐ購読"
+    },
+
+    "Game":{
+        "Best":"成績",
+        "Time":"時間",
+        "ConfirmTitle":"ご確認ください",
+        "ConfirmMessage":"本当に行くの?",
+        "ConfirmYes":"はい",
+        "ConfirmCancel":"キャンセルします",
+        "ConfirmClose":"閉じます",
+        "Congrats":"おめでとうございます!",
+        "Coins":"金貨",
+        "CoinsToUnlock":"{0}コインを解除する",
+        "NotEnoughCoins":"あなたがロックを解除する{0}コインが必要です！",
+        "GiveFeedback":"このゲームが好きなら、好評を書きに行きませんか？"
+    }
+}

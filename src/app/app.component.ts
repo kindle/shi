@@ -18,9 +18,7 @@ export class AppComponent {
     private data: DataService,
     private storage: Storage,
     private navController: NavController,
-  ) {
-    
-  }
+  ) {}
 
   async ngOnInit() {
     SplashScreen.show({
@@ -41,6 +39,11 @@ export class AppComponent {
     } else {
       this.navController.navigateRoot('/tabs/tab1');
     }
+
+    this.data.loadAIChatHistory();
+
+    //test
+    //this.data.gototesturl();
   }
 }
 

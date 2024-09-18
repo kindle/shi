@@ -1,0 +1,118 @@
+{
+    "Tabs": {
+        "Discovery": "ค้นพบ",
+        "Browse": "เรียกดู",
+        "ListenNow": "ฟังเดี๋ยวนี้",
+        "Library": "ห้องสมุด",
+        "Search": "ค้นหา"
+    },
+
+    "Tutorial": {
+        "Language": "ภาษา"
+    },
+
+    "AI": {
+        "Title": "ตัวแทนกลอน AI",
+        "Hello": "สวัสดี! ฉันจะช่วยอะไรคุณวันนี้?",
+        "Submit": "ส่ง",
+        "Status0": "ตัวแทน AI",
+        "Status1": "กำลังพิมพ์...",
+        "SaySth": "มาคุยกัน...",
+        "History": "ประวัติ",
+        "Today": "วันนี้",
+        "Yesterday": "เมื่อวาน",
+        "DaysAgo": "วันที่ผ่านมา"
+    },
+
+    "Action": {
+        "Search": "ค้นหา",
+        "Clear": "ล้าง",
+        "Delete": "ลบ",
+        "DelFromLib": "ลบออกจากห้องสมุด",
+        "Cancel": "ยกเลิก",
+        "Edit": "แก้ไข",
+        "Done": "เสร็จสิ้น",
+        "Camera": "กล้อง",
+        "Albums": "อัลบั้ม",
+        "Play": "เล่น",
+        "Shuffle": "สลับเพลง",
+        "AddPoem": "เพิ่มบทกวี",
+        "NewList": "รายการกวีใหม่...",
+        "Interpret": "AI",
+        "MoreToExplore": "มากกว่าที่จะสำรวจ",
+        "DeleteFromLib": "ลบออกจากห้องสมุด",
+        "AddToLib": "เพิ่มในห้องสมุด",
+        "AddToAPoemList": "เพิ่มลงในรายการกวี...",
+        "ViewPoet": "นักกวี"
+    },
+
+    "Message": {
+        "LibAdded": "เพิ่มในห้องสมุดแล้ว",
+        "PoemlistAdded": "เพิ่มในรายการกวีแล้ว"
+    },
+
+    "Lib": {
+        "Poemlists": "รายการกวี",
+        "Poets": "นักกวี",
+        "Albums": "อัลบั้ม",
+        "Poems": "บทกวี",
+        "Topics": "หัวข้อ"
+    },
+
+    "Title": {
+        "App": "บทกวี",
+        "Recent": "ล่าสุด",
+        "Hot": "ยอดนิยม",
+        "Classical": "คลาสสิก",
+        "AllPoems": "บทกวีทั้งหมด",
+        "RecentlyAdded": "เพิ่มล่าสุด",
+        "Settings": "การตั้งค่า",
+        "BrowseCategories": "เรียกดูหมวดหมู่",
+        "Description": "คำอธิบาย",
+        "NoPoem": "ว่างเปล่า",
+        "FeaturedPoets": "นักกวีแนะนำ",
+        "PoemCount": " บทกวี",
+        "NewList": "รายการกวีใหม่",
+        "NewListName": "ชื่อรายการกวีใหม่",
+        "NewListDesc": "คำอธิบาย",
+        "History": "ประวัติ",
+        "PlayingNext": "เล่นต่อไป",
+        "Author": "ผู้เขียน"
+    },
+
+    "Search": {
+        "Tab4": "นักกวี บทกวี และอื่น ๆ",
+        "CustomList": "ค้นหาในรายการกวีที่กำหนดเอง",
+        "Poets": "ค้นหาในนักกวี",
+        "Albums": "ค้นหาในอัลบั้ม",
+        "Poems": "ค้นหาในบทกวี",
+        "Topics": "ค้นหาในหัวข้อ"
+    },
+
+    "Feedback": {
+        "Title": "ความชื่นชมของคุณเป็นแรงผลักดันของฉัน",
+        "Sub": "ให้ฉันคะแนน!",
+        "Go": "ให้คะแนนตอนนี้"
+    },
+
+    "Sub": {
+        "Title": "เพลิดเพลินกับนักกวี บทกวี และอื่น ๆ",
+        "Content": "การสมัครสมาชิกรายเดือน",
+        "BuyNow": "ซื้อเดี๋ยวนี้"
+    },
+
+    "Game":{
+        "Best":"ส่วนที่ดีที่สุด",
+        "Time":"จับเวลา",
+        "ConfirmTitle":"โปรดยืนยัน",
+        "ConfirmMessage":"แน่ใจนะว่าจะไป",
+        "ConfirmYes":"ยืนยัน",
+        "ConfirmCancel":"ยกเลิก",
+        "ConfirmClose":"ปิดกล้อง",
+        "Congrats":"ยินดีด้วยครับ",
+        "Coins":"เหรียญ",
+        "CoinsToUnlock":"เหรียญ {0}",
+        "NotEnoughCoins":"เหรียญ {0}",
+        "GiveFeedback":"ถ้าคุณรักเกมนี้คุณจะเขียนความคิดเห็นที่ดี"
+    }
+}

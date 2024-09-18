@@ -5,6 +5,7 @@
         "sub":"中秋",
         "image":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg",
         "more":"但愿人长久，千里共婵娟",
+        "effect":"moon",
         "desc":"古人笔下的中秋",
         "list":[
             {"title":"水调歌头·丙辰中秋","author":"苏轼","sample":"但愿人长久，千里共婵娟","id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"},

@@ -12,6 +12,10 @@ import { TileComponentModule } from '../../components/tile/tile.module';
 import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CardMoonComponentModule } from 'src/app/components/card-moon/card-moon.module';
+import { CardBalloonComponentModule } from 'src/app/components/card-balloon/card-balloon.module';
+import { CardPathComponentModule } from 'src/app/components/card-path/card-path.module';
+import { CardWaveComponentModule } from 'src/app/components/card-wave/card-wave.module';
 
 @NgModule({
   imports: [
@@ -24,6 +28,11 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     TextComponentModule,
     ButtonEndComponentModule,
     LazyLoadImageModule,
+    CardMoonComponentModule,
+    CardBalloonComponentModule,
+    CardPathComponentModule,
+    CardWaveComponentModule,
+    
   ],
   declarations: [ArticleViewerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

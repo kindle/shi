@@ -1,0 +1,118 @@
+{
+    "Tabs": {
+        "Discovery": "열람이 유익하다",
+        "Browse": "브라우징",
+        "ListenNow": "지금 듣기",
+        "Library": "시가 서재",
+        "Search": "검색"
+    },
+
+    "Tutorial": {
+        "Language": "언어"
+    },
+
+    "AI": {
+        "Title": "AI 시 작업 도우미",
+        "Hello": "안녕하세요! 도와드릴 게 있나요?",
+        "Submit": "제출",
+        "Status0": "AI 도우미",
+        "Status1": "상대방이 입력 중...",
+        "SaySth": "말씀해주세요...",
+        "History": "기록",
+        "Today": "오늘",
+        "Yesterday": "어제",
+        "DaysAgo": "일 전"
+    },
+
+    "Action": {
+        "Search": "검색",
+        "Clear": "지우기",
+        "Delete": "삭제",
+        "DelFromLib": "시가 서재에서 삭제",
+        "Cancel": "취소",
+        "Edit": "편집",
+        "Done": "완료",
+        "Camera": "카메라",
+        "Albums": "앨범",
+        "Play": "재생",
+        "Shuffle": "셔플 재생",
+        "AddPoem": "시 추가",
+        "NewList": "새 시 목록 생성...",
+        "Interpret": "AI",
+        "MoreToExplore": "더 많이 검색",
+        "DeleteFromLib": "시가 서재에서 삭제",
+        "AddToLib": "시가 서재에 추가",
+        "AddToAPoemList": "시 목록에 추가...",
+        "ViewPoet": "시인 보기"
+    },
+
+    "Message": {
+        "LibAdded": "시가 서재에 추가되었습니다",
+        "PoemlistAdded": "시 목록에 추가되었습니다"
+    },
+
+    "Lib": {
+        "Poemlists": "시 목록",
+        "Poets": "시인",
+        "Albums": "앨범",
+        "Poems": "시",
+        "Topics": "주제"
+    },
+
+    "Title": {
+        "App": "명시가 좋은 문구",
+        "Recent": "최근 브라우징",
+        "Hot": "인기 시",
+        "Classical": "고전 시",
+        "AllPoems": "모든 시",
+        "RecentlyAdded": "최근 추가된",
+        "Settings": "설정",
+        "BrowseCategories": "카테고리 브라우징",
+        "Description": "설명",
+        "NoPoem": "이 목록에는 아직 시가 없습니다",
+        "FeaturedPoets": "이 시 목록의 시인",
+        "PoemCount": "시 수",
+        "NewList": "새 시 목록 만들기",
+        "NewListName": "시 목록 이름",
+        "NewListDesc": "설명",
+        "History": "기록",
+        "PlayingNext": "다음에 재생될 것",
+        "Author": "저자"
+    },
+
+    "Search": {
+        "Tab4": "시인, 시 및 기타 내용",
+        "CustomList": "사용자 정의 목록에서 찾기",
+        "Poets": "시인에서 찾기",
+        "Albums": "앨범에서 찾기",
+        "Poems": "시에서 찾기",
+        "Topics": "주제에서 찾기"
+    },
+
+    "Feedback": {
+        "Title": "귀하의 평가는 제 발전의 동력입니다",
+        "Sub": "명시가 좋은 문구에 좋아요를 눌러보세요",
+        "Go": "지금 평가하기"
+    },
+
+    "Sub": {
+        "Title": "광고 없이 명시가 좋은 문구를 즐겨보세요",
+        "Content": "플랜은 월간 요금으로 자동 갱신됩니다",
+        "BuyNow": "지금 구독하기"
+    },
+
+    "Game":{
+        "Best":"성적",
+        "Time":"시간",
+        "ConfirmTitle":"확인해 주세요",
+        "ConfirmMessage":"떠나고 싶어?",
+        "ConfirmYes":"확인합니다",
+        "ConfirmCancel":"취소합니다",
+        "ConfirmClose":"닫습니다",
+        "Congrats":"축하합니다",
+        "Coins":"금화",
+        "CoinsToUnlock":"{0} 개의 동전 잠 금 풀기",
+        "NotEnoughCoins":"너 는 {0} 개의 동전 이 있어 야만 자 물 쇠 를 풀 수 있다!",
+        "GiveFeedback":"이 게임을 좋아, 그냥 좋은 리뷰를 작성?"
+    }
+}

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
@@ -19,6 +20,7 @@ export class ButtonEndComponent {
   constructor(
     public data: DataService,
     public ui: UiService,
+    private router: Router,
     private modalController: ModalController
   ){
     this.uuid = this.data.generate_uuid();
@@ -54,6 +56,23 @@ export class ButtonEndComponent {
     });
       
     this.data.goToAuthor(author);
+  }
+
+  interpret(poem:any){
+    //close it if player is open
+    if(this.ui.PoemPlayer){
+      this.ui.PoemPlayer.dismiss();
+    }
+
+    let input_text = this.data.currentLocale == 'zh-CN' ?
+        "请赏析一下"+poem.author+"的这首诗：":
+        `Please explain and analyze the following poem by ${poem.author}: `;
+    input_text += (poem.sample?poem.sample:poem.paragraphs[0]);
+    this.router.navigate(['/chat'], {
+      queryParams: {
+        text:input_text
+      }
+    });
   }
     
   share(){

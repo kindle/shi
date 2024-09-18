@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start" class="game-title">名诗接龙</ion-title>
+    <ion-title style="padding-right: 15px;">
+      <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;">
+        {{data.mycoins}}<img lazyLoad="/assets/img/coin.png" style="margin-right:10px;width: 25px;">
+        {{data.mystars}}/{{data.totalstars}}<img lazyLoad src="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;">
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title slot="start" class="game-title">名诗接龙</ion-title>
+      <ion-title style="padding-right: 15px;">
+        <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;">
+          {{data.mycoins}}<img lazyLoad="/assets/img/coin.png" style="margin-right:10px;width: 25px;">
+          {{data.mystars}}/{{data.totalstars}}<img lazyLoad="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;">
+        </ion-label>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--sub="{{level.id}}" -->
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-bottom: 15px;">
+    <app-level-card style="width: 100%;padding-right:15px;margin-right:15px;" 
+      *ngFor="let level of data.levels"
+      id="{{level.id}}"
+      title="{{level.name}}"
+      position="{{level.position}}"
+      color="{{level.color}}"
+      img="{{level.img}}"
+      limit="{{level.limit}}"
+    >
+    </app-level-card>
+  </div>
+  
+  <div class="placeholder-playbox"></div>
+</ion-content>

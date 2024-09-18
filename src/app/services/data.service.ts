@@ -15,25 +15,12 @@ import { Share } from '@capacitor/share';
 
 
 import { Browser } from '@capacitor/browser';
-
-//import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-//import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlayerPage } from '../pages/player/player.page';
 import { EventService } from './event.service';
-/*
-Preferences.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos),
-    });
-const { value } = await Preferences.get({ key: this.PHOTO_STORAGE });
-    this.photos = (value ? JSON.parse(value) : []) as UserPhoto[];
-*/
 
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-//import { Preferences } from '@capacitor/preferences';
 
 
 export interface UserPhoto {
@@ -47,13 +34,20 @@ export enum ViewType{
   Id,
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
   TestMode = false;
+
+  gototesturl(){//'tabs/tab1/me'
+    this.router.navigate(['tabs/tab1/list'], {
+      queryParams: {}
+    });
+  }
+
+  EnablePrivateMusic = false;
   
   //引导评分开关
   showRatingsAndReviews = true;
@@ -116,7 +110,7 @@ export class DataService {
 
   authorJsonData:any = [];
   JsonData:any = [];
-  jsonDataLoaded = false;
+  articleDataLoaded = false;
 
   deepCopy(data:any){
     return JSON.parse(JSON.stringify(data))
@@ -133,6 +127,12 @@ export class DataService {
     this.http.get<any>(`assets/db/others/authors.others.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });
+    if(this.EnablePrivateMusic){
+      this.http.get<any>(`assets/db/music/authors.music.json`).subscribe(result=>{
+        this.authorJsonData = this.authorJsonData.concat(result);
+      });
+    }
+
 
     //诗经楚辞
     this.getObjects(`assets/db/诗经/shijing.json`,"诗经");
@@ -143,6 +143,10 @@ export class DataService {
 
     //其他补录
     this.getObjects(`assets/db/others/others.json`,"");
+
+    if(this.EnablePrivateMusic){
+      this.getObjects(`assets/db/music/music.json`,"");
+    }
 
     //蒙学
     //getMXObjects is 文章
@@ -191,7 +195,7 @@ export class DataService {
     //load 诗单
     this.loadPoemList();
 
-    this.jsonDataLoaded = true;
+    this.articleDataLoaded = true;
   }
 
   loadPoemList(){
@@ -292,7 +296,7 @@ export class DataService {
   timelineData:any;
   pickData:any;
   //careful with JsonData
-  jsonData:any=[];
+  articleData:any=[];
   azureData:any;
   async loadArticleJsonData(){
     this.http.get<any>('/assets/json/pick.json').subscribe(result=>{
@@ -304,6 +308,7 @@ export class DataService {
 
     this.http.get<any>('/assets/topic/game-next.json').subscribe(result=>{
       this.gameNextData = result;
+      this.updateGameData();
     });
 
     //this.http.get<any>('/assets/topic/fun.json').subscribe(result=>{
@@ -369,9 +374,11 @@ export class DataService {
     
 
     this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
-      //把article.json放入jsonData作为开卷有益文章展示
-      this.jsonData = result;
-      //把list-fun.json,list-audio.json等放入jsonData做为开卷有益文章展示
+      //把article.json放入articleData作为开卷有益文章展示
+      //article.json包括vote,group等文章
+      this.articleData = result;
+      //把list-fun.json,list-audio.json等放入articleData做为开卷有益文章展示
+      //poemListData包括fun,audio,holiday,food
       this.poemListData.forEach((fun:any) => {
         let descArray:any = [];
         fun.list.forEach((p:any) => {
@@ -383,14 +390,17 @@ export class DataService {
             "id":p.id
           })
         });
-        this.jsonData.push({
+        this.articleData.push({
           template:"text",
-          min_height:"380px",
+          min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
           title_color:fun.color?fun.color:"white",
           small_title:fun.sub,
+          id:fun.id,
+          effect:fun.effect,
           //big_title:fun.desc,
-          big_title:fun.more.length==0?fun.desc:fun.more,
+          big_title:(fun.more.length==0||
+            (fun.desc.length<fun.more.length&&fun.desc.length>0))?fun.desc:fun.more,
           desc:[{
             "type":"text", 
             //"value":fun.more?fun.more:fun.desc,
@@ -407,8 +417,8 @@ export class DataService {
         })
       });
 
-      //把jsonData文章随机排序，取前5个文章+1group+1vote展示
-      this.jsonData = this.getArticleData("article");
+      //把articleData文章随机排序，取前5个文章+1group+1vote展示
+      this.articleData = this.getArticleData("article");
     });
 
   }
@@ -423,13 +433,13 @@ export class DataService {
     //console.log(this.funDataMap)
 
     if(this.disableRandomArticleData){
-      let tempdata = this.setRandomArticles(this.jsonData);
-      return this.jsonData.concat(tempdata);
+      let tempdata = this.setRandomArticles(this.articleData);
+      return this.articleData.concat(tempdata);
     }
 
     if(!this.funDataMap.has(seed)){
-      //console.log('not find article'+this.jsonData.length)
-      let tempdata = this.setRandomArticles(this.jsonData);
+      //console.log('not find article'+this.articleData.length)
+      let tempdata = this.setRandomArticles(this.articleData);
       //console.log(tempdata)
       this.funDataMap.set(seed, tempdata);
       this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
@@ -445,8 +455,9 @@ export class DataService {
   setRandomArticles(data:any){
 
     let temp:any = [];
-    //get 5 fun articles
-    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'), 5));
+    //get 5 fun articles, 4 articles that have no effect, 1 have effect
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 4));
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
     
     //get 1 group/wall/scroll
     temp = temp.concat(this.getRandomArray(data.filter(
@@ -612,7 +623,7 @@ export class DataService {
           element.tags.join('_');
     });
     this.JsonData = this.JsonData.concat(result);
-    //console.log("data init:"+this.jsonData.length)
+    //console.log("data init:"+this.articleData.length)
   }
 
 
@@ -624,24 +635,11 @@ export class DataService {
 
   /*--common start----*/
   get(key: string){
-    /*
-    const value = async () => {
-      const { value } = await Preferences.get({ key: key });
-    };
-    const { value } = await Preferences.get({ key: key });
-    return value;*/
     return this.storage.get(key);
   }
 
   set(key: string, value:any){
     this.storage.set(key, value);
-
-    /*
-    Preferences.set({
-      key: key,
-      value: value
-      //value: JSON.stringify(this.photos),
-    });*/
   }
 
   getNewId(arr: Array<any>){
@@ -1227,7 +1225,6 @@ export class DataService {
   init(){
     //诗词数据 很大
     this.loadJsonData();
-    
     //
     this.loadTopicData();
     this.loadlikes();
@@ -1244,6 +1241,7 @@ export class DataService {
     this.getSubscriptionImage();
 
     this.initRatings();
+    //console.log('load data completed')
   }
   
   /*--mix end----*/
@@ -1303,7 +1301,19 @@ export class DataService {
 
 
 
+  
+  colorList:any = [
+    "rgb(240,209,246)",
+    "rgb(255,230,151)",
+    "rgb(255,222,194)",
+    "rgb(205,238,240)",
+    "rgb(113,203,212)",
+    "rgb(240,209,246)"]
 
+  getbgcolor(){
+    return "rgb(98, 166, 243)";
+    //return this.getRandomArray(this.colorList,1);
+  }
 
 
 
@@ -1380,6 +1390,7 @@ export class DataService {
     this.showFilter = false;
     this.displayResult = [];
     this.searchText = "";
+    this.searchText = this.ui.instant('Search.Tab4');
   }
   //tab4 related end
 
@@ -1427,9 +1438,12 @@ export class DataService {
         this.setAudio();
       }else{
         this.execPause();
-        if(pop){
-          this.ui.player(this.currentPoem);
-        }
+        // if(pop){
+        //   this.ui.player(this.currentPoem);
+        // }
+      }
+      if(pop){
+        this.ui.player(this.currentPoem);
       }
       this.savePlayHistory(this.currentPoem);
     }
@@ -1574,7 +1588,7 @@ export class DataService {
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
-    this.ui.toast("top", "已添加到诗词库")
+    this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
   }
 
   isliked(listdata:any, group:any){
@@ -1701,7 +1715,7 @@ export class DataService {
     }
     else{
       this.currentCollectPoem = p;
-      console.log('did not find the poet data by id:'+p.id)
+      //console.log('did not find the poet data by id:'+p.id)
     }
   }
   addtocustomlist(like:any){
@@ -1741,7 +1755,7 @@ export class DataService {
 
       }
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-      this.ui.toast("top", "已添加到诗词列表")
+      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗词列表
     }
 
   }
@@ -1771,7 +1785,7 @@ export class DataService {
           let maxNumber = 4;
           let curNumber = 0;
           for(let k=0;k<this.collectList[i].data.list.length;k++){
-            let image = `https://reddah.blob.core.windows.net/msjj/poet/${this.collectList[i].data.list[k].author}.jpeg`;
+            let image = `https://reddah.blob.core.windows.net/msjjpoet/${this.collectList[i].data.list[k].author}.jpeg`;
             
             if(!this.collectList[i].data.image.includes(image))
             {
@@ -1938,7 +1952,7 @@ export class DataService {
   }
 
   private async readAsBase64(photo: Photo) {
-    console.log(photo)
+    //console.log(photo)
     // "hybrid" will detect Cordova or Capacitor
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
@@ -2064,5 +2078,414 @@ export class DataService {
     this.currentLocale = locale;
     this.set(this.LOCALSTORAGE_LOCALE, JSON.stringify(this.currentLocale));
   }
+  getCurrentLocale(){
+    return this.currentLocale??"zh-CN";
+  }
   /* Current Locale start */
+
+
+  /*save chat history start*/
+  LOCALSTORAGE_AI_CHAT_HIST = "ai_chat_history";
+  aiChatHistory:any=[];
+  async loadAIChatHistory(){
+    this.get(this.LOCALSTORAGE_AI_CHAT_HIST).then((value)=>{
+      if(value==null)
+        this.aiChatHistory = [];
+      else{
+        this.aiChatHistory = JSON.parse(value);
+        //console.log('load ai chat history')
+        //console.log(this.aiChatHistory)
+      }
+    });
+  }
+  getChatHistoryById(chatId:any){
+    return this.aiChatHistory.filter((h:any)=>h.id==chatId)[0];
+  }
+  saveAIChatHistory(chatHistory:any){
+    //console.log('save ai chat history')
+    //console.log(chatHistory)
+    //console.log(this.aiChatHistory)
+    let result = this.aiChatHistory.filter((h:any)=>h.id==chatHistory.id)[0];
+    //console.log('result:')
+    //console.log(result)
+    if(result){
+      let existingChat = result;
+      existingChat.messages = chatHistory.messages;
+      //console.log('exists..')
+    }else{
+      this.aiChatHistory.push(chatHistory);
+      //console.log('add new one...')
+    }
+    this.set(this.LOCALSTORAGE_AI_CHAT_HIST, JSON.stringify(this.aiChatHistory));
+  }
+  delAIChatHistory(data:any){
+    for(let i=0;i<this.aiChatHistory.length;i++){
+      if(this.aiChatHistory[i].id===data.id){
+        this.aiChatHistory.splice(i,1);
+        break;
+      }
+    }
+    this.set(this.LOCALSTORAGE_AI_CHAT_HIST, JSON.stringify(this.aiChatHistory));
+  }
+  clearAIChatHistory(){
+    this.aiChatHistory = [];
+    this.set(this.LOCALSTORAGE_AI_CHAT_HIST, JSON.stringify(this.aiChatHistory));
+  }
+  /*save chat history end*/
+
+  goMe(){
+    this.router.navigate(['tabs/tab1/me'], {
+      queryParams: {}
+    });
+  }
+
+
+  private setLocale(locale:any){
+    this.saveLocale(locale);
+    this.ui.loadTranslate(locale);
+  }
+
+  public actionSheetButtons = [
+    {text: '简体中文',
+      handler: () => {
+        this.setLocale('zh-CN');
+      }},
+    {text: '繁体中文',
+      handler: () => {
+        this.setLocale('zh-TW');
+      }},
+    {text: 'English',
+      handler: () => {
+        this.setLocale('en-US');
+      }},
+    {text: 'Español',
+      handler: () => {
+        this.setLocale('es-ES');
+      }}, 
+    {text: 'Français',
+      handler: () => {
+        this.setLocale('fr-FR');
+      }},
+    {text: 'العربية',
+      handler: () => {
+        this.setLocale('ar-AE');
+      }},
+    {text: 'Русский',
+      handler: () => {
+        this.setLocale('ru-RU');
+      }},
+    {text: 'Português',
+      handler: () => {
+        this.setLocale('pt-PT');
+      }},
+    {text: 'Deutsch',
+      handler: () => {
+        this.setLocale('de-DE');
+      }},
+    {text: '日本語',
+      handler: () => {
+        this.setLocale('ja-JP');
+      }},
+    {text: '한국어',
+      handler: () => {
+        this.setLocale('ko-KR');
+      }},
+    {text: 'Ελληνικά',
+      handler: () => {
+        this.setLocale('el-GR');
+      }},
+    {text: 'ไทย',
+      handler: () => {
+        this.setLocale('th-TH');
+      }},
+  ];
+
+
+
+  /** game storage start */
+  async retrieve(key: string){
+    return this.storage.get(key);
+  }
+  async store(key: string, value:any){
+    this.storage.set(key, value);
+  }
+  /** game storage end */
+  /**games start */
+  totalstars = 0;
+  mystars = 0;
+  levelTotalStars = [0,0,0,0];
+  myLevelTotalStars = [0,0,0,0];
+  myLevelStars:any = [];//120 levels
+  maxLevelUnlocked = 1;
+  mycoins = 0;
+  currentTasks:any = [];
+  levels:any = [];
+  async updateGameData(){
+    this.totalstars = await this.getTotalStars();//30*4=120
+    this.mystars = await this.getAllMyStars();
+    //console.log('max:'+this.maxLevelUnlocked)
+    this.mycoins = await this.getMyCoins();
+
+    for(let i=0;i<4;i++){
+      this.myLevelTotalStars[i] = await this.getMyLevelStars(i+1);
+      this.levelTotalStars[i] = await this.getLevelTotalStars(i+1)
+    }
+    this.maxLevelUnlocked = await this.getMaxLevelUnlocked();
+
+    this.levels = [
+      {id:1, name:"萌新", desc:"昨夜西风凋碧树，独上高楼，望尽天涯路", 
+        position:"",   
+        //position:"bottom", 
+        limit:0,
+        color:"deepskyblue", 
+        //img:"/assets/img/IMG_3995.JPG"},
+        img:"/assets/img/boy1.png"},
+      {id:2, name:"探花", desc:"路漫漫其修远兮，吾将上下而求索", 
+        position:"", 
+        //position:"bottom", 
+        limit:this.getUnlockStars(1),  //20,
+        color:"orange", 
+        //img:"/assets/img/IMG_4001.JPG"},
+        img:"/assets/img/girl1.png"},
+      {id:3, name:"榜眼", desc:"衣带渐宽终不悔，为伊消得人憔悴", 
+        position:"", 
+        //position:"right", 
+        limit:this.getUnlockStars(2), //40
+        color:"royalblue", 
+        //img:"/assets/img/IMG_4004.JPG"},
+        img:"/assets/img/boy2.png"},
+      {id:4, name:"状元", desc:"纵里寻她千百度，蓦然回首，那人却在灯火阑珊处", 
+        position:"", 
+        limit:this.getUnlockStars(3), //60
+        color:"coral", 
+        //img:"/assets/img/IMG_4005.JPG"},
+        img:"/assets/img/girl2.png"},
+    ];
+    //console.log(this.levels)
+
+    this.updateCurrentTasks();
+  }
+  async updateCurrentTasks(){
+    for(let i=0;i<this.currentTasks.length;i++){
+      let t = this.currentTasks[i];
+      t["mytime"] = await this.getMyTime(t.id);
+      t["unlock"] = (i==0)||(t["mytime"]<=99998)||(i>0&&this.currentTasks[i-1]["mytime"]<=99998);
+      t["index"] = i;
+    }
+  }
+  async getTotalStars(){
+    let n = this.gameNextData.length;
+    let stars = 0;
+    for(let i=0;i<n;i++){
+        stars += 3;
+    }
+    return stars;
+  }
+  async getLevelTotalStars(levelId:any){
+    let leveData = this.gameNextData.filter((g:any)=>g.level==levelId);
+    let n = leveData.length;
+    let stars = 0;
+    for(let i=0;i<n;i++){
+        stars += 3;
+    }
+    return stars;
+  }
+
+  levelThreshold = 0.5;
+  async getMaxLevelUnlocked(){
+    let allMyStars = await this.getAllMyStars();
+    //console.log("allMyStars:"+allMyStars)
+    //console.log("this.getUnlockStars(3):"+this.getUnlockStars(3))
+    
+    if(allMyStars>=this.getUnlockStars(3)){//60 total 90
+        return 4;
+    }else if(allMyStars>=this.getUnlockStars(2)){//40 total 60
+        return 3;
+    }else if(allMyStars>=this.getUnlockStars(1)){//20pass total30
+        return 2;
+    }
+
+    return 1
+  }
+  getUnlockStars(levelId:any){
+    let unlockStars = 0;
+    let total=0;
+    for(let i=0;i<levelId;i++){
+      total+=this.levelTotalStars[i];
+    }
+    unlockStars = total*this.levelThreshold;
+    return Math.floor(unlockStars);
+  }
+  async getAllMyStars(){
+    let count = 0;
+    let n = this.gameNextData.length;
+    this.myLevelStars = new Array(n).fill(0);//[].constructor(n);
+    
+    for(let i=0;i<n;i++){
+        let myStars = await this.retrieve(`TaskMyStars_${i+1}`);
+        if(myStars!=null){
+          let myStarsNumber = Number(myStars); 
+          if (!isNaN(myStarsNumber)) {
+              count += myStarsNumber;
+              this.myLevelStars[i] = myStarsNumber;
+          }
+        }
+    }
+
+    return count;
+  }
+  async getMyStars(taskId:any){
+    const myStars = await this.retrieve(`TaskMyStars_${taskId}`);
+    if (myStars !== null) {
+        let myStarsNumber = Number(myStars);
+        if (!isNaN(myStarsNumber)) {
+          if(myStarsNumber>0&&myStarsNumber<=3)
+            return myStarsNumber;
+        }
+    }
+    
+    return 0;
+  }
+  async getMyLevelStars(levelId:any){
+    let tasks = this.gameNextData.filter((g:any)=>g.level==levelId);
+    let myLevelStars = 0;
+    for(let i=0;i<tasks.length;i++){
+      let taskId = tasks[i].id;
+      const myStars = await this.retrieve(`TaskMyStars_${taskId}`);
+      if (myStars !== null) {
+          let myStarsNumber = Number(myStars);
+          if (!isNaN(myStarsNumber)) {
+            if(myStarsNumber>0&&myStarsNumber<=3)
+              myLevelStars += myStarsNumber;
+          }
+      }
+    }
+    
+    return myLevelStars;
+  }
+  async getMyTime(taskId:any){
+    const myTime = await this.retrieve(`TaskTime_${taskId}`);
+    if (myTime !== null) {
+      let myTimeNumber = Number(myTime);
+      if (!isNaN(myTimeNumber)) {
+        if(myTimeNumber>0)
+          return myTimeNumber;
+      }
+    }
+    
+    return 99999;
+  }
+  getLevelTasks(level:any){
+    /*let tasks= [
+      {id:1,name:"1n",desc:"1d", img:"/assets/img/IMG_4067.JPG"},
+      {id:2,name:"2n",desc:"2d", img:"/assets/img/IMG_4052.JPG"},
+      {id:3,name:"3n",desc:"3d", img:"/assets/img/IMG_4053.JPG"},
+      {id:4,name:"4n",desc:"4d", img:"/assets/img/IMG_4051.JPG"},
+      {id:5,name:"5n",desc:"5d", img:"/assets/img/IMG_4050.JPG"},
+      {id:6,name:"6n",desc:"6d", img:"/assets/img/IMG_4049.JPG"},
+      {id:7,name:"7n",desc:"3d", img:"/assets/img/IMG_4046.JPG"},
+      {id:8,name:"8n",desc:"4d", img:"/assets/img/IMG_4007.JPG"},
+      {id:9,name:"9n",desc:"5d", img:"/assets/img/IMG_4006.JPG"},
+      {id:10,name:"10n",desc:"6d", img:"/assets/img/"}
+    ]*/
+    let tasks = this.gameNextData.filter((g:any)=>g.level==level);
+
+    // tasks.forEach((t:any)=>{
+    //   t.img = `https://reddah.blob.core.windows.net/msjjpoet/${t.more}.jpeg`;
+    // })
+
+    return tasks;
+  }
+  async pass(task:any, seconds:any){
+    if(seconds>1&&seconds<99999){
+      let oldTime = await this.getMyTime(task.id);
+      if(oldTime!=null&&seconds<oldTime)
+      {
+          this.store(`TaskTime_${task.id}`, seconds);
+          let mystar = 0;
+          
+          if(seconds<=task["seconds3star"]){
+              mystar = 3;
+              this.addMyCoints(5);
+          }else if(seconds<=task["seconds2star"]){
+              mystar = 2;
+              this.addMyCoints(3);
+          }else if(seconds<=task["seconds1star"]){
+              mystar = 1;
+              this.addMyCoints(2);
+          }else{
+              mystar = 0;
+              this.addMyCoints(1);
+          }
+          this.store(`TaskMyStars_${task.id}`, mystar);
+      }
+    }
+    this.updateGameData();
+  }
+  /**games end */
+
+  /**points start */
+  async getMyCoins(){
+      let count = await this.retrieve(`Reddah_MyCoins`);
+      if (count !== null) {
+        let countNumber = Number(count);
+        if (!isNaN(countNumber)) {
+            return countNumber;
+        }
+      }
+      return 0;
+  }
+
+  async addMyCoints(n:any){
+      let current = await this.getMyCoins();
+      this.store(`Reddah_MyCoins`, current+n);
+      this.toast('+', n);
+  }
+
+  async subMyCoints(n:any){
+      let current = await this.getMyCoins();
+      this.store(`Reddah_MyCoins`, current-n);
+      this.toast('-', n);
+  }
+
+  async toast(type:any, n:any) {
+    this.ui.toast("top", `${this.ui.instant("Game.Coins")}: ${type}${n}`,);
+  }
+
+  async getBuyCount(){
+      let count = await this.retrieve(`Reddah_BuyTimes`);
+      if(count!=null){
+          let countNumber = Number(count);
+          if (!isNaN(countNumber)) {
+              return countNumber;
+          }
+      }
+      return 0;
+  }
+
+  async addBuyCount(){
+      let count = await this.retrieve(`Reddah_BuyTimes`);
+      if(count!=null){
+        let countNumber = Number(count);
+        if (!isNaN(countNumber)) {
+          this.store(`Reddah_BuyTimes`, countNumber+1);
+        }
+      }
+      else{
+        this.store(`Reddah_BuyTimes`, 1);
+      }
+  }
+
+  async buyPrice(){
+      return 10 + await this.getBuyCount()*10;
+  }
+
+  async buyTask(task:any){
+      this.set(`TaskTime_${task.id-1}`, 99998);
+      this.set(`TaskMyStars_${task.id-1}`, 0);
+      let price = 10 + await this.getBuyCount()*10;
+      this.subMyCoints(price);
+      this.addBuyCount();
+  }
+  /**points end */
 }

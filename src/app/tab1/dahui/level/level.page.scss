@@ -1,0 +1,42 @@
+.card-scroll-item1{
+    min-height: 100px;
+    width: 100%;
+    //padding-top: 100%; /* Create a square aspect ratio */
+    position: relateive;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    .card-image{
+        width: 100%;
+        border-radius: 10px;
+
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .contain{
+        background-size: contain;
+    }
+    .cover{
+        background-size: cover;
+    }
+}
+
+.card-text-style{
+    color: black;
+    margin-top: 5px;
+    margin-left: 5px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.lock{
+   filter: grayscale(100%);
+   //opacity: 0.1;
+   //scale:0.5;
+   border:1px solid orange;
+}

@@ -22,7 +22,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="data.isliked(listdata,'idlist')" 
               (click)="data.unlikelist(listdata,'idlist')">
-                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-text color="danger">{{ ui.instant('Action.DeleteFromLib') }}<!--从诗词库中删除--></ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>
               <!--
@@ -33,7 +33,7 @@
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="!data.isliked(listdata,'idlist')"  
               (click)="data.likelist(listdata, 'idlist')">
-                添加到诗词库
+                {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
                 <ion-icon name="add-outline" slot="end"></ion-icon>
               </ion-item>
               <!--
@@ -57,14 +57,14 @@
 
 <ion-content [fullscreen]="true" *ngIf="listdata">
   <ion-header collapse="{{ui.isIos?'condense':'fade'}}" style="box-shadow: none;">
-    <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus" *ngIf="localList.length>10||searchText.length>0"
+    <ion-toolbar><!--搜索-->
+      <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
+      *ngIf="localList.length>10||searchText.length>0"
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
       ></ion-searchbar>
       <div *ngIf="!showFilter"
       style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;">
@@ -96,12 +96,12 @@
     <ion-button color="light" style="width: 100%;margin-right:10px;" [disabled]="noAudio"
     (click)="data.playList(listdata.list, listdata.name)">
       <ion-icon slot="start" name="play" color="primary"></ion-icon>
-      <ion-text color="primary">播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Play') }}<!--播放--></ion-text>
     </ion-button>
     <ion-button color="light" style="width: 100%;margin-left:10px;" [disabled]="noAudio"
     (click)="data.playListRandomly(listdata.list, listdata.name)">
       <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
-      <ion-text color="primary">随机播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Shuffle') }}<!--随机播放--></ion-text>
     </ion-button>
   </div>
 
@@ -141,12 +141,14 @@
 
   <ion-list  *ngIf="!showFilter"
   style="margin-top:20px;margin-bottom: 20px;">
-    <ion-text color="medium" *ngIf="listdata" style="margin:20px;">{{listdata.list.length}}首诗词</ion-text>
+    <ion-text color="medium" *ngIf="listdata" style="margin:20px;">
+      {{listdata.list.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
+    </ion-text>
   </ion-list>
     
   <ion-header *ngIf="!showFilter&&poets.length>2">
-    <app-author name="此诗单中的诗人" [source]="poets"></app-author>
-  </ion-header>
+    <app-author name="{{ ui.instant('Title.FeaturedPoets') }}" [source]="poets"></app-author>
+  </ion-header><!--此诗单中的诗人-->
 
   <div class="placeholder-playbox"></div>
 </ion-content>

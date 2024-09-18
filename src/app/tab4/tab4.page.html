@@ -25,20 +25,32 @@
   </ion-header>
 
   <ion-header style="position:sticky;top:0;" collapse="fade" [translucent]="true">
-    <ion-toolbar style="padding-top:15px;">
-      <ion-searchbar placeholder="诗人、诗词以及更多内容" show-cancel-button="focus"
-      [(ngModel)]="data.searchText"
-      (ionFocus)="onSearchFocus()"
-      (ionBlur)="onLoseFocus()"
-      (ionCancel)="data.onSearchCancel()"
-      (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
-      ></ion-searchbar>
+    <ion-toolbar style="padding-top:15px;"><!--诗人、诗词以及更多内容-->
+      <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
+        [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
+        [(ngModel)]="data.searchText"
+        (ionFocus)="onSearchFocus()"
+        (ionBlur)="onLoseFocus()"
+        (ionCancel)="data.onSearchCancel()"
+        (ionInput)="onSearchChanged()"
+        (ionClear)="onClearMic()"
+        show-clear-button="always"
+        clear-icon="mic"
+      ><!--{{ ui.instant('Action.Cancel') }}
+        show-cancel-button="focus"
+        cancel-button-text="取消"-->
+      </ion-searchbar>
+      <ion-icon name="mic" color="danger" 
+      style="font-size:23px;margin-left:10px;margin-top:0px;margin-bottom:10px;" 
+      *ngIf="btnStatus==='OPEN'"
+      ></ion-icon>
     </ion-toolbar>
   </ion-header>
 
   <ion-list *ngIf="data.showFilter">
-    <ion-item *ngIf="isAuthor&&data.searchText" (click)="data.goToAuthor(data.searchText)">
+    <ion-item *ngIf="isAuthor&&data.searchText&&
+    data.searchText!=this.ui.instant('Search.Tab4')" 
+    (click)="data.goToAuthor(data.searchText)">
       <ion-thumbnail slot="start">
         <img style="border-radius: 50%;margin:0 2px;"
           defaultImage="assets/img/default.jpg" 
@@ -48,7 +60,7 @@
       </ion-thumbnail>
       <ion-label>
         <h2>{{data.searchText}}</h2>
-        <p>作者</p>
+        <p>{{ ui.instant('Title.Author') }}<!--作者--></p>
       </ion-label>
       <ion-button fill="clear" slot="end">
         <ion-icon name="chevron-forward-outline" color="medium"></ion-icon>
@@ -107,15 +119,15 @@
     <img defaultImage="" 
       lazyLoad="https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg" />
     <ion-card-header>
-      <ion-card-title style="text-align: center;font-size:22px;">您的点赞，是我前行的动力</ion-card-title>
+      <ion-card-title style="text-align: center;font-size:22px;">{{ ui.instant('Feedback.Title') }}<!--您的点赞，是我前行的动力--></ion-card-title>
     </ion-card-header>
 
     <ion-card-content style="text-align: center;font-weight: light;color:black;">
-      去给名诗佳作点个赞吧
+      {{ ui.instant('Feedback.Sub') }}<!--去给名诗佳作点个赞吧-->
     </ion-card-content>
 
     <ion-card-content style="text-align: center;display: flex;justify-content: center;" (click)="data.RatingsAndReviews();">
-      <ion-button color="primary" style="width:80%;">立即评价</ion-button>
+      <ion-button color="primary" style="width:80%;">{{ ui.instant('Feedback.Go') }}<!--立即评价--></ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -131,22 +143,26 @@
     <img defaultImage=""
       lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{data.subscriptionImage}}.jpg" />
     <ion-card-header>
-      <ion-card-title style="text-align: center;font-size:22px;">畅享名师佳句，全无广告干扰</ion-card-title>
+      <ion-card-title style="text-align: center;font-size:22px;">
+        {{ ui.instant('Sub.Title') }}<!--畅享名诗佳句，全无广告干扰-->
+      </ion-card-title>
     </ion-card-header>
   
     <ion-card-content style="text-align: center;font-weight: light;color:black;">
-      方案将以￥5.00/月的价格自动续期
+      {{ ui.instant('Sub.Content') }}<!--方案将以￥5.00/月的价格自动续期-->
     </ion-card-content>
 
     <ion-card-content style="text-align: center;display: flex;justify-content: center;">
-      <ion-button color="primary" style="width:80%;">立即体验</ion-button>
+      <ion-button color="primary" style="width:80%;">
+        {{ ui.instant('Sub.BuyNow') }}<!--立即体验-->
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
 
   <div *ngIf="!data.showFilter">
-    <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 0;">
-      <ion-card-title style="font-size: 20px;">类别浏览</ion-card-title>
+    <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 15px;">
+      <ion-card-title style="font-size: 20px;">{{ ui.instant('Title.BrowseCategories') }}<!--类别浏览--></ion-card-title>
     </ion-card-content>
   </div>
 
@@ -184,7 +200,7 @@
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
       style="margin:5px;
-      background-size:cover;"
+      background-size:cover;background-color:{{data.getbgcolor()}}"
       class="search-tile-img"
       id="{{topic.id}}"
       (click)="data.goToTopic(topic.id)"
@@ -286,6 +302,24 @@
 
 
 -->
+  <!--AI template-->
+  <div *ngIf="!data.showFilter">
+    <ion-card-content style="padding-left:15px;padding-top:15px;padding-bottom: 15px;">
+      <ion-card-title style="font-size: 20px;">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
+    </ion-card-content>
+  </div>
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;" *ngIf="!data.showFilter">
+    <ion-card class="card card-gif" card-shrink (click)="chat()"
+      defaultImage="" 
+      lazyLoad="/assets/img/faq.png"
+      style="background-size:cover;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;color:black;"><!--功夫在诗外--></ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:black;"><!--AI诗词助手--></ion-card-title>
+        </ion-card-content>
+    </ion-card>
+  </div>
 
 
 

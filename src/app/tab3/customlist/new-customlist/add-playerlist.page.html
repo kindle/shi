@@ -1,19 +1,21 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button color="medium" (click)="cancel()">取消</ion-button>
+            <ion-button color="medium" (click)="cancel()">{{ ui.instant('Action.Cancel') }}<!--取消--></ion-button>
         </ion-buttons>
-        <ion-title>新建诗单列表</ion-title>
+        <ion-title>{{ ui.instant('Title.NewList') }}<!--新建诗单列表--></ion-title>
         <ion-buttons slot="end">
-            <ion-button (click)="confirm()" [strong]="true">完成</ion-button>
+            <ion-button (click)="confirm()" [strong]="true">{{ ui.instant('Action.Done') }}<!--完成--></ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-    <ion-item>
-        <ion-input labelPlacement="stacked" label="诗单列表名称" [(ngModel)]="name" placeholder="诗单列表名称"></ion-input>
+    <ion-item><!--诗单列表名称-->
+        <ion-input labelPlacement="floating" label="{{ ui.instant('Title.NewListName') }}" [(ngModel)]="name" 
+        placeholder="{{ ui.instant('Title.NewListName') }}"></ion-input>
     </ion-item>
-    <ion-item>
-        <ion-input labelPlacement="stacked" label="描述" [(ngModel)]="desc" placeholder="描述"></ion-input>
+    <ion-item><!--描述-->
+        <ion-input labelPlacement="floating" label="{{ ui.instant('Title.NewListDesc') }}" [(ngModel)]="desc" 
+        placeholder="{{ ui.instant('Title.NewListDesc') }}"></ion-input>
     </ion-item>
 </ion-content>

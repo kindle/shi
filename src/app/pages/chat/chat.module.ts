@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
-import { AutoresizeDirective } from '../../directives/autoresize-textarea.directive';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
 
 @NgModule({
   imports: [
@@ -16,11 +16,11 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     IonicModule,
     ChatPageRoutingModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    SharedSwiperTouchModule,
   ],
   declarations: [
     ChatPage,
-    AutoresizeDirective,
   ]
 })
 export class ChatPageModule {}

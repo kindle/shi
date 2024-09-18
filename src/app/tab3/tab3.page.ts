@@ -21,7 +21,7 @@ export class Tab3Page {
 
 
   async ionViewDidEnter(){
-    //if(this.data.jsonDataLoaded===false){
+    //if(this.data.articleDataLoaded===false){
     //  await this.data.loadJsonData();
     //}
     //else{
@@ -65,7 +65,7 @@ export class Tab3Page {
 
 
   search(){
-    console.log(this.searchKeywordModel)
+    //console.log(this.searchKeywordModel)
   }
 
   TimelineSearch(key:string){
@@ -85,7 +85,7 @@ export class Tab3Page {
   }
 
   handleChange(){
-    console.log('handle...')
+    //console.log('handle...')
   }
 
   //source is from timeline, the value is author, search by auther name

@@ -3,19 +3,18 @@
     <ion-buttons slot="start">
         <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>AI诗词助手</ion-title>
+    <ion-title slot="start" *ngIf="writing==0">{{ ui.instant('AI.Status0')}}</ion-title>
+    <ion-title slot="start" *ngIf="writing==1">{{ ui.instant('AI.Status1')}}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button slot="end" (click)="list()">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<!--
-<ion-item color="light" style="--padding-start:0;" lines="none">
-  <ion-label *ngIf="writing==0">reddah.instant('Menu.Mystic')</ion-label>
-  <ion-label *ngIf="writing==1">reddah.instant('Mystic.Typing')</ion-label>
-  <ion-label *ngIf="writing==2">reddah.instant('Mystic.Thinking')</ion-label>
-</ion-item>
--->
 <ion-content [scrollEvents]="true" class="common-content" #pageTop > <!--(ionScroll)="onScroll($event)" (click)="chatbox.hide()"-->
-  <ion-grid *ngFor="let comment of messages" style="margin:0 10px;">
+  <ion-grid *ngFor="let comment of chatHistory.messages" style="margin:0 10px;">
       <ion-row *ngIf="comment.Type==0||comment.Type==1000">
           <ion-col style="padding:0;">
               <div class="chatTime" *ngIf="checkIsToday(comment.CreatedOn)">{{comment.CreatedOn | date:'HH:mm'}}</div>
@@ -34,12 +33,14 @@
                   [lazyLoad]="myImage"
                   class="portrait" (click)="ui.imageviewer(myImage)"/><!--(click)="viewer(0, [reddah.appData('userphoto_'+comment.UserName)])"-->
                   <div class="arrow-box-right"> <!--*ngIf="comment.Type<2">-->
+                      <!--
                       <div style="margin-right:-40px;margin-top:5px;" *ngIf="comment.Type==0&&comment.Id==null">
                           <ion-spinner name="crescent"></ion-spinner>
-                      </div>
+                      </div>-->
                        <!--(press)="showChatMenu($event, comment.Content)" (click)="copyToInput(comment)"-->
-                      <div class="chat-box-me" *ngIf="comment.Type==0"
-                        [innerHTML]="htmldecode(comment.Content)">
+                      <div class="chat-box-me selectableText" *ngIf="comment.Type==0"
+                        [innerHTML]="htmldecode(comment.Content)"
+                        (click)="ui.selectText()">
                       </div>
                       
                       <!--
@@ -73,7 +74,8 @@
                       <div class="chat-arrow-left" style="flex:0 auto;" *ngIf="comment.Type==0"></div>
                       <div class="chat-box-others" *ngIf="comment.Type==0" 
                            ><!--  (press)="showChatMenu($event, comment.Content)"  (click)="copyToInput(comment)"-->
-                          <div [innerHTML]="html(comment.Content)"></div>
+                          <div [innerHTML]="html(comment.Content)"
+                          class="selectableText" (click)="ui.selectText()"></div>
                           <!--<pre>{{comment.Content}}</pre>-->
                           <br>
                           <!--
@@ -115,17 +117,36 @@
 <ion-footer class="safe-area-bottom chat-footer" style="--background:white;background-color: white;">
   <ion-item lines="none" color="light">
       <!--<ion-icon name="mic" size="medium" (click)="switchSpeak()" *ngIf="!showSpeakBox"></ion-icon>-->
-      <ion-icon name="create-outline"size="medium"></ion-icon>
-      <ion-textarea class="newChatComment" autoresize rows="1" cols="21" (click)="hide()"
-      #newChatComment id="newChatComment" [(ngModel)]="commentContent"></ion-textarea>
+      <!--<ion-icon name="create-outline"></ion-icon>-->
+      <!--
+      <ion-buttons slot="start" style="margin-inline-end:0;">
+        <ion-button shape="round" style="margin-right: 10px;">
+          <ion-icon name="create-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>-->
+      <ion-textarea class="newChatComment" rows="1" (click)="hide()"
+        placeholder="{{ui.instant('AI.SaySth')}}" 
+        [autoGrow]="true"
+        [counter]="false"
+        [maxlength]="500"
+        #newChatComment id="newChatComment" [(ngModel)]="commentContent">
+      </ion-textarea>
       <!--<ion-icon name="apps" size="medium" (click)="switchSpeak()" *ngIf="showSpeakBox"></ion-icon>
       <ion-textarea [class.audio-pressed]="isPressed" class="newChatComment" autoresize readonly rows="1" cols="21" text-center
       placeholder="{{speakDesc}}" *ngIf="showSpeakBox" (press)="startSpeak()" (pressup)="stopSpeak()"></ion-textarea>
       -->
+      <!--
       <ion-icon slot="end" name="happy-outline"size="medium" (click)="toggleFacePanel()" *ngIf="!showFacePanel"></ion-icon>
+      -->
       <!--<ion-icon slot="end" name="apps" size="medium" (click)="toggleFacePanel()" *ngIf="showFacePanel"></ion-icon>
       <ion-icon slot="end" name="add-circle-outline" size="medium" (click)="toggleFunctionPanel()" *ngIf="!commentContent"></ion-icon>-->
-      <ion-button slot="end" (click)="submit()" color="primary" *ngIf="commentContent" style="text-transform: capitalize;">发送</ion-button>
+      
+      <ion-buttons slot="end">
+        <ion-button (click)="submit()" color="primary" fill="solid"
+            [disabled]="!commentContent||writing!=0" style="text-transform: capitalize;min-width: 50px;">
+            {{ ui.instant('AI.Submit')}}<!--发送-->
+        </ion-button>
+      </ion-buttons>
   </ion-item>
   <!--
   <app-share-face *ngIf="showFacePanel" (select)="faceSelection($event)"></app-share-face>

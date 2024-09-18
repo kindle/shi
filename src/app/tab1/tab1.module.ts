@@ -7,6 +7,13 @@ import { Tab1Page } from './tab1.page';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SharedCardShrinkModule } from '../modules/shared-card-shrink.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CardPathComponentModule } from '../components/card-path/card-path.module';
+import { CardBalloonComponentModule } from '../components/card-balloon/card-balloon.module';
+import { CardWaveComponentModule } from '../components/card-wave/card-wave.module';
+import { CardMoonComponentModule } from '../components/card-moon/card-moon.module';
+import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
+import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
+import { CatCardComponentModule } from '../components/cat-card/cat-card.module';
 
 @NgModule({
   imports: [
@@ -16,6 +23,13 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     Tab1PageRoutingModule,
     SharedCardShrinkModule,
     LazyLoadImageModule,
+    CardPathComponentModule,
+    CardBalloonComponentModule,
+    CardWaveComponentModule,
+    CardMoonComponentModule,
+    DogCardComponentModule,
+    CatCardComponentModule,
+    AsciiCardComponentModule,
   ],
   declarations: [
     Tab1Page

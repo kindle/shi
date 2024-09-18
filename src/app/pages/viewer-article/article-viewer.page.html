@@ -1,21 +1,55 @@
-<ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" 
-  style="--background: url('https://reddah.blob.core.windows.net/msjjimg/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;">
-    <div style="background-color:rgba(0,0,0,0);min-height: {{data.currentArticle.min_height}};">
-        <ion-card-content style="z-index:100;position:fixed;width:100%;
-          padding-inline-start:10px;
-          padding-inline-end:20px;padding-top:30px;">
-          <ion-buttons style="display:flex;justify-content:center;
-            width:25px;height:25px;float:left;
-            background-color:rgba(128,128,128,0.5);
-            border-radius: 50%;"
-            (click)="goback()">
-            <ion-button color="light">
-              <ion-icon name="chevron-back-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-card-content>
-
-
+<!-- style="--background: url('https://reddah.blob.core.windows.net/msjjimg/{{data.currentArticle.bg_image}}') top/auto {{defaultBgHeight}} no-repeat;" -->
+<!-- [ngClass]="{'no-background':data.currentArticle.effect}" -->
+<!-- 'url(/assets/img/effect.jpg) top/auto ' + defaultBgHeight + ' no-repeat' : -->
+<ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)"
+  [ngStyle]="{
+    '--background': (data.currentArticle.effect) ? 
+      'white':
+      'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') top/auto ' + defaultBgHeight + ' no-repeat'
+  }"
+  
+  >
+    <!--shared backbutton for normal and effect animation start-->
+    <ion-card-content style="z-index:100;position:fixed;width:100%;
+      padding-inline-start:10px;
+      padding-inline-end:20px;padding-top:30px;">
+      <ion-buttons style="display:flex;justify-content:center;
+        width:25px;height:25px;float:left;
+        background-color:rgba(128,128,128,0.5);
+        border-radius: 50%;"
+        (click)="goback()">
+        <ion-button color="light">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-content>
+    <!--shared backbutton for normal and effect animation end-->
+    <div style="display: flex;flex-wrap: wrap;justify-content: center;
+      background-color: white;
+      min-height: {{data.currentArticle.min_height}};"
+      *ngIf="data.currentArticle.effect">
+      <app-card-moon class="custom-card" *ngIf="data.currentArticle.effect=='moon'" 
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-moon>
+      <app-card-balloon class="custom-card" *ngIf="data.currentArticle.effect=='balloon'"
+          source="article" 
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-balloon>
+      <app-card-wave class="custom-card" *ngIf="data.currentArticle.effect=='wave'"
+          source="article" 
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-wave>
+      <app-card-path class="custom-card" *ngIf="data.currentArticle.effect=='path'"
+          source="article" 
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-path>
+    </div>
+    <div style="background-color:transparent;min-height: {{data.currentArticle.min_height}};"
+    *ngIf="!data.currentArticle.effect">
         <ion-card-content style="z-index:0;">
           <ion-card-subtitle style="font-size:18px;margin-top:45px;
             color:{{data.currentArticle.title_color}};">
@@ -26,7 +60,6 @@
             {{data.currentArticle.big_title}}
           </ion-card-title>
         </ion-card-content>
-      
     </div>
 
     <!--wall swiper-->
@@ -68,13 +101,18 @@
           <img  src="https://reddah.blob.core.windows.net/msjjimg/{{it.value}}" (click)="ui.imageviewer('https://reddah.blob.core.windows.net/msjjimg/'+it.value)" >
         </div>
 
-
         <ion-item *ngIf="it.type==='poem'" lines="none" 
         style="--padding-start:0;--inner-padding-end:0;margin:10px 20px;--background:white;">
           <ion-thumbnail slot="start" (click)="data.goToAuthor(it.author)"
+            *ngIf="!isThumbnailHidden(it.author)"
             style="display: flex;justify-content: center;align-items: center;">
+            <!--hide the first img just to trigger error function-->
+            <img src="https://reddah.blob.core.windows.net/msjjpoet/{{it.author}}.jpeg" 
+            style="display:none;width:0;height:0;"
+            (error)="onImageError(it)">
+            <!--real img-->
             <img id="authorimg" style="border-radius: 10px;"
-              defaultImage="assets/img/default.jpg" 
+              defaultImage="assets/img/default.jpg"
               lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{it.author}}.jpeg" 
               onerror="javascript:this.src='assets/img/default.jpg'"
               [ngStyle]="{'opacity':(data.currentPoem&&it.audio&&it.id === data.currentPoem.id) ? '0.5' : '1' }" />

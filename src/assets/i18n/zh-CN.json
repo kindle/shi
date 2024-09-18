@@ -3,11 +3,116 @@
         "Discovery":"开卷有益",
         "Browse": "浏览",
         "ListenNow": "现在就听",
-        "Library": "诗词库",
+        "Library": "资料库",
         "Search":"搜索"
     },
 
     "Tutorial":{
         "Language":"语言"
+    },
+
+    "AI":{
+        "Title":"AI诗词助手",
+        "Hello":"您好！有什么我可以帮助您的吗？",
+        "Submit":"发送",
+        "Status0":"AI助手",
+        "Status1":"对方正在输入...",
+        "SaySth":"说点什么...",
+        "History":"历史记录",
+        "Today":"今天",
+        "Yesterday":"昨天",
+        "DaysAgo":"天前"
+    },
+
+    "Action":{
+        "Search":"搜索",
+        "Clear":"清除",
+        "Delete":"删除",
+        "DelFromLib":"从资料库中删除",
+        "Cancel":"取消",
+        "Edit":"编辑",
+        "Done":"完成",
+        "Camera":"拍照",
+        "Albums":"相册",
+        "Play":"播放",
+        "Shuffle":"随机播放",
+        "AddPoem":"添加诗词",
+        "NewList":"新建诗单列表...",
+        "Interpret":"赏析",
+        "MoreToExplore":"搜索更多",
+        "DeleteFromLib":"从资料库中删除",
+        "AddToLib":"添加到资料库",
+        "AddToAPoemList":"添加到诗单列表...",
+        "ViewPoet":"看作者"
+    },
+
+    "Message":{
+        "LibAdded":"已添加到资料库",
+        "PoemlistAdded":"已添加到诗词列表"
+    },
+
+    "Lib":{
+        "Poemlists":"诗单列表",
+        "Poets":"诗人",
+        "Albums":"专辑",
+        "Poems":"诗词",
+        "Topics":"主题"
+    },
+
+    "Title":{
+        "App":"名诗佳句",
+        "Recent":"最近浏览",
+        "Hot":"热门作品",
+        "Classical":"经典作品",
+        "AllPoems":"所有作品",
+        "RecentlyAdded":"最近添加",
+        "Settings":"设置",
+        "BrowseCategories":"类别浏览",
+        "Description":"描述",
+        "NoPoem":"此列表中还没有诗词",
+        "FeaturedPoets":"此诗单中的诗人",
+        "PoemCount":"首诗词",
+        "NewList":"新建诗单列表",
+        "NewListName":"诗单列表名称",
+        "NewListDesc":"描述",
+        "History":"历史记录",
+        "PlayingNext":"待播清单",
+        "Author":"作者"
+    },
+
+    "Search":{
+        "Tab4":"诗人、诗词以及更多内容",
+        "CustomList":"在诗单列表中查找",
+        "Poets":"在诗人中查找",
+        "Albums":"在专辑中查找",
+        "Poems":"在诗词中查找",
+        "Topics":"在主题中查找"
+    },
+
+    "Feedback":{
+        "Title":"您的点赞，是我前行的动力",
+        "Sub":"去给名诗佳作点个赞吧",
+        "Go":"立即评价"
+    },
+
+    "Sub":{
+        "Title":"畅享名诗佳句，全无广告干扰",
+        "Content":"方案将以包月的价格自动续期",
+        "BuyNow":"立即订阅"
+    },
+
+    "Game":{
+        "Best":"最快",
+        "Time":"计时",
+        "ConfirmTitle":"请确认",
+        "ConfirmMessage":"确定要离开？",
+        "ConfirmYes":"确定",
+        "ConfirmCancel":"取消",
+        "ConfirmClose":"关闭",
+        "Congrats":"恭喜过关",
+        "Coins":"金币",
+        "CoinsToUnlock":"支付{0}金币解锁",
+        "NotEnoughCoins":"需要支付{0}金币解锁，金币不够啦!",
+        "GiveFeedback":"喜欢这个游戏，就去写个好评吧？"
     }
 }

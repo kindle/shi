@@ -4,12 +4,12 @@
     -webkit-backdrop-filter:saturate(210%) blur(20px);
     backdrop-filter:saturate(210%) blur(20px);" *ngIf="!showText">
     <ion-list-header *ngIf="showHistory">
-      <ion-label><h2>历史记录</h2></ion-label>
-      <ion-button (click)="data.clearHistory()">清除</ion-button>
+      <ion-label><h2>{{ ui.instant('Title.History')}}<!--历史记录--></h2></ion-label>
+      <ion-button (click)="data.clearHistory()">{{ ui.instant('Action.Clear')}}<!--清除--></ion-button>
     </ion-list-header>
     <ion-list-header *ngIf="showPlaylist">
       <ion-label>
-        <h2>待播清单</h2>
+        <h2>{{ ui.instant('Title.PlayingNext')}}<!--待播清单--></h2>
         <p style="margin-top:5px;">{{data.toPlayListName}}</p>
       </ion-label>
       <ion-buttons>
@@ -146,7 +146,8 @@
   style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
           
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
-      <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+      <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
+      class="selectableText" (click)="ui.selectText()">
         {{data.currentPoem.title}}
       </div>
     </ion-item>
@@ -154,7 +155,8 @@
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngClass]="{'select-line':authorSelected===true}"
-      (click)="selectAuthor()">
+      (click)="selectAuthor()"
+      class="selectableText" (click)="ui.selectText()">
         <ion-icon name="search-outline" *ngIf="authorSelected===true"
         (click)="data.search(data.currentPoem.author)"
         style="position: absolute;left:5px;margin:2px;"
@@ -165,15 +167,17 @@
 
     <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
-      [ngClass]="{'select-line':currentIndex===i}"
+      [ngClass]="{'select-line selectableText':currentIndex===i}"
       (click)="select(i)"
       [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
         <ion-icon name="search-outline" *ngIf="currentIndex===i"
         (click)="data.search(text)"
         style="position: absolute;left:5px;margin:2px;"
         ></ion-icon>
-        <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
-        <div *ngIf="!data.currentPoem.sample">{{text}}</div>
+        <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+        class="selectableText" (click)="ui.selectText()"></div>
+        <div *ngIf="!data.currentPoem.sample"
+        class="selectableText" (click)="ui.selectText()">{{text}}</div>
       </div>
     </ion-item>
     

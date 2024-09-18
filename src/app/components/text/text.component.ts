@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-text',
@@ -16,6 +17,7 @@ export class TextComponent {
   fold:boolean = true;
 
   constructor(
+    public ui: UiService,
     public data: DataService,
   ){}
 

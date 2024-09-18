@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="" (click)="goLevels()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start">名诗接龙</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <canvas id="canvas"></canvas>
+  <div class="countdown-container" *ngIf="countdownseconds>0">
+    <div class="countdown"
+    [ngStyle]="{'color':AnswerSeconds>9 ? 'green' : (AnswerSeconds>5 ? 'orange':'red') }"
+    >{{ AnswerSeconds }}</div>
+  </div>
+  <!--
+  <div>
+    <ion-button (click)="start()">
+      开始
+    </ion-button>
+  </div>-->
+  <div style="display:flex;justify-content: center;margin-top:20px;">
+    {{btnControlInnerText}}
+  </div>
+  <!--
+  你的回答:{{resultInnerText}}-->
+
+
+
+  <swiper-container swiper-touch style="width:100%;height:100%;" #swiper
+    [loop]="false" navigation="false" scrollbar="false"
+    (slidechange)="onSlideChange($event)"
+    autoplay="false" speed="500">
+    <!--(click)="show(s);data.playbyid(s.id, s.sample, false)"-->
+    <swiper-slide *ngFor="let s of localGameData.list;index as i">
+      <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;">
+        
+        <div style="text-align: center;padding:30px 0;font-size: xx-large;">
+          {{s.sample.split('，')[0]}}
+        </div>
+
+        <div style="text-align: center;padding:30px 0;font-size: xx-large;color:green;" *ngIf="s.display">
+          {{s.sample.split('，')[1]}}
+        </div>
+
+        <div style="text-align: center;padding:30px 0;font-size: xx-large;color:red;" *ngIf="!s.display">
+          {{resultInnerText}}
+        </div>
+
+        <div style="display:flex;align-items: end; text-align: center;padding:30px 0;font-size: xx-large;color:lightgrey;" 
+        *ngIf="!s.display&&resultInnerText.length>0||AnswerSeconds<=10">
+          {{cut(s.sample.split('，')[1],AnswerSeconds)}}
+        </div>
+      </div>
+      
+      <!--
+      <div style="position:absolute;left:0;top:40%;">
+        <ion-fab slot="fixed" vertical="center" horizontal="start">
+          <ion-fab-button style="margin:10px;" color="{{s.display?'primary':'light'}}"
+          (click)="show(s);data.playbyid(s.id, s.sample, false)">
+            <ion-icon name="bulb-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>-->
+      
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

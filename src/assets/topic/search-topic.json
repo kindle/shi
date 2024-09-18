@@ -82,8 +82,6 @@
     "id":199,
     "name":"现在就听",
     "image":"",
-    "desctitle":"",
-    "desc":"",
     "scroll":[
       {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票","desc":"思乡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"},
       {"id":803, "alias":"推荐专辑","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"诗经","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
@@ -107,7 +105,9 @@
         {"id":1004,"src":"https://reddah.blob.core.windows.net/msjjimg/horse-6351668_1280.jpg","display":"cover","text":"初级4","desc":"","color":"rgb(98,166,243)", "game":"next"}
       ]}
       
-    ]
+    ],
+    "desctitle":"寓教于乐",
+    "desc":"用耳朵和嘴巴学习诗词"
   }, 
   
 

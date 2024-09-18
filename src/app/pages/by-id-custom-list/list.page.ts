@@ -57,7 +57,7 @@ export class ListPage {
     
     if(activeIndex==0){
       //photo 
-      console.log('use org logic')
+      //console.log('use org logic')
     }
     else{
       let sysimgpath = this.sysImages[activeIndex-1];

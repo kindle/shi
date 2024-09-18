@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ ui.instant('AI.History')}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" (click)="create()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-list [inset]="true">
+    <ion-item-sliding *ngFor="let history of GetHistoryByTime();index as i">
+      <ion-item [button]="true" detail="false" 
+      (click)="viewChat(history.id)">
+        <div class="unread-indicator-wrapper" slot="start">
+          <div class="unread-indicator"></div>
+        </div>
+        <ion-label>
+          <strong>{{ui.getDisplayDateName(history.update)}}<!--{{history.id}}--></strong>
+          <ion-text class="one-line-text">{{ history.lastq }}</ion-text><br />
+          <ion-note color="medium" class="ion-text-wrap two-line-text">
+            {{ history.lasta }}
+          </ion-note>
+        </ion-label>
+        <div class="metadata-end-wrapper" slot="end">
+          <ion-note color="medium" *ngIf="ui.checkIsToday(history.update)">
+              {{history.update | date:'HH:mm'}}</ion-note>
+          <ion-note color="medium" *ngIf="!ui.checkIsToday(history.update)">
+              {{history.update | date:'MM-dd HH:mm'}}</ion-note>
+          <ion-icon color="medium" name="chevron-forward"></ion-icon>
+        </div>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delHistory(history)">
+          {{ ui.instant('Action.Delete')}}<!--删除-->
+        </ion-item-option>
+      </ion-item-options>
+      
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

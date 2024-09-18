@@ -1,0 +1,118 @@
+{
+    "Tabs":{
+        "Discovery":"Descubrir",
+        "Browse": "Explorar",
+        "ListenNow": "Escuchar Ahora",
+        "Library": "Biblioteca",
+        "Search":"Buscar"
+    },
+
+    "Tutorial":{
+        "Language":"Idioma"
+    },
+
+    "AI":{
+        "Title":"Agente de Poesía IA",
+        "Hello":"¡Hola! ¿En qué puedo ayudarte hoy?",
+        "Submit":"Enviar",
+        "Status0":"Agente IA",
+        "Status1":"Escribiendo...",
+        "SaySth":"Hablemos...",
+        "History":"Historial",
+        "Today":"Hoy",
+        "Yesterday":"Ayer",
+        "DaysAgo":"días antes"
+    },
+
+    "Action":{
+        "Search":"Buscar",
+        "Clear":"Limpiar",
+        "Delete":"Eliminar",
+        "DelFromLib":"Eliminar de la Biblioteca",
+        "Cancel":"Cancelar",
+        "Edit":"Editar",
+        "Done":"Hecho",
+        "Camera":"Cámara",
+        "Albums":"Álbumes",
+        "Play":"Reproducir",
+        "Shuffle":"Aleatorio",
+        "AddPoem":"Agregar Poema",
+        "NewList":"Nueva Lista de Poemas...",
+        "Interpret":"IA",
+        "MoreToExplore":"Más para Explorar",
+        "DeleteFromLib":"Eliminar de la Biblioteca",
+        "AddToLib":"Agregar a la Biblioteca",
+        "AddToAPoemList":"Agregar a una Lista de Poemas...",
+        "ViewPoet":"Poeta"
+    },
+
+    "Message":{
+        "LibAdded":"Añadido a la Biblioteca",
+        "PoemlistAdded":"Añadido a la Lista de Poemas"
+    },
+
+    "Lib":{
+        "Poemlists":"Listas de Poemas",
+        "Poets":"Poetas",
+        "Albums":"Álbumes",
+        "Poems":"Poemas",
+        "Topics":"Temas"
+    },
+    
+    "Title":{
+        "App":"Poesía",
+        "Recent":"Reciente",
+        "Hot":"Popular",
+        "Classical":"Clásico",
+        "AllPoems":"Todos los Poemas",
+        "RecentlyAdded":"Recientemente Añadidos",
+        "Settings":"Configuración",
+        "BrowseCategories":"Explorar Categorías",
+        "Description":"Descripción",
+        "NoPoem":"Está vacío",
+        "FeaturedPoets":"Poetas Destacados",
+        "PoemCount":" Poemas",
+        "NewList":"Nueva Lista de Poemas",
+        "NewListName":"Nombre de la Lista de Poemas",
+        "NewListDesc":"Descripción",
+        "History":"Historial",
+        "PlayingNext":"Reproduciendo a Continuación",
+        "Author":"Autor"
+    },
+
+    "Search":{
+        "Tab4":"Poetas, Poemas y Más",
+        "CustomList":"Buscar en Listas de Poemas",
+        "Poets":"Buscar en Poetas",
+        "Albums":"Buscar en Álbumes",
+        "Poems":"Buscar en Poemas",
+        "Topics":"Buscar en Temas"
+    },
+
+    "Feedback":{
+        "Title":"Tus gustos son mi motivación.",
+        "Sub":"¡Dame un pulgar arriba!",
+        "Go":"Evaluar Ahora"
+    },
+
+    "Sub":{
+        "Title":"Disfruta de Poetas, Poemas y Más",
+        "Content":"Suscripción Mensual",
+        "BuyNow":"Comprar Ahora"
+    },
+
+    "Game":{
+        "Best":"Resultados",
+        "Time":"Hora",
+        "ConfirmTitle":"Por favor, confirme",
+        "ConfirmMessage":"Seguro que quieres irte?",
+        "ConfirmYes":"Sí",
+        "ConfirmCancel":"Cancelar",
+        "ConfirmClose":"Apaga",
+        "Congrats":"Felicitaciones!",
+        "Coins":"Moneda",
+        "CoinsToUnlock":"{0} monedas",
+        "NotEnoughCoins":"Necesitas {0} monedas para desbloquear!",
+        "GiveFeedback":"Si te gusta este juego, por qué no escribes una buena crítica?"
+    }
+}

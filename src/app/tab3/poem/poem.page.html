@@ -3,25 +3,24 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>诗词</ion-title>
+    <ion-title>{{ ui.instant('Lib.Poems') }}<!--诗词--></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">诗词</ion-title>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Lib.Poems') }}<!--诗词--></ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-searchbar placeholder="在诗词中查找" show-cancel-button="focus" 
+    <ion-toolbar><!--在诗词中查找-->
+      <ion-searchbar placeholder="{{ ui.instant('Search.Poems') }}" 
         style="padding-left:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"
         (ionInput)="onSearchChanged()"
-        cancel-button-text="取消"
       ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
@@ -30,12 +29,12 @@
     <ion-button color="light" style="width: 100%;margin-right:10px;"
     (click)="data.playList(listdata.list, '诗词')">
       <ion-icon slot="start" name="play" color="primary"></ion-icon>
-      <ion-text color="primary">播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Play') }}<!--播放--></ion-text>
     </ion-button>
     <ion-button color="light" style="width: 100%;margin-left:10px;"
     (click)="data.playListRandomly(listdata.list, '诗词')">
       <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
-      <ion-text color="primary">随机播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Shuffle') }}<!--随机播放--></ion-text>
     </ion-button>
   </div>
 

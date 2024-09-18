@@ -46,6 +46,26 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/chat/history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'game-audio',
+    loadChildren: () => import('./tab5/loong/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
+  },
+  {
+    path: 'game-kao',
+    loadChildren: () => import('./tab1/dahui/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'game-kao-level',
+    loadChildren: () => import('./tab1/dahui/level/level.module').then( m => m.LevelPageModule)
+  },
+  {
+    path: 'game-dahui',
+    loadChildren: () => import('./tab1/dahui/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
+  },
 ];
 @NgModule({
   imports: [

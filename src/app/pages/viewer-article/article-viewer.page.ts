@@ -32,7 +32,6 @@ export class ArticleViewerPage {
    this.location.back();
   }
 
-
   ionViewWillEnter() {
     this.ui.hideStatusBar();
     this.defaultBgHeight = this.data.currentArticle.min_height;
@@ -42,6 +41,13 @@ export class ArticleViewerPage {
     this.ui.showStatusBar();
   }
 
+  hiddenThumbnails = new Set();
+  onImageError(item: any) {
+    //this.hiddenThumbnails.add(item.author);  
+  }
+  isThumbnailHidden(itemId: any): boolean {
+    return this.hiddenThumbnails.has(itemId);
+  }
 
   defaultBgHeight:string|any;
   onScroll(event:any){

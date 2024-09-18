@@ -113,3 +113,29 @@ ion-card-content.ng-lazyloaded {
         opacity: 1;
     }
 }
+
+ion-action-sheet.language-setting .action-sheet-title {
+    font-size: large;
+}
+
+.selectableText {
+    -webkit-user-select: text;  /* Chrome all / Safari all */
+    -moz-user-select: text;     /* Firefox all */
+    -ms-user-select: text;      /* IE 10+ */
+    user-select: text;          /* Likely future */
+    cursor: pointer;            /* Show pointer cursor to indicate it's clickable */
+}
+
+
+ion-card,
+app-card-wave,
+app-card-moon,
+app-card-path,
+app-card-balloon {
+    //transition: transform 0.2s;
+    transition: transform 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+  
+.shrink-card {
+    transform: scale(0.95);
+}

@@ -35,7 +35,7 @@
         "desc":"诗人也是热血男儿",
         "list":[
             {"title":"别董大","author":"高适","sample":"莫愁前路无知己，天下无人不识君","id":"bbeb1e68-eb13-729a-dfa8-925ead877783"},
-            {"title":"白雪歌送武判官归京","author":"岑参","sample":"将军角弓不得控，都护铁衣冷难着","id":"f18a4118-8e2e-f140-bfa9-e4eca924b76c"},
+            {"title":"白雪歌送武判官归京","author":"岑参","sample":"将军角弓不得控，都护铁衣冷难着","id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"},
             {"title":"出塞","author":"王昌龄","sample":"但使龙城飞将在，不教胡马度阴山","id":"2d0385e7-0c72-423f-a538-f66acc9d4c46"},
             {"title":"凉州词","author":"王之涣","sample":"羌笛何须怨杨柳，春风不度玉门关","id":"bcdf6f13-4cb9-418f-9279-c690522e0a27"},
             {"title":"春望","author":"杜甫","sample":"烽火连三月，家书抵万金","id":"e9e6425c-6c14-4f69-8694-87a8b96a43de"},
@@ -366,8 +366,8 @@
         "id":24,
         "tag":["育儿",""],"name":"",
         "sub":"刘禹锡",
-        "color":"black",
-        "image":"https://reddah.blob.core.windows.net/msjjimg/lego-933036_1280.jpg",
+        "color":"",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/bird-5219205_1280.jpg",
         "more":"唐·842年·彭城刘梦得·诗豪·监察御史",
         "desc":"反emo第一人，主打一个乐观心态",
         "list":[
@@ -540,7 +540,7 @@
         "more":"",
         "desc":"只字不提雪如何形容雪下得很大？",
         "list":[
-            {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"f18a4118-8e2e-f140-bfa9-e4eca924b76c"},
+            {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"},
             {"title":"清平乐","author":"李白","sample":"应是天仙狂醉，乱把白云揉碎","id":"b1815804-563b-47ad-ace0-013a657a2454"},
             {"title":"苑中遇雪应制","author":"宋之问","sample":"不知庭霰今朝落，疑是林花昨夜开","id":"6024f8ec-0d21-485b-9722-54e7e436430a"},
             {"title":"对雪二首","author":"李商隐","sample":"旋扑珠帘过粉墙，轻于柳絮重于霜","id":"25b4f480-f96d-4a3e-b343-8d327d413d3d"},
@@ -799,7 +799,7 @@
         "sub":"风景",
         "image":"https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg",
         "more":"",
-        "desc":"你读过些风景最惊艳的一句诗是什么？",
+        "desc":"那些形容风景惊艳的诗词",
         "list":[
             {"title":"西江月","author":"张孝祥","sample":"满载一船秋色，平铺十里湖光","id":"a9534324-6438-421f-b96e-18da066bbb9c"},
             {"title":"滕王阁序","author":"王勃","sample":"落霞与孤鹜齐飞，秋水共长天一色","id":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
@@ -815,8 +815,8 @@
         "id":52,
         "tag":["旅行",""],"name":"",
         "sub":"人的一生",
-        "color":"black",
-        "image":"https://reddah.blob.core.windows.net/msjjimg/countryside-1846774_1280.jpg",
+        "color":"",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/ants-7885675_1280.jpg",
         "more":"我们生如蚁而美如神。",
         "desc":"这些诗词道尽了人的一生，你现在正处于哪个阶段？",
         "list":[
@@ -879,7 +879,7 @@
             {"title":"忆江上吴处士","author":"贾岛","sample":"秋风生渭水，落叶满长安", "id":"58d0214a-58d8-4066-a12f-50ff7e4aae1f"},
             {"title":"自笑","author":"陆游","sample":"镜湖五月秋萧爽，剩傍滩头把钓竿", "id":"c305420f-adf9-4e98-8b1b-6c72a7ef0beb"},
             {"title":"观鱼潭","author":"李白","sample":"凉烟浮竹尽，秋月照沙明", "id":"938a1650-678a-4b9f-b554-7adba5ad4f21"},
-            {"title":"暮江吟","author":"白居易","sample":"可怜九月初三夜，露似真珠月似弓", "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e"}
+            {"title":"暮江吟","author":"白居易","sample":"可怜九月初三夜，露似珍珠月似弓", "id":"e87ae63c-8907-4e88-aa9e-dde22133a25e"}
         ]
     },
     {
@@ -962,7 +962,7 @@
             {"title":"滕王阁","author":"王勃","sample":"落霞与孤鹜齐飞，秋水共长天一色", "id":"25e9a47a-e0dc-4d0d-a038-6b082661b32d"},
             {"title":"登高","author":"杜甫","sample":"无边落木萧萧下，不尽长江滚滚来", "id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
             {"title":"绝句","author":"杨万里","sample":"最爱东山晴后雪，软红光里涌银山", "id":"96dc32a6-c3d6-419f-bb0e-331c2f967083"},
-            {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"f18a4118-8e2e-f140-bfa9-e4eca924b76c"}
+            {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"}
         ]
     },
     {
@@ -1189,7 +1189,7 @@
         "sub":"诗鬼李贺",
         "image":"https://reddah.blob.core.windows.net/msjjimg/paper-5985445_1280.jpg",
         "more":"中唐·790年·李昌谷·奉礼郎",
-        "desc":"李贺为什么被称为诗鬼？直到我读到这些诗句",
+        "desc":"李贺为什么被称为诗鬼？",
         "list":[
             {"title":"苦昼短","author":"李贺","sample":"唯见月寒日暖，来煎人寿", "id":"934bd927-617f-46d2-bed6-985abfc99921"},
             {"title":"李凭箜篌引","author":"李贺","sample":"昆山玉碎凤凰叫，芙蓉泣露香兰笑", "id":"af691759-fafe-4b65-893b-e37af39cbf6a"},
@@ -1275,9 +1275,9 @@
         "id":81,
         "tag":["边塞",""],"name":"",
         "sub":"孤独",
-        "image":"https://reddah.blob.core.windows.net/msjjimg/fisherman-1559753_1280.jpg",
+        "color":"",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/child-438373_1280.jpg",
         "more":"孤舟蓑笠翁，独钓寒江雪",
-        "color":"black",
         "desc":"那些古人笔下的孤独",
         "list":[
             {"title":"偈颂二百零五首 其三","author":"释正觉","sample":"相识满天下，知心能几人", "id":"d9a0ad7f-6bdc-424a-8a6f-170b981618ac"},
@@ -1298,6 +1298,7 @@
         "image":"https://reddah.blob.core.windows.net/msjjimg/mountaineer-1185474_1280.jpg",
         "more":"豫章故郡，洪都新府。星分翼轸，地接衡庐",
         "desc":"背诵免门票的八篇古诗文，你会背几篇？",
+        "effect":"path",
         "list":[
             {"title":"春江花月夜","author":"张若虚","sample":"扬州瘦西湖", "id":"91019fe2-b58e-4320-a986-6a323847e944"},
             {"title":"桃花源记","author":"陶渊明","sample":"重庆酉阳桃花源", "id":"89d516b9-c43a-4f35-8762-f1e138b2b322"},
@@ -1317,11 +1318,12 @@
         "image":"https://reddah.blob.core.windows.net/msjjimg/birthday-1835443_1280.jpg",
         "more":"Happy Birthday to you!",
         "desc":"那些写生日祝福的美好诗词",
+        "effect":"balloon",
         "list":[
             {"title":"九章·涉江","author":"屈原","sample":"与天地兮同寿，与日月兮同光", "id":"300da6ab-a858-4573-9e0a-0deacd79c4ad"},
-            {"title":"诉衷情","author":"葛胜仲","sample":"朱颜长似，头上花枝，岁岁年年", "id":"a3b669f8-b06f-49d4-bcde-5908f7246ebf"},
+            {"title":"诉衷情","author":"葛胜仲","sample":"朱颜长似，头上花枝，岁岁年年", "id":"d8a53c60-895c-4a23-be43-900030b320b3"},
             {"title":"朝中措","author":"张纲","sample":"把酒祝君长健，相随归老吾乡", "id":"1c09f6db-74c4-42b0-b2ee-64bfcc483741"},
-            {"title":"鹧鸪天","author":"李鼐","sample":"从今把定春风笑，且作人间长寿仙", "id":"15c357c9-dc73-4bf1-90e1-809d66e24299"}
+            {"title":"鹧鸪天","author":"李鼐","sample":"从今把定春风笑，且作人间长寿仙", "id":"014cae40-7563-42c5-ba96-3484a4ed7556"}
         ]
     },
     {
@@ -1503,6 +1505,7 @@
         "image":"https://reddah.blob.core.windows.net/msjjimg/winter-1936638_1280.jpg",
         "more":"",
         "desc":"诗词里的人情冷暖，哪句更能触动你？",
+        "effect":"wave",
         "list":[
             {"title":"题长安壁主人","author":"张谓","sample":"世人结交须黄金，黄金不多交不深","id":"30a060f1-a54f-4c16-b417-c853d5f58a61"},
             {"title":"小松","author":"杜荀鹤","sample":"时人不识凌云木，直待凌云始道高","id":"8ffbf2c6-272d-46bd-9fd8-f797d936beaf"},

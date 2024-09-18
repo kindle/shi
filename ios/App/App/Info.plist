@@ -26,6 +26,8 @@
 	<string>Take a photo</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Take a photo</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use Microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Take a photo</string>
 	<key>UILaunchStoryboardName</key>

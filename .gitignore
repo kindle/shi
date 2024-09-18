@@ -1,3 +1,9 @@
+package-lock.json
+
+*.keystore
+*.pepk
+**/release
+
 *~
 *.sw[mnpcod]
 *.log

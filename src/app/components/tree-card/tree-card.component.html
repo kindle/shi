@@ -1,0 +1,16 @@
+<ion-toolbar style="--background: translucent;">
+  <ion-card-content style="display: flex;direction:row;padding-top:15px;padding-bottom: 0;padding-left:15px;">
+      <ion-buttons>
+          <ion-card-title class="station-text" style="font-weight: bold;">{{section}}</ion-card-title>
+      </ion-buttons>
+  </ion-card-content>
+</ion-toolbar>
+<ion-card style="margin-top:15px;" class="card card-gif" card-shrink (click)="loonglist()">
+<ion-card-content class="container">
+  <ion-card-subtitle class="card-text" style="font-size: 18px;">{{sub}}</ion-card-subtitle>
+  <ion-card-title class="card-text">{{title}}</ion-card-title>
+  <div class="landscape"></div>
+  <div class="filter"></div>
+  <canvas id="canvas"></canvas>
+</ion-card-content>
+</ion-card>

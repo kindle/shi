@@ -1,0 +1,22 @@
+.common-content{
+    --background: var(--ion-color-light);
+}
+
+.common-content-padding{
+    --padding-start:10px;
+    --inner-padding-end:10px;
+}
+
+.common-splitter{
+    --background:var(--ion-color-light);
+    height:10px;
+}
+
+.borderTop {
+    border-top: 1px solid var(--ion-color-border);
+}
+
+.borderBottom {
+    border-bottom: 1px solid var(--ion-color-border);
+}
+  

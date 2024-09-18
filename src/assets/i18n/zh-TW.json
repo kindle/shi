@@ -1,0 +1,118 @@
+{
+    "Tabs":{
+        "Discovery":"開卷有益",
+        "Browse": "瀏覽",
+        "ListenNow": "現在就聽",
+        "Library": "詩詞庫",
+        "Search":"搜索"
+    },
+
+    "Tutorial":{
+        "Language":"語言"
+    },
+
+    "AI":{
+        "Title":"AI詩詞助手",
+        "Hello":"您好！有什麼我可以幫助您的嗎？",
+        "Submit":"發送",
+        "Status0":"AI助手",
+        "Status1":"對方正在輸入...",
+        "SaySth":"說點什麼...",
+        "History":"歷史記錄",
+        "Today":"今天",
+        "Yesterday":"昨天",
+        "DaysAgo":"天前"
+    },
+
+    "Action":{
+        "Search":"搜索",
+        "Clear":"清除",
+        "Delete":"刪除",
+        "DelFromLib":"從詩詞庫中刪除",
+        "Cancel":"取消",
+        "Edit":"編輯",
+        "Done":"完成",
+        "Camera":"拍照",
+        "Albums":"相簿",
+        "Play":"播放",
+        "Shuffle":"隨機播放",
+        "AddPoem":"添加詩詞",
+        "NewList":"新建詩單列表...",
+        "Interpret":"赏析",
+        "MoreToExplore":"搜索更多",
+        "DeleteFromLib":"從詩詞庫中刪除",
+        "AddToLib":"添加到詩詞庫",
+        "AddToAPoemList":"添加到詩單列表...",
+        "ViewPoet":"看作者"
+    },
+
+    "Message":{
+        "LibAdded":"已添加到詩詞庫",
+        "PoemlistAdded":"已添加到詩詞列表"
+    },
+
+    "Lib":{
+        "Poemlists":"詩單列表",
+        "Poets":"詩人",
+        "Albums":"專輯",
+        "Poems":"詩詞",
+        "Topics":"主題"
+    },
+
+    "Title":{
+        "App":"名詩佳句",
+        "Recent":"最近瀏覽",
+        "Hot":"熱門詩詞",
+        "Classical":"經典詩詞",
+        "AllPoems":"所有詩詞",
+        "RecentlyAdded":"最近添加",
+        "Settings":"設定",
+        "BrowseCategories":"類別瀏覽",
+        "Description":"描述",
+        "NoPoem":"此列表中還沒有詩詞",
+        "FeaturedPoets":"此詩單中的詩人",
+        "PoemCount":"首詩詞",
+        "NewList":"新建詩單列表",
+        "NewListName":"詩單列表名稱",
+        "NewListDesc":"描述",
+        "History":"歷史記錄",
+        "PlayingNext":"待播清單",
+        "Author":"作者"
+    },
+
+    "Search":{
+        "Tab4":"詩人、詩詞以及更多內容",
+        "CustomList":"在詩單列表中查找",
+        "Poets":"在詩人中查找",
+        "Albums":"在專輯中查找",
+        "Poems":"在詩詞中查找",
+        "Topics":"在主題中查找"
+    },
+
+    "Feedback":{
+        "Title":"您的點贊，是我前行的動力",
+        "Sub":"去給名詩佳作點個贊吧",
+        "Go":"立即評價"
+    },
+
+    "Sub":{
+        "Title":"暢享名詩佳句，全無廣告干擾",
+        "Content":"方案將以包月的價格自動續期",
+        "BuyNow":"立即訂閱"
+    },
+
+    "Game":{
+        "Best":"最快",
+        "Time":"計時",
+        "ConfirmTitle":"請確認",
+        "ConfirmMessage":"確定要離開？",
+        "ConfirmYes":"確定",
+        "ConfirmCancel":"取消",
+        "ConfirmClose":"關閉",
+        "Congrats":"恭喜過關",
+        "Coins":"金幣",
+        "CoinsToUnlock":"支付{0}金幣解鎖",
+        "NotEnoughCoins":"需要支付{0}金幣解鎖，金幣不够啦!",
+        "GiveFeedback":"喜歡這個遊戲，就去寫個好評吧？"
+    }
+}

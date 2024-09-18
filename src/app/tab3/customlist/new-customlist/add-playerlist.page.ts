@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { ModalController, RangeCustomEvent } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-addplayerlist',
@@ -15,6 +16,7 @@ export class AddPlayerListPage {
 
   constructor(
     public data: DataService,
+    public ui:UiService,
     private modalController: ModalController,
     private activatedRoute: ActivatedRoute
   ) { }
@@ -23,12 +25,14 @@ export class AddPlayerListPage {
   customData:any;
   ionViewWillEnter() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log("willenter:"+this.id)
+    //console.log("willenter:"+this.id)
     this.customData = this.data.collectList.filter(
       (e:any)=>e.group==='customlist'&&e.data['id']==this.id)[0];
     
     if(this.id)
-      console.log(this.customData)
+    {
+      //console.log(this.customData)
+    }
   }
 
   confirm(){

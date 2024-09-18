@@ -27,6 +27,14 @@ const routes: Routes = [
   {
     path: 'gamenext/:id',
     loadChildren: () => import('../pages/game-next/next.module').then( m => m.NextPageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./loong/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'level',
+    loadChildren: () => import('./loong/level/level.module').then( m => m.LevelPageModule)
   }
 ];
 

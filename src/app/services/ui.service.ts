@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, Platform, ToastController } from '@ionic/angular';
+import { AlertController, NavController, Platform, ToastController } from '@ionic/angular';
 import { Animation, StatusBar, Style } from '@capacitor/status-bar';
 //import { Filesystem, Directory } from '@capacitor/filesystem';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
@@ -11,6 +11,7 @@ import { PlayerPage } from '../pages/player/player.page';
 
 import domtoimage from 'dom-to-image';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,8 @@ export class UiService {
 
     private animationCtrl: AnimationController,
     private modalController: ModalController,
-    private location: Location
+    private location: Location,
+    private navController: NavController,
   ) { 
     if(this.platform.is('ios')){
       this.isIos =true;
@@ -125,24 +127,27 @@ export class UiService {
       return await modal.present();
   }
 
+  PoemPlayer:any;
   async player(poem:any) {
-      const modal = await this.modalController.create({
+      //const modal = await this.modalController.create({
+      this.PoemPlayer = await this.modalController.create({
           component: PlayerPage,
           componentProps: {
           },
           cssClass: 'modal-fullscreen',
           keyboardClose: true,
           showBackdrop: true,
-          //breakpoints: [0, 0.5, 1],
+          breakpoints: [0, 0.5, 1],
+          initialBreakpoint: 0.5,
           //initialBreakpoint: poem.audio?1:0.5,
-          breakpoints: [0, 1],
-          initialBreakpoint: 1,
+          //breakpoints: [0, 1],
+          //initialBreakpoint: 1,
           //enterAnimation: this.enterAnimation,
           //leaveAnimation: this.leaveAnimation,
           presentingElement: await this.modalController.getTop(),
       });
 
-      return await modal.present();
+      return await this.PoemPlayer.present();
   }
 
 
@@ -251,7 +256,8 @@ export class UiService {
 
 
   goback(){
-    this.location.back();
+    //this.location.back();
+    this.navController.pop();
   }
 
   localeData:any;
@@ -283,4 +289,54 @@ export class UiService {
   }
 
 
+
+  selectText() 
+  {
+    const text = window.getSelection();
+    if(text){
+      if (text.toString().length > 0) {
+        const selectedText = text.toString();
+        const tempInput = document.createElement("textarea");
+        tempInput.style.position = "absolute";
+        tempInput.style.left = "-1000px";
+        tempInput.style.top = "-1000px";
+        tempInput.value = selectedText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        // Optionally, you can notify the user that text has been copied
+        // Example: alert("Text copied to clipboard: " + selectedText);
+      }
+    }
+  }
+
+
+
+  checkIsToday(date:any){
+    let cur = new Date(date);
+    return cur.getDate()==new Date().getDate();
+  }
+
+  daysBetween(startDate: Date, endDate: Date): number {
+    const oneDay = 24 * 60 * 60 * 1000;
+    return Math.round(Math.abs((startDate.getTime() - endDate.getTime()) / oneDay));
+  }
+  getDisplayDateName(date:any){
+    let cur = new Date(date);
+    let days = this.daysBetween(new Date(), cur);
+    if(days==0)
+      return this.instant("AI.Today"); //"今天"
+    else if(days==1)
+      return this.instant("AI.Yesterday");//"昨天"
+    else
+      return days +" "+ this.instant("AI.DaysAgo");//"天前"
+  }
+
+
+
+
+
+
+  
 }

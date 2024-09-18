@@ -1,0 +1,118 @@
+{
+    "Tabs": {
+        "Discovery": "اكتشاف",
+        "Browse": "تصفح",
+        "ListenNow": "استمع الآن",
+        "Library": "المكتبة",
+        "Search": "بحث"
+    },
+
+    "Tutorial": {
+        "Language": "اللغة"
+    },
+
+    "AI": {
+        "Title": "وكيل الشعر الذكاء الاصطناعي",
+        "Hello": "مرحبًا! كيف يمكنني مساعدتك اليوم؟",
+        "Submit": "إرسال",
+        "Status0": "وكيل الذكاء الاصطناعي",
+        "Status1": "كتابة...",
+        "SaySth": "لنتحدث...",
+        "History": "التاريخ",
+        "Today": "اليوم",
+        "Yesterday": "أمس",
+        "DaysAgo": "أيام مضت"
+    },
+
+    "Action": {
+        "Search": "بحث",
+        "Clear": "مسح",
+        "Delete": "حذف",
+        "DelFromLib": "حذف من المكتبة",
+        "Cancel": "إلغاء",
+        "Edit": "تعديل",
+        "Done": "تم",
+        "Camera": "كاميرا",
+        "Albums": "الألبومات",
+        "Play": "تشغيل",
+        "Shuffle": "تشغيل عشوائي",
+        "AddPoem": "إضافة قصيدة",
+        "NewList": "قائمة القصائد الجديدة...",
+        "Interpret": "ذكاء اصطناعي",
+        "MoreToExplore": "المزيد لاستكشافه",
+        "DeleteFromLib": "حذف من المكتبة",
+        "AddToLib": "إضافة إلى المكتبة",
+        "AddToAPoemList": "إضافة إلى قائمة قصائد...",
+        "ViewPoet": "الشاعر"
+    },
+
+    "Message": {
+        "LibAdded": "تمت الإضافة إلى المكتبة",
+        "PoemlistAdded": "تمت الإضافة إلى قائمة القصائد"
+    },
+
+    "Lib": {
+        "Poemlists": "قوائم القصائد",
+        "Poets": "الشعراء",
+        "Albums": "الألبومات",
+        "Poems": "القصائد",
+        "Topics": "المواضيع"
+    },
+
+    "Title": {
+        "App": "الشعر",
+        "Recent": "الأخيرة",
+        "Hot": "الشهيرة",
+        "Classical": "الكلاسيكية",
+        "AllPoems": "كل القصائد",
+        "RecentlyAdded": "تمت الإضافة مؤخرًا",
+        "Settings": "الإعدادات",
+        "BrowseCategories": "تصفح الفئات",
+        "Description": "الوصف",
+        "NoPoem": "فارغ",
+        "FeaturedPoets": "الشعراء المميزين",
+        "PoemCount": " قصيدة",
+        "NewList": "قائمة قصائد جديدة",
+        "NewListName": "اسم قائمة القصائد",
+        "NewListDesc": "الوصف",
+        "History": "التاريخ",
+        "PlayingNext": "التشغيل التالي",
+        "Author": "المؤلف"
+    },
+
+    "Search": {
+        "Tab4": "الشعراء، القصائد وأكثر",
+        "CustomList": "البحث في قوائم القصائد",
+        "Poets": "البحث في الشعراء",
+        "Albums": "البحث في الألبومات",
+        "Poems": "البحث في القصائد",
+        "Topics": "البحث في المواضيع"
+    },
+
+    "Feedback": {
+        "Title": "إعجابك هو دافعي.",
+        "Sub": "أعطني إعجابًا!",
+        "Go": "قيم الآن"
+    },
+
+    "Sub": {
+        "Title": "استمتع بالشعراء والقصائد وأكثر",
+        "Content": "الاشتراك الشهري",
+        "BuyNow": "اشترِ الآن"
+    },
+
+    "Game":{
+        "Best":"نتائج",
+        "Time":"الوقت",
+        "ConfirmTitle":"الرجاء تأكيد",
+        "ConfirmMessage":"هل أنت متأكد أنك تريد المغادرة؟",
+        "ConfirmYes":"نعم",
+        "ConfirmCancel":"إلغاء الأمر",
+        "ConfirmClose":"إيقاف التشغيل",
+        "Congrats":"تهانينا",
+        "Coins":"الذهب",
+        "CoinsToUnlock":"{0} عملة معدنيةفتح",
+        "NotEnoughCoins":"{0} عملة معدنيةفتح",
+        "GiveFeedback":"مثل هذه اللعبة، فقط اكتب مراجعة جيدة، أليس كذلك؟"
+    }
+}

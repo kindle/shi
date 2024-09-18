@@ -11,7 +11,8 @@
       style="background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" 
+      style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -19,13 +20,13 @@
           <ion-content>
             <ion-list>
               <ion-item lines="full" [button]="true" [detail]="false" (click)="edit()">
-                编辑
+                {{ ui.instant('Action.Edit')}}<!--编辑-->
                 <ion-icon name="pencil-outline" slot="end"></ion-icon>
               </ion-item>
               <ion-item lines="full" [button]="true" [detail]="false"
               *ngIf="data.isliked(listdata,'customlist')" 
               (click)="data.unlikelist(listdata,'customlist')">
-                <ion-text color="danger">从诗词库中删除</ion-text>
+                <ion-text color="danger">{{ ui.instant('Action.DelFromLib')}}<!--从诗词库中删除--></ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>
               <!--
@@ -41,25 +42,24 @@
   </ion-toolbar>
   <ion-toolbar *ngIf="isEdit">
     <ion-buttons slot="start">
-        <ion-button color="primary" (click)="cancel()">取消</ion-button>
+        <ion-button color="primary" (click)="cancel()">{{ ui.instant('Action.Cancel')}}<!--取消--></ion-button>
     </ion-buttons>
     <ion-title>{{listdata.name}}</ion-title>
     <ion-buttons slot="end">
-        <ion-button color="primary" (click)="save()" [strong]="true">完成</ion-button>
+        <ion-button color="primary" (click)="save()" [strong]="true">{{ ui.instant('Action.Done')}}<!--完成--></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="listdata">
   <ion-header collapse="{{ui.isIos?'condense':'fade'}}" style="box-shadow: none;">
-    <ion-toolbar>
-      <ion-searchbar placeholder="搜索" show-cancel-button="focus"
+    <ion-toolbar><!--搜索-->
+      <ion-searchbar placeholder="{{ ui.instant('Action.Search')}}"
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
       ></ion-searchbar>
 
 
@@ -171,12 +171,12 @@
                     <ion-list>
                       <ion-item lines="full" [button]="true" [detail]="false" 
                       (click)="data.addNewToGallery(listdata,'camera')">
-                        拍照
+                        {{ ui.instant('Action.Camera')}}<!--拍照-->
                         <ion-icon name="camera-outline" slot="end"></ion-icon>
                       </ion-item>
                       <ion-item lines="full" [button]="true" [detail]="false" 
                       (click)="data.addNewToGallery(listdata,'photos')">
-                        照片
+                        {{ ui.instant('Action.Albums')}}<!--相册-->
                         <ion-icon name="image-outline" slot="end"></ion-icon>
                       </ion-item>
                     </ion-list>
@@ -214,18 +214,18 @@
     <ion-button color="light" style="width: 100%;margin-right:10px;"
     (click)="data.playList(listdata.list, listdata.name)" [disabled]="noAudio">
       <ion-icon slot="start" name="play" color="primary"></ion-icon>
-      <ion-text color="primary">播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Play')}}<!--播放--></ion-text>
     </ion-button>
     <ion-button color="light" style="width: 100%;margin-left:10px;"
     (click)="data.playListRandomly(listdata.list, listdata.name)" [disabled]="noAudio">
       <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
-      <ion-text color="primary">随机播放</ion-text>
+      <ion-text color="primary">{{ ui.instant('Action.Shuffle')}}<!--随机播放--></ion-text>
     </ion-button>
   </div>
 
   <app-text name="" [text]="listdata.desc" *ngIf="!showFilter&&!isEdit"></app-text>
   <ion-input style="font-size:20px; margin:5px;margin-left:20px;" *ngIf="!showFilter&&isEdit"
-   [(ngModel)]="listdata.desc" placeholder="诗词列表描述"></ion-input>
+   [(ngModel)]="listdata.desc" placeholder="{{ ui.instant('Title.Description')}}"></ion-input><!--诗词列表描述-->
     
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
     <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
@@ -264,7 +264,7 @@
     lines="full" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-icon slot="start" name="add-circle" color="primary"></ion-icon>
       <ion-label>
-        <h2>添加诗词</h2>
+        <h2>{{ ui.instant('Action.AddPoem')}}<!--添加诗词--></h2>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -306,7 +306,7 @@
         </ion-item>
 
         <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="delfromcustomlist(p)">删除</ion-item-option>
+          <ion-item-option color="danger" (click)="delfromcustomlist(p)">{{ ui.instant('Action.Delete')}}<!--删除--></ion-item-option>
         </ion-item-options>
         
       </ion-item-sliding>
@@ -318,21 +318,23 @@
 
   <ion-list  *ngIf="!showFilter"
   style="margin-top:20px;margin-bottom: 20px;">
-    <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">{{listdata.list.length}}首诗词</ion-text>
+    <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">
+      {{listdata.list.length}}{{ ui.instant('Title.PoemCount')}}<!--首诗词-->
+    </ion-text>
   </ion-list>
 
   <ion-card-content *ngIf="listActualLength==0"
   style="text-align: center;font-weight: light;color:black;padding-bottom:0;">
-    此列表中还没有诗词。
+    {{ ui.instant('Title.NoPoem')}}<!--此列表中还没有诗词-->
   </ion-card-content>
 
   <ion-card-content *ngIf="!isEdit&&listActualLength==0" (click)="addsearchtolist(true)"
    style="text-align: center;display: flex;justify-content: center;">
-    <ion-button color="primary" style="width:90%;">添加诗词</ion-button>
+    <ion-button color="primary" style="width:90%;">{{ ui.instant('Action.AddPoem')}}<!--添加诗词--></ion-button>
   </ion-card-content>
     
   <ion-header *ngIf="!showFilter&&poets&&poets.length>0&&listActualLength>0">
-    <app-author name="此诗单中的诗人" [source]="poets"></app-author>
+    <app-author name="{{ ui.instant('Title.FeaturedPoets')}}" [source]="poets"></app-author><!--此诗单中的诗人-->
   </ion-header>
 
   <div class="placeholder-playbox"></div>

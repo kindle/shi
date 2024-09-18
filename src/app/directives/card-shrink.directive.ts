@@ -30,4 +30,14 @@ export class CardShrinkDirective {
   onTouchEnd(e: TouchEvent): void {
     this.isCardPressed = false;
   }
+
+  @HostListener('mousedown')
+  onMouseDown(): void {
+    this.isCardPressed = true;
+  }
+
+  @HostListener('mouseup')
+  onMouseUp(): void {
+    this.isCardPressed = false;
+  }
 }
