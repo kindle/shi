@@ -371,8 +371,10 @@ export class DataService {
       }
     });
 
-    
+    this.refreshArticleData();
+  }
 
+  refreshArticleData(force:boolean=false){
     this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
       //把article.json放入articleData作为开卷有益文章展示
       //article.json包括vote,group等文章
@@ -417,12 +419,23 @@ export class DataService {
         })
       });
 
+      if(force){
+        let nameSeed = "article";
+        let myDate = new Date();
+        let dateSeed = (myDate.getMonth()+1)+"_"+myDate.getDay();
+        let hourSeed = dateSeed+"_"+myDate.getHours();
+        let seed = nameSeed+hourSeed;
+  
+        if(this.funDataMap.has(seed)){
+          this.funDataMap.delete(seed);
+          this.remove(this.LOCALSTORAGE_HOURLY_FUN);
+        }
+      }
       //把articleData文章随机排序，取前5个文章+1group+1vote展示
       this.articleData = this.getArticleData("article");
     });
-
   }
-  
+
   getArticleData(nameSeed:any){
     let myDate = new Date();
     let dateSeed = (myDate.getMonth()+1)+"_"+myDate.getDay();
@@ -640,6 +653,10 @@ export class DataService {
 
   set(key: string, value:any){
     this.storage.set(key, value);
+  }
+
+  remove(key: string){
+    this.storage.remove(key);
   }
 
   getNewId(arr: Array<any>){

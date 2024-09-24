@@ -38,7 +38,7 @@
     "@capacitor/splash-screen": "^5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@google/generative-ai": "^0.3.1",
-    "@ionic/angular": "^7.0.0",
+    "@ionic/angular": "^8.3.1",
     "@ionic/storage-angular": "^4.0.0",
     "cordova-plugin-file": "^8.0.1",
     "cordova-plugin-media": "^7.0.0",

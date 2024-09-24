@@ -30,6 +30,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
   <!--lazy load image sample -- test code--
   <ion-card [defaultImage]="defaultImage" [lazyLoad]="image">
     <ion-card-content class="station-content" style="z-index:1;" *ngIf="image"

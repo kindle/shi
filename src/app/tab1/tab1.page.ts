@@ -58,6 +58,13 @@ export class Tab1Page {
   }
   
 
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      //换一批文章
+      this.data.refreshArticleData(true);
+      event.target.complete();
+    }, 500);
+  }
 
 
   //@ViewChild('modal') modal: IonModal|any;
@@ -67,7 +74,6 @@ export class Tab1Page {
       item.dismiss();
     })
   }
-
   
 
   constructor(

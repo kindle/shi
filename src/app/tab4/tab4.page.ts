@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UiService } from '../services/ui.service';
 import * as CryptoJS from 'crypto-js';
 import RecorderManager from '../../assets/kdxf/index.umd.js'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tab4',
@@ -16,6 +17,7 @@ export class Tab4Page implements OnInit {
     public data: DataService,
     public ui: UiService,
     private router: Router,
+    private sanitizer: DomSanitizer,
   ) { 
     this.showSubscription = this.data.showSubscription;
     this.localJsonData = this.data.JsonData;
@@ -433,7 +435,7 @@ export class Tab4Page implements OnInit {
   }
 
 
-  getHighlight(p:any){
+  getHighlight(p:any): SafeHtml{
     let result = "";
     p.paragraphs.forEach((s:any) => {
       if(s.indexOf(this.data.searchText)>-1)
@@ -442,10 +444,17 @@ export class Tab4Page implements OnInit {
       }
     });
     if(result===""){
-      result = p.paragraphs[0];
+      result = p.paragraphs[0]?.substring(0,50);
+    }
+    else{
+      result = result?.substring(0,50);
     }
     p.sample = this.data.searchText;
-    return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
+    
+    //return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
+    return this.sanitizer.bypassSecurityTrustHtml(
+      result.replace(this.data.searchText,"<b class='highlight' style='background-color:yellow !important'>"+this.data.searchText+"</b>")
+    );
 
   }
 

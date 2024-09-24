@@ -1,6 +1,6 @@
 <div>
   <ion-list style="position: fixed; top:0; width: -webkit-fill-available;z-index:200;
-  margin:0px;padding: 10px 25px;background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
+  margin:0px;padding: 10px 5px;background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
     -webkit-backdrop-filter:saturate(210%) blur(20px);
     backdrop-filter:saturate(210%) blur(20px);" *ngIf="!showText">
     <ion-list-header *ngIf="showHistory">
@@ -12,17 +12,17 @@
         <h2>{{ ui.instant('Title.PlayingNext')}}<!--待播清单--></h2>
         <p style="margin-top:5px;">{{data.toPlayListName}}</p>
       </ion-label>
-      <ion-buttons>
-        <ion-button (click)="shuffle()" 
+      <ion-buttons style="margin-right:10px;">
+        <ion-button (click)="shuffle()" size="large"
         [ngStyle]="{'background-color':data.isShuffle ? 'rgb(247,247,247)' : '' }">
           <ion-icon name="shuffle-outline"></ion-icon>
         </ion-button>
-        <ion-button (click)="repeat()" 
+        <ion-button (click)="repeat()" size="large"
         [ngStyle]="{'background-color':data.isRepeat ? 'rgb(247,247,247)' : '' }">
         <ion-text style="font-size: 8px;position: fixed;top:7px;right:6px;" color="primary">1</ion-text>
           <ion-icon name="repeat-outline"></ion-icon>
         </ion-button>
-        <ion-button (click)="infinite()" 
+        <ion-button (click)="infinite()" size="large"
         [ngStyle]="{'background-color':data.isInfinite ? 'rgb(247,247,247)' : '' }">
           <ion-icon name="infinite-outline"></ion-icon>
         </ion-button>
@@ -33,7 +33,7 @@
   <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText">
     <swiper-container>
       <swiper-slide *ngIf="showHistory">
-        <ion-list style="margin:35px 25px;">
+        <ion-list style="margin:35px 5px;">
           <ion-list-header>
             <ion-label><h2></h2></ion-label>
             <ion-button></ion-button>
@@ -53,7 +53,8 @@
             </ion-thumbnail>
             
             <ion-label>
-              <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+              <h2 *ngIf="p.paragraphs">{{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}</h2>
+              <h2 *ngIf="!p.paragraphs">{{p.sample}}</h2>
               <p style="margin-top:5px;display: flex;align-items: end;">
                 {{p.author}}《{{p.title}}》
                 <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
@@ -65,14 +66,14 @@
 
 
       <swiper-slide *ngIf="showPlaylist">
-        <ion-list style="margin:35px 25px;">
+        <ion-list style="margin:35px 5px;">
           <ion-list-header>
             <ion-label><h2></h2></ion-label>
             <ion-button></ion-button>
           </ion-list-header>
           <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
             <ion-item lines="none" (click)="play(p)" *ngFor="let p of data.toPlayList"
-            style="--padding-start:15px;--inner-padding-end:3px;">
+            style="--padding-start:15px;--inner-padding-end:15px;">
               <ion-thumbnail style="width:40px;height:40px;" slot="start"
               style="display: flex;justify-content: center;align-items: center;">
                 <img id="authorimg" style="border-radius: 10px;" 
@@ -107,11 +108,13 @@
   <!--小于10行*********start*******************-->
   <!--img   ...-->
   <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
-  <ion-list *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
+  <ion-list 
+  *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <ion-item lines="none" *ngIf="bigimg"
       style="margin:0 5px;margin-top:15px;--padding-start:0;">
       <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
-        <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
+        <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
+          (click)="text()"
           defaultImage="assets/img/default.jpg" 
           lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
           onerror="javascript:this.src='assets/img/default.jpg'"
@@ -119,10 +122,10 @@
       </div>
     </ion-item>
     <ion-item lines="none" 
-    style="margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+    style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
       <div class="play-icon-box" *ngIf="!bigimg" 
         (click)="text()">
-        <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;" 
+        <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
           defaultImage="assets/img/default.jpg" 
           lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
           onerror="javascript:this.src='assets/img/default.jpg'"
@@ -189,11 +192,13 @@
   <ion-content class="no-padding" [fullscreen]="true" style="z-index: 200;"
     *ngIf="showText&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <ion-list *ngIf="showText">
+      <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
       <ion-item lines="none" *ngIf="bigimg"
-      (click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"
+        
         style="margin:0 5px;margin-top:15px;--padding-start:0;">
         <div style="width: 100%;margin-left:15px;padding:45px;display: flex;justify-content: center;">
-          <img style="min-width: 40px;border-radius: 10px;aspect-ratio: 1;" 
+          <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
+            (click)="text()"  
             defaultImage="assets/img/default.jpg" 
             lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
             onerror="javascript:this.src='assets/img/default.jpg'"
@@ -201,10 +206,10 @@
         </div>
       </ion-item>
       <ion-item lines="none" 
-      style="margin:0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+      style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
         <div class="play-icon-box" *ngIf="!bigimg" 
           (click)="text()">
-          <img style="min-width: 40px;border-radius: 5px;aspect-ratio: 1;background-size: contain;"
+          <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
             defaultImage="assets/img/default.jpg" 
             lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
             onerror="javascript:this.src='assets/img/default.jpg'" />
@@ -213,7 +218,7 @@
           <h2>{{data.currentPoem.title}}</h2>
           <p>{{data.currentPoem.author}}</p>
         </ion-label>
-        <ion-button slot="end" color="transparent" 
+        <ion-button slot="end" color="transparent" size="large"
         *ngIf="!data.isliked(data.currentPoem,'poem')"
         (click)="data.likelist(data.currentPoem,'poem')">
           <ion-icon name="add-outline" color="dark"></ion-icon>
