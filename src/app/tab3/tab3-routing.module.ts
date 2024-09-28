@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'tag',
     loadChildren: () => import('./tag/tag.module').then( m => m.TagPageModule)
   },
+  {
+    path: 'article',
+    loadChildren: () => import('./article/article.module').then( m => m.ArticlePageModule)
+  },
 
 
   {

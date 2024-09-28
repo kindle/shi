@@ -41,6 +41,7 @@ export class AppComponent {
     }
 
     this.data.loadAIChatHistory();
+    this.data.loadMyLikeArticles();
 
     //test
     //this.data.gototesturl();

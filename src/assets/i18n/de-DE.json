@@ -56,7 +56,8 @@
         "Poets":"Dichter",
         "Albums":"Alben",
         "Poems":"Gedichte",
-        "Topics":"Themen"
+        "Topics":"Themen",
+        "Articles":"Articles"
     },
     
     "Title":{
@@ -86,7 +87,8 @@
         "Poets":"In Dichtern suchen",
         "Albums":"In Alben suchen",
         "Poems":"In Gedichten suchen",
-        "Topics":"In Themen suchen"
+        "Topics":"In Themen suchen",
+        "Articles":"In Artikeln suchen"
     },
 
     "Feedback":{

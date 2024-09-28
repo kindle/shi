@@ -213,4 +213,11 @@ export class Tab3Page {
       }
     });
   }
+
+  goToArticle(){
+    this.router.navigate(['/tabs/tab3/article'], {
+      queryParams: {
+      }
+    });
+  }
 }

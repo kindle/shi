@@ -1428,10 +1428,13 @@ export class DataService {
       //if(poem){
         poem.sample = sample;
         //if 有mp3, do not show modal, play directly
-        this.playobj(poem, poem.audio?false:true);
+        //this.playobj(poem, poem.audio?false:true);
+        //always pop
+        this.playobj(poem, true);
       //}
     }
   }
+
 
   currentPoem: any;
   playobj(poem:any, pop:any=true){
@@ -2100,6 +2103,51 @@ export class DataService {
   }
   /* Current Locale start */
 
+  /*start save articles */
+  LOCALSTORAGE_Like_Articles = "my_like_articles";
+  myLikeArticles:any=[];
+  async loadMyLikeArticles(){
+    this.get(this.LOCALSTORAGE_Like_Articles).then((value)=>{
+      if(value==null)
+        this.myLikeArticles = [];
+      else{
+        this.myLikeArticles = JSON.parse(value);
+      }
+    });
+  }
+  getMyLikeArticleById(articleId:any){
+    return this.myLikeArticles.filter((h:any)=>h.id==articleId)[0];
+  }
+  likeArticle(){
+    this.saveMyLikeArticle(this.currentArticle);
+  }
+  unlikeArticle(){
+    this.delMyLikeArticle(this.currentArticle);
+  }
+  isLikedArticle(){
+    return this.myLikeArticles.filter((h:any)=>h.id==this.currentArticle.id).length>0;
+  }
+  saveMyLikeArticle(myLikeArticle:any){
+    let result = this.myLikeArticles.filter((h:any)=>h.id==myLikeArticle.id)[0];
+    if(result){
+      //console.log('exists..')
+    }else{
+      this.myLikeArticles.push(myLikeArticle);
+      //console.log('add new one...')
+    }
+    this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
+    this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+  }
+  delMyLikeArticle(data:any){
+    for(let i=0;i<this.myLikeArticles.length;i++){
+      if(this.myLikeArticles[i].id===data.id){
+        this.myLikeArticles.splice(i,1);
+        break;
+      }
+    }
+    this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
+  }
+  /*end save articles */
 
   /*save chat history start*/
   LOCALSTORAGE_AI_CHAT_HIST = "ai_chat_history";

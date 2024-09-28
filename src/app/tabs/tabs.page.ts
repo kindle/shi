@@ -109,6 +109,7 @@ export class TabsPage {
       case 2: name="author";break;
       case 3: name="poem";break;
       case 4: name="tag";break;
+      case 5: name="article";break;
     }
     this.router.navigate(['/tabs/tab3/'+name], {
       queryParams: {

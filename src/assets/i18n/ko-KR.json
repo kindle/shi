@@ -56,7 +56,8 @@
         "Poets": "시인",
         "Albums": "앨범",
         "Poems": "시",
-        "Topics": "주제"
+        "Topics": "주제",
+        "Articles":"견습 계약"
     },
 
     "Title": {
@@ -86,7 +87,8 @@
         "Poets": "시인에서 찾기",
         "Albums": "앨범에서 찾기",
         "Poems": "시에서 찾기",
-        "Topics": "주제에서 찾기"
+        "Topics": "주제에서 찾기",
+        "Articles":"기사에서 찾기"
     },
 
     "Feedback": {

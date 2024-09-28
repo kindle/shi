@@ -17,6 +17,7 @@ export class ArticleViewerPage {
     private cdRef: ChangeDetectorRef
   ) {
     this.localFunData = this.data.getFunData('article_'+data.currentArticle.big_title);
+    console.log(data.currentArticle)
   }
 
   gridopt={

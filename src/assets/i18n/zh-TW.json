@@ -56,7 +56,8 @@
         "Poets":"詩人",
         "Albums":"專輯",
         "Poems":"詩詞",
-        "Topics":"主題"
+        "Topics":"主題",
+        "Articles":"文章"
     },
 
     "Title":{
@@ -86,7 +87,8 @@
         "Poets":"在詩人中查找",
         "Albums":"在專輯中查找",
         "Poems":"在詩詞中查找",
-        "Topics":"在主題中查找"
+        "Topics":"在主題中查找",
+        "Articles":"在主題中查找"
     },
 
     "Feedback":{

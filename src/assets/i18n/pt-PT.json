@@ -56,7 +56,8 @@
         "Poets": "Poetas",
         "Albums": "Álbuns",
         "Poems": "Poemas",
-        "Topics": "Tópicos"
+        "Topics": "Tópicos",
+        "Articles":"Άρθρα"
     },
 
     "Title": {
@@ -86,7 +87,8 @@
         "Poets": "Pesquisar Poetas",
         "Albums": "Pesquisar Álbuns",
         "Poems": "Pesquisar Poemas",
-        "Topics": "Pesquisar Tópicos"
+        "Topics": "Pesquisar Tópicos",
+        "Articles":"Procurar em Artigos"
     },
 
     "Feedback": {

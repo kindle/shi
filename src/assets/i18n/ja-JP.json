@@ -56,7 +56,8 @@
         "Poets": "詩人",
         "Albums": "アルバム",
         "Poems": "詩",
-        "Topics": "トピック"
+        "Topics": "トピック",
+        "Articles":"文章"
     },
 
     "Title": {
@@ -86,7 +87,8 @@
         "Poets": "詩人で検索",
         "Albums": "アルバムで検索",
         "Poems": "詩で検索",
-        "Topics": "トピックで検索"
+        "Topics": "トピックで検索",
+        "Articles":"記事内の検索"
     },
 
     "Feedback": {

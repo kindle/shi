@@ -180,4 +180,14 @@
       -->
     </div>
 
+  
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button *ngIf="data.isLikedArticle()" (click)="data.unlikeArticle()">
+        <ion-icon name="bookmark"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="!data.isLikedArticle()" (click)="data.likeArticle()">
+        <ion-icon name="bookmark-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
 </ion-content>

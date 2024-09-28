@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ ui.instant('Lib.Articles') }}<!--文章--></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="tab-title" mode="md">{{ ui.instant('Lib.Articles') }}<!--文章--></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-header collapse="condense">
+    <ion-toolbar><!--在文章中查找-->
+      <ion-searchbar placeholder="{{ ui.instant('Search.Articles') }}"
+        style="padding-left:15px;"
+        [(ngModel)]="searchText"
+        (ionFocus)="onSearchFocus()"
+        (ionCancel)="onSearchCancel()"
+        (ionInput)="onSearchChanged()"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list>
+    <ion-item *ngFor="let like of displayResult" 
+    style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 10px;" 
+          defaultImage="" 
+          lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{like.bg_image}}"
+          (click)="goToArticle(like)"/>
+      </ion-thumbnail>
+      <ion-label (click)="goToArticle(like)">
+        <h2>{{like.big_title}}</h2>
+        <p style="margin-top:5px;">{{like.small_title}}</p>
+      </ion-label>
+    </ion-item>
+    <!--
+    <ion-item *ngFor="let p of data.hotData[0]" style="--padding-start:20px;--inner-padding-end:0px;">
+      
+      <ion-label>
+        <h2>{{p.title}} - {{p.author}}</h2>
+        <p>{{p.sample}}</p>
+      </ion-label>
+    </ion-item>
+    -->
+  </ion-list>
+
+</ion-content>

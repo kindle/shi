@@ -1,11 +1,13 @@
 
 
-// .no-background{
-//     //--background: initial !important;
-//     background-size: auto 380px !important;
-//     --offset-top:0 !important;
-//     --offset-bottom:0 !important;
-// }
+ion-fab-button {
+    --background: white;
+    --background-activated: #87d361;
+    --background-hover: #a3e681;
+    --border-radius: 15px;
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --color: black;
+}
 
 .custom-card{
     width:-webkit-fill-available;margin-right: 15px;padding-right:15px;

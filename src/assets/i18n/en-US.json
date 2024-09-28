@@ -56,7 +56,8 @@
         "Poets":"Poets",
         "Albums":"Albums",
         "Poems":"Poems",
-        "Topics":"Topics"
+        "Topics":"Topics",
+        "Articles":"Articles"
     },
     
     "Title":{
@@ -86,7 +87,8 @@
         "Poets":"Find in Poets",
         "Albums":"Find in Albums",
         "Poems":"Find in Poems",
-        "Topics":"Find in Topics"
+        "Topics":"Find in Topics",
+        "Articles":"Find in Articles"
     },
 
     "Feedback":{

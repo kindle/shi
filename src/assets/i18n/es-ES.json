@@ -56,7 +56,8 @@
         "Poets":"Poetas",
         "Albums":"Álbumes",
         "Poems":"Poemas",
-        "Topics":"Temas"
+        "Topics":"Temas",
+        "Articles":"Artículo"
     },
     
     "Title":{
@@ -86,7 +87,8 @@
         "Poets":"Buscar en Poetas",
         "Albums":"Buscar en Álbumes",
         "Poems":"Buscar en Poemas",
-        "Topics":"Buscar en Temas"
+        "Topics":"Buscar en Temas",
+        "Articles":"Buscar en el artículo"
     },
 
     "Feedback":{
