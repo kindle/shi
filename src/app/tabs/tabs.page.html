@@ -101,12 +101,12 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             <ion-label class="menu-text">{{ ui.instant('Lib.Topics') }}<!--主题--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(5)" class="menu-item" color="primary" *ngIf="isSubSelected(5)">
-            <ion-icon name="bookmark-outline" class="menu-icon"></ion-icon>
+            <ion-icon name="star" class="menu-icon"></ion-icon>
             <ion-label class="menu-text">{{ ui.instant('Lib.Articles') }}<!--文章--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(5)" class="menu-item" *ngIf="!isSubSelected(5)">
-            <ion-icon name="layers-outline" class="menu-icon" color="primary"></ion-icon>
-            <ion-label class="bookmark-text">{{ ui.instant('Lib.Articles') }}<!--文章--></ion-label>
+            <ion-icon name="star" class="menu-icon" color="primary"></ion-icon>
+            <ion-label class="menu-text">{{ ui.instant('Lib.Articles') }}<!--文章--></ion-label>
           </ion-item>
         </div>
       </ion-accordion>
@@ -180,30 +180,33 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-toolbar>
 
     <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="!ui.isipad" style="padding-top:3px;">
-      <ion-tab-button tab="tab1" style="--background: transparent;">
+      <ion-tab-button tab="tab1" style="--background: transparent;"
+      (click)="onDblClick()">
         <ion-icon name="book"></ion-icon>
         {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
       </ion-tab-button>
-      <ion-tab-button tab="tab2" [class.active]="true">
+      <ion-tab-button tab="tab2" [class.active]="true"
+      (click)="onDblClick()">
         <ion-icon name="grid"></ion-icon>
         {{ ui.instant('Tabs.Browse') }}<!--浏览-->
       </ion-tab-button>
-      <ion-tab-button tab="tab5">
+      <ion-tab-button tab="tab5"
+      (click)="onDblClick()">
         <ion-icon name="play-circle"></ion-icon>
         {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
       </ion-tab-button>
-      <ion-tab-button tab="tab3">
+      <ion-tab-button tab="tab3"
+      (click)="onDblClick()">
         <ion-icon name="albums"></ion-icon>
         {{ ui.instant('Tabs.Library') }}<!--诗词库-->
       </ion-tab-button>
-      <ion-tab-button tab="tab4" (click)="tab4Click()">
+      <ion-tab-button tab="tab4" 
+      (click)="tab4Click();onDblClick()">
         <ion-icon name="search-outline"></ion-icon>
         {{ ui.instant('Tabs.Search') }}<!--搜索-->
       </ion-tab-button>
     </ion-tab-bar>
   </div>
-  
-  
-    
-    
 </ion-tabs>
+
+

@@ -21,6 +21,7 @@ import { EventService } from './event.service';
 
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { TextZoomerPage } from '../pages/textzoomer/textzoomer.page';
 
 
 export interface UserPhoto {
@@ -1311,28 +1312,11 @@ export class DataService {
 
   /*template end*/
 
-
-
-
-
-
-
-
-  
-  colorList:any = [
-    "rgb(240,209,246)",
-    "rgb(255,230,151)",
-    "rgb(255,222,194)",
-    "rgb(205,238,240)",
-    "rgb(113,203,212)",
-    "rgb(240,209,246)"]
-
   getbgcolor(){
+    //make sure it's not blink
     return "rgb(98, 166, 243)";
     //return this.getRandomArray(this.colorList,1);
   }
-
-
 
   getRandomArray(arr:any,n:any){
     if(!arr || arr.length==0)
@@ -1342,7 +1326,11 @@ export class DataService {
     let resultArr = [];
     for(let i=0;i<n;i++){
       let randomIndex = this.getRandom(0, localArr.length-1);
-      resultArr.push(localArr[randomIndex]);
+      let item = localArr[randomIndex];
+      if(item.color==null||item.color.length==0){
+        item.color=this.getRandomColor();
+      }
+      resultArr.push(item);
       localArr.splice(randomIndex,1);
     }
     return resultArr;
@@ -2132,7 +2120,7 @@ export class DataService {
     if(result){
       //console.log('exists..')
     }else{
-      this.myLikeArticles.push(myLikeArticle);
+      this.myLikeArticles.unshift(myLikeArticle);
       //console.log('add new one...')
     }
     this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
@@ -2148,6 +2136,47 @@ export class DataService {
     this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
   }
   /*end save articles */
+
+
+  /*start text font size zoom level */
+  zoomLevel:number = 1;
+  zoom(px:any){
+    return px*this.zoomLevel + 'px'
+  }
+  LOCALSTORAGE_Text_FontSize_Zoom_Level = "app_text_fontsize_zoom_level";
+  setFontSizeZoomLevel(level:any=1){
+    this.zoomLevel = level;
+    this.set(this.LOCALSTORAGE_Text_FontSize_Zoom_Level, JSON.stringify(this.zoomLevel));
+  }
+  async loadFontSizeZoomLevel(){
+    const zoomLevel = await this.storage.get(this.LOCALSTORAGE_Text_FontSize_Zoom_Level);
+    if (zoomLevel) {
+      this.zoomLevel = zoomLevel;
+    } else {
+      this.zoomLevel = 1;//default
+    }
+  }
+  textZoomer:any;
+  async textZoom() {
+      this.textZoomer = await this.modalController.create({
+          component: TextZoomerPage,
+          componentProps: {},
+          cssClass: 'modal-text-zoomer',
+          keyboardClose: true,
+          showBackdrop: true,
+          breakpoints: [0, 0.2, 1],
+          initialBreakpoint: 0.2,
+          //initialBreakpoint: poem.audio?1:0.5,
+          //breakpoints: [0, 1],
+          //initialBreakpoint: 1,
+          //enterAnimation: this.enterAnimation,
+          //leaveAnimation: this.leaveAnimation,
+          //presentingElement: await this.modalController.getTop(),
+      });
+
+      return await this.textZoomer.present();
+  }
+  /*end text font size zoom level */
 
   /*save chat history start*/
   LOCALSTORAGE_AI_CHAT_HIST = "ai_chat_history";

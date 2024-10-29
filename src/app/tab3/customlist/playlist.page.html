@@ -40,13 +40,13 @@
       <ion-item *ngFor="let like of displayResult" (click)="data.goToPlayList(like.data['id'])"
       style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
         <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 
-          style="background-color: {{like.data['color']}};">
+          style="background-color: {{like.data['color']}};border-radius: 10px;">
           <img style="border-radius: 10px;" 
             [lazyLoad]="like.data['customimage']"/>
         </ion-thumbnail>  
         <ion-thumbnail slot="start" 
         *ngIf="like.data&&!like.data.customimage&&like.data.image&&like.data.image.length<4" 
-          style="background-color: {{like.data['color']}};">
+          style="background-color: {{like.data['color']}};border-radius: 10px;">
           <img style="border-radius: 10px;" 
             [lazyLoad]="like.data['image'][0]" 
             *ngIf="like.data['image'].length>0"/>

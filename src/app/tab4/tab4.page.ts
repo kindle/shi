@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { UiService } from '../services/ui.service';
 import * as CryptoJS from 'crypto-js';
 import RecorderManager from '../../assets/kdxf/index.umd.js'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ScrollService } from '../services/scroll.service';
+import { Subscription } from 'rxjs';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -18,6 +21,7 @@ export class Tab4Page implements OnInit {
     public ui: UiService,
     private router: Router,
     private sanitizer: DomSanitizer,
+    private scrollService: ScrollService,
   ) { 
     this.showSubscription = this.data.showSubscription;
     this.localJsonData = this.data.JsonData;
@@ -45,8 +49,21 @@ export class Tab4Page implements OnInit {
     }*/
   }
 
+  @ViewChild(IonContent, { static: false }) content: IonContent|any;
+  private scrollSubscription: Subscription|any;
+  ngOnDestroy() {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+    }
+  }
 
   async ngOnInit() {
+    this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
+      if (this.content) {
+        this.content.scrollToTop(300);
+      }
+    });
+
     /****test code*****/
     var arrayObj=Array.from(this.data.tagsStat);
     //按照value值降序排序

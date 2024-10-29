@@ -74,6 +74,10 @@ export class ButtonEndComponent {
       }
     });
   }
+
+  size(){
+    this.data.textZoom();
+  }
     
   share(){
     this.data.share1('camera1')

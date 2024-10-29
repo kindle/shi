@@ -143,6 +143,7 @@ export class PlayerPage implements OnInit {
     }
   }
 
+
   showHistory = false;
   history(){
     //this.showHistory = !this.showHistory;

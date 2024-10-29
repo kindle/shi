@@ -30,7 +30,7 @@
     <ion-item *ngFor="let like of displayResult" 
     style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
       <ion-thumbnail slot="start">
-        <img style="border-radius: 10px;" 
+        <img style="border-radius: 10px;background-color: #f4f5f8;" 
           defaultImage="" 
           lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{like.bg_image}}"
           (click)="goToArticle(like)"/>
@@ -51,4 +51,5 @@
     -->
   </ion-list>
 
+  <div class="placeholder-playbox"></div>
 </ion-content>

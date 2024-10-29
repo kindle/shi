@@ -262,6 +262,19 @@
   }
 }
 
+.modal-text-zoomer {
+  --background:rgba(255,255,255,0.8);
+
+  .modal-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+  }
+}
+
 
 .custom-bottom-toast {
   top: -150px;

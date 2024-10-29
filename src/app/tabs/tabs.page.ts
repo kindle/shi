@@ -6,6 +6,7 @@ import { UiService } from '../services/ui.service';
 
 import { Solar } from 'lunar-typescript';
 import { Tab4Page } from '../tab4/tab4.page';
+import { ScrollService } from '../services/scroll.service';
 
 @Component({
   selector: 'app-tabs',
@@ -19,6 +20,25 @@ export class TabsPage {
   onTabChange(event: any){
     this.data.setLastVisitTab(event.tab);
   }
+  
+  private clickCount = 0;
+  private clickTimer: any;
+  onDblClick(){
+    this.clickCount++;
+    
+    if (this.clickCount === 1) {
+      this.clickTimer = setTimeout(() => {
+        this.clickCount = 0;
+      }, 300);
+    } else if (this.clickCount === 2) {
+      clearTimeout(this.clickTimer); 
+      this.scrollToTop(); 
+      this.clickCount = 0; 
+    }
+  }
+  scrollToTop() {
+    this.scrollService.triggerScrollToTop();
+  }
 
   tab4Click(){
     //console.log('change tab ...')
@@ -29,6 +49,7 @@ export class TabsPage {
     private router: Router,
     public data: DataService,
     public ui: UiService,
+    private scrollService: ScrollService,
   ) {
 
     this.data.initTodayText();

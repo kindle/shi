@@ -132,8 +132,8 @@
         />
       </div>
       <ion-label>
-        <h2>{{data.currentPoem.title}}</h2>
-        <p>{{data.currentPoem.author}}</p>
+        <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{data.currentPoem.title}}</h2>
+        <p [style.fontSize]="data.zoomLevel + 'rem'">{{data.currentPoem.author}}</p>
       </ion-label>
       <ion-button slot="end" color="transparent" 
       *ngIf="!data.isliked(data.currentPoem,'poem')"
@@ -150,7 +150,8 @@
           
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
       <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
-      class="selectableText" (click)="ui.selectText()">
+      class="selectableText" (click)="ui.selectText()"
+      [style.fontSize]="data.zoomLevel + 'rem'">
         {{data.currentPoem.title}}
       </div>
     </ion-item>
@@ -159,7 +160,8 @@
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngClass]="{'select-line':authorSelected===true}"
       (click)="selectAuthor()"
-      class="selectableText" (click)="ui.selectText()">
+      class="selectableText" (click)="ui.selectText()"
+      [style.fontSize]="data.zoomLevel + 'rem'">
         <ion-icon name="search-outline" *ngIf="authorSelected===true"
         (click)="data.search(data.currentPoem.author)"
         style="position: absolute;left:5px;margin:2px;"
@@ -178,8 +180,10 @@
         style="position: absolute;left:5px;margin:2px;"
         ></ion-icon>
         <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+        [style.fontSize]="data.zoomLevel + 'rem'"
         class="selectableText" (click)="ui.selectText()"></div>
         <div *ngIf="!data.currentPoem.sample"
+        [style.fontSize]="data.zoomLevel + 'rem'"
         class="selectableText" (click)="ui.selectText()">{{text}}</div>
       </div>
     </ion-item>
@@ -215,8 +219,8 @@
             onerror="javascript:this.src='assets/img/default.jpg'" />
         </div>
         <ion-label>
-          <h2>{{data.currentPoem.title}}</h2>
-          <p>{{data.currentPoem.author}}</p>
+          <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{data.currentPoem.title}}</h2>
+          <p [style.fontSize]="data.zoomLevel + 'rem'">{{data.currentPoem.author}}</p>
         </ion-label>
         <ion-button slot="end" color="transparent" size="large"
         *ngIf="!data.isliked(data.currentPoem,'poem')"
@@ -230,13 +234,15 @@
     <ion-list style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
             
       <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
-        <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;">
+        <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
+        [style.fontSize]="data.zoomLevel + 'rem'">
           {{data.currentPoem.title}}
         </div>
       </ion-item>
 
       <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
-        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;">
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+        [style.fontSize]="data.zoomLevel + 'rem'">
           {{data.currentPoem.author}}
         </div>
       </ion-item>
@@ -250,8 +256,10 @@
           (click)="data.search(text)"
           style="position: absolute;left:5px;margin:2px;"
           ></ion-icon>
-          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"></div>
-          <div *ngIf="!data.currentPoem.sample">{{text}}</div>
+          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+          [style.fontSize]="data.zoomLevel + 'rem'"></div>
+          <div *ngIf="!data.currentPoem.sample"
+          [style.fontSize]="data.zoomLevel + 'rem'">{{text}}</div>
         </div>
       </ion-item>
     </ion-list>
@@ -354,6 +362,5 @@
     <div style="height:calc(env(safe-area-inset-bottom));"></div>
   </ion-list>
 </div>
-
 
 

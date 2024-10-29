@@ -1,9 +1,11 @@
 import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { AnimationController, GestureController, IonCard, IonModal, NavController } from '@ionic/angular';
+import { AnimationController, GestureController, IonCard, IonContent, IonModal, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { enterAnimation } from '../animations/fade-animation';
 import { UiService } from '../services/ui.service';
+import { ScrollService } from '../services/scroll.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -84,6 +86,7 @@ export class Tab1Page {
     private gestureCtrl: GestureController,
     private navCtrl: NavController,
     public data:DataService,
+    private scrollService: ScrollService,
   ) {
 
      
@@ -125,7 +128,19 @@ export class Tab1Page {
     });
   }
 
+  @ViewChild(IonContent, { static: false }) content: IonContent|any;
+  private scrollSubscription: Subscription|any;
   ngOnInit(){
+    this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
+      if (this.content) {
+        this.content.scrollToTop(300);
+      }
+    });
+  }
+  ngOnDestroy() {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+    }
   }
 
 

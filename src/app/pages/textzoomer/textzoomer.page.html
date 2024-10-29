@@ -1,0 +1,16 @@
+<div style="position: fixed; width: -webkit-fill-available;z-index:2000;
+  margin:20px;padding:5px 20px;
+  border-radius: 20px;
+  background-color: transparent;
+  --background:transparent;
+  opacity: 0.9;">
+  <ion-range 
+    min="0.8" max="1.6" step="0.02" 
+    [pin]="true" [pinFormatter]="pinFormatter"
+    [ticks]="false" [snaps]="false"
+    [(ngModel)]="data.zoomLevel" 
+    color="primary" (ionChange)="onIonChange($event)">
+    <ion-text color="dark" slot="start" style="font-size:16px;" margin-end>a</ion-text>
+    <ion-text color="dark" slot="end" style="font-size:34px;" margin-start>A</ion-text>
+  </ion-range>
+</div>

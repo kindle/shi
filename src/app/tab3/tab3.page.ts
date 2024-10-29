@@ -4,6 +4,8 @@ import { DataService } from '../services/data.service';
 import { Song } from '../app.component';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from '../services/ui.service';
+import { ScrollService } from '../services/scroll.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -16,9 +18,24 @@ export class Tab3Page {
     public ui: UiService,
     public router:  Router,
     public data: DataService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private scrollService: ScrollService,
   ) {}
 
+  @ViewChild(IonContent, { static: false }) content: IonContent|any;
+  private scrollSubscription: Subscription|any;
+  ngOnInit(){
+    this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
+      if (this.content) {
+        this.content.scrollToTop(300);
+      }
+    });
+  }
+  ngOnDestroy() {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
+    }
+  }
 
   async ionViewDidEnter(){
     //if(this.data.articleDataLoaded===false){

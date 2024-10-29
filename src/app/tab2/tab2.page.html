@@ -1,13 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ ui.instant('Tabs.Browse') }}<!--浏览--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">{{ ui.instant('Tabs.Browse') }}<!--浏览--></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Browse') }}<!--浏览--></ion-title>
+      <ion-title class="tab-title" mode="md" 
+      [style.fontSize]="data.zoom(28)">{{ ui.instant('Tabs.Browse') }}<!--浏览--></ion-title>
     </ion-toolbar>
   </ion-header>
 

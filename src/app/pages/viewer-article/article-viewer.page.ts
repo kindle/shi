@@ -65,6 +65,32 @@ export class ArticleViewerPage {
       //bug fix for navigating back from other pages
       this.cdRef.detectChanges();
     }
+
+    this.onScrollFloatingDiv(event);
+  }
+
+  translateY = 0; // Amount to move the div down
+  MaxOpacity = 0.9
+  opacity = this.MaxOpacity; // Initial opacity value
+  lastScrollTop = 0;
+  items = Array(100).fill(0).map((_, i) => `Item ${i + 1}`);
+
+  onScrollFloatingDiv(event: any) {
+    const scrollTop = event.detail.scrollTop<0?0:event.detail.scrollTop;
+    const scrollDiff = scrollTop - this.lastScrollTop;
+
+    // Adjust translateY and opacity based on scroll down
+    if (scrollDiff > 0) {
+      // User is scrolling down
+      this.translateY = Math.min(100, this.translateY + scrollDiff); // Move down with a max limit of 100px
+      this.opacity = Math.max(0, 1 - this.translateY / 100); // Gradually fade out, minimum opacity of 0
+    } else {
+      // User is scrolling up
+      this.translateY = Math.max(0, this.translateY + scrollDiff); // Move up with a minimum of 0px
+      this.opacity = Math.min(1, this.MaxOpacity - this.translateY / 100); // Gradually fade in, maximum opacity of 1
+    }
+
+    this.lastScrollTop = scrollTop;
   }
 
 }

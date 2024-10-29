@@ -132,8 +132,7 @@ export class UiService {
       //const modal = await this.modalController.create({
       this.PoemPlayer = await this.modalController.create({
           component: PlayerPage,
-          componentProps: {
-          },
+          componentProps: {},
           cssClass: 'modal-fullscreen',
           keyboardClose: true,
           showBackdrop: true,

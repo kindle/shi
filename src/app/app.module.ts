@@ -15,6 +15,7 @@ import { Media } from '@awesome-cordova-plugins/media/ngx'
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonModule } from '@angular/common';
+import { ScrollService } from './services/scroll.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CommonModule } from '@angular/common';
     SocialSharing,
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
     EventService,
+    ScrollService,
     Media,
   ],
   bootstrap: [AppComponent],

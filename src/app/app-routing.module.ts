@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
   },
   {
+    path: 'textzoom',
+    loadChildren: () => import('./pages/textzoomer/textzoomer.module').then( m => m.TextZoomerPageModule)
+  },
+  {
     path: 'addplayerlist',
     loadChildren: () => import('./tab3/customlist/new-customlist/add-playerlist.module').then( m => m.AddPlayerListPageModule)
   },

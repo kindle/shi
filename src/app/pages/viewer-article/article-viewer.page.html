@@ -51,12 +51,16 @@
     <div style="background-color:transparent;min-height: {{data.currentArticle.min_height}};"
     *ngIf="!data.currentArticle.effect">
         <ion-card-content style="z-index:0;">
-          <ion-card-subtitle style="font-size:18px;margin-top:45px;
-            color:{{data.currentArticle.title_color}};">
+          <!--font-size:18px;-->
+          <ion-card-subtitle style="margin-top:45px;
+            color:{{data.currentArticle.title_color}};"
+            [style.fontSize]="data.zoom(18)">
             {{data.currentArticle.small_title}}
           </ion-card-subtitle>
-          <ion-card-title style="font-size:25px;
-            color:{{data.currentArticle.title_color}};">
+          <!--font-size:25px;-->
+          <ion-card-title style="
+            color:{{data.currentArticle.title_color}};"
+            [style.fontSize]="data.zoom(25)">
             {{data.currentArticle.big_title}}
           </ion-card-title>
         </ion-card-content>
@@ -94,7 +98,8 @@
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
-       <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" [text]="it.value" *ngIf="it.type=='text'"></app-text>
+       <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
+       [text]="it.value" *ngIf="it.type=='text'"></app-text>
 
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
@@ -123,8 +128,9 @@
           </ion-thumbnail>
           
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
-            <h2>{{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
-            <p style="margin-top:5px;display: flex;align-items: end;color:black;">
+            <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
+            <p style="margin-top:5px;display: flex;align-items: end;color:black;"
+            [style.fontSize]="data.zoomLevel + 'rem'">
               {{it.author}}《{{it.title}}》
               <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>
             </p>
@@ -157,14 +163,16 @@
               ></div>
             </ion-thumbnail>
               <ion-label (click)="data.playbyid(p.id, p.sample)">
-                <h2>{{p.sample?p.sample:p.paragraphs[0]}}</h2>
-                <p style="margin-top:5px;display: flex;align-items: end;">
+                <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+                <p style="margin-top:5px;display: flex;align-items: end;"
+                [style.fontSize]="data.zoomLevel + 'rem'">
                   {{p.author}}
                   <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
                 </p>
               </ion-label>
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">
-                <ion-text color="primary">所有作品</ion-text>
+                <ion-text color="primary" 
+                [style.fontSize]="data.zoomLevel + 'rem'">所有作品</ion-text>
               </ion-button>
             </ion-item>
           </ion-list>
@@ -180,7 +188,7 @@
       -->
     </div>
 
-  
+  <!--
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
       <ion-fab-button *ngIf="data.isLikedArticle()" (click)="data.unlikeArticle()">
         <ion-icon name="bookmark"></ion-icon>
@@ -189,5 +197,25 @@
         <ion-icon name="bookmark-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+    -->
   
+    <div class="floating-div" [ngStyle]="{'transform': 'translateY(' + translateY + 'px)', 'opacity': opacity}">
+      <div class="fd-container">
+        <div class="fd-item">
+          <ion-icon name="search-outline" class="fd-icon" color="dark"></ion-icon>
+          <div class="fd-text">搜索</div>
+        </div>
+        <div class="fd-item">
+          <ion-icon name="star-outline" class="fd-icon" color="dark"
+          *ngIf="!data.isLikedArticle()" (click)="data.likeArticle()"></ion-icon>
+          <ion-icon name="star" class="fd-icon" color="primary"
+          *ngIf="data.isLikedArticle()" (click)="data.unlikeArticle()"></ion-icon>
+          <div class="fd-text">收藏</div>
+        </div>
+        <div class="fd-item">
+          <ion-icon name="share-social-outline" class="fd-icon" color="dark"></ion-icon>
+          <div class="fd-text">分享</div>
+        </div>
+      </div>
+    </div>
 </ion-content>

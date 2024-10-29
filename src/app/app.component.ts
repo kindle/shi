@@ -39,6 +39,7 @@ export class AppComponent {
     } else {
       this.navController.navigateRoot('/tabs/tab1');
     }
+    this.data.loadFontSizeZoomLevel();
 
     this.data.loadAIChatHistory();
     this.data.loadMyLikeArticles();
