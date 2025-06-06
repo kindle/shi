@@ -10,10 +10,10 @@
       <div style="min-height: 200px;">
         <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:0;">
           <ion-card-title class="station-text" style="margin-bottom:5px;"
-          [style.fontSize]="data.zoomLevel + 'rem'">{{s.alias}}</ion-card-title>
+          [style.fontSize]="data.zoom(20)">{{s.alias}}</ion-card-title>
           <ion-card-title class="station-type" style="white-space: nowrap;">
             <div class="card-text-style" style="margin-left:0;"
-            [style.fontSize]="data.zoomLevel + 'rem'">{{s.desc}}</div>
+            [style.fontSize]="data.zoom(20)">{{s.desc}}</div>
           </ion-card-title>
         </ion-card-content>
 <!--background-color: rgba(0,0,0,0.5)-->
@@ -37,7 +37,7 @@
             <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
             ;font-size:13px;width:100%;" *ngIf="s.text"
-            [style.fontSize]="data.zoomLevel + 'rem'"
+            [style.fontSize]="data.zoom(13)"
             >{{s.text}}</div>
           </ion-card-content>
           <ion-card-content class="station-content" style="z-index:1;" *ngIf="!s.image"

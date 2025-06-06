@@ -2,13 +2,16 @@
   <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:20px;">
     <ion-buttons>
       <ion-card-title class="station-text" style="font-weight: bold;"
-      [style.fontSize]="data.zoomLevel + 'rem'">{{name}}</ion-card-title>
+      [style.fontSize]="data.zoom(20)">
+      {{name}}</ion-card-title>
     </ion-buttons>
   </ion-card-content>
 </ion-header>
 <ion-card-content style="padding-top:10px;padding-bottom:0px;">
   <div *ngIf="short()!=text" class="selectableText" (click)="ui.selectText()"
-  [style.fontSize]="data.zoomLevel + 'rem'">{{short()}}<ion-text (click)="unfold()" color="primary"[style.fontSize]="data.zoomLevel + 'rem'">...更多</ion-text></div>
+  [style.fontSize]="data.zoom(16)">{{short()}}<ion-text (click)="unfold()" color="primary"
+  [style.fontSize]="data.zoom(16)">...更多</ion-text></div>
   <div *ngIf="short()==text" class="selectableText" (click)="ui.selectText()"
-  [style.fontSize]="data.zoomLevel + 'rem'">{{text}}</div>
+  [style.fontSize]="data.zoom(16)"
+  >{{text}}</div>
 </ion-card-content>

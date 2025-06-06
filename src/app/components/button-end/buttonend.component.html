@@ -10,38 +10,38 @@
         <ion-item lines="full" [button]="true" [detail]="false"
         *ngIf="data.isliked(p,'poem')" 
         (click)="data.unlikelist(p,'poem')"
-        [style.fontSize]="data.zoomLevel + 'rem'">
+        [style.fontSize]="data.zoom(17)">
           <ion-text color="danger">{{ ui.instant('Action.DeleteFromLib') }}<!--从诗词库中删除--></ion-text>
           <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
         *ngIf="!data.isliked(p,'poem')"  
         (click)="data.likelist(p, 'poem')"
-        [style.fontSize]="data.zoomLevel + 'rem'">
+        [style.fontSize]="data.zoom(17)">
           {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
           <ion-icon name="add-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false" (click)="addToCustomList(p)"
-        [style.fontSize]="data.zoomLevel + 'rem'">
+        [style.fontSize]="data.zoom(17)">
           {{ ui.instant('Action.AddToAPoemList') }}<!--添加到诗单列表...-->
           <ion-icon name="add-circle-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
           (click)="checkAuthor(p.author)"
-          [style.fontSize]="data.zoomLevel + 'rem'">
+          [style.fontSize]="data.zoom(17)">
           {{ ui.instant('Action.ViewPoet') }}<!--看作者-->
           <ion-icon name="id-card-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
           (click)="interpret(p)"
-          [style.fontSize]="data.zoomLevel + 'rem'">
+          [style.fontSize]="data.zoom(17)">
           {{ ui.instant('Action.Interpret') }}<!--诗词赏析-->
           <ion-icon name="school-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
           (click)="size()"
-          [style.fontSize]="data.zoomLevel + 'rem'">
-          字体大小<!--字体大小-->
+          [style.fontSize]="data.zoom(17)">
+          文字大小<!--字体大小-->
           <ion-icon name="text-outline" slot="end"></ion-icon>
         </ion-item>
         <!--

@@ -2,7 +2,7 @@
   <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
     <ion-buttons>
       <ion-card-title class="station-text" style="font-weight: bold;"
-      [style.fontSize]="data.zoomLevel + 'rem'">{{name}}</ion-card-title>
+      [style.fontSize]="data.zoom(20)">{{name}}</ion-card-title>
       <ion-button *ngIf="source.length>10">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
@@ -10,7 +10,9 @@
   </ion-card-content>
 
   <ion-buttons slot="end" (click)="data.goToSearch()" style="margin-right:10px;">
-    <ion-button [style.fontSize]="data.zoomLevel + 'rem'">{{ ui.instant('Action.MoreToExplore') }}<!--搜索更多--></ion-button>
+    <ion-button 
+    [style.fontSize]="data.zoom(18)">
+    {{ ui.instant('Action.MoreToExplore') }}<!--搜索更多--></ion-button>
   </ion-buttons>
 </ion-toolbar>
 <swiper-container swiper-touch
@@ -33,6 +35,7 @@
         background-color:{{s.color}};">
     </div>
     <div class="card-text-style"
-    [style.fontSize]="data.zoomLevel + 'rem'">{{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}</div>
+    [style.fontSize]="data.zoom(16)">
+    {{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}</div>
   </swiper-slide>
 </swiper-container>

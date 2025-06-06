@@ -16,7 +16,11 @@
     padding:5px;
 }
 
-
+.display-one-line{
+  white-space: nowrap; /* 确保文本不换行 */
+  overflow: hidden; /* 隐藏超出容器的文本 */
+  text-overflow: ellipsis; /* 添加省略号 */
+}
 
 .blur-background {
     width: 100%; /* Set width as needed */

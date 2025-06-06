@@ -128,9 +128,10 @@
           </ion-thumbnail>
           
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
-            <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
+            <h2 [style.fontSize]="data.zoom(17)">
+              {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
             <p style="margin-top:5px;display: flex;align-items: end;color:black;"
-            [style.fontSize]="data.zoomLevel + 'rem'">
+            [style.fontSize]="data.zoom(14)">
               {{it.author}}《{{it.title}}》
               <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>
             </p>
@@ -163,16 +164,19 @@
               ></div>
             </ion-thumbnail>
               <ion-label (click)="data.playbyid(p.id, p.sample)">
-                <h2 [style.fontSize]="data.zoomLevel + 'rem'">{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+                <h2 [style.fontSize]="data.zoom(17)">
+                  {{p.sample?p.sample:p.paragraphs[0]}}</h2>
                 <p style="margin-top:5px;display: flex;align-items: end;"
-                [style.fontSize]="data.zoomLevel + 'rem'">
+                [style.fontSize]="data.zoom(14)">
                   {{p.author}}
                   <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
                 </p>
               </ion-label>
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">
                 <ion-text color="primary" 
-                [style.fontSize]="data.zoomLevel + 'rem'">所有作品</ion-text>
+                [style.fontSize]="data.zoom(20)">
+                  {{ ui.instant('Title.AllPoems') }}<!--所有作品-->
+                </ion-text>
               </ion-button>
             </ion-item>
           </ion-list>
