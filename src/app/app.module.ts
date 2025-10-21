@@ -23,7 +23,7 @@ import { ScrollService } from './services/scroll.service';
   ],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule, 
     HttpClientModule,
     IonicStorageModule.forRoot(),
