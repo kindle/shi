@@ -179,28 +179,35 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-buttons>
     </ion-toolbar>
 
-    <ion-tab-bar slot="bottom" [translucent]="true" *ngIf="!ui.isipad" style="padding-top:3px;">
+    <ion-tab-bar slot="bottom" [translucent]="false" 
+    *ngIf="!ui.isipad" style="padding-top:3px;"
+    [ngStyle]="{
+      'padding-bottom':ui.isAndroid ? '10px' : '25px',
+      'background': ui.isAndroid ? '#fff' : ''
+     }"
+    >
       <ion-tab-button tab="tab1" style="--background: transparent;"
       (click)="onDblClick()">
         <ion-icon name="book"></ion-icon>
         {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
       </ion-tab-button>
-      <ion-tab-button tab="tab2" [class.active]="true"
+      <ion-tab-button tab="tab2" style="--background: transparent;"
+       [class.active]="true"
       (click)="onDblClick()">
         <ion-icon name="grid"></ion-icon>
         {{ ui.instant('Tabs.Browse') }}<!--浏览-->
       </ion-tab-button>
-      <ion-tab-button tab="tab5"
+      <ion-tab-button tab="tab5" style="--background: transparent;"
       (click)="onDblClick()">
         <ion-icon name="play-circle"></ion-icon>
         {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
       </ion-tab-button>
-      <ion-tab-button tab="tab3"
+      <ion-tab-button tab="tab3" style="--background: transparent;"
       (click)="onDblClick()">
         <ion-icon name="albums"></ion-icon>
         {{ ui.instant('Tabs.Library') }}<!--诗词库-->
       </ion-tab-button>
-      <ion-tab-button tab="tab4" 
+      <ion-tab-button tab="tab4" style="--background: transparent;"
       (click)="tab4Click();onDblClick()">
         <ion-icon name="search-outline"></ion-icon>
         {{ ui.instant('Tabs.Search') }}<!--搜索-->

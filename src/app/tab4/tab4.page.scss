@@ -161,3 +161,7 @@
         color:white;
     }
 }
+
+ion-content.custom-content {
+  --offset-top: 64px !important;
+}

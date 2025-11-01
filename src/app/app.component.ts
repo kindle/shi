@@ -3,9 +3,19 @@ import { register } from 'swiper/element/bundle';
 import { Storage } from '@ionic/storage-angular';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { DataService } from './services/data.service';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { UiService } from './services/ui.service';
 register();
+
+// Add these enums if not already imported from a library
+enum Style {
+  Dark = 'DARK',
+  Light = 'LIGHT'
+}
+
+enum Animation {
+  None = 'NONE'
+}
 
 @Component({
   selector: 'app-root',
@@ -18,7 +28,16 @@ export class AppComponent {
     private data: DataService,
     private storage: Storage,
     private navController: NavController,
-  ) {}
+    private platform: Platform,
+  ) {
+    this.platform.ready().then(() => {
+      if (this.ui.isAndroid) {
+        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); // white background, dark icons
+      } else if (this.ui.isIos) {
+        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); // white background, light icons
+      }
+    });
+  }
 
   async ngOnInit() {
     SplashScreen.show({

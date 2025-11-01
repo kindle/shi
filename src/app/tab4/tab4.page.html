@@ -1,7 +1,8 @@
-
-<ion-header [translucent]="true" class="ion-no-border">
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ ui.instant('Tabs.Search') }}<!--搜索--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Tabs.Search') }}<!--搜索-->
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,15 +18,20 @@
   
 -->
 
-<ion-content [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)" force-overscroll="false">
-  <ion-header [translucent]="true" collapse="condense" *ngIf="!data.showFilter" style="margin-top:5px;">
+<ion-content [fullscreen]="false" scrollEvents="true"
+class="custom-content"
+  (ionScroll)="onScroll($event)" force-overscroll="false">
+  <ion-header [translucent]="true" collapse="condense" 
+    *ngIf="!data.showFilter">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Search') }}<!--搜索--></ion-title>
+      <ion-title class="tab-title" mode="md">
+        {{ ui.instant('Tabs.Search') }}<!--搜索-->
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-header style="position:sticky;top:0;" collapse="fade" [translucent]="true">
-    <ion-toolbar style="padding-top:15px;"><!--诗人、诗词以及更多内容-->
+  <ion-header style="position:sticky;top:0px;" collapse="fade" [translucent]="true">
+    <ion-toolbar style="padding-top:0px;"><!--诗人、诗词以及更多内容-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
         [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
         [(ngModel)]="data.searchText"
@@ -36,6 +42,7 @@
         (ionClear)="onClearMic()"
         show-clear-button="always"
         clear-icon="mic"
+        style="margin-top:15px;"
       ><!--{{ ui.instant('Action.Cancel') }}
         show-cancel-button="focus"
         cancel-button-text="取消"-->
