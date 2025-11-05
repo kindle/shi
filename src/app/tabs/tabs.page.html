@@ -159,6 +159,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             onerror="javascript:this.src='assets/img/default.jpg'"
           />
         </div>
+        <!--
         <div style="font-size:18px;width:100%;font-weight: normal;
         overflow: hidden;text-overflow: ellipsis;max-height: 30px;
         color:black;
@@ -166,7 +167,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         -webkit-box-orient:vertical;
         -webkit-line-clamp:1;">
           《{{data.currentPoem.title}}》
-        </div><!--data.currentPoem.paragraphs[0]-->
+        </div>-->
+        <!--data.currentPoem.paragraphs[0]-->
+        <div class="marquee-container">
+          <div class="marquee-content">
+            《{{data.currentPoem.title}}》
+          </div>
+        </div>
       </ion-buttons>
       <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:5px;">
         <ion-button (click)="data.togglePlay()">
