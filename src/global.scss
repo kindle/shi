@@ -139,3 +139,8 @@ app-card-balloon {
 .shrink-card {
     transform: scale(0.98);
 }
+
+body.player-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}

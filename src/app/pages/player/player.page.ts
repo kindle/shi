@@ -23,10 +23,13 @@ export class PlayerPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    document.body.classList.add('player-open');
     if(!this.data.isPlaying){
       this.data.setAudio();
     }
-    
+  }
+  ngOnDestroy() {
+    document.body.classList.remove('player-open');
   }
 
   currentIndex:any;
