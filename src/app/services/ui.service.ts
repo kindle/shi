@@ -64,7 +64,7 @@ export class UiService {
       
       if(this.platform.is('android')){
         //android only
-        //StatusBar.setOverlaysWebView({ overlay: true });
+        StatusBar.setOverlaysWebView({ overlay: false });
       }
     }
   }
@@ -73,11 +73,23 @@ export class UiService {
     if(Capacitor.isNativePlatform()) {
       StatusBar.hide();
     }
+
+    if(this.platform.is('android')){
+        //android only
+        StatusBar.setOverlaysWebView({ overlay: true });
+        StatusBar.setBackgroundColor({color: '#80ffffff'});
+    }
   }
 
   showStatusBar(){
     if(Capacitor.isNativePlatform()) {
       StatusBar.show();
+    }
+
+    if(this.platform.is('android')){
+        //android only
+        StatusBar.setOverlaysWebView({ overlay: false });
+        StatusBar.setBackgroundColor({color: '#ffffff'});
     }
   }
 

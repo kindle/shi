@@ -32,9 +32,13 @@ export class AppComponent {
   ) {
     this.platform.ready().then(() => {
       if (this.ui.isAndroid) {
-        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); // white background, dark icons
+        // translucent background, dark icons
+        //this.ui.setStatusBar(Style.Light, Animation.None, '#80ffffff'); 
+        // white background, light icons
+        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); 
       } else if (this.ui.isIos) {
-        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); // white background, light icons
+        // white background, light icons
+        this.ui.setStatusBar(Style.Light, Animation.None, '#ffffff'); 
       }
     });
   }
