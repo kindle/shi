@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'game-dahui',
     loadChildren: () => import('./tab1/dahui/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
   },
+  {
+    path: 'history-today',
+    loadChildren: () => import('./pages/history-today/history-today.module').then( m => m.HistoryTodayPageModule)
+  },
 ];
 @NgModule({
   imports: [

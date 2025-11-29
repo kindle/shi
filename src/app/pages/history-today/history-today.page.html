@@ -1,0 +1,51 @@
+<!--header start---->
+<ion-header class="ion-no-border" collapse="fade">
+  <ion-toolbar color="white">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: x-large;">历史上的今天</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="share()">
+        <ion-icon name="share-social-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <!--header start fixed header---->
+  <div class="today-box" id="print-wrapper-today">
+    <div class="today-card">{{todayCard[0]}}</div>
+    <div class="today-card">{{todayCard[1]}}</div>
+    <div class="today-card">{{todayCard[2]}}</div>
+    <div class="today-card">{{todayCard[3]}}</div>
+    <div class="today-split">,</div>
+    <div class="today-card">{{todayCard[5]}}</div>
+    <div class="today-card">{{todayCard[6]}}</div>
+    <div class="today-split">,</div>
+    <div class="today-card">{{todayCard[8]}}</div>
+    <div class="today-card">{{todayCard[9]}}</div>
+  </div>
+</ion-header>
+<ion-content *ngIf="historyToday">
+  <ion-list lines="none" class="history-box" id="print-wrapper-history" style="display:hidden;">
+    <div *ngIf="historyToday[0].festival!=''"
+      style="margin:15px 10px;display:flex;justify-content:flex-start;">
+      <div style="min-width:70px;text-align: end;padding-right: 20px;">
+        <b class="his-title">节日</b>
+      </div>
+      <div style="word-wrap: break-word;font-size: large;">
+        {{historyToday[0].festival}}
+      </div>
+    </div>
+    <div *ngFor="let data of historyToday;let i=index" 
+      style="margin:15px 10px;display:flex;justify-content:flex-start;">
+      <div style="min-width:70px;text-align: end;padding-right: 20px;">
+        <b *ngIf="data.type=='birth'&&(i==0||i>0&&historyToday[i-1].type!='birth')" class="his-title">生日</b>
+        <b *ngIf="data.type=='death'&&(i==0||i>0&&historyToday[i-1].type!='death')" class="his-title">祭日</b>
+        <b *ngIf="data.type=='event'" class="his-title">{{data.year}}</b>
+      </div>
+      <div style="word-wrap: break-word;font-size: large;">
+        {{data.title}}{{data.desc}}
+      </div>
+    </div>
+  </ion-list>
+</ion-content>

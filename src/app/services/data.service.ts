@@ -690,7 +690,7 @@ export class DataService {
   
 
   getTodayHistory(month:any){
-    return this.http.get<any>(`assets/daily/json/${month}.json`).pipe().toPromise();
+    return this.http.get<any>(`assets/history/zh/${month}.json`).pipe().toPromise();
   }
 
   

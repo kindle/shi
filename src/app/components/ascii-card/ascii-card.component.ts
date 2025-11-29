@@ -21,7 +21,7 @@ export class AsciiCardComponent implements OnInit {
   ) { }
 
   loonglist(){
-    this.router.navigate(['/tabs/tab5/list'], {});
+    this.router.navigate(['/history-today'], {});
   }
 
   async ngOnInit(){
