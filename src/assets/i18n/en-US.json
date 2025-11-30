@@ -12,8 +12,8 @@
     },
 
     "AI":{
-        "Title":"AI Poetry Agent",
-        "Hello":"Hello! How can I assist you today?",
+        "Title":"Poetry Agent",
+        "Hello":"Hello! How can I assist you on poem today?",
         "Submit":"Submit",
         "Status0":"AI Agent",
         "Status1":"Typing...",

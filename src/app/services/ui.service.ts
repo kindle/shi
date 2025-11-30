@@ -12,6 +12,7 @@ import { PlayerPage } from '../pages/player/player.page';
 import domtoimage from 'dom-to-image';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class UiService {
     private modalController: ModalController,
     private location: Location,
     private navController: NavController,
+    private router: Router
   ) { 
     if(this.platform.is('ios')){
       this.isIos =true;
@@ -267,8 +269,16 @@ export class UiService {
 
 
   goback(){
-    //this.location.back();
-    this.navController.pop();
+    if(this.platform.is('android')){
+      if (window.history.length > 1) {
+        this.location.back();
+      } else {
+        this.router.navigate(['/tabs/home']);
+      }
+    }
+    else{
+      this.navController.pop();
+    }
   }
 
   localeData:any;

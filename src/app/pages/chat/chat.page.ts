@@ -448,6 +448,8 @@ export class ChatPage implements OnInit {
     this.status = status
   }
   getWebsocketUrl() {
+    //sparks max is v3.5
+    //https://www.xfyun.cn/doc/spark/Web.html#_1-%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E
     let httpUrl = new URL("https://spark-api.xf-yun.com/v3.5/chat");
     let modelDomain;
     
