@@ -22,6 +22,10 @@
         <ion-button shape="round" style="margin-right: 10px;" (click)="data.goMe()">
           <ion-icon name="person-circle-outline" size="large"></ion-icon>
         </ion-button>-->
+        <ion-button shape="round" style="margin-right: 10px;" 
+        (click)="data.textZoom()">
+          <ion-icon name="text-outline" size="large"></ion-icon>
+        </ion-button>
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet">
           <ion-icon name="language-outline" size="large"></ion-icon>
         </ion-button>
@@ -996,11 +1000,15 @@
 <!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
       <ion-card class="card card-vote" id="modal-vote" card-shrink
       *ngIf="item.template=='vote'">
-        <div class="card-vote-bg">{{item.small_title}}</div>
+        <div class="card-vote-bg">
+          {{item.small_title}}
+        </div>
         <ion-card-content>
           <ion-card-subtitle style="display: flex;">
             <!--<ion-badge style="padding-left:0;" color="transparent">{{item.small_title}}</ion-badge>-->
-            <ion-badge color="danger" style="font-size:18px;">{{item.small_title}}</ion-badge>
+            <ion-badge color="danger" style="font-size:18px;">
+              {{item.small_title}}
+            </ion-badge>
           </ion-card-subtitle>
           <ion-card-title style="margin-top:10px;color:black;">{{item.big_title}}</ion-card-title>
           <ion-card-subtitle style="margin-top:10px;font-size: 18px;">{{item.desc}}</ion-card-subtitle>
@@ -1140,7 +1148,7 @@
     <app-ascii-card class="card card-img custom-card"
         section="" 
         sub="" 
-        title="历史上的今天">
+        title="{{ ui.instant('History.Title') }}"><!--历史上的今天-->
     </app-ascii-card>
   </div>
 

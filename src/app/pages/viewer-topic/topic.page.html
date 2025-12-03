@@ -3,14 +3,20 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="searchTopicData">{{searchTopicData.name}}</ion-title>
+    <ion-title *ngIf="searchTopicData">
+      {{ (searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? 
+          searchTopicData.i18n[data.currentLocale] : searchTopicData.name }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" *ngIf="searchTopicData">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md" *ngIf="searchTopicData">{{searchTopicData.name}}</ion-title>
+      <ion-title class="tab-title" mode="md" *ngIf="searchTopicData">
+        {{ (searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? 
+          searchTopicData.i18n[data.currentLocale] : searchTopicData.name }}
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 

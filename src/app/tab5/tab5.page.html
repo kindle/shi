@@ -26,7 +26,9 @@
 
 
   <div *ngFor="let list of searchTopicData.list;">
-    <app-tile [name]="list.name" [source]="list.data" *ngIf="list.display!=false"></app-tile>
+    <app-tile 
+    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
+    [source]="list.data" *ngIf="list.display!=false"></app-tile>
   </div>
 
   
@@ -53,7 +55,9 @@
   
 
 
-  <app-text [name]="searchTopicData.desctitle" [text]="searchTopicData.desc">
+  <app-text 
+  [name]="(searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? searchTopicData.i18n[data.currentLocale] : searchTopicData.desctitle"
+  [text]="searchTopicData.desc">
   </app-text>
   
   <div class="placeholder-playbox"></div>

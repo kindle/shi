@@ -11,11 +11,18 @@
         "Language":"Idioma"
     },
 
+    "History":{
+        "Title":"Hoy en la Historia",
+        "Festival":"Festivos",
+        "Birth":"Nacimientos",
+        "Die":"Fallecimientos"
+    },
+
     "AI":{
-        "Title":"Agente de Poesía IA",
+        "Title":"Agente de Poesía",
         "Hello":"¡Hola! ¿En qué puedo ayudarte hoy?",
         "Submit":"Enviar",
-        "Status0":"Agente IA",
+        "Status0":"Agente",
         "Status1":"Escribiendo...",
         "SaySth":"Hablemos...",
         "History":"Historial",
@@ -42,6 +49,7 @@
         "MoreToExplore":"Más para Explorar",
         "DeleteFromLib":"Eliminar de la Biblioteca",
         "AddToLib":"Agregar a la Biblioteca",
+        "FontSize":"Tamaño del Texto",
         "AddToAPoemList":"Agregar a una Lista de Poemas...",
         "ViewPoet":"Poeta"
     },

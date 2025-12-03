@@ -222,7 +222,10 @@ class="custom-content"
       </ion-card-header>
       <ion-card-content 
       [ngClass]="{'gray-mask': currentLpId === topic.id }"
-      style="color:white;padding-left:10px;padding-bottom:10px;"> {{topic.name}} </ion-card-content>
+      style="color:white;padding-left:10px;padding-bottom:10px;"> 
+        {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
+          topic.i18n[data.currentLocale] : topic.name }}
+      </ion-card-content>
     </ion-card>
   </div>
 

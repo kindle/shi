@@ -4,7 +4,9 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title style="font-size: x-large;">历史上的今天</ion-title>
+    <ion-title style="font-size: x-large;">
+      {{ ui.instant('History.Title') }}<!--历史上的今天-->
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="share()">
         <ion-icon name="share-social-outline" slot="icon-only"></ion-icon>
@@ -30,7 +32,7 @@
     <div *ngIf="historyToday[0].festival!=''"
       style="margin:15px 10px;display:flex;justify-content:flex-start;">
       <div style="min-width:70px;text-align: end;padding-right: 20px;">
-        <b class="his-title">节日</b>
+        <b class="his-title">{{ ui.instant('History.Festival') }}<!--节日--></b>
       </div>
       <div style="word-wrap: break-word;font-size: large;">
         {{historyToday[0].festival}}
@@ -39,8 +41,8 @@
     <div *ngFor="let data of historyToday;let i=index" 
       style="margin:15px 10px;display:flex;justify-content:flex-start;">
       <div style="min-width:70px;text-align: end;padding-right: 20px;">
-        <b *ngIf="data.type=='birth'&&(i==0||i>0&&historyToday[i-1].type!='birth')" class="his-title">生日</b>
-        <b *ngIf="data.type=='death'&&(i==0||i>0&&historyToday[i-1].type!='death')" class="his-title">祭日</b>
+        <b *ngIf="data.type=='birth'&&(i==0||i>0&&historyToday[i-1].type!='birth')" class="his-title">{{ ui.instant('History.Birth') }}<!--生日--></b>
+        <b *ngIf="data.type=='death'&&(i==0||i>0&&historyToday[i-1].type!='death')" class="his-title">{{ ui.instant('History.Die') }}<!--祭日--></b>
         <b *ngIf="data.type=='event'" class="his-title">{{data.year}}</b>
       </div>
       <div style="word-wrap: break-word;font-size: large;">

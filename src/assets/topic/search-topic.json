@@ -5,6 +5,21 @@
     "name":"浏览",
     "image":"https://reddah.blob.core.windows.net/msjjimg/smart.jpg",
     "desctitle":"搜索更多精彩内容",
+    "i18n":{
+      "ar-AE":"البحث عن المزيد من المحتوى المثير",
+      "de-DE":"Suche nach weiteren spannenden Inhalten",
+      "el-GR":"Αναζήτηση για περισσότερο συναρπαστικό περιεχόμενο",
+      "en-US":"Search for more exciting content",
+      "es-ES":"Buscar más contenido interesante",
+      "fr-FR":"Rechercher plus de contenu passionnant",
+      "ja-JP":"もっと面白いコンテンツを検索",
+      "ko-KR":"더 흥미로운 콘텐츠 검색",
+      "pt-PT":"Procurar mais conteúdos interessantes",
+      "ru-RU":"Поиск интересного контента",
+      "th-TH":"ค้นหาเนื้อหาที่น่าสนใจเพิ่มเติม",
+      "zh-CN":"搜索更多精彩内容",
+      "zh-TW":"搜尋更多精彩內容"
+    },
     "desc":"在真正的运气到来之前，请你积累知识，认真生活。",
     "scroll":[
         {"id":10, "alias":"诗词之源","text":"关关雎鸠，在河之洲","desc":"它们是中国古典诗歌现实主义和浪漫主义的两大源头，它们像两条大河灌溉着后世文学的田园。","color":"rgb(113,203,212)","light":"rgb(113,203,212,60%)", 
@@ -21,7 +36,23 @@
     "hot":[],
     "classic":[],
     "list":[
-      {"name":"心情氛围", "data": [
+      {"name":"心情氛围", 
+      "i18n":{
+        "ar-AE":"مزاج",
+        "de-DE":"Stimmung",
+        "el-GR":"Διάθεση",
+        "en-US":"Mood",
+        "es-ES":"Estado de ánimo",
+        "fr-FR":"Humeur",
+        "ja-JP":"心情",
+        "ko-KR":"기분",
+        "pt-PT":"Humor",
+        "ru-RU":"Настроение",
+        "th-TH":"อารมณ์",
+        "zh-CN":"心情氛围",
+        "zh-TW":"心情氛圍"
+      },
+      "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/tree-696839_1280.jpg","display":"cover","text":"励志","color":"rgb(121,196,131)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/train-tracks-1226546_1280.jpg","display":"cover","text":"怀旧","color":"rgb(98,166,243)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg","display":"cover","text":"减压","color":"rgb(121,196,131)"},
@@ -30,7 +61,23 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/colorful-2609978_1280.jpg","display":"cover","text":"浪漫","color":"rgb(121,196,131)"}
         ]
       },
-      {"name":"年级诗单", "data": [
+      {"name":"年级诗单", 
+      "i18n":{
+        "ar-AE":"مبتدئ",
+        "de-DE":"Anfänger",
+        "el-GR":"Αρχάριος",
+        "en-US":"Beginner",
+        "es-ES":"Principiante",
+        "fr-FR":"Débutant",
+        "ja-JP":"初級",
+        "ko-KR":"초급",
+        "pt-PT":"Iniciante",
+        "ru-RU":"Начинающий",
+        "th-TH":"ระดับต้น",
+        "zh-CN":"年级诗单",
+        "zh-TW":"年級詩單"
+      },
+      "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"二年级","color":"rgb(121,196,131)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","text":"三年级","color":"rgb(121,196,131)"},
@@ -42,7 +89,23 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","text":"九年级","color":"rgb(232,188,78)"}
         ]
       },
-      {"name":"城市排行榜", "data": [
+      {"name":"城市排行榜", 
+      "i18n":{
+        "ar-AE":"تصنيف المدن",
+        "de-DE":"Städte-Ranking",
+        "el-GR":"Κατάταξη Πόλεων",
+        "en-US":"City Rankings",
+        "es-ES":"Ranking de Ciudades",
+        "fr-FR":"Classement des Villes",
+        "ja-JP":"都市ランキング",
+        "ko-KR":"도시 순위",
+        "pt-PT":"Ranking de Cidades",
+        "ru-RU":"Рейтинг городов",
+        "th-TH":"อันดับเมือง",
+        "zh-CN":"城市排行榜",
+        "zh-TW":"城市排行榜"
+      },
+      "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/故宫角.jpg","display":"cover","text":"北京","color":"rgb(121,196,131)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/杭州.jpg","display":"cover","text":"杭州","color":"rgb(98,166,243)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/西安塔楼.jpg","display":"cover","text":"西安","color":"rgb(121,196,131)"},
@@ -53,9 +116,41 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/敦煌.jpg","display":"cover","text":"敦煌","color":"rgb(98,166,243)"}
         ]
       },
-      {"name":"趣味诗单", "data": []
+      {"name":"趣味诗单", 
+      "i18n":{
+        "ar-AE":"قصائد ممتعة",
+        "de-DE":"Spaßgedichte",
+        "el-GR":"Διασκεδαστικά Ποιήματα",
+        "en-US":"Fun Poems",
+        "es-ES":"Poemas Divertidos",
+        "fr-FR":"Poèmes Amusants",
+        "ja-JP":"面白い詩",
+        "ko-KR":"재미있는 시",
+        "pt-PT":"Poemas Divertidos",
+        "ru-RU":"Забавные стихи",
+        "th-TH":"บทกวีสนุกๆ",
+        "zh-CN":"趣味诗单",
+        "zh-TW":"趣味詩單"
       },
-      {"name":"风格诗单", "data": [
+      "data": []
+      },
+      {"name":"风格诗单", 
+      "i18n":{
+        "ar-AE":"أسلوب",
+        "de-DE":"Stil",
+        "el-GR":"Στυλ",
+        "en-US":"Style",
+        "es-ES":"Estilo",
+        "fr-FR":"Style",
+        "ja-JP":"スタイル",
+        "ko-KR":"스타일",
+        "pt-PT":"Estilo",
+        "ru-RU":"Стиль",
+        "th-TH":"สไตล์",
+        "zh-CN":"风格诗单",
+        "zh-TW":"風格詩單"
+      },
+      "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/corn-field-440338_1280.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/winding-road.jpg", "alias":"送别", "text":"送别", "color":"rgb(255,230,151)", "light":"rgb(255,230,151,60%)"},
@@ -89,7 +184,23 @@
     ],
     "hot":[],
     "list":[
-      {"name":"最新专辑", "data": [
+      {"name":"最新专辑", 
+      "i18n":{
+        "ar-AE":"أحدث الألبومات",
+        "de-DE":"Neueste Alben",
+        "el-GR":"Τελευταία Άλμπουμ",
+        "en-US":"Latest Albums",
+        "es-ES":"Últimos Álbumes",
+        "fr-FR":"Derniers Albums",
+        "ja-JP":"最新アルバム",
+        "ko-KR":"최신 앨범",
+        "pt-PT":"Últimos Álbuns",
+        "ru-RU":"Последние альбомы",
+        "th-TH":"อัลบั้มล่าสุด",
+        "zh-CN":"最新专辑",
+        "zh-TW":"最新專輯"
+      },
+      "data": [
         {"id":800, "alias":"诗圣","text":"登高 | 无边落木萧萧下，不尽长江滚滚来","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg"},
         {"id":801,"src":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg","display":"cover","text":"春泥 | 一种相思,两处闲愁","desc":"","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg"},
         {"id":802,"src":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg","display":"cover","text":"思乡 | 小时候，乡愁是一枚小小的邮票","desc":"","color":"rgb(98,166,243)"},
@@ -107,6 +218,21 @@
       
     ],
     "desctitle":"寓教于乐",
+    "i18n":{
+      "ar-AE":"التعليم الترفيهي",
+      "de-DE":"Spielerisches Lernen",
+      "el-GR":"Εκπαίδευση και Ψυχαγωγία",
+      "en-US":"Edutainment",
+      "es-ES":"Entretenimiento Educativo",
+      "fr-FR":"Ludo-éducatif",
+      "ja-JP":"楽しみながら学ぶ",
+      "ko-KR":"에듀테인먼트",
+      "pt-PT":"Educação e Entretenimento",
+      "ru-RU":"Обучение через развлечение",
+      "th-TH":"การเรียนรู้ผ่านการเล่น",
+      "zh-CN":"寓教于乐",
+      "zh-TW":"寓教於樂"
+    },
     "desc":"用耳朵和嘴巴学习诗词"
   }, 
   
@@ -115,6 +241,21 @@
   {
       "id":1,
       "name":"田园",
+      "i18n":{
+        "ar-AE":"رعوي",
+        "de-DE":"Pastoral",
+        "el-GR":"Βουκολικό",
+        "en-US":"Pastoral",
+        "es-ES":"Pastoril",
+        "fr-FR":"Pastoral",
+        "ja-JP":"田園",
+        "ko-KR":"전원",
+        "pt-PT":"Pastoral",
+        "ru-RU":"Пастораль",
+        "th-TH":"ชนบท",
+        "zh-CN":"田园",
+        "zh-TW":"田園"
+      },
       "image":"https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg",
       "scroll":[
         {"id":51, "alias":"风景","text":"你读过些风景最惊艳的一句诗是什么？","desc":"满载一船秋色，平铺十里湖光","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg"},
@@ -153,6 +294,21 @@
   {
     "id":2,
     "name":"边塞",
+    "i18n":{
+      "ar-AE":"الحدود",
+      "de-DE":"Grenzfestung",
+      "el-GR":"Σύνορα",
+      "en-US":"Frontier",
+      "es-ES":"Frontera",
+      "fr-FR":"Frontière",
+      "ja-JP":"辺塞",
+      "ko-KR":"변방",
+      "pt-PT":"Fronteira",
+      "ru-RU":"Граница",
+      "th-TH":"ชายแดน",
+      "zh-CN":"边塞",
+      "zh-TW":"邊塞"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg",
     "scroll":[
       {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg"},
@@ -192,6 +348,21 @@
   {
     "id":3,
     "name":"励志",
+    "i18n":{
+      "ar-AE":"ملهم",
+      "de-DE":"Inspirierend",
+      "el-GR":"Εμπνευσμένο",
+      "en-US":"Inspirational",
+      "es-ES":"Inspirador",
+      "fr-FR":"Inspirant",
+      "ja-JP":"励志",
+      "ko-KR":"영감",
+      "pt-PT":"Inspirador",
+      "ru-RU":"Вдохновляющий",
+      "th-TH":"สร้างแรงบันดาลใจ",
+      "zh-CN":"励志",
+      "zh-TW":"勵志"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/african-lion-2888519_1280.jpg",
     "scroll":[
       {"id":28, "alias":"最狂古诗词","text":"你听过最狂的一句古诗词？","desc":"我需要，最狂的风，和最静的海","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/african-lion-2888519_1280.jpg"},
@@ -229,6 +400,21 @@
   {
     "id":4,
     "name":"浪漫",
+    "i18n":{
+      "ar-AE":"رومانسي",
+      "de-DE":"Romantik",
+      "el-GR":"Ρομαντικό",
+      "en-US":"Romantic",
+      "es-ES":"Romántico",
+      "fr-FR":"Romantique",
+      "ja-JP":"浪漫",
+      "ko-KR":"낭만",
+      "pt-PT":"Romântico",
+      "ru-RU":"Романтика",
+      "th-TH":"โรแมนติก",
+      "zh-CN":"浪漫",
+      "zh-TW":"浪漫"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg",
     "scroll":[
       {"id":31, "alias":"一见钟情","text":"古人是如何写一见钟情的？","desc":"金风玉露一相逢，便胜却人间无数","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg"},
@@ -267,6 +453,21 @@
   {
     "id":5,
     "name":"自然",
+    "i18n":{
+      "ar-AE":"طبيعة",
+      "de-DE":"Natur",
+      "el-GR":"Φύση",
+      "en-US":"Nature",
+      "es-ES":"Naturaleza",
+      "fr-FR":"Nature",
+      "ja-JP":"自然",
+      "ko-KR":"자연",
+      "pt-PT":"Natureza",
+      "ru-RU":"Природа",
+      "th-TH":"ธรรมชาติ",
+      "zh-CN":"自然",
+      "zh-TW":"自然"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg",
     "scroll":[
       {"id":13, "alias":"桃花源记","text":"不知有汉，无论魏晋","desc":"悟已往之不谏，知来者之可追","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg"},
@@ -334,6 +535,21 @@
   {
     "id":6,
     "name":"育儿",
+    "i18n":{
+      "ar-AE":"تربية",
+      "de-DE":"Erziehung",
+      "el-GR":"Ανατροφή",
+      "en-US":"Parenting",
+      "es-ES":"Crianza",
+      "fr-FR":"Éducation",
+      "ja-JP":"育児",
+      "ko-KR":"육아",
+      "pt-PT":"Parentalidade",
+      "ru-RU":"Воспитание",
+      "th-TH":"การเลี้ยงดูบุตร",
+      "zh-CN":"育儿",
+      "zh-TW":"育兒"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg",
     "scroll":[
       {"alias":"推荐诗单","display":"cover","text":"唐诗三百首","desc":"唐诗三百首","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg","src":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg"},
@@ -387,6 +603,21 @@
   {
     "id":7,
     "name":"心情",
+    "i18n":{
+      "ar-AE":"مزاج",
+      "de-DE":"Stimmung",
+      "el-GR":"Διάθεση",
+      "en-US":"Mood",
+      "es-ES":"Estado de ánimo",
+      "fr-FR":"Humeur",
+      "ja-JP":"心情",
+      "ko-KR":"기분",
+      "pt-PT":"Humor",
+      "ru-RU":"Настроение",
+      "th-TH":"อารมณ์",
+      "zh-CN":"心情",
+      "zh-TW":"心情"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg",
     "scroll":[
       {"id":43, "alias":"精神内耗","text":"停止精神内耗","desc":"有哪些古诗词，让你停止了精神内耗？","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg"},
@@ -438,6 +669,21 @@
   {
     "id":8,
     "name":"旅行",
+    "i18n":{
+      "ar-AE":"سفر",
+      "de-DE":"Reisen",
+      "el-GR":"Ταξίδι",
+      "en-US":"Travel",
+      "es-ES":"Viaje",
+      "fr-FR":"Voyage",
+      "ja-JP":"旅行",
+      "ko-KR":"여행",
+      "pt-PT":"Viagem",
+      "ru-RU":"Путешествие",
+      "th-TH":"การท่องเที่ยว",
+      "zh-CN":"旅行",
+      "zh-TW":"旅行"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg",
     "scroll":[
       {"id":37, "alias":"离别","text":"古人笔下的离别到底有多难？","desc":"相见时难别亦难，东风无力百花残","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg"},
@@ -506,6 +752,21 @@
   {
     "id":9,
     "name":"时节",
+    "i18n":{
+      "ar-AE":"موسم",
+      "de-DE":"Jahreszeit",
+      "el-GR":"Εποχή",
+      "en-US":"Season",
+      "es-ES":"Temporada",
+      "fr-FR":"Saison",
+      "ja-JP":"時節",
+      "ko-KR":"계절",
+      "pt-PT":"Estação",
+      "ru-RU":"Сезон",
+      "th-TH":"ฤดูกาล",
+      "zh-CN":"时节",
+      "zh-TW":"時節"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/24小寒.jpg",
     "scroll":[
       {"id":35, "alias":"大雪","text":"只字不提雪如何形容雪下得很大？","desc":"应是天仙狂醉，乱把白云揉碎","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/snow-5910822_1280.jpg"},
@@ -568,6 +829,21 @@
   {
     "id":10,
     "name":"美食",
+    "i18n":{
+      "ar-AE":"مطبخ",
+      "de-DE":"Kulinarik",
+      "el-GR":"Κουζίνα",
+      "en-US":"Cuisine",
+      "es-ES":"Cocina",
+      "fr-FR":"Cuisine",
+      "ja-JP":"美食",
+      "ko-KR":"미식",
+      "pt-PT":"Culinária",
+      "ru-RU":"Кухня",
+      "th-TH":"อาหาร",
+      "zh-CN":"美食",
+      "zh-TW":"美食"
+    },
     "image":"https://reddah.blob.core.windows.net/msjjimg/mediterranean-cuisine-2378758_1280.jpg",
     "scroll":[
       {"id":56, "alias":"人间烟火","text":"人间烟火气，最抚凡人心","desc":"玉盘杨梅为君设，吴盐如花皎白雪","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/italian-cuisine-2378729_1280.jpg"},

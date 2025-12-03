@@ -11,6 +11,13 @@
         "Language":"語言"
     },
 
+    "History":{
+        "Title":"歷史上的今天",
+        "Festival":"節日",
+        "Birth":"生日",
+        "Die":"祭日"
+    },
+
     "AI":{
         "Title":"詩詞助手",
         "Hello":"您好！关于诗词有什麼我可以幫助您的嗎？",
@@ -42,6 +49,7 @@
         "MoreToExplore":"搜索更多",
         "DeleteFromLib":"從詩詞庫中刪除",
         "AddToLib":"添加到詩詞庫",
+        "FontSize":"文字大小",
         "AddToAPoemList":"添加到詩單列表...",
         "ViewPoet":"看作者"
     },

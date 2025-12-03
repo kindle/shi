@@ -24,14 +24,19 @@
   <app-hot name="经典诗词" [source]="data.classicData" *ngIf="searchTopicData.classic"></app-hot>
 -->
   <div *ngFor="let list of searchTopicData.list;">
-    <app-tile [name]="list.name" [source]="list.data" *ngIf="list.name!='趣味诗单'"></app-tile>
-
-    <app-tile [name]="list.name" [source]="data.tab2LocalFunData" *ngIf="list.name=='趣味诗单'"></app-tile>
+    <app-tile 
+    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
+    [source]="list.data" *ngIf="list.name!='趣味诗单'"></app-tile>
+    <app-tile 
+    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
+    [source]="data.tab2LocalFunData" *ngIf="list.name=='趣味诗单'"></app-tile>
   </div>
 
 <!--搜索更多精彩内容  以后加
   -->
-  <app-text [name]="searchTopicData.desctitle" [text]="searchTopicData.desc">
+  <app-text 
+  [name]="(searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? searchTopicData.i18n[data.currentLocale] : searchTopicData.desctitle"
+  [text]="searchTopicData.desc">
   </app-text>
   
   <div class="placeholder-playbox"></div>

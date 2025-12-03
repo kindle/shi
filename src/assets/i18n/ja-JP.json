@@ -11,6 +11,13 @@
         "Language": "言語"
     },
 
+    "History":{
+        "Title":"歴史上の今日",
+        "Festival":"記念日",
+        "Birth":"誕生",
+        "Die":"忌日"
+    },
+
     "AI": {
         "Title": "AI詩助手",
         "Hello": "こんにちは！何かお手伝いできることはありますか？",
@@ -42,6 +49,7 @@
         "MoreToExplore": "さらに検索",
         "DeleteFromLib": "詩庫から削除",
         "AddToLib": "詩庫に追加",
+        "FontSize":"文字サイズ",
         "AddToAPoemList": "詩リストに追加...",
         "ViewPoet": "詩人を見る"
     },

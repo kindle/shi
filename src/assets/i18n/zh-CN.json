@@ -12,7 +12,10 @@
     },
 
     "History":{
-        "Title":"历史上的今天"
+        "Title":"历史上的今天",
+        "Festival":"节日",
+        "Birth":"生日",
+        "Die":"祭日"
     },
 
     "AI":{
@@ -46,6 +49,7 @@
         "MoreToExplore":"搜索更多",
         "DeleteFromLib":"从资料库中删除",
         "AddToLib":"添加到资料库",
+        "FontSize":"文字大小",
         "AddToAPoemList":"添加到诗单列表...",
         "ViewPoet":"看作者"
     },

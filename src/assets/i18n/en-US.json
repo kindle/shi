@@ -11,6 +11,13 @@
         "Language":"Language"
     },
 
+    "History":{
+        "Title":"Today in History",
+        "Festival":"Holidays",
+        "Birth":"Births",
+        "Die":"Deaths"
+    },
+
     "AI":{
         "Title":"Poetry Agent",
         "Hello":"Hello! How can I assist you on poem today?",
@@ -39,9 +46,10 @@
         "AddPoem":"Add Poem",
         "NewList":"New Poemlist...",
         "Interpret":"AI",
-        "MoreToExplore":"More to Explore",
+        "MoreToExplore":"Search More",
         "DeleteFromLib":"Delete from Library",
         "AddToLib":"Add to Library",
+        "FontSize":"Text Size",
         "AddToAPoemList":"Add to a Poemlist...",
         "ViewPoet":"Poet"
     },

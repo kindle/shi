@@ -11,8 +11,15 @@
         "Language":"Sprache"
     },
 
+    "History":{
+        "Title":"Heute in der Geschichte",
+        "Festival":"Feiertage",
+        "Birth":"Geburten",
+        "Die":"Todesfälle"
+    },
+
     "AI":{
-        "Title":"AI-Gedichtagent",
+        "Title":"Gedichtagent",
         "Hello":"Hallo! Wie kann ich Ihnen heute helfen?",
         "Submit":"Senden",
         "Status0":"AI-Agent",
@@ -42,6 +49,7 @@
         "MoreToExplore":"Mehr entdecken",
         "DeleteFromLib":"Aus Bibliothek löschen",
         "AddToLib":"Zur Bibliothek hinzufügen",
+        "FontSize":"Textgröße",
         "AddToAPoemList":"Zu einer Gedichtsliste hinzufügen...",
         "ViewPoet":"Dichter"
     },

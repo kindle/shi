@@ -11,6 +11,13 @@
         "Language": "언어"
     },
 
+    "History":{
+        "Title":"역사 속 오늘",
+        "Festival":"기념일",
+        "Birth":"탄생",
+        "Die":"사망"
+    },
+
     "AI": {
         "Title": "AI 시 작업 도우미",
         "Hello": "안녕하세요! 도와드릴 게 있나요?",
@@ -42,6 +49,7 @@
         "MoreToExplore": "더 많이 검색",
         "DeleteFromLib": "시가 서재에서 삭제",
         "AddToLib": "시가 서재에 추가",
+        "FontSize":"글자 크기",
         "AddToAPoemList": "시 목록에 추가...",
         "ViewPoet": "시인 보기"
     },
