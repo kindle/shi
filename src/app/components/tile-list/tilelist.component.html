@@ -1,7 +1,8 @@
 <ion-toolbar style="--background: translucent;">
   <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
     <ion-buttons>
-      <ion-card-title class="station-text" style="font-weight: bold;">{{name}}</ion-card-title>
+      <ion-card-title class="station-text" style="font-weight: bold;"
+       [style.fontSize]="data.zoom(20)">{{name}}</ion-card-title>
       <ion-button *ngIf="arrow">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
@@ -59,7 +60,9 @@
           background-color: {{s.data.color}};">
     </div>
     <div
-    class="card-text-style" *ngIf="s.group=='customlist'">{{s.data.name}} {{s.data.desc}}</div>
+    class="card-text-style" *ngIf="s.group=='customlist'"
+     [style.fontSize]="data.zoom(16)"
+    >{{s.data.name}} {{s.data.desc}}</div>
   
     <!--culstomelist end-->
 
@@ -74,7 +77,8 @@
         background-repeat:no-repeat;
         background-color: {{s.color}};">
     </div>
-    <div class="card-text-style" *ngIf="s.group=='idlist'">{{s.data.name?s.data.name:s.data.sub}}</div>
+    <div class="card-text-style" *ngIf="s.group=='idlist'"
+     [style.fontSize]="data.zoom(16)">{{s.data.name?s.data.name:s.data.sub}}</div>
 
 
     <div class="card-scroll-item1" *ngIf="s.group=='taglist'" 
@@ -87,7 +91,8 @@
         background-repeat:no-repeat;
         background-color: {{s.data.color}};">
     </div>
-    <div class="card-text-style" *ngIf="s.group=='taglist'">{{s.data.text}}</div>
+    <div class="card-text-style" *ngIf="s.group=='taglist'"
+     [style.fontSize]="data.zoom(16)">{{s.data.text}}</div>
 
 
     <div class="card-scroll-item1" *ngIf="s.group=='poetlist'" 
@@ -100,7 +105,8 @@
         background-repeat:no-repeat;
         background-color:rgb(113,203,212);">
     </div>
-    <div class="card-text-style" *ngIf="s.group=='poetlist'">关注诗人 - {{s.data.name}}</div>
+    <div class="card-text-style" *ngIf="s.group=='poetlist'"
+     [style.fontSize]="data.zoom(16)">关注诗人 - {{s.data.name}}</div>
 
 
     <div class="card-scroll-item1" *ngIf="s.group=='poem'" 
@@ -113,6 +119,7 @@
         background-repeat:no-repeat;
         background-color:rgb(113,203,212);">
     </div>
-    <div class="card-text-style" *ngIf="s.group=='poem'">{{s.data.author}}《{{s.data.title}}》</div>
+    <div class="card-text-style" *ngIf="s.group=='poem'"
+     [style.fontSize]="data.zoom(16)">{{s.data.author}}《{{s.data.title}}》</div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
     <!--
     <ion-buttons slot="end" *ngIf="ui.isAndroid">
       <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet-android">
@@ -16,13 +16,16 @@
 <ion-content #pageTop [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
+      <ion-title class="tab-title" mode="md"
+      [style.fontSize]="data.zoom(28)">
+        {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
+      </ion-title>
       <ion-buttons slot="end">
         <!--
         <ion-button shape="round" style="margin-right: 10px;" (click)="data.goMe()">
           <ion-icon name="person-circle-outline" size="large"></ion-icon>
         </ion-button>-->
-        <ion-button shape="round" style="margin-right: 10px;" 
+        <ion-button shape="round" style="margin-right: 10px;"
         (click)="data.textZoom()">
           <ion-icon name="text-outline" size="large"></ion-icon>
         </ion-button>
@@ -905,8 +908,13 @@
         style="
         background-size:cover;min-height: {{item.min_height}};background-color:{{data.getbgcolor()}}">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
-          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}">
+          <ion-card-subtitle class="card-text" 
+            style="color:{{item.title_color}};"
+            [style.fontSize]="data.zoom(18)">
+            {{item.small_title}}
+          </ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}"
+          [style.fontSize]="data.zoom(28)">
             {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
           </ion-card-title>
         </ion-card-content>
@@ -965,8 +973,12 @@
         lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
         style="background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content>
-          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};"
+          [style.fontSize]="data.zoom(18)">
+            {{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}"
+          [style.fontSize]="data.zoom(28)">
+            {{item.big_title}}</ion-card-title>
         </ion-card-content>
       </ion-card>
 
@@ -977,10 +989,11 @@
       <ion-card class="card card-scroll" id="modal-scroll" card-shrink
       *ngIf="item.template=='scroll'">
         <ion-card-content>
-          <ion-card-subtitle class="card-text" style="font-size:18px;">
+          <ion-card-subtitle class="card-text" 
+          [style.fontSize]="data.zoom(18)">
             {{item.small_title}}
           </ion-card-subtitle>
-          <ion-card-title>{{item.big_title}}</ion-card-title>
+          <ion-card-title [style.fontSize]="data.zoom(28)">{{item.big_title}}</ion-card-title>
         </ion-card-content>
       
         <ion-card-content style="margin-top:0;">
@@ -1000,23 +1013,26 @@
 <!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
       <ion-card class="card card-vote" id="modal-vote" card-shrink
       *ngIf="item.template=='vote'">
-        <div class="card-vote-bg">
+        <div class="card-vote-bg" [style.fontSize]="data.zoom(28)">
           {{item.small_title}}
         </div>
         <ion-card-content>
           <ion-card-subtitle style="display: flex;">
             <!--<ion-badge style="padding-left:0;" color="transparent">{{item.small_title}}</ion-badge>-->
-            <ion-badge color="danger" style="font-size:18px;">
+            <ion-badge color="danger" [style.fontSize]="data.zoom(18)">
               {{item.small_title}}
             </ion-badge>
           </ion-card-subtitle>
-          <ion-card-title style="margin-top:10px;color:black;">{{item.big_title}}</ion-card-title>
-          <ion-card-subtitle style="margin-top:10px;font-size: 18px;">{{item.desc}}</ion-card-subtitle>
+          <ion-card-title style="margin-top:10px;color:black;"
+          [style.fontSize]="data.zoom(28)">{{item.big_title}}</ion-card-title>
+          <ion-card-subtitle style="margin-top:10px;"
+          [style.fontSize]="data.zoom(18)">{{item.desc}}</ion-card-subtitle>
         </ion-card-content>
         <ion-card-content>
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
           *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.text)">
-            <div style="width: 100%;text-align: center;">{{v.text}}</div>
+            <div style="width: 100%;text-align: center;"
+            [style.fontSize]="data.zoom(16)">{{v.text}}</div>
           </ion-item>
         </ion-card-content>
       </ion-card>
@@ -1027,12 +1043,13 @@
       <ion-card class="card card-vote" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='wall'">
-        <div class="card-vote-bg">{{item.small_title}}</div>
+        <div class="card-vote-bg" [style.fontSize]="data.zoom(28)">
+          {{item.small_title}}</div>
         <ion-card-content>
-          <ion-card-subtitle style="display: flex;">
+          <ion-card-subtitle style="display: flex;" [style.fontSize]="data.zoom(18)">
             <ion-badge color="danger">{{item.small_title}}</ion-badge>
           </ion-card-subtitle>
-          <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
+          <ion-card-title style="margin-top:10px;">{{item.big_title}}3</ion-card-title>
         </ion-card-content>
         <!--[autoplay]="autoplayopt" -->
         <ion-card-content>
@@ -1074,8 +1091,10 @@
         lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
         style="background-size:cover;min-height: {{item.min_height}};">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
-          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};font-size:18px;">{{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}">{{item.big_title}}</ion-card-title>
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};"
+          [style.fontSize]="data.zoom(18)">{{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}"
+          [style.fontSize]="data.zoom(28)">{{item.big_title}}</ion-card-title>
         </ion-card-content>
         <ion-card-content style="bottom:0;position: absolute;width: 100%; background-color: white;padding-bottom: 20px;"
         (click)="stopBubble($event)">
@@ -1098,7 +1117,8 @@
                 lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"  
                 onerror="javascript:this.src='assets/img/default.jpg'"
               />
-              <div style="text-align: center;width: 65px;background-color: rgb(247,247,247);">{{v.author}}</div>
+              <div style="text-align: center;width: 65px;background-color: rgb(247,247,247);"
+              [style.fontSize]="data.zoom(16)">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
         </ion-card-content>

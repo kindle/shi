@@ -14,7 +14,8 @@
             {{data.mystars}}/{{data.totalstars}}<ion-img src="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;"></ion-img>
         </ion-label> -->
     </ion-card-subtitle>
-    <ion-card-title class="card-text" style="z-index: 10;">{{title}}</ion-card-title>
+    <ion-card-title class="card-text" style="z-index: 10;" 
+    [style.fontSize]="data.zoom(28)">{{title}}</ion-card-title>
         <div class="container1">
             <div class="row">
                 <div class="col-sm-6">

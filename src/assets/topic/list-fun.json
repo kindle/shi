@@ -767,6 +767,7 @@
         "image":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg",
         "more":"北宋·1037年·东坡居士·翰林学士·礼部尚书",
         "desc":"那些苏东坡值得细品的诗句",
+        "effect":"moon",
         "list":[  
             {"title":"水调歌头","author":"苏轼","sample":"人有悲欢离合，月有阴晴圆缺，此事古难全","id":"eb70dc6c-4509-43af-bcf6-5b862ac23082"},
             {"title":"望江南","author":"苏轼","sample":"休对故人思故国，且将新火试新茶。诗酒趁年华","id":"f322e7a8-aba4-47ac-b402-86cf85b86d48"},

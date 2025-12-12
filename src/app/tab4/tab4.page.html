@@ -24,7 +24,8 @@ class="custom-content"
   <ion-header [translucent]="true" collapse="condense" 
     *ngIf="!data.showFilter">
     <ion-toolbar>
-      <ion-title class="tab-title" mode="md">
+      <ion-title class="tab-title" mode="md"
+      [style.fontSize]="data.zoom(28)">
         {{ ui.instant('Tabs.Search') }}<!--搜索-->
       </ion-title>
     </ion-toolbar>
@@ -169,7 +170,8 @@ class="custom-content"
 
   <div *ngIf="!data.showFilter">
     <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 15px;">
-      <ion-card-title style="font-size: 20px;">{{ ui.instant('Title.BrowseCategories') }}<!--类别浏览--></ion-card-title>
+      <ion-card-title [style.fontSize]="data.zoom(20)">
+        {{ ui.instant('Title.BrowseCategories') }}<!--类别浏览--></ion-card-title>
     </ion-card-content>
   </div>
 
@@ -222,7 +224,8 @@ class="custom-content"
       </ion-card-header>
       <ion-card-content 
       [ngClass]="{'gray-mask': currentLpId === topic.id }"
-      style="color:white;padding-left:10px;padding-bottom:10px;"> 
+      style="color:white;padding-left:10px;padding-bottom:10px;"
+      [style.fontSize]="data.zoom(16)"> 
         {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
           topic.i18n[data.currentLocale] : topic.name }}
       </ion-card-content>
@@ -315,7 +318,7 @@ class="custom-content"
   <!--AI template-->
   <div *ngIf="!data.showFilter">
     <ion-card-content style="padding-left:15px;padding-top:15px;padding-bottom: 15px;">
-      <ion-card-title style="font-size: 20px;">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
+      <ion-card-title [style.fontSize]="data.zoom(20)">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
     </ion-card-content>
   </div>
   <div style="display: flex;flex-wrap: wrap;justify-content: center;" *ngIf="!data.showFilter">
