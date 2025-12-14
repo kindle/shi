@@ -5,17 +5,20 @@
       [style.fontSize]="data.zoom(20)">
         {{name}}
       </ion-card-title>
-      <ion-button *ngIf="source.length>10">
+      <ion-button *ngIf="source.length>2">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-card-content>
 
+  <!--搜索更多-->
+  <!--
   <ion-buttons slot="end" (click)="data.goToSearch()" style="margin-right:10px;">
     <ion-button 
     [style.fontSize]="data.zoom(18)">
-    {{ ui.instant('Action.MoreToExplore') }}<!--搜索更多--></ion-button>
+    {{ ui.instant('Action.MoreToExplore') }}</ion-button>
   </ion-buttons>
+  -->
 </ion-toolbar>
 <swiper-container swiper-touch
     style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
