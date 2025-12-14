@@ -202,8 +202,11 @@ export class UiService {
     });;
   }
 
-  share(base64ImageData:any){
-    this.socialSharing.share('mymessage', "my subject", base64ImageData, 'reddah.com');
+  share(base64ImageData:any, 
+    subject:any = "Subject", 
+    message:any = "Share", 
+    url:any = "reddah.com"){
+    this.socialSharing.share(message, subject, base64ImageData, url);
   }
 
   share1(message:any, subject:any, base64ImageData:any, url:any){

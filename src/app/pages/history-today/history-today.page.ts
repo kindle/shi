@@ -81,8 +81,12 @@ export class HistoryTodayPage implements OnInit {
       ctx.fillStyle = "#B08950";
       ctx.textAlign = "center";
       ctx.font = 'Bold 30px Sans-Serif';
-      ctx.strokeText('历史上的今天', canvas.width/2, 40);
-      ctx.fillText("历史上的今天", canvas.width/2, 40);
+      ctx.strokeText(
+        this.ui.instant('History.Title'),//'历史上的今天', 
+        canvas.width/2, 40);
+      ctx.fillText(
+        this.ui.instant('History.Title'), //"历史上的今天", 
+        canvas.width/2, 40);
 
       let dataUrl=canvas.toDataURL();
       console.log(dataUrl);
@@ -91,7 +95,11 @@ export class HistoryTodayPage implements OnInit {
       img1.src = dataUrl;
       //document.body.appendChild(img1);
 
-      this.ui.share(dataUrl);
+      this.ui.share(
+        dataUrl, 
+        this.ui.instant('History.Title'), //'历史上的今天', 
+        '看看历史上的今天发生了什么有趣的事情吧！', 
+        'https://reddah.com');
     }
 
   }
