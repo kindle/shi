@@ -205,20 +205,20 @@
   
     <div class="floating-div" [ngStyle]="{'transform': 'translateY(' + translateY + 'px)', 'opacity': opacity}">
       <div class="fd-container">
-        <div class="fd-item">
+        <div class="fd-item" (click)="data.goToSearch()">
           <ion-icon name="search-outline" class="fd-icon" color="dark"></ion-icon>
-          <div class="fd-text">搜索</div>
+          <div class="fd-text">{{ ui.instant('Action.Search') }}<!--搜索--></div>
         </div>
         <div class="fd-item">
           <ion-icon name="star-outline" class="fd-icon" color="dark"
           *ngIf="!data.isLikedArticle()" (click)="data.likeArticle()"></ion-icon>
           <ion-icon name="star" class="fd-icon" color="primary"
           *ngIf="data.isLikedArticle()" (click)="data.unlikeArticle()"></ion-icon>
-          <div class="fd-text">收藏</div>
+          <div class="fd-text">{{ ui.instant('Action.Collect') }}<!--收藏--></div>
         </div>
         <div class="fd-item">
           <ion-icon name="share-social-outline" class="fd-icon" color="dark"></ion-icon>
-          <div class="fd-text">分享</div>
+          <div class="fd-text">{{ ui.instant('Action.Share') }}<!--分享--></div>
         </div>
       </div>
     </div>

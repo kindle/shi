@@ -51,7 +51,9 @@
         "AddToLib": "Adicionar à Biblioteca",
         "FontSize":"Tamanho do Texto",
         "AddToAPoemList": "Adicionar a uma Lista de Poemas...",
-        "ViewPoet": "Poeta"
+        "ViewPoet": "Poeta",
+        "Collect": "Coletar",
+        "Share": "Compartilhar"
     },
 
     "Message": {
@@ -123,6 +125,7 @@
         "Coins":"Ouro",
         "CoinsToUnlock":"{0} moedas para desbloquear",
         "NotEnoughCoins":"Você Precisa de {0} moedas para desbloquear!",
-        "GiveFeedback":"Como este jogo, escreve uma boa crítica, certo?"
+        "GiveFeedback":"Como este jogo, escreve uma boa crítica, certo?",
+        "Title": "Teste seus conhecimentos"
     }
 }

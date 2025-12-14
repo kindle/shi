@@ -51,7 +51,9 @@
         "AddToLib":"添加到詩詞庫",
         "FontSize":"文字大小",
         "AddToAPoemList":"添加到詩單列表...",
-        "ViewPoet":"看作者"
+        "ViewPoet":"看作者",
+        "Collect": "收藏",
+        "Share": "分享"
     },
 
     "Message":{
@@ -123,6 +125,7 @@
         "Coins":"金幣",
         "CoinsToUnlock":"支付{0}金幣解鎖",
         "NotEnoughCoins":"需要支付{0}金幣解鎖，金幣不够啦!",
-        "GiveFeedback":"喜歡這個遊戲，就去寫個好評吧？"
+        "GiveFeedback":"喜歡這個遊戲，就去寫個好評吧？",
+        "Title": "考考你"
     }
 }

@@ -51,7 +51,9 @@
         "AddToLib":"添加到资料库",
         "FontSize":"文字大小",
         "AddToAPoemList":"添加到诗单列表...",
-        "ViewPoet":"看作者"
+        "ViewPoet":"看作者",
+        "Collect":"收藏",
+        "Share":"分享"
     },
 
     "Message":{
@@ -123,6 +125,7 @@
         "Coins":"金币",
         "CoinsToUnlock":"支付{0}金币解锁",
         "NotEnoughCoins":"需要支付{0}金币解锁，金币不够啦!",
-        "GiveFeedback":"喜欢这个游戏，就去写个好评吧？"
+        "GiveFeedback":"喜欢这个游戏，就去写个好评吧？",
+        "Title":"考考你"
     }
 }

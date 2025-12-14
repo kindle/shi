@@ -51,7 +51,9 @@
         "AddToLib":"Add to Library",
         "FontSize":"Text Size",
         "AddToAPoemList":"Add to a Poemlist...",
-        "ViewPoet":"Poet"
+        "ViewPoet":"Poet",
+        "Collect": "Collect",
+        "Share": "Share"
     },
 
     "Message":{
@@ -123,6 +125,7 @@
         "Coins":"Coins",
         "CoinsToUnlock":"{0} coins to unlock",
         "NotEnoughCoins":"You need {0} coins to unlock!",
-        "GiveFeedback":"You like this game? Write a good comment"
+        "GiveFeedback":"You like this game? Write a good comment",
+        "Title": "Test Your Knowledge"
     }
 }

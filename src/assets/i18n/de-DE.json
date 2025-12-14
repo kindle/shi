@@ -51,7 +51,9 @@
         "AddToLib":"Zur Bibliothek hinzufügen",
         "FontSize":"Textgröße",
         "AddToAPoemList":"Zu einer Gedichtsliste hinzufügen...",
-        "ViewPoet":"Dichter"
+        "ViewPoet":"Dichter",
+        "Collect": "Sammeln",
+        "Share": "Teilen"
     },
 
     "Message":{
@@ -123,6 +125,7 @@
         "Coins":"Gold",
         "CoinsToUnlock":"{0} Münzen zu entsperren",
         "NotEnoughCoins":"Du brauchst {0} Münzen, um dich zu entsperren!",
-        "GiveFeedback":"Wie dieses Spiel, schreiben Sie einfach eine gute Bewertung, nicht wahr?"
+        "GiveFeedback":"Wie dieses Spiel, schreiben Sie einfach eine gute Bewertung, nicht wahr?",
+        "Title": "Teste dein Wissen"
     }
 }

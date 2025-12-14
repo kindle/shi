@@ -51,7 +51,9 @@
         "AddToLib": "시가 서재에 추가",
         "FontSize":"글자 크기",
         "AddToAPoemList": "시 목록에 추가...",
-        "ViewPoet": "시인 보기"
+        "ViewPoet": "시인 보기",
+        "Collect": "수집",
+        "Share": "공유"
     },
 
     "Message": {
@@ -123,6 +125,7 @@
         "Coins":"금화",
         "CoinsToUnlock":"{0} 개의 동전 잠 금 풀기",
         "NotEnoughCoins":"너 는 {0} 개의 동전 이 있어 야만 자 물 쇠 를 풀 수 있다!",
-        "GiveFeedback":"이 게임을 좋아, 그냥 좋은 리뷰를 작성?"
+        "GiveFeedback":"이 게임을 좋아, 그냥 좋은 리뷰를 작성?",
+        "Title": "지식을 테스트하세요"
     }
 }

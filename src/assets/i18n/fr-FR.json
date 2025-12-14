@@ -51,7 +51,9 @@
         "AddToLib":"Ajouter à la bibliothèque",
         "FontSize":"Taille du Texte",
         "AddToAPoemList":"Ajouter à une liste de poèmes...",
-        "ViewPoet":"Poète"
+        "ViewPoet":"Poète",
+        "Collect": "Collecter",
+        "Share": "Partager"
     },
 
     "Message":{
@@ -123,6 +125,7 @@
         "Coins":"Pièce",
         "CoinsToUnlock":"{0} pièces détachées",
         "NotEnoughCoins":"Il te faut {0} pièces pour le déblocage!",
-        "GiveFeedback":"Comme ce jeu, il suffit d’écrire un bon commentaire, non?"
+        "GiveFeedback":"Comme ce jeu, il suffit d’écrire un bon commentaire, non?",
+        "Title": "Testez vos connaissances"
     }
 }

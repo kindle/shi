@@ -51,7 +51,9 @@
         "AddToLib": "詩庫に追加",
         "FontSize":"文字サイズ",
         "AddToAPoemList": "詩リストに追加...",
-        "ViewPoet": "詩人を見る"
+        "ViewPoet": "詩人を見る",
+        "Collect": "収集",
+        "Share": "共有"
     },
 
     "Message": {
@@ -123,6 +125,7 @@
         "Coins":"金貨",
         "CoinsToUnlock":"{0}コインを解除する",
         "NotEnoughCoins":"あなたがロックを解除する{0}コインが必要です！",
-        "GiveFeedback":"このゲームが好きなら、好評を書きに行きませんか？"
+        "GiveFeedback":"このゲームが好きなら、好評を書きに行きませんか？",
+        "Title": "知識を試す"
     }
 }
