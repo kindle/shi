@@ -4,7 +4,7 @@
     <ion-buttons>
       <ion-card-title class="station-text" style="font-weight: bold;"
       [style.fontSize]="data.zoom(20)">{{name}}</ion-card-title>
-      <ion-button>
+      <ion-button *ngIf="source.length>2">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
     </ion-buttons>
