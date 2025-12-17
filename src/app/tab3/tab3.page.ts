@@ -54,6 +54,8 @@ export class Tab3Page {
         this.searchKeywordModel = text;
         this.onSearchchange();
       }
+
+      this.data.loadAllLibraryCount();
       
   }
 

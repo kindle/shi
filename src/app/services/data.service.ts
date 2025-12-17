@@ -1523,6 +1523,7 @@ export class DataService {
         this.collectList = [];
       else{
         this.collectList = JSON.parse(value);
+        this.loadAllLibraryCount();
       }
     });
   }
@@ -1707,11 +1708,41 @@ export class DataService {
     this.storage.clear();
   }
 
+  poemlistcount:any=0;
+  poetcount:any=0;
+  albumcount:any=0;
+  poemcount:any=0;
+  topiccount:any=0;
+
+  loadAllLibraryCount(){
+    this.updateLocalData('customlist');
+    this.updateLocalData('poetlist');
+    this.updateLocalData('idlist');
+    this.updateLocalData('poem');
+    this.updateLocalData('taglist');
+  }
   localJsonData:any;
   updateLocalData(group:any){
     this.localJsonData = this.recentCollection()
       .filter((l:any)=>l.group==group);
     //console.log(this.localJsonData)
+    switch(group){
+      case 'customlist':
+        this.poemlistcount = this.localJsonData.length;
+        break;
+      case 'poetlist':
+        this.poetcount = this.localJsonData.length;
+        break;
+      case 'idlist':
+        this.albumcount = this.localJsonData.length;
+        break;
+      case 'poem':
+        this.poemcount = this.localJsonData.length;
+        break;
+      case 'taglist':
+        this.topiccount = this.localJsonData.length;
+        break;
+    } 
   }
 
   currentCollectLike:any;
