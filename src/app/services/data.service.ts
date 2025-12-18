@@ -1713,6 +1713,9 @@ export class DataService {
   albumcount:any=0;
   poemcount:any=0;
   topiccount:any=0;
+  get articleCount(){
+    return this.myLikeArticles.length;
+  }
 
   loadAllLibraryCount(){
     this.updateLocalData('customlist');

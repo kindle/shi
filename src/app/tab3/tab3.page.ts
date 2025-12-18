@@ -239,4 +239,57 @@ export class Tab3Page {
       }
     });
   }
+
+
+  currentLpId=0;
+  pressed(topicid:any){
+    this.currentLpId = topicid;
+  }
+  onScroll(event:any){
+    this.currentLpId=0;
+  }
+  active(topicid:any){
+  }
+  released(topicid:any){
+    this.currentLpId = 0;
+  }
+  ionViewWillLeave() {
+    this.currentLpId = 0;
+  }
+  ionViewWillEnter() {
+    this.currentLpId = 0;
+  }
+
+  topics = [
+    {id:1,image:'https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg',text:"Lib.Poemlists",count:"poemlistcount"},//诗单列表
+    {id:2,image:'https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg',text:"Lib.Poets",count:"poetcount"},//诗人
+    {id:3,image:'https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg',text:"Lib.Albums",count:"albumcount"},//诗单
+    {id:4,image:'https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg',text:"Lib.Poems",count:"poemcount"},//诗词
+    {id:5,image:'https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg',text:"Lib.Topics",count:"topiccount"},//主题
+    {id:6,image:'https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg',text:"Lib.Articles",count:"articleCount"}//文章
+  ];
+
+  goToTopic(topicId:any){
+    switch(topicId){
+      case 1:
+        this.goToPlayList();
+        break;
+      case 2:
+        this.goToAuthor();
+        break;
+      case 3:
+        this.goToList();
+        break;
+      case 4:
+        this.goToPoem();
+        break;
+      case 5:
+        this.goToTag();
+        break;
+      case 6:
+        this.goToArticle();
+        break;
+    }
+  }
+
 }
