@@ -470,7 +470,7 @@ export class DataService {
 
     let temp:any = [];
     //get 5 fun articles, 4 articles that have no effect, 1 have effect
-    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 4));
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 1));
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
     
     //get 1 group/wall/scroll
@@ -1156,7 +1156,7 @@ export class DataService {
 
     {name:"star-outline"},
     {name:"earth-outline"},
-    {name:"musical-notes-outline"},
+    {name:"musical-notes"},
     {name:"diamond-outline"},
     {name:"cash-outline"},
     {name:"tv-outline"},
@@ -1172,7 +1172,7 @@ export class DataService {
 
     {name:"star-outline"},
     {name:"earth-outline"},
-    {name:"musical-notes-outline"},
+    {name:"musical-notes"},
     {name:"diamond-outline"},
     {name:"cash-outline"},
     {name:"tv-outline"},
