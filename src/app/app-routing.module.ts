@@ -39,10 +39,6 @@ const routes: Routes = [
     loadChildren: () => import('./tab3/customlist/search-to-customlist/search-to-customlist.module').then( m => m.SearchToCustomListPageModule)
   },
   {
-    path: 'tab5',
-    loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
-  },
-  {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
@@ -53,10 +49,6 @@ const routes: Routes = [
   {
     path: 'history',
     loadChildren: () => import('./pages/chat/history/history.module').then( m => m.HistoryPageModule)
-  },
-  {
-    path: 'game-audio',
-    loadChildren: () => import('./tab5/loong/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
   },
   {
     path: 'game-kao',
