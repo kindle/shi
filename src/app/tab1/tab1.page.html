@@ -2,7 +2,8 @@
 <ion-header [translucent]="ui.isIos">
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)">
-      {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
+      {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
+      <!--{{ ui.instant('Tabs.Discovery') }}!--开卷有益-->
     </ion-title>
     <!--
     <ion-buttons slot="end" *ngIf="ui.isAndroid">
@@ -21,7 +22,8 @@
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
-        {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
+        {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
+        <!--{{ ui.instant('Tabs.Discovery') }}!--开卷有益-->
       </ion-title>
       <ion-buttons slot="end">
         <!--
@@ -41,6 +43,14 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
+
+  <app-big [source]="searchTopicData.scroll"></app-big>
+
+  <app-hot name="{{ ui.instant('Title.Classical') }}" [source]="data.classicData" *ngIf="data.classicData"></app-hot>
+
+  
+
+  
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -1167,7 +1177,7 @@
     </div>
   </div>
   
-  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-bottom: 15px;">
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
     <app-ascii-card class="card card-img custom-card"
         section="" 
         sub="" 
@@ -1192,6 +1202,18 @@
   </div>
 -->
 
+
+
+  <div *ngFor="let list of searchTopicData.list;">
+    <app-tile 
+    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
+    [source]="list.data" *ngIf="list.display!=false"></app-tile>
+  </div>
+
+  <app-text 
+    [name]="(searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? searchTopicData.i18n[data.currentLocale] : searchTopicData.desctitle"
+    [text]="searchTopicData.desc">
+  </app-text>
 
   <div class="placeholder-playbox"></div>
 

@@ -15,6 +15,13 @@ import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { CatCardComponentModule } from '../components/cat-card/cat-card.module';
 
+import { HotComponentModule } from '../components/hot/hot.module';
+import { BigComponentModule } from '../components/big/big.module';
+import { TileComponentModule } from '../components/tile/tile.module';
+import { TextComponentModule } from '../components/text/text.module';
+import { StarCardComponentModule } from '../components/star-card/star-card.module';
+import { TreeCardComponentModule } from '../components/tree-card/tree-card.module';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -30,6 +37,13 @@ import { CatCardComponentModule } from '../components/cat-card/cat-card.module';
     DogCardComponentModule,
     CatCardComponentModule,
     AsciiCardComponentModule,
+
+    HotComponentModule,
+    BigComponentModule,
+    TileComponentModule,
+    TextComponentModule,
+    StarCardComponentModule,
+    TreeCardComponentModule,
   ],
   declarations: [
     Tab1Page

@@ -77,6 +77,7 @@ export class Tab1Page {
     })
   }
   
+  searchTopicData:any;
 
   constructor(
     public ui: UiService,
@@ -88,8 +89,18 @@ export class Tab1Page {
     public data:DataService,
     private scrollService: ScrollService,
   ) {
+    this.data.currentTopicId = 199;
+    this.searchTopicData = this.data.tab5RadioTopicData
+      .filter((d:any)=>d.id==this.data.currentTopicId)[0];
+  }
 
-     
+  
+
+  goToList(listid:any){
+    //this.data.currentListId = listid;
+    this.router.navigate(['/tabs/tab4/list'], {
+      queryParams: {}
+    });
   }
 
 
@@ -142,7 +153,6 @@ export class Tab1Page {
       this.scrollSubscription.unsubscribe();
     }
   }
-
 
   ionViewWillEnter(){
     this.autoSwipers.forEach((swiper:any) => {
