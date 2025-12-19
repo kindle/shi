@@ -10,3 +10,36 @@
 .tab3-group-title{
     font-size: 22px;
 }
+
+
+.card {
+    min-height: 180px;
+    width: 400px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+//screen width smaller than 400px, use the following css
+@media screen and (max-width: 400px){  
+    .card {
+        min-height: 350px;
+        width:100%;
+    }
+
+    .card-wrap{
+        width: 100%;
+        display: flex;
+    }
+}
+
+.card-gif {
+    background-color: rgb(187,205,253);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    //background-image: url('https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg');
+
+    .card-text{
+        color:white;
+    }
+}

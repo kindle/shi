@@ -45,6 +45,24 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
     </ion-card>
   </div>
 
+  <div>
+    <ion-card-content style="padding-left:15px;padding-top:15px;padding-bottom: 15px;">
+      <ion-card-title [style.fontSize]="data.zoom(20)">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
+    </ion-card-content>
+  </div>
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    <ion-card class="card card-gif" card-shrink (click)="chat()"
+      defaultImage="" 
+      lazyLoad="/assets/img/faq.png"
+      style="background-size:cover;background-position: center;min-height:180px;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;color:black;"><!--功夫在诗外--></ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:black;"><!--AI诗词助手--></ion-card-title>
+        </ion-card-content>
+    </ion-card>
+  </div>
+
 <!--
   <ion-list style="margin-left:5px;margin-bottom:10px;">
     <ion-item (click)="goToPlayList()" [detail]="true">

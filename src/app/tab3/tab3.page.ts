@@ -292,4 +292,13 @@ export class Tab3Page {
     }
   }
 
+
+
+  chat(){
+    this.router.navigate(['/chat'], {
+      queryParams: {
+      }
+    });
+  }
+
 }
