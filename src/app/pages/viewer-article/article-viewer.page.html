@@ -128,12 +128,13 @@
           </ion-thumbnail>
           
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
-            <h2 [style.fontSize]="data.zoom(17)">
+            <h2 [style.fontSize]="data.zoom(17)"
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
             <p style="margin-top:5px;display: flex;align-items: end;color:black;"
             [style.fontSize]="data.zoom(14)">
               {{it.author}}《{{it.title}}》
-              <ion-icon name="mic-outline" *ngIf="it.audio" color="primary"></ion-icon>
+              <ion-icon name="musical-notes" *ngIf="it.audio" color="primary"></ion-icon>
             </p>
           </ion-label>
 
@@ -169,7 +170,7 @@
                 <p style="margin-top:5px;display: flex;align-items: end;"
                 [style.fontSize]="data.zoom(14)">
                   {{p.author}}
-                  <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+                  <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
                 </p>
               </ion-label>
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">
