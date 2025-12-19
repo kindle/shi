@@ -53,12 +53,27 @@
           'height':(data.isPlaying) ? '' : '5px' }"
         ></div>
       </ion-thumbnail>
+      <!--
       <ion-label *ngIf="like.data">
         <h2 *ngIf="like.data['paragraphs']">
           {{like.data['paragraphs'][0]}}
         </h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
           {{like.data['author']}}《{{like.data['title']}}》
+          <ion-icon name="mic-outline" *ngIf="like.data['audio']" color="primary"></ion-icon>
+        </p>
+      </ion-label>
+      -->
+      <ion-label *ngIf="like.data">
+        <h2 *ngIf="like.data['paragraphs']" 
+          [style.fontSize]="data.zoom(17)">
+          {{like.data['paragraphs'][0]}}</h2>
+        <h2 *ngIf="!like.data['paragraphs']" 
+          [style.fontSize]="data.zoom(17)">
+          {{like.data['sample']}}</h2>
+        <p style="margin-top:5px;display: flex;align-items: end;"
+          [style.fontSize]="data.zoom(14)">
+          {{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
           <ion-icon name="mic-outline" *ngIf="like.data['audio']" color="primary"></ion-icon>
         </p>
       </ion-label>

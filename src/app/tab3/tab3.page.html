@@ -1,10 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="ui.isIos">
   <ion-toolbar>
-    <ion-title [style.fontSize]="data.zoom(17)">{{ ui.instant('Tabs.Library') }}<!--诗词库--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Tabs.Library') }}<!--诗词库-->
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 
 <ion-content #pageTop [fullscreen]="true">
   <ion-header collapse="condense">

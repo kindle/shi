@@ -1,6 +1,9 @@
-<ion-header [translucent]="true">
+
+<ion-header [translucent]="ui.isIos">
   <ion-toolbar>
-    <ion-title [style.fontSize]="data.zoom(17)">{{ ui.instant('Tabs.Discovery') }}<!--开卷有益--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Tabs.Discovery') }}<!--开卷有益-->
+    </ion-title>
     <!--
     <ion-buttons slot="end" *ngIf="ui.isAndroid">
       <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet-android">
@@ -14,7 +17,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content #pageTop [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header collapse="condense" style="margin-bottom: 10px;">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">

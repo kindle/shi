@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="ui.isIos">
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)">
       {{ ui.instant('Tabs.Search') }}<!--搜索-->
@@ -18,11 +18,9 @@
   
 -->
 
-<ion-content [fullscreen]="false" scrollEvents="true"
-class="custom-content"
+<ion-content [fullscreen]="true" scrollEvents="true" class="custom-content"
   (ionScroll)="onScroll($event)" force-overscroll="false">
-  <ion-header [translucent]="true" collapse="condense" 
-    *ngIf="!data.showFilter">
+  <ion-header collapse="condense" *ngIf="!data.showFilter">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
@@ -31,7 +29,8 @@ class="custom-content"
     </ion-toolbar>
   </ion-header>
 
-  <ion-header style="position:sticky;top:0px;" collapse="fade" [translucent]="true">
+  <ion-header [translucent]="ui.isIos"
+  style="position:sticky;top:0px;">
     <ion-toolbar style="padding-top:0px;"><!--诗人、诗词以及更多内容-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
         [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
@@ -167,13 +166,14 @@ class="custom-content"
     </ion-card-content>
   </ion-card>
 
-
+<!--
   <div *ngIf="!data.showFilter">
     <ion-card-content style="padding-left:15px;padding-top:0;padding-bottom: 15px;">
       <ion-card-title [style.fontSize]="data.zoom(20)">
-        {{ ui.instant('Title.BrowseCategories') }}<!--类别浏览--></ion-card-title>
+        {{ ui.instant('Title.BrowseCategories') }}!--类别浏览--</ion-card-title>
     </ion-card-content>
   </div>
+-->
 
 <!--
   <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">

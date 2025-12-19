@@ -55,6 +55,21 @@ export class AppComponent {
       this.data.loadLocale();
     });
 
+    
+    this.data.loadFontSizeZoomLevel();
+
+    this.data.loadAIChatHistory();
+    this.data.loadMyLikeArticles();
+
+    if(this.ui.isIos)
+    {
+      await this.loadVisitedTab();
+    }
+    //test
+    //this.data.gototesturl();
+  }
+
+  async loadVisitedTab(){
     const lastVisitedTab = await this.storage.get(this.data.LOCALSTORAGE_LAST_VISIT_TAB);
     const cleanTabIdentifier = lastVisitedTab.replace(/"/g, '');
     if (lastVisitedTab) {
@@ -62,13 +77,6 @@ export class AppComponent {
     } else {
       this.navController.navigateRoot('/tabs/tab1');
     }
-    this.data.loadFontSizeZoomLevel();
-
-    this.data.loadAIChatHistory();
-    this.data.loadMyLikeArticles();
-
-    //test
-    //this.data.gototesturl();
   }
 }
 
