@@ -31,7 +31,7 @@
             <h2 [innerHTML]="getHighlight(p)"></h2>
             <p style="margin-top:5px;">
               {{p.author}}《{{p.title}}》
-              <ion-icon name="mic-outline" *ngIf="p.audio" color="primary"></ion-icon>
+              <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
             </p>
           </ion-label>
           <ion-button fill="clear" slot="end" (click)="addtocustomlist(p)" *ngIf="!p.added">
