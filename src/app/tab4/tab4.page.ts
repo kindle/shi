@@ -33,12 +33,6 @@ export class Tab4Page implements OnInit {
   }
 
   async ionViewDidEnter(){
-    this.data.searchText = this.ui.instant('Search.Tab4');
-    if(this.data.searchText==this.ui.instant('Search.Tab4')){
-      this.data.searchText = "";
-      this.onSearchChanged();
-      this.onLoseFocus();
-    }
     //loaded in Component.app
     /*
     if(this.data.searchTopicData==null){
@@ -345,10 +339,19 @@ export class Tab4Page implements OnInit {
     };
   }
 
+  isListening=false;
   startListening(){
+    if(this.isListening)
+      return;
+
+    this.isListening = true;
     this.start();
   }
   stopListening(){
+    if(!this.isListening)
+      return;
+
+    this.isListening = false;
     this.recorder.stop();
   }
   /****stop listening */
@@ -358,8 +361,22 @@ export class Tab4Page implements OnInit {
   localList:any;
   
   clearIcon = "mic";
+  isCancelling = false;
   onClearMic(){
+    if(this.isCancelling) return;
+    //from cancel icon in the input
+    //console.log('clear mic clicked')
     this.startListening();
+  }
+  onCancel(){
+    this.isCancelling = true;
+    setTimeout(() => {
+      this.isCancelling = false;
+    }, 500);
+    //from cancel text
+    //console.log('cancel text clicked')
+    this.stopListening();
+    this.data.onSearchCancel();
   }
   onLoseFocus(){
     this.stopListening();
