@@ -1156,7 +1156,7 @@ export class DataService {
 
     {name:"star-outline"},
     {name:"earth-outline"},
-    {name:"musical-notes"},
+    {name:"headset"},
     {name:"diamond-outline"},
     {name:"cash-outline"},
     {name:"tv-outline"},
@@ -1172,7 +1172,7 @@ export class DataService {
 
     {name:"star-outline"},
     {name:"earth-outline"},
-    {name:"musical-notes"},
+    {name:"headset"},
     {name:"diamond-outline"},
     {name:"cash-outline"},
     {name:"tv-outline"},
@@ -2273,60 +2273,71 @@ export class DataService {
     this.ui.loadTranslate(locale);
   }
 
-  public actionSheetButtons = [
-    {text: '简体中文',
-      handler: () => {
-        this.setLocale('zh-CN');
-      }},
-    {text: '繁体中文',
-      handler: () => {
-        this.setLocale('zh-TW');
-      }},
-    {text: 'English',
-      handler: () => {
-        this.setLocale('en-US');
-      }},
-    {text: 'Español',
-      handler: () => {
-        this.setLocale('es-ES');
-      }}, 
-    {text: 'Français',
-      handler: () => {
-        this.setLocale('fr-FR');
-      }},
-    {text: 'العربية',
-      handler: () => {
-        this.setLocale('ar-AE');
-      }},
-    {text: 'Русский',
-      handler: () => {
-        this.setLocale('ru-RU');
-      }},
-    {text: 'Português',
-      handler: () => {
-        this.setLocale('pt-PT');
-      }},
-    {text: 'Deutsch',
-      handler: () => {
-        this.setLocale('de-DE');
-      }},
-    {text: '日本語',
-      handler: () => {
-        this.setLocale('ja-JP');
-      }},
-    {text: '한국어',
-      handler: () => {
-        this.setLocale('ko-KR');
-      }},
-    {text: 'Ελληνικά',
-      handler: () => {
-        this.setLocale('el-GR');
-      }},
-    {text: 'ไทย',
-      handler: () => {
-        this.setLocale('th-TH');
-      }},
+
+  public get textActionSheetButtons() {
+    return [
+      {
+        text: this.ui.instant('Tutorial.Language') 
+          + ' (' + this.getCurrentLanguageName() + ')',
+        role: 'destructive',
+        handler: () => {
+          this.presentLanguageActionSheet();
+        }
+      },
+      {
+        text: this.ui.instant('Action.FontSize') 
+          + ' (' + Math.floor(this.zoomLevel * 100) + '%)',
+        handler: () => {
+          this.textZoom();
+        }
+      },
+      {
+        text: this.ui.instant('Action.Cancel'),
+        role: 'cancel',
+        data: {
+          action: 'cancel',
+        },
+      },
+    ];
+  }
+
+  async presentLanguageActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: this.ui.instant('Tutorial.Language'),
+      buttons: this.actionSheetButtons,
+    });
+    await actionSheet.present();
+  }
+
+  public languageList = [
+    { code: 'zh-CN', text: '简体中文' },
+    { code: 'zh-TW', text: '繁体中文' },
+    { code: 'en-US', text: 'English' },
+    { code: 'es-ES', text: 'Español' },
+    { code: 'fr-FR', text: 'Français' },
+    { code: 'ar-AE', text: 'العربية' },
+    { code: 'ru-RU', text: 'Русский' },
+    { code: 'pt-PT', text: 'Português' },
+    { code: 'de-DE', text: 'Deutsch' },
+    { code: 'ja-JP', text: '日本語' },
+    { code: 'ko-KR', text: '한국어' },
+    { code: 'el-GR', text: 'Ελληνικά' },
+    { code: 'th-TH', text: 'ไทย' }
   ];
+
+  public get actionSheetButtons() {
+    return this.languageList.map(item => ({
+      text: item.text,
+      handler: () => {
+        this.setLocale(item.code);
+      }
+    }));
+  }
+
+  public getCurrentLanguageName() {
+    const lang = this.languageList.find(l => l.code === this.currentLocale);
+    return lang ? lang.text : '简体中文';
+  }
 
 
 

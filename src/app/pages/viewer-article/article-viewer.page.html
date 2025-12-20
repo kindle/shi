@@ -134,7 +134,7 @@
             <p style="margin-top:5px;display: flex;align-items: end;color:black;"
             [style.fontSize]="data.zoom(14)">
               {{it.author}}《{{it.title}}》
-              <ion-icon name="musical-notes" *ngIf="it.audio" color="primary"></ion-icon>
+              <ion-icon name="headset" *ngIf="it.audio" color="primary"></ion-icon>
             </p>
           </ion-label>
 
@@ -170,7 +170,7 @@
                 <p style="margin-top:5px;display: flex;align-items: end;"
                 [style.fontSize]="data.zoom(14)">
                   {{p.author}}
-                  <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
+                  <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
                 </p>
               </ion-label>
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">

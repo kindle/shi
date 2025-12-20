@@ -26,6 +26,14 @@
       [style.fontSize]="data.zoom(28)">
         {{ ui.instant('Tabs.Search') }}<!--搜索-->
       </ion-title>
+      <ion-buttons slot="end">
+        <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet4">
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+        </ion-button>
+        <ion-action-sheet class="language-setting" trigger="open-action-sheet4" 
+          header="{{ui.instant('Title.Settings')}}" [buttons]="data.textActionSheetButtons">
+        </ion-action-sheet>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -90,7 +98,7 @@
         <h2 [innerHTML]="getHighlight(p)"></h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
           {{p.author}}《{{p.title}}》
-          <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
+          <ion-icon name="albums-outline" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
       <!--
@@ -334,6 +342,25 @@
     </ion-card>
   </div>
 -->
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-top:10px;">
+    <ion-card class="card card-gif" card-shrink (click)="chat()"
+      defaultImage="" 
+      lazyLoad="/assets/img/faq.png"
+      style="background-size:cover;background-position: center;min-height:180px;"
+    >
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" 
+          style="font-size: 18px;position:absolute;bottom: 10px;right:15px;z-index: 10;">
+          </ion-card-subtitle>
+          <ion-card-title class="card-text" style="z-index: 10;" 
+            [style.fontSize]="data.zoom(28)">
+            {{ ui.instant('AI.Title') }}<!--AI诗词助手-->
+          </ion-card-title>
+          <ion-card-subtitle class="card-text" style="font-size: 18px;color:black;"><!--功夫在诗外--></ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:black;"><!--AI诗词助手--></ion-card-title>
+        </ion-card-content>
+    </ion-card>
+  </div>
 
 
 

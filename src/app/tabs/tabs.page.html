@@ -71,19 +71,19 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             <ion-label class="menu-text">{{ ui.instant('Lib.Poets') }}<!--诗人--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(1)" class="menu-item" color="primary" *ngIf="isSubSelected(1)">
-            <ion-icon name="list-outline" class="menu-icon"></ion-icon>
+            <ion-icon name="cube-outline" class="menu-icon"></ion-icon>
             <ion-label class="menu-text">{{ ui.instant('Lib.Albums') }}<!--专辑--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(1)" class="menu-item" *ngIf="!isSubSelected(1)">
-            <ion-icon name="list-outline" class="menu-icon" color="primary"></ion-icon>
+            <ion-icon name="cube-outline" class="menu-icon" color="primary"></ion-icon>
             <ion-label class="menu-text">{{ ui.instant('Lib.Albums') }}<!--专辑--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(3)" class="menu-item" color="primary" *ngIf="isSubSelected(3)">
-            <ion-icon name="book-outline" class="menu-icon"></ion-icon>
+            <ion-icon name="pencil-outline" class="menu-icon"></ion-icon>
             <ion-label class="menu-text">{{ ui.instant('Lib.Poems') }}<!--诗词--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(3)" class="menu-item" *ngIf="!isSubSelected(3)">
-            <ion-icon name="book-outline" class="menu-icon" color="primary"></ion-icon>
+            <ion-icon name="pencil-outline" class="menu-icon" color="primary"></ion-icon>
             <ion-label class="menu-text">{{ ui.instant('Lib.Poems') }}<!--诗词--></ion-label>
           </ion-item>
           <ion-item lines="none" (click)="goSub(4)" class="menu-item" color="primary" *ngIf="isSubSelected(4)">
@@ -204,7 +204,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-tab-button>
       <ion-tab-button tab="tab3" style="--background: transparent;"
       (click)="onDblClick()">
-        <ion-icon name="musical-notes"></ion-icon>
+        <ion-icon name="albums-outline"></ion-icon>
         {{ ui.instant('Tabs.Library') }}<!--诗词库-->
       </ion-tab-button>
       <ion-tab-button tab="tab4" style="--background: transparent;"

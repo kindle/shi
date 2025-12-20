@@ -23,22 +23,13 @@
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
         {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
-        <!--{{ ui.instant('Tabs.Discovery') }}!--开卷有益-->
       </ion-title>
       <ion-buttons slot="end">
-        <!--
-        <ion-button shape="round" style="margin-right: 10px;" (click)="data.goMe()">
+        <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet1">
           <ion-icon name="person-circle-outline" size="large"></ion-icon>
-        </ion-button>-->
-        <ion-button shape="round" style="margin-right: 10px;"
-        (click)="data.textZoom()">
-          <ion-icon name="text-outline" size="large"></ion-icon>
         </ion-button>
-        <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet">
-          <ion-icon name="language-outline" size="large"></ion-icon>
-        </ion-button>
-        <ion-action-sheet class="language-setting" trigger="open-action-sheet" 
-        header="{{ui.instant('Tutorial.Language')}}" [buttons]="data.actionSheetButtons">
+        <ion-action-sheet class="language-setting" trigger="open-action-sheet1" 
+          header="{{ui.instant('Title.Settings')}}" [buttons]="data.textActionSheetButtons">
         </ion-action-sheet>
       </ion-buttons>
     </ion-toolbar>
@@ -1191,7 +1182,7 @@
 
 
 
-  <div *ngFor="let list of searchTopicData.list;">
+  <div *ngFor="let list of searchTopicData.list;" style="margin-top:10px;">
     <app-tile 
     [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
     [source]="list.data" *ngIf="list.display!=false"></app-tile>

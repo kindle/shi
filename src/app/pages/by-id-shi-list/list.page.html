@@ -36,11 +36,13 @@
                 {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
                 <ion-icon name="add-outline" slot="end"></ion-icon>
               </ion-item>
+              <!--
               <ion-item lines="full" [button]="true" [detail]="false"
               (click)="data.textZoom()">
-                {{ ui.instant('Action.FontSize') }}<!--文字大小-->
+                {{ ui.instant('Action.FontSize') }}--文字大小--
                 <ion-icon name="text-outline" slot="end"></ion-icon>
               </ion-item>
+              -->
               <!--
               <ion-item lines="full" [button]="true" [detail]="false" (click)="addToCustomList(p)">
                 添加到诗单列表...
@@ -144,7 +146,7 @@
         <p [style.fontSize]="data.zoom(14)" 
         style="margin-top:5px;display: flex;align-items: end;">
           {{p.author}}《{{p.title}}》
-          <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
+          <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
 

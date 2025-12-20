@@ -110,7 +110,7 @@
         <h2>{{p.paragraphs[0]}}</h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
           {{p.author}}《{{p.title}}》
-          <ion-icon name="musical-notes" *ngIf="p.audio" color="primary"></ion-icon>
+          <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
       <app-button-end [p]="p" page="taglist"></app-button-end>
