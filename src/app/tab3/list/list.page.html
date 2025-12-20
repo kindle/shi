@@ -37,8 +37,11 @@
         (click)="data.goToList(like.data['id'])" />
       </ion-thumbnail>
       <ion-label *ngIf="like.data" (click)="data.goToList(like.data['id'])">
-        <h2>{{like.data['name']?like.data['name']:like.data['sub']}}</h2>
-        <p style="margin-top:5px;">{{like.data['desc'].substring(0,20)}}</p>
+        <h2 class="show-only-one-line"
+        >{{like.data['name']?like.data['name']:like.data['sub']}}</h2>
+        <p style="margin-top:5px;" class="show-only-one-line">
+          {{like.data['desc']}}
+        </p>
       </ion-label>
     </ion-item>
     <!--

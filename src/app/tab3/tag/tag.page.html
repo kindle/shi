@@ -36,7 +36,9 @@
           (click)="data.goToListBy(like.data)"/>
       </ion-thumbnail>
       <ion-label *ngIf="like.data" (click)="data.goToListBy(like.data)">
-        <h2>{{like.data['text']}}</h2>
+        <h2 class="show-only-one-line">
+          {{like.data['text']}}
+        </h2>
         <p style="margin-top:5px;">{{like.data['desc']}}</p>
       </ion-label>
     </ion-item>

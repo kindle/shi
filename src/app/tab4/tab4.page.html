@@ -1,4 +1,4 @@
-<ion-header [translucent]="ui.isIos" *ngIf="!data.showFilter">
+<ion-header [translucent]="ui.isIos" *ngIf="ui.isIos||!data.showFilter">
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)">
       {{ ui.instant('Tabs.Search') }}<!--搜索-->
@@ -73,7 +73,9 @@
         />
       </ion-thumbnail>
       <ion-label>
-        <h2>{{data.searchText}}</h2>
+        <h2 class="show-only-one-line">
+          {{data.searchText}}
+        </h2>
         <p>{{ ui.instant('Title.Author') }}<!--作者--></p>
       </ion-label>
       <ion-button fill="clear" slot="end">
@@ -95,7 +97,8 @@
         ></div>
       </ion-thumbnail>
       <ion-label>
-        <h2 [innerHTML]="getHighlight(p)"></h2>
+        <h2 class="show-only-one-line" 
+        [innerHTML]="getHighlight(p)"></h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
           {{p.author}}《{{p.title}}》
           <ion-icon name="albums-outline" *ngIf="p.audio" color="primary"></ion-icon>
@@ -342,7 +345,8 @@
     </ion-card>
   </div>
 -->
-  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-top:10px;">
+  <div *ngIf="!data.showFilter"
+   style="display: flex;flex-wrap: wrap;justify-content: center;margin-top:10px;">
     <ion-card class="card card-gif" card-shrink (click)="chat()"
       defaultImage="" 
       lazyLoad="/assets/img/faq.png"

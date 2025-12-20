@@ -284,3 +284,6 @@
   //text-align:center;
 }
 
+.show-only-one-line{
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}

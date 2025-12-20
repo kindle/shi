@@ -129,7 +129,7 @@
           
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
             <h2 [style.fontSize]="data.zoom(17)"
-            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            class="show-only-one-line">
               {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
             <p style="margin-top:5px;display: flex;align-items: end;color:black;"
             [style.fontSize]="data.zoom(14)">

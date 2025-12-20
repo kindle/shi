@@ -36,13 +36,14 @@
         <ion-label (click)="data.playListHot(source, p, name)">
           <h2 *ngIf="p.paragraphs" 
             [style.fontSize]="data.zoom(17)"
-            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            class="show-only-one-line">
             {{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}</h2>
           <h2 *ngIf="!p.paragraphs" 
             [style.fontSize]="data.zoom(17)"
-            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            class="show-only-one-line">
             {{p.sample}}</h2>
           <p style="margin-top:5px;display: flex;align-items: end;"
+            class="show-only-one-line"
             [style.fontSize]="data.zoom(14)">
             {{hideAuthor?"":p.author}}《{{hideAuthor?p.title:p.title.substring(0,8)}}{{hideAuthor?"":(p.title.substring(0,8)==p.title?"":"...")}}》
             <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>

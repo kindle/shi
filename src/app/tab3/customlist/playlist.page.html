@@ -74,7 +74,9 @@
           </div>
         </ion-thumbnail>
         <ion-label *ngIf="like.data" >
-          <h2>{{like.data['name']}}</h2>
+          <h2
+          class="show-only-one-line"
+          >{{like.data['name']}}</h2>
           <p style="margin-top:5px;">{{like.data['desc']}}</p>
         </ion-label>
       </ion-item>
