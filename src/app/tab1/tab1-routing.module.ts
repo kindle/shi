@@ -29,11 +29,11 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    loadChildren: () => import('./dahui/list/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('../tab3/dahui/list/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'level',
-    loadChildren: () => import('./dahui/level/level.module').then( m => m.LevelPageModule)
+    loadChildren: () => import('../tab3/dahui/level/level.module').then( m => m.LevelPageModule)
   },
   {
     path: 'list/:id',

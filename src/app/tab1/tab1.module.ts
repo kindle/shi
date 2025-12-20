@@ -11,8 +11,6 @@ import { CardPathComponentModule } from '../components/card-path/card-path.modul
 import { CardBalloonComponentModule } from '../components/card-balloon/card-balloon.module';
 import { CardWaveComponentModule } from '../components/card-wave/card-wave.module';
 import { CardMoonComponentModule } from '../components/card-moon/card-moon.module';
-import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
-import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { CatCardComponentModule } from '../components/cat-card/cat-card.module';
 
 import { HotComponentModule } from '../components/hot/hot.module';
@@ -34,9 +32,7 @@ import { TreeCardComponentModule } from '../components/tree-card/tree-card.modul
     CardBalloonComponentModule,
     CardWaveComponentModule,
     CardMoonComponentModule,
-    DogCardComponentModule,
     CatCardComponentModule,
-    AsciiCardComponentModule,
 
     HotComponentModule,
     BigComponentModule,

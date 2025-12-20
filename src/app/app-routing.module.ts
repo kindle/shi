@@ -52,15 +52,15 @@ const routes: Routes = [
   },
   {
     path: 'game-kao',
-    loadChildren: () => import('./tab1/dahui/list/list.module').then( m => m.ListPageModule)
+    loadChildren: () => import('./tab3/dahui/list/list.module').then( m => m.ListPageModule)
   },
   {
     path: 'game-kao-level',
-    loadChildren: () => import('./tab1/dahui/level/level.module').then( m => m.LevelPageModule)
+    loadChildren: () => import('./tab3/dahui/level/level.module').then( m => m.LevelPageModule)
   },
   {
     path: 'game-dahui',
-    loadChildren: () => import('./tab1/dahui/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
+    loadChildren: () => import('./tab3/dahui/game-audio/game-audio.module').then( m => m.GameAudioPageModule)
   },
   {
     path: 'history-today',

@@ -45,11 +45,6 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
     </ion-card>
   </div>
 
-  <div>
-    <ion-card-content style="padding-left:15px;padding-top:15px;padding-bottom: 15px;">
-      <ion-card-title [style.fontSize]="data.zoom(20)">{{ ui.instant('AI.Title') }}<!--AI诗词助手--></ion-card-title>
-    </ion-card-content>
-  </div>
   <div style="display: flex;flex-wrap: wrap;justify-content: center;">
     <ion-card class="card card-gif" card-shrink (click)="chat()"
       defaultImage="" 
@@ -57,10 +52,34 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
       style="background-size:cover;background-position: center;min-height:180px;"
     >
         <ion-card-content>
+          <ion-card-subtitle class="card-text" 
+          style="font-size: 18px;position:absolute;bottom: 10px;right:15px;z-index: 10;">
+          </ion-card-subtitle>
+          <ion-card-title class="card-text" style="z-index: 10;" 
+            [style.fontSize]="data.zoom(28)">
+            {{ ui.instant('AI.Title') }}<!--AI诗词助手-->
+          </ion-card-title>
           <ion-card-subtitle class="card-text" style="font-size: 18px;color:black;"><!--功夫在诗外--></ion-card-subtitle>
           <ion-card-title class="card-text" style="color:black;"><!--AI诗词助手--></ion-card-title>
         </ion-card-content>
     </ion-card>
+  </div>
+
+
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    <app-ascii-card class="card card-img custom-card"
+        section="" 
+        sub="" 
+        title="{{ ui.instant('History.Title') }}"><!--历史上的今天-->
+    </app-ascii-card>
+  </div>
+
+  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-bottom: 15px;">
+    <app-dog-card class="card card-img custom-card"
+        section="" 
+        sub="" 
+        title="{{ ui.instant('Game.Title') }}"><!--考考你-->
+    </app-dog-card>
   </div>
 
 <!--
