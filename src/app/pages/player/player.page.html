@@ -54,10 +54,13 @@
             
             <ion-label>
               <h2 [style.fontSize]="data.zoom(17)"
+              class="show-only-one-line"
               *ngIf="p.paragraphs">{{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}</h2>
               <h2 [style.fontSize]="data.zoom(17)"
+              class="show-only-one-line"
               *ngIf="!p.paragraphs">{{p.sample}}</h2>
               <p style="margin-top:5px;display: flex;align-items: end;"
+              class="show-only-one-line"
               [style.fontSize]="data.zoom(14)">
                 {{p.author}}《{{p.title}}》
                 <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
@@ -91,8 +94,12 @@
               </ion-thumbnail>
               
               <ion-label>
-                <h2 [style.fontSize]="data.zoom(17)">{{p.sample?p.sample:p.paragraphs[0]}}</h2>
+                <h2 [style.fontSize]="data.zoom(17)"
+                class="show-only-one-line">
+                  {{p.sample?p.sample:p.paragraphs[0]}}
+                </h2>
                 <p style="margin-top:5px;display: flex;align-items: end;"
+                class="show-only-one-line"
                 [style.fontSize]="data.zoom(14)">
                   {{p.author}}《{{p.title}}》
                   <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
