@@ -28,8 +28,9 @@
             />
           </ion-thumbnail>
           <ion-label>
-            <h2 [innerHTML]="getHighlight(p)"></h2>
-            <p style="margin-top:5px;">
+            <h2 [innerHTML]="getHighlight(p)" class="show-only-one-line"></h2>
+            <p style="margin-top:5px;display: flex;align-items: end;" 
+            class="show-only-one-line">
               {{p.author}}《{{p.title}}》
               <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
             </p>
