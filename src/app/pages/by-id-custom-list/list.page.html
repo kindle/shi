@@ -6,13 +6,13 @@
     </ion-buttons>
     <ion-title>{{listdata.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button slot="end" shape="round" *ngIf="listdata&&!data.isliked(listdata,'customlist')"
+      <ion-button slot="end" *ngIf="listdata&&!data.isliked(listdata,'customlist')"
       (click)="data.likelist(listdata,'customlist')"
-      style="background-color: rgb(247,247,247);border-radius: 50%;">
+      style="--background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" 
-      style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}"
+      style="margin-left:10px;margin-right:15px; --background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -228,7 +228,7 @@
    [(ngModel)]="listdata.desc" placeholder="{{ ui.instant('Title.Description')}}"></ion-input><!--诗词列表描述-->
     
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
-    <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
+    <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:20px;">
       
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
@@ -263,7 +263,7 @@
   <ion-list style="margin-left:5px;margin-bottom:5px;"
   *ngIf="isEdit">
     <ion-item (click)="addsearchtolist()"
-    lines="full" style="--padding-start:15px;--inner-padding-end:10px;">
+    lines="full" style="--padding-start:15px;--inner-padding-end:20px;">
       <ion-icon slot="start" name="add-circle" color="primary"></ion-icon>
       <ion-label>
         <h2>{{ ui.instant('Action.AddPoem')}}<!--添加诗词--></h2>
@@ -274,8 +274,8 @@
   <ion-list *ngIf="listdata&&isEdit" style="margin-left:5px;">
     <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
       <ion-item-sliding #slidingItem *ngFor="let p of localList" 
-      style="--padding-start:15px;--inner-padding-end:10px;">
-        <ion-item style="--padding-start:15px;--inner-padding-end:10px;">
+      style="--padding-start:15px;--inner-padding-end:20px;">
+        <ion-item style="--padding-start:15px;--inner-padding-end:20px;">
           <ion-icon slot="start" name="remove-circle" color="danger"
           (click)="openSlidingItem(slidingItem, p)"></ion-icon>
 
