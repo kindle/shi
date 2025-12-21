@@ -12,7 +12,8 @@
     <!--shared backbutton for normal and effect animation start-->
     <ion-card-content style="z-index:100;position:fixed;width:100%;
       padding-inline-start:20px;
-      padding-inline-end:20px;padding-top:30px;">
+      padding-inline-end:20px;padding-top:30px;"
+      [style.paddingTop]="data.currentArticle.effect&&ui.isAndroid ? 'calc(30px + 20px)' : '30px'">
       <ion-buttons style="display:flex;justify-content:center;
         width:25px;height:25px;float:left;
         background-color:rgba(128,128,128,0.5);
@@ -28,21 +29,29 @@
       background-color: white;
       min-height: {{data.currentArticle.min_height}};"
       *ngIf="data.currentArticle.effect">
-      <app-card-moon class="custom-card" *ngIf="data.currentArticle.effect=='moon'" 
+      <app-card-moon viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='moon'" 
+      style="padding:0;margin:0"
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-moon>
-      <app-card-balloon class="custom-card" *ngIf="data.currentArticle.effect=='balloon'"
+      <app-card-balloon viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='balloon'"
+      style="padding:0;margin:0"
           source="article" 
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-balloon>
-      <app-card-wave class="custom-card" *ngIf="data.currentArticle.effect=='wave'"
+      <app-card-wave viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='wave'"
+      style="padding:0;margin:0"
           source="article" 
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-wave>
-      <app-card-path class="custom-card" *ngIf="data.currentArticle.effect=='path'"
+      <app-card-path viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='path'"
+      style="padding:0;margin:0"
           source="article" 
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">

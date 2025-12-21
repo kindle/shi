@@ -13,6 +13,7 @@ export class CardMoonComponent  implements OnInit {
   @Input() section?: any;
   @Input() sub?: any;
   @Input() title?: any;
+  @Input() viewer?: any = false;
 
   constructor(
     public data : DataService,

@@ -132,14 +132,18 @@
       </ion-thumbnail>
       <ion-label (click)="data.playobj(p)">
         <!--<h2>{{p.sample&&p.sample!=p.author?p.sample:p.paragraphs[0]}}</h2>-->
-        <h2 [style.fontSize]="data.zoom(17)">{{p.paragraphs[0]?.substring(0,20)}}</h2>
+        <h2 [style.fontSize]="data.zoom(17)"
+         class="show-only-one-line">
+          {{p.paragraphs[0]?.substring(0,20)}}
+        </h2>
         <p style="margin-top:5px;display: flex;align-items: end;"
+         class="show-only-one-line" 
         [style.fontSize]="data.zoom(14)">
           {{p.author}}《{{p.title}}》
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
-      <app-button-end [p]="p" page="authorlist"></app-button-end>
+      <app-button-end [p]="p" page="authorlist" slot="end"></app-button-end>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

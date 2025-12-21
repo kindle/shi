@@ -1004,7 +1004,7 @@
           <div class="card-scroll-box">
             <div class="card-scroll-item" *ngFor="let c of item.items" (click)="goAuthorDirect(c.text)">
               <div class="card-image contain" style="background-image:{{c.image}};background-color:{{c.color}}"></div>
-              <div class="card-text">{{c.text}}</div>
+              <div class="card-text show-only-one-line">{{c.text}}</div>
             </div>
           </div>
         </ion-card-content>
@@ -1036,6 +1036,7 @@
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
           *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.text)">
             <div style="width: 100%;text-align: center;"
+            class="show-only-one-line" 
             [style.fontSize]="data.zoom(16)">{{v.text}}</div>
           </ion-item>
         </ion-card-content>
@@ -1122,6 +1123,7 @@
                 onerror="javascript:this.src='assets/img/default.jpg'"
               />
               <div style="text-align: center;width: 65px;background-color: rgb(247,247,247);"
+              class="show-only-one-line" 
               [style.fontSize]="data.zoom(16)">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>

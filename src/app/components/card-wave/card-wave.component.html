@@ -1,6 +1,10 @@
-<ion-card class="card card-gif">
+<ion-card class="card card-gif" card-shrink
+[style.width]="viewer ? 'auto' : 400 + 'px'"
+[style.margin]="viewer ? '0' : null"
+  [style.borderRadius]="viewer ? '0' : null">
   <ion-card-content class="container" id="{{source}}_wave">
     <ion-card-subtitle class="card-text" style="z-index: 10;"
+    [style.marginTop]="viewer ? '20px' : null"
     [style.fontSize]="data.zoom(18)">{{sub}}</ion-card-subtitle>
     <ion-card-title class="card-text" style="z-index: 10;"
     [style.fontSize]="data.zoom(28)">{{title}}</ion-card-title>

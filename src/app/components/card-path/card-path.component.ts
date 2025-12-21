@@ -12,6 +12,7 @@ export class CardPathComponent  implements AfterViewInit {
   @Input() source?: any;
   @Input() sub?: any;
   @Input() title?: any;
+  @Input() viewer?: any = false;
 
   constructor(
     public data : DataService,
