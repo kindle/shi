@@ -3,18 +3,7 @@
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)">
       {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
-      <!--{{ ui.instant('Tabs.Discovery') }}!--开卷有益-->
     </ion-title>
-    <!--
-    <ion-buttons slot="end" *ngIf="ui.isAndroid">
-      <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet-android">
-        <ion-icon name="language-outline" size="large"></ion-icon>
-      </ion-button>
-      <ion-action-sheet class="language-setting" trigger="open-action-sheet-android" 
-      header="{{ui.instant('Tutorial.Language')}}" [buttons]="data.actionSheetButtons">
-      </ion-action-sheet>
-    </ion-buttons>
-    -->
   </ion-toolbar>
 </ion-header>
 <ion-content #pageTop [fullscreen]="true">
@@ -1054,7 +1043,7 @@
           <ion-card-subtitle style="display: flex;" [style.fontSize]="data.zoom(18)">
             <ion-badge color="danger">{{item.small_title}}</ion-badge>
           </ion-card-subtitle>
-          <ion-card-title style="margin-top:10px;">{{item.big_title}}3</ion-card-title>
+          <ion-card-title style="margin-top:10px;">{{item.big_title}}</ion-card-title>
         </ion-card-content>
         <!--[autoplay]="autoplayopt" -->
         <ion-card-content>
@@ -1077,7 +1066,9 @@
                 lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{v.author}}.jpeg"   
                 onerror="javascript:this.src='assets/img/default.jpg'"
               />
-              <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);">{{v.author}}</div>
+              <div style="text-align: center;width: 80px;margin-bottom:5px;background-color: rgb(247,247,247);"
+              class="show-only-one-line" 
+              [style.fontSize]="data.zoom(16)">{{v.author}}</div>
             </swiper-slide>
           </swiper-container>
         </ion-card-content>
