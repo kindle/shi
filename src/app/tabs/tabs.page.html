@@ -192,9 +192,6 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       (click)="onDblClick()">
         <ion-icon name="play-circle"></ion-icon>
         {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
-        <!--
-        <ion-icon name="today-outline"></ion-icon>
-        {{ ui.instant('Tabs.Discovery') }}!--开卷有益-->
       </ion-tab-button>
       <ion-tab-button tab="tab2" style="--background: transparent;"
        [class.active]="true"
@@ -212,14 +209,6 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
         <ion-icon name="search-outline"></ion-icon>
         {{ ui.instant('Tabs.Search') }}<!--搜索-->
       </ion-tab-button>
-
-      <!--
-       <ion-tab-button tab="tab5" style="--background: transparent;"
-      (click)="onDblClick()">
-        <ion-icon name="play-circle"></ion-icon>
-        {{ ui.instant('Tabs.ListenNow') }}!--现在就听--
-      </ion-tab-button>
-      -->
     </ion-tab-bar>
   </div>
 </ion-tabs>
