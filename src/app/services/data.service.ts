@@ -1418,7 +1418,7 @@ export class DataService {
         //if 有mp3, do not show modal, play directly
         //this.playobj(poem, poem.audio?false:true);
         //always pop
-        this.playobj(poem, true);
+        this.playobj(poem, pop);
       //}
     }
   }
