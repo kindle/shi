@@ -67,8 +67,9 @@
     <ion-toolbar><!--搜索-->
       <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
       *ngIf="localList.length>10||searchText.length>0"
-      style="padding-left:15px;"
+      style="padding-left:15px;margin-top:15px;"
       [(ngModel)]="searchText"
+      (ionBlur)="onLoseFocus()"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
@@ -80,6 +81,7 @@
           lazyLoad="{{listdata.image}}"
           style="margin:auto;width:200px;height:200px;
             background-size:cover;
+            background-color:{{listdata.color?listdata.color:data.getbgcolor()}};
             background-repeat: no-repeat;
             border-radius: 10px;" (click)="ui.imageviewer(listdata.image)">
         </ion-card>
@@ -163,7 +165,7 @@
     </ion-text>
   </ion-list>
     
-  <ion-header *ngIf="!showFilter&&poets.length>2">
+  <ion-header *ngIf="!showFilter&&poets.length>=1">
     <app-author name="{{ ui.instant('Title.FeaturedPoets') }}" [source]="poets"></app-author>
   </ion-header><!--此诗单中的诗人-->
 

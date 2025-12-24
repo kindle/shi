@@ -20,6 +20,9 @@ export class ListPage {
     this.showFilter = false;
     this.localList = this.listdata.list;
   }
+  onLoseFocus(){
+    this.showFilter = false;
+  }
   onSearchChanged(){
     let key = this.searchText.trim();
     /*
@@ -37,30 +40,30 @@ export class ListPage {
 
     if(key.length==0){
       this.localList = this.listdata.list.filter((e:any)=>
-        (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(key)>=0
+        (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(key)>=0
       );
     }
     else{
       this.localList = this.listdata.list.filter((e:any)=>
-        (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(key[0])>=0
+        (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(key[0])>=0
       );
       if(keys.length>1){
         this.localList = this.localList.filter((e:any)=>
-          (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[1])>=0
+          (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(keys[1])>=0
         );
         if(keys.length>2){
           this.localList = this.localList.filter((e:any)=>
-            (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[2])>=0
+            (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(keys[2])>=0
           );
 
           if(keys.length>3){
             this.localList = this.localList.filter((e:any)=>
-              (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[3])>=0
+              (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(keys[3])>=0
             );
             
             if(keys.length>4){
               this.localList = this.localList.filter((e:any)=>
-                (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(keys[4])>=0
+                (e.title+e.author+e.sample+(e.paragraphs?e.paragraphs.join('_'): '')).indexOf(keys[4])>=0
               );
             }
           }
