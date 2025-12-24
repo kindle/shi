@@ -32,7 +32,10 @@
           <ion-card-content class="station-content" style="z-index:1;" *ngIf="s.image"
             defaultImage="" 
             lazyLoad="{{s.image}}"
-            style="background-size: cover;background-repeat: no-repeat;background-color:{{data.getbgcolor()}}">
+            style="background-size: {{s['image-size']?s['image-size']:'cover'}};
+            background-repeat: no-repeat;
+            background-position: {{s['image-pos']?s['image-pos']:'center'}};
+            background-color:{{ s.color ? s.color : data.getbgcolor()}}">
             
             <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));

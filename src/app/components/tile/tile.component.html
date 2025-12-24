@@ -40,7 +40,10 @@
         background-color:{{s.color}};">
     </div>
     <div class="card-text-style"
-    [style.fontSize]="data.zoom(16)">
-    {{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}</div>
+      [style.fontSize]="data.zoom(16)">
+      {{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}
+      <br>
+      <span style="font-weight: lighter;">{{s.desc}}</span>
+    </div>
   </swiper-slide>
 </swiper-container>

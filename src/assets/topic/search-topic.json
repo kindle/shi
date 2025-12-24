@@ -178,6 +178,15 @@
     "name":"现在就听",
     "image":"",
     "scroll":[
+      {
+        "id":805, "alias":"A-List 天宝流行: 2025年度最佳",
+        "desc":"Tang Poetry 天宝流行",
+        "text":"天宝诗人们踏遍山河湖海，将豪情、悲悯、浪漫等诸多情感化作绚烂诗篇，为后世留下锦绣诗章。",
+        "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
+        "image":"/assets/img/p1.jpg",
+        "image-size":"contain",
+        "image-pos":"center"
+      },
       {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票","desc":"思乡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"},
       {"id":803, "alias":"推荐专辑","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"诗经","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
       {"id":804, "alias":"推荐专辑","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"观沧海","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"}
@@ -201,6 +210,15 @@
         "zh-TW":"最新專輯"
       },
       "data": [
+        {
+          "id":806, "alias":"A-List 天宝流行: 2025年度最佳",
+          "desc":"Tang Dynasty 浪漫主义",
+          "text":"李白: 浪漫精选",
+          "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/p1.jpg",
+          "image-size":"contain",
+          "image-pos":"center"
+        },
         {"id":800, "alias":"诗圣","text":"登高 | 无边落木萧萧下，不尽长江滚滚来","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg"},
         {"id":801,"src":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg","display":"cover","text":"春泥 | 一种相思,两处闲愁","desc":"","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg"},
         {"id":802,"src":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg","display":"cover","text":"思乡 | 小时候，乡愁是一枚小小的邮票","desc":"","color":"rgb(98,166,243)"},
