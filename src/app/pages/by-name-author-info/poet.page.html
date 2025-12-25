@@ -1,17 +1,17 @@
 <ion-header [translucent]="true" style="background-color:transparent;">
-  <ion-toolbar>
+  <ion-toolbar style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="authorData">{{authorData.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button shape="round" *ngIf="authorData&&!data.isliked(authorData,'poetlist')"
-      (click)="data.likelist(authorData,'poetlist')"
-      style="background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button *ngIf="authorData&&!data.isliked(authorData,'poetlist')"
+        (click)="data.likelist(authorData,'poetlist')"
+        `style="--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button id="popover-button-poet-{{data.currentTab}}" shape="round" 
-      style="margin-left:10px;margin-right:15px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button id="popover-button-poet-{{data.currentTab}}"
+        style="margin-left:10px;--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-poet-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">

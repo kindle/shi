@@ -1,18 +1,18 @@
 
 <ion-header [translucent]="true" *ngIf="listdata">
-  <ion-toolbar *ngIf="!isEdit">
+  <ion-toolbar *ngIf="!isEdit" style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title>{{listdata.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button slot="end" *ngIf="listdata&&!data.isliked(listdata,'customlist')"
-      (click)="data.likelist(listdata,'customlist')"
-      style="--background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
+      <ion-button *ngIf="listdata&&!data.isliked(listdata,'customlist')"
+        (click)="data.likelist(listdata,'customlist')"
+        style="--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}"
-      style="margin-left:10px;margin-right:15px; --background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
+      <ion-button id="popover-button-list-{{data.currentTab}}"
+        style="margin-left:10px; --background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -40,13 +40,17 @@
       </ion-popover>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar *ngIf="isEdit">
+  <ion-toolbar *ngIf="isEdit" style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
-        <ion-button color="primary" (click)="cancel()">{{ ui.instant('Action.Cancel')}}<!--取消--></ion-button>
+        <ion-button color="primary" (click)="cancel()">
+          {{ ui.instant('Action.Cancel')}}<!--取消-->
+        </ion-button>
     </ion-buttons>
     <ion-title>{{listdata.name}}</ion-title>
     <ion-buttons slot="end">
-        <ion-button color="primary" (click)="save()" [strong]="true">{{ ui.instant('Action.Done')}}<!--完成--></ion-button>
+        <ion-button color="primary" (click)="save()" [strong]="true">
+          {{ ui.instant('Action.Done')}}<!--完成-->
+        </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

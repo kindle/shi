@@ -20,8 +20,17 @@ export class ListPage {
     this.showFilter = false;
     this.localList = this.listdata.list;
   }
+  onClearMic(){
+    if(this.searchText.trim()=="")
+    {
+      this.showFilter = false;
+    }
+  }
   onLoseFocus(){
-    this.showFilter = false;
+    if(this.searchText.trim()=="")
+    {
+      this.showFilter = false;
+    }
   }
   onSearchChanged(){
     let key = this.searchText.trim();

@@ -1,18 +1,18 @@
 
 <ion-header [translucent]="true" *ngIf="listdata" style="box-shadow: none;">
-  <ion-toolbar>
+  <ion-toolbar style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(17)">{{listdata.name}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button slot="end" shape="round" *ngIf="listdata&&!data.isliked(listdata,'idlist')"
+      <ion-button *ngIf="listdata&&!data.isliked(listdata,'idlist')"
       (click)="data.likelist(listdata,'idlist')"
-      style="margin-left:5px;background-color: rgb(247,247,247);border-radius: 50%;">
+      style="margin-left:5px;--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-list-{{data.currentTab}}" shape="round" 
-      style="margin-left:5px;margin-right:10px;background-color: rgb(247,247,247);border-radius: 50%;">
+      <ion-button id="popover-button-list-{{data.currentTab}}" 
+      style="margin-left:10px;--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
@@ -70,6 +70,7 @@
       style="padding-left:15px;margin-top:15px;"
       [(ngModel)]="searchText"
       (ionBlur)="onLoseFocus()"
+      (ionClear)="onClearMic()"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
@@ -83,6 +84,7 @@
             background-size:cover;
             background-color:{{listdata.color?listdata.color:data.getbgcolor()}};
             background-repeat: no-repeat;
+            background-position: {{listdata['image-pos']?listdata['image-pos']:'center'}};
             border-radius: 10px;" (click)="ui.imageviewer(listdata.image)">
         </ion-card>
       </div>
@@ -123,8 +125,9 @@
   <app-text name="" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
     
   <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:20px;">
-    <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:10px;">
+    <ion-item *ngFor="let p of localList; let i = index" style="--padding-start:15px;--inner-padding-end:10px;">
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+      *ngIf="listdata.onlyonepoet!==true"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;"
           defaultImage="" 
@@ -141,6 +144,11 @@
         'height':(data.isPlaying) ? '' : '5px' }"
         ></div>
       </ion-thumbnail>
+      <ion-badge slot="start" 
+      *ngIf="listdata.onlyonepoet===true"
+      color="light" mode="ios">
+        {{i+1}}
+      </ion-badge>
       <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <h2 [style.fontSize]="data.zoom(17)" 
         class="show-only-one-line">

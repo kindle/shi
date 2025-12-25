@@ -174,7 +174,7 @@ export class UiService {
       //position: position,
       position: 'bottom',
       cssClass: 'custom-bottom-toast',
-      icon: 'checkmark-circle-outline',
+      icon: 'checkmark-circle',
       //color: 'primary'
     });
 

@@ -1,17 +1,17 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title>{{tag}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button slot="end" *ngIf="!data.isliked(data.currentItem,'taglist')"
+      <ion-button *ngIf="!data.isliked(data.currentItem,'taglist')"
       (click)="data.likelist(data.currentItem,'taglist')"
-      style="--background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
+      style="--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" id="popover-button-tag-{{data.currentTab}}"
-      style="margin-left:10px;margin-right:15px; --background: rgb(247,247,247); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
+      <ion-button id="popover-button-tag-{{data.currentTab}}"
+      style="margin-left:10px;--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </ion-button>
       <ion-popover trigger="popover-button-tag-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">

@@ -179,12 +179,12 @@
     "image":"",
     "scroll":[
       {
-        "id":805, "alias":"A-List 天宝流行: 2025年度最佳",
-        "desc":"Tang Poetry 天宝流行",
+        "id":805, "alias":"A-List 天宝流行: 752年度最佳",
+        "desc":"Tang Dynasty 天宝流行",
         "text":"天宝诗人们踏遍山河湖海，将豪情、悲悯、浪漫等诸多情感化作绚烂诗篇，为后世留下锦绣诗章。",
         "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
-        "image":"/assets/img/p1.jpg",
-        "image-size":"contain",
+        "image":"/assets/img/p805.png",
+        "image-size":"cover",
         "image-pos":"center"
       },
       {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票","desc":"思乡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"},
@@ -211,7 +211,7 @@
       },
       "data": [
         {
-          "id":806, "alias":"A-List 天宝流行: 2025年度最佳",
+          "id":806, "alias":"A-List 天宝流行: 752年度最佳",
           "desc":"Tang Dynasty 浪漫主义",
           "text":"李白: 浪漫精选",
           "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
