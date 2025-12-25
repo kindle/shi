@@ -94,10 +94,18 @@ export class PlayerPage implements OnInit {
   
   formatTime(seconds=0) {
     let minutes = Math.floor(seconds / 60);
+    if(Number.isNaN(minutes)){
+      minutes = 0;
+    }
     let str_minutes = (minutes >= 10) ? minutes : "0" + minutes;
     seconds = Math.floor(seconds % 60);
+
+    if(Number.isNaN(seconds)){
+      seconds = 0;
+    }
     
-    let strseconds = (seconds >= 10) ? seconds : "0" + seconds;
+    let strseconds:any = "";
+    strseconds = (seconds >= 10) ? seconds : "0" + seconds;
     return str_minutes + ":" + strseconds;
   }
 
@@ -166,10 +174,16 @@ export class PlayerPage implements OnInit {
   }
   showPlaylist = false;
   playlist(){
-    this.showText = false;
-    this.showHistory = false;
-    this.showPlaylist = true;
-    //this.bigimg = false;
+    if(this.showPlaylist==false)
+    {
+      this.showText = false;
+      this.bigimg = false;
+      this.showPlaylist = true;
+    }
+    else
+    {
+      this.bigimg = !this.bigimg;
+    }
   }
 
   play(poem:any){
@@ -191,22 +205,42 @@ export class PlayerPage implements OnInit {
   shuffle(){
     this.data.togglePlayListRandomly();
     this.data.savePlayStyle();
+    this.data.isRepeat = 0;
+    this.data.updateInfiniteHint();
   }
   repeat(){
-    this.data.isRepeat = !this.data.isRepeat;
-    if(this.data.isRepeat===true){
+    //0 normal play
+    //1 cycle play
+    //2 single play
+
+    if(this.data.isRepeat===1){
+      this.data.isRepeat = 2;
+    }
+    else if(this.data.isRepeat===2 || this.data.isRepeat===true){
+      this.data.isRepeat = 0;
+    }
+    else{
+      this.data.isRepeat = 1;
+    }
+
+    if(this.data.isRepeat!==0){
       this.data.isInfinite = false;
     }
     this.data.savePlayStyle();
+    this.data.isShuffle = false;
   }
   infinite(){
     this.data.isInfinite = !this.data.isInfinite;
     if(this.data.isInfinite===true)
     {
-      this.data.isRepeat = false;
+      this.data.isRepeat = 0;
+      //load 10 random items to playlist_nextqueue
+      this.data.loadPlaylistNextQueueRandomly(10);
     }
-
+    this.data.updateInfiniteHint();
     this.data.savePlayStyle();
+
   }
+  
 
 }

@@ -940,27 +940,29 @@ export class DataService {
     this.playbyid(poem.id, poem.sample);
   }
   //by-id-custom-list,by-id-shi-list,收藏诗词tab3/poem click button
-  playList(list:any, name:any){
+  playList(list:any, name:any, isfromplaybutton:boolean=true){
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null)
     this.toPlayList = this.orgToPlayList;
     this.toPlayListName = name;
-    if(this.toPlayList.length>0){
+    if(isfromplaybutton&&this.toPlayList.length>0){
       let first = this.toPlayList[0];
       this.playbyid(first.id, first.sample);
     }
     this.isShuffle = false;
     this.savePlayStyle();
   }
-  playListRandomly(list:any, name:any){
+  playListRandomly(list:any, name:any, playAutomatically:boolean=false){
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null);
     let randomToPlaylist = this.shuffleArray(this.orgToPlayList);
     
     this.toPlayList = randomToPlaylist;
     this.toPlayListName = name;
-    if(this.toPlayList.length>0){
+    
+    if(playAutomatically&&this.toPlayList.length>0){
       let first = this.toPlayList[0];
       this.playbyid(first.id, first.sample);
     }
+    
     this.isShuffle = true;
     this.savePlayStyle();
   }
@@ -970,7 +972,7 @@ export class DataService {
       this.playListRandomly(this.orgToPlayList, this.toPlayListName);
     }
     else {
-      this.playList(this.orgToPlayList, this.toPlayListName);
+      this.playList(this.orgToPlayList, this.toPlayListName, false);
     }
   }
 
@@ -1022,11 +1024,13 @@ export class DataService {
       return null;
     }
     
-    if(this.isRepeat===true){
+    // 2: Single Play
+    if(this.isRepeat===2 || this.isRepeat===true){
       return this.toPlayList[currentIndex];
     }
     
-    if(this.isInfinite===true)
+    // 1: Cycle Play
+    if(this.isRepeat===1 || this.isInfinite===true)
     {
       if(currentIndex===this.toPlayList.length-1){
         return this.toPlayList[0];
@@ -1046,13 +1050,37 @@ export class DataService {
     
     return null;
   }
+
+  additionalList:any = [];
+  loadPlaylistNextQueueRandomly(count:any=10){
+      let loadCount = Math.min(count, this.orgToPlayList.length);
+      this.additionalList = this.getRandomArray(this.orgToPlayList, loadCount);
+  }
   
+  showInfiniteHint:any = false;
+  updateInfiniteHint(){
+    if(this.toPlayList.length==1&&this.isInfinite==false){
+      this.showInfiniteHint = true;
+    }
+    else{
+      this.showInfiniteHint = false;
+    }
+  }
+
   playNext(){
     let nextPoem = this.findNext();
+
+    //remove current
+    if(this.isRepeat==0 && this.currentPoem){
+      this.toPlayList = this.toPlayList.filter((p:any)=>p.id!=this.currentPoem.id);
+    }
+    this.updateInfiniteHint();
 
     if(nextPoem!=null){
       this.playbyid(nextPoem.id, nextPoem.sample, false);
     }
+
+    
 
     /*
     if(this.audio){
