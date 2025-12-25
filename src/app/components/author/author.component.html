@@ -12,12 +12,12 @@
 <swiper-container swiper-touch
     style="margin-top:20px;margin-bottom: 20px;" class="swiper-container"
     space-between="10" direction="horizontal"
-    slides-per-view="2.2"
+    slides-per-view="auto"
     centered-slides="false"
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToAuthor(s)">
+  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToAuthor(s)" style="width:140px;">
     <div style="display: flex; justify-content: center; flex-direction: column;width:120px;">
       <img width="120" height="120" style="border-radius: 10px;" 
         style="border-radius: 50%;"
