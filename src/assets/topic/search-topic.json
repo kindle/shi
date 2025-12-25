@@ -183,8 +183,8 @@
         "desc":"Tang Dynasty 天宝流行",
         "text":"天宝诗人们踏遍山河湖海，将豪情、悲悯、浪漫等诸多情感化作绚烂诗篇，为后世留下锦绣诗章。",
         "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
-        "image":"/assets/img/p805.png",
-        "image-size":"cover",
+        "image":"/assets/img/p1.jpg",
+        "image-size":"contain",
         "image-pos":"center"
       },
       {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票","desc":"思乡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"},

@@ -29,22 +29,34 @@
             ;font-size:13px;width:100%;" *ngIf="s.text"
             >{{s.text}}</div>
           </ion-card-content>-->
-          <ion-card-content class="station-content" style="z-index:1;" *ngIf="s.image"
+          <ion-card-content class="station-content" *ngIf="s.image"
             defaultImage="" 
             lazyLoad="{{s.image}}"
-            style="background-size: {{s['image-size']?s['image-size']:'cover'}};
+            style="z-index:1;
+            background-size: {{s['image-size']?s['image-size']:'cover'}};
             background-repeat: no-repeat;
             background-position: {{s['image-pos']?s['image-pos']:'center'}};
-            background-color:{{ s.color ? s.color : data.getbgcolor()}}">
-            
+            ">
+            <div style="padding:10px;z-index: 0;margin-top:auto;margin-bottom:0;
+              background-image: linear-gradient(to top, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});
+              position: absolute;font-size:13px;width:100%;height: 100%;"></div>
+
+            <div 
+              defaultImage="" 
+              lazyLoad="{{s.image}}"
+              style="padding:10px;z-index: 1;margin-top:auto;margin-bottom:0;
+              background-size: {{s['image-size']?s['image-size']:'cover'}};
+              background-repeat: no-repeat;
+              background-position: {{s['image-pos']?s['image-pos']:'center'}};
+              position: absolute;font-size:13px;width:100%;height: 100%;"></div>
+
             <div style="padding:10px;z-index: 2;margin-top:auto;margin-bottom:0;
-            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
-            ;font-size:13px;width:100%;" *ngIf="s.text"
-            [style.fontSize]="data.zoom(13)"
-            >{{s.text}}</div>
+              background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+              ;font-size:13px;width:100%;" *ngIf="s.text"
+              [style.fontSize]="data.zoom(13)">{{s.text}}</div>
           </ion-card-content>
-          <ion-card-content class="station-content" style="z-index:1;" *ngIf="!s.image"
-            style="background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
+          <ion-card-content class="station-content" *ngIf="!s.image"
+            style="z-index:1; background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">
             
             <div style="padding:10px;z-index: 2;background-image: linear-gradient(to up,lightgray,white, white)">{{s.alias}}特别长的说明文字特别长的说明文字特别长的说明文字特别长的说明文字</div>
           </ion-card-content>
