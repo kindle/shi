@@ -179,11 +179,32 @@
     "image":"",
     "scroll":[
       {
+        "id":807, "alias":"A-List 乾元流行: 759年度最佳",
+        "desc":"Tang Dynasty 乾元流行",
+        "text":"唐朝乾元年间为758 - 760年，这一时期经历了安史之乱，社会动荡，文学作品反映了民生疾苦、社会变迁。",
+        "color":"rgb(231,112,103)","light":"rgb(231,112,103,40%)",
+        "image":"/assets/img/p3.png",
+        "gradient":true,
+        "image-size":"contain",
+        "image-pos":"center"
+      },
+      {
+        "id":806, "alias":"A-List 开元流行: 729年度最佳",
+        "desc":"Tang Dynasty 开元流行",
+        "text":"开元年间，诗人们游历大江南北，把壮志、柔情、旷达等百般心境凝为传世佳作。",
+        "color":"rgb(113,203,212)","light":"rgb(113,203,212,40%)",
+        "image":"/assets/img/p2.jpg",
+        "gradient":true,
+        "image-size":"contain",
+        "image-pos":"center"
+      },
+      {
         "id":805, "alias":"A-List 天宝流行: 752年度最佳",
         "desc":"Tang Dynasty 天宝流行",
         "text":"天宝诗人们踏遍山河湖海，将豪情、悲悯、浪漫等诸多情感化作绚烂诗篇，为后世留下锦绣诗章。",
-        "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
+        "color":"rgb(255,230,151)","light":"rgb(255,230,151,40%)",
         "image":"/assets/img/p1.jpg",
+        "gradient":true,
         "image-size":"contain",
         "image-pos":"center"
       },
@@ -211,7 +232,25 @@
       },
       "data": [
         {
-          "id":806, "alias":"A-List 天宝流行: 752年度最佳",
+          "id":903, "alias":"A-List 天宝流行: 752年度最佳",
+          "desc":"Tang Dynasty 现实主义",
+          "text":"杜甫: 现实精选",
+          "color":"rgb(121,196,131)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/p3.png",
+          "image-size":"cover",
+          "image-pos":"center"
+        },
+        {
+          "id":902, "alias":"A-List 天宝流行: 752年度最佳",
+          "desc":"Tang Dynasty 浪漫主义",
+          "text":"高适: 边塞精选",
+          "color":"rgb(255,222,194)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/p2.jpg",
+          "image-size":"contain",
+          "image-pos":"center"
+        },
+        {
+          "id":901, "alias":"A-List 天宝流行: 752年度最佳",
           "desc":"Tang Dynasty 浪漫主义",
           "text":"李白: 浪漫精选",
           "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
