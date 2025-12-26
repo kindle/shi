@@ -917,6 +917,30 @@ export class DataService {
 
 
   toPlayList:any = [];
+  additionalList:any = [];
+  
+  loadPlaylistNextQueueRandomly(n:number){
+    if(this.additionalList.length>=n) return;
+
+    let audioPoems = this.JsonData.filter((p:any)=>p.audio);
+    if(audioPoems.length===0) return;
+
+    let countNeeded = n - this.additionalList.length;
+    
+    let candidates = audioPoems.filter((p:any)=>{
+      let inAdditional = this.additionalList.some((a:any)=>a.id===p.id);
+      let inToPlay = this.toPlayList.some((t:any)=>t.id===p.id);
+      return !inAdditional && !inToPlay;
+    });
+
+    for(let i=0;i<countNeeded;i++){
+      if(candidates.length===0) break;
+      let randomIndex = Math.floor(Math.random()*candidates.length);
+      this.additionalList.push(candidates[randomIndex]);
+      candidates.splice(randomIndex,1);
+    }
+  }
+
   orgToPlayList:any = [];
   toPlayListName = "";
   //hot list click poem
@@ -1049,12 +1073,6 @@ export class DataService {
     }
     
     return null;
-  }
-
-  additionalList:any = [];
-  loadPlaylistNextQueueRandomly(count:any=10){
-      let loadCount = Math.min(count, this.orgToPlayList.length);
-      this.additionalList = this.getRandomArray(this.orgToPlayList, loadCount);
   }
   
   showInfiniteHint:any = false;
@@ -1896,9 +1914,23 @@ export class DataService {
         this.isShuffle = style.shuffle;
         this.isRepeat = style.repeat;
         this.isInfinite = style.infinite;
+
+        if(this.isInfinite){
+          this.checkAndLoadAdditionalList();
+        }
       }
     });
   }
+
+  checkAndLoadAdditionalList(){
+    if(this.JsonData.length > 0){
+        this.loadPlaylistNextQueueRandomly(10);
+    } else {
+        setTimeout(()=>{
+            this.checkAndLoadAdditionalList();
+        }, 1000);
+    }
+ }
 
 
   /* EP hisotry start */
