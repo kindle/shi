@@ -85,8 +85,12 @@
                 </ion-thumbnail>
             </div>
             <ion-label>
-              <h2 [style.fontSize]="data.zoom(17)">{{data.currentPoem.title}}</h2>
-              <p [style.fontSize]="data.zoom(14)">{{data.currentPoem.author}}</p>
+              <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                {{data.currentPoem.title}}
+              </h2>
+              <p [style.fontSize]="data.zoom(14)" class="show-only-one-line">
+                {{data.currentPoem.author}}
+              </p>
             </ion-label>
             <ion-button slot="end" color="transparent" size="large"
             *ngIf="!data.isliked(data.currentPoem,'poem')"
