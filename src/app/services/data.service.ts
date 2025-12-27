@@ -929,7 +929,7 @@ export class DataService {
   toPlayList:any = [];
   additionalList:any = [];
   
-  loadPlaylistNextQueueRandomly(n:number){
+  checkAndLoadAdditionalList(n:number=10){
     if(this.additionalList.length>=n) return;
 
     let audioPoems = this.JsonData.filter((p:any)=>p.audio);
@@ -1043,7 +1043,8 @@ export class DataService {
   }
   findNext(){
     let currentIndex = -1;
-    for(let i=0;i<this.toPlayList.length;i++){
+    for(let i=0;i<this.toPlayList.length;i++)
+    {
       if(this.toPlayList[i].id===this.currentPoem.id
       ||
         (this.toPlayList[i].title===this.currentPoem.title&&
@@ -1066,18 +1067,22 @@ export class DataService {
     // 1: Cycle Play
     if(this.isRepeat===1)
     {
-      if(currentIndex===this.toPlayList.length-1){
+      if(currentIndex===this.toPlayList.length-1)
+      {
         return this.toPlayList[0];
       }
-      else{
+      else
+      {
         return this.toPlayList[currentIndex+1];
       }
     }
-    else{
+    else//infinite 
+    {
       if(currentIndex===this.toPlayList.length-1){
         return null;
       }
-      else{
+      else
+      {
         return this.toPlayList[currentIndex+1];
       }
     }
@@ -1102,16 +1107,22 @@ export class DataService {
     if(this.isRepeat==0 && this.currentPoem){
       this.toPlayList = this.toPlayList.filter((p:any)=>p.id!=this.currentPoem.id);
     }
+    //update hint text
     this.updateInfiniteHint();
 
-    if(nextPoem!=null){
+    if(nextPoem!=null)
+    {
       this.playbyid(nextPoem.id, nextPoem.sample, false);
-    }else{
+    }
+    else
+    {
       if(this.toPlayList.length==0 && this.isInfinite){
-        if(this.additionalList.length>0){
+        if(this.additionalList.length>0)
+        {
           let p = this.additionalList.shift();
           this.toPlayList.push(p);
           this.playbyid(p.id, p.sample, false);
+          //when play next button
           this.checkAndLoadAdditionalList();
         }
       }
@@ -1924,6 +1935,7 @@ export class DataService {
     let style = {shuffle:this.isShuffle, repeat:this.isRepeat, infinite: this.isInfinite};
     this.set(this.LOCALSTORAGE_PLAY_STYLE, JSON.stringify(style));
   }
+  
   async loadPlayStyle(){
     this.get(this.LOCALSTORAGE_PLAY_STYLE).then((value)=>{
       if(value==null)
@@ -1934,6 +1946,7 @@ export class DataService {
         this.isRepeat = style.repeat;
         this.isInfinite = style.infinite;
 
+        //when app initiates
         if(this.isInfinite){
           this.checkAndLoadAdditionalList();
         }
@@ -1941,11 +1954,6 @@ export class DataService {
     });
   }
 
-  checkAndLoadAdditionalList(){
-    if(this.JsonData.length > 0){
-        this.loadPlaylistNextQueueRandomly(10);
-    }
- }
 
 
   /* EP hisotry start */

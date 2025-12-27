@@ -234,8 +234,8 @@ export class PlayerPage implements OnInit {
     if(this.data.isInfinite===true)
     {
       this.data.isRepeat = 0;
-      //load 10 random items to playlist_nextqueue
-      this.data.loadPlaylistNextQueueRandomly(10);
+      //when infinite is on
+      this.data.checkAndLoadAdditionalList();
     }
     this.data.updateInfiniteHint();
     this.data.savePlayStyle();

@@ -19,8 +19,8 @@
             <ion-button></ion-button>
           </ion-list-header>
           <ion-item lines="none" *ngFor="let p of data.playHistory" (click)="play(p)">
-            <ion-thumbnail style="width:40px;height:40px;" slot="start"
-            style="display: flex;justify-content: center;align-items: center;">
+            <ion-thumbnail slot="start"
+            style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
               <img id="authorimg" style="border-radius: 10px;" 
                 defaultImage="assets/img/default.jpg" 
                 lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
@@ -34,14 +34,15 @@
             
             <ion-label>
               <h2 [style.fontSize]="data.zoom(17)"
-              class="show-only-one-line"
-              *ngIf="p.paragraphs">{{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}</h2>
+              class="show-only-one-line" *ngIf="p.paragraphs">
+                {{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}
+              </h2>
               <h2 [style.fontSize]="data.zoom(17)"
-              class="show-only-one-line"
-              *ngIf="!p.paragraphs">{{p.sample}}</h2>
+              class="show-only-one-line" *ngIf="!p.paragraphs">
+                {{p.sample}}
+              </h2>
               <p style="margin-top:5px;display: flex;align-items: end;"
-              class="show-only-one-line"
-              [style.fontSize]="data.zoom(14)">
+                class="show-only-one-line" [style.fontSize]="data.zoom(14)">
                 {{p.author}}《{{p.title}}》
                 <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
               </p>
@@ -64,15 +65,15 @@
               />
             </div>
           </ion-item>
-          <ion-item lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+          <ion-item lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
             <div class="play-icon-box" *ngIf="!bigimg" 
               (click)="text()">
               <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
                 defaultImage="assets/img/default.jpg" 
                 lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
                 onerror="javascript:this.src='assets/img/default.jpg'" /> -->
-              <ion-thumbnail style="width:40px;height:40px;" slot="start"
-                style="display: flex;justify-content: center;align-items: center;">
+              <ion-thumbnail slot="start"
+                style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
                   <img id="authorimg" style="border-radius: 10px;" 
                     defaultImage="assets/img/default.jpg" 
                     src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
@@ -85,11 +86,15 @@
                 </ion-thumbnail>
             </div>
             <ion-label>
-              <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-                {{data.currentPoem.title}}
-              </h2>
-              <p [style.fontSize]="data.zoom(14)" class="show-only-one-line">
-                {{data.currentPoem.author}}
+              <div style="display: flex; align-items: center;">
+                <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;"></ion-icon>
+                <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                  {{data.currentPoem.title}} {{data.currentPoem.author}}
+                </h2>
+              </div>
+              <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                style="margin-top:5px;display: flex;align-items: end;">
+                {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
               </p>
             </ion-label>
             <ion-button slot="end" color="transparent" size="large"
@@ -126,7 +131,7 @@
           </ion-list-header>
 
           <ion-list *ngIf="showPlaylist&&!bigimg&&!data.showInfiniteHint">
-            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:20px;">
+            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
               <ion-label>
                 <h2 [style.fontSize]="data.zoom(17)">
                   {{ ui.instant('Title.PlayingNext')}}<!--待播清单-->&nbsp;
@@ -162,7 +167,7 @@
               <ion-item lines="none" (click)="play(p)" 
                 *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
                 style="--padding-start:15px;--inner-padding-end:15px;">
-                <ion-thumbnail style="width:40px;height:40px;" slot="start"
+                <ion-thumbnail style="width:56px;height:56px;" slot="start"
                   style="display: flex;justify-content: center;align-items: center;">
                   <img id="authorimg" style="border-radius: 10px;" 
                     defaultImage="assets/img/default.jpg" 
@@ -194,7 +199,7 @@
             </ng-container>
           </ion-reorder-group>
           <ion-list *ngIf="data.isInfinite&& !bigimg">
-            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:20px;">
+            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
               <ion-label>
                 <div style="display: flex; align-items: center;">
                   <ion-icon name="infinite-outline" size="large" style="margin-right: 10px;"></ion-icon>
@@ -212,7 +217,7 @@
               <ion-item lines="none" (click)="play(p)" 
                 *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
                 style="--padding-start:15px;--inner-padding-end:15px;">
-                <ion-thumbnail style="width:40px;height:40px;" slot="start"
+                <ion-thumbnail style="width:56px;height:56px;" slot="start"
                   style="display: flex;justify-content: center;align-items: center;">
                   <img id="authorimg" style="border-radius: 10px;" 
                     defaultImage="assets/img/default.jpg" 
@@ -248,7 +253,7 @@
           this.data.toPlayList.length:{{this.data.toPlayList.length}} 
           this.data.isInfinite:{{this.data.isInfinite}} -->
           <ion-list *ngIf="data.showInfiniteHint && !bigimg" style="margin-top: 20px;">
-            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:20px;">
+            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
               <ion-label style="width:100%;display: grid;justify-content: center;">
                 <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">若要继续播放诗词，请打开</h2>
                 <div style="display: flex; align-items: center;">
@@ -285,7 +290,7 @@
     </ion-item>
     <!--小于10行小图片+诗名+诗人-->
     <ion-item lines="none" 
-    style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+    style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
       <div class="play-icon-box" *ngIf="!bigimg" 
         (click)="text()">
         <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
@@ -293,8 +298,8 @@
           lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
           onerror="javascript:this.src='assets/img/default.jpg'"
         /> -->
-        <ion-thumbnail style="width:40px;height:40px;" slot="start"
-          style="display: flex;justify-content: center;align-items: center;">
+        <ion-thumbnail slot="start"
+          style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
             <img id="authorimg" style="border-radius: 10px;" 
               defaultImage="assets/img/default.jpg" 
               src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
@@ -307,10 +312,16 @@
           </ion-thumbnail>
       </div>
       <ion-label>
-        <h2 [style.fontSize]="data.zoom(17)"class="display-one-line">
-          {{data.currentPoem.title}}
-        </h2>
-        <p [style.fontSize]="data.zoom(14)">{{data.currentPoem.author}}</p>
+        <div style="display: flex; align-items: center;">
+          <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;"></ion-icon>
+          <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+            {{data.currentPoem.title}} {{data.currentPoem.author}}
+          </h2>
+        </div>
+        <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+          style="margin-top:5px;display: flex;align-items: end;">
+          {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+        </p>
       </ion-label>
       <ion-button slot="end" color="transparent" 
       *ngIf="!data.isliked(data.currentPoem,'poem')"
@@ -388,15 +399,15 @@
       </ion-item>
       <!--大于10行小图片+诗名+诗人-->
       <ion-item lines="none" 
-      style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:20px;">
+      style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
         <div class="play-icon-box" *ngIf="!bigimg" 
           (click)="text()">
           <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
             defaultImage="assets/img/default.jpg" 
             lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
             onerror="javascript:this.src='assets/img/default.jpg'" /> -->
-          <ion-thumbnail style="width:40px;height:40px;" slot="start"
-            style="display: flex;justify-content: center;align-items: center;">
+          <ion-thumbnail slot="start"
+            style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
               <img id="authorimg" style="border-radius: 10px;" 
                 defaultImage="assets/img/default.jpg" 
                 src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
@@ -492,7 +503,7 @@
     <ion-item lines="none" *ngIf="data.currentPoem.audio">
       <!--prev   play   next-->
       <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
-        <div style="display: flex;justify-content: space-around;margin-left:20px;margin-right:20px;">
+        <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">
           <ion-buttons>
             <ion-button [disabled]="isFirstPlaying()" (click)="data.playPrev()" style="font-size: 30px;">
               <ion-icon name="play-back"></ion-icon>
@@ -505,7 +516,7 @@
             </ion-button>
           </ion-buttons>
           <ion-buttons>
-            <ion-button [disabled]="isLastPlaying()" (click)="data.playNext()" style="font-size: 30px;">
+            <ion-button [disabled]="data.toPlayList.length<2&&!data.isInfinite" (click)="data.playNext()" style="font-size: 30px;">
               <ion-icon name="play-forward"></ion-icon>
             </ion-button>
           </ion-buttons>
