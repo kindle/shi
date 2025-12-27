@@ -867,6 +867,16 @@ export class DataService {
       return;
     }
 
+    if(this.audioLoadedmetadataFn){
+      this.audio.removeEventListener('loadedmetadata',this.audioLoadedmetadataFn);
+    }
+    if(this.audioTimeupdateFn){
+      this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
+    }
+    if(this.audioEndedFn){
+      this.audio.removeEventListener('ended',this.audioEndedFn);
+    }
+
     //this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
     this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
     
@@ -903,7 +913,7 @@ export class DataService {
       this.audio.removeEventListener('loadedmetadata',this.audioLoadedmetadataFn);
       this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
       this.audio.removeEventListener('ended',this.audioEndedFn);
-
+      
       this.playNext();
 
     }
@@ -1054,7 +1064,7 @@ export class DataService {
     }
     
     // 1: Cycle Play
-    if(this.isRepeat===1 || this.isInfinite===true)
+    if(this.isRepeat===1)
     {
       if(currentIndex===this.toPlayList.length-1){
         return this.toPlayList[0];
@@ -1096,6 +1106,15 @@ export class DataService {
 
     if(nextPoem!=null){
       this.playbyid(nextPoem.id, nextPoem.sample, false);
+    }else{
+      if(this.toPlayList.length==0 && this.isInfinite){
+        if(this.additionalList.length>0){
+          let p = this.additionalList.shift();
+          this.toPlayList.push(p);
+          this.playbyid(p.id, p.sample, false);
+          this.checkAndLoadAdditionalList();
+        }
+      }
     }
 
     
@@ -1925,10 +1944,6 @@ export class DataService {
   checkAndLoadAdditionalList(){
     if(this.JsonData.length > 0){
         this.loadPlaylistNextQueueRandomly(10);
-    } else {
-        setTimeout(()=>{
-            this.checkAndLoadAdditionalList();
-        }, 1000);
     }
  }
 
