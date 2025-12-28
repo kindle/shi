@@ -62,6 +62,7 @@
               {{ ui.instant('Action.Clear')}}<!--清除-->
             </ion-button>
           </ion-list-header>
+          
           <ng-container *ngFor="let p of data.playHistory">
             <ion-item lines="none" (click)="play(p)" *ngIf="!data.currentPoem || p.id !== data.currentPoem.id">
               <ion-thumbnail slot="start"
@@ -164,8 +165,8 @@
             </div>
           </ion-list-header>
 
-          <ion-list *ngIf="showPlaylist&&!bigimg&&data.toPlayList.length>1">
-            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
+          <div *ngIf="!bigimg">
+            <ion-item lines="none" style="position: sticky; top: 10px; z-index: 999; background: var(--ion-background-color, #fff); margin:0 0px 0 5px;--padding-start:0;margin-left:15px;" *ngIf="data.toPlayList.length>1">
               <ion-label>
                 <h2 [style.fontSize]="data.zoom(17)">
                   {{ ui.instant('Title.PlayingNext')}}<!--待播清单-->&nbsp;
@@ -178,47 +179,46 @@
                 </p>
               </ion-label>
             </ion-item>
-          </ion-list>
 
-          <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))"
-          *ngIf="!bigimg">
-            <ng-container *ngFor="let p of data.toPlayList">
-              <ion-item lines="none" (click)="play(p)" 
-                *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
-                style="--padding-start:15px;--inner-padding-end:15px;">
-                <ion-thumbnail style="width:56px;height:56px;" slot="start"
-                  style="display: flex;justify-content: center;align-items: center;">
-                  <img id="authorimg" style="border-radius: 10px;" 
-                    defaultImage="assets/img/default.jpg" 
-                    lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
-                    onerror="javascript:this.src='assets/img/default.jpg'"
-                    [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-                  <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-                    [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-                    'height':(data.isPlaying) ? '' : '5px' }"
-                  ></div>
-                </ion-thumbnail>
-                
-                <ion-label>
-                  <div style="display: flex; align-items: center;">
-                    <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
-                    <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-                      {{p.title}} {{p.author}}
-                    </h2>
-                  </div>
-                  <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
-                    style="margin-top:5px;display: flex;align-items: end;">
-                    {{p.sample?p.sample:p.paragraphs[0]}}
-                  </p>
-                </ion-label>
-      
-                <ion-reorder slot="end">
-                </ion-reorder>
-              </ion-item>
-            </ng-container>
-          </ion-reorder-group>
-          <ion-list *ngIf="data.isInfinite&& !bigimg">
-            <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
+            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
+              <ng-container *ngFor="let p of data.toPlayList">
+                <ion-item lines="none" (click)="play(p)" 
+                  *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
+                  style="--padding-start:15px;--inner-padding-end:15px;">
+                  <ion-thumbnail style="width:56px;height:56px;" slot="start"
+                    style="display: flex;justify-content: center;align-items: center;">
+                    <img id="authorimg" style="border-radius: 10px;" 
+                      defaultImage="assets/img/default.jpg" 
+                      lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+                      onerror="javascript:this.src='assets/img/default.jpg'"
+                      [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+                    <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+                      [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                      'height':(data.isPlaying) ? '' : '5px' }"
+                    ></div>
+                  </ion-thumbnail>
+                  
+                  <ion-label>
+                    <div style="display: flex; align-items: center;">
+                      <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                      <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                        {{p.title}} {{p.author}}
+                      </h2>
+                    </div>
+                    <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                      style="margin-top:5px;display: flex;align-items: end;">
+                      {{p.sample?p.sample:p.paragraphs[0]}}
+                    </p>
+                  </ion-label>
+        
+                  <ion-reorder slot="end">
+                  </ion-reorder>
+                </ion-item>
+              </ng-container>
+            </ion-reorder-group>
+          </div>
+          <div *ngIf="data.isInfinite && !bigimg">
+            <ion-item lines="none" style="position: sticky; top: 10px; z-index: 999; background: var(--ion-background-color, #fff); margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
               <ion-label>
                 <div style="display: flex; align-items: center;">
                   <ion-icon name="infinite-outline" size="large" style="margin-right: 10px;"></ion-icon>
@@ -229,45 +229,44 @@
                 <p [style.fontSize]="data.zoom(14)" style="margin-top:5px;">将继续播放类似诗词</p>
               </ion-label>
             </ion-item>
-          </ion-list>
-          <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))"
-          *ngIf="!bigimg&&data.isInfinite">
-            <ng-container *ngFor="let p of data.additionalList">
-              <ion-item lines="none" (click)="play(p)" 
-                *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
-                style="--padding-start:15px;--inner-padding-end:15px;">
-                <ion-thumbnail style="width:56px;height:56px;" slot="start"
-                  style="display: flex;justify-content: center;align-items: center;">
-                  <img id="authorimg" style="border-radius: 10px;" 
-                    defaultImage="assets/img/default.jpg" 
-                    lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
-                    onerror="javascript:this.src='assets/img/default.jpg'"
-                    [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-                  <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-                    [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-                    'height':(data.isPlaying) ? '' : '5px' }"
-                  ></div>
-                </ion-thumbnail>
-                
-                
-                <ion-label>
-                  <div style="display: flex; align-items: center;">
-                    <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
-                    <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-                      {{p.title}} {{p.author}}
-                    </h2>
-                  </div>
-                  <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
-                    style="margin-top:5px;display: flex;align-items: end;">
-                    {{p.sample?p.sample:p.paragraphs[0]}}
-                  </p>
-                </ion-label>
-      
-                <ion-reorder slot="end">
-                </ion-reorder>
-              </ion-item>
-            </ng-container>
-          </ion-reorder-group>
+            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
+              <ng-container *ngFor="let p of data.additionalList">
+                <ion-item lines="none" (click)="play(p)" 
+                  *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
+                  style="--padding-start:15px;--inner-padding-end:15px;">
+                  <ion-thumbnail style="width:56px;height:56px;" slot="start"
+                    style="display: flex;justify-content: center;align-items: center;">
+                    <img id="authorimg" style="border-radius: 10px;" 
+                      defaultImage="assets/img/default.jpg" 
+                      lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+                      onerror="javascript:this.src='assets/img/default.jpg'"
+                      [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+                    <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+                      [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                      'height':(data.isPlaying) ? '' : '5px' }"
+                    ></div>
+                  </ion-thumbnail>
+                  
+                  
+                  <ion-label>
+                    <div style="display: flex; align-items: center;">
+                      <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                      <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                        {{p.title}} {{p.author}}
+                      </h2>
+                    </div>
+                    <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                      style="margin-top:5px;display: flex;align-items: end;">
+                      {{p.sample?p.sample:p.paragraphs[0]}}
+                    </p>
+                  </ion-label>
+        
+                  <ion-reorder slot="end">
+                  </ion-reorder>
+                </ion-item>
+              </ng-container>
+            </ion-reorder-group>
+          </div>
           <!-- data.showInfiniteHint:{{data.showInfiniteHint}} 
           this.data.toPlayList.length:{{this.data.toPlayList.length}} 
           this.data.isInfinite:{{this.data.isInfinite}} -->
