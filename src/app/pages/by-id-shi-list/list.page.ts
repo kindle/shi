@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
+import { ScrollDetail } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -13,6 +14,27 @@ export class ListPage {
   localList:any;
   searchText:any="";
   showFilter = false;
+
+  isSearchbarVisible = true;
+  lastScrollTop = 0;
+
+  handleScroll(ev: CustomEvent<ScrollDetail>) {
+    const scrollTop = ev.detail.scrollTop;
+    
+    // Only trigger if we've scrolled a bit to avoid jitter at the top
+    if (scrollTop < 0) return;
+
+    if (scrollTop > this.lastScrollTop && scrollTop > 10) {
+      // Scrolling down and past the initial header area
+      this.isSearchbarVisible = false;
+    } else if (scrollTop < this.lastScrollTop) {
+      // Scrolling up
+      this.isSearchbarVisible = true;
+    }
+    
+    this.lastScrollTop = scrollTop;
+  }
+
   onSearchFocus(){
     this.showFilter = true;
   }

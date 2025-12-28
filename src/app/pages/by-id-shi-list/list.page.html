@@ -62,19 +62,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="listdata">
-  <ion-header collapse="{{ui.isIos?'condense':'fade'}}" style="box-shadow: none;">
+<ion-content [fullscreen]="true" *ngIf="listdata" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
+  <ion-header collapse="condense" style="box-shadow: none;">
     <ion-toolbar><!--搜索-->
-      <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
-      *ngIf="localList.length>10||searchText.length>0"
-      style="padding-left:15px;margin-top:15px;"
-      [(ngModel)]="searchText"
-      (ionBlur)="onLoseFocus()"
-      (ionClear)="onClearMic()"
-      (ionFocus)="onSearchFocus()"
-      (ionCancel)="onSearchCancel()"
-      (ionInput)="onSearchChanged()"
-      ></ion-searchbar>
+      <div class="searchbar-container" [class.hidden]="!isSearchbarVisible" *ngIf="localList.length>10||searchText.length>0">
+        <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
+        style="padding-left:15px;"
+        [(ngModel)]="searchText"
+        (ionBlur)="onLoseFocus()"
+        (ionClear)="onClearMic()"
+        (ionFocus)="onSearchFocus()"
+        (ionCancel)="onSearchCancel()"
+        (ionInput)="onSearchChanged()"
+        ></ion-searchbar>
+      </div>
       <div *ngIf="!showFilter"
       style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;">
         <ion-card 
