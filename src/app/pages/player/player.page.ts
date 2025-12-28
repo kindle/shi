@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { ItemReorderEventDetail, ModalController, RangeCustomEvent } from '@ionic/angular';
+import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
 
 import { register } from 'swiper/element/bundle';
@@ -13,6 +13,7 @@ register();
 })
 export class PlayerPage implements OnInit {
 
+  @ViewChild(IonContent) content: IonContent | undefined;
   @ViewChild('swiperplayer', { static: false }) swiperRef: ElementRef | undefined;
   curSlide = "todo";
 
@@ -168,6 +169,12 @@ export class PlayerPage implements OnInit {
       this.showText = false;
       this.bigimg = false;
       this.showPlaylist = true;
+      setTimeout(()=>{
+        const element = document.getElementById('playlist-top');
+        if(element){
+          this.content?.scrollToPoint(0, element.offsetTop, 0);
+        }
+      },300);
     }
     else
     {
