@@ -33,7 +33,7 @@
             'height':(data.isPlaying) ? '' : '5px' }"
           ></div>
         </ion-thumbnail>
-        <ion-label>
+        <ion-label (click)="data.playListHot(source, p, name)">
           <div style="display: flex; align-items: center;">
             <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
             <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
