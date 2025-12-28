@@ -862,6 +862,22 @@ export class DataService {
   audioTimeupdateFn:any;
   audioEndedFn:any;
   audioMedia:any;
+  playbackRate = 1.0;
+  togglePlaybackRate(){
+    if(this.playbackRate === 1.0){
+      this.playbackRate = 1.5;
+    }else if(this.playbackRate === 1.5){
+      this.playbackRate = 2.0;
+    }else if(this.playbackRate === 2.0){
+      this.playbackRate = 2.5;
+    }else if(this.playbackRate === 2.5){
+      this.playbackRate = 3.0;
+    }else{
+      this.playbackRate = 1.0;
+    }
+    this.audio.playbackRate = this.playbackRate;
+  }
+
   setAudio(){
     if(!this.currentPoem.audio){
       return;
@@ -879,6 +895,7 @@ export class DataService {
 
     //this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
     this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
+    this.audio.playbackRate = this.playbackRate;
     
     /*
     const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);

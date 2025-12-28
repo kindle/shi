@@ -132,11 +132,11 @@
                 {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
               </p>
             </ion-label>
-            <ion-button slot="end" color="transparent" size="large"
+            <!-- <ion-button slot="end" color="transparent" size="large"
             *ngIf="!data.isliked(data.currentPoem,'poem')"
             (click)="data.likelist(data.currentPoem,'poem')">
               <ion-icon name="add-outline" color="dark"></ion-icon>
-            </ion-button>
+            </ion-button> -->
             <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
           </ion-item>
           
@@ -341,11 +341,11 @@
           {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
         </p>
       </ion-label>
-      <ion-button slot="end" color="transparent" 
+      <!-- <ion-button slot="end" color="transparent" 
       *ngIf="!data.isliked(data.currentPoem,'poem')"
       (click)="data.likelist(data.currentPoem,'poem')">
         <ion-icon name="add-outline" color="dark"></ion-icon>
-      </ion-button>
+      </ion-button> -->
       <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
     </ion-item>
   </ion-list>
@@ -441,11 +441,11 @@
           <h2 [style.fontSize]="data.zoom(17)">{{data.currentPoem.title}}</h2>
           <p [style.fontSize]="data.zoom(14)">{{data.currentPoem.author}}</p>
         </ion-label>
-        <ion-button slot="end" color="transparent" size="large"
+        <!-- <ion-button slot="end" color="transparent" size="large"
         *ngIf="!data.isliked(data.currentPoem,'poem')"
         (click)="data.likelist(data.currentPoem,'poem')">
           <ion-icon name="add-outline" color="dark"></ion-icon>
-        </ion-button>
+        </ion-button> -->
         <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
       </ion-item>
     </ion-list>
@@ -493,7 +493,7 @@
 
 
 
-  <ion-list style="margin-top:0px;z-index: 201;bottom:0;position: fixed;width: 100%;">
+  <ion-list style="margin-top:0px;z-index: 2001;bottom:0;position: fixed;width: 100%;">
 
 
     <!--00:00   ***hide   00:00-->
@@ -567,10 +567,9 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons>
-          <ion-button *ngIf="false"
-          [ngStyle]="{'background-color':showHistory ? 'rgb(247,247,247)' : '' }"
-          (click)="history()" size="large">
-            <ion-icon name="wifi-outline"></ion-icon>
+          <ion-button *ngIf="true" (click)="data.togglePlaybackRate()" size="large">
+            <ion-icon name="timer-outline"></ion-icon>
+            <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">{{data.playbackRate}}x</span>
           </ion-button>
         </ion-buttons>
         <ion-buttons>

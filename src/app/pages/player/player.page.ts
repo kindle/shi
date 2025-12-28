@@ -169,12 +169,19 @@ export class PlayerPage implements OnInit {
       this.showText = false;
       this.bigimg = false;
       this.showPlaylist = true;
-      setTimeout(()=>{
+      
+      let attempts = 0;
+      const interval = setInterval(() => {
         const element = document.getElementById('playlist-top');
-        if(element){
-          this.content?.scrollToPoint(0, element.offsetTop, 0);
+        if(element && this.content){
+          this.content.scrollToPoint(0, element.offsetTop, 0);
+          clearInterval(interval);
         }
-      },300);
+        attempts++;
+        if(attempts > 20){
+          clearInterval(interval);
+        }
+      }, 100);
     }
     else
     {
