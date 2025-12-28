@@ -32,4 +32,11 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Camera and photo permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- For Android 12 and below -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- For Android 13+ (SDK 33) scoped media permission -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 </manifest>
