@@ -2,6 +2,8 @@
 <!-- [ngClass]="{'no-background':data.currentArticle.effect}" -->
 <!-- 'url(/assets/img/effect.jpg) top/auto ' + defaultBgHeight + ' no-repeat' : -->
 <ion-content class="no-padding" [fullscreen]="true" scrollEvents="true" (ionScroll)="onScroll($event)"
+ #printArticleViewer
+ id="print-article-viewer"
   [ngStyle]="{
     '--background': (data.currentArticle.effect) ? 
       'white':
@@ -231,7 +233,8 @@
           <div class="fd-text">{{ ui.instant('Action.Collect') }}<!--收藏--></div>
         </div>
         <div class="fd-item">
-          <ion-icon name="share-social-outline" class="fd-icon" color="dark"></ion-icon>
+          <ion-icon name="share-social-outline" (click)="shareArticle()"
+          class="fd-icon" color="dark"></ion-icon>
           <div class="fd-text">{{ ui.instant('Action.Share') }}<!--分享--></div>
         </div>
       </div>

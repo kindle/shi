@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, Renderer2, Vi
 import { DataService } from 'src/app/services/data.service';
 import { Location } from '@angular/common';
 import { UiService } from 'src/app/services/ui.service';
+import domtoimage from 'dom-to-image';
 
 @Component({
   selector: 'app-article-viewer',
@@ -9,6 +10,8 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./article-viewer.page.scss'],
 })
 export class ArticleViewerPage {
+  @ViewChild('printArticleViewer', { read: ElementRef }) printArticleViewer: ElementRef | undefined;
+
   localFunData:any;
   constructor(
     public data: DataService,
@@ -93,4 +96,92 @@ export class ArticleViewerPage {
     this.lastScrollTop = scrollTop;
   }
 
+
+  shareArticle(){
+    const bgUrl = 'https://reddah.blob.core.windows.net/msjjimg/' + this.data.currentArticle.bg_image;
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = bgUrl;
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      if(ctx){
+        ctx.drawImage(img, 0, 0);
+
+        // Common settings
+        ctx.fillStyle = "white";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        ctx.shadowColor = "black";
+        ctx.shadowBlur = 10;
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "black";
+
+        const x = 40;
+        let y = 40;
+        const maxWidth = canvas.width * 0.5; // Use 50% width to keep left and avoid center
+
+        // Draw Small Title
+        if (this.data.currentArticle.small_title) {
+          const smallFontSize = Math.floor(canvas.width / 25);
+          ctx.font = `bold ${smallFontSize}px Arial`;
+          ctx.lineWidth = 3;
+          this.wrapText(ctx, this.data.currentArticle.small_title, x, y, maxWidth, smallFontSize * 1.4);
+          // Estimate height used by small title to push big title down
+          // Simple estimation: count lines
+          const lines = this.getLines(ctx, this.data.currentArticle.small_title, maxWidth);
+          y += lines.length * (smallFontSize * 1.4) + 20;
+        }
+
+        // Draw Big Title
+        const bigFontSize = Math.floor(canvas.width / 15);
+        ctx.font = `bold ${bigFontSize}px Arial`;
+        ctx.lineWidth = 5;
+        this.wrapText(ctx, this.data.currentArticle.big_title, x, y, maxWidth, bigFontSize * 1.4);
+
+        try {
+          const dataUrl = canvas.toDataURL("image/png");
+          this.ui.share(
+            dataUrl, 
+            this.data.currentArticle.big_title, 
+            this.data.currentArticle.small_title, 
+            'https://reddah.com'
+          );
+        } catch (e) {
+          console.error("Canvas taint or error", e);
+        }
+      }
+    };
+  }
+
+  wrapText(ctx: any, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
+    const lines = this.getLines(ctx, text, maxWidth);
+    for (let i = 0; i < lines.length; i++) {
+      ctx.strokeText(lines[i], x, y);
+      ctx.fillText(lines[i], x, y);
+      y += lineHeight;
+    }
+  }
+
+  getLines(ctx: any, text: string, maxWidth: number) {
+    const words = text.split(''); // Split by char for better CJK support
+    let lines = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        const word = words[i];
+        const width = ctx.measureText(currentLine + word).width;
+        if (width < maxWidth) {
+            currentLine += word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+  }
 }
