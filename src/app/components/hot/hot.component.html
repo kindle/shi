@@ -33,20 +33,16 @@
             'height':(data.isPlaying) ? '' : '5px' }"
           ></div>
         </ion-thumbnail>
-        <ion-label (click)="data.playListHot(source, p, name)">
-          <h2 *ngIf="p.paragraphs" 
-            [style.fontSize]="data.zoom(17)"
-            class="show-only-one-line">
-            {{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}</h2>
-          <h2 *ngIf="!p.paragraphs" 
-            [style.fontSize]="data.zoom(17)"
-            class="show-only-one-line">
-            {{p.sample}}</h2>
-          <p style="margin-top:5px;display: flex;align-items: end;"
-            class="show-only-one-line"
-            [style.fontSize]="data.zoom(14)">
-            {{hideAuthor?"":p.author}}《{{hideAuthor?p.title:p.title.substring(0,8)}}{{hideAuthor?"":(p.title.substring(0,8)==p.title?"":"...")}}》
-            <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
+        <ion-label>
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+              {{p.title}} {{p.author}}
+            </h2>
+          </div>
+          <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+            style="margin-top:5px;display: flex;align-items: end;">
+            {{p.sample?p.sample:p.paragraphs[0]}}
           </p>
         </ion-label>
         <app-button-end [p]="p" page="hotlist" slot="end"></app-button-end>
