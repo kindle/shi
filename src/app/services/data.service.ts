@@ -1011,34 +1011,32 @@ export class DataService {
   }
 
 
-
-
-  findPrev(){
-    for(let i=0;i<this.toPlayList.length;i++){
-      //console.log(this.toPlayList[i])
-      //console.log(this.currentPoem)
-      if(this.toPlayList[i].id===this.currentPoem.id
-      ||
-        (this.toPlayList[i].title===this.currentPoem.title&&
-        this.toPlayList[i].author===this.currentPoem.author)
-      ){
-          if(i==0){
-            if(this.isInfinite===true){
-              return this.toPlayList[this.toPlayList.length-1];
-            }else{
-              return null;
-            }
+  playPrev(){
+    if(this.currentPoem){
+      //remove current from history
+      if(this.playHistory.length > 0){
+          let last = this.playHistory[this.playHistory.length-1];
+          if(last.id === this.currentPoem.id){
+              this.playHistory.pop();
           }
-          return this.toPlayList[i-1];
+      }
+
+      let isInOrg = this.orgToPlayList.some((p:any)=>p.id===this.currentPoem.id);
+      if(!isInOrg){
+        this.isInfinite = true
+        //move to additional list
+        this.additionalList = this.additionalList.filter((p:any)=>p.id!==this.currentPoem.id);
+        this.additionalList.unshift(this.currentPoem);
+        
+        //remove from toPlayList
+        this.toPlayList = this.toPlayList.filter((p:any)=>p.id!==this.currentPoem.id);
       }
     }
-    return null;
-  }
-  playPrev(){
-    let prevPoem:any = this.findPrev();
 
-    if(prevPoem!=null){
-      this.playbyid(prevPoem.id, prevPoem.sample, false);
+    if(this.playHistory.length > 0){
+      let prev = this.playHistory.pop();
+      this.toPlayList.unshift(prev);
+      this.playbyid(prev.id, prev.sample, false);
     }
   }
   findNext(){
@@ -1545,19 +1543,12 @@ export class DataService {
     });
   }
   savePlayHistory(poem:any){
-    if(this.playHistory.length>0){
-      let lastPlay = this.playHistory[this.playHistory.length-1];
-      if(lastPlay){
-        if(lastPlay.id == poem.id||
-          (lastPlay.title==poem.title&&lastPlay.author==poem.author))
-        {
-          return;
-        }
-      }
-    }
+    this.playHistory = this.playHistory.filter((p:any)=>
+      !((p.id == poem.id) || (p.title==poem.title&&p.author==poem.author))
+    );
     
     this.playHistory.push(poem);
-    if(this.playHistory.length>20){
+    if(this.playHistory.length>100){
       this.playHistory.shift();
     }
     this.set(this.LOCALSTORAGE_POEM_HIST, JSON.stringify(this.playHistory));

@@ -43,17 +43,6 @@ export class PlayerPage implements OnInit {
     this.currentIndex = null;
   }
 
-  prev(){
-    //this.data.prevTodayText();
-  }
-
-  next(){
-    //this.data.nextTodayText();
-  }
-
-  isFirstPlaying(){}
-  isLastPlaying(){}
-
   test(ev: Event){
     let draggingValue = (ev as RangeCustomEvent).detail.value;
     //console.log(draggingValue)
