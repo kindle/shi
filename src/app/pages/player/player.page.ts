@@ -192,9 +192,46 @@ export class PlayerPage implements OnInit {
   
 
 
-  handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
-    //console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
-    this.data.toPlayList = ev.detail.complete(this.data.toPlayList);
+  handleReorder1(ev: CustomEvent<ItemReorderEventDetail>) {
+    // Filter the list to match what is visible in the view
+    const visibleItems = this.data.toPlayList.filter((p: any) => 
+      this.data.isRepeat == 1 || this.data.isRepeat == 2 || (this.data.currentPoem && p.audio && p.id !== this.data.currentPoem.id)
+    );
+
+    // Perform the reorder on the visible items
+    const newVisibleItems = ev.detail.complete(visibleItems);
+
+    // Merge the reordered visible items back into the original list
+    let visibleIndex = 0;
+    this.data.toPlayList = this.data.toPlayList.map((p: any) => {
+      const isVisible = this.data.isRepeat == 1 || this.data.isRepeat == 2 || (this.data.currentPoem && p.audio && p.id !== this.data.currentPoem.id);
+      if (isVisible) {
+        return newVisibleItems[visibleIndex++];
+      } else {
+        return p;
+      }
+    });
+  }
+
+  handleReorder2(ev: CustomEvent<ItemReorderEventDetail>) {
+    // Filter the list to match what is visible in the view
+    const visibleItems = this.data.additionalList.filter((p: any) => 
+      this.data.isRepeat == 1 || this.data.isRepeat == 2 || (this.data.currentPoem && p.audio && p.id !== this.data.currentPoem.id)
+    );
+
+    // Perform the reorder on the visible items
+    const newVisibleItems = ev.detail.complete(visibleItems);
+
+    // Merge the reordered visible items back into the original list
+    let visibleIndex = 0;
+    this.data.additionalList = this.data.additionalList.map((p: any) => {
+      const isVisible = this.data.isRepeat == 1 || this.data.isRepeat == 2 || (this.data.currentPoem && p.audio && p.id !== this.data.currentPoem.id);
+      if (isVisible) {
+        return newVisibleItems[visibleIndex++];
+      } else {
+        return p;
+      }
+    });
   }
   
 

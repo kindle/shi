@@ -180,7 +180,7 @@
               </ion-label>
             </ion-item>
 
-            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
+            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder1($any($event))">
               <ng-container *ngFor="let p of data.toPlayList">
                 <ion-item lines="none" (click)="play(p)" 
                   *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
@@ -229,7 +229,7 @@
                 <p [style.fontSize]="data.zoom(14)" style="margin-top:5px;">将继续播放类似诗词</p>
               </ion-label>
             </ion-item>
-            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
+            <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder2($any($event))">
               <ng-container *ngFor="let p of data.additionalList">
                 <ion-item lines="none" (click)="play(p)" 
                   *ngIf="data.isRepeat==1 ||data.isRepeat==2 || data.currentPoem&&p.audio&&p.id !== data.currentPoem.id"
