@@ -51,7 +51,7 @@
  
 
       <swiper-slide *ngIf="showPlaylist">
-        <ion-list style="margin:35px 5px;" *ngIf="data.playHistory.length>1" class="snap-end">
+        <ion-list style="margin:35px 5px;" *ngIf="!bigimg&&data.playHistory.length>1" class="snap-end">
           <ion-list-header style="position: sticky; top: 0; z-index: 1000; background: var(--ion-background-color, #fff);">
             <ion-label>
               <h2 [style.fontSize]="data.zoom(17)">
