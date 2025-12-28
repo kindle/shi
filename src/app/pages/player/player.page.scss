@@ -46,3 +46,19 @@
     // Optional: You can customize other properties like text color, etc.
     --color: #ffffff; /* Set text color to white or any preferred color */
   }
+
+ion-content.snap-scroll::part(scroll) {
+  scroll-snap-type: y mandatory;
+  scroll-padding-bottom: 240px;
+  padding-bottom: 240px;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.snap-end {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+}

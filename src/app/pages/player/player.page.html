@@ -10,7 +10,7 @@
     
   </ion-list>
   <!--history and playlist-->
-  <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText">
+  <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText" [class.snap-scroll]="showPlaylist">
     <swiper-container>
       <swiper-slide *ngIf="showHistory">
         <ion-list style="margin:35px 5px;">
@@ -51,8 +51,8 @@
  
 
       <swiper-slide *ngIf="showPlaylist">
-        <ion-list style="margin:35px 5px;" *ngIf="data.playHistory.length>1">
-          <ion-list-header>
+        <ion-list style="margin:35px 5px;" *ngIf="data.playHistory.length>1" class="snap-end">
+          <ion-list-header style="position: sticky; top: 0; z-index: 1000; background: var(--ion-background-color, #fff);">
             <ion-label>
               <h2 [style.fontSize]="data.zoom(17)">
                 {{ ui.instant('Title.History')}}<!--历史记录-->
@@ -87,7 +87,7 @@
             </ion-item>
           </ng-container>
         </ion-list>
-        <ion-list style="margin:5px 5px;" id="playlist-top">
+        <ion-list style="margin:5px 5px;" id="playlist-top" class="snap-start">
           <ion-item lines="none" *ngIf="bigimg"
             style="margin:0 5px;margin-top:15px;--padding-start:0;">
             <div style="width: 100%;margin-left:15px;display: flex;justify-content: center;">
