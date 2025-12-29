@@ -567,9 +567,11 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons>
-          <ion-button *ngIf="true" (click)="data.togglePlaybackRate()" size="large">
+          <ion-button *ngIf="data.currentPoem.audio" (click)="data.togglePlaybackRate()" size="large">
             <ion-icon name="timer-outline"></ion-icon>
-            <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">{{data.playbackRate}}x</span>
+            <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">
+              {{data.playbackRate}}x
+            </span>
           </ion-button>
         </ion-buttons>
         <ion-buttons>
