@@ -12,7 +12,7 @@
 </ion-toolbar>
 <swiper-container swiper-touch
     style="margin-top:10px;margin-bottom: 20px; --swiper-pagination-bottom: 0px;" *ngIf="source"
-    slides-per-view="1.1" 
+    [slidesPerView]="ui.isipad ? 2.1 : 1.1" 
     centered-slides="false"
     slides-offset-before="20"
     slides-offset-after="20"
@@ -22,7 +22,9 @@
     <ion-list style="padding-bottom: 30px;">
       <ion-item *ngFor="let p of hot" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
-        style="display: flex;justify-content: center;align-items: center;">
+        style="display: flex;justify-content: center;align-items: center;"
+        [style.width]="ui.isipad ? '90px' : '56px'"
+        [style.height]="ui.isipad ? '90px' : '56px'">
           <img style="border-radius: 10px;" 
             defaultImage="assets/img/default.jpg" 
             lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"

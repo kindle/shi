@@ -1341,6 +1341,7 @@ export class DataService {
     this.loadFunData();
     //load poem play history
     this.loadPlayHistory();
+    this.loadSearchHistory();
     //load ep play history
     this.loadRecentPlayedEP();
     //load play style
@@ -1478,6 +1479,36 @@ export class DataService {
   goToSearch(){
     this.navCtrl.navigateForward(`/tabs/tab4`);
   }
+  
+  /**search history logic block start */
+  LOCALSTORAGE_SEARCH_HIST = "search_keywords_history";
+  searchHistory:any = [];
+  async loadSearchHistory(){
+    this.get(this.LOCALSTORAGE_SEARCH_HIST).then((value)=>{
+      if(value==null)
+        this.searchHistory = [];
+      else{
+        this.searchHistory = JSON.parse(value);
+      }
+    });
+  }
+  saveSearchHistory(key:any){
+    this.searchHistory = this.searchHistory.filter((s:any)=>
+      s !== key
+    );
+    
+    this.searchHistory.push(key);
+    if(this.searchHistory.length>100){
+      this.searchHistory.shift();
+    }
+    this.set(this.LOCALSTORAGE_SEARCH_HIST, JSON.stringify(this.searchHistory));
+  }
+  clearSearchHistory(){
+    this.searchHistory = [];
+    this.set(this.LOCALSTORAGE_SEARCH_HIST, JSON.stringify(this.searchHistory));
+  }
+  /**search history logic block end */
+
   //tab4 related start
   searchText:any;
   showFilter = false;
@@ -2266,6 +2297,7 @@ export class DataService {
   /*start text font size zoom level */
   zoomLevel:number = 1;
   zoom(px:any){
+    px = this.ui.isipad?px+10:px;
     return px*this.zoomLevel + 'px'
   }
   LOCALSTORAGE_Text_FontSize_Zoom_Level = "app_text_fontsize_zoom_level";

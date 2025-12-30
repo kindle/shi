@@ -24,7 +24,7 @@
     style="margin-top:10px;margin-bottom: 20px;" class="swiper-container"
     [loop]="data.TestMode"
     space-between="10" direction="horizontal"
-    slides-per-view="2.2"
+    [slidesPerView]="ui.isipad ? 3.7 : 2.2"
     centered-slides="false"
     slides-offset-before="20"
     slides-offset-after="10"

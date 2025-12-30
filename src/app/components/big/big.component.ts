@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService, ViewType } from 'src/app/services/data.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-big',
@@ -13,6 +14,7 @@ export class BigComponent {
 
   constructor(
     public data: DataService,
+    public ui: UiService,
     private router: Router,
   ){}
 

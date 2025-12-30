@@ -407,6 +407,8 @@ export class Tab4Page implements OnInit {
       return;
     }
 
+    this.data.saveSearchHistory(key);
+
     //最多支持5个关键字 空格分隔 缩小查询范围
     let keys = key.split(' ');
     

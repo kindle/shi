@@ -13,7 +13,10 @@
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet2">
-          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          <ion-icon name="person-circle-outline" 
+          [style.width]="ui.isipad ? '50px' : null" 
+          [style.height]="ui.isipad ? '50px' : null" 
+          size="large"></ion-icon>
         </ion-button>
         <ion-action-sheet class="language-setting" trigger="open-action-sheet2" 
           header="{{ui.instant('Title.Settings')}}" [buttons]="data.textActionSheetButtons">

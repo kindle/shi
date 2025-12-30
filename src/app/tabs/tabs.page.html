@@ -1,7 +1,7 @@
 
 <ion-card-content *ngIf="ui.isipad" 
 style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-top:30px;">
-  <ion-buttons style="display:flex;justify-content:center;width:25px;height:25px;float:left;">
+  <ion-buttons *ngIf="false" style="display:flex;justify-content:center;width:25px;height:25px;float:left;">
     <ion-menu-toggle>
       <ion-icon name="menu-outline" color="primary" size="large"></ion-icon>
     </ion-menu-toggle>
@@ -185,17 +185,16 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-item>
     </ion-toolbar>
 
-    <ion-tab-bar slot="bottom" [translucent]="false" 
-    *ngIf="!ui.isipad" style="padding-top:3px;"
+    <ion-tab-bar *ngIf="!ui.isipad" slot="bottom" [translucent]="false" style="padding-top:3px;"
     [ngStyle]="{
       'padding-bottom':ui.isAndroid ? '10px' : '25px',
       'background': ui.isAndroid ? '#fff' : ''
      }"
     >
-     
       <ion-tab-button tab="tab1" style="--background: transparent;"
       (click)="onDblClick()">
-        <ion-icon name="play-circle"></ion-icon>
+        <ion-icon name="play-circle">
+        </ion-icon>
         {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
       </ion-tab-button>
       <ion-tab-button tab="tab2" style="--background: transparent;"
@@ -211,8 +210,68 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-tab-button>
       <ion-tab-button tab="tab4" style="--background: transparent;"
       (click)="tab4Click();onDblClick()">
-        <ion-icon name="search-outline"></ion-icon>
+        <ion-icon name="albums-outline"></ion-icon>
         {{ ui.instant('Tabs.Search') }}<!--搜索-->
+      </ion-tab-button>
+    </ion-tab-bar>
+
+
+
+    <ion-tab-bar *ngIf="ui.isipad" slot="bottom" [translucent]="false" 
+    style="padding-top:15px;"
+      [ngStyle]="{
+        'padding-bottom':ui.isAndroid ? '10px' : '25px',
+        'background': ui.isAndroid ? '#fff' : ''
+      }"
+      >
+      <ion-tab-button tab="tab1" style="--background: transparent;"
+      (click)="onDblClick()">
+        <ion-label>
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="play-circle"
+              style="width:35px;height:35px;margin-right:10px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)">
+              {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
+            </h2>
+          </div>
+        </ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tab2" style="--background: transparent;"
+       [class.active]="true"
+      (click)="onDblClick()">
+        <ion-label>
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="radio-outline"
+              style="width:35px;height:35px;margin-right:10px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)">
+              {{ ui.instant('Tabs.Browse') }}<!--浏览-->
+            </h2>
+          </div>
+        </ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tab3" style="--background: transparent;"
+      (click)="onDblClick()">
+        <ion-label>
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="albums-outline"
+              style="width:35px;height:35px;margin-right:10px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)">
+              {{ ui.instant('Tabs.Library') }}<!--诗词库-->
+            </h2>
+          </div>
+        </ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tab4" style="--background: transparent;"
+      (click)="tab4Click();onDblClick()">
+        <ion-label>
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="search-outline"
+              style="width:35px;height:35px;margin-right:10px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)">
+              {{ ui.instant('Tabs.Search') }}<!--搜索-->
+            </h2>
+          </div>
+        </ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </div>

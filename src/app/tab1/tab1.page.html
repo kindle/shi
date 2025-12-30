@@ -15,7 +15,10 @@
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet1">
-          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          <ion-icon name="person-circle-outline" 
+          [style.width]="ui.isipad ? '50px' : null" 
+          [style.height]="ui.isipad ? '50px' : null" 
+          size="large"></ion-icon>
         </ion-button>
         <ion-action-sheet class="language-setting" trigger="open-action-sheet1" 
           header="{{ui.instant('Title.Settings')}}" [buttons]="data.textActionSheetButtons">
@@ -54,7 +57,7 @@
   <img [defaultImage]="defaultImage" [lazyLoad]="image" />-->
 
   <!--AI template-->
-  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+  <div *ngIf="!ui.isipad" style="display: flex;flex-wrap: wrap;justify-content: center;">
     <!--tutorial()-->
     <!--
     <ion-card class="card card-gif" card-shrink (click)="data.goMe()"
@@ -874,7 +877,7 @@
   
 
 
-  <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+  <div *ngIf="!ui.isipad" style="display: flex;flex-wrap: wrap;justify-content: center;">
     <div class="card-wrap" *ngFor="let item of data.articleData;index as i">
 
       <!--text template bak

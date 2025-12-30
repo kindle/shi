@@ -28,7 +28,10 @@
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet4">
-          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          <ion-icon name="person-circle-outline" 
+          [style.width]="ui.isipad ? '50px' : null" 
+          [style.height]="ui.isipad ? '50px' : null" 
+          size="large"></ion-icon>
         </ion-button>
         <ion-action-sheet class="language-setting" trigger="open-action-sheet4" 
           header="{{ui.instant('Title.Settings')}}" [buttons]="data.textActionSheetButtons">
@@ -60,6 +63,9 @@
       ></ion-icon>
     </ion-toolbar>
   </ion-header>
+  <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0)">
+      <div *ngFor="let s of data.searchHistory">{{s}}</div>
+  </div>
 
   <ion-list *ngIf="data.showFilter">
     <ion-item *ngIf="isAuthor&&data.searchText&&
@@ -136,15 +142,22 @@
     <img defaultImage="" 
       lazyLoad="https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg" />
     <ion-card-header>
-      <ion-card-title style="text-align: center;font-size:22px;">{{ ui.instant('Feedback.Title') }}<!--您的点赞，是我前行的动力--></ion-card-title>
+      <ion-card-title style="text-align: center;"
+        [style.fontSize]="data.zoom(22)">
+        {{ ui.instant('Feedback.Title') }}<!--您的点赞，是我前行的动力-->
+      </ion-card-title>
     </ion-card-header>
 
-    <ion-card-content style="text-align: center;font-weight: light;color:black;">
+    <ion-card-content style="text-align: center;font-weight: light;color:black;"
+      [style.fontSize]="data.zoom(22)">
       {{ ui.instant('Feedback.Sub') }}<!--去给名诗佳作点个赞吧-->
     </ion-card-content>
 
     <ion-card-content style="text-align: center;display: flex;justify-content: center;" (click)="data.RatingsAndReviews();">
-      <ion-button color="primary" style="width:80%;">{{ ui.instant('Feedback.Go') }}<!--立即评价--></ion-button>
+      <ion-button color="primary" style="width:80%;"
+        [style.fontSize]="data.zoom(22)">
+        {{ ui.instant('Feedback.Go') }}<!--立即评价-->
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -218,6 +231,8 @@
     <ion-card *ngFor="let topic of this.data.searchTopicData"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
+      [style.height]="ui.isipad ? '250px' : null"
+      [style.position]="ui.isipad ? 'relative' : ''"
       style="margin:5px;
       background-size:cover;background-color:{{data.getbgcolor()}}"
       class="search-tile-img"
@@ -234,7 +249,7 @@
       </ion-card-header>
       <ion-card-content 
       [ngClass]="{'gray-mask': currentLpId === topic.id }"
-      style="color:white;padding-left:10px;padding-bottom:10px;"
+      style="color:white;padding-left:10px;padding-bottom:10px;position:absolute;bottom:0;width:100%;"
       [style.fontSize]="data.zoom(16)"> 
         {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
           topic.i18n[data.currentLocale] : topic.name }}
@@ -350,7 +365,8 @@
     <ion-card class="card card-gif" card-shrink (click)="chat()"
       defaultImage="" 
       lazyLoad="/assets/img/faq.png"
-      style="background-size:cover;background-position: center;min-height:180px;width: auto;margin: 5px;"
+      style="background-size:cover;background-position: center;width: auto;margin: 5px;"
+      [style.min-height]="ui.isipad ? '450px' : '180px'"
     >
         <ion-card-content>
           <ion-card-subtitle class="card-text" 

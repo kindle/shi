@@ -2,7 +2,7 @@
     style="margin-top:10px;width: 100%;"
     [loop]="data.TestMode" navigation="false" scrollbar="false"
     pagination="false" space-between="10" 
-    slides-per-view="1.1" centered-slides="false"
+    [slidesPerView]="ui.isipad ? 2.1 : 1.1" centered-slides="false"
     slides-offset-before="20"
     slides-offset-after="20"
     autoplay="false" speed="500">
@@ -32,6 +32,7 @@
           <ion-card-content class="station-content" *ngIf="s.image"
             defaultImage="" 
             lazyLoad="{{s.image}}"
+            [style.minHeight]="ui.isipad ? '350px' : '220px'"
             style="z-index:1;
             background-size: {{s['image-size']?s['image-size']:'cover'}};
             background-repeat: no-repeat;
