@@ -7,7 +7,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-menu-toggle>
   </ion-buttons>
 </ion-card-content>
-<ion-menu type="reveal" content-id="main-content" ><!--[disabled]="ui.isiphone"-->
+<ion-menu type="reveal" content-id="main-content" [disabled]="true"><!--[disabled]="ui.isiphone"-->
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>{{ ui.instant('Title.App') }}<!--名诗佳句--></ion-title>
