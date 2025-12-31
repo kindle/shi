@@ -8,6 +8,7 @@ import { Location } from '@angular/common'
 import { AnimationController, ModalController } from '@ionic/angular';
 import { ImageViewerPage } from 'src/app/pages/viewer-image/image-viewer.page';
 import { PlayerPage } from '../pages/player/player.page';
+import { PlayerPadPage } from '../pages/player-pad/player-pad.page';
 
 import domtoimage from 'dom-to-image';
 import { HttpClient } from '@angular/common/http';
@@ -148,7 +149,7 @@ export class UiService {
   async player(poem:any) {
       //const modal = await this.modalController.create({
       this.PoemPlayer = await this.modalController.create({
-          component: PlayerPage,
+          component: this.isipad?PlayerPadPage:PlayerPage,
           componentProps: {},
           cssClass: 'modal-fullscreen',
           keyboardClose: true,

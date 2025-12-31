@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
   },
   {
+    path: 'player-pad',
+    loadChildren: () => import('./pages/player-pad/player-pad.module').then( m => m.PlayerPadPageModule)
+  },
+  {
     path: 'textzoom',
     loadChildren: () => import('./pages/textzoomer/textzoomer.module').then( m => m.TextZoomerPageModule)
   },

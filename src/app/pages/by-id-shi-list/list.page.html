@@ -2,7 +2,7 @@
 <ion-header [translucent]="true" *ngIf="listdata" style="box-shadow: none;">
   <ion-toolbar style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+      <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(17)">{{listdata.name}}</ion-title>
     <ion-buttons slot="end">

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-back-button defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+        <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title slot="start" *ngIf="writing==0">{{ ui.instant('AI.Status0')}}</ion-title>
     <ion-title slot="start" *ngIf="writing==1">{{ ui.instant('AI.Status1')}}</ion-title>
