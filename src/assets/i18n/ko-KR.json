@@ -89,7 +89,13 @@
         "History": "기록",
         "PlayingNext": "다음에 재생될 것",
         "Author": "저자",
-        "RecentSearches": "최근 검색"
+        "RecentSearches": "최근 검색",
+        "ContinuePlay": "순차 재생",
+        "SinglePlay": "한 곡 반복",
+        "Repeat": "전체 반복",
+        "AutoPlay": "자동 재생",
+        "PlaySimilar": "비슷한 시가 재생됩니다",
+        "ToTurnOnAutoPlay": "계속 재생하려면 켜세요"
     },
 
     "Search": {

@@ -89,7 +89,13 @@
         "History":"History",
         "PlayingNext":"PlayingNext",
         "Author":"Author",
-        "RecentSearches":"Recent Searches"
+        "RecentSearches":"Recent Searches",
+        "ContinuePlay":"Sequential",
+        "SinglePlay":"Loop One",
+        "Repeat":"Loop All",
+        "AutoPlay":"Autoplay",
+        "PlaySimilar":"Playing similar poems next",
+        "ToTurnOnAutoPlay":"To continue playing, turn on"
     },
 
     "Search":{

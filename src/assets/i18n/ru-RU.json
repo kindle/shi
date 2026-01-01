@@ -89,7 +89,13 @@
         "History":"История",
         "PlayingNext":"Следующее воспроизведение",
         "Author":"Автор",
-        "RecentSearches":"Недавние поиски"
+        "RecentSearches":"Недавние поиски",
+        "ContinuePlay":"По порядку",
+        "SinglePlay":"Повтор одного",
+        "Repeat":"Повтор всего",
+        "AutoPlay":"Автовоспр.",
+        "PlaySimilar":"Похожие стихи далее",
+        "ToTurnOnAutoPlay":"Чтобы продолжить, включите"
     },
 
     "Search":{

@@ -89,7 +89,13 @@
         "History": "ประวัติ",
         "PlayingNext": "เล่นต่อไป",
         "Author": "ผู้เขียน",
-        "RecentSearches": "การค้นหาล่าสุด"
+        "RecentSearches": "การค้นหาล่าสุด",
+        "ContinuePlay": "เล่นตามลำดับ",
+        "SinglePlay": "วนซ้ำเพลงเดียว",
+        "Repeat": "วนซ้ำทั้งหมด",
+        "AutoPlay": "เล่นอัตโนมัติ",
+        "PlaySimilar": "เล่นบทกวีที่คล้ายกัน",
+        "ToTurnOnAutoPlay": "เพื่อเล่นต่อ โปรดเปิด"
     },
 
     "Search": {

@@ -89,7 +89,13 @@
         "History": "履歴",
         "PlayingNext": "次に再生するもの",
         "Author": "著者",
-        "RecentSearches": "最近の検索"
+        "RecentSearches": "最近の検索",
+        "ContinuePlay": "順次再生",
+        "SinglePlay": "1曲リピート",
+        "Repeat": "全曲リピート",
+        "AutoPlay": "自動再生",
+        "PlaySimilar": "類似の詩を再生します",
+        "ToTurnOnAutoPlay": "再生を続けるには、オンにしてください"
     },
 
     "Search": {

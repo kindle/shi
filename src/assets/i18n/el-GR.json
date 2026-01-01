@@ -89,7 +89,13 @@
         "History": "Ιστορικό",
         "PlayingNext": "Αναπαραγωγή Επόμενου",
         "Author": "Συγγραφέας",
-        "RecentSearches": "Πρόσφατες αναζητήσεις"
+        "RecentSearches": "Πρόσφατες αναζητήσεις",
+        "ContinuePlay": "Διαδοχική",
+        "SinglePlay": "Επανάληψη Ενός",
+        "Repeat": "Επανάληψη Όλων",
+        "AutoPlay": "Αυτόματη Αναπαραγωγή",
+        "PlaySimilar": "Αναπαραγωγή παρόμοιων",
+        "ToTurnOnAutoPlay": "Για συνέχεια, ενεργοποιήστε"
     },
 
     "Search": {

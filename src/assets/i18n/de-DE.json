@@ -89,7 +89,13 @@
         "History":"Verlauf",
         "PlayingNext":"Als nächstes abspielen",
         "Author":"Autor",
-        "RecentSearches":"Letzte Suchanfragen"
+        "RecentSearches":"Letzte Suchanfragen",
+        "ContinuePlay":"Sequenziell",
+        "SinglePlay":"Einzelwiederholung",
+        "Repeat":"Alles wiederholen",
+        "AutoPlay":"Autoplay",
+        "PlaySimilar":"Ähnliche Gedichte abspielen",
+        "ToTurnOnAutoPlay":"Zum Fortfahren einschalten"
     },
 
     "Search":{

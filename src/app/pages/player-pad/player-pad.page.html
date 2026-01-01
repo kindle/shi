@@ -90,7 +90,7 @@
       </ion-item>
 
       <ion-item lines="none" style="margin-top:10px;">
-        &nbsp;1
+        &nbsp;
       </ion-item>
 
       <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
@@ -347,9 +347,9 @@
                 <ion-label>
                   <h2 [style.fontSize]="data.zoom(17)">
                     {{ ui.instant('Title.PlayingNext')}}<!--待播清单-->&nbsp;
-                    <span *ngIf="data.isRepeat===0">(顺序播放)</span>
-                    <span *ngIf="data.isRepeat===2">(单曲循环)</span>
-                    <span *ngIf="data.isRepeat===1">(列表循环)</span>
+                    <span *ngIf="data.isRepeat===0">({{ ui.instant('Title.ContinuePlay')}})</span><!--顺序播放-->
+                    <span *ngIf="data.isRepeat===2">({{ ui.instant('Title.SinglePlay')}})</span><!--单曲循环-->
+                    <span *ngIf="data.isRepeat===1">({{ ui.instant('Title.Repeat')}})</span><!--列表循环-->
                   </h2>
                   <p [style.fontSize]="data.zoom(14)" style="margin-top:5px;">
                     {{data.toPlayListName}}
@@ -406,10 +406,12 @@
                   <div style="display: flex; align-items: center;">
                     <ion-icon name="infinite-outline" size="large" style="margin-right: 10px;"></ion-icon>
                     <h2 [style.fontSize]="data.zoom(17)">
-                      自动播放<!--自动播放-->
+                      {{ ui.instant('Title.AutoPlay') }}<!--自动播放-->
                     </h2>
                   </div>
-                  <p [style.fontSize]="data.zoom(14)" style="margin-top:5px;">将继续播放类似诗词</p>
+                  <p [style.fontSize]="data.zoom(14)" style="margin-top:5px;">
+                    {{ ui.instant('Title.PlaySimilar') }}<!--将继续播放类似诗词-->
+                  </p>
                 </ion-label>
               </ion-item>
               <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder2($any($event))">
@@ -456,11 +458,13 @@
             <ion-list *ngIf="data.showInfiniteHint && !bigimg" style="margin-top: 20px;">
               <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
                 <ion-label style="width:100%;display: grid;justify-content: center;">
-                  <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">若要继续播放诗词，请打开</h2>
+                  <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">
+                    {{ ui.instant('Title.ToTurnOnAutoPlay') }}<!--若要继续播放诗词，请打开-->
+                  </h2>
                   <div style="display: flex; align-items: center;">
                     <ion-icon name="infinite-outline" size="large" style="margin-right: 10px;"></ion-icon>
                     <h2 [style.fontSize]="data.zoom(17)">
-                      自动播放。
+                      {{ ui.instant('Title.AutoPlay') }}<!--自动播放-->
                     </h2>
                   </div>
                 </ion-label>

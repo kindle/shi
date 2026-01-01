@@ -89,7 +89,13 @@
         "History":"Historial",
         "PlayingNext":"Reproduciendo a Continuación",
         "Author":"Autor",
-        "RecentSearches":"Búsquedas recientes"
+        "RecentSearches":"Búsquedas recientes",
+        "ContinuePlay":"Secuencial",
+        "SinglePlay":"Bucle Uno",
+        "Repeat":"Bucle Todo",
+        "AutoPlay":"Reproducción auto",
+        "PlaySimilar":"Reproduciendo poemas similares",
+        "ToTurnOnAutoPlay":"Para continuar, active"
     },
 
     "Search":{

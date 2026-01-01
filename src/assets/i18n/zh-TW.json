@@ -89,7 +89,13 @@
         "History":"歷史記錄",
         "PlayingNext":"待播清單",
         "Author":"作者",
-        "RecentSearches":"最近搜尋"
+        "RecentSearches":"最近搜尋",
+        "ContinuePlay":"順序播放",
+        "SinglePlay":"單曲循環",
+        "Repeat":"列表循環",
+        "AutoPlay":"自動播放",
+        "PlaySimilar":"將繼續播放類似詩詞",
+        "ToTurnOnAutoPlay":"若要繼續播放詩詞，請打開"
     },
 
     "Search":{

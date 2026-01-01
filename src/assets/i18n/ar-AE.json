@@ -89,7 +89,13 @@
         "History": "التاريخ",
         "PlayingNext": "التشغيل التالي",
         "Author": "المؤلف",
-        "RecentSearches": "عمليات البحث الأخيرة"
+        "RecentSearches": "عمليات البحث الأخيرة",
+        "ContinuePlay": "تشغيل متتابع",
+        "SinglePlay": "تكرار واحد",
+        "Repeat": "تكرار الكل",
+        "AutoPlay": "تشغيل تلقائي",
+        "PlaySimilar": "تشغيل قصائد مماثلة",
+        "ToTurnOnAutoPlay": "للمتابعة، قم بتشغيل"
     },
 
     "Search": {

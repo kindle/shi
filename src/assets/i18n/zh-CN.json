@@ -89,7 +89,13 @@
         "History":"历史记录",
         "PlayingNext":"待播清单",
         "Author":"作者",
-        "RecentSearches":"最近搜索"
+        "RecentSearches":"最近搜索",
+        "ContinuePlay":"顺序播放",
+        "SinglePlay":"单曲循环",
+        "Repeat":"列表循环",
+        "AutoPlay":"自动播放",
+        "PlaySimilar":"将继续播放类似诗词",
+        "ToTurnOnAutoPlay":"若要继续播放诗词，请打开"
     },
 
     "Search":{
