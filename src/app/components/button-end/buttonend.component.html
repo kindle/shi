@@ -10,7 +10,7 @@
       <ion-list>
         <ion-item lines="full" [button]="true" [detail]="false"
         *ngIf="data.isliked(p,'poem')" 
-        (click)="data.unlikelist(p,'poem')"
+        (click)="unlike(p,'poem')"
         [style.fontSize]="data.zoom(17)">
           <ion-text color="danger"
           class="show-only-one-line"
@@ -19,7 +19,7 @@
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
         *ngIf="!data.isliked(p,'poem')"  
-        (click)="data.likelist(p, 'poem')"
+        (click)="like(p, 'poem')"
         class="show-only-one-line"
         [style.fontSize]="data.zoom(17)">
           {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->

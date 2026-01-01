@@ -95,4 +95,16 @@ export class ButtonEndComponent {
     });*/
 
   }
+
+  like(p: any, type: string) {
+    setTimeout(() => {
+      this.data.likelist(p, type);
+    }, 500);
+  }
+
+  unlike(p: any, type: string) {
+    setTimeout(() => {
+      this.data.unlikelist(p, type);
+    }, 500);
+  }
 }
