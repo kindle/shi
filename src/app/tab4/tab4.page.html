@@ -65,7 +65,7 @@
       ></ion-icon>
     </ion-toolbar>
   </ion-header>
-  <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0)">
+  <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0)&&data.searchHistory.length>0">
       <ion-item lines="none">
         <h3 style="margin-left:0px;margin-top:10px;">
           {{ ui.instant('Title.RecentSearches') }}<!--最近搜索-->

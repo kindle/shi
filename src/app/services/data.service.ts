@@ -1566,10 +1566,16 @@ export class DataService {
   playobj(poem:any, pop:any=true){
     if(poem){
       if(poem.id){
-        poem = this.JsonData
+        let found = this.JsonData
         .filter((shici:any)=>
           shici.id===poem.id
         )[0];
+        if(found){
+          if(poem.sample && !found.sample){
+            found.sample = poem.sample;
+          }
+          poem = found;
+        }
       }
       
       if(!poem){
