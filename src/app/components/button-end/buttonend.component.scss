@@ -1,0 +1,9 @@
+ion-popover {
+  --width: auto;
+  --max-width: 95vw;
+  
+  ::part(content) {
+    width: auto;
+    max-width: 95vw;
+  }
+}
