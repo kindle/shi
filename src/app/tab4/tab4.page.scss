@@ -165,3 +165,19 @@
 ion-content.custom-content {
   --offset-top: 64px !important;
 }
+
+.ipad-searchbar {
+    ::ng-deep .searchbar-input {
+        font-size: 24px !important;
+        line-height: 30px !important;
+    }
+    ::ng-deep .searchbar-cancel-button {
+        font-size: 24px !important;
+    }
+}
+
+ion-searchbar {
+    ::ng-deep .searchbar-clear-button {
+        display: block !important;
+    }
+}

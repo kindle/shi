@@ -88,7 +88,8 @@
         "NewListDesc": "설명",
         "History": "기록",
         "PlayingNext": "다음에 재생될 것",
-        "Author": "저자"
+        "Author": "저자",
+        "RecentSearches": "최근 검색"
     },
 
     "Search": {

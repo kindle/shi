@@ -88,7 +88,8 @@
         "NewListDesc":"描述",
         "History":"历史记录",
         "PlayingNext":"待播清单",
-        "Author":"作者"
+        "Author":"作者",
+        "RecentSearches":"最近搜索"
     },
 
     "Search":{

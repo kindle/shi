@@ -88,7 +88,8 @@
         "NewListDesc":"Descripción",
         "History":"Historial",
         "PlayingNext":"Reproduciendo a Continuación",
-        "Author":"Autor"
+        "Author":"Autor",
+        "RecentSearches":"Búsquedas recientes"
     },
 
     "Search":{

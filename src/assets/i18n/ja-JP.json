@@ -88,7 +88,8 @@
         "NewListDesc": "説明",
         "History": "履歴",
         "PlayingNext": "次に再生するもの",
-        "Author": "著者"
+        "Author": "著者",
+        "RecentSearches": "最近の検索"
     },
 
     "Search": {

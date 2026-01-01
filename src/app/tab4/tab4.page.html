@@ -44,6 +44,8 @@
   style="position:sticky;top:0px;">
     <ion-toolbar style="padding-top:0px;"><!--诗人、诗词以及更多内容-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
+        [class.ipad-searchbar]="ui.isipad"
+        [style.fontSize]="data.zoom(17)"
         [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
         [(ngModel)]="data.searchText"
         (ionFocus)="onSearchFocus()"
@@ -64,7 +66,34 @@
     </ion-toolbar>
   </ion-header>
   <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0)">
-      <div *ngFor="let s of data.searchHistory">{{s}}</div>
+      <ion-item lines="none">
+        <h3 style="margin-left:0px;margin-top:10px;">
+          {{ ui.instant('Title.RecentSearches') }}<!--最近搜索-->
+        </h3>
+        <ion-button slot="end" (mousedown)="presentClearHistoryActionSheet($event)"
+          style="height:40px;"
+          [ngStyle]="{'--background': 'white', '--background-hover': 'white', '--background-activated': 'white' }">
+          <ion-icon name="trash-outline" color="dark"></ion-icon>
+        </ion-button>
+      </ion-item>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 0 15px;">
+        <ng-container *ngFor="let s of getHistory(); let i = index">
+            <span *ngIf="isHistoryExpanded || i < 7" 
+                  [style.fontSize]="data.zoom(17)"
+                  (mousedown)="setOldSearch(s)" 
+                  style="background-color: #f0f0f0; padding: 5px 12px; border-radius: 5px; font-size: 14px;">
+                {{s}}
+            </span>
+        </ng-container>
+        
+        <span *ngIf="data.searchHistory.length > 7" 
+             [style.fontSize]="data.zoom(17)"
+             (mousedown)="toggleHistory($event)" 
+             style="background-color: #f0f0f0; padding: 5px 12px; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+            <ion-icon [name]="isHistoryExpanded ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </span>
+      </div>
   </div>
 
   <ion-list *ngIf="data.showFilter">
@@ -231,7 +260,7 @@
     <ion-card *ngFor="let topic of this.data.searchTopicData"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
-      [style.height]="ui.isipad ? '250px' : null"
+      [style.height]="ui.isipad ? '250px' : '120px'"
       [style.position]="ui.isipad ? 'relative' : ''"
       style="margin:5px;
       background-size:cover;background-color:{{data.getbgcolor()}}"

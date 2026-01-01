@@ -88,7 +88,8 @@
         "NewListDesc":"Description",
         "History":"History",
         "PlayingNext":"PlayingNext",
-        "Author":"Author"
+        "Author":"Author",
+        "RecentSearches":"Recent Searches"
     },
 
     "Search":{

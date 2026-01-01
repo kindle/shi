@@ -7,7 +7,7 @@ import RecorderManager from '../../assets/kdxf/index.umd.js'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs';
-import { IonContent } from '@ionic/angular';
+import { IonContent, ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -22,6 +22,7 @@ export class Tab4Page implements OnInit {
     private router: Router,
     private sanitizer: DomSanitizer,
     private scrollService: ScrollService,
+    private actionSheetController: ActionSheetController
   ) { 
     this.showSubscription = this.data.showSubscription;
     this.localJsonData = this.data.JsonData;
@@ -83,8 +84,13 @@ export class Tab4Page implements OnInit {
   pressed(topicid:any){
     this.currentLpId = topicid;
   }
+  isSearchSaved = false;
   onScroll(event:any){
     this.currentLpId=0;
+    if(!this.isSearchSaved && this.data.searchText!=null && this.data.searchText!="" && this.data.searchText!=this.ui.instant('Search.Tab4')){
+      this.data.saveSearchHistory(this.data.searchText.trim());
+      this.isSearchSaved = true;
+    }
   }
   active(topicid:any){
   }
@@ -380,8 +386,19 @@ export class Tab4Page implements OnInit {
   }
   onLoseFocus(){
     this.stopListening();
+
+    if(!this.isSearchSaved && this.data.searchText!=null && this.data.searchText!="" && this.data.searchText!=this.ui.instant('Search.Tab4')){
+      this.data.saveSearchHistory(this.data.searchText.trim());
+      this.isSearchSaved = true;
+    }
+
     if(this.data.searchText=="")
       this.data.searchText = this.ui.instant('Search.Tab4');
+    
+    if (this.isActionSheetOpen) {
+      return;
+    }
+
     if(this.data.searchText==null||
       this.data.searchText==""||
       this.data.searchText==this.ui.instant('Search.Tab4')){
@@ -395,7 +412,57 @@ export class Tab4Page implements OnInit {
     }
     this.data.showFilter = true;
   }
+  isHistoryExpanded = false;
+  
+  getHistory() {
+    return this.data.searchHistory.slice().reverse();
+  }
+
+  toggleHistory(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.isHistoryExpanded = !this.isHistoryExpanded;
+  }
+
+  isActionSheetOpen = false;
+  async presentClearHistoryActionSheet(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.isActionSheetOpen = true;
+    const actionSheet = await this.actionSheetController.create({
+      header: '清除搜索？',
+      buttons: [
+        {
+          text: '清除搜索',
+          role: 'destructive',
+          handler: () => {
+            this.data.clearSearchHistory();
+          }
+        },
+        {
+          text: '取消',
+          role: 'cancel',
+          handler: () => {
+            // console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+    actionSheet.onDidDismiss().then(() => {
+      this.isActionSheetOpen = false;
+    });
+  }
+
+  setOldSearch(key:any){
+    this.data.searchText = key;
+    console.log('set old search:'+key)
+    this.onSearchChanged();
+  }
   onSearchChanged(){
+    this.isSearchSaved = false;
     let key = "";
     if(this.data.searchText!=null){
       key = this.data.searchText.trim();
@@ -407,7 +474,7 @@ export class Tab4Page implements OnInit {
       return;
     }
 
-    this.data.saveSearchHistory(key);
+    //this.data.saveSearchHistory(key);
 
     //最多支持5个关键字 空格分隔 缩小查询范围
     let keys = key.split(' ');

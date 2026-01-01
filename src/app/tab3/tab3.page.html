@@ -30,7 +30,7 @@
 <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
 grid-gap:0px;padding:0 10px;margin-top:10px;">
     <ion-card *ngFor="let topic of topics"
-      [style.height]="ui.isipad ? '250px' : null"
+      [style.height]="ui.isipad ? '250px' : '120px'"
       [style.position]="ui.isipad ? 'relative' : ''"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 

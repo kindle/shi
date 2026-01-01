@@ -1488,11 +1488,23 @@ export class DataService {
       if(value==null)
         this.searchHistory = [];
       else{
-        this.searchHistory = JSON.parse(value);
+        let history = JSON.parse(value);
+        this.searchHistory = history.filter((s: string) => {
+          // Filter out pure Pinyin (letters, spaces, apostrophes)
+          if (/^[a-zA-Z\s']+$/.test(s)) return false;
+          // Filter out mixed Chinese and letters (unfinished Pinyin input)
+          if (/[\u4e00-\u9fa5]/.test(s) && /[a-zA-Z]/.test(s)) return false;
+          return true;
+        });
       }
     });
   }
   saveSearchHistory(key:any){
+    // Filter out pure Pinyin (letters, spaces, apostrophes)
+    if (/^[a-zA-Z\s']+$/.test(key)) return;
+    // Filter out mixed Chinese and letters (unfinished Pinyin input)
+    if (/[\u4e00-\u9fa5]/.test(key) && /[a-zA-Z]/.test(key)) return;
+
     this.searchHistory = this.searchHistory.filter((s:any)=>
       s !== key
     );
