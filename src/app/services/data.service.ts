@@ -1131,7 +1131,11 @@ export class DataService {
     }
     else
     {
-      if(this.toPlayList.length==0 && this.isInfinite){
+      if(this.toPlayList.length>0){
+        let p = this.toPlayList[0];
+        this.playbyid(p.id, p.sample, false);
+      }
+      else if(this.toPlayList.length==0 && this.isInfinite){
         if(this.additionalList.length>0)
         {
           let p = this.additionalList.shift();
