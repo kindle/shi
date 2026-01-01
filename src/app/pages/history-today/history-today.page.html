@@ -41,12 +41,19 @@
     <div *ngFor="let data of historyToday;let i=index" 
       style="margin:15px 10px;display:flex;justify-content:flex-start;">
       <div style="min-width:70px;text-align: end;padding-right: 20px;">
-        <b *ngIf="data.type=='birth'&&(i==0||i>0&&historyToday[i-1].type!='birth')" class="his-title">{{ ui.instant('History.Birth') }}<!--生日--></b>
-        <b *ngIf="data.type=='death'&&(i==0||i>0&&historyToday[i-1].type!='death')" class="his-title">{{ ui.instant('History.Die') }}<!--祭日--></b>
+        <b *ngIf="data.type=='birth'&&(i==0||i>0&&historyToday[i-1].type!='birth')" class="his-title">
+          {{ ui.instant('History.Birth') }}<!--生日-->
+        </b>
+        <b *ngIf="data.type=='death'&&(i==0||i>0&&historyToday[i-1].type!='death')" class="his-title">
+          {{ ui.instant('History.Die') }}<!--祭日-->
+        </b>
         <b *ngIf="data.type=='event'" class="his-title">{{data.year}}</b>
       </div>
       <div style="word-wrap: break-word;font-size: large;">
         {{data.title}}{{data.desc}}
+        <span *ngIf="data.type=='birth'||data.type=='death'" style="font-size: 0.8em; color: gray; margin-top: 5px;">
+          {{data.year}}
+        </span>
       </div>
     </div>
   </ion-list>

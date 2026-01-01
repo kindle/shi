@@ -38,7 +38,11 @@ export class HistoryTodayPage implements OnInit {
 
     this.data.getTodayHistory(month).then((result) => {
       this.historyToday=result.filter((r:any)=>r.key==date)
-        .sort((a:any,b:any)=> a.type.localeCompare(b.type));
+        .sort((a:any,b:any)=> {
+          const yearA = parseInt(a.year);
+          const yearB = parseInt(b.year);
+          return yearB - yearA;
+        });
     });
   }
 
