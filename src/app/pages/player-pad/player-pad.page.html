@@ -2,13 +2,10 @@
 
   <div class="left">
 
-
-    <!--小于10行*********start*******************-->
-    <!--img   ...-->
     <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
-    <ion-list style="margin:5px 5px;"
-    *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
-      <!--小于10行大图片-->
+    <!--big image and title/author-->
+    <ion-list style="margin:5px 5px;" *ngIf="showText">
+      <!--大图片-->
       <ion-item lines="none" *ngIf="leftbigimg"
         style="margin:0 5px;margin-top:15px;--padding-start:0;">
         <div style="width: 100%;display: flex;justify-content: center;">
@@ -20,7 +17,7 @@
           />
         </div>
       </ion-item>
-      <!--小于10行小图片+诗名+诗人-->
+      <!--诗词 title/author start-->
       <ion-item lines="none" 
       style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
         <div class="play-icon-box" *ngIf="!leftbigimg" 
@@ -36,7 +33,7 @@
                 defaultImage="assets/img/default.jpg" 
                 lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
                 onerror="javascript:this.src='assets/img/default.jpg'"
-                [ngStyle]="{'opacity':(data.currentPoem&&data.isPlaying) ? '0.5' : '1' }" />
+              />
               <div class="playing" style="position: fixed;" *ngIf="data.isPlaying"
                 [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
                 'height':(data.isPlaying) ? '' : '5px' }"
@@ -61,11 +58,12 @@
         </ion-button> -->
         <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
       </ion-item>
+       <!--诗词 title/author end-->  
     </ion-list>
 
-    <!--小于10行诗词段-->
+    <!--paragraphs start-->
     <ion-list *ngIf="!leftbigimg&&showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)" 
-    style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
+      style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
             
       <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
         <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
@@ -112,104 +110,13 @@
       </ion-item>
       
     </ion-list>
-    <!--小于10行*********end*******************-->
-
-
-    <!--大于10行*********content start*******************-->
-    <ion-content class="no-padding" [fullscreen]="true" style="z-index: 200;"
-      *ngIf="showText&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
-      <ion-list *ngIf="showText" style="margin:5px 5px;">
-        <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
-        <!--大于10行大图片-->
-        <ion-item lines="none" *ngIf="bigimg"
-          style="margin:0 5px;margin-top:15px;--padding-start:0;">
-          <div style="width: 100%;margin-left:15px;display: flex;justify-content: center;">
-            <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
-              (click)="playlyric()"  
-              defaultImage="assets/img/default.jpg" 
-              src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-              onerror="javascript:this.src='assets/img/default.jpg'"
-            />
-          </div>
-        </ion-item>
-        <!--大于10行小图片+诗名+诗人-->
-        <ion-item lines="none" 
-        style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
-          <div class="play-icon-box" *ngIf="!bigimg" 
-            (click)="playlyric()">
-            <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
-              defaultImage="assets/img/default.jpg" 
-              lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-              onerror="javascript:this.src='assets/img/default.jpg'" /> -->
-            <ion-thumbnail slot="start"
-              style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
-                <img id="authorimg" style="border-radius: 10px;" 
-                  defaultImage="assets/img/default.jpg" 
-                  src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
-                  onerror="javascript:this.src='assets/img/default.jpg'"
-                  [ngStyle]="{'opacity':(data.currentPoem&&data.isPlaying) ? '0.5' : '1' }" />
-                <div class="playing" style="position: fixed;" *ngIf="data.isPlaying"
-                  [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-                  'height':(data.isPlaying) ? '' : '5px' }"
-                ></div>
-              </ion-thumbnail>
-          </div>
-          <ion-label>
-            <h2 [style.fontSize]="data.zoom(17)">{{data.currentPoem.title}}</h2>
-            <p [style.fontSize]="data.zoom(14)">{{data.currentPoem.author}}</p>
-          </ion-label>
-          <!-- <ion-button slot="end" color="transparent" size="large"
-          *ngIf="!data.isliked(data.currentPoem,'poem')"
-          (click)="data.likelist(data.currentPoem,'poem')">
-            <ion-icon name="add-outline" color="dark"></ion-icon>
-          </ion-button> -->
-          <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
-        </ion-item>
-      </ion-list>
-
-      <!--大于10行title+author+诗词段-->
-      <ion-list *ngIf="!bigimg"
-      style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;">
-        <!--大于10行title-->
-        <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
-          <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
-          [style.fontSize]="data.zoom(20)">
-            {{data.currentPoem.title}}
-          </div>
-        </ion-item>
-        <!--大于10行author-->
-        <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
-          <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
-          [style.fontSize]="data.zoom(18)">
-            {{data.currentPoem.author}}
-          </div>
-        </ion-item>
-        <!--大于10行诗词段-->
-        <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
-          <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
-          [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
-          [ngClass]="{'select-line':currentIndex===i}"
-          (click)="select(i)">
-            <ion-icon name="search-outline" *ngIf="currentIndex===i"
-            (click)="data.search(text)"
-            style="position: absolute;left:5px;margin:2px;"
-            ></ion-icon>
-            <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
-            [style.fontSize]="data.zoom(18)"></div>
-            <div *ngIf="!data.currentPoem.sample"
-            [style.fontSize]="data.zoom(18)">{{text}}</div>
-          </div>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-    <!--大于10行*********content end*******************-->
-
+    <!--诗词 title/author paragraphs end-->
 
     
     <div class="placeholder-playbox"></div>
 
 
-
+    <!--进度条 | play button | 音量条(hidden)-->
     <ion-list style="margin-top:0px;z-index: 2001;bottom:100px;position: fixed;width: 38.2%;">
 
 
@@ -340,8 +247,50 @@
               </ion-item>
             </ng-container>
           </ion-list>
+
+          
           <ion-list style="margin:5px 5px;" id="playlist-top" class="snap-start">
 
+            <!--current play item start-->
+            <ion-item *ngIf="false" lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+              <div class="play-icon-box" *ngIf="!rightbigimg">
+                <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
+                  defaultImage="assets/img/default.jpg" 
+                  lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+                  onerror="javascript:this.src='assets/img/default.jpg'" /> -->
+                <ion-thumbnail slot="start"
+                  style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
+                    <img id="authorimg" style="border-radius: 10px;" 
+                      defaultImage="assets/img/default.jpg" 
+                      src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+                      onerror="javascript:this.src='assets/img/default.jpg'"
+                      [ngStyle]="{'opacity':(data.currentPoem&&data.isPlaying) ? '0.5' : '1' }" />
+                    <div class="playing" style="position: fixed;" *ngIf="data.isPlaying"
+                      [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                      'height':(data.isPlaying) ? '' : '5px' }"
+                    ></div>
+                  </ion-thumbnail>
+              </div>
+              <ion-label>
+                <div style="display: flex; align-items: center;">
+                  <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                  <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                    {{data.currentPoem.title}} {{data.currentPoem.author}}
+                  </h2>
+                </div>
+                <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                  style="margin-top:5px;display: flex;align-items: end;">
+                  {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+                </p>
+              </ion-label>
+              <!-- <ion-button slot="end" color="transparent" size="large"
+              *ngIf="!data.isliked(data.currentPoem,'poem')"
+              (click)="data.likelist(data.currentPoem,'poem')">
+                <ion-icon name="add-outline" color="dark"></ion-icon>
+              </ion-button> -->
+              <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+            </ion-item>
+            <!--current play item end-->
             <div *ngIf="!rightbigimg">
               <ion-item lines="none" style="position: sticky; top: 0; z-index: 999; background: var(--ion-background-color, #fff); --padding-start:15px;--inner-padding-end:15px;" *ngIf="data.toPlayList.length>1">
                 <ion-label>
@@ -541,6 +490,45 @@
             
           </ion-list>
           <!--小于10行*********end*******************-->
+
+
+
+
+
+          <!--大于10行title+author+诗词段-->
+          <ion-list class="bigerthan10" *ngIf="!bigimg&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)"
+          style="display: flex;flex-direction: column;justify-content: flex-start;margin-top:10px;margin-bottom:120px;">
+            <!--大于10行title-->
+            <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+              <div style="width: 100%; text-align:center;font-size:20px;font-weight: normal;"
+              [style.fontSize]="data.zoom(20)">
+                {{data.currentPoem.title}}
+              </div>
+            </ion-item>
+            <!--大于10行author-->
+            <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
+              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+              [style.fontSize]="data.zoom(18)">
+                {{data.currentPoem.author}}
+              </div>
+            </ion-item>
+            <!--大于10行诗词段-->
+            <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+              [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
+              [ngClass]="{'select-line':currentIndex===i}"
+              (click)="select(i)">
+                <ion-icon name="search-outline" *ngIf="currentIndex===i"
+                (click)="data.search(text)"
+                style="position: absolute;left:5px;margin:2px;"
+                ></ion-icon>
+                <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+                [style.fontSize]="data.zoom(18)"></div>
+                <div *ngIf="!data.currentPoem.sample"
+                [style.fontSize]="data.zoom(18)">{{text}}</div>
+              </div>
+            </ion-item>
+          </ion-list>
         </swiper-slide>
       </swiper-container>
     </ion-content>
