@@ -144,7 +144,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
 <ion-tabs id="main-content" (ionTabsDidChange)="onTabChange($event)">
   <div class="music-tab-bar" style="display: flex;flex-direction: column;">
     <!--<ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">-->
-    <ion-toolbar style="--background:rgba(255,255,255,0.8);padding-top:5px;padding-bottom:3px;" 
+    <ion-toolbar style="--background:rgba(255,255,255,0.8);padding-top:3px;padding-bottom:2px;" 
       [style.width]="ui.isipad ? '80%' : '100%'"
       [style.margin]="ui.isipad ? '0 auto 40px auto' : '0'"
       [style.borderRadius]="ui.isipad ? '15px' : '0'"
@@ -190,6 +190,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-item>
     </ion-toolbar>
 
+    <!--phone view-->
     <ion-tab-bar *ngIf="!ui.isipad" slot="bottom" [translucent]="false" style="padding-top:3px;"
     [ngStyle]="{
       'padding-bottom':ui.isAndroid ? '10px' : '25px',
@@ -221,7 +222,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-tab-bar>
 
 
-
+    <!--ipad view-->
     <ion-tab-bar *ngIf="ui.isipad" slot="bottom" [translucent]="false" 
     style="padding-top:15px;"
       [ngStyle]="{
