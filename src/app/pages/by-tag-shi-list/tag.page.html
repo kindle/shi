@@ -60,7 +60,8 @@
       (click)="ui.imageviewer(getUrl())"
       defaultImage="" 
       lazyLoad="{{getUrl()}}"
-      style="background-size:cover;min-height: 300px;
+      [style.minHeight]="ui.isipad ? '600px' : '300px'"
+      style="background-size:cover;
         margin-top:0;
         margin-left:0;
         margin-right:0;
