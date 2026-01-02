@@ -897,6 +897,23 @@ export class DataService {
     this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
     this.audio.playbackRate = this.playbackRate;
     
+    if ('mediaSession' in navigator) {
+      // @ts-ignore
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: this.currentPoem.title,
+        artist: this.currentPoem.author,
+        album: this.currentPoem.title,
+        artwork: [
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '96x96', type: 'image/jpeg' },
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '128x128', type: 'image/jpeg' },
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '192x192', type: 'image/jpeg' },
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '256x256', type: 'image/jpeg' },
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '384x384', type: 'image/jpeg' },
+          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '512x512', type: 'image/jpeg' },
+        ]
+      });
+    }
+
     /*
     const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);
     const mediaMetadataOpt = {
