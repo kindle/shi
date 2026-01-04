@@ -208,9 +208,27 @@
         "image-size":"contain",
         "image-pos":"center"
       },
-      {"id":802, "alias":"推荐专辑","text":"小时候，乡愁是一枚小小的邮票","desc":"思乡","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"},
-      {"id":803, "alias":"推荐专辑","text":"关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"诗经","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"},
-      {"id":804, "alias":"推荐专辑","text":"东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"观沧海","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"}
+      {
+        "id":802, "alias":"唐代宋代思乡代表作品",
+        "desc":"Tang & Song Dynasty 思乡诗篇",
+        "text":"由我们的编辑精选，唐代宋代最棒的思乡诗篇，带你走进古代诗人的思乡情怀。",
+        "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"
+      },
+      {
+        "id":803, "alias":"1046-256BC: 诗经精选",
+        "desc":"Zhou Dynasty 诗经之美",
+        "text":"中华文化之美的底板，《诗经》作为中国最早的诗歌总集，蕴含着丰富的历史与文化内涵。",
+        "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"
+      },
+      {
+        "id":804, "alias":"曹操：建安精选",
+        "desc":"Han Dynasty 建安风骨",
+        "text":"建安文学的奠基者，其诗气魄雄伟、慷慨悲凉，抒发了政治抱负与人生理想。",
+        "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"
+      }
     ],
     "hot":[],
     "list":[
@@ -258,11 +276,41 @@
           "image-size":"contain",
           "image-pos":"center"
         },
-        {"id":800, "alias":"诗圣","text":"登高 | 无边落木萧萧下，不尽长江滚滚来","desc":"","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg"},
-        {"id":801,"src":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg","display":"cover","text":"春泥 | 一种相思,两处闲愁","desc":"","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg"},
-        {"id":802,"src":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg","display":"cover","text":"思乡 | 小时候，乡愁是一枚小小的邮票","desc":"","color":"rgb(98,166,243)"},
-        {"id":803,"src":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg","display":"cover","text":"蒹葭 | 关关雎鸠,在河之洲。窈窕淑女,君子好逑","desc":"","color":"rgb(98,166,243)"},
-        {"id":804,"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg","display":"cover","text":"观沧海 | 东临碣石，以观沧海。水何澹澹，山岛竦峙。","desc":"","color":"rgb(98,166,243)"}
+        {
+          "id":800, "alias":"诗圣",
+          "desc":"Tang Dynasty 现实主义",
+          "text":"杜甫: 诗圣精选",
+          "color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg"
+        },
+        {
+          "id":801, "alias":"诗仙",
+          "desc":"Tang Dynasty 浪漫主义",
+          "text":"春泥 | 一种相思,两处闲愁",
+          "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg"
+        },
+        {
+          "id":802,"alias":"诗仙",
+          "desc":"Tang & Song Dynasty 思乡",
+          "text":"唐宋思乡代表作",
+          "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg"
+        },
+        {
+          "id":803,"alias":"诗经",
+          "desc":"Zhou Dynasty 诗经之美",
+          "text":"1046-256BC: 诗经精选",
+          "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"
+        },
+        {
+          "id":804,"alias":"建安",
+          "desc":"",
+          "text":"观沧海 | 东临碣石，以观沧海。水何澹澹，山岛竦峙。",
+          "color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"
+        }
       ]},
 
       {"name":"名句接龙", "display":false,

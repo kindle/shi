@@ -92,6 +92,11 @@ export class Tab1Page {
     this.data.currentTopicId = 199;
     this.searchTopicData = this.data.tab5RadioTopicData
       .filter((d:any)=>d.id==this.data.currentTopicId)[0];
+    //regenerate top 5 big
+    this.searchTopicData.scroll = this.data.getRandomArray(this.searchTopicData.scroll, 5);
+    //regenerate top 5 latest albums
+    //console.log(this.searchTopicData.list[0])
+    this.searchTopicData.list[0].data = this.data.getRandomArray(this.searchTopicData.list[0].data, 5);
   }
 
   
