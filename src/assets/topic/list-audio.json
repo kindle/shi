@@ -141,6 +141,25 @@
         ]
     },
     {
+        "id":808,
+        "name":"中国历代帝王诗选",
+        "sub":"Dynasty 历代帝王诗选",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/african-lion-2888519_1280.jpg",
+        "image-pos":"center",
+        "image-size":"cover",
+        "color":"rgb(231,112,103)","light":"rgb(231,112,103,40%)",
+        "desc":"中国历史上有许多帝王不仅在政治和军事上有卓越的成就，同时也是杰出的诗人。他们通过诗歌表达自己的情感、政治理念和对国家的关怀。这些帝王诗歌作品不仅具有高度的艺术价值，还反映了他们独特的治国理念和个人情感。以下是一些著名帝王及其代表作的精选。",
+        "more":"",
+        "list":[
+            {"title":"赐萧瑀","author":"太宗皇帝","sample":"疾风知劲草，板荡识诚臣","id":"5737750c-bf61-45a3-b38e-44bd6038b425"},
+            {"title":"咏初日","author":"赵匡胤","sample":"太阳初出光赫赫，千山万山如火发","id":"eb5dcddd-59f7-4e4a-a2e3-e20c2a0e3d47"},
+            {"title":"垓下歌","author":"项羽","sample":"力拔山兮气盖世，时不利兮骓不逝", "id":"b6a03e17-72de-4fac-8eaa-9da5c3fcc277"},
+            {"title":"大风歌","author":"刘邦","sample":"大风起兮云飞扬，威加海内兮归故乡。安得猛士兮守四方","id":"7307f31b-8bba-49f0-83bd-40fce689f932"},
+            {"title":"短歌行","author":"曹操","sample":"山不厌高，海不厌深。周公吐哺，天下归心","id":"7a2aa44e-035f-476a-8e5a-f4517b39b57b"},
+            {"title":"虞美人","author":"李煜","sample":"小楼昨夜又东风，故国不堪回首月明中","id":"b769cd89-478e-40af-9cdc-80cdc7423473"}
+        ]
+    },
+    {
         "id":901,
         "onlyonepoet":true,
         "name":"李白: 浪漫精选",

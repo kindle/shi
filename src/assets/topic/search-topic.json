@@ -179,6 +179,15 @@
     "image":"",
     "scroll":[
       {
+        "id":808, "alias":"中国历代帝王诗选",
+        "desc":"Dynasty 历代帝王诗选",
+        "text":"帝王有帝王的风范与气度，他们的诗歌作品也展现出独特的政治抱负与文化视野。",
+        "color":"rgb(121,196,131)","light":"rgb(255,230,151,60%)",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/african-lion-2888519_1280.jpg",
+        "image-size":"cover",
+        "image-pos":"center"
+      },
+      {
         "id":807, "alias":"A-List 乾元流行: 759年度最佳",
         "desc":"Tang Dynasty 乾元流行",
         "text":"唐朝乾元年间为758 - 760年，这一时期经历了安史之乱，社会动荡，文学作品反映了民生疾苦、社会变迁。",

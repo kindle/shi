@@ -900,7 +900,7 @@
       (click)="goToArticle(item)"
         *ngIf="item.template=='text'&&!item.effect&&i<10"
         defaultImage="" 
-        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        lazyLoad="{{item.bg_image.indexOf('assets')>-1?item.bg_image:'https://reddah.blob.core.windows.net/msjjimg/'+item.bg_image}}"
         style="
         background-size:cover;min-height: {{item.min_height}};background-color:{{data.getbgcolor()}}">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
