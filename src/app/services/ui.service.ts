@@ -167,12 +167,12 @@ export class UiService {
           presentingElement: await this.modalController.getTop(),
       });
 
-      if(this.isiphone){
+      /*if(this.isiphone){
         this.hideStatusBar();
         this.PoemPlayer.onDidDismiss().then(()=>{
           this.showStatusBar();
         });
-      }
+      }*/
 
       return await this.PoemPlayer.present();
   }

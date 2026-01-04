@@ -163,25 +163,40 @@ export class PlayerPage implements OnInit {
     //this.bigimg = false;
   }
   showPlaylist = false;
+
+  goToHistoryEnd(){
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const element = document.getElementById('playlist-top');
+      if(element){
+        const slide = element.closest('swiper-slide');
+        if (slide && (slide.scrollHeight > slide.clientHeight)) {
+          const slideRect = slide.getBoundingClientRect();
+          const elementRect = element.getBoundingClientRect();
+          const offset = elementRect.top - slideRect.top + slide.scrollTop - 60;
+          slide.scrollTo({ top: offset, behavior: 'auto' });
+          clearInterval(interval);
+        } else if (this.content) {
+          this.content.scrollToPoint(0, element.offsetTop - 60, 0);
+          clearInterval(interval);
+        }
+      }
+      attempts++;
+      if(attempts > 50){
+        clearInterval(interval);
+      }
+    }, 100);
+  }
+
   playlist(){
     if(this.showPlaylist==false)
     {
       this.showText = false;
       this.bigimg = false;
       this.showPlaylist = true;
-      
-      let attempts = 0;
-      const interval = setInterval(() => {
-        const element = document.getElementById('playlist-top');
-        if(element && this.content){
-          this.content.scrollToPoint(0, element.offsetTop, 0);
-          clearInterval(interval);
-        }
-        attempts++;
-        if(attempts > 20){
-          clearInterval(interval);
-        }
-      }, 100);
+      setTimeout(()=>{
+        this.goToHistoryEnd();
+      }, 200);
     }
     else
     {

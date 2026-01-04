@@ -1,6 +1,6 @@
 <div>
   <ion-list style="position: fixed; top:0; width: -webkit-fill-available;z-index:200;
-  margin:0px;padding: 10px 5px;background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
+  margin:0px;padding: 10px 5px;padding-top: calc(10px + env(safe-area-inset-top));background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
     -webkit-backdrop-filter:saturate(210%) blur(20px);
     backdrop-filter:saturate(210%) blur(20px);" *ngIf="!showText">
     <ion-list-header *ngIf="showHistory">
@@ -13,7 +13,7 @@
   <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText" [class.snap-scroll]="showPlaylist">
     <swiper-container>
       <swiper-slide *ngIf="showHistory">
-        <ion-list style="margin:35px 5px;">
+        <ion-list style="margin:35px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
           <ion-list-header>
             <ion-label><h2></h2></ion-label>
             <ion-button></ion-button>
@@ -88,7 +88,7 @@
             </ion-item>
           </ng-container>
         </ion-list>
-        <ion-list style="margin:5px 5px;" id="playlist-top" class="snap-start">
+        <ion-list style="margin:5px 5px;scroll-margin-top: calc(10px + env(safe-area-inset-top));" id="playlist-top" class="snap-start">
           <ion-item lines="none" *ngIf="bigimg"
             style="margin:0 5px;margin-top:15px;--padding-start:0;">
             <div style="width: 100%;margin-left:15px;display: flex;justify-content: center;">
@@ -296,7 +296,7 @@
   <!--小于10行*********start*******************-->
   <!--img   ...-->
   <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
-  <ion-list style="margin:5px 5px;"
+  <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));"
   *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <!--小于10行大图片-->
     <ion-item lines="none" *ngIf="bigimg"
@@ -405,7 +405,7 @@
   <!--大于10行*********content start*******************-->
   <ion-content class="no-padding" [fullscreen]="true" style="z-index: 200;"
     *ngIf="showText&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
-    <ion-list *ngIf="showText" style="margin:5px 5px;">
+    <ion-list *ngIf="showText" style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
       <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
       <!--大于10行大图片-->
       <ion-item lines="none" *ngIf="bigimg"

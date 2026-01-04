@@ -76,6 +76,17 @@ export class DataService {
     this.platform = platform;
     this.audio = new Audio();
 
+    this.audio.addEventListener('play', () => {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'playing';
+      }
+    });
+    this.audio.addEventListener('pause', () => {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = 'paused';
+      }
+    });
+
     if(this.TestMode === true){
       this.showRatingsAndReviews = true;
       this.showSubscription = true;
@@ -897,23 +908,6 @@ export class DataService {
     this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
     this.audio.playbackRate = this.playbackRate;
     
-    if ('mediaSession' in navigator) {
-      // @ts-ignore
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: this.currentPoem.title,
-        artist: this.currentPoem.author,
-        album: this.currentPoem.title,
-        artwork: [
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '96x96', type: 'image/jpeg' },
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '128x128', type: 'image/jpeg' },
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '192x192', type: 'image/jpeg' },
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '256x256', type: 'image/jpeg' },
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '384x384', type: 'image/jpeg' },
-          { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '512x512', type: 'image/jpeg' },
-        ]
-      });
-    }
-
     /*
     const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);
     const mediaMetadataOpt = {
@@ -928,6 +922,39 @@ export class DataService {
     this.audioLoadedmetadataFn = () => {
       this.duration = this.audio.duration;
       this.isPlaying = true;
+
+      if ('mediaSession' in navigator) {
+        // @ts-ignore
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: this.currentPoem.title,
+          artist: this.currentPoem.author,
+          album: this.currentPoem.title,
+          artwork: [
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '96x96', type: 'image/jpeg' },
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '128x128', type: 'image/jpeg' },
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '192x192', type: 'image/jpeg' },
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '256x256', type: 'image/jpeg' },
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '384x384', type: 'image/jpeg' },
+            { src: 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg', sizes: '512x512', type: 'image/jpeg' },
+          ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => {
+          this.execPlay();
+        });
+        navigator.mediaSession.setActionHandler('pause', () => {
+          this.execPause();
+        });
+        navigator.mediaSession.setActionHandler('nexttrack', () => {
+          this.playNext();
+        });
+        navigator.mediaSession.setActionHandler('seekto', (details) => {
+          if (details.seekTime) {
+            this.audio.currentTime = details.seekTime;
+          }
+        });
+      }
+
       this.audio.play();
     }
     this.audio.addEventListener('loadedmetadata', this.audioLoadedmetadataFn);
@@ -936,6 +963,16 @@ export class DataService {
       //when dragging, do not update the progress bar.
       if(this.dragWhere===false){
         this.currentTime = this.audio.currentTime;
+        
+        if ('mediaSession' in navigator && 'setPositionState' in navigator.mediaSession) {
+          if(isFinite(this.audio.duration) && isFinite(this.audio.currentTime)){
+            navigator.mediaSession.setPositionState({
+              duration: this.audio.duration,
+              playbackRate: this.audio.playbackRate,
+              position: this.audio.currentTime
+            });
+          }
+        }
       }
     }
     this.audio.addEventListener('timeupdate', this.audioTimeupdateFn);
