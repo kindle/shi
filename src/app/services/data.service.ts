@@ -1161,7 +1161,7 @@ export class DataService {
   
   showInfiniteHint:any = false;
   updateInfiniteHint(){
-    if(this.toPlayList.length==1&&this.isInfinite==false){
+    if(this.toPlayList.length<=1&&this.isInfinite==false){
       this.showInfiniteHint = true;
     }
     else{

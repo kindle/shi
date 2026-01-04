@@ -274,7 +274,8 @@
           this.data.isInfinite:{{this.data.isInfinite}} -->
           <ion-list *ngIf="data.showInfiniteHint && !bigimg" style="margin-top: 20px;">
             <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
-              <ion-label style="width:100%;display: grid;justify-content: center;">
+              <ion-label style="width:100%;display: grid;justify-content: center;"
+              (click)="infinite()">
                 <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">
                   {{ ui.instant('Title.ToTurnOnAutoPlay') }}<!--若要继续播放诗词，请打开-->
                 </h2>
