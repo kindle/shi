@@ -174,7 +174,7 @@ export class PlayerPage implements OnInit {
           const slideRect = slide.getBoundingClientRect();
           const elementRect = element.getBoundingClientRect();
           const offset = elementRect.top - slideRect.top + slide.scrollTop - 60;
-          slide.scrollTo({ top: offset, behavior: 'auto' });
+          slide.scrollTo({ top: offset, behavior: 'smooth' });
           clearInterval(interval);
         } else if (this.content) {
           this.content.scrollToPoint(0, element.offsetTop - 60, 0);
@@ -200,7 +200,10 @@ export class PlayerPage implements OnInit {
     }
     else
     {
-      this.bigimg = !this.bigimg;
+      this.showText = true;
+      this.showHistory = false;
+      this.showPlaylist = false;
+      this.bigimg = true;
     }
   }
 
