@@ -50,6 +50,9 @@ export class UiService {
     }
     if(this.platform.is('android')){
       this.isAndroid =true;
+      if(this.platform.is('tablet')){
+        this.isipad = true;
+      }
     }
   }
 

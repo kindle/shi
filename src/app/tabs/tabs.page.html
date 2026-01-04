@@ -166,15 +166,16 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             </ion-thumbnail>
         </div>
         <ion-label (click)="data.play()">
-          <div style="display: flex; align-items: center;">
+          <div style="display: flex; align-items: center;" *ngIf="!data.isPlaying">
             <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
             <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
               {{data.currentPoem.title}} {{data.currentPoem.author}}
             </h2>
           </div>
-          <div class="marquee-container" *ngIf="false">
+          <div class="marquee-container" *ngIf="data.isPlaying">
             <div class="marquee-content">
-              {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+              <span class="marquee-text" [style.fontSize]="data.zoom(17)">{{data.currentPoem.title}} {{data.currentPoem.author}}</span>
+              <span class="marquee-text" [style.fontSize]="data.zoom(17)">{{data.currentPoem.title}} {{data.currentPoem.author}}</span>
             </div>
           </div>
         </ion-label>
