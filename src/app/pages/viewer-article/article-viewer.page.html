@@ -7,7 +7,14 @@
   [ngStyle]="{
     '--background': (data.currentArticle.effect) ? 
       'white':
-      'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') top/auto ' + defaultBgHeight + ' no-repeat'
+      (
+        data.currentArticle.special ?
+        (
+          (data.currentArticle.color||'') + ' url(' + data.currentArticle.bg_image + ') top / ' + 'contain' + ' no-repeat'
+        )
+        :
+        'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') top/auto ' + defaultBgHeight + ' no-repeat'
+      )
   }"
   
   >

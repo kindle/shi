@@ -213,7 +213,7 @@ export class DataService {
 
   loadPoemList(){
     const jsonFiles = [
-      //`/assets/topic/list-fun.json`,
+      `/assets/topic/list-fun.json`,
       `/assets/topic/list-audio.json`,
       `/assets/topic/list-holiday.json`,
       `/assets/topic/list-food.json`
@@ -410,6 +410,7 @@ export class DataService {
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
           title_color:fun.acolor?fun.acolor:"white",
+          special:fun.special,
           small_title:fun.sub,
           image_size:fun["image-size"]?fun["image-size"]:"cover",
           id:fun.id,
