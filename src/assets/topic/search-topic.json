@@ -259,6 +259,33 @@
       },
       "data": [
         {
+          "id":906, "alias":"A-List 抖音流行: 2025年度最佳",
+          "desc":"Tang Dynasty 国粹",
+          "text":"将进酒: 京剧精选",
+          "color":"rgb(119,117,118)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/p8.png",
+          "image-size":"contain",
+          "image-pos":"center"
+        },
+        {
+          "id":905, "alias":"A-List 抖音流行: 2025年度最佳",
+          "desc":"Southern and Northern Dynasty",
+          "text":"木兰辞: 粤语精选",
+          "color":"rgb(232,188,78)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/mulan.png",
+          "image-size":"cover",
+          "image-pos":"center"
+        },
+        {
+          "id":904, "alias":"A-List 抖音流行: 2023年度最佳",
+          "desc":"Tang Dynasty 民族脊梁",
+          "text":"杜甫: 宇辉精选",
+          "color":"rgb(232,188,78)","light":"rgb(255,230,151,60%)",
+          "image":"/assets/img/p7.png",
+          "image-size":"cover",
+          "image-pos":"center"
+        },
+        {
           "id":903, "alias":"A-List 天宝流行: 752年度最佳",
           "desc":"Tang Dynasty 现实主义",
           "text":"杜甫: 现实精选",
