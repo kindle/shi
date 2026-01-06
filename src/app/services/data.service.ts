@@ -40,6 +40,7 @@ export enum ViewType{
 })
 export class DataService {
 
+  //debug mode
   TestMode = false;
 
   gototesturl(){//'tabs/tab1/me'
@@ -212,7 +213,7 @@ export class DataService {
 
   loadPoemList(){
     const jsonFiles = [
-      `/assets/topic/list-fun.json`,
+      //`/assets/topic/list-fun.json`,
       `/assets/topic/list-audio.json`,
       `/assets/topic/list-holiday.json`,
       `/assets/topic/list-food.json`
@@ -408,13 +409,20 @@ export class DataService {
           template:"text",
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
-          title_color:fun.color?fun.color:"white",
+          title_color:fun.acolor?fun.acolor:"white",
           small_title:fun.sub,
+          image_size:fun["image-size"]?fun["image-size"]:"cover",
           id:fun.id,
           effect:fun.effect,
           //big_title:fun.desc,
-          big_title:(fun.more.length==0||
-            (fun.desc.length<fun.more.length&&fun.desc.length>0))?fun.desc:fun.more,
+          big_title:
+            fun.id>800?
+            (    (fun.desc.length>20)?fun.name:fun.desc) :
+            (
+                 (fun.more.length==0||
+                    (fun.desc.length<fun.more.length&&fun.desc.length>0))
+                    ?fun.desc:fun.more
+            ),
           desc:[{
             "type":"text", 
             //"value":fun.more?fun.more:fun.desc,
