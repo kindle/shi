@@ -95,7 +95,8 @@
         "Repeat":"Повтор всего",
         "AutoPlay":"Автовоспр.",
         "PlaySimilar":"Похожие стихи далее",
-        "ToTurnOnAutoPlay":"Чтобы продолжить, включите"
+        "ToTurnOnAutoPlay":"Чтобы продолжить, включите",
+        "GuessYouLike":"Вам может понравиться"
     },
 
     "Search":{

@@ -95,7 +95,8 @@
         "Repeat":"Boucle tout",
         "AutoPlay":"Lecture auto",
         "PlaySimilar":"Lecture de poèmes similaires",
-        "ToTurnOnAutoPlay":"Pour continuer, activez"
+        "ToTurnOnAutoPlay":"Pour continuer, activez",
+        "GuessYouLike":"Vous aimerez peut-être"
     },
 
     "Search":{

@@ -95,7 +95,8 @@
         "Repeat":"Loop All",
         "AutoPlay":"Autoplay",
         "PlaySimilar":"Playing similar poems next",
-        "ToTurnOnAutoPlay":"To continue playing, turn on"
+        "ToTurnOnAutoPlay":"To continue playing, turn on",
+        "GuessYouLike":"You might also like"
     },
 
     "Search":{

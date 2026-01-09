@@ -95,7 +95,8 @@
         "Repeat":"列表循環",
         "AutoPlay":"自動播放",
         "PlaySimilar":"將繼續播放類似詩詞",
-        "ToTurnOnAutoPlay":"若要繼續播放詩詞，請打開"
+        "ToTurnOnAutoPlay":"若要繼續播放詩詞，請打開",
+        "GuessYouLike":"你可能也喜歡"
     },
 
     "Search":{

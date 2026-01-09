@@ -1,8 +1,10 @@
 [
     {
         "id":800,
+        "onlyonepoet":true,
         "name":"登高",
-        "sub":"登高",
+        "text":"杜甫: 诗圣精选",
+        "sub":"Tang Dynasty 现实主义",
         "image":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg",
         "desc":"杜甫现存一千四百多首诗，是他动荡转徙一生的真实写照，同时又客观且深刻地反映了唐朝安史之乱前后二十多年的社会现实。杜甫众体兼工，并能推陈出新，形式和内容都表现出极高的功力。特别是《登高》清人杨伦评价：高浑一气，古今独步，当为杜集七言律诗第一",
         "more":"诗圣·770年·少陵野老·杜拾遗·杜工部",
@@ -14,12 +16,16 @@
             {"title":"蜀相","author":"杜甫","sample":"出师未捷身先死，长使英雄泪满襟","desc":"","id":"a353dcb1-12cc-4ca8-af1e-55d1d62445f8"},
             {"title":"闻官军收河南河北","author":"杜甫","sample":"白日放歌须纵酒，青春作伴好还乡","desc":"","id":"22e90c0d-2b59-4500-8e5d-80d38ec4692c"},
             {"title":"茅屋为秋风所破歌","author":"杜甫","sample":"安得广厦千万间，大庇天下寒士俱欢颜","desc":"","id":"9ea879f4-9781-469a-8b52-fc5777e633c2"}
+        ],
+        "guesslike":[
+            904
         ]
     },
     {
         "id":801,
         "name":"是什么落在春的泥土里？",
-        "sub":"春泥",
+        "text":"春泥 | 一种相思,两处闲愁",
+        "sub":"Tang Dynasty 浪漫主义",
         "image":"https://reddah.blob.core.windows.net/msjjimg/flower-5170924_1280.jpg",
         "desc":"那些痛的记忆，落在春的泥土里，滋养了大地，开出下一个花季。",
         "more":"2周前更新",
@@ -31,6 +37,7 @@
     {
         "id":802,
         "name":"唐宋思乡代表作",
+        "text":"唐宋思乡代表作",
         "sub":"Tang & Song Dynasty 思乡",
         "image":"https://reddah.blob.core.windows.net/msjjimg/tree.jpg",
         "desc":"小时候，乡愁是一枚小小的邮票，我在这头，母亲在那头。长大后，乡愁是一张窄窄的船票，我在这头，新娘在那头。后来啊，乡愁是一方矮矮的坟墓，我在外头，母亲在里头。而现在，乡愁是一湾浅浅的海峡，我在这头，大陆在那头。",
@@ -46,6 +53,7 @@
         "id":803,
         "onlyonepoet":true,
         "name":"1046-256BC: 诗经精选",
+        "text":"256BC: 诗经精选",
         "sub":"Zhou Dynasty 诗经之美",
         "acolor":"black",
         "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg",
@@ -56,12 +64,16 @@
             {"title":"关雎","author":"诗经","sample":"关关雎鸠，在河之洲","desc":"","id":"4978bcad-1cd0-4e11-8a44-ae2fc7b1d296"},
             {"title":"蒹葭","author":"诗经","sample":"所谓伊人，在水一方","desc":"","id":"7ddd8ec0-9687-434c-82b1-652d6c92b527"}
 
+        ],
+        "guesslike":[
+            905
         ]
     },
     {
         "id":804,
         "onlyonepoet":true,
         "name":"曹操：建安精选",
+        "text":"曹操：建安精选",
         "sub":"Han Dynasty 建安风骨",
         "image":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg",
         "desc":"曹操是建安文学的奠基者，其诗气魄雄伟、慷慨悲凉，代表作《短歌行》《观沧海》等抒发政治抱负与人生理想，开创\"建安风骨\"；他以乐府旧题创新内容，作品兼具现实关怀与雄放胸襟，对后世文学影响深远。",
@@ -75,6 +87,7 @@
     {
         "id":805,
         "name":"A-List 天宝流行: 752年度最佳",
+        "text":"天宝: 流行精选",
         "sub":"Tang Dynasty 天宝流行",
         "image":"/assets/img/p1.jpg",
         "special":true,
@@ -96,11 +109,15 @@
             {"title":"燕歌行","author":"高适","sample":"战士军前半死生，美人帐下犹歌舞","id":"09788f19-1e11-4394-a543-0edf2cfdcae9"},
             {"title":"别董大","author":"高适","sample":"莫愁前路无知己，天下谁人不识君","id":"bbeb1e68-eb13-729a-dfa8-925ead877783"},
             {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"}
+        ],
+        "guesslike":[
+            906
         ]
     },
     {
         "id":806,
         "name":"A-List 开元流行: 752年度最佳",
+        "text":"开元：流行精选",
         "sub":"Tang Dynasty 开元流行",
         "image":"/assets/img/p2.jpg",
         "special":true,
@@ -124,6 +141,7 @@
     {
         "id":807,
         "name":"A-List 乾元流行: 765年度最佳",
+        "text":"乾元: 流行精选",
         "sub":"Tang Dynasty 乾元流行",
         "image":"/assets/img/p3.png",
         "special":true,
@@ -142,11 +160,15 @@
             {"title":"登高","author":"杜甫","sample":"风急天高猿啸哀，渚清沙白鸟飞回", "id":"a4d718ee-c020-42b4-97df-499cd0076f7b"},
             {"title":"长沙过贾谊宅","author":"刘长卿","sample":"三年谪宦此栖迟，万古惟留楚客悲", "id":"8cefa67f-2b9a-4e13-8158-4d38cbfb331b"},
             {"title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开","id":"294bc7b2-b4f8-4a53-be17-a40ded4afd1a"}
+        ],
+        "guesslike":[
+            904,905
         ]
     },
     {
         "id":808,
         "name":"中国历代帝王诗选",
+        "text":"霸气：帝王精选",
         "sub":"Dynasty 历代帝王诗选",
         "image":"https://reddah.blob.core.windows.net/msjjimg/african-lion-2888519_1280.jpg",
         "image-pos":"center",
@@ -167,6 +189,7 @@
         "id":901,
         "onlyonepoet":true,
         "name":"李白: 浪漫精选",
+        "text":"李白: 浪漫精选",
         "sub":"Tang Dynasty 浪漫主义",
         "image":"/assets/img/p1.jpg",
         "special":true,
@@ -185,6 +208,7 @@
         "id":902,
         "onlyonepoet":true,
         "name":"高适: 边塞精选",
+        "text":"高适: 边塞精选",
         "sub":"Tang Dynasty 浪漫主义",  
         "image":"/assets/img/p2.jpg",
         "special":true,
@@ -208,6 +232,7 @@
         "id":903,
         "onlyonepoet":true,
         "name":"杜甫: 现实主义精选",
+        "text":"杜甫: 现实精选",
         "sub":"Tang Dynasty 民族脊梁",  
         "image":"/assets/img/p3.png",
         "special":true,
@@ -224,12 +249,16 @@
             {"title":"春夜喜雨","author":"杜甫","sample":"好雨知时节，当春乃发生","desc":"","id":"c6ddd64d-606c-421e-8912-7f37568020b1"},
             {"title":"闻官军收河南河北","author":"杜甫","sample":"白日放歌须纵酒，青春作伴好还乡","desc":"","id":"22e90c0d-2b59-4500-8e5d-80d38ec4692c"},
             {"title":"江南逢李龟年","author":"杜甫","sample":"正是江南好风景，落花时节又逢君","id":"ae5b1a15-0b5c-4578-8f31-1b60030633a4"}
+        ],
+        "guesslike":[
+            904
         ]
     },
     {
         "id":904,
         "onlyonepoet":true,
         "name":"杜甫: 宇辉精选",
+        "text":"杜甫: 宇辉精选",
         "sub":"Tang Dynasty 民族脊梁",  
         "image":"/assets/img/p7.png",
         "special":true,
@@ -239,36 +268,47 @@
         "more":"2周前更新",
         "list":[
             {"title":"宇辉说杜甫","author":"董宇辉","sample":"如果命运给了你一个特别差的牌","id":"53ba4cc1-66f3-42d5-bb3e-b4b8185d5bf3"}
+        ],
+        "guesslike":[
+            807
         ]
     },
     {
         "id":905,
         "onlyonepoet":true,
         "name":"木兰辞: 粤语精选",
+        "text":"木兰辞: 粤语精选",
         "sub":"Southern and Northern Dynasty",  
         "image":"/assets/img/mulan.png",
         "special":true,
         "image-size":"cover",
         "color":"rgb(121,196,131)","light":"rgb(255,230,151,60%)",
-        "desc":"",
+        "desc":"Southern and Northern Dynasty",
         "more":"2周前更新",
         "list":[
             {"title":"木兰辞","author":"郭茂倩","sample":"唧唧复唧唧，木兰当户织","desc":"","id":"0d714b46-64dd-4a2d-8b2a-e02741619520"}
+        ],
+        "guesslike":[
+            803
         ]
     },
     {
         "id":906,
         "onlyonepoet":true,
         "name":"将进酒: 京剧精选",
+        "text":"将进酒: 京剧精选",
         "sub":"Tang Dynasty 国粹",  
         "image":"/assets/img/p8.png",
         "special":true,
         "image-size":"contain",
         "color":"rgb(119,117,118)","light":"rgb(255,230,151,60%)",
-        "desc":"",
+        "desc":"Tang Dynasty 国粹",
         "more":"2周前更新",
         "list":[
             {"title":"将进酒","author":"李白","sample":"人生得意须尽欢，莫使金樽空对月","desc":"","id":"0f7504df-cda2-4fe2-bc63-867ec2e418e7"}
+        ],
+        "guesslike":[
+            805
         ]
     }
     

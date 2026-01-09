@@ -105,6 +105,7 @@ export class ListPage {
 
   listdata:any;
   poets:any;
+  guesslikelist:any=[];
 
   constructor(
     public data: DataService,
@@ -116,7 +117,14 @@ export class ListPage {
   ionViewWillEnter() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
+    //console.log(this.data.poemListData)
     this.localList = this.listdata.list;
+    if(this.listdata.guesslike){
+      this.guesslikelist = this.listdata.guesslike.map((gid:any)=>
+        this.data.poemListData.filter((e:any)=>e.id==gid)[0]
+      );
+      //console.log(this.guesslikelist)
+    }
     // Convert to Set to remove duplicates
     const authorSet = new Set(this.listdata.list.map((item:any) => item.author)); 
     // Convert back to an array

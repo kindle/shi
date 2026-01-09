@@ -95,7 +95,8 @@
         "Repeat": "全曲リピート",
         "AutoPlay": "自動再生",
         "PlaySimilar": "類似の詩を再生します",
-        "ToTurnOnAutoPlay": "再生を続けるには、オンにしてください"
+        "ToTurnOnAutoPlay": "再生を続けるには、オンにしてください",
+        "GuessYouLike":"あなたへのおすすめ"
     },
 
     "Search": {

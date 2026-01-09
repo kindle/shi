@@ -95,7 +95,8 @@
         "Repeat": "전체 반복",
         "AutoPlay": "자동 재생",
         "PlaySimilar": "비슷한 시가 재생됩니다",
-        "ToTurnOnAutoPlay": "계속 재생하려면 켜세요"
+        "ToTurnOnAutoPlay": "계속 재생하려면 켜세요",
+        "GuessYouLike":"당신을 위한 추천"
     },
 
     "Search": {

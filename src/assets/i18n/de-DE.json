@@ -95,7 +95,8 @@
         "Repeat":"Alles wiederholen",
         "AutoPlay":"Autoplay",
         "PlaySimilar":"Ähnliche Gedichte abspielen",
-        "ToTurnOnAutoPlay":"Zum Fortfahren einschalten"
+        "ToTurnOnAutoPlay":"Zum Fortfahren einschalten",
+        "GuessYouLike":"Das könnte Ihnen gefallen"
     },
 
     "Search":{

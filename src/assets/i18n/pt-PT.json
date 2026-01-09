@@ -95,7 +95,8 @@
         "Repeat": "Loop Todos",
         "AutoPlay": "Reprodução Auto",
         "PlaySimilar": "Reproduzindo poemas similares",
-        "ToTurnOnAutoPlay": "Para continuar, ative"
+        "ToTurnOnAutoPlay": "Para continuar, ative",
+        "GuessYouLike":"Talvez você goste"
     },
 
     "Search": {

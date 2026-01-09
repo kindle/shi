@@ -95,7 +95,8 @@
         "Repeat": "วนซ้ำทั้งหมด",
         "AutoPlay": "เล่นอัตโนมัติ",
         "PlaySimilar": "เล่นบทกวีที่คล้ายกัน",
-        "ToTurnOnAutoPlay": "เพื่อเล่นต่อ โปรดเปิด"
+        "ToTurnOnAutoPlay": "เพื่อเล่นต่อ โปรดเปิด",
+        "GuessYouLike":"คุณอาจชอบ"
     },
 
     "Search": {

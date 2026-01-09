@@ -97,6 +97,8 @@ export class Tab1Page {
     //regenerate top 5 latest albums
     //console.log(this.searchTopicData.list[0])
     this.searchTopicData.list[0].data = this.data.getRandomArray(this.searchTopicData.list[0].data, 5);
+
+    //console.log(this.searchTopicData.list)
   }
 
   

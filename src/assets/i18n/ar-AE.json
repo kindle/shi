@@ -95,7 +95,8 @@
         "Repeat": "تكرار الكل",
         "AutoPlay": "تشغيل تلقائي",
         "PlaySimilar": "تشغيل قصائد مماثلة",
-        "ToTurnOnAutoPlay": "للمتابعة، قم بتشغيل"
+        "ToTurnOnAutoPlay": "للمتابعة، قم بتشغيل",
+        "GuessYouLike":"قد يعجبك"
     },
 
     "Search": {
