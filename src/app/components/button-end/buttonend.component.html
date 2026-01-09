@@ -35,6 +35,7 @@
           <ion-icon name="add-circle-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item lines="full" [button]="true" [detail]="false"
+          *ngIf="page!=='authorlist'"
           (click)="checkAuthor(p.author)"
           class="show-only-one-line"
           [style.fontSize]="data.zoom(17)">

@@ -118,8 +118,8 @@
   </ion-list>
 
   <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult">
-      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+    <ion-item *ngFor="let p of displayResult; let i = index">
+      <!-- <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" 
           defaultImage="assets/img/default.jpg" 
@@ -130,7 +130,10 @@
           [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
           'height':(data.isPlaying) ? '' : '5px' }"
         ></div>
-      </ion-thumbnail>
+      </ion-thumbnail> -->
+      <ion-badge slot="start" color="light" mode="ios">
+        {{i+1}}
+      </ion-badge>
       <ion-label (click)="data.playobj(p)">
         <!--<h2>{{p.sample&&p.sample!=p.author?p.sample:p.paragraphs[0]}}</h2>-->
         <h2 [style.fontSize]="data.zoom(17)"

@@ -41,9 +41,9 @@
     </div>
     <div class="card-text-style"
       [style.fontSize]="data.zoom(16)">
-      {{s.text?s.text:s.desc}}{{s.sample?' | '+s.sample:''}}
+      {{s.text?s.text:s.sub}}{{s.sample?' | '+s.sample:''}}
       <br>
-      <span style="font-weight: lighter;">{{s.desc}}</span>
+      <span style="font-weight: lighter;">{{s.desc&&s.desc.length>20 ? (s.sub?s.sub:s.desc) : s.desc}}</span>
     </div>
   </swiper-slide>
 </swiper-container>
