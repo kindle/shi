@@ -53,7 +53,8 @@
         "AddToAPoemList": "เพิ่มลงในรายการกวี...",
         "ViewPoet": "นักกวี",
         "Collect": "สะสม",
-        "Share": "แบ่งปัน"
+        "Share": "แบ่งปัน",
+        "ClearAllSearchHistory": "ล้างประวัติการค้นหาทั้งหมด"
     },
 
     "Message": {

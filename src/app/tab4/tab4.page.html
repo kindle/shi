@@ -79,12 +79,17 @@
       
       <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 0 15px;">
         <ng-container *ngFor="let s of getHistory(); let i = index">
-            <span *ngIf="isHistoryExpanded || i < 7" 
-                  [style.fontSize]="data.zoom(17)"
-                  (mousedown)="setOldSearch(s)" 
-                  style="background-color: #f0f0f0; padding: 5px 12px; border-radius: 5px; font-size: 14px;">
-                {{s}}
-            </span>
+            <div style="display:flex;justify-content: center;align-items: center;" *ngIf="isHistoryExpanded || i < 7">
+              <span [style.fontSize]="data.zoom(17)"
+                (mousedown)="setOldSearch(s)" 
+                style="background-color: #f0f0f0; padding: 5px 12px; border-radius: 5px; font-size: 14px; display: inline-flex; align-items: center;">
+                  {{s}}
+
+                <ion-icon name="trash-outline" style="margin-left:5px;" 
+                  (mousedown)="data.removeSearchHistory(s);$event.preventDefault();$event.stopPropagation();"></ion-icon>
+              </span>
+              
+            </div>
         </ng-container>
         
         <span *ngIf="data.searchHistory.length > 7" 
@@ -171,19 +176,19 @@
       lazyLoad="https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg" />
     <ion-card-header>
       <ion-card-title style="text-align: center;"
-        [style.fontSize]="data.zoom(22)">
+        [style.fontSize]="data.zoom(18)">
         {{ ui.instant('Feedback.Title') }}<!--您的点赞，是我前行的动力-->
       </ion-card-title>
     </ion-card-header>
 
     <ion-card-content style="text-align: center;font-weight: light;color:black;"
-      [style.fontSize]="data.zoom(22)">
+      [style.fontSize]="data.zoom(18)">
       {{ ui.instant('Feedback.Sub') }}<!--去给名诗佳作点个赞吧-->
     </ion-card-content>
 
     <ion-card-content style="text-align: center;display: flex;justify-content: center;" (click)="data.RatingsAndReviews();">
-      <ion-button color="primary" style="width:80%;"
-        [style.fontSize]="data.zoom(22)">
+      <ion-button color="primary" style="width:80%;height:50px;"
+        [style.fontSize]="data.zoom(16)">
         {{ ui.instant('Feedback.Go') }}<!--立即评价-->
       </ion-button>
     </ion-card-content>

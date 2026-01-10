@@ -1586,6 +1586,13 @@ export class DataService {
     this.searchHistory = [];
     this.set(this.LOCALSTORAGE_SEARCH_HIST, JSON.stringify(this.searchHistory));
   }
+  removeSearchHistory(s:any){
+    console.log('remove'+s)
+    this.searchHistory = this.searchHistory.filter((sh:any)=>
+      sh !== s
+    );
+    this.set(this.LOCALSTORAGE_SEARCH_HIST, JSON.stringify(this.searchHistory));  
+  }
   /**search history logic block end */
 
   //tab4 related start
@@ -1842,24 +1849,24 @@ export class DataService {
         listdata = fullData[0];
       }
     }
-
+    
     let text = "";
     if(group=='idlist')
-      text = "诗单"
+      text = this.ui.instant('Lib.Albums') //"诗单"
     else if(group=='taglist')
-      text = "主题"
+      text = this.ui.instant('Lib.Topics') //"主题"
     else if(group=='poetlist')
-      text = "诗人"
+      text = this.ui.instant('Lib.Poets') //"诗人"
     else if(group=='poem')
-      text = "诗词"
+      text = this.ui.instant('Lib.Poems') //"诗词"
     else if(group=='customlist')
-      text = "诗单列表"
+      text = this.ui.instant('Lib.Poemlists') //"诗单列表"  
 
     const actionSheet = await this.actionSheetController.create({
-      header: `你确定要从诗词库删除这个${text}吗？`,
+      header: this.ui.instant('Action.Delete'),//'删除'
       buttons: [
         {
-          text: `删除${text}`,
+          text: this.ui.instant('Action.Delete') +" "+text, //`删除${text}`
           role: 'destructive',
           handler: () => {
             if(this.isliked(listdata, group)){
@@ -1876,7 +1883,7 @@ export class DataService {
           }
         },
         {
-          text: '取消',
+          text: this.ui.instant('Action.Cancel'),//'取消'
           role: 'cancel',
           handler: () => {}
         }

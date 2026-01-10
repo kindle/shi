@@ -53,7 +53,8 @@
         "AddToAPoemList": "Προσθήκη σε μια Λίστα Ποιημάτων...",
         "ViewPoet": "Ποιητής",
         "Collect": "Συλλογή",
-        "Share": "Μοιραστείτε"
+        "Share": "Μοιραστείτε",
+        "ClearAllSearchHistory": "Διαγραφή ιστορικού αναζήτησης"
     },
 
     "Message": {

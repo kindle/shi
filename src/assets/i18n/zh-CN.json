@@ -53,7 +53,8 @@
         "AddToAPoemList":"添加到诗单列表...",
         "ViewPoet":"看作者",
         "Collect":"收藏",
-        "Share":"分享"
+        "Share":"分享",
+        "ClearAllSearchHistory":"清除全部搜索记录"
     },
 
     "Message":{

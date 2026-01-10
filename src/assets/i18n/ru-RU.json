@@ -53,7 +53,8 @@
         "AddToAPoemList":"Добавить в список стихов...",
         "ViewPoet":"Поэт",
         "Collect": "Собрать",
-        "Share": "Поделиться"
+        "Share": "Поделиться",
+        "ClearAllSearchHistory": "Очистить всю историю поиска"
     },
 
     "Message":{

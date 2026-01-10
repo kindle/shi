@@ -53,7 +53,8 @@
         "AddToAPoemList":"Zu einer Gedichtsliste hinzufügen...",
         "ViewPoet":"Dichter",
         "Collect": "Sammeln",
-        "Share": "Teilen"
+        "Share": "Teilen",
+        "ClearAllSearchHistory": "Gesamten Suchverlauf löschen"
     },
 
     "Message":{

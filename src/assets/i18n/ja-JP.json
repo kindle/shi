@@ -53,7 +53,8 @@
         "AddToAPoemList": "詩リストに追加...",
         "ViewPoet": "詩人を見る",
         "Collect": "収集",
-        "Share": "共有"
+        "Share": "共有",
+        "ClearAllSearchHistory": "検索履歴をすべて消去"
     },
 
     "Message": {

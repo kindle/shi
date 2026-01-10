@@ -432,21 +432,19 @@ export class Tab4Page implements OnInit {
     }
     this.isActionSheetOpen = true;
     const actionSheet = await this.actionSheetController.create({
-      header: '清除搜索？',
+      header: this.ui.instant('Action.Clear'),//'清除'
       buttons: [
         {
-          text: '清除搜索',
+          text: this.ui.instant('Action.ClearAllSearchHistory'),//'清除全部搜索记录'
           role: 'destructive',
           handler: () => {
             this.data.clearSearchHistory();
           }
         },
         {
-          text: '取消',
+          text: this.ui.instant('Action.Cancel'),//'取消'
           role: 'cancel',
-          handler: () => {
-            // console.log('Cancel clicked');
-          }
+          handler: () => {}
         }
       ]
     });
@@ -458,7 +456,6 @@ export class Tab4Page implements OnInit {
 
   setOldSearch(key:any){
     this.data.searchText = key;
-    console.log('set old search:'+key)
     this.onSearchChanged();
   }
   onSearchChanged(){

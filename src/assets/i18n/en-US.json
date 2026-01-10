@@ -53,7 +53,8 @@
         "AddToAPoemList":"Add to a Poemlist...",
         "ViewPoet":"Poet",
         "Collect": "Collect",
-        "Share": "Share"
+        "Share": "Share",
+        "ClearAllSearchHistory": "Clear all search history"
     },
 
     "Message":{
