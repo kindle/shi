@@ -70,20 +70,20 @@ ion-range::part(knob) {
 .playing {
     width: 15px;
     aspect-ratio: .75;
-    --c: no-repeat linear-gradient(white 0 0);
     background: 
-      var(--c) 0%   50%,
-      var(--c) 50%  50%,
-      var(--c) 100% 50%;
+      linear-gradient(#ffffff 0 0) 0% 100%,
+      linear-gradient(#ffffff 0 0) 50% 100%,
+      linear-gradient(#ffffff 0 0) 100% 100%;
+    background-size: 20% 50% ,20% 50% ,20% 50%;
+    background-repeat: no-repeat;
     animation: l7 1s infinite linear alternate;
 }
 @keyframes l7 {
-    0%  {background-size: 20% 50% ,20% 50% ,20% 50% }
-    20% {background-size: 20% 20% ,20% 50% ,20% 50% }
-    40% {background-size: 20% 100%,20% 20% ,20% 50% }
-    60% {background-size: 20% 50% ,20% 100%,20% 20% }
-    80% {background-size: 20% 50% ,20% 50% ,20% 100%}
-    100%{background-size: 20% 50% ,20% 50% ,20% 50% }
+    0%  {background-size: 20% 10% ,20% 50% ,20% 90% }
+    25% {background-size: 20% 50% ,20% 90% ,20% 50% }
+    50% {background-size: 20% 90% ,20% 50% ,20% 10% }
+    75% {background-size: 20% 50% ,20% 10% ,20% 50% }
+    100%{background-size: 20% 10% ,20% 50% ,20% 90% }
 }
 
 
