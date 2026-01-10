@@ -145,12 +145,12 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
   <div class="music-tab-bar" style="display: flex;flex-direction: column;">
     <!--<ion-toolbar style="--background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);">-->
     <ion-toolbar style="--background:rgba(255,255,255,0.8);padding-top:3px;padding-bottom:2px;" 
-      [style.width]="ui.isipad ? '80%' : '100%'"
-      [style.margin]="ui.isipad ? '0 auto 40px auto' : '0'"
-      [style.borderRadius]="ui.isipad ? '15px' : '0'"
-      [style.boxShadow]="ui.isipad ? '0 10px 25px rgba(0,0,0,0.15)' : 'none'"
+      [style.width]="ui.isipad ? '80%' : '85%'"
+      [style.margin]="ui.isipad ? '0 auto 40px auto' : '0 auto 10px auto'"
+      [style.borderRadius]="ui.isipad ? '15px' : '15px'"
+      [style.boxShadow]="ui.isipad ? '0 10px 25px rgba(0,0,0,0.15)' : '0 10px 25px rgba(0,0,0,0.15)'"
       *ngIf="data.currentPoem && !data.showFilter">
-      <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;--background:transparent;">
+      <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:5px;--background:transparent;--inner-padding-end:0;">
         <div (click)="data.play()">
           <ion-thumbnail slot="start"
             style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;margin-right:15px;">
@@ -179,7 +179,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             </div>
           </div>
         </ion-label>
-        <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:5px;">
+        <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:0px;">
           <ion-button (click)="data.togglePlay()" style="margin-right:10px;font-size:x-large">
             <ion-icon name="play" style="color:black;" *ngIf="!data.isPlaying"></ion-icon>
             <ion-icon name="pause" style="color:black;" *ngIf="data.isPlaying" ></ion-icon>
