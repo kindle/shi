@@ -87,12 +87,13 @@ export class PoetPage {
     }
     else{
       this.searchResult = this.localJsonData.filter((e:any)=>
-        (e.text).indexOf(key[0])>=0
+        (e.text).indexOf(keys[0])>=0
       );
       if(keys.length>1){
         this.searchResult = this.searchResult.filter((e:any)=>
           (e.text).indexOf(keys[1])>=0
         );
+        // console.log(this.searchResult);
         if(keys.length>2){
           this.searchResult = this.searchResult.filter((e:any)=>
             (e.text).indexOf(keys[2])>=0
@@ -113,7 +114,7 @@ export class PoetPage {
       }
     }
     this.searchResultCount = this.searchResult.length;
-    
+// console.log(this.searchResultCount);
     this.displayResult = [];
     this.generateItems();
     //this.pageTop.scrollToTop();
