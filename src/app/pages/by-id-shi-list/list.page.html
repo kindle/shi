@@ -181,7 +181,7 @@
   </ion-header><!--此诗单中的诗人-->
 
   <!--你可能也喜欢-->
-  <app-tile *ngIf="guesslikelist&&guesslikelist.length>0"
+  <app-tile *ngIf="!showFilter&&guesslikelist&&guesslikelist.length>0"
   [name]="ui.instant('Title.GuessYouLike')"
   [source]="guesslikelist"></app-tile>
 
