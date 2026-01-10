@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
@@ -15,6 +15,7 @@ export class PlayerPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent | undefined;
   @ViewChild('swiperplayer', { static: false }) swiperRef: ElementRef | undefined;
+  @Input() fromArticle: boolean = false;
   curSlide = "todo";
 
   constructor(
@@ -22,6 +23,18 @@ export class PlayerPage implements OnInit {
     public ui: UiService,
     private modalController: ModalController,
   ) { }
+
+  ionViewWillEnter() {
+    if(this.fromArticle){
+      this.ui.showStatusBar();
+    }
+  }
+
+  ionViewWillLeave() {
+    if(this.fromArticle){
+      this.ui.hideStatusBar();
+    }
+  }
 
   ngOnInit() {
     document.body.classList.add('player-open');

@@ -145,7 +145,7 @@
             </div>
           </ion-thumbnail>
           
-          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample)" style="color:black;">
+          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample, true, true)" style="color:black;">
             <h2 [style.fontSize]="data.zoom(17)"
             class="show-only-one-line">
               {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>

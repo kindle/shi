@@ -149,11 +149,11 @@ export class UiService {
   }
 
   PoemPlayer:any;
-  async player(poem:any) {
+  async player(poem:any, fromArticle:boolean=false) {
       //const modal = await this.modalController.create({
       this.PoemPlayer = await this.modalController.create({
           component: this.isipad?PlayerPadPage:PlayerPage,
-          componentProps: {},
+          componentProps: {fromArticle:fromArticle},
           cssClass: 'modal-fullscreen',
           keyboardClose: true,
           showBackdrop: true,

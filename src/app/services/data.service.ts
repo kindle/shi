@@ -1179,6 +1179,11 @@ export class DataService {
     }
   }
 
+  stopAndClose(){
+    this.togglePlay();
+    this.currentPoem = null;
+  }
+
   playNext(){
     let nextPoem = this.findNext();
 
@@ -1211,6 +1216,7 @@ export class DataService {
       }
     }
 
+    
     
 
     /*
@@ -1613,7 +1619,7 @@ export class DataService {
       this.ui.player(this.currentPoem);
   }
   
-  playbyid(id:any=null, sample:any=null, pop:any=true){
+  playbyid(id:any=null, sample:any=null, pop:any=true, fromArticle:boolean=false){
     //console.log(id+sample)
     if(id){
       let poem = this.JsonData
@@ -1627,14 +1633,14 @@ export class DataService {
         //if 有mp3, do not show modal, play directly
         //this.playobj(poem, poem.audio?false:true);
         //always pop
-        this.playobj(poem, pop);
+        this.playobj(poem, pop, fromArticle);
       //}
     }
   }
 
 
   currentPoem: any;
-  playobj(poem:any, pop:any=true){
+  playobj(poem:any, pop:any=true, fromArticle:boolean=false){
     if(poem){
       if(poem.id){
         let found = this.JsonData
@@ -1666,7 +1672,7 @@ export class DataService {
         // }
       }
       if(pop){
-        this.ui.player(this.currentPoem);
+        this.ui.player(this.currentPoem, fromArticle);
       }
       this.savePlayHistory(this.currentPoem);
     }

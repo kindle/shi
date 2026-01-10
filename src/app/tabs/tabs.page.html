@@ -184,8 +184,11 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             <ion-icon name="play" style="color:black;" *ngIf="!data.isPlaying"></ion-icon>
             <ion-icon name="pause" style="color:black;" *ngIf="data.isPlaying" ></ion-icon>
           </ion-button>
-          <ion-button [disabled]="false" (click)="data.playNext()" style="font-size:x-large">
+          <ion-button *ngIf="!data.isPlaying" [disabled]="false" (click)="data.playNext()" style="font-size:x-large">
             <ion-icon name="play-forward" style="color:black;"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="data.isPlaying" [disabled]="false" (click)="data.stopAndClose()" style="font-size:x-large">
+            <ion-icon name="chevron-down-outline" style="color:black;"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-item>
