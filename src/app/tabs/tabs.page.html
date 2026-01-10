@@ -191,6 +191,11 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
             <ion-icon name="chevron-down-outline" style="color:black;"></ion-icon>
           </ion-button>
         </ion-buttons>
+        <ion-buttons slot="end" *ngIf="!data.currentPoem.audio" style="margin-right:0px;">
+          <ion-button [disabled]="false" (click)="data.stopAndClose()" style="font-size:x-large">
+            <ion-icon name="chevron-down-outline" style="color:black;"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-item>
     </ion-toolbar>
 

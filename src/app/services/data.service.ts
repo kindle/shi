@@ -1180,7 +1180,9 @@ export class DataService {
   }
 
   stopAndClose(){
-    this.togglePlay();
+    if(this.isPlaying){
+      this.togglePlay();
+    }
     this.currentPoem = null;
   }
 
