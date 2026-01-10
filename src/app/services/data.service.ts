@@ -1118,6 +1118,7 @@ export class DataService {
       this.toPlayList.unshift(prev);
       this.playbyid(prev.id, prev.sample, false);
     }
+    this.updateInfiniteHint();
   }
   findNext(){
     let currentIndex = -1;
