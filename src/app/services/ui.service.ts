@@ -22,6 +22,7 @@ export class UiService {
 
   isIos = false;
   isAndroid = false;
+  isWeb = false;
 
   isiphone = false;
   isipad = false;
@@ -39,6 +40,8 @@ export class UiService {
     private navController: NavController,
     private router: Router
   ) { 
+    this.isWeb = Capacitor.getPlatform() === 'web';
+
     if(this.platform.is('ios')){
       this.isIos =true;
       if(this.platform.is('iphone')){

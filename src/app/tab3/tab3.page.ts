@@ -6,6 +6,7 @@ import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from '../services/ui.service';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs';
+import { ConvertService } from '../services/convert.service';
 
 @Component({
   selector: 'app-tab3',
@@ -20,6 +21,7 @@ export class Tab3Page {
     public data: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
+    public convertService: ConvertService
   ) {}
 
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
@@ -299,6 +301,12 @@ export class Tab3Page {
       queryParams: {
       }
     });
+  }
+
+  goToTool(toolId:any){
+    //if(toolId === 'video-to-audio'){
+      this.convertService.selectVideoAndConvert();
+    //}
   }
 
 }

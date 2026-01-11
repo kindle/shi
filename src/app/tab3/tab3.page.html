@@ -58,7 +58,49 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
     </ion-card>
   </div>
 
+  
+
   <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
+    <div style="padding-right:20px;margin-right:10px;" *ngIf="ui.isWeb">
+      <ion-card class="card card-img" card-shrink
+        defaultImage=""  
+        lazyLoad="{{'assets/img/water.jpg'}}"
+        style="background-size:cover;
+        min-height: 220px;
+        background-color:blue;">
+        <ion-card-content [ngClass]="{'title-bottom':false}">
+          <ion-card-subtitle class="card-text" 
+            style="color:white;"
+            (click)="goToTool('video-to-audio')"
+            [style.fontSize]="data.zoom(18)">
+            小工具
+          </ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:white;"
+          [style.fontSize]="data.zoom(28)">
+            视频转音频 
+          </ion-card-title>
+        </ion-card-content>
+        <!-- Dynamic Download Button for Safari Web Mode -->
+        <ion-footer *ngIf="convertService.downloadUrl">
+          <ion-grid style="padding:0">
+            <ion-row>
+              <ion-col>
+                <ion-button expand="full" color="primary" (click)="convertService.playConvertedAudio()">
+                  <ion-icon name="play-circle-outline" slot="start"></ion-icon>
+                  Play
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button expand="full" color="success" (click)="convertService.downloadCurrentFile()">
+                  <ion-icon name="cloud-download-outline" slot="start"></ion-icon>
+                  Download
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-footer>
+      </ion-card>
+    </div>
     <div
       [style.padding-right]="ui.isipad ? '' : '20px'"
       [style.margin-right]="ui.isipad ? '' : '10px'">
