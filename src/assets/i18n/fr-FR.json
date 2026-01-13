@@ -18,6 +18,17 @@
         "Die":"Décès"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"activité",
+        "Learn":"comment nous comptons",
+        "Less":"Moins",
+        "More":"Plus",
+        "StudyActivity":"Activité",
+        "Created":"Créé",
+        "ShowMore":"Voir plus d'activité",
+        "TheEnd":"Fin"
+    },
+
     "AI":{
         "Title":"Agent de poésie",
         "Hello":"Bonjour! Comment puis-je vous aider aujourd'hui?",
@@ -54,7 +65,8 @@
         "ViewPoet":"Poète",
         "Collect": "Collecter",
         "Share": "Partager",
-        "ClearAllSearchHistory": "Effacer tout l'historique de recherche"
+        "ClearAllSearchHistory": "Effacer tout l'historique de recherche",
+        "MoreSettings": "Plus de paramètres"
     },
 
     "Message":{
@@ -97,7 +109,14 @@
         "AutoPlay":"Lecture auto",
         "PlaySimilar":"Lecture de poèmes similaires",
         "ToTurnOnAutoPlay":"Pour continuer, activez",
-        "GuessYouLike":"Vous aimerez peut-être"
+        "GuessYouLike":"Vous aimerez peut-être",
+        "Feedback": "Retour",
+        "About": "À propos",
+        "Tutorial": "Tutoriel",
+        "Website": "Site Web",
+        "RatetheApp": "Noter l'application",
+        "Version": "Version",
+        "Help": "Aide"
     },
 
     "Search":{

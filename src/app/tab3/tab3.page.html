@@ -27,8 +27,12 @@
     </ion-toolbar>
   </ion-header>
 
-<div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
-grid-gap:0px;padding:0 10px;margin-top:10px;">
+
+  <app-shi-tracker [year]="2026"></app-shi-tracker>
+  
+
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
+    grid-gap:0px;padding:0 10px;margin-top:10px;">
     <ion-card *ngFor="let topic of topics"
       [style.height]="ui.isipad ? '250px' : '120px'"
       [style.position]="ui.isipad ? 'relative' : ''"
@@ -61,7 +65,7 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
   
 
   <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
-    <div style="padding-right:20px;margin-right:10px;" *ngIf="ui.isWeb">
+    <div style="padding-right:20px;margin-right:10px;" *ngIf="false&&ui.isWeb">
       <ion-card class="card card-img" card-shrink
         defaultImage=""  
         lazyLoad="{{'assets/img/water.jpg'}}"
@@ -101,6 +105,8 @@ grid-gap:0px;padding:0 10px;margin-top:10px;">
         </ion-footer>
       </ion-card>
     </div>
+
+
     <div
       [style.padding-right]="ui.isipad ? '' : '20px'"
       [style.margin-right]="ui.isipad ? '' : '10px'">

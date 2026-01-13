@@ -18,6 +18,17 @@
         "Die":"忌日"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"アクティビティ",
+        "Learn":"集計方法について",
+        "Less":"少",
+        "More":"多",
+        "StudyActivity":"アクティビティ",
+        "Created":"作成日",
+        "ShowMore":"もっと見る",
+        "TheEnd":"終わり"
+    },
+
     "AI": {
         "Title": "AI詩助手",
         "Hello": "こんにちは！何かお手伝いできることはありますか？",
@@ -54,7 +65,8 @@
         "ViewPoet": "詩人を見る",
         "Collect": "収集",
         "Share": "共有",
-        "ClearAllSearchHistory": "検索履歴をすべて消去"
+        "ClearAllSearchHistory": "検索履歴をすべて消去",
+        "MoreSettings": "その他の設定"
     },
 
     "Message": {
@@ -97,7 +109,14 @@
         "AutoPlay": "自動再生",
         "PlaySimilar": "類似の詩を再生します",
         "ToTurnOnAutoPlay": "再生を続けるには、オンにしてください",
-        "GuessYouLike":"あなたへのおすすめ"
+        "GuessYouLike":"あなたへのおすすめ",
+        "Feedback": "フィードバック",
+        "About": "アプリについて",
+        "Tutorial": "チュートリアル",
+        "Website": "ウェブサイト",
+        "RatetheApp": "アプリを評価",
+        "Version": "バージョン",
+        "Help": "ヘルプ"
     },
 
     "Search": {

@@ -18,6 +18,17 @@
         "Die":"Todesfälle"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"Aktivität",
+        "Learn":"wie wir zählen",
+        "Less":"Weniger",
+        "More":"Mehr",
+        "StudyActivity":"Aktivität",
+        "Created":"Erstellt",
+        "ShowMore":"Mehr Aktivitäten anzeigen",
+        "TheEnd":"Das Ende"
+    },
+
     "AI":{
         "Title":"Gedichtagent",
         "Hello":"Hallo! Wie kann ich Ihnen heute helfen?",
@@ -54,7 +65,8 @@
         "ViewPoet":"Dichter",
         "Collect": "Sammeln",
         "Share": "Teilen",
-        "ClearAllSearchHistory": "Gesamten Suchverlauf löschen"
+        "ClearAllSearchHistory": "Gesamten Suchverlauf löschen",
+        "MoreSettings": "Mehr Einstellungen"
     },
 
     "Message":{
@@ -97,7 +109,14 @@
         "AutoPlay":"Autoplay",
         "PlaySimilar":"Ähnliche Gedichte abspielen",
         "ToTurnOnAutoPlay":"Zum Fortfahren einschalten",
-        "GuessYouLike":"Das könnte Ihnen gefallen"
+        "GuessYouLike":"Das könnte Ihnen gefallen",
+        "Feedback": "Feedback",
+        "About": "Über",
+        "Tutorial": "Tutorial",
+        "Website": "Webseite",
+        "RatetheApp": "App bewerten",
+        "Version": "Version",
+        "Help": "Hilfe"
     },
 
     "Search":{

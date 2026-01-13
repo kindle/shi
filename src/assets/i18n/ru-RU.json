@@ -18,6 +18,17 @@
         "Die":"Скончались"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"активность",
+        "Learn":"как мы считаем",
+        "Less":"Меньше",
+        "More":"Больше",
+        "StudyActivity":"Активность",
+        "Created":"Создано",
+        "ShowMore":"Показать больше",
+        "TheEnd":"Конец"
+    },
+
     "AI":{
         "Title":"Поэтический помощник",
         "Hello":"Привет! Чем могу помочь вам сегодня?",
@@ -54,7 +65,8 @@
         "ViewPoet":"Поэт",
         "Collect": "Собрать",
         "Share": "Поделиться",
-        "ClearAllSearchHistory": "Очистить всю историю поиска"
+        "ClearAllSearchHistory": "Очистить всю историю поиска",
+        "MoreSettings": "Дополнительные настройки"
     },
 
     "Message":{
@@ -97,7 +109,14 @@
         "AutoPlay":"Автовоспр.",
         "PlaySimilar":"Похожие стихи далее",
         "ToTurnOnAutoPlay":"Чтобы продолжить, включите",
-        "GuessYouLike":"Вам может понравиться"
+        "GuessYouLike":"Вам может понравиться",
+        "Feedback": "Обратная связь",
+        "About": "О приложении",
+        "Tutorial": "Руководство",
+        "Website": "Веб-сайт",
+        "RatetheApp": "Оценить приложение",
+        "Version": "Версия",
+        "Help": "Помощь"
     },
 
     "Search":{

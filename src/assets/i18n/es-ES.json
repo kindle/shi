@@ -18,6 +18,17 @@
         "Die":"Fallecimientos"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"actividad",
+        "Learn":"aprende cómo contamos",
+        "Less":"Menos",
+        "More":"Más",
+        "StudyActivity":"Actividad",
+        "Created":"Creado",
+        "ShowMore":"Mostrar más actividad",
+        "TheEnd":"Fin"
+    },
+
     "AI":{
         "Title":"Agente de Poesía",
         "Hello":"¡Hola! ¿En qué puedo ayudarte hoy?",
@@ -54,7 +65,8 @@
         "ViewPoet":"Poeta",
         "Collect": "Recoger",
         "Share": "Compartir",
-        "ClearAllSearchHistory": "Borrar todo el historial de búsqueda"
+        "ClearAllSearchHistory": "Borrar todo el historial de búsqueda",
+        "MoreSettings": "Más ajustes"
     },
 
     "Message":{
@@ -97,7 +109,14 @@
         "AutoPlay":"Reproducción auto",
         "PlaySimilar":"Reproduciendo poemas similares",
         "ToTurnOnAutoPlay":"Para continuar, active",
-        "GuessYouLike":"Te podría gustar"
+        "GuessYouLike":"Te podría gustar",
+        "Feedback": "Comentarios",
+        "About": "Acerca de",
+        "Tutorial": "Tutorial",
+        "Website": "Sitio web",
+        "RatetheApp": "Calificar la aplicación",
+        "Version": "Versión",
+        "Help": "Ayuda"
     },
 
     "Search":{

@@ -1,7 +1,7 @@
 
 <ion-header [translucent]="ui.isIos">
   <ion-toolbar>
-    <ion-title [style.fontSize]="data.zoom(17)">
+    <ion-title [style.fontSize]="data.zoom(17)" (click)="tutorial()">
       {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
     </ion-title>
   </ion-toolbar>

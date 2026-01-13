@@ -18,6 +18,17 @@
         "Die":"Deaths"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"activity",
+        "Learn":"learn how we count",
+        "Less":"Less",
+        "More":"More",
+        "StudyActivity":"Activity",
+        "Created":"Created",
+        "ShowMore":"Show more activity",
+        "TheEnd":"The end"
+    },
+
     "AI":{
         "Title":"Poetry Agent",
         "Hello":"Hello! How can I assist you on poem today?",
@@ -54,7 +65,8 @@
         "ViewPoet":"Poet",
         "Collect": "Collect",
         "Share": "Share",
-        "ClearAllSearchHistory": "Clear all search history"
+        "ClearAllSearchHistory": "Clear all search history",
+        "MoreSettings":"More Settings"
     },
 
     "Message":{
@@ -97,7 +109,14 @@
         "AutoPlay":"Autoplay",
         "PlaySimilar":"Playing similar poems next",
         "ToTurnOnAutoPlay":"To continue playing, turn on",
-        "GuessYouLike":"You might also like"
+        "GuessYouLike":"You might also like",
+        "Feedback":"Feedback",
+        "About":"About",
+        "Tutorial":"Tutorial",
+        "Website":"Website",
+        "RatetheApp":"Rate the App",
+        "Version":"Version",
+        "Help":"Help"
     },
 
     "Search":{

@@ -1580,5 +1580,17 @@
             {"title":"从军行","author":"王昌龄","sample":"黄沙百战穿金甲，不破楼兰终不还","id":"0edc1f37-50aa-48ac-9fb3-1def51c4319c"},
             {"title":"古从军行","author":"李颀","sample":"年年战骨埋荒外，空见蒲桃入汉家","id":"bea6f283-8f90-49b5-8842-1cb906816548"}
         ]
+    },
+    {
+        "id":101,
+        "tag":["浪漫",""],"name":"",
+        "sub":"歌曲里的诗词",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/forest-3409907_1280.jpg",
+        "more":"你一定听过这首歌，但你不一定知道它里面唱了多少首诗词",
+        "desc":"新鸳鸯蝴蝶梦",
+        "list":[
+            {"title":"宣州谢朓楼饯别校书叔云","author":"李白","sample":"弃我去者，昨日之日不可留","id":"5593d522-b820-4c06-bab6-0ab5a0fc1d46"},
+            {"title":"佳人","author":"杜甫","sample":"但见新人笑，那闻旧人哭","id":"f2db30a1-f125-44b9-a8d8-287ccb69238a"}
+        ]
     }
 ]

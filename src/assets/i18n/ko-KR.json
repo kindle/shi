@@ -18,6 +18,17 @@
         "Die":"사망"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"활동",
+        "Learn":"집계 방식 알아보기",
+        "Less":"적음",
+        "More":"많음",
+        "StudyActivity":"활동",
+        "Created":"생성일",
+        "ShowMore":"더 보기",
+        "TheEnd":"끝"
+    },
+
     "AI": {
         "Title": "AI 시 작업 도우미",
         "Hello": "안녕하세요! 도와드릴 게 있나요?",
@@ -54,7 +65,8 @@
         "ViewPoet": "시인 보기",
         "Collect": "수집",
         "Share": "공유",
-        "ClearAllSearchHistory": "모든 검색 기록 지우기"
+        "ClearAllSearchHistory": "모든 검색 기록 지우기",
+        "MoreSettings": "추가 설정"
     },
 
     "Message": {
@@ -97,7 +109,14 @@
         "AutoPlay": "자동 재생",
         "PlaySimilar": "비슷한 시가 재생됩니다",
         "ToTurnOnAutoPlay": "계속 재생하려면 켜세요",
-        "GuessYouLike":"당신을 위한 추천"
+        "GuessYouLike":"당신을 위한 추천",
+        "Feedback": "피드백",
+        "About": "정보",
+        "Tutorial": "튜토리얼",
+        "Website": "웹 사이트",
+        "RatetheApp": "앱 평가",
+        "Version": "버전",
+        "Help": "도움말"
     },
 
     "Search": {

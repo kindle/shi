@@ -18,6 +18,17 @@
         "Die":"Falecimentos"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"atividade",
+        "Learn":"saiba como contamos",
+        "Less":"Menos",
+        "More":"Mais",
+        "StudyActivity":"Atividade",
+        "Created":"Criado",
+        "ShowMore":"Mostrar mais atividades",
+        "TheEnd":"Fim"
+    },
+
     "AI": {
         "Title": "Agente de Poesia de IA",
         "Hello": "Olá! Como posso ajudá-lo hoje?",
@@ -54,7 +65,8 @@
         "ViewPoet": "Poeta",
         "Collect": "Coletar",
         "Share": "Compartilhar",
-        "ClearAllSearchHistory": "Limpar todo o histórico de pesquisa"
+        "ClearAllSearchHistory": "Limpar todo o histórico de pesquisa",
+        "MoreSettings": "Mais definições"
     },
 
     "Message": {
@@ -97,7 +109,14 @@
         "AutoPlay": "Reprodução Auto",
         "PlaySimilar": "Reproduzindo poemas similares",
         "ToTurnOnAutoPlay": "Para continuar, ative",
-        "GuessYouLike":"Talvez você goste"
+        "GuessYouLike":"Talvez você goste",
+        "Feedback": "Feedback",
+        "About": "Sobre",
+        "Tutorial": "Tutorial",
+        "Website": "Site",
+        "RatetheApp": "Avaliar o aplicativo",
+        "Version": "Versão",
+        "Help": "Ajuda"
     },
 
     "Search": {

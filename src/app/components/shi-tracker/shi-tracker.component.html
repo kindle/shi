@@ -1,0 +1,99 @@
+<div class="tracker-header"
+[style.fontSize]="dataService.zoom(18)"
+>
+  {{totalContributions}} {{ ui.instant('Tracker.Unit') }}{{ ui.instant('Tracker.StudyActivityCount') }}
+</div>
+<div class="tracker-component">
+  <div class="graph-container">
+
+    <div class="graph-table">
+      <!-- Day Labels -->
+      <div class="day-labels">
+        <div class="month-placeholder"></div>
+        <div class="day-name" *ngFor="let day of daysOfWeek; let i = index">
+          <span *ngIf="displayDays[i]">{{day}}</span>
+        </div>
+      </div>
+
+      <!-- Graph -->
+      <div class="weeks-grid">
+        <div class="week-column" *ngFor="let week of weeks; let wIndex = index">
+           <div class="month-placeholder">
+             <span class="month-text" *ngFor="let m of months" [hidden]="m.index !== wIndex">
+               {{m.name}}
+             </span>
+           </div>
+           <div class="day-cell" *ngFor="let d of week" 
+                [style.background-color]="d.color">
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-label" [style.fontSize]="dataService.zoom(10)">
+        {{ ui.instant('Tracker.Less') }}
+    </div>
+    <div class="legend-box" style="background-color: rgb(240,242,245)"></div>
+    <div class="legend-box" style="background-color: rgb(155, 201, 255)"></div>
+    <div class="legend-box" style="background-color: rgb(99, 172, 255)"></div>
+    <div class="legend-box" style="background-color: rgb(56, 128, 255)"></div>
+    <div class="legend-box" style="background-color: rgb(30, 70, 150)"></div>
+    <div class="legend-label" [style.fontSize]="dataService.zoom(10)">
+        {{ ui.instant('Tracker.More') }}
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="learn-more" (click)="dataService.tutorial()"
+      [style.fontSize]="dataService.zoom(15)">
+      {{ ui.instant('Tracker.Learn') }}
+    </div>
+    <ion-item lines="none" class="year-selector">
+      <ion-select [value]="year" 
+      [style.fontSize]="dataService.zoom(16)"
+      (ionChange)="onYearChange($event)" interface="popover">
+        <ion-select-option *ngFor="let y of availableYears" 
+        [value]="y">
+            {{y}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</div>
+
+<div class="activity-header" 
+[style.fontSize]="dataService.zoom(16)"
+*ngIf="showActivity">
+    {{ ui.instant('Tracker.StudyActivity') }}
+</div>
+<div class="activity-feed" *ngIf="showActivity">
+  <div *ngFor="let m of activityFeed" class="month-block">
+    <div class="month-title"
+        [style.fontSize]="dataService.zoom(12)">
+        {{m.monthName}} {{m.year}}
+    </div>
+    <div class="month-summary">
+      <ion-icon name="footsteps-outline"></ion-icon>
+      <div class="summary-text"
+        [style.fontSize]="dataService.zoom(14)">
+        {{ ui.instant('Tracker.Created') }} {{m.count}} {{ ui.instant('Tracker.Unit') }}{{ ui.instant('Tracker.StudyActivityCount') }}
+      </div>
+    </div>
+    <div class="time-line"></div>
+  </div>
+  
+  <div class="show-more-container" *ngIf="showActivity">
+    <ion-button *ngIf="searchDate" fill="outline" size="small" expand="block" 
+    [style.fontSize]="dataService.zoom(14)"
+    (click)="loadMoreActivity()">
+      {{ ui.instant('Tracker.ShowMore') }}
+    </ion-button>
+    <ion-button *ngIf="!searchDate && activityFeed.length > 0" fill="outline" size="small" expand="block" 
+    [style.fontSize]="dataService.zoom(14)"
+    (click)="resetActivityFeed()">
+      {{ ui.instant('Tracker.TheEnd') }}
+    </ion-button>
+  </div>
+</div>

@@ -18,6 +18,17 @@
         "Die":"وفيات"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"نشاط",
+        "Learn":"تعرف على كيفية العد",
+        "Less":"أقل",
+        "More":"أكثر",
+        "StudyActivity":"نشاط",
+        "Created":"تم الإنشاء",
+        "ShowMore":"إظهار المزيد من النشاط",
+        "TheEnd":"النهاية"
+    },
+
     "AI": {
         "Title": "وكيل الشعر الذكاء الاصطناعي",
         "Hello": "مرحبًا! كيف يمكنني مساعدتك اليوم؟",
@@ -54,7 +65,8 @@
         "ViewPoet": "الشاعر",
         "Collect": "جمع",
         "Share": "مشاركة",
-        "ClearAllSearchHistory": "مسح كل سجل البحث"
+        "ClearAllSearchHistory": "مسح كل سجل البحث",
+        "MoreSettings": "المزيد من الإعدادات"
     },
 
     "Message": {
@@ -97,7 +109,14 @@
         "AutoPlay": "تشغيل تلقائي",
         "PlaySimilar": "تشغيل قصائد مماثلة",
         "ToTurnOnAutoPlay": "للمتابعة، قم بتشغيل",
-        "GuessYouLike":"قد يعجبك"
+        "GuessYouLike":"قد يعجبك",
+        "Feedback": "استجابة",
+        "About": "حول",
+        "Tutorial": "درس تعليمي",
+        "Website": "الموقع الإلكتروني",
+        "RatetheApp": "قيم التطبيق",
+        "Version": "إصدار",
+        "Help": "مساعدة"
     },
 
     "Search": {

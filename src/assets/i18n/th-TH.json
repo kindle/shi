@@ -18,6 +18,17 @@
         "Die":"วันถึงแก่กรรม"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"กิจกรรม",
+        "Learn":"เรียนรู้วิธีการนับ",
+        "Less":"น้อย",
+        "More":"มาก",
+        "StudyActivity":"กิจกรรม",
+        "Created":"สร้างเมื่อ",
+        "ShowMore":"แสดงเพิ่มเติม",
+        "TheEnd":"จบ"
+    },
+
     "AI": {
         "Title": "ตัวแทนกลอน AI",
         "Hello": "สวัสดี! ฉันจะช่วยอะไรคุณวันนี้?",
@@ -54,7 +65,8 @@
         "ViewPoet": "นักกวี",
         "Collect": "สะสม",
         "Share": "แบ่งปัน",
-        "ClearAllSearchHistory": "ล้างประวัติการค้นหาทั้งหมด"
+        "ClearAllSearchHistory": "ล้างประวัติการค้นหาทั้งหมด",
+        "MoreSettings": "การตั้งค่าเพิ่มเติม"
     },
 
     "Message": {
@@ -97,7 +109,14 @@
         "AutoPlay": "เล่นอัตโนมัติ",
         "PlaySimilar": "เล่นบทกวีที่คล้ายกัน",
         "ToTurnOnAutoPlay": "เพื่อเล่นต่อ โปรดเปิด",
-        "GuessYouLike":"คุณอาจชอบ"
+        "GuessYouLike":"คุณอาจชอบ",
+        "Feedback": "ข้อเสนอแนะ",
+        "About": "เกียวกับ",
+        "Tutorial": "บทนำ",
+        "Website": "เว็บไซต์",
+        "RatetheApp": "ให้คะแนนแอป",
+        "Version": "เวอร์ชัน",
+        "Help": "ความช่วยเหลือ"
     },
 
     "Search": {

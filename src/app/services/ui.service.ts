@@ -293,11 +293,15 @@ export class UiService {
       if (window.history.length > 1) {
         this.location.back();
       } else {
-        this.router.navigate(['/tabs/home']);
+        this.router.navigate(['/tabs']);
       }
     }
     else{
-      this.navController.pop();
+      if (window.history.length > 1) {
+        this.location.back();
+      } else {
+        this.router.navigate(['/tabs']);
+      }
     }
   }
 

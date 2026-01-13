@@ -7,9 +7,10 @@ import { ActionSheetController, IonTabs, ModalController, NavController, Platfor
 
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
-import { catchError, tap } from 'rxjs';
+import { catchError, tap, BehaviorSubject } from 'rxjs';
 import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
 import { Solar } from 'lunar-typescript';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 import { Share } from '@capacitor/share';
 
@@ -21,6 +22,8 @@ import { EventService } from './event.service';
 
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { App } from '@capacitor/app';
+import { Device } from '@capacitor/device';
 import { TextZoomerPage } from '../pages/textzoomer/textzoomer.page';
 
 
@@ -42,6 +45,8 @@ export class DataService {
 
   //debug mode
   TestMode = false;
+
+  
 
   gototesturl(){//'tabs/tab1/me'
     this.router.navigate(['tabs/tab1/list'], {
@@ -73,6 +78,7 @@ export class DataService {
     private modalController: ModalController,
     private eventService: EventService,
     private media: Media,
+    private socialSharing: SocialSharing,
   ){
     this.platform = platform;
     this.audio = new Audio();
@@ -267,6 +273,11 @@ export class DataService {
   getFunData(nameSeed:any){
     //console.log("this.disableRandomFunData:"+this.disableRandomFunData)
     //console.log(this.funData)
+    //test
+    if(this.TestMode){
+      this.disableRandomFunData = true;
+    }
+    //test end
     if(this.disableRandomFunData){//for test adding new poem list
       return this.funData;
     }
@@ -1418,6 +1429,7 @@ export class DataService {
     //load poem play history
     this.loadPlayHistory();
     this.loadSearchHistory();
+    this.loadTracker();
     //load ep play history
     this.loadRecentPlayedEP();
     //load play style
@@ -1555,6 +1567,71 @@ export class DataService {
   goToSearch(){
     this.navCtrl.navigateForward(`/tabs/tab4`);
   }
+
+
+  /****tracker logic start****************************** */
+  test_tracker:any = [
+    {date:'2025-03-01',value:1},
+    {date:'2025-06-01',value:1},
+    {date:'2025-11-01',value:2},
+    {date:'2025-12-03',value:2},
+    {date:'2026-01-02',value:1},
+    {date:'2026-01-04',value:2},
+    {date:'2026-01-05',value:3},
+    {date:'2026-01-06',value:4},
+    {date:'2026-01-07',value:3},
+    {date:'2026-01-09',value:1},
+    {date:'2026-01-10',value:0}
+  ];
+  tracker:any = [];
+  public trackerSubject = new BehaviorSubject<any[]>([]);
+
+  loadTracker()
+  {
+    // Use test data for debugging
+    this.trackerSubject.next(this.tracker);
+    // this.tracker = this.test_tracker;
+    // return;
+    
+    this.get('app_daily_tracker').then((value)=>{
+      if(value==null)
+        //this.tracker = [];
+        console.log('use default test data');
+      else{
+        this.tracker = JSON.parse(value);
+      }
+      this.trackerSubject.next(this.tracker);
+    });
+  }
+
+  /*
+  add to lib +1
+  remove from lib +1
+  play a poem +1
+  */
+  addTracker(detail:any=null){
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = (now.getMonth() + 1).toString().padStart(2, '0');
+    const d = now.getDate().toString().padStart(2, '0');
+    const today = `${y}-${m}-${d}`;
+
+    const index = this.tracker.findIndex((t:any) => t.date === today);
+
+    if (index > -1) {
+      this.tracker[index].value += 1;
+    } else {
+      this.tracker.push({date: today, value: 1});
+    }
+    
+    this.saveTracker();
+    this.trackerSubject.next(this.tracker);
+  }
+
+  private saveTracker(){
+    this.set('app_daily_tracker', JSON.stringify(this.tracker));
+  }
+  /****tracker logic end****************************** */
   
   /**search history logic block start */
   LOCALSTORAGE_SEARCH_HIST = "search_keywords_history";
@@ -1665,6 +1742,7 @@ export class DataService {
       }
 
       this.currentPoem = poem;
+      this.addTracker({name:"read poem",data:poem});
       if(poem.audio){
         this.setAudio();
       }else{
@@ -1785,6 +1863,7 @@ export class DataService {
       lastupdate: Date.now()
     });
     this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+    this.addTracker({name:"add custom list", data:{name:name, desc:desc}});
   }
 
   savecustomlist(data:any){
@@ -1794,6 +1873,7 @@ export class DataService {
       findItem[0].data = data;
       findItem[0].lastupdate = Date.now();
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+      this.addTracker({name:"save custom list", data:data});
     }
 
   }
@@ -1813,6 +1893,7 @@ export class DataService {
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
+    this.addTracker({name:"add to lib", data:{listdata:listdata, group:group}});
     this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
   }
 
@@ -1887,6 +1968,7 @@ export class DataService {
                     break;
                 }
               }
+              this.addTracker({name:"remove from lib", data:{listdata:listdata, group:group}});
               this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
             }
           }
@@ -2251,6 +2333,43 @@ export class DataService {
     Browser.open({ url: `http://www.bing.com/search?q=${key}` });
   } 
 
+  apphome(){
+    Browser.open({ url: `http://shi.reddah.com` });
+  }
+
+  tutorial(id:number=3){
+    this.router.navigate(['/tutorial'], {
+      queryParams: {id:id}
+    });
+  }
+
+  async feedback(){
+    let subject = this.ui.instant('Title.Feedback')+"";
+    let body = "";
+    try {
+      let info = await Device.getInfo();
+      let appInfo = await App.getInfo();
+    
+      if(this.ui.isIos){
+        // predefined text is iOS + version, iphone 14 App Version: 1.0.6 
+        body = `\n\n\niOS ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${appInfo.version}`;
+      }else{
+        body = `\n\n\n${info.operatingSystem} ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${appInfo.version}`;
+      }
+    } catch (error) {
+       console.error(error); 
+    }
+
+    let email = "weibailin@hotmail.com";
+      
+    this.socialSharing.shareViaEmail(body, subject, [email])
+    .catch((e) => {
+      console.error("shareViaEmail failed, trying mailto:", e);
+      // let url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // window.location.href = url;
+    });
+  }
+
   async RatingsAndReviews() {
     this.closeRatings();
     let iosId = 6476442565;
@@ -2516,6 +2635,12 @@ export class DataService {
         }
       },
       {
+        text: this.ui.instant('Action.MoreSettings'),
+        handler: () => {
+          this.goToMoreSettings();
+        }
+      },
+      {
         text: this.ui.instant('Action.Cancel'),
         role: 'cancel',
         data: {
@@ -2523,6 +2648,12 @@ export class DataService {
         },
       },
     ];
+  }
+
+  goToMoreSettings(){
+    this.router.navigate(['tabs/tab1/moresettings'], {
+      queryParams: {}
+    });
   }
 
   async presentLanguageActionSheet() {

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button style="width:50px;height:50px;" 
+      defaultHref="" [text]="''"
+      (click)="ui.goback()">
+    </ion-back-button>
+    </ion-buttons>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Action.MoreSettings') }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-list-header [style.fontSize]="data.zoom(22)">
+    App
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="data.presentLanguageActionSheet()">
+      <ion-icon color="primary" slot="start" name="text-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{ui.instant('Tutorial.Language')}} ({{data.getCurrentLanguageName()}})
+      </ion-label>
+    </ion-item>
+    <ion-item [button]="true" (click)="data.textZoom()">
+      <ion-icon color="dark" slot="start" name="resize-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{ui.instant('Action.FontSize')}} ({{mathfloor(data.zoomLevel * 100)}}%)
+      </ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-toggle justify="space-between">Bold Text</ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-toggle justify="space-between" checked>True Tone</ion-toggle>
+    </ion-item> -->
+  </ion-list>
+
+  <ion-list-header [style.fontSize]="data.zoom(22)">
+    {{this.ui.instant('Title.Help')}}
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="data.tutorial()">
+      <ion-icon color="primary" slot="start" name="book-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{this.ui.instant('Title.Tutorial')}}
+      </ion-label>
+    </ion-item>
+    <ion-item [button]="true" (click)="data.feedback()">
+      <ion-icon color="dark" slot="start" name="mail-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{this.ui.instant('Title.Feedback')}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header [style.fontSize]="data.zoom(22)">
+    {{this.ui.instant('Title.About')}}
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="data.apphome()">
+      <ion-icon color="primary" slot="start" name="home-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{this.ui.instant('Title.Website')}}
+      </ion-label>
+    </ion-item>
+    <!-- <ion-item [button]="true">
+      <ion-icon color="dark" slot="start" name="mail-outline" size="large"></ion-icon>
+      <ion-label>Follow on X</ion-label>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="dark" slot="start" name="lock-closed-outline" size="large"></ion-icon>
+      <ion-label>Privacy Policy</ion-label>
+    </ion-item>
+    <ion-item [button]="true">
+      <ion-icon color="dark" slot="start" name="list-outline" size="large"></ion-icon>
+      <ion-label>Terms of Service</ion-label>
+    </ion-item> -->
+    <ion-item [button]="true" (click)="data.RatingsAndReviews()">
+      <ion-icon color="dark" slot="start" name="star-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{this.ui.instant('Title.RatetheApp')}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header [style.fontSize]="data.zoom(22)">
+    {{this.ui.instant('Title.Version')}}
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item [button]="false">
+      <ion-label [style.fontSize]="data.zoom(16)">名诗佳句</ion-label>
+      <ion-text slot="end" color="medium" [style.fontSize]="data.zoom(16)">
+        v1.0.6
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

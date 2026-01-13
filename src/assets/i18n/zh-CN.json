@@ -18,6 +18,18 @@
         "Die":"祭日"
     },
 
+    "Tracker":{
+        "StudyActivityCount":"动态",
+        "Learn":"了解统计规则",
+        "Less":"较少",
+        "More":"较多",
+        "StudyActivity":"动态",
+        "Created":"创建了",
+        "Unit":"个",
+        "ShowMore":"显示更多",
+        "TheEnd":"到底了"
+    },
+
     "AI":{
         "Title":"诗词助手",
         "Hello":"您好！关于诗词有什么我可以帮助您的吗？",
@@ -54,7 +66,8 @@
         "ViewPoet":"看作者",
         "Collect":"收藏",
         "Share":"分享",
-        "ClearAllSearchHistory":"清除全部搜索记录"
+        "ClearAllSearchHistory":"清除全部搜索记录",
+        "MoreSettings":"更多设置"
     },
 
     "Message":{
@@ -97,7 +110,14 @@
         "AutoPlay":"自动播放",
         "PlaySimilar":"将继续播放类似诗词",
         "ToTurnOnAutoPlay":"若要继续播放诗词，请打开",
-        "GuessYouLike":"你可能也喜欢"
+        "GuessYouLike":"你可能也喜欢",
+        "Feedback":"意见反馈",
+        "About": "关于",
+        "Tutorial": "教程",
+        "Website": "官网",
+        "RatetheApp": "去评分",
+        "Version": "版本",
+        "Help": "帮助"
     },
 
     "Search":{

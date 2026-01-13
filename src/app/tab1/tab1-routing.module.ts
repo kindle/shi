@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'gamenext/:id',
     loadChildren: () => import('../pages/game-next/next.module').then( m => m.NextPageModule)
+  },
+  {
+    path: 'moresettings',
+    loadChildren: () => import('../pages/more-settings/more-settings.module').then( m => m.MoreSettingsPageModule)
   }
 ];
 
