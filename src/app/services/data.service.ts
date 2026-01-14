@@ -439,12 +439,14 @@ export class DataService {
             "type":"text", 
             //"value":fun.more?fun.more:fun.desc,
             "value":fun.desc?fun.desc:fun.more,
-            "name":""
+            "name":"",
+            "memo":fun.memo?fun.memo:""
           }].concat(descArray).concat(
             [{
               "type":"list",
               "value":"",
-              "name":"趣味诗单"
+              "name":"趣味诗单",
+              "memo":""
             }]
           ),
           link:"",
