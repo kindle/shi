@@ -56,7 +56,7 @@
 </ion-header>
 
 <ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
-  <ion-card class="card card-img" *ngIf="!showFilter"
+  <!-- <ion-card class="card card-img" *ngIf="!showFilter"
       (click)="ui.imageviewer(getUrl())"
       defaultImage="" 
       lazyLoad="{{getUrl()}}"
@@ -71,7 +71,7 @@
         <ion-card-subtitle class="card-text" style="font-size:18px;"></ion-card-subtitle>
         <ion-card-title class="card-text" style="color:white;">{{tag}}</ion-card-title>
       </ion-card-content>
-  </ion-card>
+  </ion-card> -->
   <ion-header collapse="condense">
     <ion-toolbar><!--搜索-->
       <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
@@ -81,6 +81,20 @@
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
       ></ion-searchbar>
+      <div *ngIf="!showFilter"
+          style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;margin-bottom:20px;">
+          <ion-card 
+            defaultImage="" 
+            lazyLoad="{{getUrl()}}"
+            style="margin:auto;width:200px;height:200px;
+              background-size:cover;
+              background-color:{{data.getbgcolor()}};
+              background-repeat: no-repeat;
+              background-position: center;
+              border-radius: 10px;" 
+              (click)="ui.imageviewer(getUrl())">
+          </ion-card>
+      </div>
     </ion-toolbar>
   </ion-header>
 

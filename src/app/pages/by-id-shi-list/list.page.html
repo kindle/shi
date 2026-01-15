@@ -124,6 +124,7 @@
   </div>
 
   <app-text name="" [text]="listdata.desc" *ngIf="!showFilter"></app-text>
+  <app-text name="" [text]="listdata.memo" *ngIf="!showFilter"></app-text>
     
   <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:20px;">
     <ion-item *ngFor="let p of localList; let i = index" style="--padding-start:15px;--inner-padding-end:10px;">
@@ -152,7 +153,7 @@
       </ion-badge>
       <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <div style="display: flex; align-items: center;">
-          <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;"></ion-icon>
+          <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
           <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
             {{p.title}} {{p.author}}
           </h2>

@@ -34,9 +34,9 @@
       </ion-buttons>
     </ion-card-content>
     <!--shared backbutton for normal and effect animation end-->
+    <!-- min-height: {{data.currentArticle.min_height}}; -->
     <div style="display: flex;flex-wrap: wrap;justify-content: center;
-      background-color: white;
-      min-height: {{data.currentArticle.min_height}};"
+      background-color: white;"
       *ngIf="data.currentArticle.effect">
       <app-card-moon viewer="true" class="custom-card" 
       *ngIf="data.currentArticle.effect=='moon'" 

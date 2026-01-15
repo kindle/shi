@@ -2097,7 +2097,7 @@ export class DataService {
 
       }
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗词列表
+      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
     }
 
   }
