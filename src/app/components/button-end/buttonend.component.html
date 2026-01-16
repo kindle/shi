@@ -42,20 +42,20 @@
           {{ ui.instant('Action.ViewPoet') }}<!--看作者-->
           <ion-icon name="id-card-outline" slot="end"></ion-icon>
         </ion-item>
-        <ion-item lines="full" [button]="true" [detail]="false"
+        <!-- <ion-item lines="full" [button]="true" [detail]="false"
           (click)="interpret(p)"
           class="show-only-one-line"
           [style.fontSize]="data.zoom(17)">
-          {{ ui.instant('Action.Interpret') }}<!--诗词赏析-->
+          {{ ui.instant('Action.Interpret') }} !--诗词赏析--
           <ion-icon name="school-outline" slot="end"></ion-icon>
-        </ion-item>
-        <!--
+        </ion-item> -->
+        
         <ion-item lines="full" [button]="true" [detail]="false"
           (click)="size()"
           [style.fontSize]="data.zoom(17)">
-          {{ ui.instant('Action.FontSize') }}!--字体大小--
+          {{ ui.instant('Action.FontSize') }}<!--文字大小-->
           <ion-icon name="text-outline" slot="end"></ion-icon>
-        </ion-item>-->
+        </ion-item>
         <!--
         <ion-item lines="full" [button]="true" [detail]="false"
           (click)="share()">
