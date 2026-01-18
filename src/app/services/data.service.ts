@@ -258,6 +258,9 @@ export class DataService {
   
 
   LOCALSTORAGE_HOURLY_FUN = "LOCALSTORAGE_HOURLY_FUN"
+  clearFunDataCache(){
+    this.remove(this.LOCALSTORAGE_HOURLY_FUN);
+  }
   async loadFunData(){
     this.get(this.LOCALSTORAGE_HOURLY_FUN).then((value)=>{
       if(value==null){
@@ -467,6 +470,7 @@ export class DataService {
       }
       //把articleData文章随机排序，取前5个文章+1group+1vote展示
       this.articleData = this.getArticleData("article");
+      //console.log(this.articleData)
     });
   }
 
@@ -1941,7 +1945,10 @@ export class DataService {
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
-    this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
+    if(group!=='taglist')
+    {
+      this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
+    }
     this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
   }
 
@@ -2016,7 +2023,10 @@ export class DataService {
                     break;
                 }
               }
-              this.addTracker({name:"RemoveFromLib", data:{listdata:listdata, group:group}});
+              if(group!=='taglist')//tag not use guid, use tag string instead, so do not track it.
+              {
+                this.addTracker({name:"RemoveFromLib", data:{listdata:listdata, group:group}});
+              }
               this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
             }
           }

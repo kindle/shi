@@ -259,6 +259,27 @@ export class TrackerDetailPage implements OnInit, OnDestroy, AfterViewInit {
             content = poem.title + " " + poem.author;
           }
         }
+        if (d.name === 'AddToLib' || d.name === 'RemoveFromLib') {
+          const poem = this.dataService.JsonData.find((p: any) => p.id == d.content);
+          if (poem) {
+            content = poem.title + " " + poem.author;
+          } else {
+            const list = this.dataService.poemListData.find((e: any) => e.id == d.content);
+            if (list) {
+              content = list.name;
+            } else {
+              const article = this.dataService.articleData.find((a: any) => a.id == d.content);
+              if (article) {
+                content = article.big_title;
+              } else {
+                const author = this.dataService.authorJsonData.find((a: any) => a.id == d.content);
+                if (author) {
+                  content = author.name;
+                }
+              }
+            }
+          }
+        }
 
         return {
           ...d,
