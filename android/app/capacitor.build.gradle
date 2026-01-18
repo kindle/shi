@@ -20,6 +20,7 @@ dependencies {
     implementation project(':capacitor-share')
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-status-bar')
+    implementation "com.google.android.play:review:2.0.+"
     implementation "androidx.webkit:webkit:1.4.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 }

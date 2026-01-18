@@ -24,8 +24,10 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { App } from '@capacitor/app';
 import { Device } from '@capacitor/device';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { TextZoomerPage } from '../pages/textzoomer/textzoomer.page';
 
+declare var AppReview: any;
 
 export interface UserPhoto {
   filepath: string;
@@ -1951,6 +1953,38 @@ export class DataService {
       this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
     }
     this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+    Haptics.impact({ style: ImpactStyle.Light });
+    
+    this.checkAndRequestReview();
+  }
+
+  LOCALSTORAGE_REVIEW_PROMPT_DATE = "last_review_prompt_date";
+  async checkAndRequestReview() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = (now.getMonth() + 1).toString().padStart(2, '0');
+    const d = now.getDate().toString().padStart(2, '0');
+    const today = `${y}-${m}-${d}`;
+
+    const todayTracker = this.tracker.find((t:any) => t.date === today);
+    const value = todayTracker ? todayTracker.value : 0;
+
+    if (value > 5) {
+      const lastDate = await this.get(this.LOCALSTORAGE_REVIEW_PROMPT_DATE);
+      if (lastDate !== today) {
+        try {
+          const win = window as any;
+          const plugin = win.AppReview || win.cordova?.plugins?.AppReview;
+          
+          if (plugin) {
+            plugin.requestReview().catch((err: any) => { console.error(err); });
+            this.set(this.LOCALSTORAGE_REVIEW_PROMPT_DATE, today);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
   }
 
   isliked(listdata:any, group:any){
