@@ -41,7 +41,7 @@
     {{this.ui.instant('Title.Help')}}
   </ion-list-header>
   <ion-list [inset]="true">
-    <ion-item [button]="true" (click)="data.tutorial()">
+    <ion-item [button]="true" (click)="data.tutorial(0)">
       <ion-icon color="primary" slot="start" name="book-outline" size="large"></ion-icon>
       <ion-label [style.fontSize]="data.zoom(16)">
         {{this.ui.instant('Title.Tutorial')}}
@@ -92,7 +92,7 @@
     <ion-item [button]="false">
       <ion-label [style.fontSize]="data.zoom(16)">名诗佳句</ion-label>
       <ion-text slot="end" color="medium" [style.fontSize]="data.zoom(16)">
-        v1.0.6
+        v{{data.AppVersion}}
       </ion-text>
     </ion-item>
   </ion-list>

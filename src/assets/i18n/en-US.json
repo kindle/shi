@@ -8,7 +8,13 @@
     },
 
     "Tutorial":{
-        "Language":"Language"
+        "Language":"Language",
+        "MoreLang":"More Languages",
+        "SizeDesc":"Click the button below to adjust text size",
+        "SizeButtonText":"Click to adjust",
+        "LearnHowWeCount":"Learn how we count activities",
+        "ReadyToPlay":"Ready?",
+        "Continue":"Continue"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"Read Poem",
         "ReadArticle":"Read Article",
         "AddCustomList":"Add Custom Poem List",
-        "SaveCustomList":"Update Custom Poem List",
+        "UpdateCustomList":"Update Custom Poem List",
         "AddToLib":"Add to Library",
         "RemoveFromLib":"Remove from Library",
         "NoDetailsAvailable":"No details available"

@@ -48,7 +48,7 @@
   </div>
 
   <div class="controls" *ngIf="showActivity">
-    <div class="learn-more" (click)="dataService.tutorial()"
+    <div class="learn-more" (click)="dataService.tutorial(3)"
       [style.fontSize]="dataService.zoom(15)">
       {{ ui.instant('Tracker.Learn') }}<!--了解统计规则-->
     </div>

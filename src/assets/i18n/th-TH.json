@@ -8,7 +8,13 @@
     },
 
     "Tutorial": {
-        "Language": "ภาษา"
+        "Language":"ภาษา",
+        "MoreLang":"ภาษาเพิ่มเติม",
+        "SizeDesc":"คลิกปุ่มด้านล่างเพื่อปรับขนาดข้อความ",
+        "SizeButtonText":"คลิกเพื่อปรับขนาดข้อความ",
+        "LearnHowWeCount":"เรียนรู้วิธีการนับกิจกรรมของเรา",
+        "ReadyToPlay":"พร้อมหรือยัง?",
+        "Continue":"กลับไปที่แอป"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"อ่านบทกวี",
         "ReadArticle":"อ่านบทความ",
         "AddCustomList":"เพิ่มรายการบทกวีกำหนดเอง",
-        "SaveCustomList":"อัปเดตรายการบทกวีกำหนดเอง",
+        "UpdateCustomList":"อัปเดตรายการบทกวีกำหนดเอง",
         "AddToLib":"เพิ่มลงในห้องสมุด",
         "RemoveFromLib":"ลบออกจากห้องสมุด",
         "NoDetailsAvailable":"ไม่มีรายละเอียด"

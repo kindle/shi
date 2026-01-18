@@ -8,7 +8,13 @@
     },
 
     "Tutorial":{
-        "Language":"語言"
+        "Language":"語言",
+        "MoreLang":"更多語言",
+        "SizeDesc":"點擊下面的按鈕調整文字大小",
+        "SizeButtonText":"點擊調整文字大小",
+        "LearnHowWeCount":"了解我們如何統計動態",
+        "ReadyToPlay":"準備好了嗎？",
+        "Continue":"繼續"
     },
 
     "History":{
@@ -163,7 +169,7 @@
         "ReadPoem":"閱讀詩詞",
         "ReadArticle":"閱讀文章",
         "AddCustomList":"添加自定義詩單列表",
-        "SaveCustomList":"更新自定義詩單列表",
+        "UpdateCustomList":"更新自定義詩單列表",
         "AddToLib":"添加到資料庫",
         "RemoveFromLib":"從資料庫中移除",
         "NoDetailsAvailable":"暫無詳細信息"

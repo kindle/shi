@@ -3,7 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ ui.instant('Title.Tutorial') }}<!--教程--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Title.Tutorial') }}<!--教程-->
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,36 +14,71 @@
     <swiper-slide>
       <div class="slide">
         <img src="./assets/tutorial/translate.png" />
-        <h2>{{ ui.instant('Tutorial.Language') }}<!--语言--></h2>
+        <h2 [style.fontSize]="data.zoom(24)">
+          {{ ui.instant('Tutorial.Language') }}<!--语言-->
+        </h2>
         <ion-list>
           <ion-item [color]="data.currentLocale=='zh-CN'?'primary':''" (click)="setLocale('zh-CN')">
-            <ion-label>简体中文</ion-label>
+            <ion-label [style.fontSize]="data.zoom(16)">简体中文</ion-label>
           </ion-item>
           <ion-item [color]="data.currentLocale=='en-US'?'primary':''" (click)="setLocale('en-US')">
-            <ion-label>English</ion-label>
+            <ion-label [style.fontSize]="data.zoom(16)">English</ion-label>
+          </ion-item>
+          <ion-item *ngIf="data.currentLocale!='en-US'&&data.currentLocale!='zh-CN'"
+            color="primary">
+            <ion-label [style.fontSize]="data.zoom(16)">
+              {{  data.getCurrentLanguageName() }}
+            </ion-label>
           </ion-item>
         </ion-list>
+      </div>
+      <div class="slide" style="text-align: center;">
+        <ion-button fill="clear" (click)="data.presentLanguageActionSheet()"
+         [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Tutorial.MoreLang') }}<!--更多语言-->
+        </ion-button>
       </div>
     </swiper-slide>
 
     <swiper-slide>
-      <div class="slide">
+      <div class="slide" style="text-align: center;">
         <img src="./assets/tutorial/slide-2.png" />
-        <h2>文字大小</h2>
+        <h2 [style.fontSize]="data.zoom(24)">
+          {{ ui.instant('Action.FontSize') }}<!--文字大小-->
+        </h2>
+        <p [style.fontSize]="data.zoom(16)">
+          {{ ui.instant('Tutorial.SizeDesc') }}<!--点击下面的按钮调整文字大小-->
+        </p>
         <p>
-          <b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps
-          with web technologies like HTML, CSS, and JavaScript.
+          <ion-button size="large" (click)="data.textZoom()"
+           [style.fontSize]="data.zoom(20)">
+            <ion-icon slot="start" name="resize-outline"></ion-icon>
+            {{ ui.instant('Tutorial.SizeButtonText') }}<!--点击调整文字大小-->
+          </ion-button>
         </p>
       </div>
     </swiper-slide>
 
     <swiper-slide>
-      <div class="slide">
+      <div class="slide" style="text-align: center;">
         <img src="./assets/tutorial/slide-3.png" />
-        <h2>Learn how we count?</h2>
-        <p>
-          <b>Appflow</b> is a powerful set of services and features built on top of Ionic Framework that brings a
-          totally new level of app development agility to mobile dev teams.
+        <h2 [style.fontSize]="data.zoom(24)">
+          {{ ui.instant('Tutorial.LearnHowWeCount') }}<!--了解我们如何统计动态-->
+        </h2>
+        <ul style="text-align: left; display: inline-block;">
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.ReadList') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.ReadPoem') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.ReadArticle') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.AddCustomList') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.UpdateCustomList') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.AddToLib') }} +1</li>
+          <li [style.fontSize]="data.zoom(16)">{{ ui.instant('Log.RemoveFromLib') }} +1</li>
+        </ul>
+        <p [style.fontSize]="data.zoom(16)">
+          <span style="color: rgb(155, 201, 255);">■</span> 1-4 &nbsp;
+          <span style="color: rgb(99, 172, 255);">■</span> 5-9 &nbsp;
+          <span style="color: rgb(56, 128, 255);">■</span> 10-19 &nbsp;
+          <span style="color: rgb(30, 70, 150);">■</span> 20+
         </p>
       </div>
     </swiper-slide>
@@ -49,9 +86,15 @@
     <swiper-slide>
       <div class="slide" style="text-align: center;">
         <img src="./assets/tutorial/slide-4.png" />
-        <h2>Ready to Play?</h2>
-        <ion-button fill="clear" (click)="home()">
-          Continue <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        <h3 [style.fontSize]="data.zoom(22)">
+          v{{data.AppVersion}}
+        </h3>
+        <h2 [style.fontSize]="data.zoom(24)">
+          {{ ui.instant('Tutorial.ReadyToPlay') }}<!--准备好了吗？-->
+        </h2>
+        <ion-button fill="clear" (click)="home()" 
+        [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Tutorial.Continue') }} <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-button>
       </div>
     </swiper-slide>

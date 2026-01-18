@@ -1445,6 +1445,7 @@ export class DataService {
     this.getSubscriptionImage();
 
     this.initRatings();
+    this.checkTutorial();
     //console.log('load data completed')
   }
   
@@ -1618,7 +1619,7 @@ export class DataService {
   ReadPoem +1
   ReadArticle +1
   AddCustomList +1
-  SaveCustomList +1
+  UpdateCustomList +1
   AddToLib +1
   RemoveFromLib +1
   */
@@ -2395,24 +2396,35 @@ export class DataService {
     Browser.open({ url: `http://shi.reddah.com` });
   }
 
-  tutorial(id:number=3){
+  tutorial(id:number=0){
     this.router.navigate(['/tutorial'], {
       queryParams: {id:id}
     });
   }
 
+  LOCALSTORAGE_TUTORIAL = "Tutorial";
+  async checkTutorial(){
+    let value = await this.get(this.LOCALSTORAGE_TUTORIAL);
+    if(value == null){
+        this.set(this.LOCALSTORAGE_TUTORIAL, 1);
+        this.tutorial();
+    }
+  }
+
+  AppVersion:any="1.0.7";
   async feedback(){
     let subject = this.ui.instant('Title.Feedback')+"";
     let body = "";
     try {
       let info = await Device.getInfo();
       let appInfo = await App.getInfo();
-    
+      this.AppVersion = appInfo.version;
+
       if(this.ui.isIos){
         // predefined text is iOS + version, iphone 14 App Version: 1.0.6 
-        body = `\n\n\niOS ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${appInfo.version}`;
+        body = `\n\n\niOS ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
       }else{
-        body = `\n\n\n${info.operatingSystem} ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${appInfo.version}`;
+        body = `\n\n\n${info.operatingSystem} ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
       }
     } catch (error) {
        console.error(error); 

@@ -8,7 +8,13 @@
     },
 
     "Tutorial": {
-        "Language": "言語"
+        "Language":"言語",
+        "MoreLang":"その他の言語",
+        "SizeDesc":"下のボタンをクリックして文字サイズを調整してください",
+        "SizeButtonText":"クリックして文字サイズを調整",
+        "LearnHowWeCount":"アクティビティの集計方法について",
+        "ReadyToPlay":"準備はいいですか？",
+        "Continue":"アプリに戻る"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"詩を読む",
         "ReadArticle":"記事を読む",
         "AddCustomList":"カスタム詩リストを追加",
-        "SaveCustomList":"カスタム詩リストを更新",
+        "UpdateCustomList":"カスタム詩リストを更新",
         "AddToLib":"ライブラリに追加",
         "RemoveFromLib":"ライブラリから削除",
         "NoDetailsAvailable":"詳細はありません"

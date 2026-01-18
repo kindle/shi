@@ -30,14 +30,16 @@ export class TutorialPage implements OnInit {
   ionViewDidEnter() {
     const id = this.route.snapshot.queryParams['id'];
     if (id && this.swiperRef?.nativeElement.swiper) {
-      this.swiperRef.nativeElement.swiper.slideTo(id - 1);
+      this.swiperRef.nativeElement.swiper.slideTo(id - 1, 0);
     }
   }
 
   home(){
-    this.router.navigate(['/'], {
-      queryParams: {}
-    });
+    this.ui.goback();
+
+    // this.router.navigate(['/'], {
+    //   queryParams: {}
+    // });
   }
 
 }

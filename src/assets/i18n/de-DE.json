@@ -8,7 +8,13 @@
     },
 
     "Tutorial":{
-        "Language":"Sprache"
+        "Language":"Sprache",
+        "MoreLang":"Mehr Sprachen",
+        "SizeDesc":"Klicken Sie auf die Schaltfläche unten, um die Textgröße anzupassen",
+        "SizeButtonText":"Klicken zum Anpassen der Textgröße",
+        "LearnHowWeCount":"Erfahren Sie, wie wir Aktivitäten zählen",
+        "ReadyToPlay":"Bereit?",
+        "Continue":"Zurück zur App"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"Gedicht lesen",
         "ReadArticle":"Artikel lesen",
         "AddCustomList":"Benutzerdefinierte Gedichtliste hinzufügen",
-        "SaveCustomList":"Benutzerdefinierte Gedichtliste aktualisieren",
+        "UpdateCustomList":"Benutzerdefinierte Gedichtliste aktualisieren",
         "AddToLib":"Zur Bibliothek hinzufügen",
         "RemoveFromLib":"Aus der Bibliothek entfernen",
         "NoDetailsAvailable":"Keine Details verfügbar"

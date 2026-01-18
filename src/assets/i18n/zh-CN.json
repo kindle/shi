@@ -8,7 +8,13 @@
     },
 
     "Tutorial":{
-        "Language":"语言"
+        "Language":"语言",
+        "MoreLang":"更多语言",
+        "SizeDesc":"点击下面的按钮调整文字大小",
+        "SizeButtonText":"点击调整文字大小",
+        "LearnHowWeCount":"了解我们如何统计动态",
+        "ReadyToPlay":"准备好了吗？",
+        "Continue":"继续"
     },
 
     "History":{
@@ -163,7 +169,7 @@
         "ReadPoem":"阅读诗词",
         "ReadArticle":"阅读文章",
         "AddCustomList":"添加自定义诗单列表",
-        "SaveCustomList":"更新自定义诗单列表",
+        "UpdateCustomList":"更新自定义诗单列表",
         "AddToLib":"添加到资料库",
         "RemoveFromLib":"从资料库中移除",
         "NoDetailsAvailable":"暂无详细信息"

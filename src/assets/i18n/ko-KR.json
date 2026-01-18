@@ -8,7 +8,13 @@
     },
 
     "Tutorial": {
-        "Language": "언어"
+        "Language":"언어",
+        "MoreLang":"더 많은 언어",
+        "SizeDesc":"아래 버튼을 클릭하여 글자 크기를 조정하세요",
+        "SizeButtonText":"클릭하여 글자 크기 조정",
+        "LearnHowWeCount":"활동 집계 방식 알아보기",
+        "ReadyToPlay":"준비되셨나요?",
+        "Continue":"앱으로 돌아가기"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"시 읽기",
         "ReadArticle":"기사 읽기",
         "AddCustomList":"사용자 정의 시 목록 추가",
-        "SaveCustomList":"사용자 정의 시 목록 업데이트",
+        "UpdateCustomList":"사용자 정의 시 목록 업데이트",
         "AddToLib":"라이브러리에 추가",
         "RemoveFromLib":"라이브러리에서 제거",
         "NoDetailsAvailable":"세부 정보 없음"

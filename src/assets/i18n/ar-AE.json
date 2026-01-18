@@ -8,7 +8,13 @@
     },
 
     "Tutorial": {
-        "Language": "اللغة"
+        "Language":"لغة",
+        "MoreLang":"المزيد من اللغات",
+        "SizeDesc":"انقر على الزر أدناه لضبط حجم النص",
+        "SizeButtonText":"انقر ضبط حجم النص",
+        "LearnHowWeCount":"تعرف على كيفية إحصاء الأنشطة",
+        "ReadyToPlay":"مستعد؟",
+        "Continue":"العودة إلى التطبيق"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"قراءة القصيدة",
         "ReadArticle":"قراءة المقال",
         "AddCustomList":"إضافة قائمة قصائد مخصصة",
-        "SaveCustomList":"تحديث قائمة القصائد المخصصة",
+        "UpdateCustomList":"تحديث قائمة القصائد المخصصة",
         "AddToLib":"أضف إلى المكتبة",
         "RemoveFromLib":"إزالة من المكتبة",
         "NoDetailsAvailable":"لا توجد تفاصيل متاحة"

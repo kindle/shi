@@ -8,7 +8,13 @@
     },
 
     "Tutorial": {
-        "Language": "Idioma"
+        "Language":"Idioma",
+        "MoreLang":"Mais idiomas",
+        "SizeDesc":"Clique no botão abaixo para ajustar o tamanho do texto",
+        "SizeButtonText":"Clique para ajustar o tamanho do texto",
+        "LearnHowWeCount":"Saiba como contamos as atividades",
+        "ReadyToPlay":"Pronto?",
+        "Continue":"Voltar à aplicação"
     },
 
     "History":{
@@ -162,7 +168,7 @@
         "ReadPoem":"Ler poema",
         "ReadArticle":"Ler artigo",
         "AddCustomList":"Adicionar lista de poemas personalizada",
-        "SaveCustomList":"Atualizar lista de poemas personalizada",
+        "UpdateCustomList":"Atualizar lista de poemas personalizada",
         "AddToLib":"Adicionar à biblioteca",
         "RemoveFromLib":"Remover da biblioteca",
         "NoDetailsAvailable":"Sem detalhes disponíveis"
