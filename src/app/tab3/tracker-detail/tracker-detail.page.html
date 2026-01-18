@@ -86,11 +86,13 @@
             <ion-item *ngFor="let item of selectedDateDetails" detail="false" style="--padding-start: 0;">
               <ion-label>
                  <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <div style="font-size: 12px; color: var(--ion-color-medium);">{{ item.displayTime }}</div>
+                    <div style="font-size: 12px; color: var(--ion-color-medium);">
+                      {{ item.displayTime }}
+                    </div>
                     <div style="font-weight: 500;">
                       {{ ui.instant('Log.' + item.name) }}
                     </div>
-                    <div style="font-size: 14px; color: var(--ion-text-color-step-150); white-space: normal;">
+                    <div style="font-size: 16px; color: var(--ion-text-color-step-150); white-space: normal;">
                       {{ item.content }}
                     </div>
                  </div>

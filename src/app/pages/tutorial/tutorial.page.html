@@ -1,19 +1,20 @@
 <ion-header class="ion-no-border" style="--background:transparent;">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
-    </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(17)">
       {{ ui.instant('Title.Tutorial') }}<!--教程-->
     </ion-title>
+
+    <ion-button slot="end" fill="clear" (click)="home()" size="small">
+      {{ ui.instant('Action.Done') }}<!--完成-->
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <swiper-container #swiper swiper-touch pagination="true">
     <swiper-slide>
-      <div class="slide">
-        <img src="./assets/tutorial/translate.png" />
+      <div class="slide" style="text-align: center;">
+        <img src="./assets/tutorial/translate.png" style="width:250px;height: 250px;" />
         <h2 [style.fontSize]="data.zoom(24)">
           {{ ui.instant('Tutorial.Language') }}<!--语言-->
         </h2>
@@ -60,9 +61,9 @@
     </swiper-slide>
 
     <swiper-slide>
-      <div class="slide" style="text-align: center;">
-        <img src="./assets/tutorial/slide-3.png" />
-        <h2 [style.fontSize]="data.zoom(24)">
+      <div class="slide" style="text-align: center;margin-top:0;">
+        <img src="./assets/tutorial/slide-3.png" style="" />
+        <h2 [style.fontSize]="data.zoom(24)" style="margin-top:0;">
           {{ ui.instant('Tutorial.LearnHowWeCount') }}<!--了解我们如何统计动态-->
         </h2>
         <ul style="text-align: left; display: inline-block;">

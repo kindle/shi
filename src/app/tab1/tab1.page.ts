@@ -169,7 +169,7 @@ export class Tab1Page {
 
   //can not add lifecycle ionViewDidEnter event in directive.
   @ViewChildren("autoswiper") autoSwipers: any;
-  ionViewDidEnter(){
+  ionViewDidEnter(){ 
     this.searchKeywordModel="";
 
     this.autoSwipers.forEach((swiper:any) => {
