@@ -1,5 +1,5 @@
 <div class="tracker-header"
-  *ngIf="showActivity"
+  *ngIf="false&&showActivity"
  [style.fontSize]="dataService.zoom(18)">
   {{totalContributions}} {{ ui.instant('Tracker.Unit') }}{{ ui.instant('Tracker.StudyActivityCount') }}
 </div>
@@ -67,7 +67,7 @@
 
 <div class="activity-header" 
 [style.fontSize]="dataService.zoom(16)"
-*ngIf="showActivity">
+*ngIf="false&&showActivity">
     {{ ui.instant('Tracker.StudyActivity') }}
 </div>
 <div class="activity-feed" *ngIf="false&&showActivity">

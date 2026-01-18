@@ -117,10 +117,21 @@ export class TrackerDetailPage implements OnInit, OnDestroy, AfterViewInit {
 
     // We need 6 rows * 7 cols = 42 cells
     // Calculate start date for the grid
+    /*
     const startDate = new Date(year, month, 1);
     startDate.setDate(startDate.getDate() - startDayOfWeek);
 
     for (let i = 0; i < 42; i++) {
+    */
+    const daysInMonth = lastDayOfMonth.getDate();
+    const totalSlots = startDayOfWeek + daysInMonth;
+    const rows = Math.ceil(totalSlots / 7);
+    const totalCells = rows * 7;
+
+    const startDate = new Date(year, month, 1);
+    startDate.setDate(startDate.getDate() - startDayOfWeek);
+
+    for (let i = 0; i < totalCells; i++) {
         const date = new Date(startDate);
         date.setDate(startDate.getDate() + i);
         
