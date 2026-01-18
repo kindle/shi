@@ -1573,7 +1573,10 @@ export class DataService {
 
   /****tracker logic start****************************** */
   test_tracker:any = [
-    {date:'2025-03-01',value:1},
+    {date:'2025-03-01',value:1, 
+      details:[
+        {name:'ReadPoem', content:"", time:'2025-03-01T10:00:00Z'},
+      ]},
     {date:'2025-06-01',value:1},
     {date:'2025-11-01',value:2},
     {date:'2025-12-03',value:2},
@@ -1607,9 +1610,13 @@ export class DataService {
   }
 
   /*
-  add to lib +1
-  remove from lib +1
-  play a poem +1
+  ReadList +1
+  ReadPoem +1
+  ReadArticle +1
+  AddCustomList +1
+  SaveCustomList +1
+  AddToLib +1
+  RemoveFromLib +1
   */
   addTracker(detail:any=null){
     const now = new Date();
@@ -1620,10 +1627,49 @@ export class DataService {
 
     const index = this.tracker.findIndex((t:any) => t.date === today);
 
+    let content = "";
+    if(detail){
+      if(detail.name == "ReadList"){
+        content = detail.data?.id;
+      }
+      else if(detail.name == "ReadPoem"){
+        content = detail.data?.id;
+      }
+      else if(detail.name == "ReadArticle"){
+        content = detail.data?.id;
+      }
+      else if(detail.name == "AddCustomList"){
+        content = detail.data?.name;
+      }
+      else if(detail.name == "UpdateCustomList"){
+        content = detail.data?.name;
+      }
+      else if(detail.name == "AddToLib"){
+        content = detail.data?.listdata?.id;
+      }
+      else if(detail.name == "RemoveFromLib"){
+        content = detail.data?.listdata?.id;
+      }
+    }
+
+    const newDetail = {
+      name: detail?detail.name:"",
+      content: content,
+      time: now.toISOString()
+    };
+
     if (index > -1) {
       this.tracker[index].value += 1;
+      if(!this.tracker[index].details){
+        this.tracker[index].details = [];
+      }
+      this.tracker[index].details.push(newDetail);
     } else {
-      this.tracker.push({date: today, value: 1});
+      this.tracker.push({
+        date: today, 
+        value: 1,
+        details:[newDetail]
+      });
     }
     
     this.saveTracker();
@@ -1744,7 +1790,7 @@ export class DataService {
       }
 
       this.currentPoem = poem;
-      this.addTracker({name:"read poem",data:poem});
+      this.addTracker({name:"ReadPoem",data:poem});
       if(poem.audio){
         this.setAudio();
       }else{
@@ -1865,7 +1911,7 @@ export class DataService {
       lastupdate: Date.now()
     });
     this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-    this.addTracker({name:"add custom list", data:{name:name, desc:desc}});
+    this.addTracker({name:"AddCustomList", data:{name:name, desc:desc}});
   }
 
   savecustomlist(data:any){
@@ -1875,7 +1921,7 @@ export class DataService {
       findItem[0].data = data;
       findItem[0].lastupdate = Date.now();
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-      this.addTracker({name:"save custom list", data:data});
+      this.addTracker({name:"UpdateCustomList", data:data});
     }
 
   }
@@ -1895,7 +1941,7 @@ export class DataService {
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
-    this.addTracker({name:"add to lib", data:{listdata:listdata, group:group}});
+    this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
     this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
   }
 
@@ -1970,7 +2016,7 @@ export class DataService {
                     break;
                 }
               }
-              this.addTracker({name:"remove from lib", data:{listdata:listdata, group:group}});
+              this.addTracker({name:"RemoveFromLib", data:{listdata:listdata, group:group}});
               this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
             }
           }

@@ -155,5 +155,16 @@
         "NotEnoughCoins":"너 는 {0} 개의 동전 이 있어 야만 자 물 쇠 를 풀 수 있다!",
         "GiveFeedback":"이 게임을 좋아, 그냥 좋은 리뷰를 작성?",
         "Title": "지식을 테스트하세요"
+    },
+
+    "Log":{
+        "ReadList":"시 목록 읽기",
+        "ReadPoem":"시 읽기",
+        "ReadArticle":"기사 읽기",
+        "AddCustomList":"사용자 정의 시 목록 추가",
+        "SaveCustomList":"사용자 정의 시 목록 업데이트",
+        "AddToLib":"라이브러리에 추가",
+        "RemoveFromLib":"라이브러리에서 제거",
+        "NoDetailsAvailable":"세부 정보 없음"
     }
 }

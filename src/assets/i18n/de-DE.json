@@ -155,5 +155,16 @@
         "NotEnoughCoins":"Du brauchst {0} Münzen, um dich zu entsperren!",
         "GiveFeedback":"Wie dieses Spiel, schreiben Sie einfach eine gute Bewertung, nicht wahr?",
         "Title": "Teste dein Wissen"
+    },
+
+    "Log":{
+        "ReadList":"Gedichtliste lesen",
+        "ReadPoem":"Gedicht lesen",
+        "ReadArticle":"Artikel lesen",
+        "AddCustomList":"Benutzerdefinierte Gedichtliste hinzufügen",
+        "SaveCustomList":"Benutzerdefinierte Gedichtliste aktualisieren",
+        "AddToLib":"Zur Bibliothek hinzufügen",
+        "RemoveFromLib":"Aus der Bibliothek entfernen",
+        "NoDetailsAvailable":"Keine Details verfügbar"
     }
 }

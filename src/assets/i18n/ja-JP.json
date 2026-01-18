@@ -155,5 +155,16 @@
         "NotEnoughCoins":"あなたがロックを解除する{0}コインが必要です！",
         "GiveFeedback":"このゲームが好きなら、好評を書きに行きませんか？",
         "Title": "知識を試す"
+    },
+
+    "Log":{
+        "ReadList":"詩のリストを読む",
+        "ReadPoem":"詩を読む",
+        "ReadArticle":"記事を読む",
+        "AddCustomList":"カスタム詩リストを追加",
+        "SaveCustomList":"カスタム詩リストを更新",
+        "AddToLib":"ライブラリに追加",
+        "RemoveFromLib":"ライブラリから削除",
+        "NoDetailsAvailable":"詳細はありません"
     }
 }

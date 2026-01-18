@@ -131,6 +131,9 @@ export class ListPage {
     this.poets = [...authorSet]; 
     //update audio info.
     this.CheckIsPlayList();
+
+    this.data.addTracker({name:"ReadList", data:{id:this.id}});
+    //console.log(this.listdata);
   }
 
   noAudio:any = true;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -17,7 +17,8 @@ interface TrackerCell {
 })
 export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
   @Input() year: number = 2026;
-  @Input() showActivity: boolean = true;
+  @Input() showActivity: boolean = false;
+  @Output() monthSelected = new EventEmitter<{year: number, month: number}>();
   
   weeks: TrackerCell[][] = [];
   months: { name: string, index: number }[] = [];
@@ -29,6 +30,9 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
   ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   displayDays = [false, true, false, true, false, true, false]; // Show labels for Mon, Wed, Fri
   
+  private startX = 0;
+  private startY = 0;
+
   totalContributions: number = 0;
   private trackerSub: Subscription | undefined;
 
@@ -54,6 +58,7 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['year']) {
+      this.extractYears();
       this.generateGrid();
     }
   }
@@ -177,7 +182,7 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
   // So we render a flex container of columns (weeks), each column has 7 cells.
 
 
-  activityFeed: { monthName: string, year: number, count: number }[] = [];
+  activityFeed: { monthName: string, year: number, count: number, monthIndex: number }[] = [];
   searchDate: Date | null = null;
 
   resetActivityFeed() {
@@ -219,7 +224,8 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
         this.activityFeed.push({
           monthName: monthNames[m],
           year: y,
-          count: count
+          count: count,
+          monthIndex: m
         });
         found = true;
       }
@@ -297,8 +303,28 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
     return count;
   }
 
-  details(){
+  onPointerDown(event: any) {
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+  }
 
+  onPointerUp(event: any) {
+    const endX = event.clientX;
+    const endY = event.clientY;
+    const dist = Math.sqrt(Math.pow(endX - this.startX, 2) + Math.pow(endY - this.startY, 2));
+
+    // Threshold of 10 pixels to distinguish between click and drag
+    // Also ignore if it was a right click or other buttons if needed, but for touch mostly matters
+    if (dist < 10) {
+      this.router.navigate(['/tabs/tab3/tracker-detail']);
+    }
+  }
+
+  onMonthClick(monthData: any) {
+    this.monthSelected.emit({
+      year: monthData.year,
+      month: monthData.monthIndex
+    });
   }
 }
 

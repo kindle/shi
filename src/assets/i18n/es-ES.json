@@ -155,5 +155,16 @@
         "NotEnoughCoins":"Necesitas {0} monedas para desbloquear!",
         "GiveFeedback":"Si te gusta este juego, por qué no escribes una buena crítica?",
         "Title": "Pon a prueba tus conocimientos"
+    },
+
+    "Log":{
+        "ReadList":"Leet lista de poemas",
+        "ReadPoem":"Leer poema",
+        "ReadArticle":"Leer artículo",
+        "AddCustomList":"Añadir lista de poemas personalizada",
+        "SaveCustomList":"Actualizar lista de poemas personalizada",
+        "AddToLib":"Añadir a la biblioteca",
+        "RemoveFromLib":"Eliminar de la biblioteca",
+        "NoDetailsAvailable":"No hay detalles disponibles"
     }
 }

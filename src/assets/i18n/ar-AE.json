@@ -155,5 +155,16 @@
         "NotEnoughCoins":"{0} عملة معدنيةفتح",
         "GiveFeedback":"مثل هذه اللعبة، فقط اكتب مراجعة جيدة، أليس كذلك؟",
         "Title": "اختبر معرفتك"
+    },
+
+    "Log":{
+        "ReadList":"قراءة قائمة القصائد",
+        "ReadPoem":"قراءة القصيدة",
+        "ReadArticle":"قراءة المقال",
+        "AddCustomList":"إضافة قائمة قصائد مخصصة",
+        "SaveCustomList":"تحديث قائمة القصائد المخصصة",
+        "AddToLib":"أضف إلى المكتبة",
+        "RemoveFromLib":"إزالة من المكتبة",
+        "NoDetailsAvailable":"لا توجد تفاصيل متاحة"
     }
 }

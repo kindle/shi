@@ -155,5 +155,16 @@
         "NotEnoughCoins":"Você Precisa de {0} moedas para desbloquear!",
         "GiveFeedback":"Como este jogo, escreve uma boa crítica, certo?",
         "Title": "Teste seus conhecimentos"
+    },
+
+    "Log":{
+        "ReadList":"Ler lista de poemas",
+        "ReadPoem":"Ler poema",
+        "ReadArticle":"Ler artigo",
+        "AddCustomList":"Adicionar lista de poemas personalizada",
+        "SaveCustomList":"Atualizar lista de poemas personalizada",
+        "AddToLib":"Adicionar à biblioteca",
+        "RemoveFromLib":"Remover da biblioteca",
+        "NoDetailsAvailable":"Sem detalhes disponíveis"
     }
 }

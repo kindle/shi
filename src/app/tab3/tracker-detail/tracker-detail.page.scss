@@ -1,0 +1,143 @@
+
+.calendar-wrapper {
+  padding: 15px;
+  background: white;
+  margin-top: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  margin-bottom: 10px;
+  
+  .weekday-label {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  
+  .calendar-cell {
+    aspect-ratio: 1; // Square cells
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    
+    .day-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .day-number {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin-top: 4px;
+    }
+
+    // Default text color for other months
+    &.other-month {
+      .day-number {
+        color: #ddd;
+      }
+      
+      &.has-data {
+        .day-number {
+            color: black;
+        }
+      }
+    }
+
+    // Future dates in current month
+    &.future {
+      .day-number {
+        color: #bbb;
+      }
+    }
+
+    // Past/Present dates in current month
+    &.past-current {
+      .day-number {
+        color: black;
+        font-weight: normal;
+      }
+    }
+
+    &.today {
+      .day-number {
+        color: black;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Modal styles
+ion-modal#tracker-details-modal {
+    --height: auto;
+    --max-height: 80%;
+    --width: 100%;
+    --border-radius: 16px;
+    
+    // Center the modal
+    align-items: center;
+    justify-content: center;
+
+    &::part(content) {
+        width: calc(100% - 40px);
+        max-width: 600px; /* Optional max-width for larger screens */
+        border-radius: 16px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+}
+
+.calendar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+
+  .current-month-indicator {
+    display: flex;
+    align-items: center;
+    background-color: #f5f6f8;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    
+    ion-icon {
+      font-size: 16px;
+      margin-right: 6px;
+      color: #666;
+    }
+  }
+
+  .nav-buttons {
+    display: flex;
+    
+    ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      margin: 0;
+      color: #555;
+    }
+  }
+}

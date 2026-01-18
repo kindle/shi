@@ -1,6 +1,6 @@
 <div class="tracker-header"
-[style.fontSize]="dataService.zoom(18)"
->
+  *ngIf="showActivity"
+ [style.fontSize]="dataService.zoom(18)">
   {{totalContributions}} {{ ui.instant('Tracker.Unit') }}{{ ui.instant('Tracker.StudyActivityCount') }}
 </div>
 <div class="tracker-component">
@@ -16,7 +16,9 @@
       </div>
 
       <!-- Graph -->
-      <div class="weeks-grid">
+      <div class="weeks-grid"
+      (pointerdown)="onPointerDown($event)"
+      (pointerup)="onPointerUp($event)">
         <div class="week-column" *ngFor="let week of weeks; let wIndex = index">
            <div class="month-placeholder">
              <span class="month-text" *ngFor="let m of months" [hidden]="m.index !== wIndex">
@@ -45,10 +47,10 @@
     </div>
   </div>
 
-  <div class="controls">
+  <div class="controls" *ngIf="showActivity">
     <div class="learn-more" (click)="dataService.tutorial()"
       [style.fontSize]="dataService.zoom(15)">
-      {{ ui.instant('Tracker.Learn') }}
+      {{ ui.instant('Tracker.Learn') }}<!--了解统计规则-->
     </div>
     <ion-item lines="none" class="year-selector">
       <ion-select [value]="year" 
@@ -68,8 +70,8 @@
 *ngIf="showActivity">
     {{ ui.instant('Tracker.StudyActivity') }}
 </div>
-<div class="activity-feed" *ngIf="showActivity">
-  <div *ngFor="let m of activityFeed" class="month-block">
+<div class="activity-feed" *ngIf="false&&showActivity">
+  <div *ngFor="let m of activityFeed" class="month-block" (click)="onMonthClick(m)">
     <div class="month-title"
         [style.fontSize]="dataService.zoom(12)">
         {{m.monthName}} {{m.year}}

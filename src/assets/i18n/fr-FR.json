@@ -155,5 +155,16 @@
         "NotEnoughCoins":"Il te faut {0} pièces pour le déblocage!",
         "GiveFeedback":"Comme ce jeu, il suffit d’écrire un bon commentaire, non?",
         "Title": "Testez vos connaissances"
+    },
+
+    "Log":{
+        "ReadList":"Lire la liste de poèmes",
+        "ReadPoem":"Lire le poème",
+        "ReadArticle":"Lire l'article",
+        "AddCustomList":"Ajouter une liste de poèmes personnalisée",
+        "SaveCustomList":"Mettre à jour la liste de poèmes personnalisée",
+        "AddToLib":"Ajouter à la bibliothèque",
+        "RemoveFromLib":"Retirer de la bibliothèque",
+        "NoDetailsAvailable":"Aucun détail disponible"
     }
 }

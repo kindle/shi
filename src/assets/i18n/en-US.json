@@ -155,5 +155,16 @@
         "NotEnoughCoins":"You need {0} coins to unlock!",
         "GiveFeedback":"You like this game? Write a good comment",
         "Title": "Test Your Knowledge"
+    },
+
+    "Log":{
+        "ReadList":"Read Poem List",
+        "ReadPoem":"Read Poem",
+        "ReadArticle":"Read Article",
+        "AddCustomList":"Add Custom Poem List",
+        "SaveCustomList":"Update Custom Poem List",
+        "AddToLib":"Add to Library",
+        "RemoveFromLib":"Remove from Library",
+        "NoDetailsAvailable":"No details available"
     }
 }

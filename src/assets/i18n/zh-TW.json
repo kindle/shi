@@ -156,5 +156,16 @@
         "NotEnoughCoins":"需要支付{0}金幣解鎖，金幣不够啦!",
         "GiveFeedback":"喜歡這個遊戲，就去寫個好評吧？",
         "Title": "考考你"
+    },
+
+    "Log":{
+        "ReadList":"閱讀詩單",
+        "ReadPoem":"閱讀詩詞",
+        "ReadArticle":"閱讀文章",
+        "AddCustomList":"添加自定義詩單列表",
+        "SaveCustomList":"更新自定義詩單列表",
+        "AddToLib":"添加到資料庫",
+        "RemoveFromLib":"從資料庫中移除",
+        "NoDetailsAvailable":"暫無詳細信息"
     }
 }

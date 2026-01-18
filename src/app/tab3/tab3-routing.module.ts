@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./tag/tag.module').then( m => m.TagPageModule)
   },
   {
+    path: 'tracker-detail',
+    loadChildren: () => import('./tracker-detail/tracker-detail.module').then( m => m.TrackerDetailPageModule)
+  },
+  {
     path: 'article',
     loadChildren: () => import('./article/article.module').then( m => m.ArticlePageModule)
   },
