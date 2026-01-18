@@ -71,6 +71,7 @@ export class PlayerPage implements OnInit {
     this.dragvalue = draggingValue;
   }
   onDragStart(ev: Event) {
+    this.dragWhere = true;
     this.data.dragWhere =true;
     //this.data.audio.pause();
     //this.data.lrc.pause();
@@ -79,20 +80,37 @@ export class PlayerPage implements OnInit {
   }
 
   onDragEnd(ev: Event) {
-    this.data.dragWhere =false;
-    this.data.currentTime = (ev as RangeCustomEvent).detail.value;
-    //this.data.leftTime = this.data.duration - this.data.currentTime;
-    //console.log(this.currentTime);
+    this.dragWhere = false;
     
-    if(this.data.audio){
-      this.data.audio.currentTime = this.data.currentTime;
+    // Force blocking updates immediately on drop to ensure stability during seek
+    // This protects against race conditions even if onDragStart didn't fire correctly
+    this.data.dragWhere = true;
 
-      this.data.audio.play();
-      //this.data.currentPoem.paragraphs = ["","","","",""];
-      //this.data.lrc.play(this.data.audio.currentTime * 1000);
-      this.data.isPlaying = true;
+    const value = (ev as RangeCustomEvent).detail.value;
+    // console.log("DragEnd Value:", value, "Duration:", this.data.duration);
+
+    if (typeof value === 'number' && !isNaN(value)) {
+      this.data.currentTime = value;
+      
+      if(this.data.audio){
+        let seekTime = value;
+        // Ensure within bounds if duration is valid
+        if (this.data.duration > 0 && seekTime > this.data.duration) {
+            seekTime = this.data.duration;
+        }
+        if (seekTime < 0) seekTime = 0;
+
+        this.data.audio.currentTime = seekTime;
+
+        this.data.audio.play().catch((e:any) => console.error("Play error:", e));
+        this.data.isPlaying = true;
+      }
     }
     
+    // Add substantial delay before resuming time updates to allow audio seek to stabilize
+    setTimeout(() => {
+      this.data.dragWhere =false;
+    }, 1200);
   }
   
   formatTime(seconds=0) {

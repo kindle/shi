@@ -9,6 +9,7 @@ import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
 import { catchError, tap, BehaviorSubject } from 'rxjs';
 import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
+import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 import { Solar } from 'lunar-typescript';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
@@ -80,6 +81,7 @@ export class DataService {
     private modalController: ModalController,
     private eventService: EventService,
     private media: Media,
+    private musicControls: MusicControls,
     private socialSharing: SocialSharing,
   ){
     this.platform = platform;
@@ -877,10 +879,12 @@ export class DataService {
   execPlay(){
     this.isPlaying = true;
     this.audio.play();
+    this.musicControls.updateIsPlaying(true);
   }
   execPause(){
     this.isPlaying = false;
     this.audio.pause();
+    this.musicControls.updateIsPlaying(false);
   }
 
 
@@ -900,7 +904,9 @@ export class DataService {
   audioLoadedmetadataFn:any;
   audioTimeupdateFn:any;
   audioEndedFn:any;
+  musicControlsSubscription:any;
   audioMedia:any;
+  lastUpdateElapsed:any = 0;
   playbackRate = 1.0;
   togglePlaybackRate(){
     if(this.playbackRate === 1.0){
@@ -915,6 +921,35 @@ export class DataService {
       this.playbackRate = 1.0;
     }
     this.audio.playbackRate = this.playbackRate;
+  }
+
+  updateMusicControls() {
+    if (!this.currentPoem) return;
+    
+    // Ensure valid duration/elapsed
+    const duration = Number.isFinite(this.audio.duration) ? this.audio.duration : 0;
+    const elapsed = Number.isFinite(this.audio.currentTime) ? this.audio.currentTime : 0;
+
+    this.musicControls.create({
+      track       : this.currentPoem.title,
+      artist      : this.currentPoem.author,
+      cover       : 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg',
+      isPlaying   : this.isPlaying,
+      dismissable : true,
+      hasPrev     : false,
+      hasNext     : true,
+      hasClose    : true,
+      hasScrubbing: true,
+      duration: duration,
+      elapsed: elapsed,
+      // ticker      : 'Now playing ' + this.currentPoem.title,
+      playIcon: 'media_play',
+      pauseIcon: 'media_pause',
+      prevIcon: 'media_prev',
+      nextIcon: 'media_next',
+      closeIcon: 'media_close',
+      notificationIcon: 'notification'
+    });
   }
 
   setAudio(){
@@ -983,14 +1018,75 @@ export class DataService {
         });
       }
 
+      this.updateMusicControls();
+  
+      if(this.musicControlsSubscription){
+        this.musicControlsSubscription.unsubscribe();
+      }
+
+      this.musicControlsSubscription = this.musicControls.subscribe().subscribe((action) => {
+        const message = JSON.parse(action).message;
+        // console.log(message);
+        switch(message) {
+          case 'music-controls-next':
+            this.playNext();
+            break;
+          case 'music-controls-previous':
+            // this.playPrev();
+            break;
+          case 'music-controls-pause':
+            this.execPause();
+            break;
+          case 'music-controls-play':
+            this.execPlay();
+            break;
+          case 'music-controls-destroy':
+            this.execPause();
+            break;
+          case 'music-controls-toggle-play-pause' :
+            if(this.isPlaying){
+              this.execPause();
+            }else{
+              this.execPlay();
+            }
+            break;
+          case 'music-controls-seek-to':
+            const seekTo = JSON.parse(action).position;
+            this.audio.currentTime = seekTo;
+            this.musicControls.updateElapsed({
+              elapsed: seekTo,
+              isPlaying: this.isPlaying
+            });
+            break;
+          case 'music-controls-headset-unplugged':
+            this.execPause();
+            break;
+        }
+      });
+      this.musicControls.listen();
+
       this.audio.play();
     }
     this.audio.addEventListener('loadedmetadata', this.audioLoadedmetadataFn);
+
+    // Also update if duration changes (streaming/buffering)
+    this.audio.addEventListener('durationchange', () => {
+        this.updateMusicControls();
+    });
 
     this.audioTimeupdateFn = () => {
       //when dragging, do not update the progress bar.
       if(this.dragWhere===false){
         this.currentTime = this.audio.currentTime;
+
+        // throttle to 1 second
+        if (Math.abs(this.currentTime - this.lastUpdateElapsed) > 1) {
+          this.musicControls.updateElapsed({
+            elapsed: this.currentTime,
+            isPlaying: this.isPlaying
+          });
+          this.lastUpdateElapsed = this.currentTime;
+        }
         
         if ('mediaSession' in navigator && 'setPositionState' in navigator.mediaSession) {
           if(isFinite(this.audio.duration) && isFinite(this.audio.currentTime)){

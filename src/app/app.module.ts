@@ -12,6 +12,7 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { IonicGestureConfig } from './utils/IonicGestureConfig';
 import { EventService } from './services/event.service';
 import { Media } from '@awesome-cordova-plugins/media/ngx'
+import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonModule } from '@angular/common';
@@ -38,6 +39,7 @@ import { ScrollService } from './services/scroll.service';
     EventService,
     ScrollService,
     Media,
+    MusicControls,
   ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
