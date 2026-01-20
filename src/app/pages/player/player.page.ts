@@ -110,7 +110,7 @@ export class PlayerPage implements OnInit {
     // Add substantial delay before resuming time updates to allow audio seek to stabilize
     setTimeout(() => {
       this.data.dragWhere =false;
-    }, 1200);
+    }, 500);
   }
   
   formatTime(seconds=0) {

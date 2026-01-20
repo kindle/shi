@@ -531,6 +531,8 @@ export class DataService {
     let solar = Solar.fromYmd(today.getFullYear(),(today.getMonth()+1),today.getDate());
     //let solar = Solar.fromYmd(2023,9,23);
     let solarTermName = solar.getLunar().getJieQi();//example: "夏至";
+    //test 大寒
+    //solarTermName = "大寒"
     //console.log('更多信息')
 
     //console.log(solar.getLunar().getMonthInChinese())
@@ -557,29 +559,29 @@ export class DataService {
 
   solarTermMap:any = new Map([
     ["立春",{image:"bird.jpg", title:"忽对林亭雪，瑶华处处开", desc:"立春，为二十四节气之首。立，是“开始”之意；春，代表着温暖、生长。立春标志着万物闭藏的冬季已过去，开始进入风和日暖、万物生长的春季。在自然界，立春最显著的特点就是万物开始有复苏的迹象。"}],
-    ["雨水",{image:"leaf-1001679_1280.jpg", title:"", desc:""}],
-    ["惊蛰",{image:"bee-4913122_1280.jpg", title:"", desc:""}],
-    ["春分",{image:"flowers-4917370_1280.jpg", title:"", desc:""}],
+    ["雨水",{image:"leaf-1001679_1280.jpg", title:"好雨知时节，当春乃发生", desc:"雨水节气标示着降雨开始，雨量渐增。在二十四节气中，雨水不仅表示降雨的开始，也表明雨量开始增多。进入雨水节气，我国北方地区尚未有春天气息，南方大多数地方则是春意盎然，一幅早春的景象。"}],
+    ["惊蛰",{image:"bee-4913122_1280.jpg", title:"微雨众卉新，一雷惊蛰始", desc:"惊蛰反映的是自然生物受节律变化影响而出现萌发生长的现象。时至惊蛰，阳气上升、气温回暖、春雷乍动、雨水增多，万物生机盎然。"}],
+    ["春分",{image:"flowers-4917370_1280.jpg", title:"仲春初四日，春色正中分", desc:"春分时，太阳直射赤道，昼夜平分。春分后，气候温和，雨水充沛，阳光明媚，中国大部分地区的越冬作物进入春季生长阶段。"}],
     ["清明",{image:"water-815271_1280.jpg", title:"清明时节雨纷纷，路上行人欲断魂", desc:"清明节气因为节令期间“气清景明、万物皆显”而得名。清明是反映自然界物候变化的节气，这个时节阳光明媚、草木萌动、百花盛开，自然界呈现一派生机勃勃的景象。"}],
-    ["谷雨",{image:"ornamental-apple-tree-4162359_1280.jpg", title:"", desc:""}],
-    ["立夏",{image:"corn-field-440338_1280.jpg", title:"", desc:""}],
-    ["小满",{image:"wheat-865152_1280.jpg", title:"", desc:""}],
-    ["芒种",{image:"rape-blossom-502973_1280.jpg", title:"", desc:""}],
-    ["夏至",{image:"stonehenge-2326750_1280.jpg", title:"", desc:""}],
-    ["小暑",{image:"lotus-7511897_1280.jpg", title:"", desc:""}],
-    ["大暑",{image:"lotus-978659_1280.jpg", title:"", desc:""}],
-    ["立秋",{image:"leaves-318743_1280.jpg", title:"", desc:""}],
-    ["处暑",{image:"woman-1807533_1280.jpg", title:"", desc:""}],
-    ["白露",{image:"raindrops-574971_1280.jpg", title:"", desc:""}],
-    ["秋分",{image:"colorful-2609978_1280.jpg", title:"", desc:""}],
-    ["寒露",{image:"flower-2438754_1280.jpg", title:"", desc:""}],
-    ["霜降",{image:"cold-3967895_1280.jpg", title:"", desc:""}],
-    ["立冬",{image:"snow-5910822_1280.jpg", title:"", desc:""}],
-    ["小雪",{image:"aurora-1197753_1280.jpg", title:"", desc:""}],
-    ["大雪",{image:"forest-2964073_1280.jpg", title:"", desc:""}],
-    ["冬至",{image:"tree-2532679_1280.jpg", title:"", desc:""}],
-    ["小寒",{image:"24小寒.jpg", title:"", desc:""}],
-    ["大寒",{image:"ice-570500_1280.jpg", title:"", desc:""}],
+    ["谷雨",{image:"ornamental-apple-tree-4162359_1280.jpg", title:"谷雨春光晓，山川黛色青", desc:"谷雨是春季的最后一个节气。此时降水明显增加，田中的秧苗初插、作物新种，最需要雨水的滋润，正所谓“春雨贵如油”。"}],
+    ["立夏",{image:"corn-field-440338_1280.jpg", title:"绿树阴浓夏日长，楼台倒影入池塘", desc:"立夏是夏季的第一个节气，表示盛夏时节的正式开始。此时，温度明显升高，炎暑将临，雷雨增多，农作物由此进入旺季生长阶段。"}],
+    ["小满",{image:"wheat-865152_1280.jpg", title:"枇杷黄似橘，年年小满日", desc:"小满节气意味着进入了大幅降水的雨季，雨水开始增多。小满也指籽粒开始灌浆饱满，但还未成熟，只是小满，还未大满。"}],
+    ["芒种",{image:"rape-blossom-502973_1280.jpg", title:"时雨及芒种，四野皆插秧", desc:"芒种是“有芒之谷类作物可种”的意思。这个时节气温显著升高、雨量充沛、空气湿度大，适宜晚稻等谷类作物种植。"}],
+    ["夏至",{image:"stonehenge-2326750_1280.jpg", title:"昼晷已云极，宵漏自此长", desc:"夏至这天，太阳直射地面的位置到达一年的最北端，几乎直射北回归线，此时，北半球各地的白昼时间达到全年最长。"}],
+    ["小暑",{image:"lotus-7511897_1280.jpg", title:"倏忽温风至，因循小暑来", desc:"小暑是天气已经很热了，但还不到最热的时候。小暑开始进入伏天，天气变化剧烈，不仅高温酷暑，还是雷暴、台风等强对流天气多发期。"}],
+    ["大暑",{image:"lotus-978659_1280.jpg", title:"赤日几时过，清风无处寻", desc:"大暑是全年最热的节气，“湿热交蒸”在此时到达顶点。大暑气候特征：高温酷热，雷暴、台风频繁。"}],
+    ["立秋",{image:"leaves-318743_1280.jpg", title:"睡起秋声无觅处，满阶梧桐月明中", desc:"立秋是秋季的第一个节气，为秋季的起点。秋季是暑热与凉寒交替的季节，立秋也意味着降沉、收敛。"}],
+    ["处暑",{image:"woman-1807533_1280.jpg", title:"离离暑云散，袅袅凉风起", desc:"处暑，即为“出暑”，是炎热离开的意思。处暑是气温由炎热向寒冷过渡的节气。"}],
+    ["白露",{image:"raindrops-574971_1280.jpg", title:"露从今夜白，月是故乡明", desc:"白露是反映自然界气温变化的重要节气。白露后，天气逐渐转凉，昼夜温差增大，水汽凝结成露水。"}],
+    ["秋分",{image:"colorful-2609978_1280.jpg", title:"暑退秋澄气转凉，日光夜色两均长", desc:"秋分时，太阳直射赤道，昼夜再次平分。此后，北半球昼短夜长，气温逐日下降，逐渐步入深秋。"}],
+    ["寒露",{image:"flower-2438754_1280.jpg", title:"寒露惊秋晚，朝看菊渐黄", desc:"寒露是气候从凉爽到寒冷的过渡。此时，气温比白露时更低，地面的露水更多，快要凝结成霜了。"}],
+    ["霜降",{image:"cold-3967895_1280.jpg", title:"停车坐爱枫林晚，霜叶红于二月花", desc:"霜降是秋季的最后一个节气，是秋季到冬季的过渡。霜降节气特点是早晚天气较冷、中午则比较热，昼夜温差大，秋燥明显。"}],
+    ["立冬",{image:"snow-5910822_1280.jpg", title:"细雨生寒未有霜，庭前木叶半青黄", desc:"立冬是冬季的第一个节气，代表着冬季的开始。立冬是季节类节气，表示自此进入了冬季，万物收藏，规避寒冷。"}],
+    ["小雪",{image:"aurora-1197753_1280.jpg", title:"晚来天欲雪，能饮一杯无", desc:"小雪是反映降水与气温的节气。小雪节气的到来，意味着天气会越来越冷、降水量渐增，由于气温不够低，降雪往往较小。"}],
+    ["大雪",{image:"forest-2964073_1280.jpg", title:"柴门闻犬吠，风雪夜归人", desc:"大雪节气是日照最短、气温最低、降雪可能性最大的时期。大雪的意思是天气更冷，降雪的可能性比小雪时更大了。"}],
+    ["冬至",{image:"tree-2532679_1280.jpg", title:"天时人事日相催，冬至阳生春又来", desc:"冬至这天，太阳直射地面的位置到达一年的最南端，北半球的白昼达到最短，且越往北白昼越短。冬至也是重要的传统节日。"}],
+    ["小寒",{image:"24小寒.jpg", title:"小寒连大吕，欢鹊垒新巢", desc:"小寒是天气寒冷但还没有到极致的意思。小寒节气的特点就是寒冷，标志着开始进入一年中最寒冷的日子。"}],
+    ["大寒",{image:"ice-570500_1280.jpg", title:"腊酒自盈樽，金炉兽炭温", desc:"大寒是二十四节气中的最后一个节气。大寒同小寒一样，也是表示天气寒冷程度的节气，大寒是天气寒冷到极致的意思。"}],
   ]);
 
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
@@ -1676,20 +1678,39 @@ export class DataService {
 
   /****tracker logic start****************************** */
   test_tracker:any = [
-    {date:'2025-03-01',value:1, 
+    {date:'2025-03-01',value:2, 
       details:[
         {name:'ReadPoem', content:"", time:'2025-03-01T10:00:00Z'},
+        {name:'Search', content:"李白", time:'2025-03-01T10:05:00Z'},
       ]},
     {date:'2025-06-01',value:1},
     {date:'2025-11-01',value:2},
-    {date:'2025-12-03',value:2},
+    {date:'2025-12-03',value:2,
+      details:[
+        {name:'Search', content:"杜甫", time:'2025-12-03T14:30:00Z'},
+        {name:'Search', content:"苏轼", time:'2025-12-03T16:20:00Z'},
+      ]
+    },
     {date:'2026-01-02',value:1},
     {date:'2026-01-04',value:2},
     {date:'2026-01-05',value:3},
-    {date:'2026-01-06',value:4},
+    {date:'2026-01-06',value:4,
+      details:[
+        {name:'Search', content:"春江花月夜", time:'2026-01-06T09:15:00Z'},
+        {name:'Search', content:"将进酒", time:'2026-01-06T10:00:00Z'},
+        {name:'ReadPoem', content:"", time:'2026-01-06T10:05:00Z'},
+        {name:'ReadPoem', content:"", time:'2026-01-06T11:20:00Z'},
+      ]
+    },
     {date:'2026-01-07',value:3},
     {date:'2026-01-09',value:1},
-    {date:'2026-01-10',value:0}
+    {date:'2026-01-10',value:17},
+    {date:'2026-01-11',value:5},
+    {date:'2026-01-12',value:2},
+    {date:'2026-01-13',value:4},
+    {date:'2026-01-15',value:33},
+    {date:'2026-01-16',value:3},
+    {date:'2026-01-18',value:1}
   ];
   tracker:any = [];
   public trackerSubject = new BehaviorSubject<any[]>([]);
@@ -2541,7 +2562,7 @@ export class DataService {
     }
   }
 
-  AppVersion:any="1.0.7";
+  AppVersion:any="1.7";
   async feedback(){
     let subject = this.ui.instant('Title.Feedback')+"";
     let body = "";

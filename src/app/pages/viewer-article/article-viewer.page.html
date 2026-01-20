@@ -118,8 +118,8 @@
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
        <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
        [text]="it.value" *ngIf="it.type=='text'"></app-text>
-       <app-text style="margin:0px 20px;color:black;" [nofold]="false" name="" 
-       [text]="it.memo" *ngIf="it.type=='text'"></app-text>
+       <app-text style="margin:0px 20px;color:black;" [nofold]="false" name=""
+       [text]="it.memo" *ngIf="it.memo&&it.type=='text'"></app-text>
 
         <div style="margin:0 20px;" *ngIf="it.type=='image'">
           <img  src="https://reddah.blob.core.windows.net/msjjimg/{{it.value}}" (click)="ui.imageviewer('https://reddah.blob.core.windows.net/msjjimg/'+it.value)" >
