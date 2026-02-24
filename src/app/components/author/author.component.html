@@ -3,13 +3,13 @@
     <ion-buttons>
       <ion-card-title class="station-text" style="font-weight: bold;"
        [style.fontSize]="data.zoom(20)">{{name}}</ion-card-title>
-      <ion-button *ngIf="source.length>2">
+      <ion-button *ngIf="source?.length>2">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-card-content>
 </ion-header>
-<swiper-container swiper-touch
+<swiper-container swiper-touch *ngIf="source"
     style="margin-top:20px;margin-bottom: 20px;" class="swiper-container"
     space-between="10" direction="horizontal"
     slides-per-view="auto"
@@ -17,8 +17,8 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToAuthor(s)" style="width:140px;">
-    <div style="display: flex; justify-content: center; flex-direction: column;width:120px;">
+  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" (click)="data.goToAuthor(s)" style="width:140px;">
+    <div class="slide-in-right" [style.animation-delay]="i * 0.05 + 's'" style="display: flex; justify-content: center; flex-direction: column;width:120px;">
       <img width="120" height="120" style="border-radius: 10px;" 
         style="border-radius: 50%;"
         defaultImage="assets/img/default.jpg" 

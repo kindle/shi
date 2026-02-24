@@ -5,7 +5,7 @@
       [style.fontSize]="data.zoom(20)">
         {{name}}
       </ion-card-title>
-      <ion-button *ngIf="source.length>2">
+      <ion-button *ngIf="source?.length>2">
         <ion-icon name="chevron-forward-outline" color="dark"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -20,7 +20,7 @@
   </ion-buttons>
   -->
 </ion-toolbar>
-<swiper-container swiper-touch
+<swiper-container swiper-touch *ngIf="source"
     style="margin-top:10px;margin-bottom: 20px;touch-action: pan-y;" class="swiper-container"
     [loop]="data.TestMode"
     space-between="10" direction="horizontal"
@@ -29,21 +29,23 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source" class="swiper-slide" (click)="data.goToListBy(s)">
+  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" (click)="data.goToListBy(s)">
     
-    <div class="card-scroll-item1" 
-      [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      defaultImage="" 
-      lazyLoad="{{s.src?s.src:s.image}}"
-      style="background-size:cover;
-        background-repeat:no-repeat;
-        background-color:{{s.color}};">
-    </div>
-    <div class="card-text-style"
-      [style.fontSize]="data.zoom(16)">
-      {{s.text?s.text:s.sub}}{{s.sample?' | '+s.sample:''}}
-      <br>
-      <span style="font-weight: lighter;">{{s.desc&&s.desc.length>20 ? (s.sub?s.sub:s.desc) : s.desc}}</span>
+    <div class="slide-in-right" [style.animation-delay]="i * 0.05 + 's'">
+        <div class="card-scroll-item1" 
+        [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
+        defaultImage="" 
+        lazyLoad="{{s.src?s.src:s.image}}"
+        style="background-size:cover;
+            background-repeat:no-repeat;
+            background-color:{{s.color}};">
+        </div>
+        <div class="card-text-style"
+        [style.fontSize]="data.zoom(16)">
+        {{s.text?s.text:s.sub}}{{s.sample?' | '+s.sample:''}}
+        <br>
+        <span style="font-weight: lighter;">{{s.desc&&s.desc.length>20 ? (s.sub?s.sub:s.desc) : s.desc}}</span>
+        </div>
     </div>
   </swiper-slide>
 </swiper-container>

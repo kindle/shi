@@ -18,6 +18,25 @@
     font-weight: normal;
 }
 
+@keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+  
+.slide-in-right {
+    opacity: 0;
+}
+
+:host(.in-view) .slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
 .station-type{
     color:black;
     font-size:20px;
