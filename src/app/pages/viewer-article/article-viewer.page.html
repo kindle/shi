@@ -112,7 +112,10 @@
     </div>
     
 
-    <div style="padding:0px 0;background-color:white;">
+    <div style="padding:0px 0;background-color:white;bailin:1;
+    border-top-left-radius: 20px;border-top-right-radius: 20px;"
+    [style.marginTop]="data.currentArticle.effect ? '' : '-20px'"
+    >
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
