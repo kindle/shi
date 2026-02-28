@@ -49,11 +49,10 @@
                 <ion-icon name="add-circle-outline" slot="end"></ion-icon>
               </ion-item>
               -->
-              <!--
-              <ion-item lines="full" [button]="true" [detail]="false">
-                分享
-                <ion-icon name="share-outline" slot="end"></ion-icon>
-              </ion-item>-->
+              <ion-item lines="full" [button]="true" [detail]="false" (click)="shareArticle()">
+                {{ ui.instant('Action.Share') }}<!--分享-->
+                <ion-icon name="share-social-outline" slot="end"></ion-icon>
+              </ion-item>
             </ion-list>
           </ion-content>
         </ng-template>
