@@ -250,17 +250,6 @@ export class PoetPage {
         const bigTitle = this.authorData ? this.authorData.name : this.author;
         const smallTitle = this.authorData ? this.authorData.desc : "";
 
-        // Draw Small Title (Description)
-        // if (smallTitle) {
-        //   const smallFontSize = Math.floor(canvas.width / 25);
-        //   ctx.font = `bold ${smallFontSize}px Arial`;
-        //   ctx.lineWidth = 3;
-        //   // Limit description to a few lines if too long? For now just wrap
-        //   this.wrapText(ctx, smallTitle.slice(0, 100) + (smallTitle.length > 100 ? "..." : ""), x, y, maxWidth, smallFontSize * 1.4);
-        //   const lines = this.getLines(ctx, smallTitle.slice(0, 100) + (smallTitle.length > 100 ? "..." : ""), maxWidth);
-        //   y += lines.length * (smallFontSize * 1.4) + 20;
-        // }
-
         // Draw Big Title (Author Name)
         const bigFontSize = Math.floor(canvas.width / 15);
         ctx.font = `bold ${bigFontSize}px Arial`;

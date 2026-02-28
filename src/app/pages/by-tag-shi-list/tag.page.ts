@@ -121,4 +121,145 @@ export class TagPage {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 200);
   }
+
+  shareArticle(){
+    const bgUrl = this.getUrl();
+    
+    const loadImage = (src: string, isCors = false) => {
+      return new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image();
+        if(isCors) img.crossOrigin = "Anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = (e) => reject(e);
+        img.src = src;
+      });
+    };
+
+    Promise.all([
+      loadImage(bgUrl, true),
+      loadImage('assets/icon/favicon.png'),
+      loadImage('assets/icon/shi-qr.png')
+    ]).then(([bgImg, iconImg, qrImg]) => {
+      const canvas = document.createElement("canvas");
+      const footerHeight = bgImg.width * 0.2; // Footer height is 20% of image width
+      canvas.width = bgImg.width;
+      canvas.height = bgImg.height + footerHeight;
+      const ctx = canvas.getContext("2d");
+      
+      if(ctx){
+        // Draw Background Color
+        ctx.fillStyle = this.data.getbgcolor();
+        ctx.fillRect(0, 0, canvas.width, bgImg.height);
+
+        // Draw Background Image
+        ctx.drawImage(bgImg, 0, 0);
+
+        // Draw Footer Background
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, bgImg.height, canvas.width, footerHeight);
+
+        // Footer Settings
+        const padding = footerHeight * 0.1;
+        const usefulFooterHeight = footerHeight - 2 * padding;
+        
+        // Draw Icon (Left)
+        // Check aspect ratio to fit within square
+        const iconRatio = iconImg.width / iconImg.height;
+        let iconW = usefulFooterHeight * iconRatio;
+        let iconH = usefulFooterHeight;
+        if(iconW > usefulFooterHeight) {
+            iconW = usefulFooterHeight;
+            iconH = usefulFooterHeight / iconRatio;
+        }
+        ctx.drawImage(iconImg, padding, bgImg.height + padding + (usefulFooterHeight - iconH)/2, iconW, iconH);
+
+        // Draw QR Code (Right)
+        const qrRatio = qrImg.width / qrImg.height;
+        let qrW = usefulFooterHeight * qrRatio;
+        let qrH = usefulFooterHeight;
+        if(qrW > usefulFooterHeight) {
+            qrW = usefulFooterHeight;
+            qrH = usefulFooterHeight / qrRatio;
+        }
+        ctx.drawImage(qrImg, canvas.width - qrW - padding, bgImg.height + padding + (usefulFooterHeight - qrH)/2, qrW, qrH);
+
+        // Draw Text (Center Left)
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        
+        const textStartX = padding + iconW + padding; // specific padding logic
+        const textCenterY = bgImg.height + footerHeight / 2;
+
+        const titleFontSize = Math.floor(footerHeight * 0.3);
+        ctx.font = `bold ${titleFontSize}px Arial`;
+        ctx.fillText('名诗佳句', textStartX, textCenterY - titleFontSize * 0.6);
+
+        const subTitleFontSize = Math.floor(footerHeight * 0.2);
+        ctx.font = `normal ${subTitleFontSize}px Arial`;
+        ctx.fillStyle = "#666666";
+        ctx.fillText('长按识别二维码免费获取', textStartX, textCenterY + subTitleFontSize * 0.8);
+
+        // --- Original Content Drawing Over Background Image ---
+        
+        // Common settings for text
+        ctx.fillStyle = "white";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        ctx.shadowColor = "black";
+        ctx.shadowBlur = 10;
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "black";
+
+        const x = 40;
+        let y = 40;
+        const maxWidth = canvas.width * 0.5; // Use 50% width
+
+        // Draw Big Title
+        const bigFontSize = Math.floor(canvas.width / 15);
+        ctx.font = `bold ${bigFontSize}px Arial`;
+        ctx.lineWidth = 5;
+        this.wrapText(ctx, this.tag, x, y, maxWidth, bigFontSize * 1.4);
+
+        try {
+          const dataUrl = canvas.toDataURL("image/png");
+          // Assuming ui.share takes (image, title, text, url)
+          // Using tag as title and empty string for text as there is no subtitle
+          this.ui.share(dataUrl, this.tag, '', 'https://reddah.com');
+        } catch (e) {
+          console.error("Canvas taint or error", e);
+        }
+      }
+    }).catch(err => {
+        console.error("Failed to load images for sharing", err);
+    });
+  }
+
+  wrapText(ctx: any, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
+    const lines = this.getLines(ctx, text, maxWidth);
+    for (let i = 0; i < lines.length; i++) {
+      ctx.strokeText(lines[i], x, y);
+      ctx.fillText(lines[i], x, y);
+      y += lineHeight;
+    }
+  }
+
+  getLines(ctx: any, text: string, maxWidth: number) {
+    const words = text.split(''); // Split by char for better CJK support
+    let lines = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        const word = words[i];
+        const width = ctx.measureText(currentLine + word).width;
+        if (width < maxWidth) {
+            currentLine += word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+  }
 }
