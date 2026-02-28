@@ -8,6 +8,8 @@ import { Solar } from 'lunar-typescript';
 import { Tab4Page } from '../tab4/tab4.page';
 import { ScrollService } from '../services/scroll.service';
 
+import { IonTabs } from '@ionic/angular';
+
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -17,8 +19,16 @@ export class TabsPage {
 
   @ViewChild('tab4') tab4Instance: Tab4Page|any; 
 
+  @ViewChild('tabs', { static: false }) tabs!: IonTabs;
+  selectedTab: any = 'tab1';
+
   onTabChange(event: any){
     this.data.setLastVisitTab(event.tab);
+    this.setCurrentTab();
+  }
+
+  setCurrentTab() {
+    this.selectedTab = this.tabs.getSelected();
   }
   
   private clickCount = 0;
