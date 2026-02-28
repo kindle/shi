@@ -101,19 +101,83 @@ export class ArticleViewerPage {
 
   shareArticle(){
     const bgUrl = 'https://reddah.blob.core.windows.net/msjjimg/' + this.data.currentArticle.bg_image;
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = bgUrl;
+    
+    const loadImage = (src: string, isCors = false) => {
+      return new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image();
+        if(isCors) img.crossOrigin = "Anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = (e) => reject(e);
+        img.src = src;
+      });
+    };
 
-    img.onload = () => {
+    Promise.all([
+      loadImage(bgUrl, true),
+      loadImage('assets/icon/favicon.png'),
+      loadImage('assets/icon/shi-qr.png')
+    ]).then(([bgImg, iconImg, qrImg]) => {
       const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
+      const footerHeight = bgImg.width * 0.2; // Footer height is 20% of image width
+      canvas.width = bgImg.width;
+      canvas.height = bgImg.height + footerHeight;
       const ctx = canvas.getContext("2d");
+      
       if(ctx){
-        ctx.drawImage(img, 0, 0);
+        // Draw Background Image
+        ctx.drawImage(bgImg, 0, 0);
 
-        // Common settings
+        // Draw Footer Background
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, bgImg.height, canvas.width, footerHeight);
+
+        // Footer Settings
+        const padding = footerHeight * 0.1;
+        const usefulFooterHeight = footerHeight - 2 * padding;
+        
+        // Draw Icon (Left)
+        // Check aspect ratio to fit within square
+        const iconRatio = iconImg.width / iconImg.height;
+        let iconW = usefulFooterHeight * iconRatio;
+        let iconH = usefulFooterHeight;
+        if(iconW > usefulFooterHeight) {
+            iconW = usefulFooterHeight;
+            iconH = usefulFooterHeight / iconRatio;
+        }
+        ctx.drawImage(iconImg, padding, bgImg.height + padding + (usefulFooterHeight - iconH)/2, iconW, iconH);
+
+        // Draw QR Code (Right)
+        const qrRatio = qrImg.width / qrImg.height;
+        let qrW = usefulFooterHeight * qrRatio;
+        let qrH = usefulFooterHeight;
+        if(qrW > usefulFooterHeight) {
+            qrW = usefulFooterHeight;
+            qrH = usefulFooterHeight / qrRatio;
+        }
+        ctx.drawImage(qrImg, canvas.width - qrW - padding, bgImg.height + padding + (usefulFooterHeight - qrH)/2, qrW, qrH);
+
+        // Draw Text (Center Left)
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        
+        const textStartX = padding + iconW + padding; // specific padding logic
+        const textCenterY = bgImg.height + footerHeight / 2;
+
+        const titleFontSize = Math.floor(footerHeight * 0.3);
+        ctx.font = `bold ${titleFontSize}px Arial`;
+        ctx.fillText('名诗佳句', textStartX, textCenterY - titleFontSize * 0.6);
+
+        const subTitleFontSize = Math.floor(footerHeight * 0.2);
+        ctx.font = `normal ${subTitleFontSize}px Arial`;
+        ctx.fillStyle = "#666666";
+        ctx.fillText('长按识别二维码免费获取', textStartX, textCenterY + subTitleFontSize * 0.8);
+
+        // --- Original Content Drawing Over Background Image ---
+        // Restore context settings for article text if needed
+        // Since we are drawing on top of bgImg, we use same coords as before
+        
+        // Common settings for article text
         ctx.fillStyle = "white";
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
@@ -132,8 +196,6 @@ export class ArticleViewerPage {
           ctx.font = `bold ${smallFontSize}px Arial`;
           ctx.lineWidth = 3;
           this.wrapText(ctx, this.data.currentArticle.small_title, x, y, maxWidth, smallFontSize * 1.4);
-          // Estimate height used by small title to push big title down
-          // Simple estimation: count lines
           const lines = this.getLines(ctx, this.data.currentArticle.small_title, maxWidth);
           y += lines.length * (smallFontSize * 1.4) + 20;
         }
@@ -156,7 +218,9 @@ export class ArticleViewerPage {
           console.error("Canvas taint or error", e);
         }
       }
-    };
+    }).catch(err => {
+        console.error("Failed to load images for sharing", err);
+    });
   }
 
   wrapText(ctx: any, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
