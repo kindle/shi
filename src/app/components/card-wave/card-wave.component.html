@@ -2,7 +2,8 @@
 [style.width]="viewer ? 'auto' : 400 + 'px'"
 [style.margin]="viewer ? '0' : null"
   [style.borderRadius]="viewer ? '0' : null">
-  <ion-card-content class="container" id="{{source}}_wave">
+  <ion-card-content class="container" id="{{source}}_wave"
+  [style.height]="viewer ? '460px' : ''">
     <ion-card-subtitle class="card-text" style="z-index: 10;"
     [style.marginTop]="viewer ? '20px' : null"
     [style.fontSize]="data.zoom(18)">{{sub}}</ion-card-subtitle>
