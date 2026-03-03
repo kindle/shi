@@ -16,6 +16,7 @@ import { IonContent, ActionSheetController } from '@ionic/angular';
 })
 export class Tab4Page implements OnInit {
   localJsonData:any;
+  isFocused = false;
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -381,10 +382,12 @@ export class Tab4Page implements OnInit {
     }, 500);
     //from cancel text
     //console.log('cancel text clicked')
+    this.isFocused = false;
     this.stopListening();
     this.data.onSearchCancel();
   }
   onLoseFocus(){
+    this.isFocused = false;
     this.stopListening();
 
     if(!this.isSearchSaved && this.data.searchText!=null && this.data.searchText!="" && this.data.searchText!=this.ui.instant('Search.Tab4')){
@@ -406,6 +409,7 @@ export class Tab4Page implements OnInit {
     }
   }
   onSearchFocus(){
+    this.isFocused = true;
     if(this.data.searchText==this.ui.instant('Search.Tab4')){
       this.data.searchText = "";
       this.onSearchChanged();
