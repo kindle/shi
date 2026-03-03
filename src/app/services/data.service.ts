@@ -539,10 +539,31 @@ export class DataService {
     //console.log(solar.getLunar().getDayInChinese());
     let dateStrChinese = solar.getLunar().getMonthInChinese() + "月" + solar.getLunar().getDayInChinese();
     //console.log("today节气："+solarTermName)
-    if(!this.disableRandomFunData&&solarTermName.length>0)
+    if(!this.disableRandomFunData)
     {
-      //temp = temp.concat(this.getSolarTermPoem(solarTermName));
-      temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
+      if(solarTermName.length>0){
+        //temp = temp.concat(this.getSolarTermPoem(solarTermName));
+        temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
+      }else{
+        //calculate next solar term
+        let nextJieQi = solar.getLunar().getNextJieQi();
+        let nextName = nextJieQi.getName();
+        let nextSolar = nextJieQi.getSolar();
+        let nextDateStr = nextSolar.getMonth() + "月" + nextSolar.getDay() + "日";
+        
+        let today = new Date();
+        today.setHours(0,0,0,0);
+        let nextDate = new Date(nextSolar.getYear(), nextSolar.getMonth()-1, nextSolar.getDay());
+        nextDate.setHours(0,0,0,0);
+        let diff = nextDate.getTime() - today.getTime();
+        let days = Math.round(diff / (1000 * 3600 * 24));
+
+        //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " 还有" + days + "天");
+        let item:any = this.getSolarTermPoem(nextName, "还有" + days + "天");
+        item.big_title = "下个节气 " + nextName;
+        item["image_size"] = "cover";
+        temp.unshift(item);
+      }
     }
 
     //test
