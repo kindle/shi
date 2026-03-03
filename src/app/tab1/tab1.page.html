@@ -896,12 +896,13 @@
       -->
 
       <!--1 article template-->
+      <!--二十四节气、普通文章等-->
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
         *ngIf="item.template=='text'&&!item.effect&&i<10"
         defaultImage="" 
         lazyLoad="{{item.bg_image.indexOf('assets')>0?item.bg_image:('https://reddah.blob.core.windows.net/msjjimg/'+item.bg_image)}}"
-        style="background-size:{{item.image_size}};
+        style="background-size:{{item.image_size?item.image_size:'cover'}};
         min-height: {{item.min_height}};
         background-color:{{data.getbgcolor()}}">
         <ion-card-content [ngClass]="{'title-bottom':item.is_title_bottom}">
