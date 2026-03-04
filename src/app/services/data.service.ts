@@ -549,7 +549,11 @@ export class DataService {
         let nextJieQi = solar.getLunar().getNextJieQi();
         let nextName = nextJieQi.getName();
         let nextSolar = nextJieQi.getSolar();
-        let nextDateStr = nextSolar.getMonth() + "月" + nextSolar.getDay() + "日";
+
+        let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
+        if(nextDateStr){
+          nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
+        }
         
         let today = new Date();
         today.setHours(0,0,0,0);
@@ -557,13 +561,48 @@ export class DataService {
         nextDate.setHours(0,0,0,0);
         let diff = nextDate.getTime() - today.getTime();
         let days = Math.round(diff / (1000 * 3600 * 24));
+        
+        let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
+        if(daysLeftStr){
+          daysLeftStr = daysLeftStr.replace("{{value}}", days);
+        }
 
-        //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " 还有" + days + "天");
-        let item:any = this.getSolarTermPoem(nextName, "还有" + days + "天");
-        item.big_title = "下个节气 " + nextName;
+        let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
+        item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
         item["image_size"] = "cover";
         temp.unshift(item);
       }
+
+      //add next festival
+      let festivalName = this.checkTodayFestival(solar);
+      if(festivalName && festivalName.length > 0){
+        temp.unshift(this.getFestivalPoem(festivalName, dateStrChinese));
+      } else {
+        let today = new Date();
+        today.setHours(0,0,0,0);
+        let nextFestival = this.getNextFestival(today);
+        if(nextFestival){
+            let nextName = nextFestival.name;
+            let days = nextFestival.days;
+            let nextSolar = nextFestival.date;
+            
+            let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
+            if(nextDateStr){
+              nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
+            }
+            
+            let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
+            if(daysLeftStr){
+              daysLeftStr = daysLeftStr.replace("{{value}}", days);
+            }
+
+            let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
+            item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
+            item["image_size"] = "cover";
+            temp.unshift(item);
+        }
+      }
+
     }
 
     //test
@@ -647,6 +686,102 @@ export class DataService {
       link:"",
     };
     return result;
+  }
+
+  festivalMap:any = new Map([
+    ["元旦",{image:"lanterns-1186851_1280.jpg", title:"爆竹声中一岁除，春风送暖入屠苏", desc:"元旦，即公历的1月1日，是世界多数国家通称的“新年”。元，谓“始”，凡数之始称为“元”；旦，谓“日”；“元旦”意即“初始之日”。"}],
+    ["除夕",{image:"chinese-new-year-4786634_1280.jpg", title:"千门万户曈曈日，总把新桃换旧符", desc:"除夕，为岁末的最后一天夜晚。岁除之日，民间尤为重视，家家户户忙忙碌碌或清扫庭舍，除旧布新；张灯结彩，迎祖宗回家过年。"}],
+    ["春节",{image:"lion-dance-4790356_1280.jpg", title:"半盏屠苏犹未举，灯前小草写桃符", desc:"春节，即中国农历新年，俗称新春、新岁、岁旦等，口头上又称过年、过大年。春节历史悠久，由上古时代岁首祈岁祭祀演变而来。"}],
+    ["劳动节",{image:"labor-day-4161730_1280.jpg", title:"劳动最光荣", desc:"国际劳动节又称“五一国际劳动节”、“国际示威游行日”，是世界上80多个国家的全国性节日。定在每年的五月一日。"}],
+    ["端午节",{image:"dragon-boat-festival-4258327_1280.jpg", title:"节分端午自谁言，万古传闻为屈原", desc:"端午节，又称端阳节、龙舟节、重午节、天中节等，是集拜神祭祖、祈福辟邪、欢庆娱乐和饮食为一体的民俗大节。"}],
+    ["中秋节",{image:"moon-cake-4491410_1280.jpg", title:"但愿人长久，千里共婵娟", desc:"中秋节，又称月夕、秋节、仲秋节、八月节、八月会、追月节、玩月节、拜月节、女儿节或团圆节，是流行于中国众多民族与汉字文化圈诸国的传统文化节日。"}],
+    ["重阳节",{image:"chongyang.jpg", title:"遥知兄弟登高处，遍插茱萸少一人", desc:"重阳节，是中国民间的传统节日，节期在每年的农历九月初九日。古时民间在重阳节有登高祈福、秋游赏菊、佩插茱萸、拜神祭祖及饮宴求寿等习俗。"}],
+    ["国庆节",{image:"china-1845686_1280.jpg", title:"锦绣河山，国泰民安", desc:"中华人民共和国国庆节是国家的一种象征，是伴随着新中国的成立而出现的，并且变得尤为重要。"}],
+    ["清明节",{image:"water-815271_1280.jpg", title:"清明时节雨纷纷，路上行人欲断魂", desc:"清明节，又称踏青节、行清节、三月节、祭祖节等，节期在仲春与暮春之交。清明节源自上古时代的祖先信仰与春祭礼俗，兼具自然与人文两大内涵。"}],
+  ]);
+
+  getFestivalPoem(festivalName:any, dateStrChinese:any){
+    let festivalInfo = this.festivalMap.get(festivalName);
+    if (!festivalInfo) {
+      festivalInfo = this.solarTermMap.get(festivalName.replace("节","")); 
+    }
+
+    if(!festivalInfo){
+        festivalInfo = {image:"festival_default.jpg", title:festivalName, desc:festivalName}
+    }
+    
+    let tempFestivalPoems = this.JsonData.filter((j:any)=>
+      (j.text.indexOf(festivalName)>-1 || j.title.indexOf(festivalName)>-1)&&
+      j.id!=null).slice(0,50);
+      
+    let festivalPoems:any = [];
+    tempFestivalPoems.forEach((p:any) => {
+      festivalPoems.push({
+        "type":"poem", 
+        "author":p.author, 
+        "title":p.title, 
+        "sample":"", 
+        "solarterm":festivalName,
+        "paragraphs":p.paragraphs,
+        "id":p.id
+      })
+    });
+    
+    let result = {
+      template:"text",
+      min_height:"380px",
+      bg_image:festivalInfo.image,
+      title_color:"white",
+      small_title:dateStrChinese,
+      big_title:"今日"+festivalName,
+      desc:[{
+        "type":"text", 
+        "value":festivalInfo.desc?festivalInfo.desc:
+        (festivalInfo.title?festivalInfo.title:festivalName),
+        "name":""
+      }].concat(festivalPoems).concat(
+        [{
+          "type":"list",
+          "value":"",
+          "name":"节日诗单"
+        }]
+      ),
+      link:"",
+    };
+    return result;
+  }
+
+  targetFestivals = ["元旦", "除夕", "春节", "清明节", "劳动节", "端午节", "中秋节", "重阳节", "国庆节"];
+
+  checkTodayFestival(solar: any) {
+    let festivals:any = [];
+    festivals = festivals.concat(solar.getFestivals());
+    festivals = festivals.concat(solar.getLunar().getFestivals());
+    if (solar.getLunar().getJieQi() === "清明") {
+        festivals.push("清明节");
+    }
+    
+    for (let f of festivals) {
+        if (this.targetFestivals.includes(f)) return f;
+    }
+    return null;
+  }
+
+  getNextFestival(startDate: Date) {
+    let dayCount = 0;
+    let limit = 365; 
+    let current = Solar.fromYmd(startDate.getFullYear(), startDate.getMonth() + 1, startDate.getDate());
+    
+    while (dayCount < limit) {
+      current = current.next(1);
+      dayCount++;
+
+      let f = this.checkTodayFestival(current);
+      if (f) {
+        return { name: f, date: current, days: dayCount };
+      }
+    }
+    return null;
   }
 
 

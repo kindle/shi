@@ -24,6 +24,13 @@
         "Die":"祭日"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "下個節氣",
+        "NextFestival": "下個節日",
+        "DaysLeft": "還有 {{value}} 天",
+        "DateFmt": "{{month}}月{{day}}日"
+    },
+
     "Tracker":{
         "StudyActivityCount":"動態",
         "Learn":"了解統計規則",

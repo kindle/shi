@@ -24,6 +24,13 @@
         "Die":"Décès"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "Prochain Terme Solaire",
+        "NextFestival": "Prochain Festival",
+        "DaysLeft": "{{value}} jours restants",
+        "DateFmt": "{{day}}/{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"activité",
         "Learn":"comment nous comptons",

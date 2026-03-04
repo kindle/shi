@@ -24,6 +24,13 @@
         "Die":"วันถึงแก่กรรม"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "ฤดูกาลสุริยคติถัดไป",
+        "NextFestival": "เทศกาลถัดไป",
+        "DaysLeft": "เหลืออีก {{value}} วัน",
+        "DateFmt": "{{day}}/{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"กิจกรรม",
         "Learn":"เรียนรู้วิธีการนับ",

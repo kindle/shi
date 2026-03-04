@@ -24,6 +24,13 @@
         "Die":"사망"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "다음 절기",
+        "NextFestival": "다음 명절",
+        "DaysLeft": "{{value}}일 남음",
+        "DateFmt": "{{month}}월 {{day}}일"
+    },
+
     "Tracker":{
         "StudyActivityCount":"활동",
         "Learn":"집계 방식 알아보기",

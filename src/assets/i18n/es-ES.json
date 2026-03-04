@@ -24,6 +24,13 @@
         "Die":"Fallecimientos"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "Próximo Término Solar",
+        "NextFestival": "Próximo Festival",
+        "DaysLeft": "Quedan {{value}} días",
+        "DateFmt": "{{day}}/{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"actividad",
         "Learn":"aprende cómo contamos",

@@ -24,6 +24,13 @@
         "Die":"وفيات"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "المصطلح الشمسي التالي",
+        "NextFestival": "العيد القادم",
+        "DaysLeft": "متبقي {{value}} أيام",
+        "DateFmt": "{{day}}/{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"نشاط",
         "Learn":"تعرف على كيفية العد",

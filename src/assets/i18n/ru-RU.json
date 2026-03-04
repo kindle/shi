@@ -24,6 +24,13 @@
         "Die":"Скончались"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "Следующий солнечный термин",
+        "NextFestival": "Следующий праздник",
+        "DaysLeft": "Осталось {{value}} дней",
+        "DateFmt": "{{day}}.{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"активность",
         "Learn":"как мы считаем",

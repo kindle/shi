@@ -24,6 +24,13 @@
         "Die":"Θάνατοι"
     },
 
+    "SolarTerm": {
+        "NextSolarTerm": "Επόμενος Ηλιακός Όρος",
+        "NextFestival": "Επόμενη Γιορτή",
+        "DaysLeft": "{{value}} μέρες απομένουν",
+        "DateFmt": "{{day}}/{{month}}"
+    },
+
     "Tracker":{
         "StudyActivityCount":"δραστηριότητα",
         "Learn":"μάθετε πώς μετράμε",

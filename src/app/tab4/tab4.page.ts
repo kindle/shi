@@ -35,6 +35,9 @@ export class Tab4Page implements OnInit {
   }
 
   async ionViewDidEnter(){
+    if(this.data.isPlaying){
+      this.data.stopAndClose();
+    }
     //loaded in Component.app
     /*
     if(this.data.searchTopicData==null){
