@@ -541,6 +541,38 @@ export class DataService {
     //console.log("today节气："+solarTermName)
     if(!this.disableRandomFunData)
     {
+      //add next festival
+      let festivalName = this.checkTodayFestival(solar);
+      if(festivalName && festivalName.length > 0){
+        temp.unshift(this.getFestivalPoem(festivalName, dateStrChinese));
+      } else {
+        let today = new Date();
+        today.setHours(0,0,0,0);
+        let nextFestival = this.getNextFestival(today);
+        if(nextFestival){
+            let nextName = nextFestival.name;
+            let days = nextFestival.days;
+            let nextSolar = nextFestival.date;
+            
+            let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
+            if(nextDateStr){
+              nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
+            }
+            
+            let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
+            if(daysLeftStr){
+              daysLeftStr = daysLeftStr.replace("{{value}}", days);
+            }
+
+            let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
+            item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
+            item["image_size"] = "cover";
+            temp.unshift(item);
+        }
+      }
+
+
+      
       if(solarTermName.length>0){
         //temp = temp.concat(this.getSolarTermPoem(solarTermName));
         temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
@@ -573,35 +605,7 @@ export class DataService {
         temp.unshift(item);
       }
 
-      //add next festival
-      let festivalName = this.checkTodayFestival(solar);
-      if(festivalName && festivalName.length > 0){
-        temp.unshift(this.getFestivalPoem(festivalName, dateStrChinese));
-      } else {
-        let today = new Date();
-        today.setHours(0,0,0,0);
-        let nextFestival = this.getNextFestival(today);
-        if(nextFestival){
-            let nextName = nextFestival.name;
-            let days = nextFestival.days;
-            let nextSolar = nextFestival.date;
-            
-            let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
-            if(nextDateStr){
-              nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
-            }
-            
-            let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
-            if(daysLeftStr){
-              daysLeftStr = daysLeftStr.replace("{{value}}", days);
-            }
-
-            let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
-            item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
-            item["image_size"] = "cover";
-            temp.unshift(item);
-        }
-      }
+      
 
     }
 
