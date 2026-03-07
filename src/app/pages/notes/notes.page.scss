@@ -1,0 +1,102 @@
+
+.editor-box {
+  min-height: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  white-space: pre-wrap; /* Preserve whitespace/newlines */
+  outline: none;
+}
+
+.poem-info {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  p {
+    margin: 5px 0 0;
+    color: var(--ion-color-medium);
+  }
+}
+
+.editor-toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.editor-box {
+  ::ng-deep {
+    /* Note Styles */
+    .note {
+      display: inline-flex;
+      align-items: center; /* Center brackets vertically */
+      vertical-align: bottom; /* Align with text line */
+      
+      &::before {
+        content: '【';
+        opacity: 0.7;
+        font-size: 0.9em;
+        line-height: normal; /* Reset line-height */
+        margin-right: -2px; /* Pull closer */
+      }
+      
+      &::after {
+        content: '】';
+        opacity: 0.7;
+        font-size: 0.9em;
+        line-height: normal;
+        margin-left: -2px;
+      }
+    }
+
+    .color-red {
+      color: #c0392b !important;
+      .note-text { color: #c0392b !important; }
+      &::before, &::after { color: #c0392b !important; }
+    }
+
+    .color-blue {
+      color: #2980b9 !important;
+      .note-text { color: #2980b9 !important; }
+      &::before, &::after { color: #2980b9 !important; }
+    }
+
+    /* Size adjustments */
+    .size-a { font-size: 0.75em; }
+    .size-b { font-size: 1em; }
+    .size-c { font-size: 1.25em; }
+
+    /* Normal text inside a note (lines-1) */
+    .note-text {
+        white-space: pre;
+    }
+
+    /* Line styles - purely visual cues mostly for editing */
+    .lines-2 {
+        /* Brackets size adjustment for lines-2 */
+        &::before, &::after {
+             font-size: 1.5em; /* Larger brackets */
+             font-weight: 300; /* Thinner look for big brackets */
+        }
+
+        .note-text {
+            /* Force wrapping into columns */
+            display: block; /* Allows width to work properly inside flex item */
+            width: 1.25em; /* Just enough for one char + padding if needed */
+            line-height: 1;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-break: break-all;
+            white-space: normal;
+            margin: 0 2px;
+        }
+    }
+  }
+}

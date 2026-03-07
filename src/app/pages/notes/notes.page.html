@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notes Editor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="poem" class="poem-info">
+    <h2>{{ poem.title }}</h2>
+    <p>{{ poem.author }}</p>
+  </div>
+
+  <div id="poem-editor" 
+       #editor
+       contenteditable="true" 
+       class="editor-box"
+       (mouseup)="checkSelection()" 
+       (keyup)="checkSelection()" 
+       (input)="onInput($event)">
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="showToolbar" class="editor-toolbar">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="setNormal()">
+        Normal
+      </ion-button>
+      <ion-button (click)="setNote()">
+        Note
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleColor()">
+        <ion-icon name="color-palette-outline" [style.color]="currentNoteColor"></ion-icon>
+      </ion-button>
+      <ion-button (click)="toggleSize()">
+        {{ currentNoteSize | uppercase }}
+      </ion-button>
+       <ion-button (click)="toggleLines()">
+        L:{{ currentNoteLines }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

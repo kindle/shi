@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'history-today',
     loadChildren: () => import('./pages/history-today/history-today.module').then( m => m.HistoryTodayPageModule)
   },
+  {
+    path: 'notes',
+    loadChildren: () => import('./pages/notes/notes.module').then( m => m.NotesPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
+import { Router } from '@angular/router';
 
 import { register } from 'swiper/element/bundle';
 register();
@@ -22,6 +23,7 @@ export class PlayerPage implements OnInit {
     public data: DataService,
     public ui: UiService,
     private modalController: ModalController,
+    private router: Router
   ) { }
 
   ionViewWillEnter() {
@@ -332,4 +334,8 @@ export class PlayerPage implements OnInit {
   }
   
 
+  async notes(){
+    await this.modalController.dismiss();
+    this.router.navigate(['/notes']);
+  }
 }

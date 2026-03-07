@@ -56,6 +56,7 @@
     },
 
     "Action": {
+        "Back": "뒤로",
         "Search": "검색",
         "Clear": "지우기",
         "Delete": "삭제",

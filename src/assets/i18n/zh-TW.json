@@ -57,6 +57,7 @@
     },
 
     "Action":{
+        "Back":"返回",
         "Search":"搜索",
         "Clear":"清除",
         "Delete":"刪除",
