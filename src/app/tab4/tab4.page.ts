@@ -35,9 +35,6 @@ export class Tab4Page implements OnInit {
   }
 
   async ionViewDidEnter(){
-    if(this.data.isPlaying){
-      this.data.stopAndClose();
-    }
     //loaded in Component.app
     /*
     if(this.data.searchTopicData==null){
@@ -401,15 +398,17 @@ export class Tab4Page implements OnInit {
     if(this.data.searchText=="")
       this.data.searchText = this.ui.instant('Search.Tab4');
     
-    if (this.isActionSheetOpen) {
-      return;
-    }
+    setTimeout(() => {
+      if (this.isActionSheetOpen) {
+        return;
+      }
 
-    if(this.data.searchText==null||
-      this.data.searchText==""||
-      this.data.searchText==this.ui.instant('Search.Tab4')){
-      this.data.showFilter = false;
-    }
+      if(this.data.searchText==null||
+        this.data.searchText==""||
+        this.data.searchText==this.ui.instant('Search.Tab4')){
+        this.data.showFilter = false;
+      }
+    }, 100);
   }
   onSearchFocus(){
     this.isFocused = true;

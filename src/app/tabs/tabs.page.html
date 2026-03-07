@@ -180,11 +180,11 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
           </div>
         </ion-label>
         <ion-buttons slot="end" *ngIf="data.currentPoem.audio" style="margin-right:0px;">
-          <ion-button (click)="data.togglePlay()" style="margin-right:10px;font-size:x-large">
+          <ion-button (click)="data.togglePlay()" style="margin-right:5px;font-size:x-large">
             <ion-icon name="play" style="color:black;" *ngIf="!data.isPlaying"></ion-icon>
             <ion-icon name="pause" style="color:black; margin-top: 1px;" *ngIf="data.isPlaying" ></ion-icon>
           </ion-button>
-          <ion-button *ngIf="!data.isPlaying" [disabled]="false" (click)="data.playNext()" style="font-size:x-large">
+          <ion-button *ngIf="!data.isPlaying" [disabled]="false" (click)="data.playNext()" style="font-size:x-large;margin-right:10px;">
             <ion-icon name="play-forward" style="color:black;"></ion-icon>
           </ion-button>
           <ion-button *ngIf="data.isPlaying" [disabled]="false" (click)="data.stopAndClose()" style="font-size:x-large">

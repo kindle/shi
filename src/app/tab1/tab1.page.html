@@ -896,6 +896,25 @@
 
       <!--1 article template-->
       <!--二十四节气、普通文章等-->
+      <!-- <ion-card class="card card-img" card-shrink *ngIf="false"
+      (click)="goToArticle(item)"
+        *ngIf="item.template=='text'&&!item.effect&&i<10">
+        <img defaultImage="" lazyLoad="{{item.bg_image.indexOf('assets')>0?item.bg_image:('https://reddah.blob.core.windows.net/msjjimg/'+item.bg_image)}}" 
+          style="background-size:{{item.image_size?item.image_size:'cover'}};
+          background-color:{{data.getbgcolor()}}"/>
+        <ion-card-header>
+          <ion-card-title class="card-text" 
+            style="color:{{item.title_color}};"
+            [style.fontSize]="data.zoom(18)">
+            {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
+          </ion-card-title>
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}}"
+          [style.fontSize]="data.zoom(28)">
+            {{item.small_title}}
+          </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card> -->
+
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
         *ngIf="item.template=='text'&&!item.effect&&i<10"
