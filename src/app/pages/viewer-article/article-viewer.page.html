@@ -19,17 +19,20 @@
   
   >
     <!--shared backbutton for normal and effect animation start-->
+    <!--[style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? 'calc(30px + 20px)' : '30px'"-->
     <ion-card-content style="z-index:100;position:fixed;width:100%;
       padding-inline-start:20px;
       padding-inline-end:20px;padding-top:30px;"
-      [style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? 'calc(30px + 20px)' : '30px'">
+      [style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? '30px' : '30px'">
       <ion-buttons style="display:flex;justify-content:center;
-        width:25px;height:25px;float:left;
-        background-color:rgba(128,128,128,0.5);
-        border-radius: 50%;"
+        width:fit-content;height:25px;float:left;
+        background-color:rgba(128, 128, 128, 0.5);
+        padding:15px 15px 15px 5px;
+        border-radius: 15px;"
         (click)="goback()">
         <ion-button color="light">
-          <ion-icon name="chevron-back-outline"></ion-icon>
+          <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
+          {{ ui.instant('Action.Back') }}<!--返回-->
         </ion-button>
       </ion-buttons>
     </ion-card-content>
@@ -68,20 +71,18 @@
     </div>
     <div style="position:fixed;top:0;width:100%;background-color:transparent;min-height: {{data.currentArticle.min_height}};"
     *ngIf="!data.currentArticle.effect">
-        <ion-card-content style="z-index:0;">
-          <!--font-size:18px;-->
+        <!-- <ion-card-content style="z-index:0;">
           <ion-card-subtitle style="margin-top:45px;
             color:{{data.currentArticle.title_color}};"
             [style.fontSize]="data.zoom(18)">
             {{data.currentArticle.small_title}}
           </ion-card-subtitle>
-          <!--font-size:25px;-->
           <ion-card-title style="
             color:{{data.currentArticle.title_color}};"
             [style.fontSize]="data.zoom(25)">
             {{data.currentArticle.big_title}}
           </ion-card-title>
-        </ion-card-content>
+        </ion-card-content> -->
     </div>
 
     <!--wall swiper-->

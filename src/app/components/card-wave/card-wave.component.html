@@ -4,10 +4,10 @@
   [style.borderRadius]="viewer ? '0' : null">
   <ion-card-content class="container" id="{{source}}_wave"
   [style.height]="viewer ? '460px' : ''">
-    <ion-card-subtitle class="card-text" style="z-index: 10;"
+    <ion-card-subtitle class="card-text" style="z-index: 10;" *ngIf="!viewer"
     [style.marginTop]="viewer ? '20px' : null"
     [style.fontSize]="data.zoom(18)">{{sub}}</ion-card-subtitle>
-    <ion-card-title class="card-text" style="z-index: 10;"
+    <ion-card-title class="card-text" style="z-index: 10;" *ngIf="!viewer"
     [style.fontSize]="data.zoom(28)">{{title}}</ion-card-title>
   </ion-card-content>
 </ion-card>
