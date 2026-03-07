@@ -53,6 +53,11 @@ export class TabsPage {
   tab4Click(){
     //console.log('change tab ...')
     this.data.onSearchCancel();
+    //when click tab4, hide player bar
+    if(this.data.isPlaying){
+      this.data.stopAndClose();
+    }
+    this.data.currentPoem=null;
   }
 
   constructor(
