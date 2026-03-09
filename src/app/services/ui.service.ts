@@ -15,6 +15,9 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Router } from '@angular/router';
 
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -219,11 +222,25 @@ export class UiService {
     });;
   }
 
-  share(base64ImageData:any, 
+  async share(base64ImageData:any, 
     subject:any = "Subject", 
     message:any = "Share", 
     url:any = "reddah.com"){
-    this.socialSharing.share(message, subject, base64ImageData, url);
+    //this.socialSharing.share(message, subject, base64ImageData, url);
+
+    const fileName = new Date().getTime() + '.png';
+    const savedFile = await Filesystem.writeFile({
+      path: fileName,
+      data: url,
+      directory: Directory.Cache
+    });
+
+    await Share.share({
+      title: subject,
+      text: message,
+      files: [savedFile.uri],
+      dialogTitle: 'share'
+    });
   }
 
   share1(message:any, subject:any, base64ImageData:any, url:any){

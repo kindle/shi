@@ -2810,8 +2810,21 @@ export class DataService {
     });
     
     const base64Data = await this.readAsBase64(capturedPhoto);
-    //console.log(base64Data)
-    this.ui.share("data:image/jpeg;base64,"+base64Data);
+    if (typeof base64Data !== 'string') {
+      return;
+    }
+
+    const dataUrl = base64Data.startsWith('data:') ? base64Data : "data:image/jpeg;base64," + base64Data;
+    const shareBase64 = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+    const savedFile = await Filesystem.writeFile({
+      path: `${Date.now()}.jpeg`,
+      data: shareBase64,
+      directory: Directory.Cache
+    });
+    await Share.share({
+      files: [savedFile.uri],
+      dialogTitle: 'share'
+    });
     /*
     // Save the picture and add it to photo collection
     const savedImageFile = await this.savePicture(capturedPhoto);
@@ -3363,4 +3376,11 @@ export class DataService {
       this.addBuyCount();
   }
   /**points end */
+
+  /**
+   * Helper to expose platform status
+   */
+  isHybrid() {
+      return this.platform.is('hybrid');
+  }
 }

@@ -3,6 +3,8 @@ import { Animation, Style } from '@capacitor/status-bar';
 import { DataService } from '../../services/data.service';
 import { UiService } from '../../services/ui.service';
 import domtoimage from 'dom-to-image';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-history-today',
@@ -143,7 +145,7 @@ export class HistoryTodayPage implements OnInit {
       //   canvas.width/2, 40);
       ctx.fillStyle = "#333333";
       ctx.fillText(
-        "名诗佳句·Appoetry",
+        this.ui.instant('History.Title'), //'历史上的今天',
         canvas.width/2, 40); 
 
       const footerY = canvas.height - 120; // Correct footer position
@@ -186,15 +188,40 @@ export class HistoryTodayPage implements OnInit {
            img1.src = dataUrl;
            //document.body.appendChild(img1);
      
-           this.ui.share(
-             dataUrl, 
-             this.ui.instant('History.Title'), //'历史上的今天', 
-             '看看历史上的今天发生了什么有趣的事情吧！', 
-             'https://reddah.com');
+           this.shareDataUrl(
+             dataUrl,
+             this.ui.instant('History.Title'),
+             '看看历史上的今天发生了什么有趣的事情吧！'
+           );
         }
       }
     }
 
+  }
+
+  private async shareDataUrl(dataUrl: string, title: string, text: string) {
+    if (this.data.isHybrid()) {
+      const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+      const savedFile = await Filesystem.writeFile({
+        path: `${this.ui.instant('History.Title')}.png`,//<!--历史上的今天-->
+        data: base64Data,
+        directory: Directory.Cache
+      });
+      await Share.share({
+        title,
+        text,
+        files: [savedFile.uri],
+        dialogTitle: title
+      });
+      return;
+    }
+
+    await Share.share({
+      title,
+      text,
+      url: 'https://reddah.com',
+      dialogTitle: title
+    });
   }
 
 }

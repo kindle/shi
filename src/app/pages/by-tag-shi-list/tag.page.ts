@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-tag',
@@ -223,9 +225,7 @@ export class TagPage {
 
         try {
           const dataUrl = canvas.toDataURL("image/png");
-          // Assuming ui.share takes (image, title, text, url)
-          // Using tag as title and empty string for text as there is no subtitle
-          this.ui.share(dataUrl, this.tag, '', 'https://reddah.com');
+          this.shareDataUrl(dataUrl, this.tag, '');
         } catch (e) {
           console.error("Canvas taint or error", e);
         }
@@ -242,6 +242,31 @@ export class TagPage {
       ctx.fillText(lines[i], x, y);
       y += lineHeight;
     }
+  }
+
+  private async shareDataUrl(dataUrl: string, title: string, text: string) {
+    if (this.data.isHybrid()) {
+      const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+      const savedFile = await Filesystem.writeFile({
+        path: `${title}.png`,
+        data: base64Data,
+        directory: Directory.Cache
+      });
+      await Share.share({
+        title,
+        text,
+        files: [savedFile.uri],
+        dialogTitle: title
+      });
+      return;
+    }
+
+    await Share.share({
+      title,
+      text,
+      url: 'https://reddah.com',
+      dialogTitle: title
+    });
   }
 
   getLines(ctx: any, text: string, maxWidth: number) {

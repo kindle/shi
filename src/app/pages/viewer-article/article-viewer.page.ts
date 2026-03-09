@@ -3,6 +3,8 @@ import { DataService } from 'src/app/services/data.service';
 import { Location } from '@angular/common';
 import { UiService } from 'src/app/services/ui.service';
 import domtoimage from 'dom-to-image';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-article-viewer',
@@ -116,7 +118,7 @@ export class ArticleViewerPage {
       loadImage(bgUrl, true),
       loadImage('assets/icon/favicon.png'),
       loadImage('assets/icon/shi-qr.png')
-    ]).then(([bgImg, iconImg, qrImg]) => {
+    ]).then(async ([bgImg, iconImg, qrImg]) => {
       const canvas = document.createElement("canvas");
       const footerHeight = bgImg.width * 0.2; // Footer height is 20% of image width
       canvas.width = bgImg.width;
@@ -208,12 +210,34 @@ export class ArticleViewerPage {
 
         try {
           const dataUrl = canvas.toDataURL("image/png");
-          this.ui.share(
-            dataUrl, 
-            this.data.currentArticle.big_title, 
-            this.data.currentArticle.small_title, 
-            'https://reddah.com'
-          );
+
+          if(this.data.isHybrid()){
+            const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, "");
+            const fileName = this.data.currentArticle.big_title+" "
+              + this.data.currentArticle.small_title+" "
+              + ".png";
+              //+ new Date().getTime() + '.png';
+            const savedFile = await Filesystem.writeFile({
+              path: fileName,
+              data: base64Data,
+              directory: Directory.Cache
+            });
+            await Share.share({
+              title: this.data.currentArticle.big_title,
+              text: this.data.currentArticle.small_title,
+              files: [savedFile.uri],
+              dialogTitle: this.data.currentArticle.big_title
+            });
+          }
+          else{
+            this.ui.share(
+              dataUrl, 
+              this.data.currentArticle.big_title, 
+              this.data.currentArticle.small_title, 
+              'https://reddah.com'
+            );
+          }
+
         } catch (e) {
           console.error("Canvas taint or error", e);
         }

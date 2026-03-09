@@ -3,6 +3,8 @@ import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
 import { ScrollDetail } from '@ionic/angular';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-list',
@@ -264,14 +266,7 @@ export class ListPage {
 
         try {
           const dataUrl = canvas.toDataURL("image/png");
-          // this.ui.share(
-          //   dataUrl, 
-          //   bigTitle, 
-          //   smallTitle, 
-          //   'https://reddah.com'
-          // );
-          // Assuming ui.share takes (image, title, text, url)
-          this.ui.share(dataUrl, bigTitle, smallTitle, 'https://reddah.com');
+          this.shareDataUrl(dataUrl, bigTitle, smallTitle);
 
         } catch (e) {
           console.error("Canvas taint or error", e);
@@ -289,6 +284,31 @@ export class ListPage {
         ctx.fillText(lines[i], x, y);
         y += lineHeight;
     }
+  }
+
+  private async shareDataUrl(dataUrl: string, title: string, text: string) {
+    if (this.data.isHybrid()) {
+      const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+      const savedFile = await Filesystem.writeFile({
+        path: `${title}.png`,
+        data: base64Data,
+        directory: Directory.Cache
+      });
+      await Share.share({
+        title,
+        text,
+        files: [savedFile.uri],
+        dialogTitle: title
+      });
+      return;
+    }
+
+    await Share.share({
+      title,
+      text,
+      url: 'https://reddah.com',
+      dialogTitle: title
+    });
   }
 
   getLines(ctx: any, text: string, maxWidth: number) {
