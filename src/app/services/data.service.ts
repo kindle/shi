@@ -2722,7 +2722,7 @@ export class DataService {
     }
   }
 
-  AppVersion:any="1.8";
+  AppVersion:any="1.9";
   async feedback(){
     let subject = this.ui.instant('Title.Feedback')+"";
     let body = "";

@@ -3,6 +3,8 @@ import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
 import { Router } from '@angular/router';
+import { Keyboard, KeyboardInfo } from '@capacitor/keyboard';
+import type { PluginListenerHandle } from '@capacitor/core';
 
 import { register } from 'swiper/element/bundle';
 import { ShiNoteEditorComponent } from 'src/app/directives/shi-note-editor.component';
@@ -22,6 +24,9 @@ export class PlayerPage implements OnInit {
   @ViewChild(ShiNoteEditorComponent) noteEditorComponent!: ShiNoteEditorComponent;
   @Input() fromArticle: boolean = false;
   curSlide = "todo";
+  keyboardOffset = 0;
+  private keyboardListeners: Promise<PluginListenerHandle>[] = [];
+  private visualViewportHandler?: () => void;
 
   constructor(
     public data: DataService,
@@ -48,6 +53,7 @@ export class PlayerPage implements OnInit {
     if(!this.data.isPlaying){
       this.data.setAudio();
     }
+    this.bindKeyboardListeners();
     this.noteService.activeEditor$.subscribe(editor => {
        if(editor){
          this.onInlineEditorActive(editor);
@@ -56,6 +62,49 @@ export class PlayerPage implements OnInit {
   }
   ngOnDestroy() {
     document.body.classList.remove('player-open');
+    this.keyboardListeners.forEach(async (listenerPromise) => {
+      const listener = await listenerPromise;
+      listener.remove();
+    });
+    if (this.visualViewportHandler && window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', this.visualViewportHandler);
+      window.visualViewport.removeEventListener('scroll', this.visualViewportHandler);
+    }
+  }
+
+  private bindKeyboardListeners() {
+    const updateOffset = (info?: KeyboardInfo) => {
+      const viewportOffset = this.getVisualViewportOffset();
+      if (window.visualViewport) {
+        this.keyboardOffset = viewportOffset;
+        return;
+      }
+
+      this.keyboardOffset = info?.keyboardHeight ?? 0;
+    };
+
+    this.visualViewportHandler = () => updateOffset();
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', this.visualViewportHandler);
+      window.visualViewport.addEventListener('scroll', this.visualViewportHandler);
+      updateOffset();
+    }
+
+    this.keyboardListeners = [
+      Keyboard.addListener('keyboardWillShow', updateOffset),
+      Keyboard.addListener('keyboardDidShow', updateOffset),
+      Keyboard.addListener('keyboardWillHide', () => updateOffset()),
+      Keyboard.addListener('keyboardDidHide', () => updateOffset()),
+    ];
+  }
+
+  private getVisualViewportOffset() {
+    const viewport = window.visualViewport;
+    if (!viewport) {
+      return 0;
+    }
+
+    return Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
   }
 
   currentIndex:any;

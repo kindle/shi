@@ -610,7 +610,7 @@
   </ion-list>
 </div>
 
-<ion-footer *ngIf="showNoteToolbar" class="editor-toolbar" style="z-index: 3000;">
+<div *ngIf="showNoteToolbar" class="editor-toolbar" [style.--player-keyboard-offset.px]="keyboardOffset">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="setNormal()">
@@ -633,7 +633,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-footer>
+</div>
 
 
 

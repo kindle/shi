@@ -53,6 +53,23 @@ ion-content.snap-scroll::part(scroll) {
   padding-bottom: 240px;
 }
 
+.editor-toolbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--player-keyboard-offset, 0px) + env(safe-area-inset-bottom));
+  z-index: 4000;
+  transform: translateZ(0);
+  will-change: bottom;
+  pointer-events: auto;
+}
+
+.editor-toolbar ion-toolbar {
+  --background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.96);
+  --border-width: 0;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
+}
+
 .snap-start {
   scroll-snap-align: start;
   scroll-snap-stop: always;
