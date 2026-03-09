@@ -9,6 +9,7 @@ import { PlayerPageRoutingModule } from './player-routing.module';
 import { PlayerPage } from './player.page';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ShiNoteModule } from '../../directives/shi-note.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     PlayerPageRoutingModule,
     ButtonEndComponentModule,
     LazyLoadImageModule,
+    ShiNoteModule,
   ],
   declarations: [PlayerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

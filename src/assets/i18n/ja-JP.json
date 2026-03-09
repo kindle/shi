@@ -180,5 +180,13 @@
         "AddToLib":"ライブラリに追加",
         "RemoveFromLib":"ライブラリから削除",
         "NoDetailsAvailable":"詳細はありません"
+    },
+
+    "Note":{
+        "Normal":"標準",
+        "Note":"注釈",
+        "SizeSmall":"小",
+        "SizeMedium":"中",
+        "SizeLarge":"大"
     }
 }

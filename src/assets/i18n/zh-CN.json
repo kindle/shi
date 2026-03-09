@@ -181,5 +181,13 @@
         "AddToLib":"添加到资料库",
         "RemoveFromLib":"从资料库中移除",
         "NoDetailsAvailable":"暂无详细信息"
+    },
+
+    "Note":{
+        "Normal":"正文",
+        "Note":"注释",
+        "SizeSmall":"小",
+        "SizeMedium":"中",
+        "SizeLarge":"大"
     }
 }

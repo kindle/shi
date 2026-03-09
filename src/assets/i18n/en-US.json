@@ -180,5 +180,13 @@
         "AddToLib":"Add to Library",
         "RemoveFromLib":"Remove from Library",
         "NoDetailsAvailable":"No details available"
+    },
+
+    "Note":{
+        "Normal":"Normal",
+        "Note":"Note",
+        "SizeSmall":"Small",
+        "SizeMedium":"Medium",
+        "SizeLarge":"Large"
     }
 }

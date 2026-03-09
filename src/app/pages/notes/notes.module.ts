@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NotesPageRoutingModule } from './notes-routing.module';
 
 import { NotesPage } from './notes.page';
+import { ShiNoteModule } from '../../directives/shi-note.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotesPageRoutingModule
+    NotesPageRoutingModule,
+    ShiNoteModule
   ],
   declarations: [NotesPage]
 })

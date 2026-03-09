@@ -17,10 +17,43 @@
        #editor
        contenteditable="true" 
        class="editor-box"
+       (compositionstart)="onCompositionStart()"
+       (compositionend)="onCompositionEnd($event)"
        (mouseup)="checkSelection()" 
        (keyup)="checkSelection()" 
-       (input)="onInput($event)">
+       (input)="onInput($event)"
+       (focus)="onMainEditorFocus()">
   </div>
+  
+  <ion-list>
+    <ion-item>
+        <ion-label position="stacked">Debug String</ion-label>
+        <ion-textarea [value]="debugString" (ionInput)="onDebugInput($event)"></ion-textarea>
+    </ion-item>
+    <ion-item>
+        <div class="editor-box" [innerHTML]="debugHtml" style="border:none; margin:0; padding:0; min-height:auto;"></div>
+    </ion-item>
+  </ion-list>
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  <ion-list>
+    <ion-item>
+        1) <div shi-note>万方[t:兄弟|l:1|c:red|s:a]多难此登临。</div>
+    </ion-item>
+    <ion-item>
+        2) <span shi-note>昔日龌龊[t:干啥了|l:2|c:blue|s:a]不足夸，今朝放荡[t:what|l:1|c:red|s:a]思无涯。</span>
+    </ion-item>
+    <ion-item>
+        3) <p shi-note>春风得意[t:兄弟|l:1|c:red|s:a]马蹄疾，一夜看尽[t:what|l:2|c:blue|s:a]长安花。</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="pencil-outline" 
+        (click)="change()"
+        style="position: absolute;right:20px;margin:2px;"
+        ></ion-icon>
+        <div *ngIf="!edit">昔日龌龊不足夸，今朝放荡思无涯。</div>
+        <div *ngIf="edit" shi-note-editor (editorActive)="onInlineEditorActive($event)">昔日龌龊不足夸，今朝放荡思无涯。</div>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer *ngIf="showToolbar" class="editor-toolbar">

@@ -1,4 +1,4 @@
-<div>
+<div (click)="clear()">
   <ion-list style="position: fixed; top:0; width: -webkit-fill-available;z-index:200;
   margin:0px;padding: 10px 5px;padding-top: calc(10px + env(safe-area-inset-top));background-color:rgba(var(--ion-background-color-rgb,255,255,255),0.8);
     -webkit-backdrop-filter:saturate(210%) blur(20px);
@@ -298,7 +298,7 @@
   <!--小于10行*********start*******************-->
   <!--img   ...-->
   <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
-  <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));"
+  <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));" (click)="onContainerClick()"
   *ngIf="showText&&!(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
     <!--小于10行大图片-->
     <ion-item lines="none" *ngIf="bigimg"
@@ -371,32 +371,41 @@
     <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngClass]="{'select-line':authorSelected===true}"
-      (click)="selectAuthor()"
-      class="selectableText" (click)="ui.selectText()"
+      (click)="selectAuthor($event); $event.stopPropagation()"
+      class="selectableText" 
       [style.fontSize]="data.zoom(18)">
         <ion-icon name="search-outline" *ngIf="authorSelected===true"
         (click)="data.search(data.currentPoem.author)"
         style="position: absolute;left:5px;margin:2px;"
         ></ion-icon>
-        {{data.currentPoem.author}}
+        <div shi-note-editor 
+        cacheid="{{data.currentPoem.id+'_author'}}" 
+        *ngIf="data.currentPoem.sample">
+          {{GetCacheById(data.currentPoem.id+'_author')||data.currentPoem.author}}
+        </div>
       </div>
     </ion-item>
 
     <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngClass]="{'select-line selectableText':currentIndex===i}"
-      (click)="select(i)"
+      (click)="select(i, $event); $event.stopPropagation()"
       [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
         <ion-icon name="search-outline" *ngIf="currentIndex===i"
         (click)="data.search(text)"
         style="position: absolute;left:5px;margin:2px;"
         ></ion-icon>
-        <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+        <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)" 
+        cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
+        *ngIf="data.currentPoem.sample" 
         [style.fontSize]="data.zoom(18)"
-        class="selectableText" (click)="ui.selectText()"></div>
-        <div *ngIf="!data.currentPoem.sample"
+        class="selectableText"></div>
+        <div [shi-note-editor]="GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text" 
+        cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
+        *ngIf="!data.currentPoem.sample"
         [style.fontSize]="data.zoom(18)"
-        class="selectableText" (click)="ui.selectText()">{{text}}</div>
+        class="selectableText">
+        </div>
       </div>
     </ion-item>
     
@@ -407,7 +416,7 @@
   <!--大于10行*********content start*******************-->
   <ion-content class="no-padding" [fullscreen]="true" style="z-index: 200;"
     *ngIf="showText&&(data.currentPoem.paragraphs.length>10||data.currentPoem.paragraphs[0].length>20)">
-    <ion-list *ngIf="showText" style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
+    <ion-list *ngIf="showText" style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));" (click)="onContainerClick()">
       <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
       <!--大于10行大图片-->
       <ion-item lines="none" *ngIf="bigimg"
@@ -478,15 +487,21 @@
         <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
         [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
         [ngClass]="{'select-line':currentIndex===i}"
-        (click)="select(i)">
+        (click)="select(i, $event); $event.stopPropagation()">
           <ion-icon name="search-outline" *ngIf="currentIndex===i"
           (click)="data.search(text)"
           style="position: absolute;left:5px;margin:2px;"
           ></ion-icon>
-          <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
+          <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)" 
+          cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
+          *ngIf="data.currentPoem.sample"
           [style.fontSize]="data.zoom(18)"></div>
-          <div *ngIf="!data.currentPoem.sample"
-          [style.fontSize]="data.zoom(18)">{{text}}</div>
+          <div shi-note-editor
+          cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
+          *ngIf="!data.currentPoem.sample"
+          [style.fontSize]="data.zoom(18)">
+            {{GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text}}
+          </div>
         </div>
       </ion-item>
     </ion-list>
@@ -495,11 +510,11 @@
 
 
   
-  <div class="placeholder-playbox"></div>
+  <div class="placeholder-playbox" (click)="clear()"></div>
 
 
 
-  <ion-list style="margin-top:0px;z-index: 2001;bottom:0;position: fixed;width: 100%;">
+  <ion-list *ngIf="!showNoteToolbar" style="margin-top:0px;z-index: 2001;bottom:0;position: fixed;width: 100%;">
 
 
     <!--00:00   ***hide   00:00-->
@@ -591,9 +606,36 @@
     </ion-item>
     
 
-    <div style="height:calc(env(safe-area-inset-bottom));"></div>
+    <div style="height:calc(env(safe-area-inset-bottom));" (click)="clear()"></div>
   </ion-list>
 </div>
+
+<ion-footer *ngIf="showNoteToolbar" class="editor-toolbar" style="z-index: 3000;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="setNormal()">
+        {{ ui.instant('Note.Normal')}}<!--正文-->
+      </ion-button>
+      <ion-button (click)="setNote()">
+        {{ ui.instant('Note.Note')}}<!--注释-->
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleColor()">
+        <ion-icon name="stop" [style.color]="currentNoteColor"></ion-icon>
+      </ion-button>
+      <ion-button (click)="toggleSize()">
+        {{ GetSizeText(currentNoteSize) }}
+      </ion-button>
+       <ion-button (click)="toggleLines()">
+        <ion-badge slot="start">{{currentNoteLines}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
 
 <ion-fab slot="fixed" vertical="center" horizontal="end" *ngIf="false">
   <ion-fab-button (click)="notes()">

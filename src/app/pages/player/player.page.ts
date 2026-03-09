@@ -1,10 +1,12 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
 import { Router } from '@angular/router';
 
 import { register } from 'swiper/element/bundle';
+import { ShiNoteEditorComponent } from 'src/app/directives/shi-note-editor.component';
+import { ShiNoteService } from 'src/app/services/shi-note.service';
 register();
 
 @Component({
@@ -16,6 +18,8 @@ export class PlayerPage implements OnInit {
 
   @ViewChild(IonContent) content: IonContent | undefined;
   @ViewChild('swiperplayer', { static: false }) swiperRef: ElementRef | undefined;
+  @ViewChildren(ShiNoteEditorComponent) noteEditors!: QueryList<ShiNoteEditorComponent>;
+  @ViewChild(ShiNoteEditorComponent) noteEditorComponent!: ShiNoteEditorComponent;
   @Input() fromArticle: boolean = false;
   curSlide = "todo";
 
@@ -23,7 +27,8 @@ export class PlayerPage implements OnInit {
     public data: DataService,
     public ui: UiService,
     private modalController: ModalController,
-    private router: Router
+    private router: Router,
+    private noteService: ShiNoteService
   ) { }
 
   ionViewWillEnter() {
@@ -43,18 +48,51 @@ export class PlayerPage implements OnInit {
     if(!this.data.isPlaying){
       this.data.setAudio();
     }
+    this.noteService.activeEditor$.subscribe(editor => {
+       if(editor){
+         this.onInlineEditorActive(editor);
+       }
+    });
   }
   ngOnDestroy() {
     document.body.classList.remove('player-open');
   }
 
   currentIndex:any;
-  select(i:any){
+  select(i:any, ev?: any){
+    const selection = window.getSelection();
+    if(selection && selection.toString().length > 0){
+      return;
+    }
+
+    if(this.currentIndex === i){
+      const paragraphCacheId = this.data.currentPoem.id + '_paragraph_' + i;
+      const editor = this.noteEditors.find(e => e.cacheid === paragraphCacheId);
+      if(editor){
+        editor.activateEdit(ev);
+        return;
+      }
+    }
+    this.onContainerClick();
     this.currentIndex = i;
     this.authorSelected = false;
   }
   authorSelected= false;
-  selectAuthor(){
+  selectAuthor(ev?: any){
+    const selection = window.getSelection();
+    if(selection && selection.toString().length > 0){
+      return;
+    }
+
+    if(this.authorSelected){
+      const authorCacheId = this.data.currentPoem.id + '_author';
+      const editor = this.noteEditors.find(e => e.cacheid === authorCacheId);
+      if(editor){
+        editor.activateEdit(ev);
+        return;
+      }
+    }
+    this.onContainerClick();
     this.authorSelected = true;
     this.currentIndex = null;
   }
@@ -337,5 +375,111 @@ export class PlayerPage implements OnInit {
   async notes(){
     await this.modalController.dismiss();
     this.router.navigate(['/notes']);
+  }
+
+  edit = false;
+  changeEdit(){
+    this.edit = !this.edit; 
+    if(!this.edit){
+      this.showNoteToolbar = false;
+    } else {
+      setTimeout(()=>{
+        if(this.noteEditorComponent){
+          this.noteEditorComponent.setFocus();
+        }
+      },200);
+    }
+  }
+
+  showNoteToolbar = false;
+  // Note properties (synced with active editor)
+  currentNoteColor = 'red';
+  currentNoteSize = 'a';
+  currentNoteLines = 1;
+
+
+  // Active inline editor reference
+  activeInlineEditor: ShiNoteEditorComponent | null = null;
+
+
+  // Hook for main editor to clear inline active state
+  onInlineEditorActive(editor: ShiNoteEditorComponent) {
+      this.activeInlineEditor = editor;
+      this.showNoteToolbar = true;
+      if(this.data.isPlaying){
+        this.data.execPause();
+      }
+      // Sync toolbar state
+      this.currentNoteColor = editor.currentNoteColor;
+      this.currentNoteSize = editor.currentNoteSize;
+      this.currentNoteLines = editor.currentNoteLines;
+  }
+
+  clear(){
+    console.log('clear selection');
+    this.currentIndex = null;
+    this.authorSelected = false;
+    this.showNoteToolbar = false;
+  }
+
+  onContainerClick() {
+    this.currentIndex = null;
+    this.authorSelected = false;
+    this.showNoteToolbar = false;
+    this.noteService.setActive(null);
+    if (this.activeInlineEditor) {
+        this.activeInlineEditor.canEdit = false;
+        this.activeInlineEditor = null;
+    }
+  }
+
+  setNormal() {
+    if (this.activeInlineEditor) {
+        this.activeInlineEditor.setNormal();
+    }
+  }
+
+  setNote() {
+    if (this.activeInlineEditor) {
+        this.activeInlineEditor.setNote();
+    }
+  }
+
+  toggleColor() {
+      if (this.activeInlineEditor) {
+          this.activeInlineEditor.toggleColor();
+          this.currentNoteColor = this.activeInlineEditor.currentNoteColor;
+      }
+  }
+
+  toggleSize() {
+      if (this.activeInlineEditor) {
+          this.activeInlineEditor.toggleSize();
+          this.currentNoteSize = this.activeInlineEditor.currentNoteSize;
+      }
+  }
+
+  GetSizeText(size: string){
+    switch(size){
+      case 'a':
+        return this.ui.instant('Note.SizeSmall');//<!--小-->;
+      case 'b':
+        return this.ui.instant('Note.SizeMedium');//<!--中-->;
+      case 'c':
+        return this.ui.instant('Note.SizeLarge');//<!--大-->;
+      default:
+        return this.ui.instant('Note.SizeSmall');//<!--小-->;
+    }
+  }
+
+  toggleLines() {
+      if (this.activeInlineEditor) {
+          this.activeInlineEditor.toggleLines();
+          this.currentNoteLines = this.activeInlineEditor.currentNoteLines;
+      }
+  }
+
+  GetCacheById(id:any){
+    return localStorage.getItem(id);
   }
 }

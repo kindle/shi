@@ -180,5 +180,13 @@
         "AddToLib":"أضف إلى المكتبة",
         "RemoveFromLib":"إزالة من المكتبة",
         "NoDetailsAvailable":"لا توجد تفاصيل متاحة"
+    },
+
+    "Note":{
+        "Normal":"عادي",
+        "Note":"ملاحظة",
+        "SizeSmall":"صغير",
+        "SizeMedium":"متوسط",
+        "SizeLarge":"كبير"
     }
 }

@@ -180,5 +180,13 @@
         "AddToLib":"Добавить в библиотеку",
         "RemoveFromLib":"Удалить из библиотеки",
         "NoDetailsAvailable":"Нет доступных подробностей"
+    },
+
+    "Note":{
+        "Normal":"Обычный",
+        "Note":"Примечание",
+        "SizeSmall":"Мелкий",
+        "SizeMedium":"Средний",
+        "SizeLarge":"Крупный"
     }
 }

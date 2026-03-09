@@ -1,6 +1,6 @@
 
 .editor-box {
-  min-height: 200px;
+  // min-height: 200px;
   border: 1px solid #ccc;
   padding: 10px;
   margin-top: 20px;
@@ -40,19 +40,19 @@
       vertical-align: bottom; /* Align with text line */
       
       &::before {
-        content: '【';
+        content: '[';
         opacity: 0.7;
         font-size: 0.9em;
         line-height: normal; /* Reset line-height */
-        margin-right: -2px; /* Pull closer */
+        margin-right: 0px; /* Pull closer */
       }
       
       &::after {
-        content: '】';
+        content: ']';
         opacity: 0.7;
         font-size: 0.9em;
         line-height: normal;
-        margin-left: -2px;
+        margin-left: 0px;
       }
     }
 

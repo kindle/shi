@@ -21,3 +21,10 @@ To apply the changes and overwrite the files with the compressed versions, run:
 
 node scripts/minify-json.js --write
 
+---------------------------------------------------
+How to fix content bugs
+1.update shi/db content
+2.copy db shi/db to shi/assets/db
+3.run node scripts/minify-json.js --write 
+to minify all the json files
+

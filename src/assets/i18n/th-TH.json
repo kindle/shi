@@ -180,5 +180,13 @@
         "AddToLib":"เพิ่มลงในห้องสมุด",
         "RemoveFromLib":"ลบออกจากห้องสมุด",
         "NoDetailsAvailable":"ไม่มีรายละเอียด"
+    },
+
+    "Note":{
+        "Normal":"ปกติ",
+        "Note":"บันทึก",
+        "SizeSmall":"เล็ก",
+        "SizeMedium":"กลาง",
+        "SizeLarge":"ใหญ่"
     }
 }

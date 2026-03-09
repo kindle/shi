@@ -180,5 +180,13 @@
         "AddToLib":"라이브러리에 추가",
         "RemoveFromLib":"라이브러리에서 제거",
         "NoDetailsAvailable":"세부 정보 없음"
+    },
+
+    "Note":{
+        "Normal":"보통",
+        "Note":"노트",
+        "SizeSmall":"작게",
+        "SizeMedium":"보통",
+        "SizeLarge":"크게"
     }
 }

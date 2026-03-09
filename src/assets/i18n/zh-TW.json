@@ -181,5 +181,13 @@
         "AddToLib":"添加到資料庫",
         "RemoveFromLib":"從資料庫中移除",
         "NoDetailsAvailable":"暫無詳細信息"
+    },
+
+    "Note":{
+        "Normal":"正文",
+        "Note":"註釋",
+        "SizeSmall":"小",
+        "SizeMedium":"中",
+        "SizeLarge":"大"
     }
 }
