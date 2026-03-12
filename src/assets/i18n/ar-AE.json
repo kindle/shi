@@ -1,10 +1,12 @@
 {
     "Tabs": {
+        "Home": "الرئيسية",
         "Discovery": "اكتشاف",
         "Browse": "تصفح",
         "ListenNow": "استمع الآن",
         "Library": "المكتبة",
-        "Search": "بحث"
+        "Search": "بحث",
+        "Me": "أنا"
     },
 
     "Tutorial": {

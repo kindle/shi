@@ -9,6 +9,8 @@ import { Tab4PageRoutingModule } from './tab4-routing.module';
 import { Tab4Page } from './tab4.page';
 import { LongPressDirective } from '../directives/long-press.directive';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
+import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     IonicModule,
     Tab4PageRoutingModule,
     LazyLoadImageModule,
+    AsciiCardComponentModule,
+    SubTitleComponentModule
   ],
   declarations: [
     Tab4Page,

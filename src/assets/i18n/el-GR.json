@@ -1,10 +1,12 @@
 {
     "Tabs": {
+        "Home": "Αρχική",
         "Discovery": "Ανακάλυψη",
         "Browse": "Περιήγηση",
         "ListenNow": "Ακούστε Τώρα",
         "Library": "Βιβλιοθήκη",
-        "Search": "Αναζήτηση"
+        "Search": "Αναζήτηση",
+        "Me": "Εγώ"
     },
 
     "Tutorial": {

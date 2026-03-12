@@ -1,10 +1,12 @@
 {
     "Tabs":{
+        "Home":"Home",
         "Discovery":"Discovery",
         "Browse": "Browse",
         "ListenNow": "Listen Now",
         "Library": "Library",
-        "Search":"Search"
+        "Search":"Search",
+        "Me":"Me"
     },
 
     "Tutorial":{

@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class Tab2Page {
 
   searchTopicData:any;
+  searchTopicDataAudio:any;
   localFunData:any;
   localScrollData:any;
   
@@ -24,6 +25,17 @@ export class Tab2Page {
     this.data.currentTopicId = 200;
     this.searchTopicData = this.data.tab2BrowseTopicData
       .filter((d:any)=>d.id==this.data.currentTopicId)[0];
+
+
+    this.searchTopicDataAudio = this.data.tab5RadioTopicData
+      .filter((d:any)=>d.id==199)[0];
+    //regenerate top 5 big
+    this.searchTopicDataAudio.scroll = this.data.getRandomArray(this.searchTopicDataAudio.scroll, 5);
+    //regenerate top 5 latest albums
+    //console.log(this.searchTopicData.list[0])
+    this.searchTopicDataAudio.list[0].data = this.data.getRandomArray(this.searchTopicDataAudio.list[0].data, 5);
+
+
 
     /*
     打印classic.json  有audio的诗词

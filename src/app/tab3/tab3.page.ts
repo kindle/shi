@@ -15,6 +15,16 @@ import { ConvertService } from '../services/convert.service';
 })
 export class Tab3Page {
 
+  readonly currentDateTitle = this.formatCurrentDate();
+  private formatCurrentDate(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+
+    return `${year}.${month}.${day}`;
+  }
+
   constructor(
     public ui: UiService,
     public router:  Router,
@@ -263,12 +273,12 @@ export class Tab3Page {
   }
 
   topics = [
+    {id:4,image:'https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg',text:"Lib.Poems",count:"poemcount"},//诗词
     {id:1,image:'https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg',text:"Lib.Poemlists",count:"poemlistcount"},//诗单列表
     {id:2,image:'https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg',text:"Lib.Poets",count:"poetcount"},//诗人
-    {id:3,image:'https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg',text:"Lib.Albums",count:"albumcount"},//诗单
-    {id:4,image:'https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg',text:"Lib.Poems",count:"poemcount"},//诗词
+    {id:3,image:'https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg',text:"Lib.Albums",count:"albumcount"},//专辑
+    {id:6,image:'https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg',text:"Lib.Articles",count:"articleCount"},//文章
     {id:5,image:'https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg',text:"Lib.Topics",count:"topiccount"},//主题
-    {id:6,image:'https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg',text:"Lib.Articles",count:"articleCount"}//文章
   ];
 
   goToTopic(topicId:any){

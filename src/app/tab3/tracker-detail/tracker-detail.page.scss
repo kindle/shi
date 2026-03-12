@@ -78,6 +78,8 @@
     }
 
     &.today {
+      border: 1.5px dashed #2f80ed;
+
       .day-number {
         color: black;
         font-weight: bold;

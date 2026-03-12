@@ -1,10 +1,12 @@
 {
     "Tabs": {
+        "Home": "홈",
         "Discovery": "열람이 유익하다",
         "Browse": "브라우징",
         "ListenNow": "지금 듣기",
         "Library": "시가 서재",
-        "Search": "검색"
+        "Search": "검색",
+        "Me": "나"
     },
 
     "Tutorial": {

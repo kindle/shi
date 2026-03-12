@@ -1,6 +1,8 @@
 <ion-header [translucent]="ui.isIos">
   <ion-toolbar>
-    <ion-title [style.fontSize]="data.zoom(17)">{{ ui.instant('Tabs.Browse') }}<!--浏览--></ion-title>
+    <ion-title [style.fontSize]="data.zoom(17)">
+      {{ ui.instant('Tabs.Discovery') }}<!--发现-->
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +11,7 @@
     <ion-toolbar>
       <ion-title class="tab-title" mode="md" 
         [style.fontSize]="data.zoom(28)">
-        {{ ui.instant('Tabs.Browse') }}<!--浏览-->
+        {{ ui.instant('Tabs.Discovery') }}<!--发现-->
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet2">
@@ -25,12 +27,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <!--<app-big [source]="searchTopicData.scroll"></app-big>-->
   <app-big [source]="data.tab2LocalScrollData"></app-big>
-
   <!--最近浏览-->
   <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
   *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+  <!--最新专辑-->
+  <div *ngFor="let list of searchTopicDataAudio.list;" style="margin-top:10px;">
+    <app-tile 
+    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
+    [source]="list.data" *ngIf="list.display!=false"></app-tile>
+  </div>
+  <!--现在就听-->
+  <app-hot name="{{ ui.instant('Tabs.ListenNow') }}" [source]="data.classicData" *ngIf="data.classicData"></app-hot>
+  <app-big [source]="searchTopicDataAudio.scroll"></app-big>
   <!--热门诗词-->
   <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
   <!--

@@ -12,6 +12,21 @@ export class TileListComponent {
   @Input() name?: string;
   @Input() arrow?: boolean;
   @Input() source?: any;
+  @Input() max?: number=999;
+
+  get visibleSource(): any[] {
+    if (!Array.isArray(this.source)) {
+      return [];
+    }
+
+    const limit = Math.floor(Number(this.max));
+
+    if (Number.isNaN(limit)) {
+      return this.source;
+    }
+
+    return this.source.slice(0, Math.max(0, limit));
+  }
 
   constructor(
     public data: DataService,

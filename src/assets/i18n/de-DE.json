@@ -1,10 +1,12 @@
 {
     "Tabs":{
+        "Home":"Startseite",
         "Discovery":"Entdecken",
         "Browse": "Durchsuchen",
         "ListenNow": "Jetzt hören",
         "Library": "Bibliothek",
-        "Search":"Suche"
+        "Search":"Suche",
+        "Me":"Ich"
     },
 
     "Tutorial":{

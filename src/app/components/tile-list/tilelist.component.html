@@ -11,7 +11,7 @@
   </ion-card-content>
 </ion-toolbar>
 <div style="display: grid;grid-template-columns: repeat(3, 1fr);grid-gap:0px;padding:0 10px;">
-  <div style="margin:5px;" *ngFor="let s of source" >
+  <div style="margin:5px;" *ngFor="let s of visibleSource" >
     <!--culstomelist start-->
     <div class="card-scroll-item1" 
       *ngIf="s.group=='customlist'&&!s.data.customimage&&s.data.image&&s.data.image.length>=4" 

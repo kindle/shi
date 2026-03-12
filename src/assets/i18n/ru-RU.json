@@ -1,10 +1,12 @@
 {
     "Tabs":{
+        "Home":"Главная",
         "Discovery":"Открытие",
         "Browse": "Просмотр",
         "ListenNow": "Слушать сейчас",
         "Library": "Библиотека",
-        "Search":"Поиск"
+        "Search":"Поиск",
+        "Me":"Мое"
     },
 
     "Tutorial":{

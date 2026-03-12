@@ -1,10 +1,12 @@
 {
     "Tabs": {
+        "Home": "หน้าแรก",
         "Discovery": "ค้นพบ",
         "Browse": "เรียกดู",
         "ListenNow": "ฟังเดี๋ยวนี้",
         "Library": "ห้องสมุด",
-        "Search": "ค้นหา"
+        "Search": "ค้นหา",
+        "Me": "ฉัน"
     },
 
     "Tutorial": {

@@ -20,6 +20,9 @@ import { TextComponentModule } from '../components/text/text.module';
 import { StarCardComponentModule } from '../components/star-card/star-card.module';
 import { TreeCardComponentModule } from '../components/tree-card/tree-card.module';
 
+import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
+import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -40,6 +43,8 @@ import { TreeCardComponentModule } from '../components/tree-card/tree-card.modul
     TextComponentModule,
     StarCardComponentModule,
     TreeCardComponentModule,
+    AsciiCardComponentModule,
+    SubTitleComponentModule
   ],
   declarations: [
     Tab1Page

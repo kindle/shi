@@ -12,6 +12,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { ShiTrackerModule } from '../components/shi-tracker/shi-tracker.module';
+import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ShiTrackerModule } from '../components/shi-tracker/shi-tracker.module';
     LazyLoadImageModule,
     DogCardComponentModule,
     AsciiCardComponentModule,
-    ShiTrackerModule
+    ShiTrackerModule,
+    SubTitleComponentModule
   ],
   declarations: [Tab3Page],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,10 +1,12 @@
 {
     "Tabs":{
-        "Discovery":"開卷有益",
+        "Home":"主頁",
+        "Discovery":"發現",
         "Browse": "瀏覽",
         "ListenNow": "現在就聽",
         "Library": "詩詞庫",
-        "Search":"搜索"
+        "Search":"搜索",
+        "Me":"我的"
     },
 
     "Tutorial":{

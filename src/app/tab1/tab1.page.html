@@ -2,7 +2,7 @@
 <ion-header [translucent]="ui.isIos">
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)" (click)="tutorial()">
-      {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
+      {{ ui.instant('Tabs.Home') }}<!--主页-->
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,7 @@
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
-        {{ ui.instant('Tabs.ListenNow') }}<!--现在就听-->
+        {{ ui.instant('Tabs.Home') }}<!--主页-->
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet1">
@@ -26,13 +26,6 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-
-  <app-big [source]="searchTopicData.scroll"></app-big>
-
-  <app-hot name="{{ ui.instant('Title.Classical') }}" [source]="data.classicData" *ngIf="data.classicData"></app-hot>
-
-  
-  
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -1196,15 +1189,24 @@
   </div>
 -->
 
+  <!--历史上的今天-->
+  <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>
 
-
-  <div *ngFor="let list of searchTopicData.list;" style="margin-top:10px;">
-    <app-tile 
-    [name]="(list.i18n && list.i18n[data.currentLocale]) ? list.i18n[data.currentLocale] : list.name"
-    [source]="list.data" *ngIf="list.display!=false"></app-tile>
+  <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
+    <div
+      [style.padding-right]="ui.isipad ? '' : '20px'"
+      [style.margin-right]="ui.isipad ? '' : '10px'">
+      <app-ascii-card class="card card-img custom-card" style="width: auto; margin: 5px;"
+          section="" 
+          sub="" 
+          title="{{ data.currentDateTitle }}">
+          <!--{{ ui.instant('History.Title') }}--><!--历史上的今天-->
+      </app-ascii-card>
+    </div>
   </div>
 
-  <app-text 
+
+  <app-text style="margin-top:20px;display: block;"
     [name]="(searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? searchTopicData.i18n[data.currentLocale] : searchTopicData.desctitle"
     [text]="searchTopicData.desc">
   </app-text>

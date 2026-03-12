@@ -1,10 +1,12 @@
 {
     "Tabs": {
+        "Home": "ホーム",
         "Discovery": "開くと有益",
         "Browse": "閲覧",
         "ListenNow": "今すぐ聴く",
         "Library": "詩庫",
-        "Search": "検索"
+        "Search": "検索",
+        "Me": "マイ"
     },
 
     "Tutorial": {
