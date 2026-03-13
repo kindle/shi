@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { UiService } from '../services/ui.service';
 import { ScrollService } from '../services/scroll.service';
@@ -21,6 +21,7 @@ export class Tab2Page {
     public data : DataService,
     public ui: UiService,
     private scrollService: ScrollService,
+    private elementRef: ElementRef,
   ) {
     this.data.currentTopicId = 200;
     this.searchTopicData = this.data.tab2BrowseTopicData
@@ -93,6 +94,34 @@ export class Tab2Page {
       }
     });
   }
+
+  ionViewDidEnter() {
+    this.refreshSwipers();
+  }
+
+  private refreshSwipers() {
+    const update = () => {
+      const swiperElements = this.elementRef.nativeElement.querySelectorAll('swiper-container');
+      swiperElements.forEach((swiperElement:any) => {
+        const swiper = swiperElement.swiper;
+        if (!swiper) {
+          return;
+        }
+
+        swiper.updateSize();
+        swiper.updateSlides();
+        swiper.updateProgress();
+        swiper.updateSlidesClasses();
+        swiper.update();
+      });
+    };
+
+    requestAnimationFrame(() => {
+      update();
+      setTimeout(update, 60);
+    });
+  }
+
   ngOnDestroy() {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
