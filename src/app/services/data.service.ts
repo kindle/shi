@@ -8,7 +8,6 @@ import { ActionSheetController, IonTabs, ModalController, NavController, Platfor
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
 import { catchError, tap, BehaviorSubject } from 'rxjs';
-import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx'
 import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 import { Solar } from 'lunar-typescript';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
@@ -80,7 +79,6 @@ export class DataService {
     private actionSheetController: ActionSheetController,
     private modalController: ModalController,
     private eventService: EventService,
-    private media: Media,
     private musicControls: MusicControls,
     private socialSharing: SocialSharing,
   ){
@@ -1041,12 +1039,12 @@ export class DataService {
   execPlay(){
     this.isPlaying = true;
     this.audio.play();
-    this.musicControls.updateIsPlaying(true);
+    this.updateMusicControlsPlaybackState(true);
   }
   execPause(){
     this.isPlaying = false;
     this.audio.pause();
-    this.musicControls.updateIsPlaying(false);
+    this.updateMusicControlsPlaybackState(false);
   }
 
 
@@ -1066,10 +1064,126 @@ export class DataService {
   audioLoadedmetadataFn:any;
   audioTimeupdateFn:any;
   audioEndedFn:any;
+  audioDurationchangeFn:any;
   musicControlsSubscription:any;
   audioMedia:any;
   lastUpdateElapsed:any = 0;
   playbackRate = 1.0;
+  musicControlsEnabled = true;
+
+  private canUseMusicControls() {
+    return this.musicControlsEnabled && Capacitor.isNativePlatform();
+  }
+
+  private disableMusicControls(error:any) {
+    if (this.musicControlsEnabled) {
+      console.error('Music controls disabled due to runtime error.', error);
+    }
+    this.musicControlsEnabled = false;
+    if (this.musicControlsSubscription) {
+      this.musicControlsSubscription.unsubscribe();
+      this.musicControlsSubscription = null;
+    }
+  }
+
+  private async destroyMusicControls() {
+    if (this.musicControlsSubscription) {
+      this.musicControlsSubscription.unsubscribe();
+      this.musicControlsSubscription = null;
+    }
+
+    if (!this.canUseMusicControls()) {
+      return;
+    }
+
+    try {
+      await this.musicControls.destroy();
+    } catch (error) {
+      this.disableMusicControls(error);
+    }
+  }
+
+  private updateMusicControlsPlaybackState(isPlaying:boolean) {
+    if (!this.canUseMusicControls()) {
+      return;
+    }
+
+    try {
+      this.musicControls.updateIsPlaying(isPlaying);
+    } catch (error) {
+      this.disableMusicControls(error);
+    }
+  }
+
+  private updateMusicControlsElapsed(elapsed:number) {
+    if (!this.canUseMusicControls()) {
+      return;
+    }
+
+    try {
+      this.musicControls.updateElapsed({
+        elapsed,
+        isPlaying: this.isPlaying
+      });
+    } catch (error) {
+      this.disableMusicControls(error);
+    }
+  }
+
+  private clearAudioListeners() {
+    if (!this.audio) {
+      return;
+    }
+
+    if (this.audioLoadedmetadataFn) {
+      this.audio.removeEventListener('loadedmetadata', this.audioLoadedmetadataFn);
+      this.audioLoadedmetadataFn = null;
+    }
+    if (this.audioTimeupdateFn) {
+      this.audio.removeEventListener('timeupdate', this.audioTimeupdateFn);
+      this.audioTimeupdateFn = null;
+    }
+    if (this.audioEndedFn) {
+      this.audio.removeEventListener('ended', this.audioEndedFn);
+      this.audioEndedFn = null;
+    }
+    if (this.audioDurationchangeFn) {
+      this.audio.removeEventListener('durationchange', this.audioDurationchangeFn);
+      this.audioDurationchangeFn = null;
+    }
+  }
+
+  private resetAudioElement(clearSource:boolean = false) {
+    if (!this.audio) {
+      return;
+    }
+
+    this.clearAudioListeners();
+    this.audio.pause();
+    this.isPlaying = false;
+    this.currentTime = 0;
+    this.duration = 0;
+    this.leftTime = 0;
+    this.lastUpdateElapsed = 0;
+
+    if (clearSource) {
+      this.audio.removeAttribute('src');
+      this.audio.load();
+    }
+  }
+
+  private isCurrentAudioSource(source:string) {
+    if (!this.audio) {
+      return false;
+    }
+
+    try {
+      const resolvedSource = new URL(source, window.location.href).toString();
+      return this.audio.currentSrc === resolvedSource || this.audio.src === resolvedSource;
+    } catch {
+      return this.audio.currentSrc === source || this.audio.src === source;
+    }
+  }
   togglePlaybackRate(){
     if(this.playbackRate === 1.0){
       this.playbackRate = 1.5;
@@ -1086,7 +1200,7 @@ export class DataService {
   }
 
   updateMusicControls() {
-    if (!this.currentPoem) return;
+    if (!this.currentPoem || !this.canUseMusicControls()) return;
     
     // Ensure valid duration/elapsed
     const duration = Number.isFinite(this.audio.duration) ? this.audio.duration : 0;
@@ -1111,6 +1225,8 @@ export class DataService {
       nextIcon: 'media_next',
       closeIcon: 'media_close',
       notificationIcon: 'notification'
+    }).catch((error:any) => {
+      this.disableMusicControls(error);
     });
   }
 
@@ -1119,30 +1235,21 @@ export class DataService {
       return;
     }
 
-    if(this.audioLoadedmetadataFn){
-      this.audio.removeEventListener('loadedmetadata',this.audioLoadedmetadataFn);
-    }
-    if(this.audioTimeupdateFn){
-      this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
-    }
-    if(this.audioEndedFn){
-      this.audio.removeEventListener('ended',this.audioEndedFn);
+    const audioSource = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
+    const shouldReuseCurrentAudio = this.isCurrentAudioSource(audioSource) && !!this.audioLoadedmetadataFn;
+
+    if (shouldReuseCurrentAudio) {
+      this.audio.playbackRate = this.playbackRate;
+      this.updateMusicControls();
+      return;
     }
 
-    //this.audio.src = `/assets/mp3/${this.currentPoem.audio}`;
-    this.audio.src = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
+    this.resetAudioElement();
+    void this.destroyMusicControls();
+
+    this.audio.src = audioSource;
+    this.audio.preload = 'metadata';
     this.audio.playbackRate = this.playbackRate;
-    
-    /*
-    const file: MediaObject = this.media.create(`/assets/mp3/${this.currentPoem.audio}`);
-    const mediaMetadataOpt = {
-      title: this.currentPoem.title,
-      artist: this.currentPoem.author,
-      album: 'Your Album Name',
-      // ... other metadata properties you want to set
-    };
-    file.setMetaData(mediaMetadataOpt);
-    //this.audioMedia.play();*/
 
     this.audioLoadedmetadataFn = () => {
       this.duration = this.audio.duration;
@@ -1182,59 +1289,68 @@ export class DataService {
 
       this.updateMusicControls();
   
-      if(this.musicControlsSubscription){
-        this.musicControlsSubscription.unsubscribe();
-      }
-
-      this.musicControlsSubscription = this.musicControls.subscribe().subscribe((action) => {
-        const message = JSON.parse(action).message;
-        // console.log(message);
-        switch(message) {
-          case 'music-controls-next':
-            this.playNext();
-            break;
-          case 'music-controls-previous':
-            // this.playPrev();
-            break;
-          case 'music-controls-pause':
-            this.execPause();
-            break;
-          case 'music-controls-play':
-            this.execPlay();
-            break;
-          case 'music-controls-destroy':
-            this.execPause();
-            break;
-          case 'music-controls-toggle-play-pause' :
-            if(this.isPlaying){
-              this.execPause();
-            }else{
-              this.execPlay();
-            }
-            break;
-          case 'music-controls-seek-to':
-            const seekTo = JSON.parse(action).position;
-            this.audio.currentTime = seekTo;
-            this.musicControls.updateElapsed({
-              elapsed: seekTo,
-              isPlaying: this.isPlaying
-            });
-            break;
-          case 'music-controls-headset-unplugged':
-            this.execPause();
-            break;
+      if (this.canUseMusicControls()) {
+        if(this.musicControlsSubscription){
+          this.musicControlsSubscription.unsubscribe();
         }
-      });
-      this.musicControls.listen();
+
+        this.musicControlsSubscription = this.musicControls.subscribe().subscribe({
+          next: (action) => {
+            const parsedAction = JSON.parse(action);
+            const message = parsedAction.message;
+            switch(message) {
+              case 'music-controls-next':
+                this.playNext();
+                break;
+              case 'music-controls-previous':
+                break;
+              case 'music-controls-pause':
+                this.execPause();
+                break;
+              case 'music-controls-play':
+                this.execPlay();
+                break;
+              case 'music-controls-destroy':
+                this.execPause();
+                void this.destroyMusicControls();
+                break;
+              case 'music-controls-toggle-play-pause' :
+                if(this.isPlaying){
+                  this.execPause();
+                }else{
+                  this.execPlay();
+                }
+                break;
+              case 'music-controls-seek-to':
+                this.audio.currentTime = parsedAction.position;
+                this.updateMusicControlsElapsed(parsedAction.position);
+                break;
+              case 'music-controls-headset-unplugged':
+                this.execPause();
+                break;
+            }
+          },
+          error: (error) => {
+            this.disableMusicControls(error);
+          }
+        });
+
+        try {
+          this.musicControls.listen();
+        } catch (error) {
+          this.disableMusicControls(error);
+        }
+      }
 
       this.audio.play();
     }
     this.audio.addEventListener('loadedmetadata', this.audioLoadedmetadataFn);
 
     // Also update if duration changes (streaming/buffering)
-    this.audio.addEventListener('durationchange', () => {
-        this.updateMusicControls();
-    });
+    this.audioDurationchangeFn = () => {
+      this.updateMusicControls();
+    };
+    this.audio.addEventListener('durationchange', this.audioDurationchangeFn);
 
     this.audioTimeupdateFn = () => {
       //when dragging, do not update the progress bar.
@@ -1243,10 +1359,7 @@ export class DataService {
 
         // throttle to 1 second
         if (Math.abs(this.currentTime - this.lastUpdateElapsed) > 1) {
-          this.musicControls.updateElapsed({
-            elapsed: this.currentTime,
-            isPlaying: this.isPlaying
-          });
+          this.updateMusicControlsElapsed(this.currentTime);
           this.lastUpdateElapsed = this.currentTime;
         }
         
@@ -1267,9 +1380,7 @@ export class DataService {
       this.isPlaying = false;
       this.currentTime = 0;
 
-      this.audio.removeEventListener('loadedmetadata',this.audioLoadedmetadataFn);
-      this.audio.removeEventListener('timeupdate',this.audioTimeupdateFn);
-      this.audio.removeEventListener('ended',this.audioEndedFn);
+      this.clearAudioListeners();
       
       this.playNext();
 
@@ -1457,9 +1568,8 @@ export class DataService {
   }
 
   stopAndClose(){
-    if(this.isPlaying){
-      this.togglePlay();
-    }
+    this.resetAudioElement(true);
+    void this.destroyMusicControls();
     this.currentPoem = null;
   }
 
@@ -2078,7 +2188,8 @@ export class DataService {
       if(poem.audio){
         this.setAudio();
       }else{
-        this.execPause();
+        this.resetAudioElement();
+        void this.destroyMusicControls();
         // if(pop){
         //   this.ui.player(this.currentPoem);
         // }

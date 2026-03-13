@@ -11,7 +11,6 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { IonicGestureConfig } from './utils/IonicGestureConfig';
 import { EventService } from './services/event.service';
-import { Media } from '@awesome-cordova-plugins/media/ngx'
 import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -38,7 +37,6 @@ import { ScrollService } from './services/scroll.service';
     { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig },
     EventService,
     ScrollService,
-    Media,
     MusicControls,
   ],
   bootstrap: [AppComponent],
