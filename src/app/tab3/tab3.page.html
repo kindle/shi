@@ -30,16 +30,16 @@
   
   <!--资料库-->
   <app-sub-title name="{{ ui.instant('Tabs.Library') }}"></app-sub-title>
-
+<!-- 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
     grid-gap:0px;padding:0 10px;margin-top:10px;">
     <ion-card *ngFor="let topic of topics"
       [style.height]="ui.isipad ? '250px' : '120px'"
       [style.position]="ui.isipad ? 'relative' : ''"
       defaultImage="" 
-      lazyLoad="{{topic.image}}" 
+      
       style="margin:5px;
-      background-size:cover;background-color:{{data.getbgcolor()}}"
+      background-size:cover;background-color:{{data.getRandomColor()}}"
       class="search-tile-img"
       id="{{topic.id}}"
       (click)="goToTopic(topic.id)"
@@ -54,8 +54,31 @@
       </ion-card-header>
       <ion-card-content 
       [ngClass]="{'gray-mask': currentLpId === topic.id }"
-      style="color:white;padding-left:10px;padding-bottom:10px;position:absolute;bottom:0;width:100%;"
-      [style.fontSize]="data.zoom(16)"> 
+      style="font-weight:bold;color:black;padding-left:10px;padding-bottom:10px;position:absolute;bottom:0;width:100%;"
+      [style.fontSize]="data.zoom(25)"> 
+        {{ ui.instant(topic.text) }}
+        <span> ({{$any(data)[topic.count]}})</span>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+
+
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
+    grid-gap:0px;padding:0 10px;margin-top:10px;">
+    <ion-card *ngFor="let topic of topics"
+      id="{{topic.id}}"
+      (click)="goToTopic(topic.id)"
+      ion-long-press 
+      (pressed)="pressed(topic.id)" 
+      (longPressed)="active(topic.id)"
+      (pressEnded)="released(topic.id)"
+      style="border-radius: 5px;margin:3px 5px;">
+      <div class="station-bg-title">
+        {{ ui.instant(topic.text) }}
+      </div>
+      <ion-card-content class="station-content" 
+        style="background-image: linear-gradient(to right, {{topic.color}},{{topic.color}}, {{topic.light}}, {{topic.color}});"
+        [style.fontSize]="data.zoom(20)">
         {{ ui.instant(topic.text) }}
         <span> ({{$any(data)[topic.count]}})</span>
       </ion-card-content>

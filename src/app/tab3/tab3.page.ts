@@ -183,32 +183,6 @@ export class Tab3Page {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 200);
   }
-
-
-
-//fake sample data
-  musicStations = [
-    //{alias:"唐诗三百首",text:"唐诗三百首",color:"rgb(215,86,137)",light:"rgb(215,86,137,60%)"},
-    //{alias:"宋词三百首",text:"宋词三百首",color:"rgb(231,112,103)",light:"rgb(231,112,103,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"美到窒息的小众诗词，99%的人没读过",text:"山水",color:"rgb(113,203,212)",light:"rgb(113,203,212,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"田园",text:"田园",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"送别",text:"送别",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"爱情",text:"爱情",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"边塞",text:"边塞",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"爱国",text:"爱国",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"悼亡",text:"悼亡",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"闺怨",text:"闺怨",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"思乡",text:"思乡",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"哲理",text:"哲理",color:"rgb(113,203,212)",light:"rgb(113,203,212,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"怀古",text:"怀古",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"羁旅",text:"羁旅",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"咏物",text:"咏物",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"励志",text:"励志",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"讽刺",text:"讽刺",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},
-    {src:"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg", alias:"赞美",text:"赞美",color:"rgb(255,230,151)",light:"rgb(255,230,151,60%)"},
-    //{alias:"节气",text:"节气",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},
-    //{alias:"赠答",text:"赠答",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},
-  ];
   
   goToPlayList(){
     this.router.navigate(['/tabs/tab3/customlist'], {
@@ -273,12 +247,12 @@ export class Tab3Page {
   }
 
   topics = [
-    {id:4,image:'https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg',text:"Lib.Poems",count:"poemcount"},//诗词
-    {id:1,image:'https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg',text:"Lib.Poemlists",count:"poemlistcount"},//诗单列表
-    {id:2,image:'https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg',text:"Lib.Poets",count:"poetcount"},//诗人
-    {id:3,image:'https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg',text:"Lib.Albums",count:"albumcount"},//专辑
-    {id:6,image:'https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg',text:"Lib.Articles",count:"articleCount"},//文章
-    {id:5,image:'https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg',text:"Lib.Topics",count:"topiccount"},//主题
+    {id:4,text:"Lib.Poems",count:"poemcount",color:"rgb(215,86,137)",light:"rgb(215,86,137,60%)"},//诗词
+    {id:1,text:"Lib.Poemlists",count:"poemlistcount",color:"rgb(231,112,103)",light:"rgb(231,112,103,60%)"},//诗单列表
+    {id:2,text:"Lib.Poets",count:"poetcount",color:"rgb(113,203,212)",light:"rgb(113,203,212,60%)"},//诗人
+    {id:3,text:"Lib.Albums",count:"albumcount",color:"rgb(240,209,246)",light:"rgb(240,209,246,60%)"},//专辑
+    {id:6,text:"Lib.Articles",count:"articleCount",color:"rgb(255,222,194)",light:"rgb(255,222,194,60%)"},//文章
+    {id:5,text:"Lib.Topics",count:"topiccount",color:"rgb(205,238,240)",light:"rgb(205,238,240,60%)"},//主题
   ];
 
   goToTopic(topicId:any){
