@@ -3140,6 +3140,13 @@ export class DataService {
         }
       },
       {
+        text: this.ui.instant('Action.FontFamily') 
+          + ' (' + this.getCurrentFontFamilyName() + ')',
+        handler: () => {
+          this.presentFontFamilyActionSheet();
+        }
+      },
+      {
         text: this.ui.instant('Action.MoreSettings'),
         handler: () => {
           this.goToMoreSettings();
@@ -3198,6 +3205,91 @@ export class DataService {
     const lang = this.languageList.find(l => l.code === this.currentLocale);
     return lang ? lang.text : '简体中文';
   }
+
+
+
+  ////////////////////////////////////
+  public fontFamilyList = [
+    { code: 'default', text: '默认字体' },
+    { code: 'serif', text: '印刷体' },
+    { code: 'sans-serif', text: '黑体' },
+    { code: 'monospace', text: '代码体' },
+    { code: 'cursive', text: '手写体' },
+    { code: 'fantasy', text: '艺术体' }
+  ];
+
+  private normalizeFontFamily(fontFamily:any) {
+    if (typeof fontFamily !== 'string') {
+      return 'default';
+    }
+
+    const trimmed = fontFamily.trim();
+    if (!trimmed) {
+      return 'default';
+    }
+
+    if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+        (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+      try {
+        return JSON.parse(trimmed.replace(/^'/, '"').replace(/'$/, '"'));
+      } catch {
+        return trimmed.slice(1, -1);
+      }
+    }
+
+    return trimmed;
+  }
+
+  private applyFontFamily(fontFamily:any) {
+    const normalizedFontFamily = this.normalizeFontFamily(fontFamily);
+
+    if (normalizedFontFamily === 'default') {
+      document.documentElement.style.removeProperty('--ion-font-family');
+      return;
+    }
+
+    document.documentElement.style.setProperty('--ion-font-family', normalizedFontFamily);
+  }
+
+  public getCurrentFontFamilyName() {
+    const normalizedFontFamily = this.normalizeFontFamily(this.currentFontFamily);
+    const font = this.fontFamilyList.find(f => f.code === normalizedFontFamily);
+    return font ? font.text : '默认字体';
+  }
+
+  async presentFontFamilyActionSheet(){
+    const actionSheet = await this.actionSheetController.create({
+      header: this.ui.instant('Action.FontFamily'),
+      buttons: this.fontFamilyActionSheetButtons,
+    });
+    await actionSheet.present();
+  }
+
+  public get fontFamilyActionSheetButtons(){ 
+    return this.fontFamilyList.map(item => ({
+      text: item.text,
+      handler: () => {
+        this.setFontFamily(item.code);
+      }
+    }));
+  }
+  setFontFamily(fontFamily:any){
+    this.currentFontFamily = this.normalizeFontFamily(fontFamily);
+    this.applyFontFamily(this.currentFontFamily);
+    this.set(this.LOCALSTORAGE_TEXT_FONT_FAMILY, this.currentFontFamily);
+  }
+  LOCALSTORAGE_TEXT_FONT_FAMILY = "app_text_font_family";
+  currentFontFamily:any;
+  async loadFontFamily(){
+    const fontFamily = await this.storage.get(this.LOCALSTORAGE_TEXT_FONT_FAMILY);
+    console.log('load font family:'+fontFamily)
+    this.currentFontFamily = this.normalizeFontFamily(fontFamily);
+    this.applyFontFamily(this.currentFontFamily);
+    console.log('current font family:'+this.currentFontFamily)
+  }
+  ////////////////////////////////////
+
+
 
 
 

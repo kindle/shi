@@ -83,7 +83,8 @@
         "Collect":"收藏",
         "Share":"分享",
         "ClearAllSearchHistory":"清除全部搜索记录",
-        "MoreSettings":"更多设置"
+        "MoreSettings":"更多设置",
+        "FontFamily":"字体"
     },
 
     "Message":{

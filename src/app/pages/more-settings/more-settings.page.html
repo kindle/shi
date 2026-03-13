@@ -18,7 +18,7 @@
   </ion-list-header>
   <ion-list [inset]="true">
     <ion-item [button]="true" (click)="data.presentLanguageActionSheet()">
-      <ion-icon color="primary" slot="start" name="text-outline" size="large"></ion-icon>
+      <ion-icon color="primary" slot="start" name="language-outline" size="large"></ion-icon>
       <ion-label [style.fontSize]="data.zoom(16)">
         {{ui.instant('Tutorial.Language')}} ({{data.getCurrentLanguageName()}})
       </ion-label>
@@ -27,6 +27,12 @@
       <ion-icon color="dark" slot="start" name="resize-outline" size="large"></ion-icon>
       <ion-label [style.fontSize]="data.zoom(16)">
         {{ui.instant('Action.FontSize')}} ({{mathfloor(data.zoomLevel * 100)}}%)
+      </ion-label>
+    </ion-item>
+    <ion-item [button]="true" (click)="data.presentFontFamilyActionSheet()">
+      <ion-icon color="primary" slot="start" name="text-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        {{ui.instant('Tutorial.FontFamily')}} ({{data.getCurrentFontFamilyName()}})
       </ion-label>
     </ion-item>
     <!-- <ion-item>

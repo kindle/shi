@@ -53,6 +53,7 @@ export class AppComponent {
       this.data.init();
     }).finally(()=>{
       this.data.loadLocale();
+      this.data.loadFontFamily();
     });
 
     
