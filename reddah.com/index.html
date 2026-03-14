@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>名诗佳句</title>
+	<meta name="description" content="名诗佳句官网入口页，按设备宽度进入原始桌面版或移动版页面。">
+	<meta http-equiv="refresh" content="0; url=./desktop.html">
+	<style>
+		body {
+			margin: 0;
+			display: grid;
+			min-height: 100vh;
+			place-items: center;
+			font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+			background: #ffffff;
+			color: #333333;
+		}
+
+		.loading {
+			padding: 24px;
+			text-align: center;
+			font-size: 14px;
+			line-height: 1.7;
+		}
+	</style>
+</head>
+<body>
+	<div class="loading">页面跳转中...</div>
+	<script>
+		(function () {
+			var target = window.innerWidth >= 769 ? './desktop.html' : './mobile.html';
+			window.location.replace(target);
+		})();
+	</script>
+</body>
+</html>
