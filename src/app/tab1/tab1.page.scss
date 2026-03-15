@@ -73,6 +73,7 @@
     background-color: rgb(187,205,253);
     background-repeat: no-repeat;
     background-position: bottom;
+    position: relative;
     //background-image: url('/assets/img/water.jpg');
 
     .card-text{
@@ -144,5 +145,23 @@
     height: 100%;
 }
 
+.shufa-left {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    line-height: 1.8;
+    margin: 0;
+    z-index: 2;
+}
+
+.shufa-right {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin-left:auto;
+    line-height: 2;
+    font-size: xxx-large;
+}
 
 
