@@ -107,8 +107,9 @@
   </ion-header>
 
   <app-text [name]="authorData.name" [text]="authorData.desc"
-  *ngIf="!showFilter&&authorData">
+    *ngIf="!showFilter&&authorData">
   </app-text>
+  <br>
   <!--热门诗词-->
   <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"
   *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>

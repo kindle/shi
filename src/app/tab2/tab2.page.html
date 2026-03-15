@@ -34,7 +34,9 @@
   *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
   
   <!--现在就听-->
-  <app-hot name="{{ ui.instant('Tabs.ListenNow') }}" [source]="data.classicData" *ngIf="data.classicData"></app-hot>
+  <app-hot name="{{ ui.instant('Tabs.ListenNow') }}" 
+    [source]="data.classicData" *ngIf="data.classicData">
+  </app-hot>
   <app-big [source]="data.tab2LocalScrollData"></app-big>
   <!--热门诗词-->
   <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>
