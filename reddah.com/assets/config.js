@@ -27,7 +27,6 @@ var config = {
     url: 'https://download.fnxz.live/download/fnjs_2.3.5_universal.dmg',
     appendCode: false
   },
-  salesiq: 'siq07c0ab2a503f5e2d405f254bf32a349882684934e19915ceb47f2872f4c4ff1e',
   privacy: 'privacy.html',
   terms: 'terms.html',
   telegram: 'https://t.me/fnvpngf',
