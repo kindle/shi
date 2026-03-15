@@ -8,6 +8,7 @@
         "name": "",
         "sub": "内存",
         "acolor": "black",
+        "direct":"v",
         "image": "/assets/img/bg1.jpg",
         "more": "为什么王勃的诗里提到了‘内存’？",
         "desc": "海内存知己<br>天涯若比邻",

@@ -222,6 +222,7 @@ export class DataService {
   loadPoemList(){
     const jsonFiles = [
       `/assets/topic/list-fun.json`,
+      //`/assets/topic/list-funsingle.json`,//单个趣味诗单，开卷有益文章用
       `/assets/topic/list-audio.json`,
       `/assets/topic/list-holiday.json`,
       `/assets/topic/list-food.json`
@@ -426,6 +427,7 @@ export class DataService {
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
           title_color:fun.acolor?fun.acolor:"white",
+          direct:fun.direct?fun.direct:"h",
           special:fun.special,
           small_title:fun.sub,
           image_size:fun["image-size"]?fun["image-size"]:"cover",
@@ -486,8 +488,12 @@ export class DataService {
     //console.log(this.funDataMap)
 
     if(this.disableRandomArticleData){
-      let tempdata = this.setRandomArticles(this.articleData);
-      return this.articleData.concat(tempdata);
+      //console.log(this.articleData)
+      return this.articleData.filter((d:any)=>d.id>200);
+      
+      
+      //let tempdata = this.setRandomArticles(this.articleData);
+      //return this.articleData.concat(tempdata);
     }
 
     if(!this.funDataMap.has(seed)){
@@ -3282,10 +3288,10 @@ export class DataService {
   currentFontFamily:any;
   async loadFontFamily(){
     const fontFamily = await this.storage.get(this.LOCALSTORAGE_TEXT_FONT_FAMILY);
-    console.log('load font family:'+fontFamily)
+    // family:'+fontFamily)
     this.currentFontFamily = this.normalizeFontFamily(fontFamily);
     this.applyFontFamily(this.currentFontFamily);
-    console.log('current font family:'+this.currentFontFamily)
+    //console.log('current font family:'+this.currentFontFamily)
   }
   ////////////////////////////////////
 
