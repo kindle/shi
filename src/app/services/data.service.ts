@@ -252,7 +252,7 @@ export class DataService {
   }
 
   getRandom(min:number, max:number){
-    return Math.floor(Math.random() * max) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   hotData:any;
@@ -488,10 +488,11 @@ export class DataService {
     //console.log(this.funDataMap)
 
     if(this.disableRandomArticleData){
-      //console.log(this.articleData)
-      return this.articleData.filter((d:any)=>d.id>200);
+      //test new article, only display id>200
+      //return this.articleData.filter((d:any)=>d.id>200);
       
-      
+      //test slide
+      return this.articleData.filter((d:any)=>d.template==='slide');
       //let tempdata = this.setRandomArticles(this.articleData);
       //return this.articleData.concat(tempdata);
     }
@@ -514,6 +515,8 @@ export class DataService {
   setRandomArticles(data:any){
 
     let temp:any = [];
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='slide'&&!d.effect), 1));
+
     //get 5 fun articles, 4 articles that have no effect, 1 have effect
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 1));
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
@@ -571,7 +574,8 @@ export class DataService {
             let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
             item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
             item["image_size"] = "cover";
-            temp.unshift(item);
+            //temp.unshift(item);
+            temp.splice(1, 0, item);
         }
       }
 
@@ -606,11 +610,12 @@ export class DataService {
         let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
         item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
         item["image_size"] = "cover";
-        temp.unshift(item);
+        //temp.unshift(item);
+        temp.splice(1, 0, item);
       }
 
       
-
+      
     }
 
     //test
