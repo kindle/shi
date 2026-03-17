@@ -374,7 +374,14 @@
       "zh-CN":"寓教于乐",
       "zh-TW":"寓教於樂"
     },
-    "desc":"用耳朵和嘴巴学习诗词"
+    "desc":"人一定要热爱些什么，才不至于被这无趣的生活吞没。",
+    "desclist":[
+      "人一定要热爱些什么，才不至于被这无趣的生活吞没。",
+      "在真正的运气到来之前，请你积累知识，认真生活。",
+      "如果这世上所有的相遇都是久别重逢，那我一定等了你很久很久。",
+      "智者解决问题，愚者发泄情绪。",
+      "世界上最好的贵人，就是执行力超强的你。"
+    ]
   }, 
   
 
@@ -983,6 +990,59 @@
       "ru-RU":"Кухня",
       "th-TH":"อาหาร",
       "zh-CN":"美食",
+      "zh-TW":"美食"
+    },
+    "image":"https://reddah.blob.core.windows.net/msjjimg/mediterranean-cuisine-2378758_1280.jpg",
+    "scroll":[
+      {"id":56, "alias":"人间烟火","text":"人间烟火气，最抚凡人心","desc":"玉盘杨梅为君设，吴盐如花皎白雪","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/italian-cuisine-2378729_1280.jpg"},
+      {"id":3000, "alias":"诗人都是美食家","text":"中国人是最会吃的民族，欢喜时，我们在食物中寻找幸福；悲伤时，我们在食物中寻找慰藉。","desc":"美食诗词句句诱人","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/spaghetti-1932466_1280.jpg"},
+      {"id":3001, "alias":"爱吃鱼的诗人们","text":"如临其境，口齿留香","desc":"那些描写鱼的美味诗词","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/fish-3622319_1280.jpg"},
+      {"id":3002, "alias":"爱喝酒的诗人们","text":"飘香的清冽，是时间和酒釉的奇妙相遇","desc":"那些描写酒的美味诗词","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/water-5366496_1280.jpg"}
+        
+    ],
+    "list":[
+      {"name":"推荐诗人", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"蒌蒿满地芦芽短，正是河豚欲上时","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张志和.jpeg","display":"cover","text":"张志和","sample":"西塞山边白鹭飞，桃花流水鳜鱼肥","desc":"","color":"rgb(98,166,243)","author":"张志和"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/范仲淹.jpeg","display":"cover","text":"范仲淹","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"范仲淹"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","sample":"绿蚁新醅酒，红泥小火炉","desc":"","color":"rgb(98,166,243)","author":"白居易"}
+      ]},
+
+      {"name":"风格诗单", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","text":"白菜","desc":"白菜有个美丽的名字叫做“菘”，看看古诗里的大白菜","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/vegetables-711380_1280.jpg","display":"cover","text":"韭菜","desc":"韭菜","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","text":"水果","desc":"水果都有什么","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/IMG_4052.jpg","display":"cover","text":"螃蟹","desc":"","color":"rgb(121,196,131)"}
+        ]
+      },
+      {"name":"精选诗单", "data": [
+        {"id":72,"src":"https://reddah.blob.core.windows.net/msjjimg/wave-4119271_1280.jpg","display":"cover","text":"美酒 | 哪些关于酒的诗句，让你觉得特别惊艳","desc":"","color":"rgb(98,166,243)"},
+        {"id":91,"src":"https://reddah.blob.core.windows.net/msjjimg/masterpiece-4359010_1280.jpg","display":"cover","text":"清欢 | 梅子金黄杏子肥，麦花雪白菜花稀","desc":"","color":"rgb(98,166,243)"}
+      ]
+      }
+    ],
+    "hot":[],
+    "desctitle":"简介",
+    "desc":"岁月静好 看淡繁华。"
+    
+  },
+
+  {
+    "id":11,
+    "name":"诗词博物馆",
+    "i18n":{
+      "ar-AE":"مطبخ",
+      "de-DE":"Kulinarik",
+      "el-GR":"Κουζίνα",
+      "en-US":"Cuisine",
+      "es-ES":"Cocina",
+      "fr-FR":"Cuisine",
+      "ja-JP":"美食",
+      "ko-KR":"미식",
+      "pt-PT":"Culinária",
+      "ru-RU":"Кухня",
+      "th-TH":"อาหาร",
+      "zh-CN":"诗词博物馆",
       "zh-TW":"美食"
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/mediterranean-cuisine-2378758_1280.jpg",

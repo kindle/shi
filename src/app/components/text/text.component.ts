@@ -1,17 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
-import { UiService } from 'src/app/services/ui.service';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-text',
   templateUrl: './text.component.html',
   styleUrls: ['./text.component.scss'],
 })
-export class TextComponent {
+export class TextComponent implements OnChanges {
 
   @Input() nofold?: boolean;
   @Input() name?: string;
   @Input() text?: string;
+  @Input() texts?: string[];
   
   @Input() max: number = 100;
   fold:boolean = true;
@@ -20,6 +21,22 @@ export class TextComponent {
     public ui: UiService,
     public data: DataService,
   ){}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['texts']) {
+      this.applyRandomText();
+    }
+  }
+
+  private applyRandomText(): void {
+    if (!this.texts || this.texts.length === 0) {
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * this.texts.length);
+    this.text = this.texts[randomIndex];
+    this.fold = true;
+  }
 
   short(){
     if(this.nofold)
