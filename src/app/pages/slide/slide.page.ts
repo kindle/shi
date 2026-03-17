@@ -13,12 +13,19 @@ import domtoimage from 'dom-to-image';
 })
 export class SlidePage implements OnInit {
 
+  @ViewChild('slideSwiper') slideSwiper?: ElementRef;
+
+  slideAutoplay = {
+    delay: 5000,
+    disableOnInteraction: true,
+  };
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private data: DataService,
+    public data: DataService,
     private navCtrl: NavController,
     private router: Router,
-    private ui: UiService,
+    public ui: UiService,
 
   ) { }
 
@@ -35,6 +42,7 @@ export class SlidePage implements OnInit {
     this.id = this.activatedRoute.snapshot.queryParams["id"];
     this.data.getSlides(this.id).then(data=>{
       this.slidesJsonData = data;
+      this.startSlideAutoplay();
       this.audio = new Audio(this.slidesJsonData.music);
       this.audio.loop = true;
       this.audio.play();
@@ -42,8 +50,18 @@ export class SlidePage implements OnInit {
     
   }
 
+  ionViewDidEnter() {
+    this.startSlideAutoplay();
+  }
+
   ionViewWillLeave(){
-    this.audio.pause();
+    this.audio?.pause();
+  }
+
+  private startSlideAutoplay() {
+    setTimeout(() => {
+      this.slideSwiper?.nativeElement?.swiper?.autoplay?.start();
+    }, 0);
   }
 /*
   share(s:any){
