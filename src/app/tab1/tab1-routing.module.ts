@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('../me/me.module').then( m => m.MePageModule)
   },
   {
+    path: 'slide',
+    loadChildren: () => import('../pages/slide/slide.module').then( m => m.SlidePageModule)
+  },
+  {
     path: 'list',
     loadChildren: () => import('../tab3/dahui/list/list.module').then( m => m.ListPageModule)
   },
