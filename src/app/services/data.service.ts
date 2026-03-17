@@ -2390,6 +2390,9 @@ export class DataService {
     //in case it's brief data from json
     if(group==='poem'){
       let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
+      // console.log(listdata)
+      // console.log(group)
+      // console.log(fullData)
       if(fullData.length===1){
         listdata = fullData[0];
       }

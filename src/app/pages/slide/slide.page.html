@@ -6,11 +6,15 @@
       </ion-button>
     </ion-buttons>
 
+    <app-button-end [p]="cs" page="slidearticle" slot="end" 
+    *ngIf="cs"
+    (click)="stopSlideAutoplay()"></app-button-end>
+<!--     
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon name="share-social-outline" color="medium"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -21,72 +25,31 @@
     </ion-toolbar>
   </ion-header>
   <swiper-container #slideSwiper *ngIf="slidesJsonData"
-    [loop]="false" navigation="false" scrollbar="false"
+    [loop]="true" navigation="false" scrollbar="false"
     [autoplay]="slideAutoplay" speed="1000">
-    <!--<swiper-slide>
-      <div style="margin:80px 50px;display: flex;flex-direction: column;justify-content: center;">
-        
-        <div style="font-size: 30px;text-align: center;padding:5px 0;">
-          {{slidesJsonData.title}}
-        </div>
-
-      </div>
-    </swiper-slide>-->
     <swiper-slide *ngFor="let s of slidesJsonData.slides;index as i">
       <!--(click)="share(s)" -->
       <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;"
       id="open-modal{{i}}">
         
-        <div *ngFor="let t of s.title" style="font-size: 20px;text-align: center;padding:5px 0;">
+        <div *ngFor="let t of s.title" 
+          style="text-align: center;padding:5px 0;"
+          [style.fontSize]="data.zoom(20)">
           {{t}}
         </div>
 
-        <div style="text-align: center;padding:30px 0;">
+        <div style="text-align: center;padding:30px 0;"
+        [style.fontSize]="data.zoom(16)">
           -{{s.sub}}
         </div>
 
-        <div style="padding:30px 0;">
-          译文：<br>
-          {{s.note}} 
+        <div style="padding:30px 0;"
+        [style.fontSize]="data.zoom(16)">
+          译文：<br><br>
+          {{s.desc}} 
         </div>
       </div>
 
-      <ion-list style="padding-bottom: 30px;margin:20px;">
-        <ion-item line="none" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
-          <ion-thumbnail slot="start" (click)="data.goToAuthor(s.author)"
-          style="display: flex;justify-content: center;align-items: center;"
-          [style.width]="ui.isipad ? '90px' : '56px'"
-          [style.height]="ui.isipad ? '90px' : '56px'">
-            <img style="border-radius: 10px;" 
-              defaultImage="assets/img/default.jpg" 
-              lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s.author}}.jpeg"
-              onerror="javascript:this.src='assets/img/default.jpg'" 
-              [ngStyle]="{'opacity':(data.currentPoem&&s.audio&&s.id === data.currentPoem.id) ? '0.5' : '1' }" />
-            <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&s.audio&&s.id === data.currentPoem.id"
-              [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-              'height':(data.isPlaying) ? '' : '5px' }"
-            ></div>
-          </ion-thumbnail>
-          <ion-label>
-            <div style="display: flex; align-items: center;">
-              <ion-icon name="headset" *ngIf="s.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
-              <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-                {{s.title}} {{s.author}}
-              </h2>
-            </div>
-            <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
-              style="margin-top:5px;display: flex;align-items: end;">
-              {{s.sample?s.sample:s.title[0]}}
-            </p>
-          </ion-label>
-          <app-button-end [p]="s" page="hotlist" slot="end"></app-button-end>
-        </ion-item>
-      </ion-list>
-      <ion-modal trigger="open-modal{{i}}" class="modal-fullscreen" [initialBreakpoint]=".75" [breakpoints]="[0, .75]">
-        <ng-template>
-          <app-explore-container title="" para="{{s.title.join('\n')}}" ending="{{s.author}}"></app-explore-container>
-        </ng-template>
-      </ion-modal>
     </swiper-slide>
   </swiper-container>
   
