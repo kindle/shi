@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/viewer-article/article-viewer.module').then( m => m.ArticleViewerPageModule)
   },
   {
+    path: 'slide',
+    loadChildren: () => import('./pages/slide/slide.module').then( m => m.SlidePageModule)
+  },
+  {
     path: 'player',
     loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
   },

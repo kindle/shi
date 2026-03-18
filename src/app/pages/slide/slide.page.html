@@ -1,20 +1,23 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="goback()">
-        <ion-icon name="chevron-back-outline" color="medium"></ion-icon>
+  <ion-toolbar style="padding-inline-start:20px;
+      padding-inline-end:20px;padding-top:30px;"
+      [style.paddingTop]="ui.isAndroid ? '45px' : '30px'">
+    <ion-buttons style="display:flex;justify-content:center;
+      width:fit-content;height:25px;float:left;
+      padding:15px 15px 15px 5px;
+      border-radius: 15px;"
+      (click)="goback()">
+      <ion-button>
+        <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
+        {{ ui.instant('Action.Back') }}<!--返回-->
       </ion-button>
     </ion-buttons>
 
-    <app-button-end [p]="cs" page="slidearticle" slot="end" 
-    *ngIf="cs"
-    (click)="stopSlideAutoplay()"></app-button-end>
-<!--     
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="share()" [disabled]="!cs">
         <ion-icon name="share-social-outline" color="medium"></ion-icon>
       </ion-button>
-    </ion-buttons> -->
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -24,8 +27,8 @@
       <ion-title size="large"></ion-title>
     </ion-toolbar>
   </ion-header>
-  <swiper-container #slideSwiper *ngIf="slidesJsonData"
-    [loop]="true" navigation="false" scrollbar="false"
+  <swiper-container #slideSwiperArticle *ngIf="slidesJsonData"
+    [loop]="canLoop" navigation="false" scrollbar="false"
     [autoplay]="slideAutoplay" speed="1000">
     <swiper-slide *ngFor="let s of slidesJsonData.slides;index as i">
       <!--(click)="share(s)" -->

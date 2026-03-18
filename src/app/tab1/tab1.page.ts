@@ -142,7 +142,7 @@ export class Tab1Page {
       //fade animation
       this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
     }
-    this.router.navigate(['/tabs/tab1/slide'], {
+    this.router.navigate(['slide'], {
       queryParams: {
         id:id
       }

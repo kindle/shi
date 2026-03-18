@@ -142,6 +142,9 @@ export class DataService {
     this.http.get<any>(`assets/db/全唐诗/authors.song.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });
+    this.http.get<any>(`assets/db/宋词/author.song.json`).subscribe(result=>{
+      this.authorJsonData = this.authorJsonData.concat(result);
+    });
     this.http.get<any>(`assets/db/全唐诗/authors.tang.json`).subscribe(result=>{
       this.authorJsonData = this.authorJsonData.concat(result);
     });

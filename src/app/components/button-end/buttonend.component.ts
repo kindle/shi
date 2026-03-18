@@ -15,6 +15,7 @@ export class ButtonEndComponent {
   @Input() p: any;
 
   @Input() page: string|any;
+  @Input() isViewAuthor: boolean = false;
 
   uuid:any;
   constructor(
