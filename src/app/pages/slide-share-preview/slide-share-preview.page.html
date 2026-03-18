@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        返回
+      </ion-button>
+    </ion-buttons>
+    <ion-title>分享预览</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="preview-content">
+  <div class="preview-stage">
+    <ion-spinner *ngIf="isRendering" name="crescent"></ion-spinner>
+    <div
+      *ngIf="!isRendering && previewDataUrl"
+      #previewShell
+      class="preview-style-shell"
+      [class.no-style]="selectedStyleId === 0"
+      [style.background-image]="selectedStyleId === 0 ? 'none' : 'url(' + selectedStyleBg + ')'"
+    >
+      <img [src]="previewDataUrl" alt="share preview" class="preview-image" />
+    </div>
+    <div *ngIf="!isRendering && renderError" class="preview-error">{{ renderError }}</div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="scroll">
+    <div
+      *ngFor="let template of styleOptions"
+      class="scroll-item"
+      (click)="chooseStyle(template.key)"
+    >
+      <img [src]="template.image" style="width:80px;height:80px;">
+      <div>{{ template.value }}</div>
+    </div>
+  </div>
+</ion-footer>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="action-row">
+        <ion-button fill="solid" color="tertiary" (click)="chooseBackground()">背景</ion-button>
+    </div>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div class="action-row action-row-right">
+      <ion-button fill="solid" color="medium" (click)="saveImage()">保存图片</ion-button>
+      <ion-button fill="solid" color="primary" (click)="shareImage()">分享</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

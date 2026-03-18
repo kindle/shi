@@ -1,0 +1,80 @@
+.preview-content {
+  --background: #f4f5f8;
+}
+
+.preview-stage {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.preview-style-shell {
+  width: 100%;
+  max-width: 640px;
+  max-height: 72vh;
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 100px 50px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-style-shell.no-style {
+  background-image: none !important;
+  background: #ffffff;
+  padding: 0;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+.preview-error {
+  color: #d33;
+  font-size: 14px;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 6px 10px;
+}
+
+.action-row ion-button {
+  margin: 0;
+}
+
+.action-row-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.scroll {
+    text-align: center;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.scroll-item {
+    width: 80px;
+    height: 80px;
+    margin:10px;
+    background-color: aqua;
+    border-right: 1px solid;
+    white-space: nowrap;
+    display: inline-block;
+}

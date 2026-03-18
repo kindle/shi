@@ -4,11 +4,6 @@ import { DataService } from '../../services/data.service';
 import { NavController } from '@ionic/angular';
 import { UiService } from '../../services/ui.service';
 
-import domtoimage from 'dom-to-image';
-
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Share } from '@capacitor/share';
-
 @Component({
   selector: 'app-slide',
   templateUrl: './slide.page.html',
@@ -240,182 +235,19 @@ export class SlidePage implements OnInit {
     }
 
     this.stopSlideAutoplay();
-    console.log(this.cs);
+    const bigTitleLines = Array.isArray(this.cs?.title)
+      ? this.cs.title
+      : [`${this.cs?.title ?? ''}`];
+
     this.data.currentArticle = {
-      big_title: this.cs.title.join("\n"),
+      big_title: bigTitleLines.join("\n"),
+      big_title_lines: bigTitleLines,
       bg_image: '定格秋天.jpg',
       small_title: this.cs.sub,
       min_height: "400px",
       template: "slide"
     };
-    const currentFontFamilyName = this.data.getCurrentFontFamilyName();
-
-    const bgUrl = 'https://reddah.blob.core.windows.net/msjjimg/' + this.data.currentArticle.bg_image;
-    
-    const loadImage = (src: string, isCors = false) => {
-      return new Promise<HTMLImageElement>((resolve, reject) => {
-        const img = new Image();
-        if(isCors) img.crossOrigin = "Anonymous";
-        img.onload = () => resolve(img);
-        img.onerror = (e) => reject(e);
-        img.src = src;
-      });
-    };
-
-    Promise.all([
-      loadImage(bgUrl, true),
-      loadImage('assets/icon/favicon.png'),
-      loadImage('assets/icon/shi-qr.png')
-    ]).then(async ([bgImg, iconImg, qrImg]) => {
-      const canvas = document.createElement("canvas");
-      const canvasWidth = bgImg.width;
-      const targetHeight = Math.round(canvasWidth * 5 / 4); // Keep final image near 4:5 aspect ratio
-      const footerHeight = Math.round(canvasWidth * 0.2);
-      const mainHeight = Math.max(1, targetHeight - footerHeight);
-      canvas.width = canvasWidth;
-      canvas.height = mainHeight + footerHeight;
-      const ctx = canvas.getContext("2d");
-      
-      if(ctx){
-        // Draw background using cover strategy to avoid very tall/narrow outputs.
-        const bgScale = Math.max(canvas.width / bgImg.width, mainHeight / bgImg.height);
-        const bgDrawWidth = bgImg.width * bgScale;
-        const bgDrawHeight = bgImg.height * bgScale;
-        const bgOffsetX = (canvas.width - bgDrawWidth) / 2;
-        const bgOffsetY = (mainHeight - bgDrawHeight) / 2;
-        ctx.drawImage(bgImg, bgOffsetX, bgOffsetY, bgDrawWidth, bgDrawHeight);
-
-        // Draw Footer Background
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, mainHeight, canvas.width, footerHeight);
-
-        // Footer Settings
-        const padding = footerHeight * 0.1;
-        const usefulFooterHeight = footerHeight - 2 * padding;
-        
-        // Draw Icon (Left)
-        // Check aspect ratio to fit within square
-        const iconRatio = iconImg.width / iconImg.height;
-        let iconW = usefulFooterHeight * iconRatio;
-        let iconH = usefulFooterHeight;
-        if(iconW > usefulFooterHeight) {
-            iconW = usefulFooterHeight;
-            iconH = usefulFooterHeight / iconRatio;
-        }
-        ctx.drawImage(iconImg, padding, mainHeight + padding + (usefulFooterHeight - iconH)/2, iconW, iconH);
-
-        // Draw QR Code (Right)
-        const qrRatio = qrImg.width / qrImg.height;
-        let qrW = usefulFooterHeight * qrRatio;
-        let qrH = usefulFooterHeight;
-        if(qrW > usefulFooterHeight) {
-            qrW = usefulFooterHeight;
-            qrH = usefulFooterHeight / qrRatio;
-        }
-        ctx.drawImage(qrImg, canvas.width - qrW - padding, mainHeight + padding + (usefulFooterHeight - qrH)/2, qrW, qrH);
-
-        // Draw Text (Center Left)
-        ctx.fillStyle = "black";
-        ctx.textAlign = "left";
-        ctx.textBaseline = "middle";
-        
-        const textStartX = padding + iconW + padding; // specific padding logic
-        const textCenterY = mainHeight + footerHeight / 2;
-
-        const titleFontSize = Math.floor(footerHeight * 0.3);
-        ctx.font = `bold ${titleFontSize}px "${currentFontFamilyName}", sans-serif`;
-        ctx.fillText('名诗佳句', textStartX, textCenterY - titleFontSize * 0.6);
-
-        const subTitleFontSize = Math.floor(footerHeight * 0.2);
-        ctx.font = `normal ${subTitleFontSize}px "${currentFontFamilyName}", sans-serif`;
-        ctx.fillStyle = "#666666";
-        ctx.fillText('长按识别二维码免费获取', textStartX, textCenterY + subTitleFontSize * 0.8);
-
-        // --- Original Content Drawing Over Background Image ---
-        // Restore context settings for article text if needed
-        // Since we are drawing on top of bgImg, we use same coords as before
-        
-        // Common settings for article text
-        ctx.fillStyle = "white";
-        ctx.textAlign = "left";
-        ctx.textBaseline = "top";
-        ctx.shadowColor = "black";
-        ctx.shadowBlur = 10;
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = "black";
-
-        const x = 40;
-        let y = 40;
-        const maxWidth = canvas.width * 0.5; // Use 50% width to keep left and avoid center
-
-        // Draw Small Title
-        if (this.data.currentArticle.small_title) {
-          const smallFontSize = Math.floor(canvas.width / 25);
-          ctx.font = `bold ${smallFontSize}px "${currentFontFamilyName}", sans-serif`;
-          ctx.lineWidth = 3;
-          const smallTitleText = this.data.currentArticle.small_title;
-          ctx.strokeText(smallTitleText, x, y);
-          ctx.fillText(smallTitleText, x, y);
-          y += smallFontSize * 1.4 + 20;
-        }
-
-        // Draw Big Title
-        const bigFontSize = Math.floor(canvas.width / 15);
-        ctx.font = `bold ${bigFontSize}px "${currentFontFamilyName}", sans-serif`;
-        ctx.lineWidth = 5;
-        const bigTitleLines = Array.isArray(this.cs?.title)
-          ? this.cs.title
-          : [this.data.currentArticle.big_title];
-        const bigTitleLineHeight = bigFontSize * 1.4;
-
-        for (const line of bigTitleLines) {
-          const text = `${line ?? ''}`.trim();
-          if (!text) {
-            continue;
-          }
-          ctx.strokeText(text, x, y);
-          ctx.fillText(text, x, y);
-          y += bigTitleLineHeight;
-        }
-
-        try {
-          const dataUrl = canvas.toDataURL("image/png");
-
-          if(this.data.isHybrid()){
-            const base64Data = dataUrl.replace(/^data:image\/\w+;base64,/, "");
-            // const fileName = this.data.currentArticle.big_title+" "
-            //   + this.data.currentArticle.small_title+" "
-            //   + ".png";
-              //+ new Date().getTime() + '.png';
-            const fileName = this.data.currentArticle.small_title + ".png";//ios share preview title on the right, left is image.
-            const savedFile = await Filesystem.writeFile({
-              path: fileName,
-              data: base64Data,
-              directory: Directory.Cache
-            });
-            await Share.share({
-              title: this.data.currentArticle.big_title,
-              text: this.data.currentArticle.small_title,
-              files: [savedFile.uri],
-              dialogTitle: this.data.currentArticle.big_title
-            });
-          }
-          else{
-            this.ui.share(
-              dataUrl, 
-              this.data.currentArticle.big_title, 
-              this.data.currentArticle.small_title, 
-              'https://reddah.com'
-            );
-          }
-
-        } catch (e) {
-          console.error("Canvas taint or error", e);
-        }
-      }
-    }).catch(err => {
-        console.error("Failed to load images for sharing", err);
-    });
+    this.router.navigate(['/slide-share-preview']);
   }
 
   wrapText(ctx: any, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {

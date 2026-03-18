@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/slide/slide.module').then( m => m.SlidePageModule)
   },
   {
+    path: 'slide-share-preview',
+    loadChildren: () => import('./pages/slide-share-preview/slide-share-preview.module').then( m => m.SlideSharePreviewPageModule)
+  },
+  {
     path: 'image-viewer',
     loadChildren: () => import('./pages/viewer-image/image-viewer.module').then( m => m.ImageViewerPageModule)
   },
