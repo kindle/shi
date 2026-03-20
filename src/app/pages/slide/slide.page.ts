@@ -75,6 +75,7 @@ export class SlidePage implements OnInit {
     }
 
     this.data.getSlides(this.id).then(data=>{
+      console.log(data);
       if (!data || !data.slides || data.slides.length === 0) {
         return;
       }
@@ -240,12 +241,12 @@ export class SlidePage implements OnInit {
       : [`${this.cs?.title ?? ''}`];
 
     this.data.currentArticle = {
+      small_title: this.cs.sub,
       big_title: bigTitleLines.join("\n"),
       big_title_lines: bigTitleLines,
-      bg_image: '定格秋天.jpg',
-      small_title: this.cs.sub,
-      min_height: "400px",
-      template: "slide"
+      bg_image: this.slidesJsonData.bg_image,//'定格秋天.jpg',
+      //min_height: "400px",
+      //template: "slide"
     };
     this.router.navigate(['/slide-share-preview']);
   }

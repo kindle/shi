@@ -6,6 +6,13 @@ import { Share } from '@capacitor/share';
 
 import { DataService } from '../../services/data.service';
 import { UiService } from '../../services/ui.service';
+import { renderStandard1Preview } from 'src/app/pages/slide-share-preview/standard1';
+import { renderStandard2Preview } from 'src/app/pages/slide-share-preview/standard2';
+import { renderStandard3Preview } from 'src/app/pages/slide-share-preview/standard3';
+import { renderStandard4Preview } from 'src/app/pages/slide-share-preview/standard4';
+import { renderStandard5Preview } from 'src/app/pages/slide-share-preview/standard5';
+import { renderStandard6Preview } from 'src/app/pages/slide-share-preview/standard6';
+import { renderStandard7Preview } from 'src/app/pages/slide-share-preview/standard7';
 
 @Component({
   selector: 'app-slide-share-preview',
@@ -18,17 +25,25 @@ export class SlideSharePreviewPage {
   previewDataUrl = '';
   isRendering = false;
   renderError = '';
-  selectedStyleId = 0;
+  selectedStyleId = 1;
   selectedStyleBg = '';
+  editableSmallTitle = '';
+  editableBigTitle = '';
   styleOptions = [
-    { key: 0, value: '无', image: 'assets/img/bg0.jpg' },
-    { key: 1, value: '经典', image: 'assets/img/bg2.jpg' },
-    { key: 2, value: '波点', image: 'assets/img/bg5.jpg' },
-    { key: 3, value: '水纹', image: 'assets/img/water.jpg' },
-    { key: 4, value: '云纹', image: 'assets/img/dahuibg.jpeg' },
+    { key: 2, value: '标准2', image: 'assets/img/bg0.jpg', preview: 'assets/img/std2.png' },
+    { key: 7, value: '标准4', image: 'assets/img/bg0.jpg', preview: 'assets/img/std4.png' },
+    { key: 3, value: '标准3', image: 'assets/img/bg0.jpg', preview: 'assets/img/std3.png' },
+    { key: 1, value: '标准1', image: 'assets/img/bg0.jpg', preview: 'assets/img/std1.png' },
+    { key: 4, value: '胶片1', image: 'assets/img/bg0.jpg', preview: 'assets/img/black1.png' },
+    { key: 5, value: '右侧1', image: 'assets/img/bg0.jpg', preview: 'assets/img/right1.png' },
+    { key: 6, value: '右侧2', image: 'assets/img/bg0.jpg', preview: 'assets/img/right2.png' },
+    
+    
+    
   ];
 
   private customBackgroundUrl = '';
+  private titleRenderTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     public data: DataService,
@@ -42,7 +57,11 @@ export class SlideSharePreviewPage {
       return;
     }
 
-    this.chooseStyle(0);
+    this.editableSmallTitle = this.data.currentArticle.small_title || '';
+    this.editableBigTitle = Array.isArray(this.data.currentArticle.big_title_lines)
+      ? this.data.currentArticle.big_title_lines.join('|')
+      : `${this.data.currentArticle.big_title || ''}`;
+    this.chooseStyle(2, false);
     void this.renderPreview();
   }
 
@@ -50,17 +69,35 @@ export class SlideSharePreviewPage {
     this.navCtrl.back();
   }
 
-  async chooseStyle(id:any){
+  onSmallTitleInput(event: any) {
+    this.editableSmallTitle = `${event?.detail?.value ?? ''}`;
+    if (this.titleRenderTimer) {
+      clearTimeout(this.titleRenderTimer);
+    }
+    this.titleRenderTimer = setTimeout(() => {
+      void this.renderPreview();
+    }, 120);
+  }
+
+  onBigTitleInput(event: any) {
+    this.editableBigTitle = `${event?.detail?.value ?? ''}`;
+    if (this.titleRenderTimer) {
+      clearTimeout(this.titleRenderTimer);
+    }
+    this.titleRenderTimer = setTimeout(() => {
+      void this.renderPreview();
+    }, 120);
+  }
+
+  async chooseStyle(id:any, shouldRender = true){
     const parsed = Number(id);
     this.selectedStyleId = Number.isFinite(parsed) ? parsed : 1;
 
-    if (this.selectedStyleId === 0) {
-      this.selectedStyleBg = '';
-      return;
+    // All current styles use no shell background.
+    this.selectedStyleBg = '';
+    if (shouldRender) {
+      await this.renderPreview();
     }
-
-    const selectedStyle = this.styleOptions.find((option) => option.key === this.selectedStyleId);
-    this.selectedStyleBg = selectedStyle?.image || 'assets/img/bg0.jpg';
   }
 
   async chooseBackground() {
@@ -93,7 +130,7 @@ export class SlideSharePreviewPage {
       return;
     }
 
-    const fileName = this.getSafeFileName(this.data.currentArticle?.small_title || 'slide-preview');
+    const fileName = this.getSafeFileName(this.editableSmallTitle || this.data.currentArticle?.small_title || 'slide-preview');
 
     if (this.data.isHybrid()) {
       const base64Data = composedDataUrl.replace(/^data:image\/\w+;base64,/, '');
@@ -114,7 +151,7 @@ export class SlideSharePreviewPage {
           });
           await Share.share({
             title: '保存图片',
-            text: this.data.currentArticle.small_title,
+            text: this.editableSmallTitle || this.data.currentArticle.small_title,
             files: [savedFile.uri],
             dialogTitle: '保存图片',
           });
@@ -137,7 +174,7 @@ export class SlideSharePreviewPage {
             });
             await Share.share({
               title: '保存图片',
-              text: this.data.currentArticle.small_title,
+              text: this.editableSmallTitle || this.data.currentArticle.small_title,
               files: [fallbackFile.uri],
               dialogTitle: '保存图片',
             });
@@ -183,7 +220,7 @@ export class SlideSharePreviewPage {
 
         await Share.share({
           title: this.data.currentArticle.big_title,
-          text: this.data.currentArticle.small_title,
+          text: this.editableSmallTitle || this.data.currentArticle.small_title,
           files: [savedFile.uri],
           dialogTitle: this.data.currentArticle.big_title,
         });
@@ -208,14 +245,10 @@ export class SlideSharePreviewPage {
 
     try {
       const previewImg = await this.loadImage(this.previewDataUrl);
-      const hasStyleBackground = this.selectedStyleId !== 0 && !!this.selectedStyleBg;
-      const styleBgImg = hasStyleBackground ? await this.loadImage(this.selectedStyleBg) : null;
 
       const sourceMaxScale = Math.max(
         previewImg.width / shellWidth,
         previewImg.height / shellHeight,
-        styleBgImg ? styleBgImg.width / shellWidth : 1,
-        styleBgImg ? styleBgImg.height / shellHeight : 1,
       );
       const exportScale = Math.min(3, Math.max(1, Math.floor(sourceMaxScale)));
 
@@ -230,27 +263,14 @@ export class SlideSharePreviewPage {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
 
-      if (styleBgImg) {
-        // Draw style background as cover to match the visible preview shell.
-        const bgScale = Math.max(canvas.width / styleBgImg.width, canvas.height / styleBgImg.height);
-        const bgDrawWidth = styleBgImg.width * bgScale;
-        const bgDrawHeight = styleBgImg.height * bgScale;
-        const bgOffsetX = (canvas.width - bgDrawWidth) / 2;
-        const bgOffsetY = (canvas.height - bgDrawHeight) / 2;
-        ctx.drawImage(styleBgImg, bgOffsetX, bgOffsetY, bgDrawWidth, bgDrawHeight);
-      } else {
-        // Style 0: plain white canvas, no style background.
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
+      // Remaining styles are plain-shell exports without shell background.
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Style 0 uses full area; other styles keep the framed inner margins.
-      const stylePaddingXRatio = 50 / shellWidth;
-      const stylePaddingYRatio = 100 / shellHeight;
-      const innerX = styleBgImg ? Math.max(0, Math.round(canvas.width * stylePaddingXRatio)) : 0;
-      const innerY = styleBgImg ? Math.max(0, Math.round(canvas.height * stylePaddingYRatio)) : 0;
-      const innerW = styleBgImg ? Math.max(1, canvas.width - innerX * 2) : canvas.width;
-      const innerH = styleBgImg ? Math.max(1, canvas.height - innerY * 2) : canvas.height;
+      const innerX = 0;
+      const innerY = 0;
+      const innerW = canvas.width;
+      const innerH = canvas.height;
 
       // Draw generated preview image as contain inside the inner area.
       const previewScale = Math.min(innerW / previewImg.width, innerH / previewImg.height);
@@ -274,120 +294,83 @@ export class SlideSharePreviewPage {
     try {
       const currentFontFamilyName = this.data.getCurrentFontFamilyName();
       const bgUrl = this.customBackgroundUrl || `https://reddah.blob.core.windows.net/msjjimg/${this.data.currentArticle.bg_image}`;
+      const bigTitleLines = this.getEditableBigTitleLines();
+      const previewOptions = {
+        loadImage: this.loadImage.bind(this),
+        bgUrl,
+        useCorsForBg: !this.customBackgroundUrl,
+        currentFontFamilyName,
+        editableSmallTitle: this.editableSmallTitle,
+        bigTitleLines,
+      };
 
-      const [bgImg, iconImg, qrImg] = await Promise.all([
-        this.loadImage(bgUrl, !this.customBackgroundUrl),
-        this.loadImage('assets/icon/favicon.png'),
-        this.loadImage('assets/icon/shi-qr.png'),
-      ]);
-
-      const canvas = document.createElement('canvas');
-      const canvasWidth = bgImg.width;
-      const targetHeight = Math.round(canvasWidth * 5 / 4);
-      const footerHeight = Math.round(canvasWidth * 0.2);
-      const mainHeight = Math.max(1, targetHeight - footerHeight);
-      canvas.width = canvasWidth;
-      canvas.height = mainHeight + footerHeight;
-      const ctx = canvas.getContext('2d');
-
-      if (!ctx) {
-        throw new Error('Canvas context is null');
+      switch (this.selectedStyleId) {
+        case 1:
+          this.previewDataUrl = await renderStandard1Preview(previewOptions);
+          return;
+        case 2:
+          this.previewDataUrl = await renderStandard2Preview(previewOptions);
+          return;
+        case 3:
+          this.previewDataUrl = await renderStandard3Preview(previewOptions);
+          return;
+        case 4:
+          this.previewDataUrl = await renderStandard4Preview(previewOptions);
+          return;
+        case 5:
+          this.previewDataUrl = await renderStandard5Preview(previewOptions);
+          return;
+        case 6:
+          this.previewDataUrl = await renderStandard6Preview(previewOptions);
+          return;
+        case 7:
+          this.previewDataUrl = await renderStandard7Preview(previewOptions);
+          return;
+        default:
+          this.previewDataUrl = await renderStandard5Preview(previewOptions);
+          return;
       }
-
-      const bgScale = Math.max(canvas.width / bgImg.width, mainHeight / bgImg.height);
-      const bgDrawWidth = bgImg.width * bgScale;
-      const bgDrawHeight = bgImg.height * bgScale;
-      const bgOffsetX = (canvas.width - bgDrawWidth) / 2;
-      const bgOffsetY = (mainHeight - bgDrawHeight) / 2;
-      ctx.drawImage(bgImg, bgOffsetX, bgOffsetY, bgDrawWidth, bgDrawHeight);
-
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, mainHeight, canvas.width, footerHeight);
-
-      const padding = footerHeight * 0.1;
-      const usefulFooterHeight = footerHeight - 2 * padding;
-
-      const iconRatio = iconImg.width / iconImg.height;
-      let iconW = usefulFooterHeight * iconRatio;
-      let iconH = usefulFooterHeight;
-      if (iconW > usefulFooterHeight) {
-        iconW = usefulFooterHeight;
-        iconH = usefulFooterHeight / iconRatio;
-      }
-      ctx.drawImage(iconImg, padding, mainHeight + padding + (usefulFooterHeight - iconH) / 2, iconW, iconH);
-
-      const qrRatio = qrImg.width / qrImg.height;
-      let qrW = usefulFooterHeight * qrRatio;
-      let qrH = usefulFooterHeight;
-      if (qrW > usefulFooterHeight) {
-        qrW = usefulFooterHeight;
-        qrH = usefulFooterHeight / qrRatio;
-      }
-      ctx.drawImage(qrImg, canvas.width - qrW - padding, mainHeight + padding + (usefulFooterHeight - qrH) / 2, qrW, qrH);
-
-      ctx.fillStyle = 'black';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-
-      const textStartX = padding + iconW + padding;
-      const textCenterY = mainHeight + footerHeight / 2;
-
-      const titleFontSize = Math.floor(footerHeight * 0.3);
-      ctx.font = `bold ${titleFontSize}px "${currentFontFamilyName}", sans-serif`;
-      ctx.fillText('名诗佳句', textStartX, textCenterY - titleFontSize * 0.6);
-
-      const subTitleFontSize = Math.floor(footerHeight * 0.2);
-      ctx.font = `normal ${subTitleFontSize}px "${currentFontFamilyName}", sans-serif`;
-      ctx.fillStyle = '#666666';
-      ctx.fillText('长按识别二维码免费获取', textStartX, textCenterY + subTitleFontSize * 0.8);
-
-      ctx.fillStyle = 'white';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      ctx.shadowColor = 'black';
-      ctx.shadowBlur = 10;
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = 'black';
-
-      const x = 40;
-      let y = 40;
-
-      if (this.data.currentArticle.small_title) {
-        const smallFontSize = Math.floor(canvas.width / 25);
-        ctx.font = `bold ${smallFontSize}px "${currentFontFamilyName}", sans-serif`;
-        ctx.lineWidth = 3;
-        const smallTitleText = this.data.currentArticle.small_title;
-        ctx.strokeText(smallTitleText, x, y);
-        ctx.fillText(smallTitleText, x, y);
-        y += smallFontSize * 1.4 + 20;
-      }
-
-      const bigFontSize = Math.floor(canvas.width / 15);
-      ctx.font = `bold ${bigFontSize}px "${currentFontFamilyName}", sans-serif`;
-      ctx.lineWidth = 5;
-
-      const bigTitleLines = Array.isArray(this.data.currentArticle.big_title_lines)
-        ? this.data.currentArticle.big_title_lines
-        : `${this.data.currentArticle.big_title || ''}`.split('\n');
-      const bigTitleLineHeight = bigFontSize * 1.4;
-
-      for (const line of bigTitleLines) {
-        const text = `${line ?? ''}`.trim();
-        if (!text) {
-          continue;
-        }
-        ctx.strokeText(text, x, y);
-        ctx.fillText(text, x, y);
-        y += bigTitleLineHeight;
-      }
-
-      this.previewDataUrl = canvas.toDataURL('image/png');
     } catch (error) {
       console.error('Render share preview failed', error);
       this.renderError = '预览生成失败';
     } finally {
       this.isRendering = false;
     }
+  }
+
+  private getEditableSmallTitleLines() {
+    const text = `${this.editableSmallTitle || ''}`.trim();
+    if (!text) {
+      return [];
+    }
+
+    return text
+      .replace(/\|/g, '\n')
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => !!line);
+  }
+
+  private getEditableBigTitleLines() {
+    if (`${this.editableBigTitle || ''}`.trim()) {
+      return `${this.editableBigTitle || ''}`
+        .replace(/\|/g, '\n')
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => !!line);
+    }
+
+    if (Array.isArray(this.data.currentArticle?.big_title_lines)) {
+      return this.data.currentArticle.big_title_lines
+        .map((line: any) => `${line ?? ''}`.trim())
+        .filter((line: string) => !!line);
+    }
+
+    return `${this.data.currentArticle?.big_title || ''}`
+      .replace(/\|/g, '\n')
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => !!line);
   }
 
   private loadImage(src: string, isCors = false): Promise<HTMLImageElement> {
@@ -401,6 +384,7 @@ export class SlideSharePreviewPage {
       img.src = src;
     });
   }
+
 
   private getSafeFileName(fileName: string) {
     return `${fileName}`

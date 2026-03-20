@@ -406,6 +406,10 @@
         [style.fontSize]="data.zoom(18)"
         class="selectableText">
         </div>
+        <ion-icon name="share-social-outline" *ngIf="currentIndex===i"
+        (click)="data.shareText(data.currentPoem.author+'·《'+data.currentPoem.title+'》',text)" 
+        style="position: absolute;right:20px;top:5px;margin:2px;"
+        ></ion-icon>
       </div>
     </ion-item>
     

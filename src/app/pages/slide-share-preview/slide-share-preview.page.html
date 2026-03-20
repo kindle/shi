@@ -11,44 +11,60 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="preview-content">
-  <div class="preview-stage">
-    <ion-spinner *ngIf="isRendering" name="crescent"></ion-spinner>
+  <div class="preview-stage" [class.is-rendering]="isRendering">
+    <div *ngIf="isRendering" class="preview-loading-overlay">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
     <div
-      *ngIf="!isRendering && previewDataUrl"
+      *ngIf="previewDataUrl"
       #previewShell
       class="preview-style-shell"
-      [class.no-style]="selectedStyleId === 0"
-      [style.background-image]="selectedStyleId === 0 ? 'none' : 'url(' + selectedStyleBg + ')'"
+      [class.no-style]="true"
+      [style.background-image]="true ? 'none' : 'url(' + selectedStyleBg + ')'"
     >
       <img [src]="previewDataUrl" alt="share preview" class="preview-image" />
     </div>
-    <div *ngIf="!isRendering && renderError" class="preview-error">{{ renderError }}</div>
+    <div *ngIf="!previewDataUrl && renderError" class="preview-error">{{ renderError }}</div>
   </div>
+
+  <div class="scroll">
+    <div class="scroll-item"
+      [class.selected]="selectedStyleId === template.key"
+      *ngFor="let template of styleOptions"
+      (click)="chooseStyle(template.key)">
+      <div class="scroll-thumb">
+        <img [src]="template.preview" alt="style preview">
+      </div>
+      <div class="scroll-label" style="display: none;">{{ template.value }}</div>
+    </div>
+  </div>
+
+  <ion-item lines="none">
+      <ion-input
+        [value]="editableBigTitle"
+        placeholder="请输入大标题"
+        (ionInput)="onBigTitleInput($event)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-input
+        [value]="editableSmallTitle"
+        placeholder="请输入小标题"
+        (ionInput)="onSmallTitleInput($event)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" (click)="chooseBackground()">
+      <ion-icon slot="start" name="image-outline"></ion-icon>
+      <ion-text fill="solid">更换图片</ion-text>
+    </ion-item>
+
 </ion-content>
 
-<ion-footer>
-  <div class="scroll">
-    <div
-      *ngFor="let template of styleOptions"
-      class="scroll-item"
-      (click)="chooseStyle(template.key)"
-    >
-      <img [src]="template.image" style="width:80px;height:80px;">
-      <div>{{ template.value }}</div>
-    </div>
+<ion-toolbar>
+  <div class="action-row action-row-right">
+    <ion-button fill="solid" color="medium" (click)="saveImage()">保存图片</ion-button>
+    <ion-button fill="solid" color="primary" (click)="shareImage()">分享</ion-button>
   </div>
-</ion-footer>
-
-<ion-footer>
-  <ion-toolbar>
-    <div class="action-row">
-        <ion-button fill="solid" color="tertiary" (click)="chooseBackground()">背景</ion-button>
-    </div>
-  </ion-toolbar>
-  <ion-toolbar>
-    <div class="action-row action-row-right">
-      <ion-button fill="solid" color="medium" (click)="saveImage()">保存图片</ion-button>
-      <ion-button fill="solid" color="primary" (click)="shareImage()">分享</ion-button>
-    </div>
-  </ion-toolbar>
-</ion-footer>
+</ion-toolbar>

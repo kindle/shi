@@ -31,7 +31,7 @@ export class Tab1Page {
     disableOnInteraction: true,
   }
   goToArticle(item:any){
-    //console.log(item)
+    console.log(item)
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
 
     if(item.items){

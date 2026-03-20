@@ -183,6 +183,20 @@ export class UiService {
       return await this.PoemPlayer.present();
   }
 
+  async closePlayerPopup() {
+    if (!this.PoemPlayer) {
+      return;
+    }
+
+    try {
+      await this.PoemPlayer.dismiss();
+    } catch {
+      // Ignore dismissal errors if modal is already closed.
+    } finally {
+      this.PoemPlayer = null;
+    }
+  }
+
 
   async toast(position: 'top' | 'middle' | 'bottom',msg:string) {
     const toast = await this.toastController.create({

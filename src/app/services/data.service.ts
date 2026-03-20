@@ -2927,6 +2927,30 @@ export class DataService {
     });
   }
 
+  async shareText(
+    smallTitle :any, 
+    bigTitle:any, bigTitleArray:any=null, 
+    image:any='国庆.jpg')
+  {
+    console.log('share')
+    const isFromArticleViewer = this.router.url.includes('article-viewer');
+    const baseArticle = isFromArticleViewer && this.currentArticle
+      ? { ...this.currentArticle }
+      : {};
+
+    this.currentArticle = {
+      ...baseArticle,
+      small_title: smallTitle,
+      big_title: bigTitle,
+      big_title_lines: bigTitleArray ?? bigTitle,
+      bg_image: image,//'定格秋天.jpg',
+    };
+
+    await this.ui.closePlayerPopup();
+    
+    this.router.navigate(['/slide-share-preview']);
+  }
+
 
   public async share1(from:any) {
     let source = from=='camera'?CameraSource.Camera:CameraSource.Photos;
