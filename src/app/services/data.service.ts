@@ -2930,9 +2930,8 @@ export class DataService {
   async shareText(
     smallTitle :any, 
     bigTitle:any, bigTitleArray:any=null, 
-    image:any='国庆.jpg')
+    image:any='定格秋天.jpg')
   {
-    console.log('share')
     const isFromArticleViewer = this.router.url.includes('article-viewer');
     const baseArticle = isFromArticleViewer && this.currentArticle
       ? { ...this.currentArticle }

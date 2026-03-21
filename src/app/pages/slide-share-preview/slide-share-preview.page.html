@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
@@ -10,8 +10,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="preview-content">
-  <div class="preview-stage" [class.is-rendering]="isRendering">
+<ion-content class="preview-content">
+  <div class="preview-stage" [class.is-rendering]="isRendering" (click)="viewPreviewImage()">
     <div *ngIf="isRendering" class="preview-loading-overlay">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
@@ -42,7 +42,7 @@
   <ion-item lines="none">
       <ion-input
         [value]="editableBigTitle"
-        placeholder="请输入大标题"
+        placeholder="请输入诗词"
         (ionInput)="onBigTitleInput($event)"
       ></ion-input>
     </ion-item>
@@ -50,21 +50,33 @@
     <ion-item lines="none">
       <ion-input
         [value]="editableSmallTitle"
-        placeholder="请输入小标题"
+        placeholder="请输入作者和标题"
         (ionInput)="onSmallTitleInput($event)"
       ></ion-input>
     </ion-item>
 
-    <ion-item lines="none" (click)="chooseBackground()">
+    <!-- <ion-item lines="none" (click)="chooseBackground()">
       <ion-icon slot="start" name="image-outline"></ion-icon>
       <ion-text fill="solid">更换图片</ion-text>
-    </ion-item>
+    </ion-item> -->
+    <div class="scroll">
+      <div class="scroll-item"
+        [class.selected]="selectedImageId === template.key"
+        *ngFor="let template of imageOptions"
+        (click)="chooseImage(template.key)">
+        <div class="scroll-thumb">
+          <img [src]="template.preview" alt="style preview">
+        </div>
+        <div class="scroll-label" style="display: none;">{{ template.value }}</div>
+      </div>
+    </div>
+
 
 </ion-content>
 
 <ion-toolbar>
   <div class="action-row action-row-right">
-    <ion-button fill="solid" color="medium" (click)="saveImage()">保存图片</ion-button>
+    <ion-button fill="solid" color="success" (click)="saveImage()">保存图片</ion-button>
     <ion-button fill="solid" color="primary" (click)="shareImage()">分享</ion-button>
   </div>
 </ion-toolbar>

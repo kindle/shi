@@ -38,8 +38,27 @@ export class SlideSharePreviewPage {
     { key: 5, value: '右侧1', image: 'assets/img/bg0.jpg', preview: 'assets/img/right1.png' },
     { key: 6, value: '右侧2', image: 'assets/img/bg0.jpg', preview: 'assets/img/right2.png' },
     
-    
-    
+  ];
+
+  selectedImageId = 1;
+  imageOptions = [
+    { key: 0, value: '自定义', image: 'assets/img/bg0.jpg', preview: 'assets/img/bgadd.jpg' },
+    { key: 1, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/template/定格秋天.jpg' },
+    { key: 2, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/template/国庆.jpg' },
+    { key: 3, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/template/带我去月球.jpg' },
+    { key: 4, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/template/张大千荷花.jpg' },
+    { key: 5, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/template/海钓.jpg' },
+    { key: 11, value: 'def1', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/1.JPG' },
+    { key: 12, value: 'def2', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/2.JPG' },
+    { key: 13, value: 'def3', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/3.JPG' },
+    { key: 14, value: 'def4', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/4.JPG' },
+    { key: 15, value: 'def5', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/5.JPG' },
+    { key: 16, value: 'def6', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/6.JPG' },
+    { key: 17, value: 'def7', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/7.JPG' },
+    { key: 18, value: 'def8', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/8.JPG' },
+    { key: 19, value: 'def9', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/9.JPG' },
+    { key: 20, value: 'def10', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/10.JPG' },
+    { key: 21, value: 'def11', image: 'assets/img/bg0.jpg', preview: 'assets/img/game2_国画/11.JPG' },
   ];
 
   private customBackgroundUrl = '';
@@ -59,14 +78,23 @@ export class SlideSharePreviewPage {
 
     this.editableSmallTitle = this.data.currentArticle.small_title || '';
     this.editableBigTitle = Array.isArray(this.data.currentArticle.big_title_lines)
-      ? this.data.currentArticle.big_title_lines.join('|')
-      : `${this.data.currentArticle.big_title || ''}`;
+      ? this.data.currentArticle.big_title_lines.join('')
+      : this.removePipe(`${this.data.currentArticle.big_title || ''}`);
     this.chooseStyle(2, false);
     void this.renderPreview();
   }
 
   goBack() {
     this.navCtrl.back();
+  }
+
+  async viewPreviewImage() {
+    if (this.isRendering || !this.previewDataUrl) {
+      return;
+    }
+
+    const composedDataUrl = await this.getComposedDataUrl();
+    await this.ui.imageviewer(composedDataUrl || this.previewDataUrl);
   }
 
   onSmallTitleInput(event: any) {
@@ -80,7 +108,7 @@ export class SlideSharePreviewPage {
   }
 
   onBigTitleInput(event: any) {
-    this.editableBigTitle = `${event?.detail?.value ?? ''}`;
+    this.editableBigTitle = this.removePipe(`${event?.detail?.value ?? ''}`);
     if (this.titleRenderTimer) {
       clearTimeout(this.titleRenderTimer);
     }
@@ -95,6 +123,26 @@ export class SlideSharePreviewPage {
 
     // All current styles use no shell background.
     this.selectedStyleBg = '';
+    if (shouldRender) {
+      await this.renderPreview();
+    }
+  }
+
+  async chooseImage(id:any, shouldRender = true){
+    const parsed = Number(id);
+    this.selectedImageId = Number.isFinite(parsed) ? parsed : 1;
+
+    if (this.selectedImageId === 0) {
+      await this.chooseBackground();
+      return;
+    }
+
+    const selectedImage = this.imageOptions.find((option) => option.key === this.selectedImageId);
+    if (!selectedImage?.preview) {
+      return;
+    }
+
+    this.customBackgroundUrl = selectedImage.preview;
     if (shouldRender) {
       await this.renderPreview();
     }
@@ -136,14 +184,17 @@ export class SlideSharePreviewPage {
       const base64Data = composedDataUrl.replace(/^data:image\/\w+;base64,/, '');
 
       try {
-        if (this.ui.isAndroid) {
+        if (this.ui.isAndroid) //android save
+        {
           await Filesystem.writeFile({
             path: `Pictures/${fileName}-${Date.now()}.png`,
             data: base64Data,
             directory: Directory.ExternalStorage,
           });
           await this.ui.toast('bottom', `已保存至系统相册`);
-        } else {
+        } 
+        else //ios save
+        {
           const savedFile = await Filesystem.writeFile({
             path: `${Date.now()}-${fileName}.png`,
             data: base64Data,
@@ -155,7 +206,7 @@ export class SlideSharePreviewPage {
             files: [savedFile.uri],
             dialogTitle: '保存图片',
           });
-          await this.ui.toast('bottom', '请在分享面板中选择“存储图像/存储到照片”');
+          await this.ui.toast('bottom', '已保存至系统相册');
         }
       } catch (error) {
         try {
@@ -178,7 +229,7 @@ export class SlideSharePreviewPage {
               files: [fallbackFile.uri],
               dialogTitle: '保存图片',
             });
-            await this.ui.toast('bottom', '请在分享面板中选择“存储图像/存储到照片”');
+            await this.ui.toast('bottom', '已保存至系统相册');
           }
         } catch (fallbackError) {
           console.error('Save image failed', error, fallbackError);
@@ -354,7 +405,6 @@ export class SlideSharePreviewPage {
   private getEditableBigTitleLines() {
     if (`${this.editableBigTitle || ''}`.trim()) {
       return `${this.editableBigTitle || ''}`
-        .replace(/\|/g, '\n')
         .split('\n')
         .map((line) => line.trim())
         .filter((line) => !!line);
@@ -366,11 +416,12 @@ export class SlideSharePreviewPage {
         .filter((line: string) => !!line);
     }
 
-    return `${this.data.currentArticle?.big_title || ''}`
-      .replace(/\|/g, '\n')
-      .split('\n')
-      .map((line) => line.trim())
-      .filter((line) => !!line);
+    const fallbackTitle = this.removePipe(`${this.data.currentArticle?.big_title || ''}`);
+    return fallbackTitle ? [fallbackTitle] : [];
+  }
+
+  private removePipe(text: string) {
+    return `${text || ''}`.replace(/\|/g, '');
   }
 
   private loadImage(src: string, isCors = false): Promise<HTMLImageElement> {
