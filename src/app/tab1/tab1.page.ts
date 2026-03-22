@@ -69,6 +69,21 @@ export class Tab1Page {
     }, 500);
   }
 
+  onIonInfinite(ev:any) {
+    if (this.isLoadingMore) {
+      ev?.target?.complete?.();
+      return;
+    }
+
+    this.isLoadingMore = true;
+    this.data.getMoreArticleData();
+
+    setTimeout(() => {
+      ev?.target?.complete?.();
+      this.isLoadingMore = false;
+    }, 500);
+  }
+
 
   //@ViewChild('modal') modal: IonModal|any;
   @ViewChildren('modal') modalList: QueryList<any> | undefined;
@@ -151,6 +166,7 @@ export class Tab1Page {
 
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
   private scrollSubscription: Subscription|any;
+  private isLoadingMore = false;
   ngOnInit(){
     this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
       if (this.content) {

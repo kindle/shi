@@ -5,6 +5,7 @@ import { UiService } from 'src/app/services/ui.service';
 import domtoimage from 'dom-to-image';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-viewer',
@@ -19,7 +20,8 @@ export class ArticleViewerPage {
     public data: DataService,
     public ui: UiService,
     private location: Location,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
   ) {
     this.localFunData = this.data.getFunData('article_'+data.currentArticle.big_title);
     //console.log(data.currentArticle)
@@ -273,5 +275,10 @@ export class ArticleViewerPage {
     }
     lines.push(currentLine);
     return lines;
+  }
+
+
+  share(){
+    this.router.navigate(['/slide-share-preview']);
   }
 }

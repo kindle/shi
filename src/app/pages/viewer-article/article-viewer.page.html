@@ -35,6 +35,12 @@
           {{ ui.instant('Action.Back') }}<!--返回-->
         </ion-button>
       </ion-buttons>
+
+      <ion-buttons slot="end" style="float:right;">
+        <ion-button (click)="share()">
+          <ion-icon name="share-social-outline" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-card-content>
     <!--shared backbutton for normal and effect animation end-->
     <!-- min-height: {{data.currentArticle.min_height}}; -->

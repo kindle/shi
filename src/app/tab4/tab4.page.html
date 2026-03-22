@@ -263,13 +263,45 @@
   <!--(longPressed)="active(topic.id)" -->
   <!---->
 
-
+  <app-sub-title name="按朝代"></app-sub-title> <!--{{ ui.instant('History.Title') }}-->
+ 
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
+  *ngIf="!data.showFilter">
+    <ion-card *ngFor="let topic of this.data.getSearchTopicData('dynasty')"
+      defaultImage="" 
+      lazyLoad="{{topic.image}}" 
+      [style.height]="ui.isipad ? '250px' : '120px'"
+      [style.position]="ui.isipad ? 'relative' : ''"
+      style="margin:5px;
+      background-size:cover;background-color:{{data.getbgcolor()}}"
+      class="search-tile-img"
+      id="{{topic.id}}"
+      (click)="data.goToTopic(topic.id)"
+      ion-long-press 
+      (pressed)="pressed(topic.id)" 
+      (longPressed)="active(topic.id)"
+      (pressEnded)="released(topic.id)"
+    >
+      <ion-card-header [ngClass]="{'gray-mask': currentLpId === topic.id }">
+        <ion-card-title>&nbsp;</ion-card-title>
+        <ion-card-subtitle>&nbsp;</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content 
+      [ngClass]="{'gray-mask': currentLpId === topic.id }"
+      style="color:white;padding-left:10px;padding-bottom:10px;position:absolute;bottom:0;width:100%;"
+      [style.fontSize]="data.zoom(20)"> 
+        {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
+          topic.i18n[data.currentLocale] : topic.name }}
+      </ion-card-content>
+    </ion-card>
+  </div>
   
 
+  <app-sub-title name="按类型"></app-sub-title> <!--{{ ui.instant('History.Title') }}-->
 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
-    <ion-card *ngFor="let topic of this.data.searchTopicData"
+    <ion-card *ngFor="let topic of this.data.getSearchTopicData('type')"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
       [style.height]="ui.isipad ? '250px' : '120px'"
@@ -298,6 +330,20 @@
     </ion-card>
   </div>
 
+  <!-- 历史上的今天 -->
+  <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>
+
+  <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
+    <div
+      [style.padding-right]="ui.isipad ? '' : '20px'"
+      [style.margin-right]="ui.isipad ? '' : '10px'">
+      <app-ascii-card class="card card-img custom-card" style="width: auto; margin: 5px;"
+          section="" 
+          sub="" 
+          title="{{ data.currentDateTitle }}">
+      </app-ascii-card>
+    </div>
+  </div>
 
   
 

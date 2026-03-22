@@ -407,11 +407,14 @@ export class DataService {
     this.refreshArticleData();
   }
 
+  totalArticleData:any = [];
   refreshArticleData(force:boolean=false){
     this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
       //把article.json放入articleData作为开卷有益文章展示
       //article.json包括vote,group等文章
       this.articleData = result;
+      //console.log('articleData:'+this.articleData.length)  18 articles
+      
       //把list-fun.json,list-audio.json等放入articleData做为开卷有益文章展示
       //poemListData包括fun,audio,holiday,food
       this.poemListData.forEach((fun:any) => {
@@ -463,6 +466,11 @@ export class DataService {
         })
       });
 
+      //console.log('articleData:'+this.articleData.length) //118 articles
+      //console.log(this.articleData)
+      //return;
+      this.totalArticleData = this.articleData;
+
       if(force){
         let nameSeed = "article";
         let myDate = new Date();
@@ -480,6 +488,39 @@ export class DataService {
       //console.log(this.articleData)
     });
   }
+
+  getMoreArticleData(force:boolean=false)
+  {
+    const existingKeys = new Set(
+      (this.articleData || []).map((item:any) => this.getArticleMergeKey(item))
+    );
+
+    const candidateKeys = new Set<string>();
+    const candidates = (this.totalArticleData || []).filter((article:any) => {
+      const key = this.getArticleMergeKey(article);
+      if (existingKeys.has(key) || candidateKeys.has(key)) {
+        return false;
+      }
+
+      candidateKeys.add(key);
+      return true;
+    });
+
+    const toAdd = this.shuffleArray(candidates).slice(0, 10);
+    this.articleData = this.articleData.concat(toAdd);
+  }
+
+  private getArticleMergeKey(item:any) {
+    if (item?.id !== null && item?.id !== undefined) {
+      return `id:${item.id}`;
+    }
+
+    return [
+      item?.small_title || '',
+      item?.big_title || '',
+    ].join('|');
+  }
+
 
   getArticleData(nameSeed:any){
     let myDate = new Date();
@@ -549,41 +590,44 @@ export class DataService {
     //console.log(solar.getLunar().getDayInChinese());
     let dateStrChinese = solar.getLunar().getMonthInChinese() + "月" + solar.getLunar().getDayInChinese();
     //console.log("today节气："+solarTermName)
+
+    
     if(!this.disableRandomFunData)
     {
-      //add next festival
-      let festivalName = this.checkTodayFestival(solar);
-      if(festivalName && festivalName.length > 0){
-        temp.unshift(this.getFestivalPoem(festivalName, dateStrChinese));
-      } else {
-        let today = new Date();
-        today.setHours(0,0,0,0);
-        let nextFestival = this.getNextFestival(today);
-        if(nextFestival){
-            let nextName = nextFestival.name;
-            let days = nextFestival.days;
-            let nextSolar = nextFestival.date;
+      // //下个节日
+      // //add next festival
+      // let festivalName = this.checkTodayFestival(solar);
+      // if(festivalName && festivalName.length > 0){
+      //   temp.unshift(this.getFestivalPoem(festivalName, dateStrChinese));
+      // } else {
+      //   let today = new Date();
+      //   today.setHours(0,0,0,0);
+      //   let nextFestival = this.getNextFestival(today);
+      //   if(nextFestival){
+      //       let nextName = nextFestival.name;
+      //       let days = nextFestival.days;
+      //       let nextSolar = nextFestival.date;
             
-            let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
-            if(nextDateStr){
-              nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
-            }
+      //       let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
+      //       if(nextDateStr){
+      //         nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
+      //       }
             
-            let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
-            if(daysLeftStr){
-              daysLeftStr = daysLeftStr.replace("{{value}}", days);
-            }
+      //       let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
+      //       if(daysLeftStr){
+      //         daysLeftStr = daysLeftStr.replace("{{value}}", days);
+      //       }
 
-            let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
-            item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
-            item["image_size"] = "cover";
-            //temp.unshift(item);
-            temp.splice(1, 0, item);
-        }
-      }
+      //       let item:any = this.getFestivalPoem(nextName, nextDateStr + " " + daysLeftStr);
+      //       item.big_title = this.ui.instant("SolarTerm.NextFestival") + " " + nextName;
+      //       item["image_size"] = "cover";
+      //       //temp.unshift(item);
+      //       temp.splice(1, 0, item);
+      //   }
+      // }
 
 
-      
+      //下个二十四节气
       if(solarTermName.length>0){
         //temp = temp.concat(this.getSolarTermPoem(solarTermName));
         temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
@@ -2261,9 +2305,18 @@ export class DataService {
         //hide:true is for tab2 browse
         //console.log(data)
         this.searchTopicData = data.filter((d:any)=>d.hide!==true);
+        //this.searchTopicDataDynasty = data.filter((d:any)=>d.id>=5001&&d.id<=5010&&d.hide!==true);
         this.tab2BrowseTopicData = data.filter((d:any)=>d.hide===true&&d.id==200);
         this.tab5RadioTopicData = data.filter((d:any)=>d.hide===true&&d.id==199);
       });
+    }
+  }
+  getSearchTopicData(type:any){
+    if(type=='dynasty'){
+      return this.searchTopicData.filter((d:any)=>d.id>=5001&&d.id<=5010);
+    }
+    else{
+      return this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=10);
     }
   }
 

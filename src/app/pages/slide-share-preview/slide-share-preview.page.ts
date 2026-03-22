@@ -206,7 +206,7 @@ export class SlideSharePreviewPage {
             files: [savedFile.uri],
             dialogTitle: '保存图片',
           });
-          await this.ui.toast('bottom', '已保存至系统相册');
+          await this.ui.toast('bottom', '已保存至相册');
         }
       } catch (error) {
         try {
@@ -229,7 +229,7 @@ export class SlideSharePreviewPage {
               files: [fallbackFile.uri],
               dialogTitle: '保存图片',
             });
-            await this.ui.toast('bottom', '已保存至系统相册');
+            await this.ui.toast('bottom', '已保存至相册');
           }
         } catch (fallbackError) {
           console.error('Save image failed', error, fallbackError);

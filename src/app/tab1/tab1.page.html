@@ -62,7 +62,7 @@
       <!--text template-->
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
-        *ngIf="item.template=='text'&&!item.effect&&i<10"
+        *ngIf="item.template=='text'&&!item.effect"
         defaultImage="" 
         lazyLoad="{{item.bg_image.indexOf('assets')>0?item.bg_image:('https://reddah.blob.core.windows.net/msjjimg/'+item.bg_image)}}"
         style="background-size:{{item.image_size?item.image_size:'cover'}};
@@ -347,7 +347,7 @@
   </div> -->
 
 
-  <!--历史上的今天-->
+  <!-- 历史上的今天
   <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>
 
   <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
@@ -358,10 +358,9 @@
           section="" 
           sub="" 
           title="{{ data.currentDateTitle }}">
-          <!--{{ ui.instant('History.Title') }}--><!--历史上的今天-->
       </app-ascii-card>
-    </div>
-  </div>
+    </div> 
+  </div>-->
 
 
   <app-text style="margin-top:20px;display: block;"
@@ -372,5 +371,9 @@
   </app-text>
 
   <div class="placeholder-playbox"></div>
+
+  <ion-infinite-scroll threshold="120px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content [loadingSpinner]="null" loadingText="加载更多..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

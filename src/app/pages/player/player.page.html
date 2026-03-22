@@ -494,7 +494,7 @@
         (click)="select(i, $event); $event.stopPropagation()">
           <ion-icon name="search-outline" *ngIf="currentIndex===i"
           (click)="data.search(text)"
-          style="position: absolute;left:5px;margin:2px;"
+          style="position: absolute;left:5px;margin:2px;top:10px;"
           ></ion-icon>
           <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)" 
           cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
@@ -506,6 +506,10 @@
           [style.fontSize]="data.zoom(18)">
             {{GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text}}
           </div>
+          <ion-icon name="share-social-outline" *ngIf="currentIndex===i"
+          (click)="data.shareText(data.currentPoem.author+'·《'+data.currentPoem.title+'》',text)" 
+          style="position: absolute;right:20px;top:10px;margin:2px;"
+          ></ion-icon>
         </div>
       </ion-item>
     </ion-list>
