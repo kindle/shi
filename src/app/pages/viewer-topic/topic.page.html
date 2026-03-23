@@ -20,6 +20,8 @@
     </ion-toolbar>
   </ion-header>
 
+  <app-text [name]="searchTopicData.period" *ngIf="searchTopicData.period"></app-text>
+
   <app-big [source]="searchTopicData.scroll"></app-big>
 
   <app-hot name="热门诗词" [source]="data.hotData" *ngIf="searchTopicData.hot"></app-hot>

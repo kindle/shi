@@ -1077,7 +1077,8 @@
   },
   {
     "id":5002,
-    "name":"春秋战国",
+    "name":"西周春秋",
+    "period":"公元前1046年 - 公元前476年",
     "i18n":{
       "ar-AE":"أسرة تشو الغربية - الربيع والخريف",
       "de-DE":"Westliche Zhou- und Fruehlings-und-Herbst-Periode",
@@ -1090,48 +1091,68 @@
       "pt-PT":"Zhou Ocidental - Primaveras e Outonos",
       "ru-RU":"Западная Чжоу — Период Весен и Осеней",
       "th-TH":"ราชวงศ์โจวตะวันตก - ยุคชุนชิว",
-      "zh-CN":"春秋战国",
-      "zh-TW":"春秋戰國"
+      "zh-CN":"西周春秋",
+      "zh-TW":"西周春秋"
     },
-    "image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg",
     "scroll":[
-      {"id":3, "alias":"热血男儿","text":"诗人也是热血男儿","desc":"黄沙百战穿金甲，不破楼兰终不还","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg"},
-      {"id":22, "alias":"最燃诗词","text":"你读过最燃的一句诗？","desc":"银鞍照白马，飒沓如流星","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/cyclone-2102397_1280.jpg"},
-      {"id":62, "alias":"铁骨铮铮","text":"宋词里的铮铮铁骨和家国情怀","desc":"醉里挑灯看剑，梦回吹角连营","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/flower-2438754_1280.jpg"},
-      {"id":63, "alias":"侠气十足","text":"你读过哪些江湖侠气味儿十足的诗句？","desc":"满堂花醉三千客，一剑霜寒十四州","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/sea-540123_1280.jpg"}
+      {"id":803, "alias":"1046-256BC: 诗经精选","text":"1046-256BC: 诗经精选","desc":"Zhou Dynasty 诗经之美","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg"}
         
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/高适.jpeg","display":"cover","text":"高适","desc":"","color":"rgb(98,166,243)","author":"高适"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/岑参.jpeg","display":"cover","text":"岑参","desc":"","color":"rgb(98,166,243)","author":"岑参"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李颀.jpeg","display":"cover","text":"李颀","desc":"","color":"rgb(98,166,243)","author":"李颀"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王昌龄.jpeg","display":"cover","text":"王昌龄","desc":"","color":"rgb(98,166,243)","author":"王昌龄"}
-      ]},
-
-      {"name":"风格诗单", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg","display":"cover","text":"边塞","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/swan-2077219_1280.jpg","display":"cover","text":"爱国","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/tree-3137482_1280.jpg","display":"cover","text":"战争","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/mountains-190055_1280.jpg","display":"cover","text":"忧国忧民","desc":"","color":"rgb(98,166,243)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/诗经.jpeg","display":"cover","text":"诗经","desc":"","color":"rgb(98,166,243)","author":"诗经"}
       ]},
 
       {"name":"精选诗单", "data": [
-        {"id":100,"src":"https://reddah.blob.core.windows.net/msjjimg/great-wall-7389299_1280.jpg","text":"边塞 | 唐代边塞诗的巅峰之作，你最喜欢哪句？","display":"cover","desc":"","color":"rgb(98,166,243)"},
-        {"id":50,"src":"https://reddah.blob.core.windows.net/msjjimg/horses-430441_1280.jpg","text":"骨气 | 原来这就是辛弃疾的一生啊","display":"cover","desc":"","color":"rgb(98,166,243)"},
-        {"id":97,"src":"https://reddah.blob.core.windows.net/msjjimg/dragon-238931_1280.jpg","text":"帝王诗 | 古代帝王诗最有文采的是哪位？","display":"cover","desc":"","color":"rgb(98,166,243)"},
-        {"id":81,"src":"https://reddah.blob.core.windows.net/msjjimg/fisherman-1559753_1280.jpg","text":"孤独 | 那些古人笔下的孤独","display":"cover","desc":"","color":"rgb(98,166,243)"},
-        {"id":27,"src":"https://reddah.blob.core.windows.net/msjjimg/father-and-son-2258681_1280.jpg","text":"少年感 | 有哪句让你回忆起了自己的年少时光？","display":"cover","desc":"","color":"rgb(98,166,243)"}
+        {"id":803,"src":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg","text":"诗经之美 | 1046-256BC: 诗经精选","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":[],
     "desctitle":"简介",
-    "desc":"边塞诗派是中国唐代诗歌流派。汉魏六朝时已有一些边塞诗，至隋代数量不断增多，初唐四杰和陈子昂又进一步予以发展，到盛唐则全面成熟。该派诗人以高适、岑参、李颀、王昌龄最为知名，而高、岑成就最高，所以也叫高岑诗派。他们的诗歌主要是描写边塞战争和边塞风土人情，以及战争带来的各种矛盾如离别、思乡、闺怨等，形式上多为七言歌行和五、七言绝句，诗风悲壮，格调雄浑，最足以表现盛唐气象。其诗人除高适、岑参外，还有王昌龄、李颀、崔颢、王之涣、王翰等。"
+    "desc":"《诗经》是中国第一部诗歌总集。《诗经》是汉代才有的名字，先秦时期一直称《诗》，汉代学者将其视为经典，故称其为《诗经》。《诗经》收录了从西周初年（约公元前11世纪）到春秋中叶（约公元前6世纪）约500年间的诗歌共计305篇，因而也被称作“诗三百”。分为风、雅、颂三部分，其中风是民歌，雅是贵族歌，颂是祭祀歌。《诗经》中多为四言体诗，分章，诗句循环往复，整体篇幅比较短小。"
+    
+  },
+  {
+    "id":5003,
+    "name":"战国",
+    "period":"公元前475年 - 公元前221年",
+    "i18n":{
+      "ar-AE":"فترة الممالك المتحاربة",
+      "de-DE":"Zeit der Streitenden Reiche",
+      "el-GR":"Περίοδος Εμπόλεμων Κρατών",
+      "en-US":"Warring States",
+      "es-ES":"Estados Combatientes",
+      "fr-FR":"Royaumes combattants",
+      "ja-JP":"戦国時代",
+      "ko-KR":"전국 시대",
+      "pt-PT":"Estados Combatentes",
+      "ru-RU":"Эпоха Сражающихся царств",
+      "th-TH":"ยุครณรัฐ",
+      "zh-CN":"战国",
+      "zh-TW":"戰國"
+    },
+    "image":"https://reddah.blob.core.windows.net/msjjimg/war.jpg",
+    "scroll":[
+      {"id":10, "alias":"楚辞","text":"诗词之源","desc":"路曼曼其修远兮，吾将上下而求索","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/beach-1852945_1280.jpg"}
+        
+    ],
+    "list":[
+      {"name":"推荐诗人", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/屈原.jpeg","display":"cover","text":"屈原","desc":"","color":"rgb(98,166,243)","author":"屈原"}
+      ]},
+
+      {"name":"精选诗单", "data": [
+        {"id":10,"src":"https://reddah.blob.core.windows.net/msjjimg/beach-1852945_1280.jpg","text":"楚辞 | 路曼曼其修远兮，吾将上下而求索","display":"cover","desc":"","color":"rgb(98,166,243)"}
+      ]}
+    ],
+    "desctitle":"简介",
+    "desc":"公元前3世纪战国后期，楚国出现了一种具有浓厚地方特色的新诗体，其奠基人和代表诗人是屈原。汉代刘向把屈原、宋玉等人的作品编辑成集，取名《楚辞》。楚辞句式较自由，善用长句，篇幅也较长，句中常常运用感叹词‘兮’字。代表作有屈原的《离骚》，有373句，2400多字。"
     
   },
   {
     "id":5004,
     "name":"秦汉",
+    "period":"公元前221年 - 公元220年",
     "i18n":{
       "ar-AE":"عصرا تشين وهان",
       "de-DE":"Qin- und Han-Zeit",
@@ -1149,42 +1170,37 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg",
     "scroll":[
-      {"id":31, "alias":"一见钟情","text":"古人是如何写一见钟情的？","desc":"金风玉露一相逢，便胜却人间无数","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/daisy-144677_1280.jpg"},
-      {"id":44, "alias":"爱有多深","text":"不读宋词，不知爱有多深","desc":"两情若是长久时，又岂在、朝朝暮暮","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/tulips-2254970_1280.jpg"},
-      {"id":70, "alias":"风花雪月","text":"古人逛青楼都写下了哪些千古名句？","desc":"如今却忆江南乐，当时年少春衫薄","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/pink-peony-111909_1280.jpg"},
-      {"id":79, "alias":"宋词的浪漫","text":"宋词里无法超越的中式浪漫","desc":"今宵酒醒何处，杨柳岸、晓风残月","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/seagulls-654046_1280.jpg"}
+      {"id":106, "alias":"汉赋","text":"汉赋","desc":"一眼惊鸿，色授魂与","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg"},
+      {"id":107, "alias":"乐府","text":"乐府","desc":"孔雀东南飞，五里一徘徊","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg"},
+      {"id":108, "alias":"古诗十九首","text":"古诗十九首","desc":"西北有高楼，上与浮云齐","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg"},
+      {"id":12, "alias":"三曹","text":"三曹","desc":"对酒当歌，人生几何","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/ocean-1867285_1280.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/柳永.jpeg","display":"cover","text":"柳永","sample":"今宵酒醒何处，杨柳岸、晓风残月","desc":"","color":"rgb(98,166,243)","author":"柳永"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/韦庄.jpeg","display":"cover","text":"韦庄","sample":"如今却忆江南乐，当时年少春衫薄","desc":"","color":"rgb(98,166,243)","author":"韦庄"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李之仪.jpeg","display":"cover","text":"李之仪","sample":"我住长江头，君住长江尾","desc":"","color":"rgb(98,166,243)","author":"李之仪"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","sample":"墙头马上遥相顾，一见知君即断肠","desc":"","color":"rgb(98,166,243)","author":"白居易"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/枚乘.jpeg","display":"cover","text":"枚乘","sample":"上有千仞之峰，下临百丈之溪","desc":"","color":"rgb(98,166,243)","author":"枚乘"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/司马相如.jpeg","display":"cover","text":"司马相如","sample":"一眼惊鸿，色授魂与","desc":"","color":"rgb(98,166,243)","author":"司马相如"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/班固.jpeg","display":"cover","text":"班固","sample":"西荡河源，东澹海漘，北动幽崖，南趯朱垠","desc":"","color":"rgb(98,166,243)","author":"班固"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张衡.jpeg","display":"cover","text":"张衡","sample":"龙雀蟠蜿，天马半汉","desc":"","color":"rgb(98,166,243)","author":"张衡"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/曹操.jpeg","display":"cover","text":"曹操","sample":"对酒当歌，人生几何","desc":"","color":"rgb(98,166,243)","author":"曹操"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/曹植.jpeg","display":"cover","text":"曹植","sample":"翩若惊鸿，婉若游龙","desc":"","color":"rgb(98,166,243)","author":"曹植"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/曹丕.jpeg","display":"cover","text":"曹丕","sample":"秋风萧瑟天气凉，草木摇落露为霜","desc":"","color":"rgb(98,166,243)","author":"曹丕"}
       ]},
 
       {"name":"风格诗单", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/带我去月球.jpg","display":"cover","text":"爱情","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/swan-2077219_1280.jpg","display":"cover","text":"浪漫","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/tree-3137482_1280.jpg","display":"cover","text":"相思","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"精选诗单", "data": [
-        {"id":5,"src":"https://reddah.blob.core.windows.net/msjjimg/tree-736877_1280.jpg","display":"cover","text":"浪漫诗派 | 举杯邀明月，对影成三人","desc":"","color":"rgb(98,166,243)"},
-        {"id":14,"src":"https://reddah.blob.core.windows.net/msjjimg/cloud.jpg","display":"cover","text":"明月清风 | 找到心生欢喜的良人，共享三餐四季","desc":"","color":"rgb(98,166,243)"},
-        {"id":29,"src":"https://reddah.blob.core.windows.net/msjjimg/flower-4287580_1280.jpg","display":"cover","text":"神伤 | 爱而不得是怎样的神伤？","desc":"","color":"rgb(98,166,243)"},
-        {"id":41,"src":"https://reddah.blob.core.windows.net/msjjimg/forest-3409907_1280.jpg","display":"cover","text":"一往情深 | 情场浪子柳永的顶级深情","desc":"","color":"rgb(98,166,243)"},
-        {"id":99,"src":"https://reddah.blob.core.windows.net/msjjimg/light-bulbs-1407610_1280.jpg","display":"cover","text":"纸短情长 | 宋词里的纸短情长，你最喜欢哪一句？","desc":"","color":"rgb(98,166,243)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg","display":"cover","text":"汉赋","desc":"","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg","display":"cover","text":"古诗","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":[],
     "desctitle":"简介",
-    "desc":"浪漫诗派是我国诗词四大流派之一。这些诗色彩绚丽，既有奇幻的想象，又有奔放的笔调，融合继承了楚辞、乐府诗的浪漫传统，开创了奇险创新的艺术风格。他们崇尚自我，注重情感流泻，发挥想象灵感。古典浪漫诗派以屈原、曹植、李白、李贺、龚自珍等为代表，代表作有屈原的《离骚》，曹植的《洛神赋》、李白的《梦游天姥吟留别》，李贺的《雁门太守行》、龚自珍的《己亥杂诗》等。"
+    "desc":"秦汉时期的诗歌，主要有两大类：一类是汉赋，代表作有司马相如的《子虚赋》和《上林赋》，班固的《两都赋》，张衡的《二京赋》等；另一类是乐府诗，代表作有《孔雀东南飞》，《陌上桑》，《木兰诗》等。还有一些不属于上述两类的诗歌，如古诗十九首，代表作有《行行重行行》，《青青河畔草》等；三曹诗歌，代表作有曹操的《短歌行》，曹植的《洛神赋》，曹丕的《燕歌行》等。"
     
   },
   
   {
     "id":5005,
     "name":"魏晋南北朝",
+    "period":"公元220年 - 公元589年",
     "i18n":{
       "ar-AE":"عصور وي وجين والأسر الشمالية والجنوبية",
       "de-DE":"Wei-, Jin- sowie Nord- und Sued-Dynastien",
@@ -1202,64 +1218,28 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg",
     "scroll":[
-      {"id":13, "alias":"桃花源记","text":"不知有汉，无论魏晋","desc":"悟已往之不谏，知来者之可追","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg"},
-      {"id":19, "alias":"温柔美好","text":"那些温柔美好的古风祝福","desc":"把酒祝东风，且共从容","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/poppies-3422252_1280.jpg"},
-      {"id":26, "alias":"时光流影","text":"古人笔下的时光流影","desc":"最是人间留不住，朱颜辞镜花辞树","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/sand-7564466_1280.jpg"},
-      {"id":51, "alias":"风景","text":"你读过些风景最惊艳的一句诗是什么？","desc":"疏影横斜水清浅，暗香浮动月黄昏","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/balloons-1046658_1280.jpg"}
+      {"id":109, "alias":"归园田居","text":"种豆南山下，草盛豆苗稀","desc":"种豆南山下，草盛豆苗稀","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg"},
+      {"id":110, "alias":"登池上楼","text":"潜虬媚幽姿，飞鸿响远音","desc":"潜虬媚幽姿，飞鸿响远音","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/couleur-frog-3312038_1920.jpg"},
+      {"id":111, "alias":"南北朝民歌","text":"南风知我意，吹梦到西洲","desc":"南风知我意，吹梦到西洲","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/eclipsechasers-croatia-8253094_1920.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张孝祥.jpeg","display":"cover","text":"张孝祥","sample":"满载一船秋色，平铺十里湖光","desc":"","color":"rgb(98,166,243)","author":"张孝祥"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王维.jpeg","display":"cover","text":"王维","sample":"大漠孤烟直，长河落日圆","desc":"","color":"rgb(98,166,243)","author":"王维"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/林逋.jpeg","display":"cover","text":"林逋","sample":"疏影横斜水清浅，暗香浮动月黄昏","desc":"","color":"rgb(98,166,243)","author":"林逋"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张若虚.jpeg","display":"cover","text":"张若虚","sample":"春江潮水连海平，海上明月共潮生","desc":"","color":"rgb(98,166,243)","author":"张若虚"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陶渊明.jpeg","display":"cover","text":"陶渊明","sample":"满载一船秋色，平铺十里湖光","desc":"","color":"rgb(98,166,243)","author":"陶渊明"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/谢灵运.jpeg","display":"cover","text":"谢灵运","sample":"大漠孤烟直，长河落日圆","desc":"","color":"rgb(98,166,243)","author":"谢灵运"}
       ]},
 
-      {"name":"花卉", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg","display":"cover","text":"桃花","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/natural-7582669_1280.jpg","display":"cover","text":"桂花","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/lotus-614421_1280.jpg","display":"cover","text":"荷花","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/chrysanthemum-5668882_1280.jpg","display":"cover","text":"菊花","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/pink-peony-111909_1280.jpg","display":"cover","text":"牡丹","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/ornamental-plum-7115659_1280.jpg","display":"cover","text":"梅花","desc":"","color":"rgb(98,166,243)"}
+      {"name":"山水田园", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/corn-field-440338_1280.jpg", "alias":"田园", "text":"田园", "color":"rgb(240,209,246)", "light":"rgb(240,209,246,60%)"}
       ]},
 
-      {"name":"水果", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/cherry-212601_1280.jpg","display":"cover","text":"樱桃","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/lychees-4584834_1280.jpg","display":"cover","text":"荔枝","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/arbutus-unedo-883824_1280.jpg","display":"cover","text":"杨梅","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/peaches-7395591_1280.jpg","display":"cover","text":"桃子","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/bamboo-3382545_1280.jpg","display":"cover","text":"竹笋","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/red-beans-7228265_1280.jpg","display":"cover","text":"红豆","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/apricot-871493_1280.jpg","display":"cover","text":"杏","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"湖", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/swan-2077219_1280.jpg","display":"cover","text":"洞庭湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/image-2474185_1280.jpg","display":"cover","text":"西湖","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/suzhou-2639283_1280.jpg","display":"cover","text":"太湖","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"山", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/lushan-5897708_1280.jpg","display":"cover","text":"庐山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/nanyue-hengshan-mountain-1712163_1280.jpg","display":"cover","text":"衡山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/the-scenery-1736672_1280.jpg","display":"cover","text":"泰山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/pinus-armandii-2713406_1280.jpg","display":"cover","text":"华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/monument-2026285_1280.jpg","display":"cover","text":"九华山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/antler-beam-2217416_1280.jpg","display":"cover","text":"终南山","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/nature-3329358_1280.jpg","display":"cover","text":"黄山","desc":"","color":"rgb(98,166,243)"}
-      ]},
-
-      {"name":"江河", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/yangtze-3984504_1280.jpg","display":"cover","text":"长江","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/landscape-659894_1280.jpg","display":"cover","text":"黄河","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/hangzhou-7520885_1280.jpg","display":"cover","text":"钱塘江","desc":"","color":"rgb(98,166,243)"}
+      {"name":"精选诗单", "data": [
+        {"id":905,"src":"/assets/img/mulan.png","text":"唧唧复唧唧 | 木兰辞: 粤语精选","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
 
     ],
-    "hot":[],
     "desctitle":"简介",
-    "desc":"驯鹿逐苔藓而居，月光下萨满起舞。缓缓奔流的额尔古纳河穿透历史，带走一切人类的哀伤。我们在自然中相遇，也在自然中分离；在山谷中获得，也在山谷中失去。"
+    "desc":"魏晋南北朝时期，诗歌的风格发生了很大的变化，出现了很多新的题材和表现手法。代表诗人有陶渊明和谢灵运等。陶渊明的诗歌以田园诗为主，代表作有《归园田居》等；谢灵运的诗歌以山水诗为主，代表作有《登池上楼》和《西洲曲》等。这个时期的诗歌题材非常丰富，有花卉、树木、山水、江河等自然景物，也有咏史怀古、咏物抒情等内容。"
     
   },
   
@@ -1267,6 +1247,7 @@
   {
     "id":5006,
     "name":"隋唐",
+    "period":"公元581年 - 公元907年",
     "i18n":{
       "ar-AE":"سوي وتانغ",
       "de-DE":"Sui- und Tang-Zeit",
@@ -1284,16 +1265,16 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg",
     "scroll":[
-      {"alias":"推荐诗单","display":"cover","text":"唐诗三百首","desc":"唐诗三百首","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg","src":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg"},
-      {"alias":"推荐诗单","display":"cover","text":"宋词三百首","desc":"宋词三百首","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/chalks-1869492_1280.jpg","src":"https://reddah.blob.core.windows.net/msjjimg/chalks-1869492_1280.jpg"}
+      {"alias":"推荐诗单","display":"cover","text":"唐诗三百首","desc":"唐诗三百首","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg","src":"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg"}
+      
     ],
     "list":[
       {"name":"推荐诗人", "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg","display":"cover","text":"李白","desc":"","color":"rgb(98,166,243)","author":"李白"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg","display":"cover","text":"杜甫","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","desc":"","color":"rgb(98,166,243)","author":"白居易"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陆游.jpeg","display":"cover","text":"陆游","desc":"","color":"rgb(98,166,243)","author":"陆游"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王安石.jpeg","display":"cover","text":"王安石","desc":"","color":"rgb(98,166,243)","author":"王安石"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/刘禹锡.jpeg","display":"cover","text":"刘禹锡","sample":"回首向来潇洒处，也无风雨也无晴","desc":"","color":"rgb(98,166,243)","author":"刘禹锡"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李商隐.jpeg","display":"cover","text":"李商隐","sample":"世界微尘里，吾宁爱与憎","desc":"","color":"rgb(98,166,243)","author":"李商隐"}
       ]},
 
       {"name":"风格诗单", "data": [
@@ -1326,7 +1307,7 @@
         {"id":47,"src":"https://reddah.blob.core.windows.net/msjjimg/nature-3520280_1280.jpg","display":"cover","text":"史上最惊艳的七律","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":[],
+    "hot":["唐","五代"],
     "desctitle":"简介",
     "desc":"教育是点燃一团火，而不是灌满一桶水。每个人心里都有一团火。"
     
@@ -1335,6 +1316,7 @@
   {
     "id":5007,
     "name":"宋",
+    "period":"公元960年 - 公元1279年",
     "i18n":{
       "ar-AE":"أسرة سونغ",
       "de-DE":"Song-Dynastie",
@@ -1352,20 +1334,15 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg",
     "scroll":[
-      {"id":43, "alias":"精神内耗","text":"停止精神内耗","desc":"有哪些古诗词，让你停止了精神内耗？","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg"},
-      {"id":16, "alias":"时光如水","text":"古人是怎么说时间过得真快的？","desc":"桃李春风一杯酒，江湖夜雨十年灯","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/bird.jpg"},
-      {"id":25, "alias":"豁然开朗","text":"古人如何表达“我想开了”","desc":"世事浮云何足问，不如高卧且加餐","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/corn-field-440338_1280.jpg"},
-      {"id":62, "alias":"和解","text":"那些与自己和解的古诗词","desc":"我自人间漫浪，平生事、南北西东","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/lotus-1205631_1280.jpg"},
-      {"id":63, "alias":"闲愁","text":"李清照笔下的闲愁，那一句能触动你的心弦？","desc":"红藕香残玉簟秋。轻解罗裳，独上兰舟","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/daisies-712892_1280.jpg"},
-      {"id":63, "alias":"遗憾","text":"古人笔下的遗憾，谁的遗憾更胜一筹？","desc":"人生若只如初见，何事秋风悲画扇","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/regret.jpg"},
-      {"id":63, "alias":"思乡","text":"古人笔下的思乡","desc":"洛阳城里春光好，洛阳才子他乡老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/winter-1936638_1280.jpg"}
+      {"alias":"推荐诗单","display":"cover","text":"宋词三百首","desc":"宋词三百首","color":"rgb(98,166,243)","image":"https://reddah.blob.core.windows.net/msjjimg/chalks-1869492_1280.jpg","src":"https://reddah.blob.core.windows.net/msjjimg/chalks-1869492_1280.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/刘禹锡.jpeg","display":"cover","text":"刘禹锡","sample":"回首向来潇洒处，也无风雨也无晴","desc":"","color":"rgb(98,166,243)","author":"刘禹锡"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄庭坚.jpeg","display":"cover","text":"黄庭坚","sample":"桃李春风一杯酒，江湖夜雨十年灯","desc":"","color":"rgb(98,166,243)","author":"黄庭坚"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李商隐.jpeg","display":"cover","text":"李商隐","sample":"世界微尘里，吾宁爱与憎","desc":"","color":"rgb(98,166,243)","author":"李商隐"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李清照.jpeg","display":"cover","text":"李清照","sample":"","desc":"","color":"rgb(98,166,243)","author":"李清照"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陆游.jpeg","display":"cover","text":"陆游","desc":"王师北定中原日，家祭无忘告乃翁","color":"rgb(98,166,243)","author":"陆游"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李清照.jpeg","display":"cover","text":"李清照","sample":"生当作人杰，死亦为鬼雄","desc":"","color":"rgb(98,166,243)","author":"李清照"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王安石.jpeg","display":"cover","text":"王安石","desc":"春风又绿江南岸，明月何时照我还","color":"rgb(98,166,243)","author":"王安石"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"但愿人长久，千里共婵娟","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄庭坚.jpeg","display":"cover","text":"黄庭坚","sample":"桃李春风一杯酒，江湖夜雨十年灯","desc":"","color":"rgb(98,166,243)","author":"黄庭坚"}
       ]},
 
       {"name":"心情氛围", "data": [
@@ -1401,6 +1378,7 @@
   {
     "id":5008,
     "name":"元",
+    "period":"公元1271年 - 公元1368年",
     "i18n":{
       "ar-AE":"أسرة يوان",
       "de-DE":"Yuan-Dynastie",
@@ -1484,6 +1462,7 @@
   {
     "id":5009,
     "name":"明清",
+    "period":"公元1368年 - 公元1912年",
     "i18n":{
       "ar-AE":"عهدا مينغ وتشينغ",
       "de-DE":"Ming- und Qing-Zeit",
@@ -1561,6 +1540,7 @@
   {
     "id":5010,
     "name":"近现代",
+    "period":"公元1840年 - 公元1949年",
     "i18n":{
       "ar-AE":"العصر الحديث والمعاصر",
       "de-DE":"Moderne und Gegenwart",

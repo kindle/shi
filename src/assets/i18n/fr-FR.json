@@ -133,7 +133,9 @@
         "Website": "Site Web",
         "RatetheApp": "Noter l'application",
         "Version": "Version",
-        "Help": "Aide"
+        "Help": "Aide",
+        "ByDynasty": "Par dynastie",
+        "ByType": "Par type"
     },
 
     "Search":{

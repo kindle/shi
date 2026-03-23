@@ -263,7 +263,7 @@
   <!--(longPressed)="active(topic.id)" -->
   <!---->
 
-  <app-sub-title name="按朝代"></app-sub-title> <!--{{ ui.instant('History.Title') }}-->
+  <app-sub-title name="{{ ui.instant('Title.ByDynasty') }}" *ngIf="!data.showFilter"></app-sub-title> <!--按朝代-->
  
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
@@ -297,7 +297,7 @@
   </div>
   
 
-  <app-sub-title name="按类型"></app-sub-title> <!--{{ ui.instant('History.Title') }}-->
+  <app-sub-title name="{{ ui.instant('Title.ByType') }}" *ngIf="!data.showFilter"></app-sub-title> <!--按类型-->
 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
@@ -477,7 +477,7 @@
      [style.padding-left]="isFocused ? '0px' : '10px'" 
      [style.padding-right]="isFocused ? '0px' : '10px'" 
      style="background-color: transparent;">
-  <ion-toolbar [style.margin-bottom]="isFocused ? '0px' : '78px'" 
+  <ion-toolbar [style.margin-bottom]="ui.isAndroid ? (isFocused ? '0px' : '78px') : '78px'" 
     [style.border-radius]="isFocused ? '0px' : '15px'"
     style="padding-top:0px;bottom:0px;
     --border-width:0;

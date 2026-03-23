@@ -133,7 +133,9 @@
         "Website": "웹 사이트",
         "RatetheApp": "앱 평가",
         "Version": "버전",
-        "Help": "도움말"
+        "Help": "도움말",
+        "ByDynasty": "왕조별",
+        "ByType": "유형별"
     },
 
     "Search": {

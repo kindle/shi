@@ -133,7 +133,9 @@
         "Website": "Webseite",
         "RatetheApp": "App bewerten",
         "Version": "Version",
-        "Help": "Hilfe"
+        "Help": "Hilfe",
+        "ByDynasty": "Nach Dynastie",
+        "ByType": "Nach Typ"
     },
 
     "Search":{

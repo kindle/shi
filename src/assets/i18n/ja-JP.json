@@ -133,7 +133,9 @@
         "Website": "ウェブサイト",
         "RatetheApp": "アプリを評価",
         "Version": "バージョン",
-        "Help": "ヘルプ"
+        "Help": "ヘルプ",
+        "ByDynasty": "王朝別",
+        "ByType": "形式別"
     },
 
     "Search": {

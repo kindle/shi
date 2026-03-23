@@ -134,7 +134,9 @@
         "Website": "官網",
         "RatetheApp": "去評分",
         "Version": "版本",
-        "Help": "幫助"
+        "Help": "幫助",
+        "ByDynasty":"按朝代",
+        "ByType":"按類型"
     },
 
     "Search":{
