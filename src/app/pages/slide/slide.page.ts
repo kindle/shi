@@ -23,7 +23,7 @@ export class SlidePage implements OnInit {
 
   slideAutoplay = {
     delay: 5000,
-    disableOnInteraction: false,
+    disableOnInteraction: true,
   };
 
   get canLoop(): boolean {
