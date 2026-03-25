@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent } from '@ionic/angular';
+import { ItemReorderEventDetail, ModalController, RangeCustomEvent, IonContent, IonPopover } from '@ionic/angular';
 import { UiService } from 'src/app/services/ui.service';
 import { Router } from '@angular/router';
 import { Keyboard, KeyboardInfo } from '@capacitor/keyboard';
@@ -108,7 +108,42 @@ export class PlayerPage implements OnInit {
   }
 
   currentIndex:any;
+  pressTimer: any;
+  longPressTriggered = false;
+  isPopoverOpen = false;
+  popoverEvent: any;
+  menuText = '';
+
+  startPress(i: number, ev: any, text: string) {
+    //if (text.length <= 16) return;
+    this.longPressTriggered = false;
+    this.pressTimer = setTimeout(() => {
+      this.longPressTriggered = true;
+      this.popoverEvent = ev;
+      this.menuText = text;
+      this.isPopoverOpen = true;
+    }, 500);
+  }
+
+  endPress() {
+    clearTimeout(this.pressTimer);
+  }
+
+  menuSearch() {
+    this.data.search(this.menuText);
+    this.isPopoverOpen = false;
+  }
+
+  menuShare() {
+    this.data.shareText(this.data.currentPoem.author + '·《' + this.data.currentPoem.title + '》', this.menuText);
+    this.isPopoverOpen = false;
+  }
+
   select(i:any, ev?: any){
+    if (this.longPressTriggered) {
+      this.longPressTriggered = false;
+      return;
+    }
     const selection = window.getSelection();
     if(selection && selection.toString().length > 0){
       return;

@@ -358,21 +358,21 @@
       ]}
       
     ],
-    "desctitle":"寓教于乐",
+    "desctitle":"名诗佳句",
     "i18n":{
-      "ar-AE":"التعليم الترفيهي",
-      "de-DE":"Spielerisches Lernen",
-      "el-GR":"Εκπαίδευση και Ψυχαγωγία",
-      "en-US":"Edutainment",
-      "es-ES":"Entretenimiento Educativo",
-      "fr-FR":"Ludo-éducatif",
-      "ja-JP":"楽しみながら学ぶ",
-      "ko-KR":"에듀테인먼트",
-      "pt-PT":"Educação e Entretenimento",
-      "ru-RU":"Обучение через развлечение",
-      "th-TH":"การเรียนรู้ผ่านการเล่น",
-      "zh-CN":"寓教于乐",
-      "zh-TW":"寓教於樂"
+      "ar-AE":"قصائد وأبيات شهيرة",
+      "de-DE":"Berühmte Gedichte und Verse",
+      "el-GR":"Διάσημα Ποιήματα και Στίχοι",
+      "en-US":"Famous Poems & Verses",
+      "es-ES":"Poemas y Versos Famosos",
+      "fr-FR":"Poèmes et Vers Célèbres",
+      "ja-JP":"名詩と名句",
+      "ko-KR":"명시와 명구",
+      "pt-PT":"Poemas e Versos Famosos",
+      "ru-RU":"Знаменитые стихи и строки",
+      "th-TH":"บทกวีและวรรคทองที่มีชื่อเสียง",
+      "zh-CN":"名诗佳句",
+      "zh-TW":"名詩佳句"
     },
     "desc":"人一定要热爱些什么，才不至于被这无趣的生活吞没。",
     "desclist":[

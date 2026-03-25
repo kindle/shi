@@ -390,8 +390,15 @@
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
       [ngClass]="{'select-line selectableText':currentIndex===i}"
       (click)="select(i, $event); $event.stopPropagation()"
+      (touchstart)="startPress(i, $event, text)" 
+      (touchend)="endPress()" 
+      (touchcancel)="endPress()"
+      (touchmove)="endPress()" 
+      (mousedown)="startPress(i, $event, text)" 
+      (mouseup)="endPress()" 
+      (mouseleave)="endPress()"
       [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
-        <ion-icon name="search-outline" *ngIf="currentIndex===i"
+        <ion-icon name="search-outline" *ngIf="currentIndex===i&&text.length<=16"
         (click)="data.search(text)"
         style="position: absolute;left:5px;margin:2px;top:10px;"
         ></ion-icon>
@@ -406,7 +413,7 @@
         [style.fontSize]="data.zoom(18)"
         class="selectableText">
         </div>
-        <ion-icon name="share-social-outline" *ngIf="currentIndex===i"
+        <ion-icon name="share-social-outline" *ngIf="currentIndex===i&&text.length<=16"
         (click)="data.shareText(data.currentPoem.author+'·《'+data.currentPoem.title+'》',text)" 
         style="position: absolute;right:20px;top:10px;margin:2px;"
         ></ion-icon>
@@ -491,8 +498,15 @@
         <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
         [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
         [ngClass]="{'select-line':currentIndex===i}"
-        (click)="select(i, $event); $event.stopPropagation()">
-          <ion-icon name="search-outline" *ngIf="currentIndex===i"
+        (click)="select(i, $event); $event.stopPropagation()"
+        (touchstart)="startPress(i, $event, text)" 
+        (touchend)="endPress()" 
+        (touchcancel)="endPress()"
+        (touchmove)="endPress()" 
+        (mousedown)="startPress(i, $event, text)" 
+        (mouseup)="endPress()" 
+        (mouseleave)="endPress()">
+          <ion-icon name="search-outline" *ngIf="currentIndex===i&&text.length<=16"
           (click)="data.search(text)"
           style="position: absolute;left:5px;margin:2px;top:10px;"
           ></ion-icon>
@@ -506,7 +520,7 @@
           [style.fontSize]="data.zoom(18)">
             {{GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text}}
           </div>
-          <ion-icon name="share-social-outline" *ngIf="currentIndex===i"
+          <ion-icon name="share-social-outline" *ngIf="currentIndex===i&&text.length<=16"
           (click)="data.shareText(data.currentPoem.author+'·《'+data.currentPoem.title+'》',text)" 
           style="position: absolute;right:20px;top:10px;margin:2px;"
           ></ion-icon>
@@ -616,6 +630,23 @@
 
     <div style="height:calc(env(safe-area-inset-bottom));" (click)="clear()"></div>
   </ion-list>
+
+  <ion-popover [isOpen]="isPopoverOpen" [event]="popoverEvent" (didDismiss)="isPopoverOpen = false" [showBackdrop]="false">
+    <ng-template>
+      <ion-content class="ion-no-padding">
+        <ion-list lines="none">
+          <ion-item button (click)="menuSearch()" detail="false">
+            <ion-icon name="search-outline" slot="start"></ion-icon>
+            <ion-label>{{ ui.instant('Action.Search') }}</ion-label>
+          </ion-item>
+          <ion-item button (click)="menuShare()" detail="false">
+            <ion-icon name="share-social-outline" slot="start"></ion-icon>
+            <ion-label>{{ ui.instant('Action.Share') }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 </div>
 
 <div *ngIf="showNoteToolbar" class="editor-toolbar" [style.--player-keyboard-offset.px]="keyboardOffset">
