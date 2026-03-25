@@ -2096,7 +2096,7 @@
         "sub": "秋雨",
         "image": "https://reddah.blob.core.windows.net/msjjimg/water-815271_1280.jpg",
         "more": "",
-        "desc": "一场秋雨一场凉，诗人们有着千种风情",
+        "desc": "一场秋雨一场凉，诗人们的千种风情",
         "list": [
             {
                 "title": "蝶恋花·出塞",
@@ -2365,7 +2365,7 @@
             ""
         ],
         "name": "",
-        "sub": "停止精神内耗",
+        "sub": "精神内耗",
         "image": "https://reddah.blob.core.windows.net/msjjimg/man-3915438_1280.jpg",
         "more": "",
         "desc": "有哪些古诗词，让你停止了精神内耗？",
@@ -4936,7 +4936,7 @@
         "name": "",
         "sub": "自由",
         "image": "https://reddah.blob.core.windows.net/msjjimg/salmon-3704543_1280.jpg",
-        "more": "我自人间漫浪，平生事、南北西东",
+        "more": "",
         "desc": "诗人笔下的顶级自由，你最爱哪一句?",
         "list": [
             {
@@ -5742,7 +5742,7 @@
         ], 
         "name": "",
         "sub": "上古诗歌",
-        "image": "assets/img/古文.jpg",
+        "image": "https://reddah.blob.core.windows.net/msjjimg/pexels-man-1866559_1920.jpg",
         "more": "最早的诗歌是什么样子的？",
         "desc": "击壤歌",
         "list": [
@@ -5766,7 +5766,7 @@
         ], 
         "name": "",
         "sub": "上古诗歌",
-        "image": "assets/img/古文.jpg",
+        "image": "https://reddah.blob.core.windows.net/msjjimg/652234-air-bag-1857099_1920.jpg",
         "more": "最早的诗歌是什么样子的？",
         "desc": "南风歌",
         "list": [
@@ -5791,7 +5791,7 @@
         ], 
         "name": "",
         "sub": "上古诗歌",
-        "image": "assets/img/古文.jpg",
+        "image": "https://reddah.blob.core.windows.net/msjjimg/kranich17-sunset-7504891_1920.jpg",
         "more": "舜禅位于禹群臣互贺之歌",
         "desc": "卿云歌",
         "list": [
@@ -5817,7 +5817,7 @@
         "sub": "汉赋",
         "image": "https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg",
         "more": "",
-        "desc": "",
+        "desc": "汉赋者古诗之流也",
         "list": [
             {
                 "title": "七发",
@@ -5871,7 +5871,7 @@
         "sub": "乐府",
         "image": "https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg",
         "more": "",
-        "desc": "",
+        "desc": "那些传唱千古的乐府诗，你最喜欢哪一句？",
         "list": [
             {
                 "title": "江南",
@@ -5898,10 +5898,10 @@
             ""
         ], 
         "name": "",
-        "sub": "古诗十九首",
+        "sub": "昭明文选",
         "image": "https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg",
         "more": "",
-        "desc": "",
+        "desc": "古诗十九首，你最喜欢哪一首？",
         "list": [
             {
                 "author": "佚名",
@@ -6033,7 +6033,7 @@
         "sub": "归园田居（其三）",
         "image": "https://reddah.blob.core.windows.net/msjjimg/peach-4739923_1280.jpg",
         "more": "",
-        "desc": "",
+        "desc": "对自由生活的热爱，你最喜欢哪一句？",
         "list": [
             {
                 "author": "陶渊明",
@@ -6058,7 +6058,7 @@
         "sub": "登池上楼",
         "image": "https://reddah.blob.core.windows.net/msjjimg/couleur-frog-3312038_1920.jpg",
         "more": "",
-        "desc": "",
+        "desc": "归隐诗的巅峰之作，你最喜欢哪句？",
         "list": [
             {
                 "author": "谢灵运",

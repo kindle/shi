@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="padding-inline-start:20px;
-      padding-inline-end:20px;padding-top:30px;"
+  <ion-toolbar style="padding-inline-start:5px;
+      padding-inline-end:10px;padding-top:30px;"
       [style.paddingTop]="ui.isAndroid ? '45px' : '30px'">
     <ion-buttons style="display:flex;justify-content:center;
       width:fit-content;height:25px;float:left;
@@ -15,7 +15,8 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="share()" [disabled]="!cs">
-        <ion-icon name="share-social-outline" color="medium"></ion-icon>
+        <ion-icon name="share-social-outline" style="margin-right:5px;"></ion-icon>
+        {{ ui.instant('Action.Share') }}<!--分享-->
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

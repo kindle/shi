@@ -37,8 +37,9 @@
       </ion-buttons>
 
       <ion-buttons slot="end" style="float:right;">
-        <ion-button (click)="share()">
-          <ion-icon name="share-social-outline" color="light"></ion-icon>
+        <ion-button (click)="share()" color="light">
+          <ion-icon name="share-social-outline" style="margin-right:5px;"></ion-icon>
+          {{ ui.instant('Action.Share') }}<!--分享-->
         </ion-button>
       </ion-buttons>
     </ion-card-content>
@@ -249,7 +250,7 @@
           <div class="fd-text">{{ ui.instant('Action.Collect') }}<!--收藏--></div>
         </div>
         <div class="fd-item">
-          <ion-icon name="share-social-outline" (click)="shareArticle()"
+          <ion-icon name="share-social-outline" (click)="share()"
           class="fd-icon" color="dark"></ion-icon>
           <div class="fd-text">{{ ui.instant('Action.Share') }}<!--分享--></div>
         </div>

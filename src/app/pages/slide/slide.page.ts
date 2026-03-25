@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { NavController } from '@ionic/angular';
 import { UiService } from '../../services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-slide',
@@ -16,6 +17,7 @@ export class SlidePage implements OnInit {
   private userPausedAutoplay = false;
   private loadedSlideId: any = null;
   private currentSlideIndex = 0;
+  private routeSub: Subscription | null = null;
 
   cs:any = null;
 
@@ -50,27 +52,32 @@ export class SlidePage implements OnInit {
   ionViewWillEnter() {
     this.ui.hideStatusBar();
 
-    const routeId = this.activatedRoute.snapshot.queryParams['id'];
-    if (routeId !== undefined && routeId !== null && routeId !== '') {
-      this.id = routeId;
+    // Clean up if re-entering
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
     }
+
+    this.routeSub = this.activatedRoute.queryParams.subscribe(params => {
+      const routeId = params['id'];
+      if (routeId !== undefined && routeId !== null && routeId !== '') {
+        this.id = routeId;
+        this.loadSlidesData();
+      } else {
+        // If query params are missing but we have cached data, reuse it
+        if (this.slidesJsonData?.slides?.length) {
+          this.restoreCurrentSlideFromIndex();
+          this.startSlideAutoplay();
+        }
+      }
+    });
+  }
+
+  loadSlidesData() {
     //console.log('SlidePage ionViewWillEnter:'+this.id);
 
     if (this.loadedSlideId === this.id && this.slidesJsonData?.slides?.length) {
       this.restoreCurrentSlideFromIndex();
       this.startSlideAutoplay();
-      return;
-    }
-
-    // When navigating back from nested routes, query params may be absent.
-    // Reuse already loaded data instead of resetting cs to null.
-    if (!this.id && this.slidesJsonData?.slides?.length) {
-      this.restoreCurrentSlideFromIndex();
-      this.startSlideAutoplay();
-      return;
-    }
-
-    if (!this.id) {
       return;
     }
 
@@ -95,14 +102,16 @@ export class SlidePage implements OnInit {
         this.audio.loop = true;
         this.audio.play();
       });
+    }).catch(err => {
+      console.error('Error loading slides:', err);
     });
-    
   }
 
   ionViewDidEnter() {
-    //console.log('SlidePage ionViewDidEnter');
     if (!this.cs && this.slidesJsonData?.slides?.length) {
-      this.cs = this.slidesJsonData.slides[0];
+      this.ngZone.run(() => {
+        this.cs = this.slidesJsonData.slides[0];
+      });
     }
     this.startSlideAutoplay();
   }
@@ -112,6 +121,9 @@ export class SlidePage implements OnInit {
     //console.log('SlidePage ionViewWillLeave');
     this.audio?.pause();
     this.slideSwiper?.nativeElement?.swiper?.autoplay?.stop();
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
   }
 
   stopSlideAutoplay() {
@@ -168,14 +180,24 @@ export class SlidePage implements OnInit {
       return;
     }
 
-    const rawIndex = typeof swiper.realIndex === 'number'
-      ? swiper.realIndex
-      : swiper.activeIndex;
+    let rawIndex = 0;
+    if (typeof swiper.realIndex === 'number') {
+        rawIndex = swiper.realIndex;
+    } else if (typeof swiper.activeIndex === 'number') {
+        rawIndex = swiper.activeIndex;
+    }
+    
     const safeIndex = ((rawIndex % slides.length) + slides.length) % slides.length;
 
     this.ngZone.run(() => {
       this.currentSlideIndex = safeIndex;
-      this.cs = slides[safeIndex];
+      const newSlide = slides[safeIndex];
+      if (newSlide) {
+        this.cs = newSlide;
+      } else if (!this.cs && slides.length > 0) {
+        // Fallback if safeIndex points to nothing but we have slides
+        this.cs = slides[0];
+      }
     });
   }
 

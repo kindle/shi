@@ -1053,9 +1053,11 @@
         "zh-TW":"上古時期"
       },
       "image":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg",
-      "scroll":[
+      "scroll":[ 
         {"id":102, "alias":"弹歌","text":"最早的诗歌是什么样子的？","desc":"《吴越春秋》所载《弹歌》","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg"},
-        {"id":103, "alias":"击壤歌","text":"中国上古歌谣的典范","desc":"《帝王世纪》所载《击壤歌》","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"assets/img/古文.jpg"}
+        {"id":103, "alias":"击壤歌","text":"中国上古歌谣的典范","desc":"《帝王世纪》所载《击壤歌》","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/pexels-man-1866559_1920.jpg"},
+        {"id":104, "alias":"南风歌","text":"中国上古歌谣的典范","desc":"南风清凉阵阵吹啊，可以解除万民的愁苦","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/652234-air-bag-1857099_1920.jpg"},
+        {"id":105, "alias":"卿云歌","text":"中国上古歌谣的典范","desc":"舜禅位于禹时同群臣互贺的唱和之作","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/kranich17-sunset-7504891_1920.jpg"}
           
       ],
       "list":[
@@ -1063,11 +1065,11 @@
           {"src":"https://reddah.blob.core.windows.net/msjjpoet/先秦无名.jpeg","display":"cover","text":"先秦无名","desc":"","color":"rgb(98,166,243)","author":"先秦无名"}
         ]},
 
-        {"name":"精选诗单", "data": [
-          {"id":102,"src":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg","text":"《吴越春秋》 | 最早的诗歌是什么样子的？","display":"cover","desc":"","color":"rgb(98,166,243)"},
-          {"id":103,"src":"assets/img/古文.jpg","text":"《帝王世纪》 | 中国上古歌谣的典范","display":"cover","desc":"","color":"rgb(98,166,243)"},
-          {"id":104,"src":"assets/img/大禹.jpg","text":"《南风歌》 | 南风清凉阵阵吹啊，可以解除万民的愁苦","display":"cover","desc":"","color":"rgb(98,166,243)"},
-          {"id":105,"src":"assets/img/舜.jpg","text":"《卿云歌》 | 舜禅位于禹时同群臣互贺的唱和之作","display":"cover","desc":"","color":"rgb(98,166,243)"}
+        {"name":"精选诗单", "data": [  
+          {"id":105,"src":"https://reddah.blob.core.windows.net/msjjimg/kranich17-sunset-7504891_1920.jpg","text":"《卿云歌》 | 舜禅位于禹时同群臣互贺的唱和之作","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":104,"src":"https://reddah.blob.core.windows.net/msjjimg/652234-air-bag-1857099_1920.jpg","text":"《南风歌》 | 南风清凉阵阵吹啊，可以解除万民的愁苦","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":103,"src":"https://reddah.blob.core.windows.net/msjjimg/pexels-man-1866559_1920.jpg","text":"《帝王世纪》 | 中国上古歌谣的典范","display":"cover","desc":"","color":"rgb(98,166,243)"},
+          {"id":102,"src":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg","text":"《吴越春秋》 | 最早的诗歌是什么样子的？","display":"cover","desc":"","color":"rgb(98,166,243)"}
         ]}
       ],
       
@@ -1170,8 +1172,8 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg",
     "scroll":[
-      {"id":106, "alias":"汉赋","text":"汉赋","desc":"一眼惊鸿，色授魂与","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg"},
       {"id":107, "alias":"乐府","text":"乐府","desc":"孔雀东南飞，五里一徘徊","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg"},
+      {"id":106, "alias":"汉赋","text":"汉赋","desc":"一眼惊鸿，色授魂与","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg"},
       {"id":108, "alias":"古诗十九首","text":"古诗十九首","desc":"西北有高楼，上与浮云齐","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg"},
       {"id":12, "alias":"三曹","text":"三曹","desc":"对酒当歌，人生几何","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/ocean-1867285_1280.jpg"}
     ],
@@ -1188,8 +1190,8 @@
 
       {"name":"风格诗单", "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg","display":"cover","text":"汉赋","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg","display":"cover","text":"古诗","desc":"","color":"rgb(98,166,243)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg","display":"cover","text":"古诗","desc":"","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
     "desctitle":"简介",
@@ -1406,11 +1408,12 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/欧阳修.jpeg","display":"cover","text":"欧阳修","sample":"我来携酒醉其下，卧看千峰秋月明","desc":"","color":"rgb(98,166,243)","author":"欧阳修"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/晏几道.jpeg","display":"cover","text":"晏几道","sample":"梦入江南烟水路。行尽江南，不与离人遇","desc":"","color":"rgb(98,166,243)","author":"晏几道"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张孝祥.jpeg","display":"cover","text":"张孝祥","sample":"星稀河影转，霜重月华孤","desc":"","color":"rgb(98,166,243)","author":"张孝祥"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"相逢一醉是前缘，风雨散、飘然何处","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg","display":"cover","text":"李白","sample":"云青青兮欲雨，水澹澹兮生烟","desc":"","color":"rgb(98,166,243)","author":"李白"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/关汉卿.jpeg","display":"cover","text":"关汉卿","sample":"渗透着民主和人道主义的《窦娥冤》","desc":"","color":"rgb(98,166,243)","author":"关汉卿"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/马致远.jpeg","display":"cover","text":"马致远","sample":"写昭君出塞的《汉宫秋》","desc":"","color":"rgb(98,166,243)","author":"马致远"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白朴.jpeg","display":"cover","text":"白朴","sample":"写唐明皇和杨贵妃的《梧桐雨》","desc":"","color":"rgb(98,166,243)","author":"白朴"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/郑光祖.jpeg","display":"cover","text":"郑光祖","sample":"《倩女离魂》","desc":"","color":"rgb(98,166,243)","author":"郑光祖"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/纪君祥.jpeg","display":"cover","text":"纪君祥","sample":"《赵氏孤儿》","desc":"","color":"rgb(98,166,243)","author":"纪君祥"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王实甫.jpeg","display":"cover","text":"王实甫","sample":"《西厢记》","desc":"","color":"rgb(98,166,243)","author":"王实甫"}
       ]},
 
       {"name":"湖泊", "data": [
@@ -1453,9 +1456,8 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/敦煌.jpg","display":"cover","text":"敦煌","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":[],
     "desctitle":"简介",
-    "desc":"人生没有白走的路，每一步都算数。当你背单词的时候，阿拉斯加的鳕鱼正跃出水面；当你算数学的时候，南太平洋的海鸥正掠过海岸；当你晚自习的时候，地球的极圈正五彩斑斓。少年，梦要你亲自实现，世界，你要亲自去看。未来可期，拼尽全力！当你为未来踏踏实实努力的时候，那些你觉得看不到的人和遇不到的风景都终将在你的生命力出现。"
+    "desc":"元代的散曲既可以如同诗词一样叙事抒情，也可以成为元杂剧的主要组成部分。《全元散曲》统计小令3853首，套数457套。代表人物是关汉卿、马致远。"
     
   },
 
@@ -1486,10 +1488,11 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg","display":"cover","text":"杜甫","sample":"正是江南好风景，落花时节又逢君","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"唤起谪仙泉洒面，倒倾鲛室泻琼瑰","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/岑参.jpeg","display":"cover","text":"岑参","sample":"忽如一夜春风来，千树万树梨花开","desc":"","color":"rgb(98,166,243)","author":"岑参"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/韦庄.jpeg","display":"cover","text":"韦庄","sample":"两岸严风吹玉树，一滩明月晒银砂","desc":"","color":"rgb(98,166,243)","author":"韦庄"}
+
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/袁枚.jpeg","display":"cover","text":"袁枚","sample":"正是江南好风景，落花时节又逢君","desc":"","color":"rgb(98,166,243)","author":"袁枚"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/纳兰性德.jpeg","display":"cover","text":"纳兰性德","sample":"唤起谪仙泉洒面，倒倾鲛室泻琼瑰","desc":"","color":"rgb(98,166,243)","author":"纳兰性德"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/曹雪芹.jpeg","display":"cover","text":"曹雪芹","sample":"忽如一夜春风来，千树万树梨花开","desc":"","color":"rgb(98,166,243)","author":"曹雪芹"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"两岸严风吹玉树，一滩明月晒银砂","desc":"","color":"rgb(98,166,243)","author":"龚自珍"}
       ]},
 
       {"name":"节日", "data": [
@@ -1566,10 +1569,13 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"蒌蒿满地芦芽短，正是河豚欲上时","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张志和.jpeg","display":"cover","text":"张志和","sample":"西塞山边白鹭飞，桃花流水鳜鱼肥","desc":"","color":"rgb(98,166,243)","author":"张志和"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/范仲淹.jpeg","display":"cover","text":"范仲淹","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"范仲淹"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","sample":"绿蚁新醅酒，红泥小火炉","desc":"","color":"rgb(98,166,243)","author":"白居易"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"蒌蒿满地芦芽短，正是河豚欲上时","desc":"","color":"rgb(98,166,243)","author":"龚自珍"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄遵宪.jpeg","display":"cover","text":"黄遵宪","sample":"西塞山边白鹭飞，桃花流水鳜鱼肥","desc":"","color":"rgb(98,166,243)","author":"黄遵宪"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王国维.jpeg","display":"cover","text":"王国维","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"王国维"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陈独秀.jpeg","display":"cover","text":"陈独秀","sample":"绿蚁新醅酒，红泥小火炉","desc":"","color":"rgb(98,166,243)","author":"陈独秀"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/鲁迅.jpeg","display":"cover","text":"鲁迅","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"鲁迅"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/郁达夫.jpeg","display":"cover","text":"郁达夫","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"郁达夫"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/毛泽东.jpeg","display":"cover","text":"毛泽东","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"毛泽东"}
       ]},
 
       {"name":"风格诗单", "data": [

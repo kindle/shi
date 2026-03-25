@@ -654,8 +654,13 @@ export class DataService {
           daysLeftStr = daysLeftStr.replace("{{value}}", days);
         }
 
-        let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
-        item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
+        //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
+        //item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
+
+        let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
+        item.big_title =  nextName + " · " + nextDateStr;
+        //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
+        //item.big_title = nextName+"("+nextDateStr+")";
         item["image_size"] = "cover";
         //temp.unshift(item);
         temp.splice(1, 0, item);
