@@ -83,7 +83,8 @@
         "Share": "مشاركة",
         "ClearAllSearchHistory": "مسح كل سجل البحث",
         "FontFamily":"الخط",
-        "MoreSettings": "المزيد من الإعدادات"
+        "MoreSettings": "المزيد من الإعدادات",
+        "Save":"حفظ"
     },
 
     "Message": {

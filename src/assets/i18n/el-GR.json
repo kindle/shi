@@ -83,7 +83,8 @@
         "Share": "Μοιραστείτε",
         "ClearAllSearchHistory": "Διαγραφή ιστορικού αναζήτησης",
         "FontFamily":"Γραμματοσειρά",
-        "MoreSettings": "Περισσότερες ρυθμίσεις"
+        "MoreSettings": "Περισσότερες ρυθμίσεις",
+        "Save":"Αποθήκευση"
     },
 
     "Message": {

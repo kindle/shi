@@ -83,7 +83,8 @@
         "Share": "공유",
         "ClearAllSearchHistory": "모든 검색 기록 지우기",
         "FontFamily":"글꼴",
-        "MoreSettings": "추가 설정"
+        "MoreSettings": "추가 설정",
+        "Save":"저장"
     },
 
     "Message": {

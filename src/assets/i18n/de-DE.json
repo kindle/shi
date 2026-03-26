@@ -83,7 +83,8 @@
         "Share": "Teilen",
         "ClearAllSearchHistory": "Gesamten Suchverlauf löschen",
         "FontFamily":"Schriftart",
-        "MoreSettings": "Mehr Einstellungen"
+        "MoreSettings": "Mehr Einstellungen",
+        "Save":"Speichern"
     },
 
     "Message":{

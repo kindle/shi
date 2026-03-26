@@ -83,7 +83,8 @@
         "Share": "Поделиться",
         "ClearAllSearchHistory": "Очистить всю историю поиска",
         "FontFamily":"Шрифт",
-        "MoreSettings": "Дополнительные настройки"
+        "MoreSettings": "Дополнительные настройки",
+        "Save":"Сохранить"
     },
 
     "Message":{

@@ -83,7 +83,8 @@
         "Share": "Share",
         "ClearAllSearchHistory": "Clear all search history",
         "FontFamily":"Font Family",
-        "MoreSettings":"More Settings"
+        "MoreSettings":"More Settings",
+        "Save":"Save"
     },
 
     "Message":{

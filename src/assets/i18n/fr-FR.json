@@ -83,7 +83,8 @@
         "Share": "Partager",
         "ClearAllSearchHistory": "Effacer tout l'historique de recherche",
         "FontFamily":"Police",
-        "MoreSettings": "Plus de paramètres"
+        "MoreSettings": "Plus de paramètres",
+        "Save":"Enregistrer"
     },
 
     "Message":{

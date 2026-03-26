@@ -83,7 +83,8 @@
         "Share": "Compartilhar",
         "ClearAllSearchHistory": "Limpar todo o histórico de pesquisa",
         "FontFamily":"Tipo de letra",
-        "MoreSettings": "Mais definições"
+        "MoreSettings": "Mais definições",
+        "Save":"Guardar"
     },
 
     "Message": {

@@ -83,7 +83,8 @@
         "Share": "Compartir",
         "ClearAllSearchHistory": "Borrar todo el historial de búsqueda",
         "FontFamily":"Fuente",
-        "MoreSettings": "Más ajustes"
+        "MoreSettings": "Más ajustes",
+        "Save":"Guardar"
     },
 
     "Message":{

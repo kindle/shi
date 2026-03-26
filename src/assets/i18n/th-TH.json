@@ -83,7 +83,8 @@
         "Share": "แบ่งปัน",
         "ClearAllSearchHistory": "ล้างประวัติการค้นหาทั้งหมด",
         "FontFamily":"แบบอักษร",
-        "MoreSettings": "การตั้งค่าเพิ่มเติม"
+        "MoreSettings": "การตั้งค่าเพิ่มเติม",
+        "Save":"บันทึก"
     },
 
     "Message": {
