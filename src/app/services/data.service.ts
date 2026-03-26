@@ -3011,6 +3011,15 @@ export class DataService {
   }
 
 
+  getUrl(){
+    return this.currentItem.src;
+  }
+
+  getShareUrl(){
+    return this.currentItem.src.replace('https://reddah.blob.core.windows.net/msjjimg/','');
+  }
+
+
   public async share1(from:any) {
     let source = from=='camera'?CameraSource.Camera:CameraSource.Photos;
     // Take a photo

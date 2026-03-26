@@ -43,7 +43,7 @@
               </ion-item>
               -->
               <ion-item lines="full" [button]="true" [detail]="false" 
-              (click)="data.shareText(tag, displayResult[0].paragraphs[0],'',getShareUrl())">
+              (click)="data.shareText(tag, displayResult[0].paragraphs[0],'',data.getShareUrl())">
                 {{ ui.instant('Action.Share') }}<!--分享-->
                 <ion-icon name="share-social-outline" slot="end"></ion-icon>
               </ion-item>
@@ -85,14 +85,14 @@
           style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;margin-bottom:20px;">
           <ion-card 
             defaultImage="" 
-            lazyLoad="{{getUrl()}}"
+            lazyLoad="{{data.getUrl()}}"
             style="margin:auto;width:200px;height:200px;
               background-size:cover;
               background-color:{{data.getbgcolor()}};
               background-repeat: no-repeat;
               background-position: center;
               border-radius: 10px;" 
-              (click)="ui.imageviewer(getUrl())">
+              (click)="ui.imageviewer(data.getUrl())">
           </ion-card>
       </div>
     </ion-toolbar>

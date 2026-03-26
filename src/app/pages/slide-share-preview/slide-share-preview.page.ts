@@ -80,7 +80,7 @@ export class SlideSharePreviewPage {
     let targetSrc = '';
 
     if (currentBg) {
-      targetSrc = currentBg.indexOf('msjjpoet') > -1 ?
+      targetSrc = currentBg.indexOf('msjjpoet') > -1 || currentBg.indexOf('msjjimg') > -1 ?
         currentBg :
         `https://reddah.blob.core.windows.net/msjjimg/${currentBg}`;
     } else if (this.data.currentItem && this.data.currentItem.src) {
