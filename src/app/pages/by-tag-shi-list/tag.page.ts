@@ -43,6 +43,10 @@ export class TagPage {
     return this.data.currentItem.src;
   }
 
+  getShareUrl(){
+    return this.data.currentItem.src.replace('https://reddah.blob.core.windows.net/msjjimg/','');
+  }
+
 
 
 

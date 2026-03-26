@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="goBack()">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-        返回
+    <ion-buttons style="display:flex;justify-content:center;
+      width:fit-content;height:25px;float:left;
+      padding:15px 15px 15px 5px;
+      border-radius: 15px;"
+      (click)="goback()">
+      <ion-button>
+        <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
+        {{ ui.instant('Action.Back') }}<!--返回-->
       </ion-button>
     </ion-buttons>
-    <ion-title>分享预览</ion-title>
+    <ion-title>{{ ui.instant('Action.Share') }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -76,7 +80,14 @@
 
 <ion-toolbar>
   <div class="action-row action-row-right">
-    <ion-button fill="solid" color="success" (click)="saveImage()">保存图片</ion-button>
-    <ion-button fill="solid" color="primary" (click)="shareImage()">分享</ion-button>
+    <ion-button fill="solid" (click)="saveImage()" 
+      style="--background: var(--ion-color-success); --color: white;">
+      <ion-icon slot="start" name="checkmark-sharp" color="light"></ion-icon>
+      {{ ui.instant('Action.Save') }}
+    </ion-button>
+    <ion-button fill="solid" color="light" (click)="shareImage()">
+      <ion-icon slot="start" name="share-social-outline"></ion-icon>
+      {{ ui.instant('Action.Share') }}
+    </ion-button>
   </div>
 </ion-toolbar>

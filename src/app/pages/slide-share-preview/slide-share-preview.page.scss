@@ -26,6 +26,7 @@
   background: rgba(244, 245, 248, 0.2);
   z-index: 2;
   pointer-events: none;
+  border:solid 1px #e8e8e8;
 }
 
 .preview-style-shell {
@@ -135,4 +136,15 @@
 
 .scroll-label {
   font-size: 12px;
+}
+
+ion-header {
+    box-shadow: none;
+    &::after {
+        background-image: none;
+    }
+    ion-toolbar {
+        --background: #ffffff;
+        --border-width: 0;
+    }
 }

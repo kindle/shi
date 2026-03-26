@@ -56,6 +56,9 @@ export class PoetPage {
     return `https://reddah.blob.core.windows.net/msjjpoet/${this.author}.jpeg`
   }
 
+  getShareUrl(){
+    return `https://reddah.blob.core.windows.net/msjjpoet/${this.author}.jpeg`
+  }
 
 
 

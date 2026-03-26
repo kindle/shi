@@ -2987,7 +2987,8 @@ export class DataService {
 
   async shareText(
     smallTitle :any, 
-    bigTitle:any, bigTitleArray:any=null, 
+    bigTitle:any, 
+    bigTitleArray:any=null, 
     image:any='定格秋天.jpg')
   {
     const isFromArticleViewer = this.router.url.includes('article-viewer');
@@ -3002,6 +3003,7 @@ export class DataService {
       big_title_lines: bigTitleArray ?? bigTitle,
       bg_image: image,//'定格秋天.jpg',
     };
+    
 
     await this.ui.closePlayerPopup();
     

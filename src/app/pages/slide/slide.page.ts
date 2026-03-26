@@ -270,6 +270,7 @@ export class SlidePage implements OnInit {
       //min_height: "400px",
       //template: "slide"
     };
+    //console.log(this.data.currentArticle)
     this.router.navigate(['/slide-share-preview']);
   }
 

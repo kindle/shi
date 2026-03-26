@@ -76,15 +76,40 @@ export class SlideSharePreviewPage {
       return;
     }
 
-    this.editableSmallTitle = this.data.currentArticle.small_title || '';
-    this.editableBigTitle = Array.isArray(this.data.currentArticle.big_title_lines)
+    const currentBg = this.data.currentArticle.bg_image;
+    let targetSrc = '';
+
+    if (currentBg) {
+      targetSrc = currentBg.indexOf('msjjpoet') > -1 ?
+        currentBg :
+        `https://reddah.blob.core.windows.net/msjjimg/${currentBg}`;
+    } else if (this.data.currentItem && this.data.currentItem.src) {
+      targetSrc = this.data.currentItem.src;
+    }
+
+    if (targetSrc) {
+      this.imageOptions = this.imageOptions.filter(o => o.key !== 100);
+      const exists = this.imageOptions.some(o => o.preview === targetSrc);
+      if (!exists) {
+        this.imageOptions.splice(1, 0, {
+          key: 100,
+          value: '当前',
+          image: 'assets/img/bg0.jpg',
+          preview: targetSrc
+        });
+      }
+      this.chooseImage(100);
+    }
+
+    this.editableSmallTitle = (this.data.currentArticle.small_title || '').substring(0, 50);
+    this.editableBigTitle = (Array.isArray(this.data.currentArticle.big_title_lines)
       ? this.data.currentArticle.big_title_lines.join('')
-      : this.removePipe(`${this.data.currentArticle.big_title || ''}`);
+      : this.removePipe(`${this.data.currentArticle.big_title || ''}`)).substring(0, 50);
     this.chooseStyle(2, false);
     void this.renderPreview();
   }
 
-  goBack() {
+  goback() {
     this.navCtrl.back();
   }
 
@@ -98,7 +123,7 @@ export class SlideSharePreviewPage {
   }
 
   onSmallTitleInput(event: any) {
-    this.editableSmallTitle = `${event?.detail?.value ?? ''}`;
+    this.editableSmallTitle = `${event?.detail?.value ?? ''}`.substring(0, 50);
     if (this.titleRenderTimer) {
       clearTimeout(this.titleRenderTimer);
     }
@@ -108,7 +133,7 @@ export class SlideSharePreviewPage {
   }
 
   onBigTitleInput(event: any) {
-    this.editableBigTitle = this.removePipe(`${event?.detail?.value ?? ''}`);
+    this.editableBigTitle = this.removePipe(`${event?.detail?.value ?? ''}`).substring(0, 50);
     if (this.titleRenderTimer) {
       clearTimeout(this.titleRenderTimer);
     }
@@ -137,6 +162,7 @@ export class SlideSharePreviewPage {
       return;
     }
 
+    console.log(this.imageOptions)
     const selectedImage = this.imageOptions.find((option) => option.key === this.selectedImageId);
     if (!selectedImage?.preview) {
       return;
@@ -344,12 +370,14 @@ export class SlideSharePreviewPage {
 
     try {
       const currentFontFamilyName = this.data.getCurrentFontFamilyName();
-      const bgUrl = this.customBackgroundUrl || `https://reddah.blob.core.windows.net/msjjimg/${this.data.currentArticle.bg_image}`;
+      const bgUrl = this.customBackgroundUrl || (this.data.currentArticle.bg_image.indexOf('msjjpoet') > -1 ?
+        this.data.currentArticle.bg_image :
+        `https://reddah.blob.core.windows.net/msjjimg/${this.data.currentArticle.bg_image}`);
       const bigTitleLines = this.getEditableBigTitleLines();
       const previewOptions = {
         loadImage: this.loadImage.bind(this),
         bgUrl,
-        useCorsForBg: !this.customBackgroundUrl,
+        useCorsForBg: !this.customBackgroundUrl || this.customBackgroundUrl.startsWith('http'),
         currentFontFamilyName,
         editableSmallTitle: this.editableSmallTitle,
         bigTitleLines,
