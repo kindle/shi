@@ -115,7 +115,8 @@ export class HistoryTodayPage implements OnInit {
     canvas.height=totalHeight+20+50+120 + 20; // +20 spacing between blocks
   
     let bgImage = new Image();
-    bgImage.src = './assets/viewer-bg.jpg';
+    //bgImage.src = './assets/viewer-bg.jpg';
+    bgImage.src = './assets/img/bg0.jpg';
     let ctx:any = canvas.getContext('2d');
 
     bgImage.onload = () => {
