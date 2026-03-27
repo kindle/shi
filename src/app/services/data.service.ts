@@ -117,6 +117,7 @@ export class DataService {
   }
 
   currentArticle:any;
+  currentShareArticle:any;
 
   searchTopicData:any;
   tab2BrowseTopicData:any;
@@ -2996,7 +2997,7 @@ export class DataService {
       ? { ...this.currentArticle }
       : {};
 
-    this.currentArticle = {
+    this.currentShareArticle = {
       ...baseArticle,
       small_title: smallTitle,
       big_title: bigTitle,

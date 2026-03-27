@@ -70,13 +70,19 @@ export class SlideSharePreviewPage {
     private navCtrl: NavController,
   ) {}
 
+  private get shareArticle() {
+    return this.data.currentShareArticle || this.data.currentArticle;
+  }
+
   ionViewWillEnter() {
-    if (!this.data.currentArticle) {
+    const shareArticle = this.shareArticle;
+
+    if (!shareArticle) {
       this.navCtrl.back();
       return;
     }
 
-    const currentBg = this.data.currentArticle.bg_image;
+    const currentBg = shareArticle.bg_image;
     let targetSrc = '';
 
     if (currentBg) {
@@ -101,12 +107,16 @@ export class SlideSharePreviewPage {
       this.chooseImage(100);
     }
 
-    this.editableSmallTitle = (this.data.currentArticle.small_title || '').substring(0, 50);
-    this.editableBigTitle = (Array.isArray(this.data.currentArticle.big_title_lines)
-      ? this.data.currentArticle.big_title_lines.join('')
-      : this.removePipe(`${this.data.currentArticle.big_title || ''}`)).substring(0, 50);
+    this.editableSmallTitle = (shareArticle.small_title || '').substring(0, 50);
+    this.editableBigTitle = (Array.isArray(shareArticle.big_title_lines)
+      ? shareArticle.big_title_lines.join('')
+      : this.removePipe(`${shareArticle.big_title || ''}`)).substring(0, 50);
     this.chooseStyle(2, false);
     void this.renderPreview();
+  }
+
+  ionViewWillLeave() {
+    this.data.currentShareArticle = null;
   }
 
   goback() {
@@ -204,7 +214,7 @@ export class SlideSharePreviewPage {
       return;
     }
 
-    const fileName = this.getSafeFileName(this.editableSmallTitle || this.data.currentArticle?.small_title || 'slide-preview');
+    const fileName = this.getSafeFileName(this.editableSmallTitle || this.shareArticle?.small_title || 'slide-preview');
 
     if (this.data.isHybrid()) {
       const base64Data = composedDataUrl.replace(/^data:image\/\w+;base64,/, '');
@@ -228,7 +238,7 @@ export class SlideSharePreviewPage {
           });
           await Share.share({
             title: '保存图片',
-            text: this.editableSmallTitle || this.data.currentArticle.small_title,
+            text: this.editableSmallTitle || this.shareArticle?.small_title,
             files: [savedFile.uri],
             dialogTitle: '保存图片',
           });
@@ -251,7 +261,7 @@ export class SlideSharePreviewPage {
             });
             await Share.share({
               title: '保存图片',
-              text: this.editableSmallTitle || this.data.currentArticle.small_title,
+              text: this.editableSmallTitle || this.shareArticle?.small_title,
               files: [fallbackFile.uri],
               dialogTitle: '保存图片',
             });
@@ -296,10 +306,10 @@ export class SlideSharePreviewPage {
         });
 
         await Share.share({
-          title: this.data.currentArticle.big_title,
-          text: this.editableSmallTitle || this.data.currentArticle.small_title,
+          title: this.shareArticle?.big_title,
+          text: this.editableSmallTitle || this.shareArticle?.small_title,
           files: [savedFile.uri],
-          dialogTitle: this.data.currentArticle.big_title,
+          dialogTitle: this.shareArticle?.big_title,
         });
       } catch (error) {
         console.error('Share failed', error);
@@ -369,10 +379,16 @@ export class SlideSharePreviewPage {
     this.renderError = '';
 
     try {
+      const shareArticle = this.shareArticle;
+      if (!shareArticle?.bg_image) {
+        this.renderError = '预览生成失败';
+        return;
+      }
+
       const currentFontFamilyName = this.data.getCurrentFontFamilyName();
-      const bgUrl = this.customBackgroundUrl || (this.data.currentArticle.bg_image.indexOf('msjjpoet') > -1 ?
-        this.data.currentArticle.bg_image :
-        `https://reddah.blob.core.windows.net/msjjimg/${this.data.currentArticle.bg_image}`);
+      const bgUrl = this.customBackgroundUrl || (shareArticle.bg_image.indexOf('msjjpoet') > -1 ?
+        shareArticle.bg_image :
+        `https://reddah.blob.core.windows.net/msjjimg/${shareArticle.bg_image}`);
       const bigTitleLines = this.getEditableBigTitleLines();
       const previewOptions = {
         loadImage: this.loadImage.bind(this),
@@ -438,13 +454,13 @@ export class SlideSharePreviewPage {
         .filter((line) => !!line);
     }
 
-    if (Array.isArray(this.data.currentArticle?.big_title_lines)) {
-      return this.data.currentArticle.big_title_lines
+    if (Array.isArray(this.shareArticle?.big_title_lines)) {
+      return this.shareArticle.big_title_lines
         .map((line: any) => `${line ?? ''}`.trim())
         .filter((line: string) => !!line);
     }
 
-    const fallbackTitle = this.removePipe(`${this.data.currentArticle?.big_title || ''}`);
+    const fallbackTitle = this.removePipe(`${this.shareArticle?.big_title || ''}`);
     return fallbackTitle ? [fallbackTitle] : [];
   }
 
