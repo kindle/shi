@@ -25,6 +25,7 @@ import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { App } from '@capacitor/app';
 import { Device } from '@capacitor/device';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import { TextZoomerPage } from '../pages/textzoomer/textzoomer.page';
 
 declare var AppReview: any;
@@ -47,6 +48,16 @@ export class DataService {
 
   //debug mode
   TestMode = false;
+
+  private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
+  private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
+  private SOLAR_TERM_NOTIFICATION_HOUR = 7;
+  private SOLAR_TERM_NOTIFICATION_MINUTE = 0;
+  //private SOLAR_TERM_NOTIFICATION_HOUR = 11;
+  //private SOLAR_TERM_NOTIFICATION_MINUTE = 45;
+  private SOLAR_TERM_NOTIFICATION_SCAN_DAYS = 400;
+  private SOLAR_TERM_NOTIFICATION_MAX_COUNT = 24;
+  private SOLAR_TERM_NOTIFICATION_TEST_MODE = false;
 
   
 
@@ -627,46 +638,51 @@ export class DataService {
       //   }
       // }
 
-
-      //下个二十四节气
-      if(solarTermName.length>0){
-        //temp = temp.concat(this.getSolarTermPoem(solarTermName));
-        temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
-      }else{
-        //calculate next solar term
-        let nextJieQi = solar.getLunar().getNextJieQi();
-        let nextName = nextJieQi.getName();
-        let nextSolar = nextJieQi.getSolar();
-
-        let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
-        if(nextDateStr){
-          nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
-        }
-        
-        let today = new Date();
-        today.setHours(0,0,0,0);
-        let nextDate = new Date(nextSolar.getYear(), nextSolar.getMonth()-1, nextSolar.getDay());
-        nextDate.setHours(0,0,0,0);
-        let diff = nextDate.getTime() - today.getTime();
-        let days = Math.round(diff / (1000 * 3600 * 24));
-        
-        let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
-        if(daysLeftStr){
-          daysLeftStr = daysLeftStr.replace("{{value}}", days);
-        }
-
-        //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
-        //item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
-
-        let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
-        item.big_title =  nextName + " · " + nextDateStr;
-        //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
-        //item.big_title = nextName+"("+nextDateStr+")";
-        item["image_size"] = "cover";
-        //temp.unshift(item);
-        temp.splice(1, 0, item);
+      //test 
+      if(this.SOLAR_TERM_NOTIFICATION_TEST_MODE){//test only
+        temp.unshift(this.getSolarTermPoem('大吉', dateStrChinese));
       }
+      else{
 
+        //下个二十四节气
+        if(solarTermName.length>0){
+          //temp = temp.concat(this.getSolarTermPoem(solarTermName));
+          temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
+        }else{
+          //calculate next solar term
+          let nextJieQi = solar.getLunar().getNextJieQi();
+          let nextName = nextJieQi.getName();
+          let nextSolar = nextJieQi.getSolar();
+
+          let nextDateStr = this.ui.instant("SolarTerm.DateFmt");
+          if(nextDateStr){
+            nextDateStr = nextDateStr.replace("{{month}}", nextSolar.getMonth()).replace("{{day}}", nextSolar.getDay());
+          }
+          
+          let today = new Date();
+          today.setHours(0,0,0,0);
+          let nextDate = new Date(nextSolar.getYear(), nextSolar.getMonth()-1, nextSolar.getDay());
+          nextDate.setHours(0,0,0,0);
+          let diff = nextDate.getTime() - today.getTime();
+          let days = Math.round(diff / (1000 * 3600 * 24));
+          
+          let daysLeftStr = this.ui.instant("SolarTerm.DaysLeft");
+          if(daysLeftStr){
+            daysLeftStr = daysLeftStr.replace("{{value}}", days);
+          }
+
+          //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
+          //item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
+
+          let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
+          item.big_title =  nextName + " · " + nextDateStr;
+          //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
+          //item.big_title = nextName+"("+nextDateStr+")";
+          item["image_size"] = "cover";
+          //temp.unshift(item);
+          temp.splice(1, 0, item);
+        }
+      }
       
       
     }
@@ -708,11 +724,11 @@ export class DataService {
     ["冬至",{image:"tree-2532679_1280.jpg", title:"天时人事日相催，冬至阳生春又来", desc:"冬至这天，太阳直射地面的位置到达一年的最南端，北半球的白昼达到最短，且越往北白昼越短。冬至也是重要的传统节日。"}],
     ["小寒",{image:"24小寒.jpg", title:"小寒连大吕，欢鹊垒新巢", desc:"小寒是天气寒冷但还没有到极致的意思。小寒节气的特点就是寒冷，标志着开始进入一年中最寒冷的日子。"}],
     ["大寒",{image:"ice-570500_1280.jpg", title:"腊酒自盈樽，金炉兽炭温", desc:"大寒是二十四节气中的最后一个节气。大寒同小寒一样，也是表示天气寒冷程度的节气，大寒是天气寒冷到极致的意思。"}],
+    ["大吉",{image:"ice-570500_1280.jpg", title:"腊酒自盈樽，金炉兽炭温", desc:"大寒是二十四节气中的最后一个节气。大寒同小寒一样，也是表示天气寒冷程度的节气，大寒是天气寒冷到极致的意思。"}],
   ]);
 
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
-
     
     //如果今天是二十四节气 +1
     let tempSolarTermPoems = this.JsonData.filter((j:any)=>
@@ -1880,7 +1896,115 @@ export class DataService {
 
     this.initRatings();
     this.checkTutorial();
+    void this.initDailyTestNotification();
     //console.log('load data completed')
+  }
+
+  private async initDailyTestNotification() {
+    if (!Capacitor.isNativePlatform()) {
+      return;
+    }
+
+    try {
+      const isAndroid = Capacitor.getPlatform() === 'android';
+      const permissionStatus = await LocalNotifications.requestPermissions();
+      if (permissionStatus.display !== 'granted') {
+        console.warn('Local notification permission is not granted.');
+        return;
+      }
+
+      if (isAndroid) {
+        await LocalNotifications.createChannel({
+          id: this.SOLAR_TERM_NOTIFICATION_CHANNEL_ID,
+          name: '节气提醒',
+          description: '二十四节气通知提醒',
+          importance: 5,
+          vibration: true
+        });
+      }
+
+      const now = new Date();
+      const pending = await LocalNotifications.getPending();
+      const existingSolarTermNotifications = (pending.notifications || [])
+        .filter((n:any) =>
+          n.id >= this.SOLAR_TERM_NOTIFICATION_BASE_ID &&
+          n.id < this.SOLAR_TERM_NOTIFICATION_BASE_ID + this.SOLAR_TERM_NOTIFICATION_MAX_COUNT
+        )
+        .map((n:any) => ({ id: n.id }));
+
+      if (existingSolarTermNotifications.length > 0) {
+        await LocalNotifications.cancel({
+          notifications: existingSolarTermNotifications
+        });
+      }
+
+      const notificationsToSchedule:any[] = [];
+
+      for (let dayOffset = 0; dayOffset < this.SOLAR_TERM_NOTIFICATION_SCAN_DAYS; dayOffset++) {
+        if (notificationsToSchedule.length >= this.SOLAR_TERM_NOTIFICATION_MAX_COUNT) {
+          break;
+        }
+
+        const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + dayOffset);
+        const solar = Solar.fromYmd(date.getFullYear(), date.getMonth() + 1, date.getDate());
+        let solarTermName = solar.getLunar().getJieQi();
+
+        // For notification testing, treat today as a custom solar term.
+        if (this.SOLAR_TERM_NOTIFICATION_TEST_MODE && dayOffset === 0) {
+          solarTermName = '大吉';
+        }
+
+        if (!solarTermName || solarTermName.length === 0) {
+          continue;
+        }
+
+        const scheduleAt = new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate(),
+          this.SOLAR_TERM_NOTIFICATION_HOUR,
+          this.SOLAR_TERM_NOTIFICATION_MINUTE,
+          0,
+          0
+        );
+
+        // 跳过已过去的时间点
+        if (scheduleAt.getTime() <= now.getTime()) {
+          continue;
+        }
+
+        const solarTermInfo = this.solarTermMap.get(solarTermName);
+        const poemTitle = solarTermInfo?.title ? solarTermInfo.title : ('今日' + solarTermName);
+
+        const id = this.SOLAR_TERM_NOTIFICATION_BASE_ID + notificationsToSchedule.length;
+        notificationsToSchedule.push({
+          id,
+          title: '今日' + solarTermName,
+          body: poemTitle,
+          ...(isAndroid ? { channelId: this.SOLAR_TERM_NOTIFICATION_CHANNEL_ID } : {}),
+          schedule: {
+            on: {
+              year: scheduleAt.getFullYear(),
+              month: scheduleAt.getMonth() + 1,
+              day: scheduleAt.getDate(),
+              hour: scheduleAt.getHours(),
+              minute: scheduleAt.getMinutes()
+            },
+            allowWhileIdle: true
+          }
+        });
+      }
+
+      if (notificationsToSchedule.length === 0) {
+        return;
+      }
+
+      await LocalNotifications.schedule({
+        notifications: notificationsToSchedule
+      });
+    } catch (error) {
+      console.error('Failed to schedule daily test notification.', error);
+    }
   }
   
   /*--mix end----*/

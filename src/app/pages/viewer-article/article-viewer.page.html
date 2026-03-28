@@ -36,7 +36,11 @@
         </ion-button>
       </ion-buttons>
 
-      <ion-buttons slot="end" style="float:right;">
+      <ion-buttons slot="end" style="float:right;
+        width:fit-content;height:25px;
+        background-color:rgba(128, 128, 128, 0.5);
+        padding:15px 15px 15px 5px;
+        border-radius: 15px;">
         <ion-button (click)="share()" color="light">
           <ion-icon name="share-social-outline" style="margin-right:5px;"></ion-icon>
           {{ ui.instant('Action.Share') }}<!--分享-->
