@@ -429,7 +429,7 @@ export class DataService {
       
       //把list-fun.json,list-audio.json等放入articleData做为开卷有益文章展示
       //poemListData包括fun,audio,holiday,food
-      this.poemListData.forEach((fun:any) => {
+      this.poemListData.filter((f:any) => f.tab1hide!==true).forEach((fun:any) => {
         let descArray:any = [];
         fun.list.forEach((p:any) => {
           descArray.push({
@@ -488,7 +488,7 @@ export class DataService {
         let myDate = new Date();
         let dateSeed = (myDate.getMonth()+1)+"_"+myDate.getDay();
         let hourSeed = dateSeed+"_"+myDate.getHours();
-        let seed = nameSeed+hourSeed;
+        let seed = nameSeed+hourSeed+dateSeed;
   
         if(this.funDataMap.has(seed)){
           this.funDataMap.delete(seed);
@@ -573,10 +573,10 @@ export class DataService {
     let temp:any = [];
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='slide'&&!d.effect), 1));
 
-    //get 5 fun articles, 4 articles that have no effect, 1 have effect
-    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 1));
+    //get 5 fun articles, 4 articles that have no effect, 1 have effect 
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect&&d.tab1hide!==true), 1));
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
-    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='perlin'), 1));
+    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='car'), 1));
     
     //get 1 group/wall/scroll
     temp = temp.concat(this.getRandomArray(data.filter(

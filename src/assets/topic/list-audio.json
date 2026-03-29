@@ -57,6 +57,7 @@
     },
     {
         "id":803,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"1046-256BC: 诗经精选",
         "text":"256BC: 诗经精选",
@@ -94,6 +95,7 @@
     },
     {
         "id":805,
+        "tab1hide":true,
         "name":"A-List 天宝流行: 752年度最佳",
         "text":"天宝: 流行精选",
         "sub":"Tang Dynasty 天宝流行",
@@ -125,6 +127,7 @@
     },
     {
         "id":806,
+        "tab1hide":true,
         "name":"A-List 开元流行: 752年度最佳",
         "text":"开元：流行精选",
         "sub":"Tang Dynasty 开元流行",
@@ -202,6 +205,7 @@
     },
     {
         "id":901,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"李白: 浪漫精选",
         "text":"李白: 浪漫精选",
@@ -224,6 +228,7 @@
     },
     {
         "id":902,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"高适: 边塞精选",
         "text":"高适: 边塞精选",
@@ -251,6 +256,7 @@
     },
     {
         "id":903,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"杜甫: 现实主义精选",
         "text":"杜甫: 现实精选",
@@ -277,6 +283,7 @@
     },
     {
         "id":904,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"杜甫: 宇辉精选",
         "text":"杜甫: 宇辉精选",
@@ -315,6 +322,7 @@
     },
     {
         "id":906,
+        "tab1hide":true,
         "onlyonepoet":true,
         "name":"将进酒: 京剧精选",
         "text":"将进酒: 京剧精选",

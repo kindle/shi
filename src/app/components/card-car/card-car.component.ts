@@ -26,7 +26,7 @@ export class CardCarComponent implements AfterViewInit, OnDestroy {
   @Input() viewer?: any = false;
 
   private readonly starCount = 1000;
-  private readonly speedFactor = 0.3;
+  private readonly speedFactor = 2;
   private animationFrameId = 0;
   private resizeObserver?: ResizeObserver;
   private readonly handleWindowResize = (): void => {
