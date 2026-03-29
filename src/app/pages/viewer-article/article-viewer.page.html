@@ -58,6 +58,24 @@
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-moon>
+      <app-card-perlin viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='perlin'" 
+      style="padding:0;margin:0"
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-perlin>
+      <app-card-fire viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='fire'" 
+      style="padding:0;margin:0"
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-fire>
+      <app-card-car viewer="true" class="custom-card" 
+      *ngIf="data.currentArticle.effect=='car'" 
+      style="padding:0;margin:0"
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+      </app-card-car>
         <app-card-silk viewer="true" class="custom-card" 
         *ngIf="data.currentArticle.effect=='silk'" 
         style="padding:0;margin:0"

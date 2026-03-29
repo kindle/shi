@@ -1,0 +1,16 @@
+<ion-card class="card card-gif" card-shrink
+[style.width]="viewer ? 'auto' : 400 + 'px'"
+  [style.margin]="viewer ? '0' : null"
+  [style.borderRadius]="viewer ? '0' : null">
+  <ion-card-content class="container"
+  [style.height]="viewer ? '460px' : ''">
+    <div #canvasHost class="canvas-host"></div>
+    <div class="text-layer" *ngIf="!viewer">
+      <ion-card-subtitle class="card-text"
+      [style.marginTop]="viewer ? '20px' : null"
+      [style.fontSize]="data.zoom(18)">{{sub}}</ion-card-subtitle>
+      <ion-card-title class="card-text"
+      [style.fontSize]="data.zoom(28)">{{title}}</ion-card-title>
+    </div>
+  </ion-card-content>
+</ion-card>

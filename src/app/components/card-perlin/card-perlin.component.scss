@@ -1,0 +1,78 @@
+.station-text{
+    font-size:20px;
+    font-weight: normal;
+}
+
+.card {
+    min-height: 400px;
+    width: 400px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+//screen width smaller than 400px, use the following css
+@media screen and (max-width: 400px){  
+    .card {
+        min-height: 380px;
+        width:100%;
+    }
+
+    .card-wrap{
+        width: 100%;
+        display: flex;
+    }
+}
+
+.card-gif {
+    background-color: rgb(187,205,253);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    //background-image: url('https://reddah.blob.core.windows.net/msjjimg/cardn1.jpg');
+
+    .card-text{
+        color:white;
+    }
+}
+.display {
+    max-width: 750px;
+    max-height: 380px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.display canvas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left:0;
+    top:0;
+}
+.display .expand {
+    position: absolute;
+    width: 30px;
+    right: -30px;
+    bottom: -30px;
+    line-height: 30px;
+    text-align: center;
+    color: #f25757;
+    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+.display.full {
+    max-height: 100%;
+    max-width: 100%;
+}
+.display.full .expand {
+    transform: rotate(45deg);
+    bottom: 0px;
+    right: 0px;
+    color: #222;
+}

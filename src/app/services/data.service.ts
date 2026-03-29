@@ -576,7 +576,7 @@ export class DataService {
     //get 5 fun articles, 4 articles that have no effect, 1 have effect
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect), 1));
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
-    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='silk'), 1));
+    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='perlin'), 1));
     
     //get 1 group/wall/scroll
     temp = temp.concat(this.getRandomArray(data.filter(

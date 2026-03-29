@@ -3295,6 +3295,7 @@
         "image": "https://reddah.blob.core.windows.net/msjjimg/race.jpg",
         "more": "厚爱加身，如身披铠甲，如手执利剑",
         "desc": "苏轼与李白的巅峰对决，谁才是第一才子？",
+        "effect":"fire",
         "list": [
             {
                 "author": "苏轼",
@@ -4437,6 +4438,7 @@
         "image": "https://reddah.blob.core.windows.net/msjjimg/yellow-926728_1280.jpg",
         "more": "春宵一刻值千金，花有清香月有阴",
         "desc": "上半句火了千年，下半句无人知晓",
+        "effect":"perlin",
         "list": [
             {
                 "title": "闻乐天授江州司马",
@@ -5554,6 +5556,7 @@
         "image": "https://reddah.blob.core.windows.net/msjjimg/light-bulbs-1407610_1280.jpg",
         "more": "只愿君心似我心，定不负相思意",
         "desc": "宋词里的纸短情长，你最喜欢哪一句？",
+        "effect":"car",
         "list": [
             {
                 "title": "江城子",

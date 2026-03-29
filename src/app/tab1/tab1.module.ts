@@ -11,6 +11,9 @@ import { CardPathComponentModule } from '../components/card-path/card-path.modul
 import { CardBalloonComponentModule } from '../components/card-balloon/card-balloon.module';
 import { CardWaveComponentModule } from '../components/card-wave/card-wave.module';
 import { CardMoonComponentModule } from '../components/card-moon/card-moon.module';
+import { CardFireComponentModule } from '../components/card-fire/card-fire.module';
+import { CardCarComponentModule } from '../components/card-car/card-car.module';
+import { CardPerlinComponentModule } from '../components/card-perlin/card-perlin.module';
 import { CardSilkComponentModule } from '../components/card-silk/card-silk.module';
 import { CatCardComponentModule } from '../components/cat-card/cat-card.module';
 
@@ -36,6 +39,9 @@ import { SubTitleComponentModule } from '../components/sub-title/sub-title.modul
     CardBalloonComponentModule,
     CardWaveComponentModule,
     CardMoonComponentModule,
+    CardFireComponentModule,
+    CardCarComponentModule,
+    CardPerlinComponentModule,
     CardSilkComponentModule,
     CatCardComponentModule,
 

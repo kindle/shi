@@ -91,6 +91,24 @@
         sub="{{item.small_title}}" 
         title="{{item.big_title.substring(0,25)}}">
       </app-card-moon>
+      <app-card-fire class="card card-img custom-card" card-shrink 
+      *ngIf="item.effect=='fire'"
+      (click)="goToArticle(item)"
+        sub="{{item.small_title}}" 
+        title="{{item.big_title.substring(0,25)}}">
+      </app-card-fire>
+      <app-card-car class="card card-img custom-card" card-shrink 
+      *ngIf="item.effect=='car'"
+      (click)="goToArticle(item)"
+        sub="{{item.small_title}}" 
+        title="{{item.big_title.substring(0,25)}}">
+      </app-card-car>
+      <app-card-perlin class="card card-img custom-card" card-shrink 
+      *ngIf="item.effect=='perlin'"
+      (click)="goToArticle(item)"
+        sub="{{item.small_title}}" 
+        title="{{item.big_title.substring(0,25)}}">
+      </app-card-perlin>
       <app-card-silk class="card card-img custom-card" card-shrink 
       *ngIf="item.effect=='silk'"
       (click)="goToArticle(item)"

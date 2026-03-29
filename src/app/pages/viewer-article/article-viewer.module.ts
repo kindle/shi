@@ -13,6 +13,9 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CardMoonComponentModule } from 'src/app/components/card-moon/card-moon.module';
+import { CardFireComponentModule } from 'src/app/components/card-fire/card-fire.module';
+import { CardCarComponentModule } from 'src/app/components/card-car/card-car.module';
+import { CardPerlinComponentModule } from 'src/app/components/card-perlin/card-perlin.module';
 import { CardSilkComponentModule } from 'src/app/components/card-silk/card-silk.module';
 import { CardBalloonComponentModule } from 'src/app/components/card-balloon/card-balloon.module';
 import { CardPathComponentModule } from 'src/app/components/card-path/card-path.module';
@@ -30,6 +33,9 @@ import { CardWaveComponentModule } from 'src/app/components/card-wave/card-wave.
     ButtonEndComponentModule,
     LazyLoadImageModule,
     CardMoonComponentModule,
+    CardFireComponentModule,
+    CardCarComponentModule,
+    CardPerlinComponentModule,
     CardSilkComponentModule,
     CardBalloonComponentModule,
     CardPathComponentModule,

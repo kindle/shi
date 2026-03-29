@@ -1,0 +1,59 @@
+<ion-card class="card card-gif" card-shrink
+[style.width]="viewer ? 'auto' : 400 + 'px'"
+  [style.margin]="viewer ? '0' : null"
+  [style.borderRadius]="viewer ? '0' : null">
+  <ion-card-content class="container"
+  [style.height]="viewer ? '460px' : ''">
+    <ion-card-subtitle class="card-text" style="z-index: 10;" *ngIf="!viewer"
+    [style.marginTop]="viewer ? '20px' : null"
+    [style.fontSize]="data.zoom(18)">{{sub}}</ion-card-subtitle>
+    <ion-card-title class="card-text" style="z-index: 10;" *ngIf="!viewer"
+    [style.fontSize]="data.zoom(28)">{{title}}</ion-card-title>
+    <div class="back"></div>
+      <div class="light"></div>
+      <div class="content"
+        [style.marginBottom]="viewer ? '60px' : '-30px'"
+      >
+          <div class="fire">
+              <div class="bottom"></div>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+          </div>
+          <div class="reverse">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+          </div>
+      </div>
+      <p>
+          
+      </p>
+      <svg xmlns="https://www.w3.org/2000/svg" version="1.1">
+          <defs>
+              <filter id="goo">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                  <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                  <feBlend in="SourceGraphic" in2="goo" />
+              </filter>
+          </defs>
+      </svg>
+  </ion-card-content>
+</ion-card>
