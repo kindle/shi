@@ -91,6 +91,12 @@
         sub="{{item.small_title}}" 
         title="{{item.big_title.substring(0,25)}}">
       </app-card-moon>
+      <app-card-silk class="card card-img custom-card" card-shrink 
+      *ngIf="item.effect=='silk'"
+      (click)="goToArticle(item)"
+        sub="{{item.small_title}}" 
+        title="{{item.big_title.substring(0,25)}}">
+      </app-card-silk>
       <app-card-balloon class="card card-img custom-card" card-shrink
       *ngIf="item.effect=='balloon'"
       (click)="goToArticle(item)"

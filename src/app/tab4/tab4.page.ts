@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 import { UiService } from '../services/ui.service';
@@ -17,6 +17,7 @@ import { IonContent, ActionSheetController } from '@ionic/angular';
 export class Tab4Page implements OnInit {
   localJsonData:any;
   isFocused = false;
+  tabBarHeight = '50px';
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -43,6 +44,24 @@ export class Tab4Page implements OnInit {
         this.data.searchTopicData = data;
       });
     }*/
+    this.updateTabBarHeight();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize() {
+    this.updateTabBarHeight();
+  }
+
+  private updateTabBarHeight() {
+    const tabBar = document.querySelector('ion-tab-bar') as HTMLElement | null;
+    if (!tabBar) {
+      return;
+    }
+
+    const actualHeight = Math.round(tabBar.getBoundingClientRect().height);
+    if (actualHeight > 0) {
+      this.tabBarHeight = `${actualHeight}px`;
+    }
   }
 
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
