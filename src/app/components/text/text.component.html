@@ -12,6 +12,7 @@
   [style.fontSize]="data.zoom(16)">{{short()}}<ion-text (click)="unfold()" color="primary"
   [style.fontSize]="data.zoom(16)">...更多</ion-text></div>
   <div *ngIf="short()==text" class="selectableText" (click)="ui.selectText()"
-  [style.fontSize]="data.zoom(16)"
+  [style.fontSize]="data.zoom(large && large.length>0 ? 19 : 16)"
+  [style.fontWeight]="large && large.length>0 ? 'bold' : 'normal'"
   >{{text}}</div>
 </ion-card-content>

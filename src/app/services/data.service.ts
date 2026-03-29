@@ -488,7 +488,7 @@ export class DataService {
         let myDate = new Date();
         let dateSeed = (myDate.getMonth()+1)+"_"+myDate.getDay();
         let hourSeed = dateSeed+"_"+myDate.getHours();
-        let seed = nameSeed+hourSeed+dateSeed;
+        let seed = nameSeed+hourSeed;
   
         if(this.funDataMap.has(seed)){
           this.funDataMap.delete(seed);

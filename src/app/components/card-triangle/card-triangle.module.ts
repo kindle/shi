@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CardCarComponent } from './card-car.component';
+import { CardTriangleComponent } from './card-triangle.component';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
 import { ButtonEndComponentModule } from '../button-end/buttonend.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -18,8 +18,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ButtonEndComponentModule,
     LazyLoadImageModule,
   ],
-  declarations: [CardCarComponent],
+  declarations: [CardTriangleComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  exports: [CardCarComponent]
+  exports: [CardTriangleComponent]
 })
-export class CardCarComponentModule {}
+export class CardTriangleComponentModule {}

@@ -58,24 +58,30 @@
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-moon>
+        <app-card-butterfuly viewer="true" class="custom-card" 
+        *ngIf="data.currentArticle.effect=='bird'" 
+        style="padding:0;margin:0"
+          sub="{{data.currentArticle.small_title}}" 
+          title="{{data.currentArticle.big_title.substring(0,25)}}">
+        </app-card-butterfuly>
       <app-card-perlin viewer="true" class="custom-card" 
       *ngIf="data.currentArticle.effect=='perlin'" 
       style="padding:0;margin:0"
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
       </app-card-perlin>
-      <app-card-fire viewer="true" class="custom-card" 
-      *ngIf="data.currentArticle.effect=='fire'" 
-      style="padding:0;margin:0"
+        <app-card-fire viewer="true" class="custom-card" 
+        *ngIf="data.currentArticle.effect=='fire'" 
+        style="padding:0;margin:0"
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
-      </app-card-fire>
-      <app-card-car viewer="true" class="custom-card" 
-      *ngIf="data.currentArticle.effect=='car'" 
-      style="padding:0;margin:0"
+        </app-card-fire>
+        <app-card-triangle viewer="true" class="custom-card" 
+        *ngIf="data.currentArticle.effect=='car'" 
+        style="padding:0;margin:0"
           sub="{{data.currentArticle.small_title}}" 
           title="{{data.currentArticle.big_title.substring(0,25)}}">
-      </app-card-car>
+        </app-card-triangle>
         <app-card-silk viewer="true" class="custom-card" 
         *ngIf="data.currentArticle.effect=='silk'" 
         style="padding:0;margin:0"
@@ -154,6 +160,7 @@
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
        <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
+       large="true"
        [text]="it.value" *ngIf="it.type=='text'"></app-text>
        <app-text style="margin:0px 20px;color:black;" [nofold]="false" name=""
        [text]="it.memo" *ngIf="it.memo&&it.type=='text'"></app-text>

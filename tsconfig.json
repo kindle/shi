@@ -6,7 +6,7 @@
     "checkJs": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["crypto-js"],
+    "types": ["crypto-js", "three"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

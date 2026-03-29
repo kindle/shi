@@ -13,6 +13,7 @@ export class TextComponent implements OnChanges {
   @Input() name?: string;
   @Input() text?: string;
   @Input() texts?: string[];
+  @Input() large?: string;
   
   @Input() max: number = 100;
   fold:boolean = true;
