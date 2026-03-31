@@ -430,6 +430,9 @@ export class Tab4Page implements OnInit {
     }, 100);
   }
   onSearchFocus(){
+    if(!this.data.isFullDbReady){
+      this.data.promptDownloadFullDbIfNeeded();
+    }
     this.isFocused = true;
     if(this.data.searchText==this.ui.instant('Search.Tab4')){
       this.data.searchText = "";

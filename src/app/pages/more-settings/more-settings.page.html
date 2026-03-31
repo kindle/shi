@@ -101,6 +101,19 @@
         v{{data.AppVersion}}
       </ion-text>
     </ion-item>
+    <ion-item [button]="false">
+      <ion-label [style.fontSize]="data.zoom(16)">诗词库版本</ion-label>
+      <ion-text slot="end" color="medium" [style.fontSize]="data.zoom(16)">
+        {{data.isFullDbReady ? '完整版' : '精简版'}} 
+      </ion-text>
+    </ion-item>
+    <ion-item [button]="false" *ngIf="!data.isFullDbReady">
+      <ion-button slot="end" size="medium" style="margin-top:10px;margin-bottom:10px;"
+      (click)="data.promptDownloadFullDbIfNeeded()">
+        点击下载完整版
+      </ion-button>
+    </ion-item>
+
   </ion-list>
 
 

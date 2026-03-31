@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // 本地开发默认仍然从打包到 assets 里的 JSON 读取
+  // 如需改为从服务器拉取完整诗词库，请在 environment.prod.ts 中覆盖 dbBaseUrl
+  dbBaseUrl: 'assets',
+  // 预留：如果将来使用压缩包方式（db.zip），可在这里配置完整下载地址
+  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db20260331.zip'
 };
 
 /*

@@ -23,7 +23,10 @@
               {
                 "glob": "**/*",
                 "input": "src/assets",
-                "output": "assets"
+                "output": "assets",
+                "ignore": [
+                  "db/**"
+                ]
               },
               {
                 "glob": "**/*.svg",
@@ -103,7 +106,10 @@
               {
                 "glob": "**/*",
                 "input": "src/assets",
-                "output": "assets"
+                "output": "assets",
+                "ignore": [
+                  "db/**"
+                ]
               },
               {
                 "glob": "**/*.svg",

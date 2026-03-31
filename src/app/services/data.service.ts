@@ -7,7 +7,7 @@ import { ActionSheetController, IonTabs, ModalController, NavController, Platfor
 
 import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
-import { catchError, tap, BehaviorSubject } from 'rxjs';
+import { catchError, tap, BehaviorSubject, firstValueFrom } from 'rxjs';
 import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 import { Solar } from 'lunar-typescript';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
@@ -27,6 +27,9 @@ import { Device } from '@capacitor/device';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { TextZoomerPage } from '../pages/textzoomer/textzoomer.page';
+
+import { environment } from '../../environments/environment';
+import JSZip from 'jszip';
 
 declare var AppReview: any;
 
@@ -49,6 +52,15 @@ export class DataService {
   //debug mode
   TestMode = false;
 
+  // 是否启用“先加载精简版，再按需下载完整版”的两阶段加载模式
+  // 默认关闭，这样不会影响当前线上行为；
+  // 准备好精简版 JSON 和远程完整版数据后，可以手动改为 true。
+  private useTwoStepDbLoading = true;
+
+  private readonly FULL_DB_READY_KEY = 'FULL_DB_READY_KEY';
+  public isFullDbReady = false;
+  private isLoadingFullDb = false;
+
   private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
   private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
   private SOLAR_TERM_NOTIFICATION_HOUR = 7;
@@ -58,6 +70,14 @@ export class DataService {
   private SOLAR_TERM_NOTIFICATION_SCAN_DAYS = 400;
   private SOLAR_TERM_NOTIFICATION_MAX_COUNT = 24;
   private SOLAR_TERM_NOTIFICATION_TEST_MODE = false;
+
+  private readonly dbBaseUrl = environment.dbBaseUrl || 'assets';
+
+  // 缓存从 zip 解压出来的 JSON，key 使用原来的 assets/db/... 路径
+  private dbJsonCache = new Map<string, any>();
+
+  // 本地完整库 zip 文件名（保存在 Directory.Data 下）
+  private readonly DB_ZIP_FILE_NAME = 'db20260331.zip';
 
   
 
@@ -148,25 +168,200 @@ export class DataService {
   deepCopy(data:any){
     return JSON.parse(JSON.stringify(data))
   }
+
+  private resolveDbPath(path: string): string {
+    // 默认行为：仍然使用打包在 assets 下的相对路径
+    if (!environment.dbBaseUrl || environment.dbBaseUrl === 'assets') {
+      return path;
+    }
+
+    const base = environment.dbBaseUrl.replace(/\/$/, '');
+    const normalized = path.startsWith('assets/') ? path.substring('assets/'.length) : path;
+    return `${base}/${normalized}`;
+  }
+
+  private normalizeZipEntryToAssetKey(name: string): string | null {
+    let path = name.replace(/^\.*[\/]+/, '').replace(/\\/g, '/');
+    if (!path.endsWith('.json')) {
+      return null;
+    }
+    if (path.startsWith('assets/')) {
+      return path;
+    }
+    if (path.startsWith('db/')) {
+      return `assets/${path}`;
+    }
+    return null;
+  }
+
+  // ArrayBuffer <-> base64 工具，配合 Filesystem 存取 zip
+  private arrayBufferToBase64(buffer: ArrayBuffer): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  }
+
+  private base64ToArrayBuffer(base64: string): ArrayBuffer {
+    const binaryString = atob(base64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
+  private async extractDbZipFromArrayBuffer(arrayBuffer: ArrayBuffer): Promise<void> {
+    const zip = await JSZip.loadAsync(arrayBuffer);
+
+    const tasks: Promise<void>[] = [];
+
+    Object.keys(zip.files).forEach(name => {
+      const entry = zip.files[name];
+      if (entry.dir) {
+        return;
+      }
+
+      const key = this.normalizeZipEntryToAssetKey(name);
+      if (!key) {
+        return;
+      }
+
+      const task = entry.async('string').then(text => {
+        try {
+          const json = JSON.parse(text);
+          this.dbJsonCache.set(key, json);
+        } catch (e) {
+          console.error('Failed to parse JSON from zip entry:', name, e);
+        }
+      });
+
+      tasks.push(task);
+    });
+
+    await Promise.all(tasks);
+  }
+
+  // 优先从本地 Filesystem 读取已下载的 db zip，用于离线启动
+  private async tryLoadDbZipFromLocal(): Promise<boolean> {
+    try {
+      const file = await Filesystem.readFile({
+        path: this.DB_ZIP_FILE_NAME,
+        directory: Directory.Data
+      });
+
+      if (!file || !file.data) {
+        return false;
+      }
+
+      const data = file.data;
+      if (typeof data !== 'string') {
+        console.warn('Unexpected DB zip file data type; expected base64 string.');
+        return false;
+      }
+
+      const arrayBuffer = this.base64ToArrayBuffer(data);
+      await this.extractDbZipFromArrayBuffer(arrayBuffer);
+      return true;
+    } catch (e) {
+      // 本地还没有 zip 或读取失败时，返回 false 让上层决定是否走网络
+      console.warn('No local DB zip found or failed to read, will fallback to network if needed.', e);
+      return false;
+    }
+  }
+
+  /**
+   * 从 environment.fullDbZipUrl 下载完整诗词库 zip，使用 JSZip 解压，
+   * 并将其中的 .json 文件内容填充到 dbJsonCache。
+   *
+   * 注意：这里只负责“把 zip 里的 JSON 放入内存缓存”，
+   * 真正把数据导入到 JsonData/authorJsonData 仍然通过后续的 loadJsonData 完成。
+   */
+  private async downloadAndExtractDbZip(): Promise<void> {
+    const zipUrl = environment.fullDbZipUrl;
+
+    if (!zipUrl) {
+      console.warn('fullDbZipUrl is not configured; skip zip download.');
+      return;
+    }
+
+    try {
+      const arrayBuffer = await firstValueFrom(
+        this.http.get<ArrayBuffer>(zipUrl, { responseType: 'arraybuffer' as 'json' })
+      );
+      // 先把 zip 内容解压到内存缓存
+      await this.extractDbZipFromArrayBuffer(arrayBuffer);
+
+      // 再把 zip 持久化到本地，供下次离线启动使用。
+      // 注意：在 iOS 上一次性写入超大 base64 字符串可能导致内存压力过大、应用被系统杀死，
+      // 因此这里仅在非 iOS 平台持久化 zip，iOS 上暂时依赖按需重新下载。
+      if (Capacitor.getPlatform() !== 'ios') {
+        const base64 = this.arrayBufferToBase64(arrayBuffer);
+        await Filesystem.writeFile({
+          path: this.DB_ZIP_FILE_NAME,
+          data: base64,
+          directory: Directory.Data
+        });
+      } else {
+        console.warn('Skip persisting full DB zip on iOS to avoid memory pressure; will re-download when needed.');
+      }
+    } catch (error) {
+      console.error('Failed to download or extract DB zip:', error);
+      throw error;
+    }
+  }
+
   async loadJsonData(){
 
     //authors
-    this.http.get<any>(`assets/db/全唐诗/authors.song.json`).subscribe(result=>{
-      this.authorJsonData = this.authorJsonData.concat(result);
-    });
-    this.http.get<any>(`assets/db/宋词/author.song.json`).subscribe(result=>{
-      this.authorJsonData = this.authorJsonData.concat(result);
-    });
-    this.http.get<any>(`assets/db/全唐诗/authors.tang.json`).subscribe(result=>{
-      this.authorJsonData = this.authorJsonData.concat(result);
-    });
-    this.http.get<any>(`assets/db/others/authors.others.json`).subscribe(result=>{
-      this.authorJsonData = this.authorJsonData.concat(result);
-    });
-    if(this.EnablePrivateMusic){
-      this.http.get<any>(`assets/db/music/authors.music.json`).subscribe(result=>{
+    const authorsSongCached = this.dbJsonCache.get('assets/db/全唐诗/authors.song.json');
+    if (authorsSongCached) {
+      this.authorJsonData = this.authorJsonData.concat(authorsSongCached);
+    } else {
+      this.http.get<any>(this.resolveDbPath(`assets/db/全唐诗/authors.song.json`)).subscribe(result=>{
         this.authorJsonData = this.authorJsonData.concat(result);
       });
+    }
+
+    const ciAuthorCached = this.dbJsonCache.get('assets/db/宋词/author.song.json');
+    if (ciAuthorCached) {
+      this.authorJsonData = this.authorJsonData.concat(ciAuthorCached);
+    } else {
+      this.http.get<any>(this.resolveDbPath(`assets/db/宋词/author.song.json`)).subscribe(result=>{
+        this.authorJsonData = this.authorJsonData.concat(result);
+      });
+    }
+
+    const authorsTangCached = this.dbJsonCache.get('assets/db/全唐诗/authors.tang.json');
+    if (authorsTangCached) {
+      this.authorJsonData = this.authorJsonData.concat(authorsTangCached);
+    } else {
+      this.http.get<any>(this.resolveDbPath(`assets/db/全唐诗/authors.tang.json`)).subscribe(result=>{
+        this.authorJsonData = this.authorJsonData.concat(result);
+      });
+    }
+
+    const authorsOthersCached = this.dbJsonCache.get('assets/db/others/authors.others.json');
+    if (authorsOthersCached) {
+      this.authorJsonData = this.authorJsonData.concat(authorsOthersCached);
+    } else {
+      this.http.get<any>(this.resolveDbPath(`assets/db/others/authors.others.json`)).subscribe(result=>{
+        this.authorJsonData = this.authorJsonData.concat(result);
+      });
+    }
+    if(this.EnablePrivateMusic){
+      const authorsMusicCached = this.dbJsonCache.get('assets/db/music/authors.music.json');
+      if (authorsMusicCached) {
+        this.authorJsonData = this.authorJsonData.concat(authorsMusicCached);
+      } else {
+        this.http.get<any>(this.resolveDbPath(`assets/db/music/authors.music.json`)).subscribe(result=>{
+          this.authorJsonData = this.authorJsonData.concat(result);
+        });
+      }
     }
 
 
@@ -870,7 +1065,14 @@ export class DataService {
 
   tagsStat = new Map();
   getObjects(json:any, category:any){
-    this.http.get<any>(json)
+    const cached = this.dbJsonCache.get(json);
+    if (cached) {
+      this.importData(cached, category);
+      return;
+    }
+
+    const url = this.resolveDbPath(json);
+    this.http.get<any>(url)
       .subscribe(result =>{
           this.importData(result, category);
       }, error =>{
@@ -880,7 +1082,16 @@ export class DataService {
 
   //蒙学
   getMXObjects(json:any){
-    this.http.get<any>(json)
+    const cached = this.dbJsonCache.get(json);
+    if (cached) {
+      cached.content.forEach((c:any)=>{
+        this.importData(c.content, cached.title);
+      });
+      return;
+    }
+
+    const url = this.resolveDbPath(json);
+    this.http.get<any>(url)
       .subscribe(result =>{
         //result.title//唐诗三百首
         result.content.forEach((c:any)=>{
@@ -1876,9 +2087,14 @@ export class DataService {
     this.set(this.LocalQueueKey, JSON.stringify(this.queueData));
   }
   init(){
-    //诗词数据 很大
-    this.loadJsonData();
-    //
+    if (this.useTwoStepDbLoading) {
+      this.initDbWithTwoSteps();
+    } else {
+      // 旧逻辑：直接加载全部本地 JSON
+      // 如需改为“首启只加载精简版”，请开启 useTwoStepDbLoading
+      this.loadJsonData();
+    }
+
     this.loadTopicData();
     this.loadlikes();
     //load hourly fun data
@@ -1899,6 +2115,121 @@ export class DataService {
     this.checkTutorial();
     void this.initDailyTestNotification();
     //console.log('load data completed')
+  }
+
+  /**
+   * 两阶段加载入口：
+   * 第一次安装：先加载精简版；
+   * 之后如已下载完整版，则直接加载完整版。
+   */
+  private initDbWithTwoSteps() {
+    this.get(this.FULL_DB_READY_KEY).then(async flag => {
+      this.isFullDbReady = !!flag;
+
+      if (this.isFullDbReady) {
+        // 已经下载过完整版：
+        // 1）优先尝试从本地 Filesystem 读取并解压 zip；
+        // 2）若本地不存在，则在有网络时自动从服务器再拉一次 zip；
+        // 3）最后调用 loadJsonData 使用缓存中的 JSON 完成导入。
+        try {
+          let loadedFromLocal = await this.tryLoadDbZipFromLocal();
+
+          if (!loadedFromLocal && environment.fullDbZipUrl) {
+            await this.downloadAndExtractDbZip();
+          }
+        } catch (e) {
+          console.error('Init full DB from zip failed, fallback to direct JSON loading.', e);
+        }
+
+        this.loadJsonData();
+      } else {
+        // 只加载精简版（默认实现仍然调用 loadJsonData，
+        // 以避免你还没准备好精简 JSON 时功能受影响）
+        this.loadMinimalDb();
+      }
+    });
+  }
+
+  /**
+   * 加载精简版诗词库。
+   * 当前默认行为仍然复用 loadJsonData，
+   * 你可以在准备好精简 JSON 后，把这里改成只请求最小集合，
+   * 例如：assets/db-min/poems.min.json 等。
+   */
+  private loadMinimalDb() {
+    // 精简版作者（请将常用作者填入 authors.min.json）
+    this.http.get<any>('assets/db-min/authors.min.json').subscribe(result => {
+      this.authorJsonData = result || [];
+    });
+
+    // 精简版诗词（请将 Tab1/2/3/4 需要的诗词填入 poems.min.json）
+    this.getObjects('assets/db-min/poems.min.json', '');
+
+    // 其它体积较小的 topic、诗单等仍然使用原始 assets
+    this.loadPoemList();
+    this.articleDataLoaded = true;
+  }
+
+  /**
+   * 需要时（例如在设置页或首次启动时），调用该方法弹出提示，
+   * 由用户确认后再下载完整诗词数据。
+   *
+   * 注意：要真正减小安装包体积，还需要把大 JSON 文件从 src/assets
+   * 中移出，放到服务器上，然后把 loadJsonData 里所有路径改成指向远程地址。
+   */
+  public promptDownloadFullDbIfNeeded() {
+    if (!this.useTwoStepDbLoading || this.isLoadingFullDb) {
+      return;
+    }
+
+    this.get(this.FULL_DB_READY_KEY).then(flag => {
+      if (flag) {
+        return;
+      }
+
+      this.ui.confirm(
+        '下载完整诗词库',
+        '完整诗词库体积较大，需要联网下载，是否现在下载？',
+        () => {
+          this.downloadFullDb();
+        }
+      );
+    });
+  }
+
+  private async downloadFullDb() {
+    if (this.isLoadingFullDb) {
+      return;
+    }
+
+    this.isLoadingFullDb = true;
+
+    try {
+      await this.ui.toast('bottom', '开始下载诗词库');
+
+      // 先清空当前内存中的精简数据
+      this.authorJsonData = [];
+      this.JsonData = [];
+
+      // 如果配置了 zip 地址，则优先通过 zip 下载+解压填充缓存，
+      // 然后再调用 loadJsonData 使用缓存中的 JSON 进行导入；
+      // 否则退回到原来的逐个 JSON 加载方式。
+      if (environment.fullDbZipUrl) {
+        await this.downloadAndExtractDbZip();
+        this.loadJsonData();
+      } else {
+        this.loadJsonData();
+      }
+
+      this.isFullDbReady = true;
+      this.set(this.FULL_DB_READY_KEY, true);
+
+      await this.ui.toast('bottom', '诗词库下载完成');
+    } catch {
+      await this.ui.toast('bottom', '下载失败，请稍后重试');
+    } finally {
+      this.isLoadingFullDb = false;
+    }
   }
 
   private async initDailyTestNotification() {

@@ -51,6 +51,11 @@ export class AppComponent {
 
     await this.storage.create().then(()=>{
       this.data.init();
+
+      // 如需在首次安装后提示用户“是否下载完整诗词库”，
+      // 可以在 DataService 中把 useTwoStepDbLoading 设为 true，
+      // 然后保留下面这一行调用。
+      //this.data.promptDownloadFullDbIfNeeded();
     }).finally(()=>{
       this.data.loadLocale();
       this.data.loadFontFamily();
