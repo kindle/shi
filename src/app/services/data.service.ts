@@ -297,17 +297,18 @@ export class DataService {
       await this.extractDbZipFromArrayBuffer(arrayBuffer);
 
       // 再把 zip 持久化到本地，供下次离线启动使用。
-      // 注意：在 iOS 上一次性写入超大 base64 字符串可能导致内存压力过大、应用被系统杀死，
-      // 因此这里仅在非 iOS 平台持久化 zip，iOS 上暂时依赖按需重新下载。
-      if (Capacitor.getPlatform() !== 'ios') {
+      // 注意：在 iOS/Android 上一次性写入超大 base64 字符串可能导致内存压力过大、应用被系统杀死，
+      // 因此这里仅在 web 或其它非移动平台持久化 zip，移动端暂时依赖按需重新下载。
+      const platform = Capacitor.getPlatform();
+      if (platform === 'ios' || platform === 'android') {
+        console.warn('Skip persisting full DB zip on mobile (', platform, ') to avoid memory pressure; will re-download when needed.');
+      } else {
         const base64 = this.arrayBufferToBase64(arrayBuffer);
         await Filesystem.writeFile({
           path: this.DB_ZIP_FILE_NAME,
           data: base64,
           directory: Directory.Data
         });
-      } else {
-        console.warn('Skip persisting full DB zip on iOS to avoid memory pressure; will re-download when needed.');
       }
     } catch (error) {
       console.error('Failed to download or extract DB zip:', error);
@@ -3017,6 +3018,153 @@ export class DataService {
   //test method
   clearLocalStorage(){
     this.storage.clear();
+  }
+
+  // 导出当前 Storage 和 window.localStorage 中的所有键值为备份文件
+  async exportLocalDataBackup(){
+    try{
+      // 导出 Ionic Storage
+      const storageKeys = await this.storage.keys();
+      const storageData:any = {};
+      for(const key of storageKeys){
+        // 忽略不需要备份的内部键，避免无意义数据及潜在体积过大
+        if(key === 'FULL_DB_READY_KEY' || key === 'LOCALSTORAGE_HOURLY_FUN'){
+          continue;
+        }
+        const value = await this.storage.get(key);
+
+        // 避免把完整诗词库等超大内容写入备份文件：
+        // 如果某个 storage 项序列化后体积特别大，则跳过该键，防止导出 JSON 过于庞大导致内存/分享崩溃。
+        try{
+          const serialized = typeof value === 'string' ? value : JSON.stringify(value);
+          // 例如 > 2MB 的单条记录视为过大（full DB / 大缓存），不进入备份。
+          if(serialized && serialized.length > 2_000_000){
+            console.warn('[Backup] Skip large storage key in export:', key, 'length=', serialized.length);
+            continue;
+          }
+        }catch(e){
+          console.warn('[Backup] Skip non-serializable storage key in export:', key, e);
+          continue;
+        }
+
+        storageData[key] = value;
+      }
+
+      // 导出 window.localStorage（用于行内笔记等缓存）
+      const localData:any = {};
+      try{
+        if (typeof localStorage !== 'undefined'){
+          for(let i=0;i<localStorage.length;i++){
+            const k = localStorage.key(i);
+            if(k!=null){
+              localData[k] = localStorage.getItem(k);
+            }
+          }
+        }
+      }catch(e){
+        console.warn('Export localStorage failed, will skip browser cache.', e);
+      }
+
+      const exportData:any = {
+        __version: 1,
+        storage: storageData,
+        localStorage: localData,
+      };
+
+      const content = JSON.stringify(exportData);
+
+      const now = new Date();
+      const pad = (n:number)=> n.toString().padStart(2,'0');
+      const baseFileName = `msjj${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+      const webFileName = `${baseFileName}.json`;
+      const nativeFileName = `${baseFileName}.json`;
+
+      if(Capacitor.getPlatform()==='web'){
+        const blob = new Blob([content], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = webFileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        this.ui.toast('bottom', '导出成功');
+        return;
+      }
+// alert(1)
+// alert(content.length)
+      // 在原生平台（Android/iOS）上，为了避免部分设备在通过自定义扩展名分享时崩溃，
+      // 这里统一写入并分享标准的 .json 备份文件，并通过 Share.files 方式分享该文件 URI。
+      const savedFile = await Filesystem.writeFile({
+        path: nativeFileName,
+        data: content,
+        directory: Directory.Cache,
+        encoding: Encoding.UTF8
+      });
+// alert(2)
+      await Share.share({
+        title: '导出名诗佳句数据',
+        text: `请妥善保存此备份文件：${nativeFileName}`,
+        files: [savedFile.uri],
+        dialogTitle: '分享或保存备份文件'
+      });
+    }catch(err){
+      console.error('Export backup failed', err);
+      this.ui.toast('bottom', '导出失败');
+    }
+  }
+
+  // 从备份 JSON 字符串导入并覆盖当前 Storage 与 window.localStorage
+  async importLocalDataBackupFromJson(jsonStr:string){
+    try{
+      const obj = JSON.parse(jsonStr);
+      if(!obj || typeof obj !== 'object'){
+        this.ui.toast('bottom', '备份文件格式不正确');
+        return;
+      }
+
+      // 兼容旧版（平铺结构，只包含 Ionic Storage）
+      const isNewFormat = Object.prototype.hasOwnProperty.call(obj, 'storage') ||
+                          Object.prototype.hasOwnProperty.call(obj, 'localStorage');
+
+      if(isNewFormat){
+        const storagePart = obj.storage && typeof obj.storage === 'object' ? obj.storage : {};
+        const localPart = obj.localStorage && typeof obj.localStorage === 'object' ? obj.localStorage : {};
+
+        // 覆盖 Ionic Storage
+        await this.storage.clear();
+        const storageEntries = Object.entries(storagePart as any);
+        for(const [key, value] of storageEntries){
+          await this.storage.set(key as string, value);
+        }
+
+        // 覆盖 window.localStorage（仅在可用时）
+        try{
+          if (typeof localStorage !== 'undefined'){
+            localStorage.clear();
+            const localEntries = Object.entries(localPart as any);
+            for(const [key, value] of localEntries){
+              localStorage.setItem(key as string, value as string | null ?? '');
+            }
+          }
+        }catch(e){
+          console.warn('Import localStorage failed, browser cache not fully restored.', e);
+        }
+      } else {
+        // 旧格式：整个对象就是 Ionic Storage 的键值映射
+        await this.storage.clear();
+        const entries = Object.entries(obj);
+        for(const [key, value] of entries){
+          await this.storage.set(key as string, value);
+        }
+      }
+
+      this.ui.toast('bottom', '导入成功，重新启动应用后生效');
+    }catch(err){
+      console.error('Import backup failed', err);
+      this.ui.toast('bottom', '导入失败');
+    }
   }
 
   poemlistcount:any=0;

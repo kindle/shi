@@ -113,8 +113,37 @@
         点击下载完整版
       </ion-button>
     </ion-item>
-
   </ion-list>
 
+  <ion-list-header [style.fontSize]="data.zoom(22)">
+    数据
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="exportDataBackup()">
+      <ion-icon color="primary" slot="start" name="download-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        导出数据备份
+      </ion-label>
+    </ion-item>
+    <ion-item [button]="true" (click)="triggerImportFile()">
+      <ion-icon color="dark" slot="start" name="cloud-upload-outline" size="large"></ion-icon>
+      <ion-label [style.fontSize]="data.zoom(16)">
+        导入数据备份
+      </ion-label>
+      <input #importFileInput type="file" accept=".json,application/json" hidden (change)="onImportFileSelected($event)">
+    </ion-item>
+  </ion-list>
+
+  <ion-list style="min-height:78px;">
+    <ion-item>
+      &nbsp;
+    </ion-item>
+    <ion-item>
+      &nbsp;
+    </ion-item>
+    <ion-item>
+      &nbsp;
+    </ion-item>
+  </ion-list>
 
 </ion-content>
