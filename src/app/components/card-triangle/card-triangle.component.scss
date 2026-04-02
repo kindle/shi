@@ -40,12 +40,7 @@
 
 
 
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-body {
+.container {
     background: -webkit-radial-gradient(circle cover, #cfe6fc, #6eb3f7);
     background: radial-gradient(circle cover, #cfe6fc, #6eb3f7);
     overflow: hidden;
