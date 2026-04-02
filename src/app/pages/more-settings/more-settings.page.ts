@@ -50,4 +50,15 @@ export class MoreSettingsPage implements OnInit {
     reader.readAsText(file, 'utf-8');
   }
 
+  clearCache(){
+    this.ui.confirm('清除缓存', '确定要删除所有本地缓存数据吗？此操作不可恢复，应用将恢复到初始状态。', () => {
+      this.onConfirmClearCache();
+    });
+  }
+
+  private async onConfirmClearCache(){
+    await this.data.clearLocalStorage();
+    this.ui.toast('bottom', '已清除缓存，重新启动应用后生效');
+  }
+
 }

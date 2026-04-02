@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEventType } from '@angular/common/http';
 import { Group, Song } from '../app.component';
 
 import { Storage } from '@ionic/storage-angular';
@@ -59,7 +59,8 @@ export class DataService {
 
   private readonly FULL_DB_READY_KEY = 'FULL_DB_READY_KEY';
   public isFullDbReady = false;
-  private isLoadingFullDb = false;
+  public isLoadingFullDb = false;
+  public fullDbDownloadProgress = 0; // 0-100 下载进度百分比
 
   private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
   private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
@@ -290,9 +291,35 @@ export class DataService {
     }
 
     try {
-      const arrayBuffer = await firstValueFrom(
-        this.http.get<ArrayBuffer>(zipUrl, { responseType: 'arraybuffer' as 'json' })
-      );
+      this.fullDbDownloadProgress = 0;
+
+      const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+        this.http.get(zipUrl, {
+          responseType: 'arraybuffer' as 'json',
+          observe: 'events',
+          reportProgress: true
+        }).subscribe({
+          next: (event: any) => {
+            if (event.type === HttpEventType.DownloadProgress) {
+              if (event.total && event.total > 0) {
+                const percent = Math.round(event.loaded / event.total * 100);
+                this.fullDbDownloadProgress = Math.min(Math.max(percent, 0), 100);
+              }
+            } else if (event.type === HttpEventType.Response) {
+              if (event.body) {
+                this.fullDbDownloadProgress = 100;
+                resolve(event.body as ArrayBuffer);
+              } else {
+                reject(new Error('Empty response body when downloading DB zip'));
+              }
+            }
+          },
+          error: (err: any) => {
+            this.fullDbDownloadProgress = 0;
+            reject(err);
+          }
+        });
+      });
       // 先把 zip 内容解压到内存缓存
       await this.extractDbZipFromArrayBuffer(arrayBuffer);
 
@@ -2204,6 +2231,7 @@ export class DataService {
     }
 
     this.isLoadingFullDb = true;
+  this.fullDbDownloadProgress = 0;
 
     try {
       await this.ui.toast('bottom', '开始下载诗词库');
@@ -2220,6 +2248,8 @@ export class DataService {
         this.loadJsonData();
       } else {
         this.loadJsonData();
+        // 非 zip 模式无法精确统计进度，这里直接视为完成
+        this.fullDbDownloadProgress = 100;
       }
 
       this.isFullDbReady = true;
@@ -2230,6 +2260,7 @@ export class DataService {
       await this.ui.toast('bottom', '下载失败，请稍后重试');
     } finally {
       this.isLoadingFullDb = false;
+      // 若失败则保持 0，成功则应已为 100；这里不强制重置，避免闪烁
     }
   }
 
@@ -3016,8 +3047,20 @@ export class DataService {
   }
 
   //test method
-  clearLocalStorage(){
-    this.storage.clear();
+  async clearLocalStorage(){
+    try{
+      await this.storage.clear();
+    }catch(e){
+      console.warn('Clear Ionic Storage failed', e);
+    }
+
+    try{
+      if (typeof localStorage !== 'undefined'){
+        localStorage.clear();
+      }
+    }catch(e){
+      console.warn('Clear window.localStorage failed', e);
+    }
   }
 
   // 导出当前 Storage 和 window.localStorage 中的所有键值为备份文件
@@ -3037,8 +3080,8 @@ export class DataService {
         // 如果某个 storage 项序列化后体积特别大，则跳过该键，防止导出 JSON 过于庞大导致内存/分享崩溃。
         try{
           const serialized = typeof value === 'string' ? value : JSON.stringify(value);
-          // 例如 > 2MB 的单条记录视为过大（full DB / 大缓存），不进入备份。
-          if(serialized && serialized.length > 2_000_000){
+          // 例如 > 20MB 的单条记录视为过大（full DB / 大缓存），不进入备份。
+          if(serialized && serialized.length > 5_000_000){
             console.warn('[Backup] Skip large storage key in export:', key, 'length=', serialized.length);
             continue;
           }
