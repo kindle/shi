@@ -7,8 +7,9 @@ export const environment = {
   // 本地开发默认仍然从打包到 assets 里的 JSON 读取
   // 如需改为从服务器拉取完整诗词库，请在 environment.prod.ts 中覆盖 dbBaseUrl
   dbBaseUrl: 'assets',
-  // 预留：如果将来使用压缩包方式（db.zip），可在这里配置完整下载地址
-  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db20260331.zip'
+  // 使用分片压缩包方式：后端提供 db0.zip ~ db5.zip，
+  // 这里给出一个“基准”地址，以 db.zip 结尾，代码里会自动映射为 db0.zip...db5.zip
+  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db.zip'
 };
 
 /*

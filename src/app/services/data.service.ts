@@ -78,7 +78,7 @@ export class DataService {
   private dbJsonCache = new Map<string, any>();
 
   // 本地完整库 zip 文件名（保存在 Directory.Data 下）
-  private readonly DB_ZIP_FILE_NAME = 'db20260331.zip';
+  private readonly DB_ZIP_FILE_NAME = 'db.zip';
 
   
 
@@ -183,6 +183,10 @@ export class DataService {
 
   private normalizeZipEntryToAssetKey(name: string): string | null {
     let path = name.replace(/^\.*[\/]+/, '').replace(/\\/g, '/');
+    // 兼容后端 zip 中使用 db/全唐诗1~5/ 这类带数字后缀的目录名
+    // 例如：db/全唐诗1/authors.song.json -> assets/db/全唐诗/authors.song.json
+    path = path.replace(/^db\/全唐诗[1-5]\//, 'db/全唐诗/');
+
     if (!path.endsWith('.json')) {
       return null;
     }
@@ -249,30 +253,52 @@ export class DataService {
 
   // 优先从本地 Filesystem 读取已下载的 db zip，用于离线启动
   private async tryLoadDbZipFromLocal(): Promise<boolean> {
+    let loadedAny = false;
+
+    // 1) 先尝试单一 zip（向后兼容原来的 db.zip 持久化方案）
     try {
       const file = await Filesystem.readFile({
         path: this.DB_ZIP_FILE_NAME,
         directory: Directory.Data
       });
 
-      if (!file || !file.data) {
-        return false;
+      if (file && file.data && typeof file.data === 'string') {
+        const arrayBuffer = this.base64ToArrayBuffer(file.data);
+        await this.extractDbZipFromArrayBuffer(arrayBuffer);
+        loadedAny = true;
       }
-
-      const data = file.data;
-      if (typeof data !== 'string') {
-        console.warn('Unexpected DB zip file data type; expected base64 string.');
-        return false;
-      }
-
-      const arrayBuffer = this.base64ToArrayBuffer(data);
-      await this.extractDbZipFromArrayBuffer(arrayBuffer);
-      return true;
     } catch (e) {
-      // 本地还没有 zip 或读取失败时，返回 false 让上层决定是否走网络
-      console.warn('No local DB zip found or failed to read, will fallback to network if needed.', e);
-      return false;
+      // 本地还没有单一 zip 时忽略，继续尝试多包
+      // console.warn('No single DB zip found, will try multi-part zip if present.', e);
     }
+
+    // 2) 如果没有加载到单一 zip，再尝试多包 db.zip.0 ~ db.zip.5 持久化方案
+    if (!loadedAny) {
+      const maxPartIndex = 5;
+      for (let index = 0; index <= maxPartIndex; index++) {
+        try {
+          const partFile = await Filesystem.readFile({
+            path: `${this.DB_ZIP_FILE_NAME}.${index}`,
+            directory: Directory.Data
+          });
+
+          if (partFile && partFile.data && typeof partFile.data === 'string') {
+            const arrayBuffer = this.base64ToArrayBuffer(partFile.data);
+            await this.extractDbZipFromArrayBuffer(arrayBuffer);
+            loadedAny = true;
+          }
+        } catch (e) {
+          // 某个分包不存在时忽略，尽量多加载几段；全部失败再统一返回 false
+          // console.warn(`DB zip part ${index} not found or failed to read.`, e);
+        }
+      }
+    }
+
+    if (!loadedAny) {
+      console.warn('No local DB zip found (single or multi-part), will fallback to network if needed.');
+    }
+
+    return loadedAny;
   }
 
   /**
@@ -290,52 +316,99 @@ export class DataService {
       return;
     }
 
+    // 构造需要下载的 zip 列表：
+    // 1) 如果包含 {index} 占位符，则按模板替换 0~5
+    // 2) 如果以 db.zip 结尾，则自动映射为 db0.zip ~ db5.zip
+    // 3) 否则按单一 zip 处理
+    const zipUrls: string[] = [];
+    if (zipUrl.includes('{index}')) {
+      for (let i = 0; i <= 5; i++) {
+        zipUrls.push(zipUrl.replace('{index}', i.toString()));
+      }
+    } else if (zipUrl.endsWith('db.zip')) {
+      const base = zipUrl.replace(/db\.zip$/, 'db');
+      for (let i = 0; i <= 5; i++) {
+        zipUrls.push(`${base}${i}.zip`);
+      }
+    } else {
+      zipUrls.push(zipUrl);
+    }
+
     try {
       this.fullDbDownloadProgress = 0;
-
-      const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
-        this.http.get(zipUrl, {
-          responseType: 'arraybuffer' as 'json',
-          observe: 'events',
-          reportProgress: true
-        }).subscribe({
-          next: (event: any) => {
-            if (event.type === HttpEventType.DownloadProgress) {
-              if (event.total && event.total > 0) {
-                const percent = Math.round(event.loaded / event.total * 100);
-                this.fullDbDownloadProgress = Math.min(Math.max(percent, 0), 100);
-              }
-            } else if (event.type === HttpEventType.Response) {
-              if (event.body) {
-                this.fullDbDownloadProgress = 100;
-                resolve(event.body as ArrayBuffer);
-              } else {
-                reject(new Error('Empty response body when downloading DB zip'));
-              }
-            }
-          },
-          error: (err: any) => {
-            this.fullDbDownloadProgress = 0;
-            reject(err);
-          }
-        });
-      });
-      // 先把 zip 内容解压到内存缓存
-      await this.extractDbZipFromArrayBuffer(arrayBuffer);
-
-      // 再把 zip 持久化到本地，供下次离线启动使用。
-      // 注意：在 iOS/Android 上一次性写入超大 base64 字符串可能导致内存压力过大、应用被系统杀死，
-      // 因此这里仅在 web 或其它非移动平台持久化 zip，移动端暂时依赖按需重新下载。
+      const totalParts = zipUrls.length;
       const platform = Capacitor.getPlatform();
-      if (platform === 'ios' || platform === 'android') {
-        console.warn('Skip persisting full DB zip on mobile (', platform, ') to avoid memory pressure; will re-download when needed.');
-      } else {
-        const base64 = this.arrayBufferToBase64(arrayBuffer);
+      let persistArrayBuffer: ArrayBuffer | null = null;
+
+      for (let index = 0; index < totalParts; index++) {
+        const partUrl = zipUrls[index];
+
+        const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+          this.http.get(partUrl, {
+            responseType: 'arraybuffer' as 'json',
+            observe: 'events',
+            reportProgress: true
+          }).subscribe({
+            next: (event: any) => {
+              if (event.type === HttpEventType.DownloadProgress) {
+                if (event.total && event.total > 0) {
+                  const partBase = (index / totalParts) * 100;
+                  const partSpan = 100 / totalParts;
+                  const partPercent = event.loaded / event.total;
+                  const overall = Math.round(partBase + partSpan * Math.min(Math.max(partPercent, 0), 1));
+                  this.fullDbDownloadProgress = Math.min(Math.max(overall, 0), 100);
+                }
+              } else if (event.type === HttpEventType.Response) {
+                if (event.body) {
+                  const overall = Math.round(((index + 1) / totalParts) * 100);
+                  this.fullDbDownloadProgress = Math.min(Math.max(overall, 0), 100);
+                  resolve(event.body as ArrayBuffer);
+                } else {
+                  reject(new Error(`Empty response body when downloading DB zip part: ${partUrl}`));
+                }
+              }
+            },
+            error: (err: any) => {
+              reject(err);
+            }
+          });
+        });
+
+        // 每下载完一段就立刻解压到内存，降低一次性内存峰值
+        await this.extractDbZipFromArrayBuffer(arrayBuffer);
+
+        // 持久化策略：
+        // - 单一 zip：保留在内存，循环结束后一次性写入 db.zip（向后兼容旧逻辑）
+        // - 多包 zip：在 Web/桌面平台下，将每一段分别写入 db.zip.{index}
+        //if (platform !== 'ios') {
+          if (totalParts === 1) {
+            persistArrayBuffer = arrayBuffer;
+          } else {
+            const base64Part = this.arrayBufferToBase64(arrayBuffer);
+            await Filesystem.writeFile({
+              path: `${this.DB_ZIP_FILE_NAME}.${index}`,
+              data: base64Part,
+              directory: Directory.Data
+            });
+          }
+        //}
+      }
+
+      // 多段全部下载并解压完成后，再决定是否持久化 zip 到本地
+      //if (platform === 'ios') {
+      //   console.warn('Skip persisting full DB zip on mobile (', platform, ') to avoid memory pressure; will re-download when needed.');
+      // } else 
+      if (persistArrayBuffer) {
+        // 单一 zip 场景：最终写入 db.zip
+        const base64 = this.arrayBufferToBase64(persistArrayBuffer);
         await Filesystem.writeFile({
           path: this.DB_ZIP_FILE_NAME,
           data: base64,
           directory: Directory.Data
         });
+      } else if (zipUrls.length > 1) {
+        // 多包场景：各段已在循环中分别持久化为 db.zip.{index}
+        console.warn('Multiple DB zip parts downloaded; persisted each part as db.zip.{index}.');
       }
     } catch (error) {
       console.error('Failed to download or extract DB zip:', error);

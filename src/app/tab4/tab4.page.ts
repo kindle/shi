@@ -505,13 +505,13 @@ export class Tab4Page implements OnInit {
     let keys = key.split(' ');
     
     if(key.length==0){
-      this.searchResult = this.localJsonData.filter((e:any)=>
+      this.searchResult = this.data.JsonData.filter((e:any)=>
         (e.text).indexOf(key)>-1
         //&&e.audio
       );
     }
     else{
-      this.searchResult = this.localJsonData.filter((e:any)=>
+      this.searchResult = this.data.JsonData.filter((e:any)=>
         (e.text).indexOf(keys[0])>-1
       );
     }

@@ -5,5 +5,7 @@ export const environment = {
   dbBaseUrl: 'assets',
   // 如果将来你把整个 /assets/db 打成 db.zip 放到服务器，
   // 可以在这里配置完整 zip 下载地址，然后在 DataService 里使用。
-  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db20260331.zip'
+  // 现在后端已将大包拆分为 db0.zip ~ db5.zip 存在同一目录下，
+  // 这里使用一个以 db.zip 结尾的基准地址，实际下载时会自动映射为多段 db0.zip...db5.zip。
+  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db.zip'
 };
