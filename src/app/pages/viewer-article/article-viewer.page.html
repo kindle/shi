@@ -205,8 +205,8 @@
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
         </ion-item>
-        <ion-item lines="none">
-          <p *ngIf="it.note" style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
+        <ion-item lines="none" *ngIf="it.note">
+          <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
             {{it.note}}
           </p>
         </ion-item>
