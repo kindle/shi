@@ -29,8 +29,8 @@
         --background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);
         padding:15px 15px 15px 5px;
         border-radius: 15px;"
-        (click)="goback()">
-        <ion-button color="light">
+        >
+        <ion-button color="light" (click)="goback()">
           <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
           {{ ui.instant('Action.Back') }}<!--返回-->
         </ion-button>
@@ -191,7 +191,7 @@
             </div>
           </ion-thumbnail>
           
-          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:it.sample, true, true)" style="color:black;">
+          <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)" style="color:black;">
             <h2 [style.fontSize]="data.zoom(17)"
             class="show-only-one-line">
               {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
@@ -200,9 +200,15 @@
               {{it.author}}《{{it.title}}》
               <ion-icon name="headset" *ngIf="it.audio" color="primary"></ion-icon>
             </p>
+            
           </ion-label>
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
+        </ion-item>
+        <ion-item lines="none">
+          <p *ngIf="it.note" style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
+            {{it.note}}
+          </p>
         </ion-item>
 
         <div *ngIf="it.type==='list'">
@@ -216,18 +222,18 @@
           <ion-list style="margin-left:5px;padding-top:0px;">
             <ion-item *ngFor="let p of data.currentArticle.items"
             style="--padding-start:15px;--inner-padding-end:20px;">
-            <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
-            style="display: flex;justify-content: center;align-items: center;">
-              <img style="border-radius: 10px;" 
-                defaultImage="assets/img/default.jpg" 
-                lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"  
-                onerror="javascript:this.src='assets/img/default.jpg'"
-                [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-              <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-                [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-                'height':(data.isPlaying) ? '' : '5px' }"
-              ></div>
-            </ion-thumbnail>
+              <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+                style="display: flex;justify-content: center;align-items: center;">
+                <img style="border-radius: 10px;" 
+                  defaultImage="assets/img/default.jpg" 
+                  lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"  
+                  onerror="javascript:this.src='assets/img/default.jpg'"
+                  [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+                <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+                  [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                  'height':(data.isPlaying) ? '' : '5px' }"
+                ></div>
+              </ion-thumbnail>
               <ion-label (click)="data.playbyid(p.id, p.sample)">
                 <h2 [style.fontSize]="data.zoom(17)"
                 class="show-only-one-line">
@@ -238,6 +244,9 @@
                   {{p.author}}&nbsp;
                   <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
                 </p>
+              </ion-label>
+              <ion-label *ngIf="p.note" [style.fontSize]="data.zoom(14)">
+                {{p.note}}
               </ion-label>
               <!--
               <ion-button slot="end" color="light" (click)="data.goToAuthor(p.author)">

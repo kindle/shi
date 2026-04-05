@@ -734,7 +734,8 @@ export class DataService {
             "author":p.author, 
             "title":p.title, 
             "sample":p.sample, 
-            "id":p.id
+            "id":p.id,
+            "note":p.note?p.note:"",
           })
         });
         this.articleData.push({
@@ -872,8 +873,8 @@ export class DataService {
 
     //get 5 fun articles, 4 articles that have no effect, 1 have effect 
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&!d.effect&&d.tab1hide!==true), 1));
-    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
-    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='car'), 1));
+    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect), 1));
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='text'&&d.effect&&d.effect==='path'), 1));
     
     //get 1 group/wall/scroll
     temp = temp.concat(this.getRandomArray(data.filter(
@@ -1053,13 +1054,15 @@ export class DataService {
       big_title:"今日"+solarTermName,
       desc:[{
         "type":"text", 
-        "value":solarTermInfo.desc?solarTermInfo.desc:
+        "value":solarTermName,
+        "memo":solarTermInfo.desc?solarTermInfo.desc:
         (solarTermInfo.title?solarTermInfo.title:solarTermName),
         "name":""
       }].concat(solarTermPoems).concat(
         [{
           "type":"list",
           "value":"",
+          "memo":"",
           "name":"趣味诗单"
         }]
       ),
@@ -2820,13 +2823,24 @@ export class DataService {
         )[0];
         //console.log(poem)
 
-      //if(poem){
-        poem.sample = sample;
-        //if 有mp3, do not show modal, play directly
-        //this.playobj(poem, poem.audio?false:true);
-        //always pop
-        this.playobj(poem, pop, fromArticle);
-      //}
+      if(!poem){
+        // poem not found in JsonData, offer to download full DB
+        this.ui.confirm(
+          '升级完整版诗词库',
+          '诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？',
+          () => {
+            this.goToMoreSettings();
+            this.downloadFullDb();
+          }
+        );
+        return;
+      }
+
+      poem.sample = sample;
+      //if 有mp3, do not show modal, play directly
+      //this.playobj(poem, poem.audio?false:true);
+      //always pop
+      this.playobj(poem, pop, fromArticle);
     }
   }
 
