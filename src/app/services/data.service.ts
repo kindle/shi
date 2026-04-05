@@ -2304,7 +2304,7 @@ export class DataService {
     }
 
     this.isLoadingFullDb = true;
-  this.fullDbDownloadProgress = 0;
+    this.fullDbDownloadProgress = 0;
 
     try {
       await this.ui.toast('bottom', '开始下载诗词库');
@@ -2327,6 +2327,17 @@ export class DataService {
 
       this.isFullDbReady = true;
       this.set(this.FULL_DB_READY_KEY, true);
+
+      // 诗词库更新后，需要让 Tab1 的节气文章重新走一轮随机逻辑，
+      // 否则会继续使用 LOCALSTORAGE_HOURLY_FUN 中基于旧库生成的缓存，
+      // 看不到新增的节气相关诗词。
+      this.funDataMap = new Map();
+      this.clearFunDataCache();
+      if (this.articleDataLoaded) {
+        // 强制刷新一次文章数据（包括节气 article），
+        // 并触发当前小时对应 seed 的重新生成。
+        this.refreshArticleData(true);
+      }
 
       await this.ui.toast('bottom', '诗词库下载完成');
     } catch {
