@@ -61,6 +61,7 @@ export class DataService {
   public isFullDbReady = false;
   public isLoadingFullDb = false;
   public fullDbDownloadProgress = 0; // 0-100 下载进度百分比
+  private hasCheckedFullDbFlag = false; // 是否已从存储中检查过 FULL_DB_READY_KEY
 
   private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
   private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
@@ -2225,6 +2226,7 @@ export class DataService {
    */
   private initDbWithTwoSteps() {
     this.get(this.FULL_DB_READY_KEY).then(async flag => {
+      this.hasCheckedFullDbFlag = true;
       this.isFullDbReady = !!flag;
 
       if (this.isFullDbReady) {
@@ -2248,6 +2250,21 @@ export class DataService {
         // 以避免你还没准备好精简 JSON 时功能受影响）
         this.loadMinimalDb();
       }
+    });
+  }
+
+  /**
+   * 供 Tab4 等页面在 ionViewDidEnter 时调用，
+   * 仅负责预热 FULL_DB_READY_KEY，避免首次点击搜索时再去读存储。
+   */
+  public warmupFullDbFlag() {
+    if (!this.useTwoStepDbLoading || this.hasCheckedFullDbFlag) {
+      return;
+    }
+
+    this.get(this.FULL_DB_READY_KEY).then(flag => {
+      this.isFullDbReady = !!flag;
+      this.hasCheckedFullDbFlag = true;
     });
   }
 
@@ -2279,15 +2296,11 @@ export class DataService {
    * 中移出，放到服务器上，然后把 loadJsonData 里所有路径改成指向远程地址。
    */
   public promptDownloadFullDbIfNeeded() {
-    if (!this.useTwoStepDbLoading || this.isLoadingFullDb) {
+    if (!this.useTwoStepDbLoading || this.isLoadingFullDb || this.isFullDbReady) {
       return;
     }
 
-    this.get(this.FULL_DB_READY_KEY).then(flag => {
-      if (flag) {
-        return;
-      }
-
+    const showConfirm = () => {
       this.ui.confirm(
         '下载完整诗词库',
         '完整诗词库体积较大，需要联网下载，是否现在下载？',
@@ -2296,9 +2309,27 @@ export class DataService {
           // 先跳到“更多设置”页面，方便查看下载进度等，然后再开始下载。
           this.goToMoreSettings();
           this.downloadFullDb();
-          
         }
       );
+    };
+
+    // 正常路径：Tab4 进入时已调用 warmupFullDbFlag，
+    // 这里直接根据缓存状态决定是否提示。
+    if (this.hasCheckedFullDbFlag) {
+      showConfirm();
+      return;
+    }
+
+    // 兜底路径：尚未预热时，这里再做一次检查，避免误提示。
+    this.get(this.FULL_DB_READY_KEY).then(flag => {
+      this.isFullDbReady = !!flag;
+      this.hasCheckedFullDbFlag = true;
+
+      if (this.isFullDbReady) {
+        return;
+      }
+
+      showConfirm();
     });
   }
 

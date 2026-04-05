@@ -35,6 +35,9 @@ export class TutorialPage implements OnInit {
   }
 
   home(){
+    // 完成教程后刷新文章数据，确保 Tab1 回来时图片等已就绪
+    this.data.refreshArticleData(true);
+
     this.ui.goback();
 
     // this.router.navigate(['/'], {

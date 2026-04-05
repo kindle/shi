@@ -44,6 +44,10 @@ export class Tab4Page implements OnInit {
         this.data.searchTopicData = data;
       });
     }*/
+
+    // 预热 FULL_DB_READY_KEY 等状态，避免首次点击搜索时再去读存储
+    this.data.warmupFullDbFlag();
+
     this.updateTabBarHeight();
   }
 
