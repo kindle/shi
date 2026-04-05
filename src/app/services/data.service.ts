@@ -2292,7 +2292,11 @@ export class DataService {
         '下载完整诗词库',
         '完整诗词库体积较大，需要联网下载，是否现在下载？',
         () => {
+          // 从 Tab4 搜索页触发时，用户确认下载完整版，
+          // 先跳到“更多设置”页面，方便查看下载进度等，然后再开始下载。
+          this.goToMoreSettings();
           this.downloadFullDb();
+          
         }
       );
     });
