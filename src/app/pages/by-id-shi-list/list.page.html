@@ -127,45 +127,52 @@
   <app-text name="" [text]="listdata.memo" *ngIf="!showFilter"></app-text>
     
   <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:20px;">
-    <ion-item *ngFor="let p of localList; let i = index" style="--padding-start:15px;--inner-padding-end:10px;">
-      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
-      *ngIf="listdata.onlyonepoet!==true"
-      style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;"
-          defaultImage="" 
-          lazyLoad="{{p.txtimg}}" 
-          *ngIf="p.txtimg" />
-        <img id="authorimg" style="border-radius: 10px;"
-          defaultImage="assets/img/default.jpg" 
-          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"
-          onerror="javascript:this.src='assets/img/default.jpg'" 
-          *ngIf="!p.txtimg" 
-          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-          [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-        'height':(data.isPlaying) ? '' : '5px' }"
-        ></div>
-      </ion-thumbnail>
-      <ion-badge slot="start" 
-      *ngIf="listdata.onlyonepoet===true"
-      color="light" mode="ios">
-        {{i+1}}
-      </ion-badge>
-      <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
-        <div style="display: flex; align-items: center;">
-          <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
-          <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-            {{p.title}} {{p.author}}
-          </h2>
-        </div>
-        <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
-          style="margin-top:5px;display: flex;align-items: end;">
-          {{p.sample?p.sample:p.paragraphs[0]}}
-        </p>
-      </ion-label>
+    <div *ngFor="let p of localList; let i = index" >
+      <ion-item lines="none" style="--padding-start:15px;--inner-padding-end:10px;">
+        <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+        *ngIf="listdata.onlyonepoet!==true"
+        style="display: flex;justify-content: center;align-items: center;">
+          <img style="border-radius: 10px;"
+            defaultImage="" 
+            lazyLoad="{{p.txtimg}}" 
+            *ngIf="p.txtimg" />
+          <img id="authorimg" style="border-radius: 10px;"
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg"
+            onerror="javascript:this.src='assets/img/default.jpg'" 
+            *ngIf="!p.txtimg" 
+            [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+          <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+            [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+          'height':(data.isPlaying) ? '' : '5px' }"
+          ></div>
+        </ion-thumbnail>
+        <ion-badge slot="start" 
+        *ngIf="listdata.onlyonepoet===true"
+        color="light" mode="ios">
+          {{i+1}}
+        </ion-badge>
+        <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
+          <div style="display: flex; align-items: center;">
+            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+            <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+              {{p.title}} {{p.author}}
+            </h2>
+          </div>
+          <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+            style="margin-top:5px;display: flex;align-items: end;">
+            {{p.sample?p.sample:p.paragraphs[0]}}
+          </p>
+        </ion-label>
 
-      <app-button-end [p]="p" page="idlist" slot="end"></app-button-end>
-    </ion-item>
+        <app-button-end [p]="p" page="idlist" slot="end"></app-button-end>
+      </ion-item>
+      <ion-item *ngIf="p.note&&p.note.length>0">
+        <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
+          {{p.note}}
+        </p>
+      </ion-item>
+    </div>
   </ion-list>
 
 

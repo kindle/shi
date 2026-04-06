@@ -31,7 +31,10 @@ export class Tab1Page {
     disableOnInteraction: true,
   }
   goToArticle(item:any){
-    console.log(item)
+    //console.log(this.data.JsonData.length)
+    //console.log(item);
+    //this.data.refreshArticleData(true);
+
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
 
     if(item.items){
@@ -45,6 +48,8 @@ export class Tab1Page {
       });
     }
     if(item.desc){
+      this.ensureSolarTermDescPoems(item);
+
       //update audio info..
       item.desc.filter((i:any)=>i.type=='poem').forEach((poem:any) => {
         let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
@@ -52,6 +57,7 @@ export class Tab1Page {
           poem.audio = fullData.audio;
         }
       });
+      
     }
     this.data.currentArticle = item;
     this.router.navigate(['article-viewer'], {
@@ -59,13 +65,46 @@ export class Tab1Page {
       }
     });
   }
+
+  private ensureSolarTermDescPoems(item:any) {
+    if (!Array.isArray(item?.desc)) {
+      return;
+    }
+
+    const hasListItem = item.desc.some((descItem:any) => descItem?.type === 'list');
+    const hasPoemItem = item.desc.some((descItem:any) => descItem?.type === 'poem');
+
+    if (!hasListItem || hasPoemItem) {
+      return;
+    }
+
+    const solarTermTextItem = item.desc.find((descItem:any) =>
+      descItem?.type === 'text'
+      && typeof descItem?.value === 'string'
+      && this.data.solarTermMap.has(descItem.value)
+    );
+
+    if (!solarTermTextItem) {
+      return;
+    }
+
+    const solarTermName = solarTermTextItem.value;
+    const solarTermArticle = this.data.getSolarTermPoem(solarTermName, item.small_title || '');
+
+    if (Array.isArray(solarTermArticle?.desc) && solarTermArticle.desc.some((descItem:any) => descItem?.type === 'poem')) {
+      item.desc = solarTermArticle.desc;
+    }
+  }
   
 
-  handleRefresh(event:any) {
-    setTimeout(() => {
-      //换一批文章
-      this.data.refreshArticleData(true);
-      event.target.complete();
+  async handleRefresh(event:any) {
+    setTimeout(async () => {
+      try {
+        //换一批文章
+        await this.data.refreshArticleData(true);
+      } finally {
+        event.target.complete();
+      }
     }, 500);
   }
 

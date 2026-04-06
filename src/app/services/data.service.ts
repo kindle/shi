@@ -81,6 +81,9 @@ export class DataService {
   // 本地完整库 zip 文件名（保存在 Directory.Data 下）
   private readonly DB_ZIP_FILE_NAME = 'db.zip';
 
+  private poemListLoaded = false;
+  private poemListLoadingPromise: Promise<void> | null = null;
+
   
 
   gototesturl(){//'tabs/tab1/me'
@@ -541,22 +544,40 @@ export class DataService {
       //24 节气
     ];
 
-    this.loadNextJSON(jsonFiles, 0);
-  }
-  loadNextJSON(jsonFiles: string[], index: number): void {
-    if (index < jsonFiles.length) {
-      this.http.get<any>(jsonFiles[index]).subscribe(
-        result => {
-          this.poemListData = this.poemListData.concat(result); 
-          this.loadNextJSON(jsonFiles, index + 1); 
-        },
-        error => {
-          console.error('Error loading JSON file:'+jsonFiles[index], error);
-        }
-      );
-    } else {
-      //console.log('All JSON files loaded:', this.poemListData);
+    if (this.poemListLoaded) {
+      return Promise.resolve();
     }
+
+    if (this.poemListLoadingPromise) {
+      return this.poemListLoadingPromise;
+    }
+
+    this.poemListLoadingPromise = this.loadNextJSON(jsonFiles, 0).then(() => {
+      this.poemListLoaded = true;
+    }).finally(() => {
+      this.poemListLoadingPromise = null;
+    });
+
+    return this.poemListLoadingPromise;
+  }
+
+  async waitForPoemListLoaded() {
+    await this.loadPoemList();
+  }
+
+  async loadNextJSON(jsonFiles: string[], index: number): Promise<void> {
+    if (index >= jsonFiles.length) {
+      return;
+    }
+
+    try {
+      const result = await firstValueFrom(this.http.get<any>(jsonFiles[index]));
+      this.poemListData = this.poemListData.concat(result);
+    } catch (error) {
+      console.error('Error loading JSON file:'+jsonFiles[index], error);
+    }
+
+    await this.loadNextJSON(jsonFiles, index + 1);
   }
 
   getData(json:any){
@@ -719,8 +740,10 @@ export class DataService {
   }
 
   totalArticleData:any = [];
-  refreshArticleData(force:boolean=false){
-    this.http.get<any>(`/assets/topic/article.json`).subscribe(result=>{
+  async refreshArticleData(force:boolean=false){
+    await this.waitForPoemListLoaded();
+
+    const result = await firstValueFrom(this.http.get<any>(`/assets/topic/article.json`));
       //把article.json放入articleData作为开卷有益文章展示
       //article.json包括vote,group等文章
       this.articleData = result;
@@ -798,7 +821,7 @@ export class DataService {
       //把articleData文章随机排序，取前5个文章+1group+1vote展示
       this.articleData = this.getArticleData("article");
       //console.log(this.articleData)
-    });
+
   }
 
   getMoreArticleData(force:boolean=false)
@@ -908,7 +931,6 @@ export class DataService {
     let dateStrChinese = solar.getLunar().getMonthInChinese() + "月" + solar.getLunar().getDayInChinese();
     //console.log("today节气："+solarTermName)
 
-    
     if(!this.disableRandomFunData)
     {
       // //下个节日
@@ -942,16 +964,15 @@ export class DataService {
       //       temp.splice(1, 0, item);
       //   }
       // }
-
       //test 
       if(this.SOLAR_TERM_NOTIFICATION_TEST_MODE){//test only
         temp.unshift(this.getSolarTermPoem('大吉', dateStrChinese));
       }
       else{
-
         //下个二十四节气
         if(solarTermName.length>0){
           //temp = temp.concat(this.getSolarTermPoem(solarTermName));
+          console.log('getSolarTermPoem')
           temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
         }else{
           //calculate next solar term
@@ -978,8 +999,9 @@ export class DataService {
 
           //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
           //item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
-
+console.log(nextName)
           let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
+console.log(item)
           item.big_title =  nextName + " · " + nextDateStr;
           //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
           //item.big_title = nextName+"("+nextDateStr+")";
@@ -991,7 +1013,6 @@ export class DataService {
       
       
     }
-
     //test
     if(this.TestMode)
     {
@@ -1034,7 +1055,7 @@ export class DataService {
 
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
-    
+    console.log(this.JsonData.length);
     //如果今天是二十四节气 +1
     let tempSolarTermPoems = this.JsonData.filter((j:any)=>{
       if (!j || j.id == null) {
