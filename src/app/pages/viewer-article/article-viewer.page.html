@@ -205,7 +205,7 @@
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
         </ion-item>
-        <ion-item lines="none" *ngIf="it.note">
+        <ion-item lines="none" *ngIf="it.note&&it.note.length>0">
           <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
             {{it.note}}
           </p>
@@ -254,7 +254,7 @@
                 </ion-button>
                 -->
               </ion-item>
-              <ion-item lines="none" *ngIf="p.note">
+              <ion-item lines="none" *ngIf="p.note&&p.note.length>0">
                 <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
                   {{p.note}}
                 </p>
