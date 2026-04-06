@@ -713,7 +713,9 @@ export class DataService {
       }
     });
 
-    this.refreshArticleData();
+    // 每次加载文章相关 JSON 后，强制刷新一次开卷有益文章，
+    // 避免上一次缓存了“空文章列表”导致本小时内一直为空。
+    this.refreshArticleData(true);
   }
 
   totalArticleData:any = [];
@@ -855,15 +857,19 @@ export class DataService {
       //console.log('not find article'+this.articleData.length)
       let tempdata = this.setRandomArticles(this.articleData);
       //console.log(tempdata)
-      this.funDataMap.set(seed, tempdata);
-      this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
-      //console.log(this.funDataMap)
+      // 只有在随机结果非空时才写入缓存，避免把空数组写死到本小时的缓存里
+      if (tempdata && tempdata.length > 0) {
+        this.funDataMap.set(seed, tempdata);
+        this.set(this.LOCALSTORAGE_HOURLY_FUN, this.mapToJsonStr(this.funDataMap));
+      }
     }
     else{
       //console.log('find article')
     }
 
-    return this.funDataMap.get(seed);
+    // 如果缓存里没有这个 seed（例如随机结果为空时未缓存），
+    // 至少返回当前的 articleData，保证不会出现完全空列表。
+    return this.funDataMap.get(seed) || this.articleData;
   }
 
   setRandomArticles(data:any){
@@ -1030,9 +1036,28 @@ export class DataService {
     let solarTermInfo = this.solarTermMap.get(solarTermName);
     
     //如果今天是二十四节气 +1
-    let tempSolarTermPoems = this.JsonData.filter((j:any)=>
-      j.text.indexOf(solarTermName)>-1&&
-      j.id!=null).slice(0,50);
+    let tempSolarTermPoems = this.JsonData.filter((j:any)=>{
+      if (!j || j.id == null) {
+        return false;
+      }
+
+      const tags: any[] = Array.isArray(j.tags) ? j.tags : [];
+
+      // 1. 如果 tag 里直接有当前节气名（如“谷雨”），无条件加入
+      if (tags.indexOf(solarTermName) > -1) {
+        return true;
+      }
+
+      // 2. 否则，用 text 匹配节气名，但排除打了“非二十四节气”的条目
+      if (j.text && j.text.indexOf(solarTermName) > -1) {
+        if (tags.indexOf('非二十四节气') > -1) {
+          return false;
+        }
+        return true;
+      }
+
+      return false;
+    }).slice(0,50);
     let solarTermPoems:any = [];
     tempSolarTermPoems.forEach((p:any) => {
       solarTermPoems.push({
@@ -3193,6 +3218,17 @@ export class DataService {
       }
     }catch(e){
       console.warn('Clear window.localStorage failed', e);
+    }
+
+    // 重置完整版诗词库标记：
+    // 1）内存状态设为 false，避免当前会话继续认为已下载完整版；
+    // 2）持久化 FULL_DB_READY_KEY=false，确保下次启动按精简版逻辑初始化。
+    this.isFullDbReady = false;
+    this.hasCheckedFullDbFlag = false;
+    try{
+      this.set(this.FULL_DB_READY_KEY, false);
+    }catch(e){
+      console.warn('Reset FULL_DB_READY_KEY failed', e);
     }
   }
 
