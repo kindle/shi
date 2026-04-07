@@ -192,27 +192,42 @@
           </ion-thumbnail>
           
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)" style="color:black;">
-            <h2 [style.fontSize]="data.zoom(17)"
+            <h2 [style.fontSize]="data.zoom(20)"
             class="show-only-one-line">
-              {{it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")}}</h2>
-            <p style="margin-top:5px;display: flex;align-items: center;color:black;"
+              {{(it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")).split('，')[0]}}</h2>
+            <h2 [style.fontSize]="data.zoom(20)"
+            class="show-only-one-line">
+              {{(it.sample?it.sample:(it.paragraphs?it.paragraphs[0]:"")).split('，')[1]?.replace('。','')}}</h2>
+            <!-- <p style="margin-top:5px;display: flex;align-items: center;color:black;"
             [style.fontSize]="data.zoom(14)">
               {{it.author}}《{{it.title}}》
               <ion-icon name="headset" *ngIf="it.audio" color="primary"></ion-icon>
-            </p>
-            
+            </p>  -->
           </ion-label>
 
           <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
         </ion-item>
-        <ion-item lines="none" *ngIf="it.note&&it.note.length>0">
-          <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
+        <ion-item lines="none" *ngIf="it.author&&it.title"
+         (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)">
+          <p slot="end" style="margin-top:5px;display: flex;align-items: center;color:black;"
+            [style.fontSize]="data.zoom(17)">
+            <ion-icon name="headset" *ngIf="it.audio" color="primary" style="margin-right:5px;"></ion-icon>
+            {{it.author}}《{{it.title}}》
+          </p>
+        </ion-item>
+        <ion-item *ngIf="it.note&&it.note.length>0"
+           (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)">
+          <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(17)">
             {{it.note}}
           </p>
         </ion-item>
 
-        <div *ngIf="it.type==='list'">
+        <!--你可能也喜欢-->
+        <div *ngIf="it.type==='list'&&!data.currentArticle.is24solarTerm" style="margin-top:10px;">
           <app-tile [name]="it.name" [source]="localFunData" ></app-tile>
+        </div>
+        <div *ngIf="it.type==='list'&&data.currentArticle.is24solarTerm" style="margin-top:10px;">
+          <app-tile [name]="it.name" [source]="data.term24ArticleList" ></app-tile>
         </div>
       </div>
 
@@ -254,7 +269,7 @@
                 </ion-button>
                 -->
               </ion-item>
-              <ion-item lines="none" *ngIf="p.note&&p.note.length>0">
+              <ion-item *ngIf="p.note&&p.note.length>0">
                 <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(14)">
                   {{p.note}}
                 </p>

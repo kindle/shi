@@ -799,7 +799,7 @@ export class DataService {
             [{
               "type":"list",
               "value":"",
-              "name":this.ui.instant('Title.GuessYouLike'),//"趣味诗单",
+              "name":this.ui.instant('Title.GuessYouLike'),//"你可能也喜欢",
               "memo":""
             }]
           ),
@@ -906,6 +906,8 @@ export class DataService {
   curJieQiTermInfo:any;
   nextJieQiTermInfo:any;
   nextNextJieQiTermInfo:any;
+  term24Array:any = [];
+  term24ArticleList:any = [];
 
   setRandomArticles(data:any){
 
@@ -970,9 +972,10 @@ export class DataService {
     console.log('curJieQiTermInfo:', this.curJieQiTermInfo);
     console.log('nextJieQiTermInfo:', this.nextJieQiTermInfo);
     console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
+    this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
 
-
-
+    this.getTerm24Articles();
+    console.log('term24ArticleList:', this.term24ArticleList);
 
     //test 大寒
     //solarTermName = "大寒"
@@ -1121,6 +1124,57 @@ export class DataService {
     return `${jieQi}`.trim();
   }
 
+  private formatTermInfoDate(date?: string | null): string {
+    if (!date) {
+      return '';
+    }
+
+    const [year, month, day] = date.split('-').map(value => Number(value));
+    if (!year || !month || !day) {
+      return '';
+    }
+
+    return `${month}月${day}日`;
+  }
+
+  private formatTermInfoDays(days?: number | null): string {
+    if (days === null || days === undefined) {
+      return '';
+    }
+
+    if (days > 0) {
+      return `还有${days}天`;
+    }
+
+    if (days < 0) {
+      return `${Math.abs(days)}天前`;
+    }
+
+    return '今天';
+  }
+
+  private getTerm24Articles() {
+    this.term24ArticleList = [];
+
+    for (const termInfo of this.term24Array) {
+      if (!termInfo?.name) {
+        continue;
+      }
+
+      const article = this.poemListData.find((item:any) => item?.sub === termInfo.name);
+      if (!article) {
+        continue;
+      }
+
+      this.term24ArticleList.push({
+        ...this.deepCopy(article),
+        sub: `${article?.sub || ''} ${this.formatTermInfoDate(termInfo?.date)}`.trim(),
+        desc: this.formatTermInfoDays(termInfo?.days),
+        termInfo: this.deepCopy(termInfo),
+      });
+    }
+  }
+
 
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
@@ -1172,6 +1226,7 @@ export class DataService {
     });
     let result = {
       template:"text",
+      is24solarTerm:true,
       min_height:"380px",
       bg_image:solarTermInfo.image,
       title_color:"white",
@@ -1182,13 +1237,13 @@ export class DataService {
         "value":solarTermName,
         "memo":solarTermInfo.desc?solarTermInfo.desc:
         (solarTermInfo.title?solarTermInfo.title:solarTermName),
-        "name":""
+        "name":"" 
       }].concat(solarTermPoems).concat(
         [{
           "type":"list",
           "value":"",
           "memo":"",
-          "name":this.ui.instant('Title.GuessYouLike'),//"趣味诗单"
+          "name":this.ui.instant('Title.GuessYouLike'),//"你可能也喜欢"
         }]
       ),
       link:"",
