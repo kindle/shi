@@ -116,9 +116,35 @@ export class ListPage {
   ) { }
 
   id:any;
+
+  private buildSolarTermList(desc:any[] = []) {
+    return desc
+      .filter((item:any) => item?.type !== 'list' && item?.type !== 'text')
+      .map(({ type, paragraphs, solarterm, ...item }: any) => ({
+        ...item,
+        sample: item.sample || (Array.isArray(paragraphs) ? paragraphs[0] : ''),
+        note: item.note || '',
+      }));
+  }
+
   ionViewWillEnter() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
+
+
+    //print 24节气list for test 
+    // if(this.listdata.id>=2001&&this.listdata.id<=2024)//24节气list
+    // {
+    //   const my24list = this.buildSolarTermList(
+    //     //this.data.getSolarTermPoem(this.listdata.sub,'').desc
+    //     this.data.getSolarTermPoem('春分','').desc
+    //   );
+
+    //   console.log('my24list:', my24list);
+    // }
+
+
+    
     
     //console.log(this.listdata)
     this.localList = this.listdata.list;

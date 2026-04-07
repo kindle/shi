@@ -968,14 +968,14 @@ export class DataService {
     this.curJieQiTermInfo = this.createJieQiTermInfo(solar, curJieQi);
     this.nextJieQiTermInfo = this.createJieQiTermInfo(solar, nextJieQi);
     this.nextNextJieQiTermInfo = this.createJieQiTermInfo(solar, nextNextJieQi);
-    console.log('preJieQiTermInfo:', this.preJieQiTermInfo);
-    console.log('curJieQiTermInfo:', this.curJieQiTermInfo);
-    console.log('nextJieQiTermInfo:', this.nextJieQiTermInfo);
-    console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
+    // console.log('preJieQiTermInfo:', this.preJieQiTermInfo);
+    // console.log('curJieQiTermInfo:', this.curJieQiTermInfo);
+    // console.log('nextJieQiTermInfo:', this.nextJieQiTermInfo);
+    // console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
     this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
 
     this.getTerm24Articles();
-    console.log('term24ArticleList:', this.term24ArticleList);
+    //console.log('term24ArticleList:', this.term24ArticleList);
 
     //test 大寒
     //solarTermName = "大寒"
