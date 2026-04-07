@@ -38,6 +38,12 @@ export interface UserPhoto {
   webviewPath?: string;
 }
 
+interface JieQiTermInfo {
+  name: string;
+  date: string | null;
+  days: number | null;
+}
+
 export enum ViewType{
   Author=0,
   Tag,
@@ -793,7 +799,7 @@ export class DataService {
             [{
               "type":"list",
               "value":"",
-              "name":"趣味诗单",
+              "name":this.ui.instant('Title.GuessYouLike'),//"趣味诗单",
               "memo":""
             }]
           ),
@@ -895,6 +901,12 @@ export class DataService {
     return this.funDataMap.get(seed) || this.articleData;
   }
 
+
+  preJieQiTermInfo:any;
+  curJieQiTermInfo:any;
+  nextJieQiTermInfo:any;
+  nextNextJieQiTermInfo:any;
+
   setRandomArticles(data:any){
 
     let temp:any = [];
@@ -922,6 +934,46 @@ export class DataService {
     let solar = Solar.fromYmd(today.getFullYear(),(today.getMonth()+1),today.getDate());
     //let solar = Solar.fromYmd(2023,9,23);
     let solarTermName = solar.getLunar().getJieQi();//example: "夏至";
+    
+
+    let preJieQi:any = this.getJieQiName(solar.getLunar().getPrevJieQi());
+    let curJieQi:any = this.getJieQiName(solar.getLunar().getCurrentJieQi());
+    let nextJieQi:any = this.getJieQiName(solar.getLunar().getNextJieQi());
+
+    const solarTermNames = Array.from(this.solarTermMap.keys()).filter((name:any) => name !== '大吉');
+    if(curJieQi==null||curJieQi==""){
+      curJieQi = preJieQi;
+      const currentIndex = solarTermNames.indexOf(curJieQi);
+      if (currentIndex > -1) {
+        preJieQi = solarTermNames[(currentIndex - 1 + solarTermNames.length) % solarTermNames.length];
+      }
+    } 
+
+
+    let nextNextJieQi:any = "";
+    const nextNextIndex = solarTermNames.indexOf(nextJieQi);
+    if (nextNextIndex > -1) {
+        nextNextJieQi = solarTermNames[(nextNextIndex + 1) % solarTermNames.length];
+    }
+
+    // console.log("previous:"+preJieQi)
+    // console.log("current:"+curJieQi)
+    // console.log("next:"+nextJieQi)
+    // console.log("nextNext:"+nextNextJieQi)
+
+
+    this.preJieQiTermInfo = this.createJieQiTermInfo(solar, preJieQi);
+    this.curJieQiTermInfo = this.createJieQiTermInfo(solar, curJieQi);
+    this.nextJieQiTermInfo = this.createJieQiTermInfo(solar, nextJieQi);
+    this.nextNextJieQiTermInfo = this.createJieQiTermInfo(solar, nextNextJieQi);
+    console.log('preJieQiTermInfo:', this.preJieQiTermInfo);
+    console.log('curJieQiTermInfo:', this.curJieQiTermInfo);
+    console.log('nextJieQiTermInfo:', this.nextJieQiTermInfo);
+    console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
+
+
+
+
     //test 大寒
     //solarTermName = "大寒"
     //console.log('更多信息')
@@ -999,9 +1051,9 @@ export class DataService {
 
           //let item:any = this.getSolarTermPoem(nextName, nextDateStr + " " + daysLeftStr);
           //item.big_title = this.ui.instant("SolarTerm.NextSolarTerm") + " " + nextName;
-console.log(nextName)
+//console.log(nextName)
           let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
-console.log(item)
+//console.log(item)
           item.big_title =  nextName + " · " + nextDateStr;
           //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
           //item.big_title = nextName+"("+nextDateStr+")";
@@ -1053,9 +1105,36 @@ console.log(item)
     ["大吉",{image:"ice-570500_1280.jpg", title:"腊酒自盈樽，金炉兽炭温", desc:"大寒是二十四节气中的最后一个节气。大寒同小寒一样，也是表示天气寒冷程度的节气，大寒是天气寒冷到极致的意思。"}],
   ]);
 
+  private getJieQiName(jieQi:any): string {
+    if (!jieQi) {
+      return '';
+    }
+
+    if (typeof jieQi === 'string') {
+      return jieQi.trim();
+    }
+
+    if (typeof jieQi.getName === 'function') {
+      return jieQi.getName().trim();
+    }
+
+    return `${jieQi}`.trim();
+  }
+
+
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
-    console.log(this.JsonData.length);
+    if (!solarTermInfo) {
+      solarTermInfo = {
+        image: 'festival_default.jpg',
+        title: solarTermName,
+        desc: solarTermName,
+        date: '',
+        days: 0,
+      };
+    }
+
+    //console.log(this.JsonData.length);
     //如果今天是二十四节气 +1
     let tempSolarTermPoems = this.JsonData.filter((j:any)=>{
       if (!j || j.id == null) {
@@ -1109,7 +1188,7 @@ console.log(item)
           "type":"list",
           "value":"",
           "memo":"",
-          "name":"趣味诗单"
+          "name":this.ui.instant('Title.GuessYouLike'),//"趣味诗单"
         }]
       ),
       link:"",
@@ -1211,6 +1290,39 @@ console.log(item)
       }
     }
     return null;
+  }
+
+  private createJieQiTermInfo(solar: Solar, jieQiName: string): JieQiTermInfo {
+    const table = solar.getLunar().getJieQiTable();
+    const targetSolar = table.get(jieQiName);
+    const date = targetSolar?.toYmd() || null;
+    const days = this.getDaysComparedToToday(date);
+
+    return {
+      name: jieQiName,
+      date,
+      days,
+    };
+  }
+
+  private getDaysComparedToToday(targetSolarDate?: string | null) {
+    if (!targetSolarDate) {
+      return null;
+    }
+
+    const [year, month, day] = targetSolarDate.split('-').map(value => Number(value));
+    if (!year || !month || !day) {
+      return null;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const targetDate = new Date(year, month - 1, day);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const diff = targetDate.getTime() - today.getTime();
+    return Math.round(diff / (1000 * 3600 * 24));
   }
 
 

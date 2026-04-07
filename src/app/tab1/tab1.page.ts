@@ -30,7 +30,7 @@ export class Tab1Page {
     delay: 0,
     disableOnInteraction: true,
   }
-  goToArticle(item:any){
+  async goToArticle(item:any){
     //console.log(this.data.JsonData.length)
     //console.log(item);
     //this.data.refreshArticleData(true);
@@ -48,7 +48,7 @@ export class Tab1Page {
       });
     }
     if(item.desc){
-      this.ensureSolarTermDescPoems(item);
+      await this.ensureSolarTermDescPoems(item);
 
       //update audio info..
       item.desc.filter((i:any)=>i.type=='poem').forEach((poem:any) => {
@@ -66,7 +66,7 @@ export class Tab1Page {
     });
   }
 
-  private ensureSolarTermDescPoems(item:any) {
+  private async ensureSolarTermDescPoems(item:any) {
     if (!Array.isArray(item?.desc)) {
       return;
     }
@@ -89,6 +89,9 @@ export class Tab1Page {
     }
 
     const solarTermName = solarTermTextItem.value;
+    while ((this.data.JsonData?.length || 0) <= 0) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
     const solarTermArticle = this.data.getSolarTermPoem(solarTermName, item.small_title || '');
 
     if (Array.isArray(solarTermArticle?.desc) && solarTermArticle.desc.some((descItem:any) => descItem?.type === 'poem')) {
