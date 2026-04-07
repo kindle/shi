@@ -568,9 +568,14 @@ export class Tab4Page implements OnInit {
 
 
   getHighlight(p:any): SafeHtml{
+    const searchTerms = (this.data.searchText || '')
+      .split(' ')
+      .map((term:string) => term.trim())
+      .filter((term:string, index:number, terms:string[]) => term !== '' && terms.indexOf(term) === index)
+      .slice(0, 3);
     let result = "";
     p.paragraphs.forEach((s:any) => {
-      if(s.indexOf(this.data.searchText)>-1)
+      if(searchTerms.some((term:string) => s.indexOf(term) > -1))
       {
         result = s;
       }
@@ -581,13 +586,24 @@ export class Tab4Page implements OnInit {
     else{
       result = result?.substring(0,50);
     }
-    p.sample = this.data.searchText;
+    p.sample = searchTerms.join(' ');
+    let highlightedResult = result;
+    searchTerms.forEach((term:string) => {
+      highlightedResult = highlightedResult.replace(
+        new RegExp(this.escapeRegExp(term), 'g'),
+        "<b class='highlight' style='background-color:yellow !important'>" + term + "</b>"
+      );
+    });
     
     //return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
     return this.sanitizer.bypassSecurityTrustHtml(
-      result.replace(this.data.searchText,"<b class='highlight' style='background-color:yellow !important'>"+this.data.searchText+"</b>")
+      highlightedResult
     );
 
+  }
+
+  private escapeRegExp(value:string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
 
