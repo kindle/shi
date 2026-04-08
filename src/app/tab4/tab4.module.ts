@@ -11,6 +11,7 @@ import { LongPressDirective } from '../directives/long-press.directive';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
+import { AuthorComponentModule } from '../components/author/author.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SubTitleComponentModule } from '../components/sub-title/sub-title.modul
     IonicModule,
     Tab4PageRoutingModule,
     LazyLoadImageModule,
+    AuthorComponentModule,
     AsciiCardComponentModule,
     SubTitleComponentModule
   ],

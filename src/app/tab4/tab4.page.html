@@ -40,6 +40,31 @@
     </ion-toolbar>
   </ion-header>
 
+  
+  <ion-toolbar style="padding-top:0px;--background: white;"><!--诗人、诗词以及更多内容-->
+    <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
+      [class.ipad-searchbar]="ui.isipad"
+      [style.fontSize]="data.zoom(17)"
+      [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
+      [(ngModel)]="data.searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionBlur)="onLoseFocus()"
+      (ionCancel)="onCancel()"
+      (ionInput)="onSearchChanged()"
+      (ionClear)="onClearMic()"
+      show-clear-button="always"
+      clear-icon="mic"
+      style="margin-top:15px;"
+      show-cancel-button="focus"
+      [cancelButtonText]="ui.instant('Action.Cancel')">
+    </ion-searchbar>
+    <ion-icon name="mic" color="danger" 
+    style="font-size:23px;margin-left:10px;margin-top:0px;margin-bottom:10px;" 
+    *ngIf="btnStatus==='OPEN'"
+    ></ion-icon>
+  </ion-toolbar>
+  
+
   <ion-header [translucent]="ui.isIos" *ngIf="false"
   style="position:sticky;top:0px;">
     <ion-toolbar style="padding-top:0px;"><!--诗人、诗词以及更多内容-->
@@ -142,7 +167,7 @@
         <h2 class="show-only-one-line" 
         [innerHTML]="getHighlight(p)"></h2>
         <p style="margin-top:5px;display: flex;align-items: end;">
-          {{p.author}}《{{p.title}}》
+          <span [innerHTML]="getHighlightMeta(p)"></span>
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
@@ -263,10 +288,20 @@
   <!--(longPressed)="active(topic.id)" -->
   <!---->
 
-  <app-sub-title name="{{ ui.instant('Title.ByDynasty') }}" *ngIf="!data.showFilter"></app-sub-title> <!--按朝代-->
+  <app-sub-title name="{{ ui.instant('Title.ByAuthor') }}" 
+    *ngIf="!data.showFilter">
+  </app-sub-title> <!--按作者-->
+
+  <div *ngIf="!data.showFilter&&poets.length>=1">
+    <app-author name="" [source]="poets"></app-author>
+  </div>
+
+  <app-sub-title name="{{ ui.instant('Title.ByDynasty') }}" 
+    *ngIf="!data.showFilter">
+  </app-sub-title> <!--按朝代-->
  
-  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
-  *ngIf="!data.showFilter">
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
+    grid-gap:0px;padding:0 10px;" *ngIf="!data.showFilter">
     <ion-card *ngFor="let topic of this.data.getSearchTopicData('dynasty')"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
@@ -473,7 +508,7 @@
   <div class="placeholder-playbox"></div>
 </ion-content>
 
-<div [style.padding-bottom]="isFocused ? '0px' : '10px'" 
+<div [style.padding-bottom]="isFocused ? '0px' : '10px'"   *ngIf="false"
      [style.padding-left]="isFocused ? '0px' : '10px'" 
      [style.padding-right]="isFocused ? '0px' : '10px'" 
      style="background-color: transparent;">

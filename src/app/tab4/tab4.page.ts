@@ -18,6 +18,8 @@ export class Tab4Page implements OnInit {
   localJsonData:any;
   isFocused = false;
   tabBarHeight = '50px';
+  poets:any = ['李白','杜甫','白居易','苏轼','辛弃疾','李清照','王维','孟浩然','柳宗元','韩愈','刘禹锡','王昌龄','高适','岑参','王之涣','贺知章','张九龄','崔颢'];
+
   constructor(
     public data: DataService,
     public ui: UiService,
@@ -568,11 +570,7 @@ export class Tab4Page implements OnInit {
 
 
   getHighlight(p:any): SafeHtml{
-    const searchTerms = (this.data.searchText || '')
-      .split(' ')
-      .map((term:string) => term.trim())
-      .filter((term:string, index:number, terms:string[]) => term !== '' && terms.indexOf(term) === index)
-      .slice(0, 3);
+    const searchTerms = this.getSearchTerms();
     let result = "";
     p.paragraphs.forEach((s:any) => {
       if(searchTerms.some((term:string) => s.indexOf(term) > -1))
@@ -587,19 +585,40 @@ export class Tab4Page implements OnInit {
       result = result?.substring(0,50);
     }
     p.sample = searchTerms.join(' ');
-    let highlightedResult = result;
+    //return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
+    return this.sanitizer.bypassSecurityTrustHtml(
+      this.highlightText(result, searchTerms)
+    );
+
+  }
+
+  getHighlightMeta(p:any): SafeHtml{
+    const meta = `${p.author || ''}《${p.title || ''}》`;
+
+    return this.sanitizer.bypassSecurityTrustHtml(
+      this.highlightText(meta, this.getSearchTerms())
+    );
+  }
+
+  private getSearchTerms(): string[] {
+    return (this.data.searchText || '')
+      .split(' ')
+      .map((term:string) => term.trim())
+      .filter((term:string, index:number, terms:string[]) => term !== '' && terms.indexOf(term) === index)
+      .slice(0, 3);
+  }
+
+  private highlightText(value:string, searchTerms:string[]): string {
+    let highlightedValue = value || '';
+
     searchTerms.forEach((term:string) => {
-      highlightedResult = highlightedResult.replace(
+      highlightedValue = highlightedValue.replace(
         new RegExp(this.escapeRegExp(term), 'g'),
         "<b class='highlight' style='background-color:yellow !important'>" + term + "</b>"
       );
     });
-    
-    //return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
-    return this.sanitizer.bypassSecurityTrustHtml(
-      highlightedResult
-    );
 
+    return highlightedValue;
   }
 
   private escapeRegExp(value:string): string {
