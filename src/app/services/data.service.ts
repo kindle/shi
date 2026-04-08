@@ -3131,6 +3131,59 @@ export class DataService {
 
 
   collectList:any = [{group:"",data:null, lastupdate:Date.now()}];
+  private likedLookup: Record<string, Set<any>> = {};
+
+  private rebuildLikedLookup(){
+    const nextLookup: Record<string, Set<any>> = {};
+
+    for(const item of this.collectList || []){
+      if(!item?.group){
+        continue;
+      }
+
+      const key = this.getKey(item.group);
+      const value = item.data?.[key];
+
+      if(value == null){
+        continue;
+      }
+
+      if(!nextLookup[item.group]){
+        nextLookup[item.group] = new Set<any>();
+      }
+
+      nextLookup[item.group].add(value);
+    }
+
+    this.likedLookup = nextLookup;
+  }
+
+  private addToLikedLookup(listdata:any, group:any){
+    const key = this.getKey(group);
+    const value = listdata?.[key];
+
+    if(value == null){
+      return;
+    }
+
+    if(!this.likedLookup[group]){
+      this.likedLookup[group] = new Set<any>();
+    }
+
+    this.likedLookup[group].add(value);
+  }
+
+  private removeFromLikedLookup(listdata:any, group:any){
+    const key = this.getKey(group);
+    const value = listdata?.[key];
+
+    if(value == null){
+      return;
+    }
+
+    this.likedLookup[group]?.delete(value);
+  }
+
   recentCollection(){
     let result = this.collectList.sort((a:any,b:any)=>{return b.lastupdate-a.lastupdate});
     //console.log(result)
@@ -3169,6 +3222,8 @@ export class DataService {
         this.collectList = JSON.parse(value);
         this.loadAllLibraryCount();
       }
+
+      this.rebuildLikedLookup();
     });
   }
 
@@ -3212,6 +3267,7 @@ export class DataService {
       data:{id:id, name:name,desc:desc,color:this.getRandomColor(),list:[],image:[]}, 
       lastupdate: Date.now()
     });
+    this.addToLikedLookup({ id }, 'customlist');
     this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     this.addTracker({name:"AddCustomList", data:{name:name, desc:desc}});
   }
@@ -3240,6 +3296,7 @@ export class DataService {
 
     if(!this.isliked(listdata, group)){
       this.collectList.push({group:group, data:listdata, lastupdate: Date.now()});
+      this.addToLikedLookup(listdata, group);
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
     }
     
@@ -3283,20 +3340,8 @@ export class DataService {
   }
 
   isliked(listdata:any, group:any){
-    //in case it's brief data from json
-    if(group==='poem'){
-      let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
-      // console.log(listdata)
-      // console.log(group)
-      // console.log(fullData)
-      if(fullData.length===1){
-        listdata = fullData[0];
-      }
-    }
-
-    let allpoemlist = this.collectList.filter((l:any)=>l.group==group);
     let key = this.getKey(group);
-    return allpoemlist.find((pl:any)=>pl.data?.[key]===listdata[key])
+    return this.likedLookup[group]?.has(listdata?.[key]) === true;
   }
 
   private getKey(group:any){
@@ -3353,6 +3398,7 @@ export class DataService {
                 let item = this.collectList[i];
                 if (item.group===group && item.data?.[key] === listdata[key]) {
                   this.collectList.splice(i, 1);
+                  this.removeFromLikedLookup(listdata, group);
                     break;
                 }
               }

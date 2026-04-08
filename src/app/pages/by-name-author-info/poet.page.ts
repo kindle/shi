@@ -141,6 +141,10 @@ export class PoetPage {
     }, 200);
   }
 
+  trackByPoem(index:number, poem:any){
+    return poem?.id ?? index;
+  }
+
 
 
   defaultBgHeight:string|any;

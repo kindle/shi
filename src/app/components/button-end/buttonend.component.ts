@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
@@ -9,6 +9,7 @@ import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/a
   selector: 'app-button-end',
   templateUrl: './buttonend.component.html',
   styleUrls: ['./buttonend.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonEndComponent {
 
@@ -98,14 +99,10 @@ export class ButtonEndComponent {
   }
 
   like(p: any, type: string) {
-    setTimeout(() => {
-      this.data.likelist(p, type);
-    }, 500);
+    this.data.likelist(p, type);
   }
 
   unlike(p: any, type: string) {
-    setTimeout(() => {
-      this.data.unlikelist(p, type);
-    }, 500);
+    this.data.unlikelist(p, type);
   }
 }

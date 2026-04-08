@@ -7,7 +7,7 @@
     <ion-buttons slot="end">
       <ion-button *ngIf="authorData&&!data.isliked(authorData,'poetlist')"
         (click)="data.likelist(authorData,'poetlist')"
-        `style="--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
+        style="--background: rgb(238,238,239); --border-radius: 50%; width: 35px; height: 35px; --padding-start: 0; --padding-end: 0;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
       <ion-button id="popover-button-poet-{{data.currentTab}}"
@@ -95,12 +95,16 @@
           <ion-card 
             defaultImage="" 
             lazyLoad="{{getUrl()}}"
-            style="margin:auto;width:200px;height:200px;
-              background-size:cover;
-              background-color:{{data.getbgcolor()}};
-              background-repeat: no-repeat;
-              background-position: center;
-              border-radius: 10px;" 
+            [ngStyle]="{
+              'margin': 'auto',
+              'width': '200px',
+              'height': '200px',
+              'background-size': 'cover',
+              'background-color': data.getbgcolor(),
+              'background-repeat': 'no-repeat',
+              'background-position': 'center',
+              'border-radius': '10px'
+            }"
               (click)="ui.imageviewer(getUrl())">
           </ion-card>
       </div>
@@ -134,7 +138,7 @@
   </ion-list>
 
   <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult; let i = index">
+    <ion-item *ngFor="let p of displayResult; let i = index; trackBy: trackByPoem">
       <!-- <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;" 
