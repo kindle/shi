@@ -82,7 +82,7 @@ export class ButtonEndComponent {
   }
     
   share(){
-    this.data.share1('camera1')
+    //this.data.share1('camera1')
     /*
     const historyBlock:any = document.getElementById("sharetest");
     

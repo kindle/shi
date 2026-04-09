@@ -302,7 +302,7 @@
  
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
     grid-gap:0px;padding:0 10px;" *ngIf="!data.showFilter">
-    <ion-card *ngFor="let topic of this.data.getSearchTopicData('dynasty')"
+    <ion-card *ngFor="let topic of data.getSearchTopicData('dynasty')"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
       [style.height]="ui.isipad ? '250px' : '120px'"
@@ -336,7 +336,7 @@
 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
-    <ion-card *ngFor="let topic of this.data.getSearchTopicData('type')"
+    <ion-card *ngFor="let topic of data.getSearchTopicData('type')"
       defaultImage="" 
       lazyLoad="{{topic.image}}" 
       [style.height]="ui.isipad ? '250px' : '120px'"
@@ -361,6 +361,42 @@
       [style.fontSize]="data.zoom(20)"> 
         {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
           topic.i18n[data.currentLocale] : topic.name }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <app-sub-title name="按年级" *ngIf="!data.showFilter"></app-sub-title> <!--按年级-->
+
+  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
+  *ngIf="!data.showFilter">
+    <ion-card *ngFor="let topic of gradeTopcis"
+      defaultImage="" 
+      lazyLoad="{{topic.src}}" 
+      [style.height]="ui.isipad ? '250px' : '120px'"
+      [style.position]="ui.isipad ? 'relative' : ''"
+      style="margin:5px;
+      background-position:{{topic.position}};
+      background-size:cover;background-color:{{data.getbgcolor()}}"
+      class="search-tile-img"
+      id="{{topic.id}}"
+      (click)="goToTag(topic)"
+      ion-long-press 
+      (pressed)="pressed(topic.id)" 
+      (longPressed)="active(topic.id)"
+      (pressEnded)="released(topic.id)"
+    >
+      <ion-card-header [ngClass]="{'gray-mask': currentLpId === topic.id }">
+        <ion-card-title>&nbsp;</ion-card-title>
+        <ion-card-subtitle>&nbsp;</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content 
+      [ngClass]="{'gray-mask': currentLpId === topic.id }"
+      style="color:black;padding-left:10px;transform:none;padding-bottom:10px;position:absolute;bottom:0;width:100%;"
+      [style.fontSize]="data.zoom(20)"> 
+        <!-- {{ (topic.i18n && topic.i18n[data.currentLocale]) ? 
+          topic.i18n[data.currentLocale] : topic.name }} -->
+          {{ topic.name }}
       </ion-card-content>
     </ion-card>
   </div>

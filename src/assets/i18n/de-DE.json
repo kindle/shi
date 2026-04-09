@@ -137,7 +137,8 @@
         "Help": "Hilfe",
         "ByAuthor": "Nach Autor",
         "ByDynasty": "Nach Dynastie",
-        "ByType": "Nach Typ"
+        "ByType": "Nach Typ",
+        "ByGrade": "Nach Klassenstufe"
     },
 
     "Search":{

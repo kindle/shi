@@ -137,7 +137,8 @@
         "Help": "Помощь",
         "ByAuthor": "По автору",
         "ByDynasty": "По династии",
-        "ByType": "По типу"
+        "ByType": "По типу",
+        "ByGrade": "По классу"
     },
 
     "Search":{

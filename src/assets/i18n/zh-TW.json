@@ -138,7 +138,8 @@
         "Help": "幫助",
         "ByAuthor":"按作者",
         "ByDynasty":"按朝代",
-        "ByType":"按類型"
+        "ByType":"按類型",
+        "ByGrade":"按年級"
     },
 
     "Search":{

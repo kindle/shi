@@ -137,7 +137,8 @@
         "Help": "ヘルプ",
         "ByAuthor": "作者別",
         "ByDynasty": "王朝別",
-        "ByType": "形式別"
+        "ByType": "形式別",
+        "ByGrade": "学年別"
     },
 
     "Search": {

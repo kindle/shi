@@ -1492,7 +1492,7 @@
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/袁枚.jpeg","display":"cover","text":"袁枚","sample":"正是江南好风景，落花时节又逢君","desc":"","color":"rgb(98,166,243)","author":"袁枚"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/纳兰性德.jpeg","display":"cover","text":"纳兰性德","sample":"唤起谪仙泉洒面，倒倾鲛室泻琼瑰","desc":"","color":"rgb(98,166,243)","author":"纳兰性德"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/曹雪芹.jpeg","display":"cover","text":"曹雪芹","sample":"忽如一夜春风来，千树万树梨花开","desc":"","color":"rgb(98,166,243)","author":"曹雪芹"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"两岸严风吹玉树，一滩明月晒银砂","desc":"","color":"rgb(98,166,243)","author":"龚自珍"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"我劝天公重抖擞，不拘一格降人材","desc":"","color":"rgb(98,166,243)","author":"龚自珍"}
       ]},
 
       {"name":"节日", "data": [
@@ -1569,13 +1569,13 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"蒌蒿满地芦芽短，正是河豚欲上时","desc":"","color":"rgb(98,166,243)","author":"龚自珍"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄遵宪.jpeg","display":"cover","text":"黄遵宪","sample":"西塞山边白鹭飞，桃花流水鳜鱼肥","desc":"","color":"rgb(98,166,243)","author":"黄遵宪"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王国维.jpeg","display":"cover","text":"王国维","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"王国维"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陈独秀.jpeg","display":"cover","text":"陈独秀","sample":"绿蚁新醅酒，红泥小火炉","desc":"","color":"rgb(98,166,243)","author":"陈独秀"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/鲁迅.jpeg","display":"cover","text":"鲁迅","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"鲁迅"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/郁达夫.jpeg","display":"cover","text":"郁达夫","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"郁达夫"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/毛泽东.jpeg","display":"cover","text":"毛泽东","sample":"江上往来人，但爱鲈鱼美","desc":"","color":"rgb(98,166,243)","author":"毛泽东"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/龚自珍.jpeg","display":"cover","text":"龚自珍","sample":"我劝天公重抖擞，不拘一格降人材","desc":"","color":"rgb(98,166,243)","author":"龚自珍"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄遵宪.jpeg","display":"cover","text":"黄遵宪","sample":"寸寸山河寸寸金，侉离分裂力谁任","desc":"","color":"rgb(98,166,243)","author":"黄遵宪"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王国维.jpeg","display":"cover","text":"王国维","sample":"最是人间留不住，朱颜辞镜花辞树","desc":"","color":"rgb(98,166,243)","author":"王国维"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陈独秀.jpeg","display":"cover","text":"陈独秀","sample":"男子立身唯一剑，不知事败与功成","desc":"","color":"rgb(98,166,243)","author":"陈独秀"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/鲁迅.jpeg","display":"cover","text":"鲁迅","sample":"横眉冷对千夫指，俯首甘为孺子牛","desc":"","color":"rgb(98,166,243)","author":"鲁迅"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/郁达夫.jpeg","display":"cover","text":"郁达夫","sample":"天晴男女忙农去，闲杀门前一树花","desc":"","color":"rgb(98,166,243)","author":"郁达夫"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/毛泽东.jpeg","display":"cover","text":"毛泽东","sample":"红军不怕远征难，万水千山只等闲","desc":"","color":"rgb(98,166,243)","author":"毛泽东"}
       ]},
 
       {"name":"风格诗单", "data": [

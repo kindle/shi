@@ -2828,6 +2828,7 @@ export class DataService {
   goToTopic(id:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/topic/${id}`);
   }
+  
   goToSearch(){
     this.navCtrl.navigateForward(`/tabs/tab4`);
   }
@@ -3209,6 +3210,7 @@ export class DataService {
       return this.searchTopicData.filter((d:any)=>d.id>=5001&&d.id<=5010);
     }
     else{
+      //console.log(this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=10))
       return this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=10);
     }
   }

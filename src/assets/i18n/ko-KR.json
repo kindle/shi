@@ -137,7 +137,8 @@
         "Help": "도움말",
         "ByAuthor": "작가별",
         "ByDynasty": "왕조별",
-        "ByType": "유형별"
+        "ByType": "유형별",
+        "ByGrade": "학년별"
     },
 
     "Search": {
