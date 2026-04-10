@@ -627,21 +627,21 @@ export class Tab4Page implements OnInit {
 
 
 
-  gradeTopcis = [
-    {"id":6101, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","position":"left bottom","name":"一年级","color":"rgb(121,196,131)"},
-    {"id":6102, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","position":"bottom center","name":"二年级","color":"rgb(121,196,131)"},
-    {"id":6103, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","position":"bottom center","name":"三年级","color":"rgb(121,196,131)"},
-    {"id":6104, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","position":"bottom le","name":"四年级","color":"rgb(121,196,131)"},
-    {"id":6105, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石5.jpg","display":"inherit","position":"bottom","name":"五年级","color":"rgb(98,166,243)"},
-    {"id":6106, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石6.jpg","display":"cover","position": "center","name":"六年级","color":"rgb(232,188,78)"},
-    {"id":6107, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石7.jpg","display":"cover","position":"bottom center","name":"七年级","color":"rgb(121,196,131)"},
-    {"id":6108, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石8.jpg","display":"cover","position":"bottom center","name":"八年级","color":"rgb(98,166,243)"},
-    {"id":6109, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","position":"left bottom","name":"九年级","color":"rgb(232,188,78)"}
+  gradeTopcis = [ 
+    {"id":6101, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","position":"left bottom","name":"一年级", "tag":"一年级|北京版|人教版","color":"rgb(121,196,131)"},
+    {"id":6102, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石2.jpg","display":"cover","position":"bottom center","name":"二年级", "tag":"二年级|北京版|人教版","color":"rgb(121,196,131)"},
+    {"id":6103, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石3.jpg","display":"cover","position":"bottom center","name":"三年级", "tag":"三年级|北京版|人教版","color":"rgb(121,196,131)"},
+    {"id":6104, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石4.jpg","display":"cover","position":"bottom le","name":"四年级", "tag":"四年级|北京版|人教版","color":"rgb(121,196,131)"},
+    {"id":6105, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石5.jpg","display":"inherit","position":"bottom","name":"五年级", "tag":"五年级|北京版|人教版","color":"rgb(98,166,243)"},
+    {"id":6106, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石6.jpg","display":"cover","position": "center","name":"六年级", "tag":"六年级|北京版|人教版","color":"rgb(232,188,78)"},
+    {"id":6107, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石7.jpg","display":"cover","position":"bottom center","name":"七年级", "tag":"七年级|北京版|人教版","color":"rgb(121,196,131)"},
+    {"id":6108, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石8.jpg","display":"cover","position":"bottom center","name":"八年级", "tag":"八年级|北京版|人教版","color":"rgb(98,166,243)"},
+    {"id":6109, "src":"https://reddah.blob.core.windows.net/msjjimg/齐白石9.jpg","display":"cover","position":"left bottom","name":"九年级", "tag":"九年级|北京版|人教版","color":"rgb(232,188,78)"}
   ];
 
   goToTag(item:any){
     this.data.currentItem = item;
-    this.router.navigate(['/tabs', this.data.currentTab, 'tag', item.name]);
+    this.router.navigate(['/tabs', this.data.currentTab, 'tag', item.tag]);
   }
 
   chat(){
