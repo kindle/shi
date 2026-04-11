@@ -9,6 +9,7 @@ import { StationComponentModule } from '../components/big-station/station.module
 import { HotComponentModule } from '../components/hot/hot.module';
 import { TileListComponentModule } from '../components/tile-list/tilelist.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { TileComponentModule } from '../components/tile/tile.module';
 import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { ShiTrackerModule } from '../components/shi-tracker/shi-tracker.module';
@@ -23,6 +24,7 @@ import { SubTitleComponentModule } from '../components/sub-title/sub-title.modul
     HotComponentModule,
     StationComponentModule,
     TileListComponentModule,
+    TileComponentModule,
     LazyLoadImageModule,
     DogCardComponentModule,
     AsciiCardComponentModule,

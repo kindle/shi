@@ -89,7 +89,9 @@
   <!--最近添加-->
   <app-tile-list name="{{ ui.instant('Title.RecentlyAdded') }}" [arrow]="false" [source]="data.recentCollection()" [max]="6"></app-tile-list>
 
-  
+  <!--最近浏览-->
+  <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
+  *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
 
 <!--
   <ion-list style="margin-left:5px;margin-bottom:10px;">

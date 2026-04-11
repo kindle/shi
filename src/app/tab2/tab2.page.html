@@ -30,8 +30,8 @@
   <app-big [source]="searchTopicDataAudio.scroll"></app-big>
   
   <!--最近浏览-->
-  <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
-  *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+  <!-- <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
+  *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile> -->
   
   <!--现在就听-->
   <app-hot name="{{ ui.instant('Tabs.ListenNow') }}" 
