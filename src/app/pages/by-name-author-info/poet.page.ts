@@ -17,6 +17,9 @@ export class PoetPage {
   author:any;
   authorData:any;
 
+  poets:any = [];
+  relation:any= [];
+
   hotPoemByAuthor:any = [];
   getHotData(){
     this.hotPoemByAuthor = [];
@@ -43,8 +46,11 @@ export class PoetPage {
     this.localJsonData = this.data.JsonData
       .filter((shici:any)=>shici.author===this.author);
     let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);
-    if(foundAuthor.length>=1)
+    if(foundAuthor.length>=1){
       this.authorData = foundAuthor[0];
+      this.poets = this.authorData.relation[0];
+      this.relation = this.authorData.relation[1];
+    }
 
 
     this.onSearchChanged();

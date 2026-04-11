@@ -25,7 +25,9 @@
         lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s}}.jpeg"  
         onerror="javascript:this.src='assets/img/default.jpg'" />
       <div class="card-text-style" style="text-align: center;margin-top: 10px;"
-       [style.fontSize]="data.zoom(16)">{{s}}</div>
+       [style.fontSize]="data.zoom(16)"> 
+        {{relation?relation[i]:''}} {{s}}
+      </div>
     </div>
   </swiper-slide>
 </swiper-container>

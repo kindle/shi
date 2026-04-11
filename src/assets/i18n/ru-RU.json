@@ -113,6 +113,7 @@
         "Description":"Описание",
         "NoPoem":"Пусто",
         "FeaturedPoets":"Известные поэты",
+        "RelatedPoets":"Связанные поэты",
         "PoemCount":" Стихов",
         "NewList":"Новый список стихов",
         "NewListName":"Название списка стихов",

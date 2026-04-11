@@ -11,6 +11,7 @@ import { TextComponentModule } from 'src/app/components/text/text.module';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
 import { HotComponentModule } from 'src/app/components/hot/hot.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { AuthorComponentModule } from 'src/app/components/author/author.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     IonicModule,
     PoetPageRoutingModule,
+    AuthorComponentModule,
     TextComponentModule,
     ButtonEndComponentModule,
     HotComponentModule,

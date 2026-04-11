@@ -114,6 +114,7 @@
         "Description":"描述",
         "NoPoem":"此列表中还没有诗词",
         "FeaturedPoets":"此诗单中的诗人",
+        "RelatedPoets":"相关诗人",
         "PoemCount":"首诗词",
         "NewList":"新建诗单列表",
         "NewListName":"诗单列表名称",

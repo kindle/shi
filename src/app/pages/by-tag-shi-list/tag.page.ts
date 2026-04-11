@@ -37,7 +37,7 @@ export class TagPage {
     //  .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
     //by text: more than tag
     this.localJsonData = this.data.JsonData
-      .filter((shici:any)=>tags.some((tag:string) => shici.text.indexOf(tag)>=0));
+      .filter((shici:any)=>tags.every((tag:string) => shici.text.indexOf(tag)>=0));
     //note: tags is array
     //console.log(this.localJsonData)
     this.onSearchChanged();

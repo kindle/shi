@@ -137,7 +137,8 @@
             (click)="data.likelist(data.currentPoem,'poem')">
               <ion-icon name="add-outline" color="dark"></ion-icon>
             </ion-button> -->
-            <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+            <app-button-end [p]="data.currentPoem" page="playerlist" slot="end" 
+            [isViewAuthor]="true"></app-button-end>
           </ion-item>
           
           <ion-list-header *ngIf="showPlaylist&&!bigimg">
@@ -352,7 +353,8 @@
       (click)="data.likelist(data.currentPoem,'poem')">
         <ion-icon name="add-outline" color="dark"></ion-icon>
       </ion-button> -->
-      <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+      <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+      [isViewAuthor]="true"></app-button-end>
     </ion-item>
   </ion-list>
 
@@ -472,7 +474,8 @@
         (click)="data.likelist(data.currentPoem,'poem')">
           <ion-icon name="add-outline" color="dark"></ion-icon>
         </ion-button> -->
-        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+        [isViewAuthor]="true"></app-button-end>
       </ion-item>
     </ion-list>
 

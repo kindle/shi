@@ -113,6 +113,7 @@
         "Description": "説明",
         "NoPoem": "このリストにはまだ詩がありません",
         "FeaturedPoets": "この詩リストの詩人",
+        "RelatedPoets": "関連する詩人",
         "PoemCount": "詩の数",
         "NewList": "新しい詩リストを作成",
         "NewListName": "詩リストの名前",

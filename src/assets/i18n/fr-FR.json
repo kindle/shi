@@ -113,6 +113,7 @@
         "Description":"Description",
         "NoPoem":"C'est vide",
         "FeaturedPoets":"Poètes en vedette",
+        "RelatedPoets":"Poètes associés",
         "PoemCount":" Poèmes",
         "NewList":"Nouvelle liste de poèmes",
         "NewListName":"Nom de la liste de poèmes",

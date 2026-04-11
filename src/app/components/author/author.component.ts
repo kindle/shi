@@ -1,5 +1,4 @@
 import { Component, Input, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,12 +10,12 @@ export class AuthorComponent implements AfterViewInit, OnDestroy {
 
   @Input() name?: string;
   @Input() source?: any;
+  @Input() relation?: any;
 
   private observer?: IntersectionObserver;
 
   constructor(
     public data: DataService,
-    private router: Router,
     private el: ElementRef
   ){}
 

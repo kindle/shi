@@ -113,6 +113,7 @@
         "Description": "설명",
         "NoPoem": "이 목록에는 아직 시가 없습니다",
         "FeaturedPoets": "이 시 목록의 시인",
+        "RelatedPoets": "관련 시인",
         "PoemCount": "시 수",
         "NewList": "새 시 목록 만들기",
         "NewListName": "시 목록 이름",

@@ -113,6 +113,7 @@
         "Description":"Description",
         "NoPoem":"It's empty",
         "FeaturedPoets":"Featured Poets",
+        "RelatedPoets":"Related Poets",
         "PoemCount":" Poems",
         "NewList":"New Poemlist",
         "NewListName":"Poemlist Name",

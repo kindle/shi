@@ -114,17 +114,28 @@
   <app-text [name]="authorData.name" [text]="authorData.desc"
     *ngIf="!showFilter&&authorData">
   </app-text>
+
   <br>
+
+  <!--相关诗人-->
+  <ion-header *ngIf="!showFilter&&poets&&poets.length>0"> 
+    <app-author name="{{ ui.instant('Title.RelatedPoets')}}" [source]="poets" [relation]="relation"
+     (clickAuthor)="data.goToAuthor($event)">
+    </app-author>
+  </ion-header>
+
   <!--热门诗词-->
   <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"
   *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>
 
+
+  <!--所有作品-->
   <ion-toolbar style="--background: translucent;" *ngIf="!showFilter">
     <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
       <ion-buttons>
         <ion-card-title class="station-text" style="font-weight: bold;"
         [style.fontSize]="data.zoom(20)">
-          {{ ui.instant('Title.AllPoems') }}<!--所有作品-->
+          {{ ui.instant('Title.AllPoems') }}
         </ion-card-title>
       </ion-buttons>
     </ion-card-content>
