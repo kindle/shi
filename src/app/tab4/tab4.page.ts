@@ -555,7 +555,7 @@ export class Tab4Page implements OnInit {
   private generateItems() {
     //check if keyword is author
     let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name==this.data.searchText)
-    if(foundAuthor.length===1){
+    if(foundAuthor.length>=1){
       this.isAuthor = true;
     }
     else{

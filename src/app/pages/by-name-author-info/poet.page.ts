@@ -48,8 +48,10 @@ export class PoetPage {
     let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);
     if(foundAuthor.length>=1){
       this.authorData = foundAuthor[0];
-      this.poets = this.authorData.relation[0];
-      this.relation = this.authorData.relation[1];
+      if(this.authorData.relation!=null){
+        this.poets = this.authorData.relation[0];
+        this.relation = this.authorData.relation[1];
+      }
     }
 
 

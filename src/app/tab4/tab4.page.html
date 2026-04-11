@@ -366,7 +366,7 @@
   </div>
 
 
-  <app-sub-title name="按年级" *ngIf="!data.showFilter"></app-sub-title> <!--按年级-->
+  <app-sub-title name="{{ ui.instant('Title.ByGrade') }}" *ngIf="!data.showFilter"></app-sub-title> <!--按年级-->
 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);grid-gap:0px;padding:0 10px;"
   *ngIf="!data.showFilter">
