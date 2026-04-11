@@ -4371,14 +4371,16 @@ export class DataService {
 
 
   ////////////////////////////////////
-  public fontFamilyList = [
-    { code: 'default', text: '默认字体' },
-    { code: 'serif', text: '印刷体' },
-    { code: 'sans-serif', text: '黑体' },
-    { code: 'monospace', text: '代码体' },
-    { code: 'cursive', text: '手写体' },
-    { code: 'fantasy', text: '艺术体' }
-  ];
+  public get fontFamilyList() {
+    return [
+      { code: 'default', text: this.ui.instant('Font.DefaultFont') }, //默认字体
+      { code: 'serif', text: this.ui.instant('Font.Print') }, //印刷体
+      { code: 'sans-serif', text: this.ui.instant('Font.Black') }, //黑体
+      { code: 'monospace', text: this.ui.instant('Font.Code') }, //代码体
+      { code: 'cursive', text: this.ui.instant('Font.Handwriting') }, //手写体
+      { code: 'fantasy', text: this.ui.instant('Font.Art') }  //艺术字体
+    ];
+  }
 
   private normalizeFontFamily(fontFamily:any) {
     if (typeof fontFamily !== 'string') {
@@ -4416,7 +4418,7 @@ export class DataService {
   public getCurrentFontFamilyName() {
     const normalizedFontFamily = this.normalizeFontFamily(this.currentFontFamily);
     const font = this.fontFamilyList.find(f => f.code === normalizedFontFamily);
-    return font ? font.text : '默认字体';
+    return font ? font.text : this.ui.instant('Font.DefaultFont'); //默认字体
   }
 
   async presentFontFamilyActionSheet(){

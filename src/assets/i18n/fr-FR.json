@@ -197,5 +197,29 @@
         "SizeSmall":"Petit",
         "SizeMedium":"Moyen",
         "SizeLarge":"Grand"
-    }
+        },
+
+        "Settings":{
+            "ContentVersion":"Version de la bibliothèque de poèmes",
+            "Lite":"Version allégée",
+            "Full":"Version complète",
+            "Downloading":"Téléchargement en cours…",
+            "Upgrade":"Passer à la version complète",
+            "Data":"Données",
+            "Backup":"Sauvegarder les données",
+            "Import":"Importer les données",
+            "Restore":"Restaurer et effacer les données",
+            "ClearCache":"Vider le cache",
+            "ClearCacheConfirm":"Voulez-vous vraiment supprimer toutes les données du cache local ? Cette action est irréversible et l'application reviendra à son état initial.",
+            "ClearCacheSuccess":"Le cache a été vidé. Le changement prendra effet après le redémarrage de l'application."
+        },
+
+        "Font":{
+            "DefaultFont":"Police par défaut",
+            "Print":"Imprimé",
+            "Black":"Gras",
+            "Code":"Code",
+            "Handwriting":"Manuscrite",
+            "Art":"Artistique"
+        }
 }

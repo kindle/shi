@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Data } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
@@ -51,14 +50,16 @@ export class MoreSettingsPage implements OnInit {
   }
 
   clearCache(){
-    this.ui.confirm('清除缓存', '确定要删除所有本地缓存数据吗？此操作不可恢复，应用将恢复到初始状态。', () => {
+    //this.ui.confirm('清除缓存', '确定要删除所有本地缓存数据吗？此操作不可恢复，应用将恢复到初始状态。', () => {
+    this.ui.confirm(this.ui.instant('Settings.ClearCache'), this.ui.instant('Settings.ClearCacheMessage'), () => {
       this.onConfirmClearCache();
     });
   }
 
   private async onConfirmClearCache(){
     await this.data.clearLocalStorage();
-    this.ui.toast('bottom', '已清除缓存，重新启动应用后生效');
+    //this.ui.toast('bottom', '已清除缓存，重新启动应用后生效');
+    this.ui.toast('bottom', this.ui.instant('Settings.ClearCacheSuccess'));
   }
 
 }

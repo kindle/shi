@@ -198,5 +198,29 @@
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"
-    }
+        },
+
+        "Settings":{
+            "ContentVersion":"詩詞庫版本",
+            "Lite":"精簡版",
+            "Full":"完整版",
+            "Downloading":"下載中…",
+            "Upgrade":"升級為完整版",
+            "Data":"資料",
+            "Backup":"備份資料",
+            "Import":"匯入資料",
+            "Restore":"還原並清除資料",
+            "ClearCache":"清除快取",
+            "ClearCacheConfirm":"確定要刪除所有本機快取資料嗎？此操作不可復原，應用程式將恢復到初始狀態。",
+            "ClearCacheSuccess":"已清除快取，重新啟動應用程式後生效"
+        },
+
+        "Font":{
+            "DefaultFont":"預設字體",
+            "Print":"印刷體",
+            "Black":"黑體",
+            "Code":"程式碼字體",
+            "Handwriting":"手寫體",
+            "Art":"藝術體"
+        }
 }

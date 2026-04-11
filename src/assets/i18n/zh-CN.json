@@ -198,5 +198,29 @@
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"
+    },
+
+    "Settings":{
+        "ContentVersion":"诗词库版本",
+        "Lite":"精简版",
+        "Full":"完整版",
+        "Downloading":"下载中…",
+        "Upgrade":"升级为完整版",
+        "Data":"数据",
+        "Backup":"备份数据",
+        "Import":"导入数据",
+        "Restore":"还原并清除数据",
+        "ClearCache":"清除缓存",
+        "ClearCacheConfirm":"确定要删除所有本地缓存数据吗？此操作不可恢复，应用将恢复到初始状态。",
+        "ClearCacheSuccess":"已清除缓存，重新启动应用后生效"
+    },
+
+    "Font":{
+        "DefaultFont":"默认字体",
+        "Print":"印刷体",
+        "Black":"黑体",
+        "Code":"代码体",
+        "Handwriting":"手写体",
+        "Art":"艺术体"
     }
 }

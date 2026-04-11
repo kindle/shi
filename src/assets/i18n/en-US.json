@@ -197,5 +197,29 @@
         "SizeSmall":"Small",
         "SizeMedium":"Medium",
         "SizeLarge":"Large"
-    }
+        },
+
+        "Settings":{
+            "ContentVersion":"Poem Library Version",
+            "Lite":"Lite Version",
+            "Full":"Full Version",
+            "Downloading":"Downloading...",
+            "Upgrade":"Upgrade to Full Version",
+            "Data":"Data",
+            "Backup":"Back Up Data",
+            "Import":"Import Data",
+            "Restore":"Restore and Clear Data",
+            "ClearCache":"Clear Cache",
+            "ClearCacheConfirm":"Are you sure you want to delete all local cached data? This action cannot be undone and the app will be reset to its initial state.",
+            "ClearCacheSuccess":"Cache cleared. It will take effect after restarting the app."
+        },
+
+        "Font":{
+            "DefaultFont":"Default Font",
+            "Print":"Print",
+            "Black":"Black",
+            "Code":"Monospace",
+            "Handwriting":"Handwriting",
+            "Art":"Artistic"
+        }
 }

@@ -197,5 +197,29 @@
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"
-    }
+        },
+
+        "Settings":{
+            "ContentVersion":"詩詞データのバージョン",
+            "Lite":"軽量版",
+            "Full":"完全版",
+            "Downloading":"ダウンロード中…",
+            "Upgrade":"完全版にアップグレード",
+            "Data":"データ",
+            "Backup":"データをバックアップ",
+            "Import":"データをインポート",
+            "Restore":"データを復元して消去",
+            "ClearCache":"キャッシュを削除",
+            "ClearCacheConfirm":"ローカルのキャッシュデータをすべて削除してもよろしいですか？この操作は元に戻せず、アプリは初期状態に戻ります。",
+            "ClearCacheSuccess":"キャッシュを削除しました。アプリの再起動後に反映されます。"
+        },
+
+        "Font":{
+            "DefaultFont":"デフォルトフォント",
+            "Print":"印刷体",
+            "Black":"ゴシック体",
+            "Code":"コード体",
+            "Handwriting":"手書き体",
+            "Art":"アート体"
+        }
 }

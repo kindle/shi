@@ -197,5 +197,29 @@
         "SizeSmall":"작게",
         "SizeMedium":"보통",
         "SizeLarge":"크게"
-    }
+        },
+
+        "Settings":{
+            "ContentVersion":"시 데이터베이스 버전",
+            "Lite":"라이트 버전",
+            "Full":"전체 버전",
+            "Downloading":"다운로드 중…",
+            "Upgrade":"전체 버전으로 업그레이드",
+            "Data":"데이터",
+            "Backup":"데이터 백업",
+            "Import":"데이터 가져오기",
+            "Restore":"데이터 복원 및 삭제",
+            "ClearCache":"캐시 지우기",
+            "ClearCacheConfirm":"모든 로컬 캐시 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없으며 앱이 초기 상태로 복원됩니다.",
+            "ClearCacheSuccess":"캐시가 지워졌습니다. 앱을 다시 시작하면 적용됩니다."
+        },
+
+        "Font":{
+            "DefaultFont":"기본 글꼴",
+            "Print":"인쇄체",
+            "Black":"고딕체",
+            "Code":"코드체",
+            "Handwriting":"손글씨체",
+            "Art":"예술체"
+        }
 }
