@@ -1,5 +1,5 @@
 <!--one slide 4 poems-->
-<ion-toolbar style="--background: translucent;" *ngIf="source">
+<ion-toolbar style="--background: translucent;" *ngIf="source&&source.length>0">
   <ion-card-content style="display: flex;direction:row;margin-top:0;padding-top:8px;
     padding-bottom: 0;padding-left:15px;">
     <ion-buttons>
@@ -11,13 +11,13 @@
     </ion-buttons>
   </ion-card-content>
 </ion-toolbar>
-<swiper-container swiper-touch
+<swiper-container #hotSwiper swiper-touch
     style="margin-top:10px;margin-bottom: 20px; --swiper-pagination-bottom: 0px;" *ngIf="source"
     [slidesPerView]="ui.isipad ? 2.1 : 1.1" 
     centered-slides="false"
     slides-offset-before="20"
     slides-offset-after="20"
-    pagination="true"
+  pagination="false"
     >
   <swiper-slide *ngFor="let hot of source">
     <ion-list style="padding-bottom: 30px;">
@@ -53,3 +53,13 @@
     </ion-list>
   </swiper-slide>
 </swiper-container>
+<div class="hot-pagination" *ngIf="source && source.length > 1">
+  <button
+    *ngFor="let index of getBulletIndexes()"
+    type="button"
+    class="hot-pagination__bullet"
+    [class.hot-pagination__bullet--active]="index === currentSlideIndex"
+    (click)="goToSlide(index)"
+    [attr.aria-label]="'Go to slide ' + (index + 1)"
+  ></button>
+</div>
