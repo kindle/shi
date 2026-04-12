@@ -218,13 +218,13 @@ export class UiService {
         message: message,
         buttons: [
         {
-            text: "取消",
+            text: this.instant("Action.Cancel"), //"取消",
             role: 'cancel',
             cssClass: 'secondary',
             handler: () => {}
         }, 
         {
-            text: "确定",
+            text: this.instant("Game.ConfirmYes"), //"确定",
             handler: () => {
                 action();
             }

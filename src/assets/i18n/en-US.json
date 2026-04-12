@@ -200,9 +200,9 @@
         },
 
         "Settings":{
-            "ContentVersion":"Poem Library Version",
-            "Lite":"Lite Version",
-            "Full":"Full Version",
+            "ContentVersion":"Version",
+            "Lite":"Lite",
+            "Full":"Full",
             "Downloading":"Downloading...",
             "Upgrade":"Upgrade to Full Version",
             "Data":"Data",

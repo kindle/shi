@@ -22,6 +22,13 @@ export class TopicPage {
     let topicId = this.activatedRoute.snapshot.paramMap.get('id');
     this.searchTopicData = this.data.searchTopicData
       .filter((d:any)=>d.id==topicId)[0];
+
+    //console.log(this.data.hotData)
+    if(this.searchTopicData.hot&&this.searchTopicData.hot.length>0){
+      this.data.hotData = this.searchTopicData.hot;
+    }else{
+      this.data.hotData = [];
+    }
   }
 }
 
