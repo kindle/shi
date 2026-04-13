@@ -1072,7 +1072,38 @@
           {"id":102,"src":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg","text":"《吴越春秋》 | 最早的诗歌是什么样子的？","display":"cover","desc":"","color":"rgb(98,166,243)"}
         ]}
       ],
-      
+      "hot":[
+        [
+          {
+            "title": "弹歌",
+            "author": "先秦无名",
+            "sample": "断竹 续竹。飞土 逐宍",
+            "id": "60a4b927-24c5-4660-8bbe-eb601858c8c6",
+            "dynasty": "先秦"
+          },
+          {
+              "title": "击壤歌",
+              "author": "先秦无名",
+              "sample": "日出而作，日入而息",
+              "id": "e26538dd-a144-4944-93ee-efff39b8c85b",
+              "dynasty": "先秦"
+          },
+          {
+              "title": "南风歌",
+              "author": "先秦无名",
+              "sample": "南风之薰兮，可以解吾民之愠兮",
+              "id": "8023d17c-156f-4407-af04-9a3b83e50775",
+              "dynasty": "先秦"
+          },
+          {
+              "title": "卿云歌",
+              "author": "先秦无名",
+              "sample": "日月光华，旦复旦兮",
+              "id": "7c09f6bb-56a7-4e7c-8c17-83d9a192ea38",
+              "dynasty": "先秦"
+          }
+        ]
+      ],
       "desctitle":"上古时期",
       "desc":"口耳相传的歌谣，有文字记录比较晚。"
       
@@ -1110,6 +1141,84 @@
         {"id":803,"src":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg","text":"诗经之美 | 1046-256BC: 诗经精选","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
+    "hot":[
+        [
+          {
+            "title": "关雎",
+            "chapter":"国风",
+            "section":"周南",
+            "author": "诗经",
+            "sample": "关关雎鸠，在河之洲。窈窕淑女，君子好逑",
+            "id": "4978bcad-1cd0-4e11-8a44-ae2fc7b1d296",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "子衿",
+            "chapter":"国风",
+            "section":"郑风",
+            "author": "诗经",
+            "sample": "青青子衿，悠悠我心",
+            "id": "69f0bef8-fb95-446f-bb97-243a9c702510",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "蒹葭",
+            "chapter":"国风",
+            "section":"秦风",
+            "author": "诗经",
+            "sample": "蒹葭苍苍，白露为霜",
+            "id": "7ddd8ec0-9687-434c-82b1-652d6c92b527",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "桃夭",
+            "chapter":"国风",
+            "section":"周南",
+            "author": "诗经",
+            "sample": "桃之夭夭，灼灼其华",
+            "id": "50ed66e5-a9e0-440a-a25d-b9952a3205dc",
+            "dynasty": "西周春秋"
+          }
+        ],
+        [
+          {
+            "title": "采薇",
+            "chapter":"小雅",
+            "section":"鹿鸣之什",
+            "author": "诗经",
+            "sample": "昔我往矣，杨柳依依",
+            "id": "d7fa870e-11ca-4b65-a0a8-533f3b630486",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "无衣",
+            "chapter":"国风",
+            "section":"秦风",
+            "author": "诗经",
+            "sample": "岂曰无衣？与子同袍",
+            "id": "2426481b-eab5-44f7-b9af-a124b8bed4a2",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "木瓜",
+            "chapter":"国风",
+            "section":"卫风",
+            "author": "诗经",
+            "sample": "投我以木瓜，报之以琼琚",
+            "id": "209536d0-61ce-41d5-8bc2-1ac0a7dddb31",
+            "dynasty": "西周春秋"
+          },
+          {
+            "title": "击鼓",
+            "chapter":"国风",
+            "section":"邶风",
+            "author": "诗经",
+            "sample": "执子之手，与子偕老",
+            "id": "34071430-f367-4d40-859e-7e1e48782823",
+            "dynasty": "西周春秋"
+          }
+        ]
+    ],
     "desctitle":"西周春秋",
     "desc":"《诗经》是中国第一部诗歌总集。《诗经》是汉代才有的名字，先秦时期一直称《诗》，汉代学者将其视为经典，故称其为《诗经》。《诗经》收录了从西周初年（约公元前11世纪）到春秋中叶（约公元前6世纪）约500年间的诗歌共计305篇，因而也被称作“诗三百”。分为风、雅、颂三部分，其中风是民歌，雅是贵族歌，颂是祭祀歌。《诗经》中多为四言体诗，分章，诗句循环往复，整体篇幅比较短小。"
     
@@ -1146,6 +1255,38 @@
       {"name":"精选诗单", "data": [
         {"id":10,"src":"https://reddah.blob.core.windows.net/msjjimg/beach-1852945_1280.jpg","text":"楚辞 | 路曼曼其修远兮，吾将上下而求索","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
+    ],
+    "hot":[
+        [
+          {
+            "title": "离骚",
+            "author": "屈原",
+            "sample": "路曼曼其修远兮，吾将上下而求索",
+            "id": "4b3934d9-72d7-463b-9980-915e32b2639e",
+            "dynasty": "战国"
+          },
+          {
+            "title": "天问",
+            "author": "屈原",
+            "sample": "遂古之初，谁传道之？",
+            "id": "6ddfdb78-e0d0-46a1-8d5f-717d979449b1",
+            "dynasty": "战国"
+          },
+          {
+            "title": "渔父",
+            "author": "屈原",
+            "sample": "沧浪之水清兮，可以濯吾缨",
+            "id": "522f5076-6730-4334-9878-9eb65564f991",
+            "dynasty": "战国"
+          },
+          {
+            "title": "哀郢",
+            "author": "屈原",
+            "sample": "鸟飞反故乡兮，狐死必首丘",
+            "id": "f81bc920-a768-4c7d-acc4-b06b400ee1ab",
+            "dynasty": "战国"
+          }
+        ]
     ],
     "desctitle":"战国",
     "desc":"公元前3世纪战国后期，楚国出现了一种具有浓厚地方特色的新诗体，其奠基人和代表诗人是屈原。汉代刘向把屈原、宋玉等人的作品编辑成集，取名《楚辞》。楚辞句式较自由，善用长句，篇幅也较长，句中常常运用感叹词‘兮’字。代表作有屈原的《离骚》，有373句，2400多字。"
@@ -1535,7 +1676,98 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/ornamental-plum-7115659_1280.jpg","display":"cover","text":"梅花","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":[],
+    "hot":[
+      [
+        {
+          "title": "桃花庵歌",
+          "author": "唐寅",
+          "sample": "桃花坞里桃花庵，桃花庵里桃花仙",
+          "id": "0985901d-c554-402b-8334-8b8b4c6c86f2",
+          "dynasty": "明"
+        },
+        {
+            "title": "画鸡",
+            "author": "唐寅",
+            "sample": "平生不敢轻言语，一叫千门万户开",
+            "id": "cf9413ab-7dc9-4e6c-8b01-5aede1c03bb5",
+            "dynasty": "明"
+        },
+        {
+            "title": "临终诗",
+            "author": "唐寅",
+            "sample": "生在阳间有散场，死归地府又何妨",
+            "id": "4aae3640-a80c-4ad1-8a2e-bfa7a0c06606",
+            "dynasty": "明"
+        },
+        {
+            "title": "石灰吟",
+            "author": "于谦",
+            "sample": "千锤万凿出深山，烈火焚烧若等闲",
+            "id": "fa0e4698-6a16-4fe3-8f85-63e23711855a",
+            "dynasty": "明"
+        }
+      ],
+      [
+        {
+          "title": "题陆放翁卖花叟诗后",
+          "author": "刘基",
+          "sample": "君不见会稽山阴卖花叟，卖花得钱即买酒",
+          "id": "47cdf2a1-6e7f-4fdb-8ab9-523442f9a1d8",
+          "dynasty": "明"
+        },
+        {
+            "title": "明日诗",
+            "author": "钱福",
+            "sample": "明日复明日，明日何其多",
+            "id": "1e9a7621-e1b5-49ca-8629-f969f69a22b2",
+            "dynasty": "明"
+        },
+        {
+            "title": "舟夜书所见",
+            "author": "查慎行",
+            "sample": "月黑见渔灯，孤光一点萤",
+            "id": "1673257b-30ef-4651-874c-8dd5caa5b1fc",
+            "dynasty": "清"
+        },
+        {
+            "title": "初冬访寂园丈不遇留赠",
+            "author": "吴灏",
+            "sample": "纷纷叶落霜红老，露寒未尽青青草",
+            "id": "461d5147-7ac6-4656-b572-a9e76957cf28",
+            "dynasty": "清"
+        }
+      ],
+      [
+        {
+          "title": "出老",
+          "author": "林则徐",
+          "sample": "海到尽头天作岸，山登绝顶我为峰",
+          "id": "3c74ba69-6bb1-4f0e-ae82-e94e9fe54260",
+          "dynasty": "清"
+        },
+        {
+            "title": "赴戍登程口占示家人二首·其二",
+            "author": "林则徐",
+            "sample": "苟利国家生死以，岂因祸福避趋之？",
+            "id": "ef7c5790-6b0d-4de0-be4d-929547a8c72b",
+            "dynasty": "清"
+        },
+        {
+            "title": "长相思·山一程",
+            "author": "纳兰性德",
+            "sample": "山一程，水一程，身向榆关那畔行，夜深千帐灯",
+            "id": "8f10b529-8a41-46ba-b911-14468cfd01da",
+            "dynasty": "清"
+        },
+        {
+            "title": "竹石",
+            "author": "郑燮",
+            "sample": "咬定青山不放松，立根原在破岩中",
+            "id": "47cc7adc-a819-4fac-b0c6-5e3a589c4c27",
+            "dynasty": "清"
+        }
+      ]
+    ],
     "desctitle":"明清",
     "desc":"有明一代，存在宗唐、宗宋两种诗歌主张，其中宗唐是主流。明朝代表诗人是前后“七子”和“公安派”。公安派亦称“公安三袁”，分别是袁宗道、袁宏道、袁中道。清朝袁枚以其“性灵说”独树一帜，著有《随园诗话》。清朝的著名词人纳兰性德工于小令，代表作有《长相思》。"
     

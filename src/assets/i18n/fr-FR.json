@@ -197,29 +197,36 @@
         "SizeSmall":"Petit",
         "SizeMedium":"Moyen",
         "SizeLarge":"Grand"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"Version de la bibliothèque de poèmes",
-            "Lite":"Version allégée",
-            "Full":"Version complète",
-            "Downloading":"Téléchargement en cours…",
-            "Upgrade":"Passer à la version complète",
-            "Data":"Données",
-            "Backup":"Sauvegarder les données",
-            "Import":"Importer les données",
-            "Restore":"Restaurer et effacer les données",
-            "ClearCache":"Vider le cache",
-            "ClearCacheConfirm":"Voulez-vous vraiment supprimer toutes les données du cache local ? Cette action est irréversible et l'application reviendra à son état initial.",
-            "ClearCacheSuccess":"Le cache a été vidé. Le changement prendra effet après le redémarrage de l'application."
-        },
+    "Settings":{
+        "ContentVersion":"Version de la bibliothèque de poèmes",
+        "Lite":"Version allégée",
+        "Full":"Version complète",
+        "Downloading":"Téléchargement en cours…",
+        "Upgrade":"Passer à la version complète",
+        "Data":"Données",
+        "Backup":"Sauvegarder les données",
+        "Import":"Importer les données",
+        "Restore":"Restaurer et effacer les données",
+        "ClearCache":"Vider le cache",
+        "ClearCacheConfirm":"Voulez-vous vraiment supprimer toutes les données du cache local ? Cette action est irréversible et l'application reviendra à son état initial.",
+        "ClearCacheSuccess":"Le cache a été vidé. Le changement prendra effet après le redémarrage de l'application.",
+        "DownloadFullDb":"Télécharger la base complète des poèmes",
+        "DownloadFullDbConfirm":"La base complète des poèmes est volumineuse et doit être téléchargée via Internet. La télécharger maintenant ?",
+        "DownloadFullDbSuccess":"La base de données des poèmes a été téléchargée avec succès",
+        "DownloadFullDbFail":"Échec du téléchargement. Veuillez réessayer plus tard",
+        "DownloadFullDbStart":"Démarrage du téléchargement de la base des poèmes",
+        "UpgradeFullDb":"Mettre à niveau la base complète des poèmes",
+        "FullDbNotFound":"ID du poème introuvable. Vous devrez peut-être télécharger la base complète des poèmes pour l'afficher. Ouvrir le téléchargement maintenant ?"
+    },
 
-        "Font":{
-            "DefaultFont":"Police par défaut",
-            "Print":"Imprimé",
-            "Black":"Gras",
-            "Code":"Code",
-            "Handwriting":"Manuscrite",
-            "Art":"Artistique"
-        }
+    "Font":{
+        "DefaultFont":"Police par défaut",
+        "Print":"Imprimé",
+        "Black":"Gras",
+        "Code":"Code",
+        "Handwriting":"Manuscrite",
+        "Art":"Artistique"
+    }
 }

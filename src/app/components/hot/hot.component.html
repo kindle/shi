@@ -38,14 +38,14 @@
         </ion-thumbnail>
         <ion-label (click)="data.playListHot(source, p, name)">
           <div style="display: flex; align-items: center;">
-            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
             <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
-              {{p.title}} {{p.author}}
+              {{p.sample?p.sample:p.paragraphs[0]}}
             </h2>
           </div>
           <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
             style="margin-top:5px;display: flex;align-items: end;">
-            {{p.sample?p.sample:p.paragraphs[0]}}
+            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+            {{p.author}}《{{p.title}}》{{p.chapter}} {{p.section}}
           </p>
         </ion-label>
         <app-button-end [p]="p" page="hotlist" slot="end"></app-button-end>

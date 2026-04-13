@@ -197,29 +197,36 @@
         "SizeSmall":"Klein",
         "SizeMedium":"Mittel",
         "SizeLarge":"Groß"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"Version der Gedichtbibliothek",
-            "Lite":"Kompakte Version",
-            "Full":"Vollversion",
-            "Downloading":"Wird heruntergeladen…",
-            "Upgrade":"Auf Vollversion aktualisieren",
-            "Data":"Daten",
-            "Backup":"Daten sichern",
-            "Import":"Daten importieren",
-            "Restore":"Daten wiederherstellen und löschen",
-            "ClearCache":"Cache leeren",
-            "ClearCacheConfirm":"Möchten Sie wirklich alle lokalen Cache-Daten löschen? Dieser Vorgang kann nicht rückgängig gemacht werden und die App wird in den Ausgangszustand zurückgesetzt.",
-            "ClearCacheSuccess":"Der Cache wurde geleert. Die Änderung wird nach dem Neustart der App wirksam."
-        },
+    "Settings":{
+        "ContentVersion":"Version der Gedichtbibliothek",
+        "Lite":"Kompakte Version",
+        "Full":"Vollversion",
+        "Downloading":"Wird heruntergeladen…",
+        "Upgrade":"Auf Vollversion aktualisieren",
+        "Data":"Daten",
+        "Backup":"Daten sichern",
+        "Import":"Daten importieren",
+        "Restore":"Daten wiederherstellen und löschen",
+        "ClearCache":"Cache leeren",
+        "ClearCacheConfirm":"Möchten Sie wirklich alle lokalen Cache-Daten löschen? Dieser Vorgang kann nicht rückgängig gemacht werden und die App wird in den Ausgangszustand zurückgesetzt.",
+        "ClearCacheSuccess":"Der Cache wurde geleert. Die Änderung wird nach dem Neustart der App wirksam.",
+        "DownloadFullDb":"Vollständige Gedichtdatenbank herunterladen",
+        "DownloadFullDbConfirm":"Die vollständige Gedichtdatenbank ist recht groß und muss über das Internet heruntergeladen werden. Jetzt herunterladen?",
+        "DownloadFullDbSuccess":"Die Gedichtdatenbank wurde erfolgreich heruntergeladen",
+        "DownloadFullDbFail":"Download fehlgeschlagen. Bitte versuchen Sie es später erneut",
+        "DownloadFullDbStart":"Download der Gedichtdatenbank wird gestartet",
+        "UpgradeFullDb":"Vollständige Gedichtdatenbank aktualisieren",
+        "FullDbNotFound":"Gedicht-ID nicht gefunden. Möglicherweise müssen Sie die vollständige Gedichtdatenbank herunterladen, um es anzuzeigen. Jetzt zum Download wechseln?"
+    },
 
-        "Font":{
-            "DefaultFont":"Standardschrift",
-            "Print":"Druckschrift",
-            "Black":"Schwarz",
-            "Code":"Code-Schrift",
-            "Handwriting":"Handschrift",
-            "Art":"Künstlerisch"
-        }
+    "Font":{
+        "DefaultFont":"Standardschrift",
+        "Print":"Druckschrift",
+        "Black":"Schwarz",
+        "Code":"Code-Schrift",
+        "Handwriting":"Handschrift",
+        "Art":"Künstlerisch"
+    }
 }

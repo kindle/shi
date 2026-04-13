@@ -197,29 +197,36 @@
         "SizeSmall":"Small",
         "SizeMedium":"Medium",
         "SizeLarge":"Large"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"Version",
-            "Lite":"Lite",
-            "Full":"Full",
-            "Downloading":"Downloading...",
-            "Upgrade":"Upgrade to Full Version",
-            "Data":"Data",
-            "Backup":"Back Up Data",
-            "Import":"Import Data",
-            "Restore":"Restore and Clear Data",
-            "ClearCache":"Clear Cache",
-            "ClearCacheConfirm":"Are you sure you want to delete all local cached data? This action cannot be undone and the app will be reset to its initial state.",
-            "ClearCacheSuccess":"Cache cleared. It will take effect after restarting the app."
-        },
+    "Settings":{
+        "ContentVersion":"Version",
+        "Lite":"Lite",
+        "Full":"Full",
+        "Downloading":"Downloading...",
+        "Upgrade":"Upgrade to Full Version",
+        "Data":"Data",
+        "Backup":"Back Up Data",
+        "Import":"Import Data",
+        "Restore":"Restore and Clear Data",
+        "ClearCache":"Clear Cache",
+        "ClearCacheConfirm":"Are you sure you want to delete all local cached data? This action cannot be undone and the app will be reset to its initial state.",
+        "ClearCacheSuccess":"Cache cleared. It will take effect after restarting the app.",
+        "DownloadFullDb":"Download Full Poetry Database",
+        "DownloadFullDbConfirm":"The full poetry database is large and requires an internet connection to download. Download it now?",
+        "DownloadFullDbSuccess":"Poetry database downloaded successfully",
+        "DownloadFullDbFail":"Download failed. Please try again later",
+        "DownloadFullDbStart":"Starting poetry database download",
+        "UpgradeFullDb":"Upgrade Full Poetry Database",
+        "FullDbNotFound":"Poem ID not found. You may need to download the full poetry database to view it. Go to download now?"
+    },
 
-        "Font":{
-            "DefaultFont":"Default Font",
-            "Print":"Print",
-            "Black":"Black",
-            "Code":"Monospace",
-            "Handwriting":"Handwriting",
-            "Art":"Artistic"
-        }
+    "Font":{
+        "DefaultFont":"Default Font",
+        "Print":"Print",
+        "Black":"Black",
+        "Code":"Monospace",
+        "Handwriting":"Handwriting",
+        "Art":"Artistic"
+    }
 }

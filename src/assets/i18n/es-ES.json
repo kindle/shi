@@ -197,29 +197,36 @@
         "SizeSmall":"Pequeño",
         "SizeMedium":"Mediano",
         "SizeLarge":"Grande"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"Versión de la biblioteca de poemas",
-            "Lite":"Versión ligera",
-            "Full":"Versión completa",
-            "Downloading":"Descargando…",
-            "Upgrade":"Actualizar a la versión completa",
-            "Data":"Datos",
-            "Backup":"Respaldar datos",
-            "Import":"Importar datos",
-            "Restore":"Restaurar y borrar datos",
-            "ClearCache":"Borrar caché",
-            "ClearCacheConfirm":"¿Seguro que quieres eliminar todos los datos de caché locales? Esta acción no se puede deshacer y la aplicación volverá a su estado inicial.",
-            "ClearCacheSuccess":"La caché se ha borrado. El cambio surtirá efecto después de reiniciar la aplicación."
-        },
+    "Settings":{
+        "ContentVersion":"Versión de la biblioteca de poemas",
+        "Lite":"Versión ligera",
+        "Full":"Versión completa",
+        "Downloading":"Descargando…",
+        "Upgrade":"Actualizar a la versión completa",
+        "Data":"Datos",
+        "Backup":"Respaldar datos",
+        "Import":"Importar datos",
+        "Restore":"Restaurar y borrar datos",
+        "ClearCache":"Borrar caché",
+        "ClearCacheConfirm":"¿Seguro que quieres eliminar todos los datos de caché locales? Esta acción no se puede deshacer y la aplicación volverá a su estado inicial.",
+        "ClearCacheSuccess":"La caché se ha borrado. El cambio surtirá efecto después de reiniciar la aplicación.",
+        "DownloadFullDb":"Descargar la base de datos completa de poemas",
+        "DownloadFullDbConfirm":"La base de datos completa de poemas es bastante grande y requiere conexión a Internet para descargarse. ¿Descargarla ahora?",
+        "DownloadFullDbSuccess":"La base de datos de poemas se ha descargado correctamente",
+        "DownloadFullDbFail":"La descarga ha fallado. Vuelve a intentarlo más tarde",
+        "DownloadFullDbStart":"Iniciando la descarga de la base de datos de poemas",
+        "UpgradeFullDb":"Actualizar la base de datos completa de poemas",
+        "FullDbNotFound":"No se encontró el ID del poema. Puede que necesites descargar la base de datos completa de poemas para verlo. ¿Ir a descargar ahora?"
+    },
 
-        "Font":{
-            "DefaultFont":"Fuente predeterminada",
-            "Print":"Imprenta",
-            "Black":"Negra",
-            "Code":"Código",
-            "Handwriting":"Manuscrita",
-            "Art":"Artística"
-        }
+    "Font":{
+        "DefaultFont":"Fuente predeterminada",
+        "Print":"Imprenta",
+        "Black":"Negra",
+        "Code":"Código",
+        "Handwriting":"Manuscrita",
+        "Art":"Artística"
+    }
 }

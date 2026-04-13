@@ -1429,6 +1429,15 @@ export class DataService {
       if(element.paragraphs == null){
         element.paragraphs = [];
       }
+      if(element.chapter == null){
+        element.chapter = "";
+      }
+      if(element.section == null){
+        element.section = "";
+      }
+      if(element.rhythmic == null){
+        element.rhythmic = "";
+      }
       if(element.tags == null){
         element.tags = [];
       }
@@ -1444,6 +1453,9 @@ export class DataService {
           element.author + 
           element.title + 
           element.type +
+          element.chapter +
+          element.section +
+          element.rhythmic +
           element.paragraphs.join('_') +
           element.tags.join('_');
     });
@@ -2518,8 +2530,8 @@ export class DataService {
 
     const showConfirm = () => {
       this.ui.confirm(
-        '下载完整诗词库',
-        '完整诗词库体积较大，需要联网下载，是否现在下载？',
+        this.ui.instant("Settings.DownloadFullDb"),    //'下载完整诗词库',
+        this.ui.instant("Settings.DownloadFullDbConfirm"),    //'完整诗词库体积较大，需要联网下载，是否现在下载？',
         () => {
           // 从 Tab4 搜索页触发时，用户确认下载完整版，
           // 先跳到“更多设置”页面，方便查看下载进度等，然后再开始下载。
@@ -2558,7 +2570,8 @@ export class DataService {
     this.fullDbDownloadProgress = 0;
 
     try {
-      await this.ui.toast('bottom', '开始下载诗词库');
+      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbStart"));  
+      //开始下载诗词库
 
       // 先清空当前内存中的精简数据
       this.authorJsonData = [];
@@ -2590,10 +2603,14 @@ export class DataService {
         this.refreshArticleData(true);
       }
 
-      await this.ui.toast('bottom', '诗词库下载完成');
-    } catch {
-      await this.ui.toast('bottom', '下载失败，请稍后重试');
-    } finally {
+      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbSuccess"));  //诗词库下载完成
+    } 
+    catch 
+    {
+      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbFail"));  //下载失败，请稍后重试
+    } 
+    finally 
+    {
       this.isLoadingFullDb = false;
       // 若失败则保持 0，成功则应已为 100；这里不强制重置，避免闪烁
     }
@@ -3040,8 +3057,8 @@ export class DataService {
       if(!poem){
         // poem not found in JsonData, offer to download full DB
         this.ui.confirm(
-          '升级完整版诗词库',
-          '诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？',
+          this.ui.instant('Settings.UpgradeFullDb'),//'升级完整版诗词库',
+          this.ui.instant('Settings.DownloadFullDbConfirm'),//'诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？',
           () => {
             this.goToMoreSettings();
             this.downloadFullDb();

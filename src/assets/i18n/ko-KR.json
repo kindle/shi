@@ -197,29 +197,36 @@
         "SizeSmall":"작게",
         "SizeMedium":"보통",
         "SizeLarge":"크게"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"시 데이터베이스 버전",
-            "Lite":"라이트 버전",
-            "Full":"전체 버전",
-            "Downloading":"다운로드 중…",
-            "Upgrade":"전체 버전으로 업그레이드",
-            "Data":"데이터",
-            "Backup":"데이터 백업",
-            "Import":"데이터 가져오기",
-            "Restore":"데이터 복원 및 삭제",
-            "ClearCache":"캐시 지우기",
-            "ClearCacheConfirm":"모든 로컬 캐시 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없으며 앱이 초기 상태로 복원됩니다.",
-            "ClearCacheSuccess":"캐시가 지워졌습니다. 앱을 다시 시작하면 적용됩니다."
-        },
+    "Settings":{
+        "ContentVersion":"시 데이터베이스 버전",
+        "Lite":"라이트 버전",
+        "Full":"전체 버전",
+        "Downloading":"다운로드 중…",
+        "Upgrade":"전체 버전으로 업그레이드",
+        "Data":"데이터",
+        "Backup":"데이터 백업",
+        "Import":"데이터 가져오기",
+        "Restore":"데이터 복원 및 삭제",
+        "ClearCache":"캐시 지우기",
+        "ClearCacheConfirm":"모든 로컬 캐시 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없으며 앱이 초기 상태로 복원됩니다.",
+        "ClearCacheSuccess":"캐시가 지워졌습니다. 앱을 다시 시작하면 적용됩니다.",
+        "DownloadFullDb":"전체 시 데이터베이스 다운로드",
+        "DownloadFullDbConfirm":"전체 시 데이터베이스의 용량이 커서 인터넷에 연결해 다운로드해야 합니다. 지금 다운로드하시겠습니까?",
+        "DownloadFullDbSuccess":"시 데이터베이스 다운로드가 완료되었습니다",
+        "DownloadFullDbFail":"다운로드에 실패했습니다. 잠시 후 다시 시도해 주세요",
+        "DownloadFullDbStart":"시 데이터베이스 다운로드를 시작합니다",
+        "UpgradeFullDb":"전체 시 데이터베이스 업그레이드",
+        "FullDbNotFound":"시 ID를 찾을 수 없습니다. 보려면 전체 시 데이터베이스를 다운로드해야 할 수 있습니다. 지금 다운로드하러 이동하시겠습니까?"
+    },
 
-        "Font":{
-            "DefaultFont":"기본 글꼴",
-            "Print":"인쇄체",
-            "Black":"고딕체",
-            "Code":"코드체",
-            "Handwriting":"손글씨체",
-            "Art":"예술체"
-        }
+    "Font":{
+        "DefaultFont":"기본 글꼴",
+        "Print":"인쇄체",
+        "Black":"고딕체",
+        "Code":"코드체",
+        "Handwriting":"손글씨체",
+        "Art":"예술체"
+    }
 }

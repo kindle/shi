@@ -386,5 +386,14 @@
         "bg_image": "国庆.jpg",
         "music":"/assets/music/slidebg1.mp3",
         "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg"
+    },
+    {
+        "template": "slide",
+        "link":3,
+        "big_title": "古人早已给出了答案",
+        "small_title": "当你被否定时",
+        "bg_image": "海钓.jpg",
+        "music":"/assets/music/slidebg1.mp3",
+        "bg":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"
     }
 ]

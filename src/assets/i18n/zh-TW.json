@@ -198,29 +198,36 @@
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"詩詞庫版本",
-            "Lite":"精簡版",
-            "Full":"完整版",
-            "Downloading":"下載中…",
-            "Upgrade":"升級為完整版",
-            "Data":"資料",
-            "Backup":"備份資料",
-            "Import":"匯入資料",
-            "Restore":"還原並清除資料",
-            "ClearCache":"清除快取",
-            "ClearCacheConfirm":"確定要刪除所有本機快取資料嗎？此操作不可復原，應用程式將恢復到初始狀態。",
-            "ClearCacheSuccess":"已清除快取，重新啟動應用程式後生效"
-        },
+    "Settings":{
+        "ContentVersion":"詩詞庫版本",
+        "Lite":"精簡版",
+        "Full":"完整版",
+        "Downloading":"下載中…",
+        "Upgrade":"升級為完整版",
+        "Data":"資料",
+        "Backup":"備份資料",
+        "Import":"匯入資料",
+        "Restore":"還原並清除資料",
+        "ClearCache":"清除快取",
+        "ClearCacheConfirm":"確定要刪除所有本機快取資料嗎？此操作不可復原，應用程式將恢復到初始狀態。",
+        "ClearCacheSuccess":"已清除快取，重新啟動應用程式後生效",
+        "DownloadFullDb":"下載完整詩詞庫",
+        "DownloadFullDbConfirm":"完整詩詞庫容量較大，需要連線下載，是否現在下載？",
+        "DownloadFullDbSuccess":"詩詞庫下載完成",
+        "DownloadFullDbFail":"下載失敗，請稍後重試",
+        "DownloadFullDbStart":"開始下載詩詞庫",
+        "UpgradeFullDb":"升級完整版詩詞庫",
+        "FullDbNotFound":"找不到詩詞 ID，可能需要下載完整版詩詞庫才能查看，是否現在前往下載？"
+    },
 
-        "Font":{
-            "DefaultFont":"預設字體",
-            "Print":"印刷體",
-            "Black":"黑體",
-            "Code":"程式碼字體",
-            "Handwriting":"手寫體",
-            "Art":"藝術體"
-        }
+    "Font":{
+        "DefaultFont":"預設字體",
+        "Print":"印刷體",
+        "Black":"黑體",
+        "Code":"程式碼字體",
+        "Handwriting":"手寫體",
+        "Art":"藝術體"
+    }
 }

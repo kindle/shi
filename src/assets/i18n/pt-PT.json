@@ -197,29 +197,36 @@
         "SizeSmall":"Pequeno",
         "SizeMedium":"Médio",
         "SizeLarge":"Grande"
-        },
+    },
 
-        "Settings":{
-            "ContentVersion":"Versão da biblioteca de poemas",
-            "Lite":"Versão leve",
-            "Full":"Versão completa",
-            "Downloading":"A transferir…",
-            "Upgrade":"Atualizar para a versão completa",
-            "Data":"Dados",
-            "Backup":"Fazer cópia de segurança dos dados",
-            "Import":"Importar dados",
-            "Restore":"Restaurar e apagar dados",
-            "ClearCache":"Limpar cache",
-            "ClearCacheConfirm":"Tem a certeza de que pretende eliminar todos os dados de cache locais? Esta ação não pode ser anulada e a aplicação será reposta ao estado inicial.",
-            "ClearCacheSuccess":"A cache foi limpa. Terá efeito depois de reiniciar a aplicação."
-        },
+    "Settings":{
+        "ContentVersion":"Versão da biblioteca de poemas",
+        "Lite":"Versão leve",
+        "Full":"Versão completa",
+        "Downloading":"A transferir…",
+        "Upgrade":"Atualizar para a versão completa",
+        "Data":"Dados",
+        "Backup":"Fazer cópia de segurança dos dados",
+        "Import":"Importar dados",
+        "Restore":"Restaurar e apagar dados",
+        "ClearCache":"Limpar cache",
+        "ClearCacheConfirm":"Tem a certeza de que pretende eliminar todos os dados de cache locais? Esta ação não pode ser anulada e a aplicação será reposta ao estado inicial.",
+        "ClearCacheSuccess":"A cache foi limpa. Terá efeito depois de reiniciar a aplicação.",
+        "DownloadFullDb":"Transferir a base de dados completa de poesia",
+        "DownloadFullDbConfirm":"A base de dados completa de poesia é bastante grande e requer uma ligação à Internet para ser transferida. Transferir agora?",
+        "DownloadFullDbSuccess":"A base de dados de poesia foi transferida com sucesso",
+        "DownloadFullDbFail":"Falha na transferência. Tente novamente mais tarde",
+        "DownloadFullDbStart":"A iniciar a transferência da base de dados de poesia",
+        "UpgradeFullDb":"Atualizar a base de dados completa de poesia",
+        "FullDbNotFound":"ID do poema não encontrado. Pode ser necessário transferir a base de dados completa de poesia para o ver. Ir para a transferência agora?"
+    },
 
-        "Font":{
-            "DefaultFont":"Tipo de letra predefinido",
-            "Print":"Impresso",
-            "Black":"Preto",
-            "Code":"Código",
-            "Handwriting":"Manuscrito",
-            "Art":"Artístico"
-        }
+    "Font":{
+        "DefaultFont":"Tipo de letra predefinido",
+        "Print":"Impresso",
+        "Black":"Preto",
+        "Code":"Código",
+        "Handwriting":"Manuscrito",
+        "Art":"Artístico"
+    }
 }

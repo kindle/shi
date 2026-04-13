@@ -493,7 +493,8 @@
       <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&!bigimg">
         <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
         [style.fontSize]="data.zoom(18)">
-          {{data.currentPoem.author}}
+          {{data.currentPoem.author}} 
+          <!-- {{data.currentPoem.chapter}} {{data.currentPoem.section}} -->
         </div>
       </ion-item>
       <!--大于10行诗词段-->
