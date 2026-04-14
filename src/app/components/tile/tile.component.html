@@ -29,7 +29,8 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" (click)="data.goToListBy(s)">
+  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" 
+  (click)="data.goToListBy(s)">
     
     <div class="slide-in-right" [style.animation-delay]="i * 0.05 + 's'">
         <div class="card-scroll-item1" 

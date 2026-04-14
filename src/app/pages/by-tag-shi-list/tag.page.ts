@@ -26,8 +26,13 @@ export class TagPage {
   }
 
 
+  displayName:any;
   ionViewWillEnter() {
     this.tag = this.activatedRoute.snapshot.paramMap.get('tag');
+    this.displayName = 
+      this.data.currentItem.name?this.data.currentItem.name:
+      (this.data.currentItem.text?
+        this.data.currentItem.text:this.tag);
     const tags = (this.tag || '')
       .split('|')
       .map((value:string) => value.trim())

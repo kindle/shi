@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{tag}}</ion-title>
+    <ion-title>{{displayName}}</ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="!data.isliked(data.currentItem,'taglist')"
       (click)="data.likelist(data.currentItem,'taglist')"

@@ -2838,7 +2838,8 @@ export class DataService {
         //this.currentAuthor = item.text;
         //this.currentImage = item.src;
         this.currentItem = item;
-        this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${item.text}`);
+        let sendData = item.tag?item.tag:item.text;
+        this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${sendData}`);
       }
     }
   }
