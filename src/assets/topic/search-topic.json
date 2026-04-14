@@ -1134,7 +1134,8 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/诗经.jpeg","display":"cover","text":"诗经","desc":"","color":"rgb(98,166,243)","author":"诗经"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/诗经.jpeg","display":"cover","text":"诗经","desc":"","color":"rgb(98,166,243)","author":"诗经"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/许穆夫人.jpeg","display":"cover","text":"许穆夫人","desc":"","color":"rgb(98,166,243)","author":"许穆夫人"}
       ]},
 
       {"name":"精选诗单", "data": [
@@ -1249,7 +1250,8 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/屈原.jpeg","display":"cover","text":"屈原","desc":"","color":"rgb(98,166,243)","author":"屈原"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/屈原.jpeg","display":"cover","text":"屈原","desc":"","color":"rgb(98,166,243)","author":"屈原"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/宋玉.jpeg","display":"cover","text":"宋玉","desc":"","color":"rgb(98,166,243)","author":"宋玉"}
       ]},
 
       {"name":"精选诗单", "data": [
@@ -1330,9 +1332,9 @@
       ]},
 
       {"name":"风格诗单", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg","display":"cover","text":"汉赋","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg","display":"cover","text":"古诗","desc":"","color":"rgb(98,166,243)"},
-        {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"","color":"rgb(98,166,243)"}
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/故宫瓦.jpg","display":"cover","text":"汉赋","desc":"东汉散文与西汉辞赋","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/oaoao-building-1409841_1920.jpg","display":"cover","text":"秦汉|古诗十九首","desc":"南朝萧统编入《文选》","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"魏晋六朝后收集的诗歌","color":"rgb(98,166,243)"}
       ]}
     ],
     "desctitle":"秦汉",

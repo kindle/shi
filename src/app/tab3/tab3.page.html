@@ -64,7 +64,7 @@
 
 
   <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
-    grid-gap:0px;padding:0 10px;margin-top:10px;">
+    grid-gap:0px;padding:0 10px;margin-top:10px;margin-bottom:15px;">
     <ion-card *ngFor="let topic of topics"
       id="{{topic.id}}"
       (click)="goToTopic(topic.id)"
@@ -87,7 +87,11 @@
 
   
   <!--最近添加-->
-  <app-tile-list name="{{ ui.instant('Title.RecentlyAdded') }}" [arrow]="false" [source]="data.recentCollection()" [max]="6"></app-tile-list>
+  <div style="margin-bottom:15px;">
+    <app-tile-list name="{{ ui.instant('Title.RecentlyAdded') }}" 
+    [arrow]="false" [source]="data.recentCollection()" [max]="6">
+    </app-tile-list>
+  </div>
 
   <!--最近浏览-->
   <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
