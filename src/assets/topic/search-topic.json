@@ -75,7 +75,7 @@
         "ru-RU":"Начинающий",
         "th-TH":"ระดับต้น",
         "zh-CN":"年级诗单",
-        "zh-TW":"年級詩單"
+        "zh-TW":"年級诗單"
       },
       "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/齐白石1.jpg","display":"cover","text":"一年级","color":"rgb(121,196,131)"},
@@ -124,13 +124,13 @@
         "en-US":"Fun Poems",
         "es-ES":"Poemas Divertidos",
         "fr-FR":"Poèmes Amusants",
-        "ja-JP":"面白い詩",
+        "ja-JP":"面白い诗",
         "ko-KR":"재미있는 시",
         "pt-PT":"Poemas Divertidos",
         "ru-RU":"Забавные стихи",
         "th-TH":"บทกวีสนุกๆ",
         "zh-CN":"趣味诗单",
-        "zh-TW":"趣味詩單"
+        "zh-TW":"趣味诗單"
       },
       "data": []
       },
@@ -148,7 +148,7 @@
         "ru-RU":"Стиль",
         "th-TH":"สไตล์",
         "zh-CN":"风格诗单",
-        "zh-TW":"風格詩單"
+        "zh-TW":"风格诗單"
       },
       "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg", "alias":"山水", "text":"山水", "color":"rgb(113,203,212)", "light":"rgb(113,203,212,60%)"},
@@ -366,13 +366,13 @@
       "en-US":"Famous Poems & Verses",
       "es-ES":"Poemas y Versos Famosos",
       "fr-FR":"Poèmes et Vers Célèbres",
-      "ja-JP":"名詩と名句",
+      "ja-JP":"名诗と名句",
       "ko-KR":"명시와 명구",
       "pt-PT":"Poemas e Versos Famosos",
       "ru-RU":"Знаменитые стихи и строки",
       "th-TH":"บทกวีและวรรคทองที่มีชื่อเสียง",
       "zh-CN":"名诗佳句",
-      "zh-TW":"名詩佳句"
+      "zh-TW":"名诗佳句"
     },
     "desc":"人一定要热爱些什么，才不至于被这无趣的生活吞没。",
     "desclist":[
@@ -907,13 +907,13 @@
       "en-US":"Season",
       "es-ES":"Temporada",
       "fr-FR":"Saison",
-      "ja-JP":"時節",
+      "ja-JP":"时節",
       "ko-KR":"계절",
       "pt-PT":"Estação",
       "ru-RU":"Сезон",
       "th-TH":"ฤดูกาล",
       "zh-CN":"时节",
-      "zh-TW":"時節"
+      "zh-TW":"时節"
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/24小寒.jpg",
     "scroll":[
@@ -1044,13 +1044,13 @@
         "en-US":"Ancient Era",
         "es-ES":"Antiguedad",
         "fr-FR":"Ere antique",
-        "ja-JP":"上古時代",
+        "ja-JP":"上古时代",
         "ko-KR":"상고 시대",
         "pt-PT":"Era Antiga",
         "ru-RU":"Древнейшая эпоха",
         "th-TH":"ยุคโบราณ",
         "zh-CN":"上古时期",
-        "zh-TW":"上古時期"
+        "zh-TW":"上古时期"
       },
       "image":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg",
       "scroll":[ 
@@ -1119,7 +1119,7 @@
       "en-US":"Western Zhou - Spring and Autumn",
       "es-ES":"Zhou Occidental - Primaveras y Otonos",
       "fr-FR":"Zhou occidental - Printemps et Automnes",
-      "ja-JP":"西周-春秋時代",
+      "ja-JP":"西周-春秋时代",
       "ko-KR":"서주-춘추 시대",
       "pt-PT":"Zhou Ocidental - Primaveras e Outonos",
       "ru-RU":"Западная Чжоу — Период Весен и Осеней",
@@ -1235,7 +1235,7 @@
       "en-US":"Warring States",
       "es-ES":"Estados Combatientes",
       "fr-FR":"Royaumes combattants",
-      "ja-JP":"戦国時代",
+      "ja-JP":"戦国时代",
       "ko-KR":"전국 시대",
       "pt-PT":"Estados Combatentes",
       "ru-RU":"Эпоха Сражающихся царств",
@@ -1305,7 +1305,7 @@
       "en-US":"Qin and Han",
       "es-ES":"Qin y Han",
       "fr-FR":"Qin et Han",
-      "ja-JP":"秦漢時代",
+      "ja-JP":"秦漢时代",
       "ko-KR":"진한 시대",
       "pt-PT":"Qin e Han",
       "ru-RU":"Эпоха Цинь и Хань",
@@ -1353,7 +1353,7 @@
       "en-US":"Wei, Jin, and Northern-Southern Dynasties",
       "es-ES":"Wei, Jin y Dinastias del Norte y del Sur",
       "fr-FR":"Dynasties Wei, Jin et du Nord et du Sud",
-      "ja-JP":"魏晋南北朝時代",
+      "ja-JP":"魏晋南北朝时代",
       "ko-KR":"위진남북조 시대",
       "pt-PT":"Wei, Jin e Dinastias do Norte e do Sul",
       "ru-RU":"Вэй, Цзинь и Северные и Южные династии",
@@ -1400,7 +1400,7 @@
       "en-US":"Sui and Tang",
       "es-ES":"Sui y Tang",
       "fr-FR":"Sui et Tang",
-      "ja-JP":"隋唐時代",
+      "ja-JP":"隋唐时代",
       "ko-KR":"수당 시대",
       "pt-PT":"Sui e Tang",
       "ru-RU":"Эпоха Суй и Тан",
@@ -1615,7 +1615,7 @@
       "en-US":"Ming and Qing",
       "es-ES":"Ming y Qing",
       "fr-FR":"Ming et Qing",
-      "ja-JP":"明清時代",
+      "ja-JP":"明清时代",
       "ko-KR":"명청 시대",
       "pt-PT":"Ming e Qing",
       "ru-RU":"Эпоха Мин и Цин",

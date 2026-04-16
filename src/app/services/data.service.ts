@@ -9,7 +9,7 @@ import { Capacitor, CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { UiService } from './ui.service';
 import { catchError, tap, BehaviorSubject, firstValueFrom } from 'rxjs';
 import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
-import { Solar } from 'lunar-typescript';
+import { JieQi, Solar } from 'lunar-typescript';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 import { Share } from '@capacitor/share';
@@ -972,7 +972,15 @@ export class DataService {
     // console.log('curJieQiTermInfo:', this.curJieQiTermInfo);
     // console.log('nextJieQiTermInfo:', this.nextJieQiTermInfo);
     // console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
-    this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
+    if(solarTermName.length>0)//today is 24 JieQi
+    {
+      this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
+    }
+    else //not a JieQi day
+    {
+      this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextNextJieQiTermInfo];
+    }
+    
 
     this.getTerm24Articles();
     //console.log('term24ArticleList:', this.term24ArticleList);
@@ -1237,13 +1245,15 @@ export class DataService {
         "value":solarTermName,
         "memo":solarTermInfo.desc?solarTermInfo.desc:
         (solarTermInfo.title?solarTermInfo.title:solarTermName),
-        "name":"" 
+        "name":"",
+        "flag":"24SolarTerm"
       }].concat(solarTermPoems).concat(
         [{
           "type":"list",
           "value":"",
           "memo":"",
           "name":this.ui.instant('Title.GuessYouLike'),//"你可能也喜欢"
+          "flag":""
         }]
       ),
       link:"",
@@ -4366,7 +4376,7 @@ export class DataService {
     { code: 'ru-RU', text: 'Русский' },
     { code: 'pt-PT', text: 'Português' },
     { code: 'de-DE', text: 'Deutsch' },
-    { code: 'ja-JP', text: '日本語' },
+    { code: 'ja-JP', text: '日本语' },
     { code: 'ko-KR', text: '한국어' },
     { code: 'el-GR', text: 'Ελληνικά' },
     { code: 'th-TH', text: 'ไทย' }
