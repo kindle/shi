@@ -194,6 +194,7 @@
     "Note":{
         "Normal":"ปกติ",
         "Note":"บันทึก",
+        "Original":"คืนค่าเดิม",
         "SizeSmall":"เล็ก",
         "SizeMedium":"กลาง",
         "SizeLarge":"ใหญ่"

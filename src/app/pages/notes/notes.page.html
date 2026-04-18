@@ -60,10 +60,13 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="setNormal()">
-        Normal
+        {{ ui.instant('Note.Normal') }}
       </ion-button>
       <ion-button (click)="setNote()">
-        Note
+        {{ ui.instant('Note.Note') }}
+      </ion-button>
+      <ion-button (click)="setOriginal()">
+        {{ ui.instant('Note.Original') }}
       </ion-button>
     </ion-buttons>
     
@@ -72,7 +75,7 @@
         <ion-icon name="color-palette-outline" [style.color]="currentNoteColor"></ion-icon>
       </ion-button>
       <ion-button (click)="toggleSize()">
-        {{ currentNoteSize | uppercase }}
+        {{ GetSizeText(currentNoteSize) }}
       </ion-button>
        <ion-button (click)="toggleLines()">
         L:{{ currentNoteLines }}

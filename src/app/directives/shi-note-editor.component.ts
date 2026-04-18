@@ -58,6 +58,7 @@ import { ShiNoteService } from '../services/shi-note.service';
 })
 export class ShiNoteEditorComponent implements OnInit, AfterViewInit {
   @Input('shi-note-editor') initialContent: string = '';
+  @Input() originalText: string = '';
   @Input() canEdit: boolean = false;
   @Input() cacheid: string = '';
   @Output() contentChange = new EventEmitter<string>();
@@ -70,6 +71,7 @@ export class ShiNoteEditorComponent implements OnInit, AfterViewInit {
   currentNoteColor = 'red';
   currentNoteSize = 'a';
   currentNoteLines = 1;
+  private originalContent = '';
 
   storedRange: Range | null = null;
   isComposing = false;
@@ -86,14 +88,24 @@ export class ShiNoteEditorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
       let contentToUse = this.initialContent;
+      const projected = this.originalContentRef?.nativeElement?.textContent || '';
+
+      if (this.originalText) {
+        this.originalContent = this.originalText;
+      } else if (projected.length > 0) {
+        this.originalContent = projected;
+      }
       
       // If no input bound, use projected content
       if (!contentToUse && this.originalContentRef) {
           // Use textContent to get the projected text
-          const projected = this.originalContentRef.nativeElement.textContent;
           if (projected && projected.trim().length > 0) {
                contentToUse = projected;
           }
+      }
+
+      if (!this.originalContent) {
+        this.originalContent = contentToUse || '';
       }
 
       if (contentToUse) {
@@ -351,6 +363,18 @@ export class ShiNoteEditorComponent implements OnInit, AfterViewInit {
     }
     this.createNoteFromRange(range);
     this.updateBackgroundString();
+  }
+
+  setOriginal() {
+    if (this.cacheid) {
+      localStorage.removeItem(this.cacheid);
+    }
+    this.editorRef.nativeElement.innerHTML = this.parseTags(this.originalContent || '');
+    this.currentNoteColor = 'red';
+    this.currentNoteSize = 'a';
+    this.currentNoteLines = 1;
+    this.storedRange = null;
+    this.contentChange.emit(this.originalContent || '');
   }
 
   updateNoteStyle(element: HTMLElement) {

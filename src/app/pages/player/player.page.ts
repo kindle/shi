@@ -529,6 +529,15 @@ export class PlayerPage implements OnInit {
     }
   }
 
+  setOriginal() {
+    if (this.activeInlineEditor) {
+        this.activeInlineEditor.setOriginal();
+        this.currentNoteColor = this.activeInlineEditor.currentNoteColor;
+        this.currentNoteSize = this.activeInlineEditor.currentNoteSize;
+        this.currentNoteLines = this.activeInlineEditor.currentNoteLines;
+    }
+  }
+
   toggleColor() {
       if (this.activeInlineEditor) {
           this.activeInlineEditor.toggleColor();

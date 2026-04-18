@@ -194,6 +194,7 @@
     "Note":{
         "Normal":"Κανονικός",
         "Note":"Σημείωση",
+        "Original":"Επαναφορά",
         "SizeSmall":"Μικρό",
         "SizeMedium":"Μεσαίο",
         "SizeLarge":"Μεγάλο"

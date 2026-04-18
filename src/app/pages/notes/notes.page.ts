@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angula
 import { DataService } from 'src/app/services/data.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ShiNoteEditorComponent } from '../../directives/shi-note-editor.component';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-notes',
@@ -28,7 +29,7 @@ export class NotesPage implements OnInit, AfterViewInit {
   // Active inline editor reference
   activeInlineEditor: ShiNoteEditorComponent | null = null;
 
-  constructor(public data: DataService, private sanitizer: DomSanitizer) { }
+  constructor(public data: DataService, private sanitizer: DomSanitizer, public ui: UiService) { }
 
   onInlineEditorActive(editor: ShiNoteEditorComponent) {
       this.activeInlineEditor = editor;
@@ -293,6 +294,15 @@ export class NotesPage implements OnInit, AfterViewInit {
     this.createNoteFromRange(range);
     this.updateBackgroundString();
   }
+
+  setOriginal() {
+    if (this.activeInlineEditor) {
+        this.activeInlineEditor.setOriginal();
+        this.currentNoteColor = this.activeInlineEditor.currentNoteColor;
+        this.currentNoteSize = this.activeInlineEditor.currentNoteSize;
+        this.currentNoteLines = this.activeInlineEditor.currentNoteLines;
+    }
+  }
   
   toggleColor() {
       if (this.activeInlineEditor) {
@@ -324,6 +334,19 @@ export class NotesPage implements OnInit, AfterViewInit {
       }
       this.currentNoteLines = this.currentNoteLines === 1 ? 2 : 1;
       this.applyToSelection();
+  }
+
+  GetSizeText(size: string) {
+      switch (size) {
+        case 'a':
+          return this.ui.instant('Note.SizeSmall');
+        case 'b':
+          return this.ui.instant('Note.SizeMedium');
+        case 'c':
+          return this.ui.instant('Note.SizeLarge');
+        default:
+          return this.ui.instant('Note.SizeSmall');
+      }
   }
 
   applyToSelection() {

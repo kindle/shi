@@ -195,6 +195,7 @@
     "Note":{
         "Normal":"正文",
         "Note":"註釋",
+        "Original":"還原",
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"

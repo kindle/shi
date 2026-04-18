@@ -381,6 +381,7 @@
         style="position: absolute;left:5px;margin:2px;"
         ></ion-icon>
         <div shi-note-editor 
+        [originalText]="data.currentPoem.author"
         cacheid="{{data.currentPoem.id+'_author'}}" 
         *ngIf="data.currentPoem.sample">
           {{GetCacheById(data.currentPoem.id+'_author')||data.currentPoem.author}}
@@ -404,12 +405,14 @@
         (click)="data.search(text)"
         style="position: absolute;left:5px;margin:2px;top:10px;"
         ></ion-icon>
-        <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)" 
+        <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)"
+        [originalText]="getHighlight(text)"
         cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
         *ngIf="data.currentPoem.sample" 
         [style.fontSize]="data.zoom(18)"
         class="selectableText"></div>
-        <div [shi-note-editor]="GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text" 
+        <div [shi-note-editor]="GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text"
+        [originalText]="text"
         cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
         *ngIf="!data.currentPoem.sample"
         [style.fontSize]="data.zoom(18)"
@@ -514,11 +517,13 @@
           (click)="data.search(text)"
           style="position: absolute;left:5px;margin:2px;top:10px;"
           ></ion-icon>
-          <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)" 
+          <div [shi-note-editor]="getHighlight(GetCacheById(data.currentPoem.id+'_paragraph_'+i) || text)"
+          [originalText]="getHighlight(text)"
           cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
           *ngIf="data.currentPoem.sample"
           [style.fontSize]="data.zoom(18)"></div>
           <div shi-note-editor
+          [originalText]="text"
           cacheid="{{data.currentPoem.id+'_paragraph_'+i}}"
           *ngIf="!data.currentPoem.sample"
           [style.fontSize]="data.zoom(18)">
@@ -661,6 +666,9 @@
       </ion-button>
       <ion-button (click)="setNote()">
         {{ ui.instant('Note.Note')}}<!--注释-->
+      </ion-button>
+      <ion-button (click)="setOriginal()">
+        {{ ui.instant('Note.Original')}}<!--还原-->
       </ion-button>
     </ion-buttons>
     

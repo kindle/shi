@@ -194,6 +194,7 @@
     "Note":{
         "Normal":"標準",
         "Note":"注釈",
+        "Original":"元に戻す",
         "SizeSmall":"小",
         "SizeMedium":"中",
         "SizeLarge":"大"

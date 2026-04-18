@@ -194,6 +194,7 @@
     "Note":{
         "Normal":"Normal",
         "Note":"Nota",
+        "Original":"Restaurar",
         "SizeSmall":"Pequeno",
         "SizeMedium":"Médio",
         "SizeLarge":"Grande"

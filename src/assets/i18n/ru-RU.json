@@ -194,6 +194,7 @@
     "Note":{
         "Normal":"Обычный",
         "Note":"Примечание",
+        "Original":"Восстановить",
         "SizeSmall":"Мелкий",
         "SizeMedium":"Средний",
         "SizeLarge":"Крупный"
