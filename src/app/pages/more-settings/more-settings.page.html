@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="light" class="more-settings-content">
 
 
   <ion-list-header [style.fontSize]="data.zoom(22)">
@@ -25,7 +25,7 @@
         v{{data.AppVersion}}
       </ion-text>
     </ion-item>
-    <ion-item [button]="false">
+    <ion-item [button]="false" lines="none">
       <ion-label [style.fontSize]="data.zoom(16)">
         {{ui.instant('Settings.ContentVersion')}} <!--诗词库版本-->
       </ion-label>
@@ -35,7 +35,7 @@
       
     </ion-item>
     <ion-item>
-      {{data.localFullDbVersion? 'v'+data.localFullDbVersion : ''}}
+      {{data.localFullDbVersion? data.localFullDbVersion : ''}}
       <!-- {{data.remoteFullDbVersion}} -->
 
       <ion-button *ngIf="data.shouldShowDbUpgradeButton()"
@@ -172,16 +172,5 @@
     </ion-item>
   </ion-list>
 
-  <ion-list style="min-height:78px;">
-    <ion-item>
-      &nbsp;
-    </ion-item>
-    <ion-item>
-      &nbsp;
-    </ion-item>
-    <ion-item>
-      &nbsp;
-    </ion-item>
-  </ion-list>
 
 </ion-content>
