@@ -104,6 +104,8 @@
     "Title":{
         "App":"Poetry",
         "Recent":"Recent",
+        "RecentAlbums":"Recent Albums",
+        "RecentShi":"Recent Poems",
         "Hot":"Hot",
         "Classical":"Classical",
         "AllPoems":"All Poems",

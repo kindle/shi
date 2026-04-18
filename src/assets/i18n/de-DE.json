@@ -104,6 +104,8 @@
     "Title":{
         "App":"Poesie",
         "Recent":"Neueste",
+        "RecentAlbums":"Zuletzt angesehene Alben",
+        "RecentShi":"Zuletzt angesehene Gedichte",
         "Hot":"Beliebt",
         "Classical":"Klassisch",
         "AllPoems":"Alle Gedichte",

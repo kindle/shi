@@ -14,6 +14,7 @@ import { DogCardComponentModule } from '../components/dog-card/dog-card.module';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { ShiTrackerModule } from '../components/shi-tracker/shi-tracker.module';
 import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
+import { TextComponentModule } from '../components/text/text.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { SubTitleComponentModule } from '../components/sub-title/sub-title.modul
     FormsModule,
     Tab3PageRoutingModule,
     HotComponentModule,
+    TextComponentModule,
     StationComponentModule,
     TileListComponentModule,
     TileComponentModule,

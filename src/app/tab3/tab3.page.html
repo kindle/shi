@@ -93,9 +93,51 @@
     </app-tile-list>
   </div>
 
-  <!--最近浏览-->
-  <app-tile name="{{ ui.instant('Title.Recent') }}" [source]="data.playedEPHistory" 
+
+  <!--动态-->
+  <app-sub-title name="{{ ui.instant('Tracker.StudyActivity') }}"></app-sub-title>
+  <app-shi-tracker [year]="2026" style="margin-top:10px;"></app-shi-tracker>
+  
+
+  <!--最近浏览专辑-->
+  <app-tile name="{{ ui.instant('Title.RecentAlbums') }}" [source]="data.playedEPHistory" 
   *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+
+
+  <!--最近浏览诗词-->
+  <ion-list style="margin:0 0px;margin-top: 0;">
+    <ion-list-header style="margin-bottom: 15px;">
+      {{ui.instant('Title.RecentShi')}}
+    </ion-list-header>
+    <ng-container *ngFor="let p of reversedPlayHistory">
+      <ion-item lines="none" (click)="play(p)" *ngIf="!data.currentPoem || p.id !== data.currentPoem.id">
+        <ion-thumbnail slot="start"
+        style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
+          <img id="authorimg" style="border-radius: 10px;" 
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+            onerror="javascript:this.src='assets/img/default.jpg'"
+              />
+        </ion-thumbnail>
+        
+        <ion-label>
+          <h2 [style.fontSize]="data.zoom(17)"
+          class="show-only-one-line" *ngIf="p.paragraphs">
+            {{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}
+          </h2>
+          <h2 [style.fontSize]="data.zoom(17)"
+          class="show-only-one-line" *ngIf="!p.paragraphs">
+            {{p.sample}}
+          </h2>
+          <p style="margin-top:5px;display: flex;align-items: end;"
+            class="show-only-one-line" [style.fontSize]="data.zoom(14)">
+            {{p.author}}《{{p.title}}》
+            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="min-width: 16px;"></ion-icon>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
 
 <!--
   <ion-list style="margin-left:5px;margin-bottom:10px;">
@@ -143,11 +185,6 @@
     </ion-item>
   </ion-list>
 -->
-
-  <!--动态-->
-  <app-sub-title name="{{ ui.instant('Tracker.StudyActivity') }}"></app-sub-title>
-  <app-shi-tracker [year]="2026" style="margin-top:10px;"></app-shi-tracker>
-  
 
   <!-- 历史上的今天
   <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>

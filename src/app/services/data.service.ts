@@ -4082,6 +4082,11 @@ export class DataService {
         return;
       }
     }
+
+    this.playedEPHistory = this.playedEPHistory.filter((item:any) =>
+      !((item.id && item.id == ep.id) || item.text == ep.text)
+    );
+
     //console.log(ep)
     this.playedEPHistory.unshift(ep);
     if(this.playedEPHistory.length>this.MAX_HIS_COUNT_EP){

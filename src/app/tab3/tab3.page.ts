@@ -16,6 +16,10 @@ import { ConvertService } from '../services/convert.service';
 export class Tab3Page {
 
   readonly currentDateTitle = this.formatCurrentDate();
+  get reversedPlayHistory(): any[] {
+    return [...(this.data.playHistory || [])].reverse();
+  }
+
   private formatCurrentDate(): string {
     const now = new Date();
     const year = now.getFullYear();
@@ -50,6 +54,7 @@ export class Tab3Page {
   }
 
   async ionViewDidEnter(){
+    
     //if(this.data.articleDataLoaded===false){
     //  await this.data.loadJsonData();
     //}
@@ -291,6 +296,10 @@ export class Tab3Page {
     //if(toolId === 'video-to-audio'){
       this.convertService.selectVideoAndConvert();
     //}
+  }
+
+  play(poem:any){
+    this.data.playobj(poem, true);
   }
 
 }
