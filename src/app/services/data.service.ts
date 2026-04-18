@@ -1385,6 +1385,7 @@ export class DataService {
 
     //console.log(this.JsonData.length);
     //如果今天是二十四节气 +1
+    /*
     let tempSolarTermPoems = this.JsonData.filter((j:any)=>{
       if (!j || j.id == null) {
         return false;
@@ -1406,14 +1407,20 @@ export class DataService {
       }
 
       return false;
-    }).slice(0,50);
+    }).slice(0,50);*/
+    const solarTermArticle = this.poemListData.find((item:any) => item?.sub === solarTermName);
+    let tempSolarTermPoems = Array.isArray(solarTermArticle?.list)
+      ? solarTermArticle.list.slice(0, 50)
+      : [];
+
+
     let solarTermPoems:any = [];
     tempSolarTermPoems.forEach((p:any) => {
       solarTermPoems.push({
         "type":"poem", 
         "author":p.author, 
         "title":p.title, 
-        "sample":"", 
+        "sample":p.sample, 
         "solarterm":solarTermName,
         "paragraphs":p.paragraphs,
         "id":p.id
