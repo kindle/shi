@@ -20,6 +20,10 @@ export class MoreSettingsPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    void this.data.checkRemoteFullDbVersionOnEnter();
+  }
+
   mathfloor(n:any){
     return Math.floor(n);
   }

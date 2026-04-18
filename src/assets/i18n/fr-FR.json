@@ -205,6 +205,7 @@
         "Full":"Version complète",
         "Downloading":"Téléchargement en cours…",
         "Upgrade":"Passer à la version complète",
+        "UpgradeDb":"Mettre à jour la base de données des poèmes",
         "Data":"Données",
         "Backup":"Sauvegarder les données",
         "Import":"Importer les données",

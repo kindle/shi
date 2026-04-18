@@ -205,6 +205,7 @@
         "Full":"전체 버전",
         "Downloading":"다운로드 중…",
         "Upgrade":"전체 버전으로 업그레이드",
+        "UpgradeDb":"시 데이터베이스 업데이트",
         "Data":"데이터",
         "Backup":"데이터 백업",
         "Import":"데이터 가져오기",

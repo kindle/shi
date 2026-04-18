@@ -206,6 +206,7 @@
         "Full":"完整版",
         "Downloading":"下載中…",
         "Upgrade":"升級為完整版",
+        "UpgradeDb":"更新詩詞庫",
         "Data":"資料",
         "Backup":"備份資料",
         "Import":"匯入資料",

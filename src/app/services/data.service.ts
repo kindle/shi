@@ -64,10 +64,16 @@ export class DataService {
   private useTwoStepDbLoading = true;
 
   private readonly FULL_DB_READY_KEY = 'FULL_DB_READY_KEY';
+  private readonly FULL_DB_VERSION_KEY = 'FULL_DB_VERSION_KEY';
   public isFullDbReady = false;
   public isLoadingFullDb = false;
   public fullDbDownloadProgress = 0; // 0-100 下载进度百分比
+  public localFullDbVersion: string | null = null;
+  public remoteFullDbVersion: string | null = null;
+  public isCheckingFullDbVersion = false;
+  public isFullDbUpgradeAvailable = false;
   private hasCheckedFullDbFlag = false; // 是否已从存储中检查过 FULL_DB_READY_KEY
+  private fullDbVersionCheckPromise: Promise<void> | null = null;
 
   private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
   private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
@@ -259,6 +265,187 @@ export class DataService {
     });
 
     await Promise.all(tasks);
+  }
+
+  private hasNetworkConnection(): boolean {
+    return typeof navigator !== 'undefined' && navigator.onLine !== false;
+  }
+
+  private getDbVersionUrl(): string | null {
+    const zipUrl = environment.fullDbZipUrl;
+    if (!zipUrl) {
+      return null;
+    }
+
+    const normalizedUrl = zipUrl.split('?')[0];
+    const lastSlashIndex = normalizedUrl.lastIndexOf('/');
+    if (lastSlashIndex < 0) {
+      return null;
+    }
+
+    return `${normalizedUrl.substring(0, lastSlashIndex + 1)}db-version.json`;
+  }
+
+  private extractDbVersionValue(payload: any): string | null {
+    if (payload == null) {
+      return null;
+    }
+
+    if (typeof payload === 'string' || typeof payload === 'number') {
+      const version = `${payload}`.trim();
+      return version.length > 0 ? version : null;
+    }
+
+    const candidates = [
+      payload.version,
+      payload.dbVersion,
+      payload.latestVersion,
+      payload.latest,
+      payload.updatedAt,
+      payload.timestamp,
+      payload.time
+    ];
+
+    for (const candidate of candidates) {
+      if (candidate == null) {
+        continue;
+      }
+
+      const version = `${candidate}`.trim();
+      if (version.length > 0) {
+        return version;
+      }
+    }
+
+    if (payload.data && typeof payload.data === 'object') {
+      return this.extractDbVersionValue(payload.data);
+    }
+
+    return null;
+  }
+
+  private compareDbVersions(localVersion: string | null, remoteVersion: string | null): number {
+    if (!localVersion && !remoteVersion) {
+      return 0;
+    }
+    if (!localVersion) {
+      return -1;
+    }
+    if (!remoteVersion) {
+      return 1;
+    }
+
+    const tokenize = (value: string) => {
+      const tokens = value.match(/\d+|[^\d]+/g);
+      return tokens || [value];
+    };
+
+    const leftParts = tokenize(localVersion);
+    const rightParts = tokenize(remoteVersion);
+    const maxLength = Math.max(leftParts.length, rightParts.length);
+
+    for (let index = 0; index < maxLength; index++) {
+      const left = leftParts[index] || '';
+      const right = rightParts[index] || '';
+
+      if (left === right) {
+        continue;
+      }
+
+      const leftIsNumber = /^\d+$/.test(left);
+      const rightIsNumber = /^\d+$/.test(right);
+
+      if (leftIsNumber && rightIsNumber) {
+        const leftNumber = Number(left);
+        const rightNumber = Number(right);
+        if (leftNumber === rightNumber) {
+          continue;
+        }
+        return leftNumber > rightNumber ? 1 : -1;
+      }
+
+      return left.localeCompare(right);
+    }
+
+    return 0;
+  }
+
+  private async hydrateStoredFullDbVersion(): Promise<void> {
+    const storedVersion = await this.get(this.FULL_DB_VERSION_KEY);
+    const normalizedVersion = typeof storedVersion === 'string' ? storedVersion.trim() : '';
+    this.localFullDbVersion = normalizedVersion.length > 0 ? normalizedVersion : null;
+  }
+
+  private async clearPersistedDbZipFiles(): Promise<void> {
+    const fileNames = [this.DB_ZIP_FILE_NAME];
+    for (let index = 0; index <= 5; index++) {
+      fileNames.push(`${this.DB_ZIP_FILE_NAME}.${index}`);
+    }
+
+    for (const fileName of fileNames) {
+      try {
+        await Filesystem.deleteFile({
+          path: fileName,
+          directory: Directory.Data
+        });
+      } catch (error) {
+        // 文件不存在时忽略，避免影响更新流程
+      }
+    }
+  }
+
+  public shouldShowDbUpgradeButton(): boolean {
+    if (!this.useTwoStepDbLoading) {
+      return false;
+    }
+
+    return this.isLoadingFullDb || !this.isFullDbReady || this.isFullDbUpgradeAvailable;
+  }
+
+  public async checkRemoteFullDbVersionOnEnter(): Promise<void> {
+    if (!this.useTwoStepDbLoading) {
+      return;
+    }
+
+    await this.hydrateStoredFullDbVersion();
+
+    if (!this.hasNetworkConnection()) {
+      return;
+    }
+
+    if (this.fullDbVersionCheckPromise) {
+      return this.fullDbVersionCheckPromise;
+    }
+
+    const versionUrl = this.getDbVersionUrl();
+    if (!versionUrl) {
+      return;
+    }
+
+    this.fullDbVersionCheckPromise = (async () => {
+      this.isCheckingFullDbVersion = true;
+
+      try {
+        const cacheBust = `t=${Date.now()}`;
+        const requestUrl = `${versionUrl}${versionUrl.includes('?') ? '&' : '?'}${cacheBust}`;
+        const payload = await firstValueFrom(this.http.get<any>(requestUrl));
+        const remoteVersion = this.extractDbVersionValue(payload);
+
+        if (!remoteVersion) {
+          return;
+        }
+
+        this.remoteFullDbVersion = remoteVersion;
+        this.isFullDbUpgradeAvailable = this.compareDbVersions(this.localFullDbVersion, remoteVersion) < 0;
+      } catch (error) {
+        console.warn('Failed to check remote DB version.', error);
+      } finally {
+        this.isCheckingFullDbVersion = false;
+        this.fullDbVersionCheckPromise = null;
+      }
+    })();
+
+    return this.fullDbVersionCheckPromise;
   }
 
   // 优先从本地 Filesystem 读取已下载的 db zip，用于离线启动
@@ -2546,7 +2733,7 @@ export class DataService {
           // 从 Tab4 搜索页触发时，用户确认下载完整版，
           // 先跳到“更多设置”页面，方便查看下载进度等，然后再开始下载。
           this.goToMoreSettings();
-          this.downloadFullDb();
+          this.downloadFullDb(this.remoteFullDbVersion);
         }
       );
     };
@@ -2571,7 +2758,30 @@ export class DataService {
     });
   }
 
-  private async downloadFullDb() {
+  public handleMoreSettingsDbUpgradeClick() {
+    if (this.isLoadingFullDb) {
+      return;
+    }
+
+    if (!this.isFullDbReady) {
+      this.promptDownloadFullDbIfNeeded();
+      return;
+    }
+
+    if (!this.isFullDbUpgradeAvailable) {
+      return;
+    }
+
+    this.ui.confirm(
+      this.ui.instant('Settings.UpgradeFullDb'),
+      this.ui.instant('Settings.DownloadFullDbConfirm'),
+      () => {
+        this.downloadFullDb(this.remoteFullDbVersion);
+      }
+    );
+  }
+
+  private async downloadFullDb(targetVersion: string | null = this.remoteFullDbVersion) {
     if (this.isLoadingFullDb) {
       return;
     }
@@ -2586,6 +2796,8 @@ export class DataService {
       // 先清空当前内存中的精简数据
       this.authorJsonData = [];
       this.JsonData = [];
+  this.dbJsonCache.clear();
+  await this.clearPersistedDbZipFiles();
 
       // 如果配置了 zip 地址，则优先通过 zip 下载+解压填充缓存，
       // 然后再调用 loadJsonData 使用缓存中的 JSON 进行导入；
@@ -2601,6 +2813,11 @@ export class DataService {
 
       this.isFullDbReady = true;
       this.set(this.FULL_DB_READY_KEY, true);
+      if (targetVersion) {
+        this.localFullDbVersion = targetVersion;
+        this.set(this.FULL_DB_VERSION_KEY, targetVersion);
+      }
+      this.isFullDbUpgradeAvailable = false;
 
       // 诗词库更新后，需要让 Tab1 的节气文章重新走一轮随机逻辑，
       // 否则会继续使用 LOCALSTORAGE_HOURLY_FUN 中基于旧库生成的缓存，
@@ -3491,10 +3708,23 @@ export class DataService {
     // 2）持久化 FULL_DB_READY_KEY=false，确保下次启动按精简版逻辑初始化。
     this.isFullDbReady = false;
     this.hasCheckedFullDbFlag = false;
+    this.localFullDbVersion = null;
+    this.remoteFullDbVersion = null;
+    this.isFullDbUpgradeAvailable = false;
     try{
       this.set(this.FULL_DB_READY_KEY, false);
     }catch(e){
       console.warn('Reset FULL_DB_READY_KEY failed', e);
+    }
+    try{
+      this.remove(this.FULL_DB_VERSION_KEY);
+    }catch(e){
+      console.warn('Reset FULL_DB_VERSION_KEY failed', e);
+    }
+    try{
+      await this.clearPersistedDbZipFiles();
+    }catch(e){
+      console.warn('Clear persisted DB zip files failed', e);
     }
   }
 

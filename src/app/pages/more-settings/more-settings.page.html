@@ -28,24 +28,31 @@
     <ion-item [button]="false">
       <ion-label [style.fontSize]="data.zoom(16)">
         {{ui.instant('Settings.ContentVersion')}} <!--诗词库版本-->
-        <span>
-          {{data.isFullDbReady ? '' :': ' + ui.instant('Settings.Lite')}} <!--精简版-->
-        </span>
       </ion-label>
       <ion-text slot="end" color="medium" [style.fontSize]="data.zoom(16)">
-        {{data.isFullDbReady ? ui.instant('Settings.Full') : ''}} <!--完整版-->
+        {{data.isFullDbReady ? ui.instant('Settings.Full') : ui.instant('Settings.Lite')}} <!--完整版-->
       </ion-text>
-      <ion-button *ngIf="!data.isFullDbReady"
+      
+    </ion-item>
+    <ion-item>
+      {{data.localFullDbVersion? 'v'+data.localFullDbVersion : ''}}
+      <!-- {{data.remoteFullDbVersion}} -->
+
+      <ion-button *ngIf="data.shouldShowDbUpgradeButton()"
         slot="end"
         size="medium"
-        style="margin-top:10px;margin-bottom:10px;"
-        (click)="data.promptDownloadFullDbIfNeeded()"
+        style="margin-top:10px;margin-bottom:10px;margin-right:0;"
+        (click)="data.handleMoreSettingsDbUpgradeClick()"
         [disabled]="data.isLoadingFullDb"
       >
         <span *ngIf="data.isLoadingFullDb" style="margin-right:4px;">
           {{ data.fullDbDownloadProgress || 0 }}%
         </span>
-        {{ data.isLoadingFullDb ? ui.instant('Settings.Downloading') : ui.instant('Settings.Upgrade') }} <!--下载中… : 升级为完整版-->
+        <!--下载中…-->
+        {{ data.isLoadingFullDb ? ui.instant('Settings.Downloading') : 
+        (!data.isFullDbReady ? ui.instant('Settings.Upgrade') : ui.instant('Settings.UpgradeDb')) }} 
+        <!--升级诗词库-->
+        <!--升级为完整版-->
       </ion-button>
     </ion-item>
     

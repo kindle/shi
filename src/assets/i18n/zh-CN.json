@@ -206,6 +206,7 @@
         "Full":"完整版",
         "Downloading":"下载中…",
         "Upgrade":"升级为完整版",
+        "UpgradeDb":"更新诗词库",
         "Data":"数据",
         "Backup":"备份数据",
         "Import":"导入数据",

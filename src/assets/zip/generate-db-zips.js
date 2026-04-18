@@ -27,7 +27,10 @@ function getRunOutputDir() {
   const dirName = `${datePart}-${timePart}`;
   const fullPath = path.join(baseOutputDir, dirName);
   fs.mkdirSync(fullPath, { recursive: true });
-  return fullPath;
+  return {
+    dirName,
+    fullPath,
+  };
 }
 
 const qtDirs = [
@@ -84,7 +87,12 @@ function createZip(zipPath, fillArchiveFn) {
     }
 
     // 每次运行创建一个单独的输出目录
-    const outputDir = getRunOutputDir();
+    const { dirName, fullPath: outputDir } = getRunOutputDir();
+
+    fs.writeFileSync(
+      path.join(outputDir, 'db-version.json'),
+      JSON.stringify({ version: dirName }, null, 2) + '\n'
+    );
 
     // db0.zip: 除了 全唐诗1-5 以外的所有内容
     const db0Path = path.join(outputDir, 'db0.zip');
