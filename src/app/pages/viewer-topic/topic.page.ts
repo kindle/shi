@@ -24,9 +24,12 @@ export class TopicPage {
       .filter((d:any)=>d.id==topicId)[0];
 
     //console.log(this.data.hotData)
-    if(this.searchTopicData.hot&&this.searchTopicData.hot.length>0){
-      this.data.hotData = this.searchTopicData.hot;
-    }else{
+    if(this.searchTopicData.hot&&this.searchTopicData.hot.length>0)
+    {
+      this.data.hotData = this.data.getRandomArray(this.searchTopicData.hot, this.searchTopicData.hot.length);
+    }
+    else
+    {
       this.data.hotData = [];
     }
   }

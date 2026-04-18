@@ -1337,6 +1337,76 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/peterdargatz-indian-peafowl-50515_640.jpg","display":"cover","text":"乐府","desc":"魏晋六朝后收集的诗歌","color":"rgb(98,166,243)"}
       ]}
     ],
+    "hot":[
+        [
+          {
+              "title": "江南",
+              "author": "无名氏",
+              "sample": "江南可采莲，莲叶何田田",
+              "id": "a7df04b1-946e-4285-a34e-12168cf4eada",
+              "dynasty":"秦汉",
+              "note": "《江南》的关注点在反复吟唱形成的明快节奏，采莲、莲叶、鱼戏都像在水面一圈圈荡开；它读来让人心情变轻，因为乐府最可爱的地方，就是能把生活本身唱成一首小小的快乐。"
+          },
+          {
+              "title": "孔雀东南飞",
+              "author": "无名氏",
+              "sample": "孔雀东南飞，五里一徘徊",
+              "id": "286cf9b7-650a-4fad-b8e6-b3e939d96f4f",
+              "dynasty":"秦汉",
+              "note": "《孔雀东南飞》一开头就把关注点放在“徘徊”上，鸟的迟疑其实就是人的不忍，悲剧的影子很早就压下来了；这首诗最能打动读者的，是它让你看见深情在世俗压力前如何一步步被逼到尽头。"
+          },
+          {
+              "title": "七发",
+              "author": "枚乘",
+              "sample": "上有千仞之峰，下临百丈之溪",
+              "id": "158f6d8c-3039-476a-8516-2ea14b888929",
+              "dynasty":"秦汉",
+              "note": "枚乘写赋，关注点在铺陈带来的感官压迫感，千仞高峰与百丈深溪一出场，空间立刻被拉满；它会让读者意识到，汉赋的魅力不只是辞藻繁富，更在于它真能把人一下带进壮观里。"
+          },
+          {
+              "title": "上林赋",
+              "author": "司马相如",
+              "sample": "一眼惊鸿，色授魂与",
+              "id": "4c55613b-c75f-419d-98b7-bc9e5cb85126",
+              "dynasty":"秦汉",
+              "note": "司马相如这句的关注点落在惊艳的一瞬，视觉先被击中，心神随后失守，把相遇写得极具冲击力；它之所以经久不衰，是因为很多人都懂那种一眼就被某个人或某种美击中的感觉。"
+          }
+        ],
+        [
+          {
+              "author":"曹操", 
+              "sample":"对酒当歌，人生几何", 
+              "desc":"", 
+              "id":"7a2aa44e-035f-476a-8e5a-f4517b39b57b",
+              "dynasty":"秦汉",
+              "note":"政治/军事：雄才大略，善于用人，现实主义者，能“唯才是举”，不拘出身。性格特点：多疑但果断，心机深、控制欲强，有时冷酷甚至残忍，但又重视法度和秩序。"
+          },
+          {
+              "author":"曹丕",  
+              "sample":"秋风萧瑟天气凉，草木摇落露为霜", 
+              "desc":"", 
+              "id":"94a38052-ee80-4d07-80fc-c47c1c0d89de",
+              "dynasty":"秦汉",
+              "note":"政治：心思缜密、城府极深，更偏向稳守和制度建设，而非父亲那样的开疆拓土。性格特点：多疑、敏感，重权力、重地位；对兄弟、功臣较为刻薄、防范心理强。"
+          },
+          {
+              "author":"曹植",  
+              "sample":"本自同根生，相煎何太急", 
+              "desc":"", 
+              "id":"2bf5dcac-9dfe-4317-a7e2-bd7791173849",
+              "dynasty":"秦汉",
+              "note":"文学：天赋极高的抒情诗人，“建安七子”中最突出者之一，想象丰富、文辞华美（如《洛神赋》《七步诗》）。性格特点：感情细腻、真性情，率直中带一点放达，不善掩饰喜怒；少年得宠，易显高傲。"
+          },
+          {
+              "author": "佚名",
+              "title": "西北有高楼",
+              "sample": "西北有高楼，上与浮云齐",
+              "id": "bcd01c11-e9bf-4e71-a21e-4ef1feb4383c",
+              "dynasty":"秦汉",
+              "note": "这首诗的关注点在“高楼”造成的距离感，上与浮云齐，不只是写楼高，也写人与人之间难以抵达的隔阂；读者会被这种空阔感打中，因为有些心事，确实像隔着一整层云。"
+          }
+        ]
+    ],
     "desctitle":"秦汉",
     "desc":"秦汉时期的诗歌，主要有两大类：一类是汉赋，代表作有司马相如的《子虚赋》和《上林赋》，班固的《两都赋》，张衡的《二京赋》等；另一类是乐府诗，代表作有《孔雀东南飞》，《陌上桑》，《木兰诗》等。还有一些不属于上述两类的诗歌，如古诗十九首，代表作有《行行重行行》，《青青河畔草》等；三曹诗歌，代表作有曹操的《短歌行》，曹植的《洛神赋》，曹丕的《燕歌行》等。"
     
@@ -1383,6 +1453,52 @@
       ]}
 
     ],
+    "hot":[
+        [
+          {
+              "author": "陶渊明",
+              "title": "归园田居（其三）",
+              "sample": "种豆南山下，草盛豆苗稀",
+              "id": "a5ff951c-9358-4cdb-8ec1-a42798ca0870",
+              "dynasty":"魏晋南北朝",
+              "note": "陶渊明这首诗的关注点不在田园有多美，而在亲手劳作后的心安，哪怕草盛苗稀、衣沾露湿，也不妨碍“愿无违”的笃定；它最能安慰读者的地方，是告诉人可以过得不那么体面，却一定要过得对得起自己。"
+          },
+          {
+              "author": "谢灵运",
+              "title": "登池上楼",
+              "sample": "潜虬媚幽姿，飞鸿响远音。",
+              "id": "1a2d226f-4532-4f6f-9c3a-9c2783170cd5",
+              "dynasty":"魏晋南北朝",
+              "note": "谢灵运的关注点更偏向精细体物，潜虬、飞鸿一静一动，把山水之美写得层次分明，也把人心的进退失据藏在景里；这首诗会让读者感到一种高级的陪伴，因为复杂情绪原来可以不必直说，也能被自然慢慢接住。"
+          },
+          {
+              "author": "郭茂倩",
+              "title": "西洲曲",
+              "sample": "南风知我意，吹梦到西洲",
+              "id": "ef07e24d-e087-4468-900b-e48a6016b4d4",
+              "dynasty":"魏晋南北朝",
+              "note": "《西洲曲》的关注点在情思的婉转回环，连“南风”都被写成懂人心意的使者，把想念轻轻吹进梦里；它最能安慰读者的地方，是告诉人温柔的感情不必张扬，细细摇曳也足够动人。"
+          },
+          {
+              "author": "郭茂倩",
+              "title": "敕勒歌",
+              "sample": "敕勒川，阴山下。",
+              "id": "ae65a813-3f35-4b4d-82d7-0fe8eb7879ef",
+              "dynasty":"魏晋南北朝",
+              "note": "《敕勒歌》的关注点完全不同，它不写缠绵，而写草原、穹庐、牛羊，把北地生活的辽阔与生机一口气铺开；读它会让人胸口发亮，因为真正开阔的诗，往往能把人的局促感也一起带走。"
+          }
+        ],
+        [
+          {
+              "author": "郭茂倩",
+              "title": "木兰诗",
+              "sample": "唧唧复唧唧，木兰当户织。",
+              "id": "0d714b46-64dd-4a2d-8b2a-e02741619520",
+              "dynasty":"魏晋南北朝",
+              "note": "《木兰诗》的关注点落在一个普通女子如何一步步走成传奇，开头先从“当户织”的日常写起，越往后越显出她的勇敢、担当与分寸；它特别能给读者力量，因为木兰最可贵的不是被神化，而是她本来就是凡人，却依然选择迎难而上。"
+          }
+        ]
+    ],
     "desctitle":"魏晋南北朝",
     "desc":"魏晋南北朝时期，诗歌的风格发生了很大的变化，出现了很多新的题材和表现手法。代表诗人有陶渊明和谢灵运等。陶渊明的诗歌以田园诗为主，代表作有《归园田居》等；谢灵运的诗歌以山水诗为主，代表作有《登池上楼》和《西洲曲》等。这个时期的诗歌题材非常丰富，有花卉、树木、山水、江河等自然景物，也有咏史怀古、咏物抒情等内容。"
     
@@ -1415,9 +1531,9 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg","display":"cover","text":"李白","desc":"","color":"rgb(98,166,243)","author":"李白"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg","display":"cover","text":"杜甫","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","desc":"","color":"rgb(98,166,243)","author":"白居易"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg","display":"cover","text":"李白","sample":"床前明月光，疑是地上霜","desc":"","color":"rgb(98,166,243)","author":"李白"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/杜甫.jpeg","display":"cover","text":"杜甫","sample":"好雨知时节，当春乃发生","desc":"","color":"rgb(98,166,243)","author":"杜甫"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/白居易.jpeg","display":"cover","text":"白居易","sample":"离离原上草，一岁一枯荣","desc":"","color":"rgb(98,166,243)","author":"白居易"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/刘禹锡.jpeg","display":"cover","text":"刘禹锡","sample":"回首向来潇洒处，也无风雨也无晴","desc":"","color":"rgb(98,166,243)","author":"刘禹锡"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/李商隐.jpeg","display":"cover","text":"李商隐","sample":"世界微尘里，吾宁爱与憎","desc":"","color":"rgb(98,166,243)","author":"李商隐"}
       ]},
@@ -1452,7 +1568,158 @@
         {"id":47,"src":"https://reddah.blob.core.windows.net/msjjimg/nature-3520280_1280.jpg","display":"cover","text":"史上最惊艳的七律","desc":"","color":"rgb(98,166,243)"}
       ]}
     ],
-    "hot":["唐","五代"],
+    "hot":[
+        [
+          {
+              "title": "陋室铭",
+              "author": "刘禹锡",
+              "sample": "山不在高，有仙则名。水不在深，有龙则灵",
+              "id": "357eec6f-bbd9-4101-89a0-ebebe6f73ebe",
+              "dynasty": "唐"
+          },
+          {
+              "title": "赐萧瑀",
+              "author": "太宗皇帝",
+              "sample": "疾风知劲草，板荡识诚臣",
+              "id": "5737750c-bf61-45a3-b38e-44bd6038b425",
+              "dynasty": "唐"
+          },
+          {
+              "title": "出塞",
+              "author": "王昌龄",
+              "sample": "秦时明月汉时关，万里长征人未还",
+              "id": "2d0385e7-0c72-423f-a538-f66acc9d4c46",
+              "dynasty": "唐"
+          },
+          {
+              "title": "雁门太守行",
+              "author": "李贺",
+              "sample": "黑云压城城欲摧，甲光向月金鳞开",
+              "id": "d8ff176a-ba69-4277-a54e-9e515bc19304",
+              "dynasty": "唐"
+          }
+        ],
+        [
+          {
+              "title": "游子吟",
+              "author": "孟郊",
+              "sample": "慈母手中线，游子身上衣",
+              "id": "22923091-18da-429d-9ef1-6b367fd74b1a",
+              "dynasty": "唐"
+          },
+          {
+              "title": "送杜少府之任蜀州",
+              "author": "王勃",
+              "sample": "城阙辅三秦，风烟望五津",
+              "id": "1b5433df-57f0-2280-acc8-f29f0cee8e5e",
+              "dynasty": "唐"
+          },
+          {
+              "title": "夜上受降城闻笛",
+              "author": "李益",
+              "sample": "回乐烽前沙似雪，受降城外月如霜",
+              "id": "f1320c1f-949a-4cbe-ad23-4806878632c5",
+              "dynasty": "唐"
+          },
+          {
+              "title": "静夜思",
+              "author": "李白",
+              "sample": "床前明月光，疑是地上霜",
+              "id": "c46b7e7b-d1b2-5f54-b0b0-05c99bc0c230",
+              "dynasty": "唐"
+          }
+        ],
+        [
+          {
+              "title": "渡汉江",
+              "author": "宋之问",
+              "sample": "岭外音书断，经冬复历春",
+              "id": "eb9530d2-e4c7-4c34-9214-06c28ca586bf",
+              "dynasty": "唐"
+          },
+          {
+              "title": "咏柳",
+              "author": "贺知章",
+              "sample": "碧玉妆成一树高，万条垂下绿丝縧",
+              "id": "bf4ce5bb-7a29-4b33-b8c6-55a020394ab8",
+              "dynasty": "唐"
+          },
+          {
+              "title": "次北固山下",
+              "author": "王湾",
+              "sample": "客路青山外，行舟绿水前",
+              "id": "5bb5c590-5de8-4bfb-aee6-30bc4bcdf99a",
+              "dynasty": "唐"
+          },
+          {
+              "title": "山居秋暝",
+              "author": "王维",
+              "sample": "空山新雨后，天气晚来秋",
+              "id": "00f12a19-bb96-4980-a4f5-11a1b9d604dd",
+              "dynasty": "唐"
+          }
+        ],
+        [
+          {
+              "title": "黄鹤楼",
+              "author": "崔颢",
+              "sample": "昔人已乘白云去，此地空余黄鹤楼",
+              "id": "2188f98e-d5f0-4740-b94b-e1497a3619ee",
+              "dynasty": "唐"
+          },
+          {
+              "title": "滁州西涧",
+              "author": "韦应物",
+              "sample": "独怜幽草涧边生，上有黄鹂深树鸣",
+              "id": "0ae0e3bd-a32e-481f-9719-b283da2da964",
+              "dynasty": "唐"
+          },
+          {
+              "title": "行军九日思长安故园",
+              "author": "岑参",
+              "sample": "强欲登高去，无人送酒来",
+              "id": "da3b4635-ab06-48e2-b59f-478803c7fb19",
+              "dynasty": "唐"
+          },
+          {
+              "title": "咏鹅",
+              "author": "骆宾王",
+              "sample": "鹅，鹅，鹅，曲项向天歌",
+              "id": "b038a31d-5b14-42bc-bc8e-ce616ebb390d",
+              "dynasty": "唐"
+          }
+        ],
+        [
+          {
+              "title": "登幽州台歌",
+              "author": "陈子昂",
+              "sample": "前不见古人，后不见来者",
+              "id": "c244a5b4-0ed0-48fe-8694-95309acac184",
+              "dynasty": "唐"
+          },
+          {
+              "title": "凉州词",
+              "author": "王之涣",
+              "sample": "黄河远上白云间，一片孤城万仞山",
+              "id": "526d4ecc-e123-4b9d-a213-958bb947593d",
+              "dynasty": "唐"
+          },
+          {
+              "title": "逢雪宿芙蓉山主人",
+              "author": "刘长卿",
+              "sample": "日暮苍山远，天寒白屋贫",
+              "id": "5eac7283-4608-4d88-b0cb-ee7411c518c3",
+              "dynasty": "唐"
+          },
+          {
+              "title": "过故人庄",
+              "author": "孟浩然",
+              "sample": "故人具鸡黍，邀我至田家",
+              "id": "9309205e-1d08-4a7b-99ef-4a05a9ee4370",
+              "dynasty": "唐"
+          }
+        ]
+    ],
     "desctitle":"隋唐",
     "desc":"唐诗之繁荣，表现在诗歌体裁齐备，风格各异，诗人数量众多，创作艺术达到巅峰。编纂于清代康熙年间的《全唐诗》收录了唐朝诗人2200余位，共900卷，作品48900多首。加上《全唐诗补编》补辑的作品，共约55000首。隋代已有词的萌芽，如《河传》《柳枝》词牌均穿自隋朝。隋唐至五代，有许多诗人都写过词，如李白的《菩萨蛮》，白居易的《忆江南》等。南唐的词人代表是李煜。王国维在《人间词话》中认为词到了李煜这里“眼界始大，感慨遂深。遂变伶工之词而为士大夫之词”。五代后蜀的赵崇祚辑录了温庭筠、韦庄等18为词人的500首作品，结集为《花间集》。"
     
@@ -1483,9 +1750,9 @@
     ],
     "list":[
       {"name":"推荐诗人", "data": [
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陆游.jpeg","display":"cover","text":"陆游","desc":"王师北定中原日，家祭无忘告乃翁","color":"rgb(98,166,243)","author":"陆游"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陆游.jpeg","display":"cover","text":"陆游","sample":"王师北定中原日，家祭无忘告乃翁","desc":"","color":"rgb(98,166,243)","author":"陆游"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/李清照.jpeg","display":"cover","text":"李清照","sample":"生当作人杰，死亦为鬼雄","desc":"","color":"rgb(98,166,243)","author":"李清照"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王安石.jpeg","display":"cover","text":"王安石","desc":"春风又绿江南岸，明月何时照我还","color":"rgb(98,166,243)","author":"王安石"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王安石.jpeg","display":"cover","text":"王安石","sample":"春风又绿江南岸，明月何时照我还","desc":"","color":"rgb(98,166,243)","author":"王安石"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/苏轼.jpeg","display":"cover","text":"苏轼","sample":"但愿人长久，千里共婵娟","desc":"","color":"rgb(98,166,243)","author":"苏轼"},
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/黄庭坚.jpeg","display":"cover","text":"黄庭坚","sample":"桃李春风一杯酒，江湖夜雨十年灯","desc":"","color":"rgb(98,166,243)","author":"黄庭坚"}
       ]},
@@ -1513,7 +1780,129 @@
         ]
       }
     ],
-    "hot":[],
+    "hot":[
+      [
+        {
+            "title": "江上渔者",
+            "author": "范仲淹",
+            "sample": "江上往来人，但爱鲈鱼美",
+            "id": "1592ea3e-3bae-47d3-b2c4-18bde65ba1d3",
+            "dynasty": "宋"
+        },
+        {
+            "title": "咏柳",
+            "author": "曾巩",
+            "sample": "乱条犹未变初黄，倚得东风势便狂",
+            "id": "95d75f69-a301-4c8b-ad04-8935b5dfdaab",
+            "dynasty": "宋"
+        },
+        {
+            "title": "梅花",
+            "author": "王安石",
+            "sample": "墙角数枝梅，凌寒独自开",
+            "id": "80d5a48c-7377-4e3e-9d9f-1437e03db347",
+            "dynasty": "宋"
+        },
+        {
+            "title": "偶成",
+            "author": "程颢",
+            "sample": "云澹风轻近午天，望花随柳过前川",
+            "id": "0e60665b-8e00-4d96-a421-451a1481a3b0",
+            "dynasty": "宋"
+        }
+      ],
+      [
+        {
+            "title": "赠刘景文",
+            "author": "苏轼",
+            "sample": "荷尽已无擎雨盖，菊残犹有傲霜枝",
+            "id": "c7e54a37-f2bb-4908-a92e-55a7fc453fa9",
+            "dynasty": "宋"
+        },
+        {
+            "title": "鄂州南楼书事",
+            "author": "黄庭坚",
+            "sample": "四顾山光接水光，凭栏十里芰荷香",
+            "id": "992cd895-ace2-4ae2-a8f1-c483ccdc776b",
+            "dynasty": "宋"
+        },
+        {
+            "title": "三衢道中",
+            "author": "曾几",
+            "sample": "梅子黄时日日晴，小溪泛尽却山行",
+            "id": "02698229-cc20-4d20-b1c7-5e20a60113ef",
+            "dynasty": "宋"
+        },
+        {
+            "title": "夏日绝句",
+            "author": "李清照",
+            "sample": "生当作人杰，死亦为鬼雄",
+            "id": "ba2fe8ca-41aa-466a-b268-fa3526daafb5",
+            "dynasty": "宋"
+        }
+
+      ],
+      [
+        {
+            "title": "题青泥市萧寺壁",
+            "author": "岳飞",
+            "sample": "雄气堂堂贯斗牛，誓将直节报君雠",
+            "id": "c9766c13-c333-447e-b867-726210ab6d6c",
+            "dynasty": "宋"
+        },
+        {
+            "title": "游山西村",
+            "author": "陆游",
+            "sample": "莫笑农家腊酒浑，丰年留客足鸡豚",
+            "id": "53f7d126-b9ad-443b-b054-1e2ae8e0e05c",
+            "dynasty": "宋"
+        },
+        {
+            "title": "四时田园杂兴",
+            "author": "范成大",
+            "sample": "昼出耘田夜绩麻，村庄儿女各当家",
+            "id": "a68459f2-2a61-42ca-9cea-6e32cf3983e6",
+            "dynasty": "宋"
+        },
+        {
+            "title": "小池",
+            "author": "杨万里",
+            "sample": "泉眼无声惜细流，树阴照水爱晴柔",
+            "id": "ba526c0f-354b-44c2-99b0-fc6f1821c728",
+            "dynasty": "宋"
+        }
+      ],
+      [
+        {
+            "title": "题临安邸",
+            "author": "林升",
+            "sample": "山外青山楼外楼，西湖歌舞几时休",
+            "id": "eb3740c2-4500-4842-96a2-11ca136b44c7",
+            "dynasty": "宋"
+        },
+        {
+            "title": "游园不值",
+            "author": "叶绍翁",
+            "sample": "应怜屐齿印苍苔，小扣柴扉久不开",
+            "id": "53d114ff-35cf-47c1-af7b-362be74e63fd",
+            "dynasty": "宋"
+        },
+        {
+            "title": "南乡子",
+            "author": "辛弃疾",
+            "sample": "何处望神州",
+            "id": "ec3cf108-2919-4d6e-937d-3cb8196e9481",
+            "dynasty": "宋"
+        },
+        {
+            "title": "浣溪沙",
+            "author": "晏殊",
+            "sample": "一曲新词酒一杯",
+            "id": "c4940bd8-e06e-400e-a13f-e1a9696330a5",
+            "dynasty": "宋"
+        }
+      ]
+    ],
     "desctitle":"宋",
     "desc":"宋诗长于议论，善于说理。钱钟书先生评价唐宋诗词的区别是“唐诗多以风神情韵擅长，宋诗多以筋骨思理见胜。”梅饶臣、欧阳修、黄庭坚、苏轼是北宋诗坛的代表性诗人，陆游、范成大、杨万里、尤袤是南宋诗坛的代表性诗人。当代出版的《全宋诗》收录宋代诗人近万人，收录宋诗25万首。南宋诗论家严羽创作了诗歌理论著作《沧浪诗话》。"
     
@@ -1598,6 +1987,42 @@
         {"src":"https://reddah.blob.core.windows.net/msjjimg/广州.jpg","display":"cover","text":"广州","desc":"","color":"rgb(98,166,243)"},
         {"src":"https://reddah.blob.core.windows.net/msjjimg/敦煌.jpg","display":"cover","text":"敦煌","desc":"","color":"rgb(98,166,243)"}
       ]}
+    ],
+    "hot":[
+        [
+          {
+              "author": "马致远",
+              "title": "越调・天净沙秋思",
+              "sample": "枯藤老树昏鸦，小桥流水人家",
+              "id": "a8de0aa3-def1-4678-aa8a-fd6f185d086c",
+              "dynasty":"元",
+              "note": "马致远的这首曲子通过简洁的景物描写，表达了深沉的思乡之情；它最能安慰读者的地方，是告诉人即使身处异地，也可以通过回忆和想象找到心灵的归属。"
+          },
+          {
+              "author": "张养浩",
+              "title": "潼关怀古",
+              "sample": "兴，百姓苦；亡，百姓苦",
+              "id": "b44ec3a3-0bed-48c9-8deb-c75e5501ed1e",
+              "dynasty":"元",
+              "note": "《潼关怀古》的关注点在于对历史兴亡的感慨，诗人通过对潼关的描写，表达了对国家命运的忧虑；它最能安慰读者的地方，是告诉人无论国家兴盛还是衰亡，百姓都在承受苦难，因此我们应该珍惜当下的和平与安定。"
+          },
+          {
+              "author": "元好问",
+              "title": "摸鱼儿·雁丘词",
+              "sample": "问世间情是何物，直教生死相许",
+              "id": "9bca1683-cc93-4a60-8c2d-995ce18480f8",
+              "dynasty":"元",
+              "note": "《摸鱼儿·雁丘词》的关注点在于对爱情的深刻理解，诗人通过对情感的描写，表达了爱情的伟大和无私；它最能安慰读者的地方，是告诉人真正的爱情是超越生死的，它让人愿意为之付出一切。"
+          },
+          {
+              "author": "关汉卿",
+              "title": "一枝花·不伏老",
+              "sample": "我是个蒸不烂、煮不熟、捶不匾、炒不爆、响珰珰一粒铜豌豆",
+              "id": "3c92e913-5d04-49fd-ac47-2e01fd4a666b",
+              "dynasty":"元",
+              "note": "《一枝花·不伏老》，它不写缠绵，而写草原、穹庐、牛羊，把北地生活的辽阔与生机一口气铺开；读它会让人胸口发亮，因为真正开阔的诗，往往能把人的局促感也一起带走。"
+          }
+        ]
     ],
     "desctitle":"元",
     "desc":"元代的散曲既可以如同诗词一样叙事抒情，也可以成为元杂剧的主要组成部分。《全元散曲》统计小令3853首，套数457套。代表人物是关汉卿、马致远。"

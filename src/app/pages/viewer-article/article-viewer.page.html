@@ -160,13 +160,12 @@
       <div *ngFor="let it of data.currentArticle.desc">
         
         <!--<p style="font-size: 18px;margin:10px 20px;" *ngIf="it.type=='text'">{{it.value}}</p>-->
-      <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
-       large="true"
-       [text]="data.currentArticle.small_title" *ngIf="it.flag=='24SolarTerm'"></app-text>
+       
        <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
-       large="true"
-       [text]="data.currentArticle.big_title" *ngIf="it.flag=='24SolarTerm'"></app-text>
-
+        large="true"
+        [text]="data.currentArticle.big_title" *ngIf="it.flag=='24SolarTerm'"></app-text>
+       <app-text style="margin:0px 10px;color:black;" [nofold]="true" name="" 
+        [text]="data.currentArticle.small_title" *ngIf="it.flag=='24SolarTerm'"></app-text>
 
        <app-text style="margin:0px 20px;color:black;" [nofold]="true" name="" 
        large="true"

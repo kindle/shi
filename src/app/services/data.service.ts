@@ -2791,7 +2791,9 @@ export class DataService {
 
   getRandomArray(arr:any,n:any){
     if(!arr || arr.length==0)
+    {
       return arr;
+    }
     
     let localArr = JSON.parse(JSON.stringify(arr));
     let resultArr = [];
