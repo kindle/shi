@@ -8,6 +8,20 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true" [scrollY]="false" class="map-content">
+  <ion-buttons style="position: relative;display:flex;justify-content:center;
+    width:fit-content;height:25px;float:left;
+    margin-top:15px;margin-left:15px;
+    --background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);
+    padding:15px 15px 15px 5px;
+    border-radius: 15px;"
+    >
+    <ion-button color="dark" (click)="goback()">
+      <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
+      {{ ui.instant('Action.Back') }}<!--返回-->
+    </ion-button>
+  </ion-buttons>
+
+  
   <div class="map-shell">
     <div class="map-wrapper" id="map" #lifeMap></div>
 <!-- 

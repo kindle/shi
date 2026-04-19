@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@ang
 import { ActivatedRoute } from '@angular/router';
 import { UiService } from 'src/app/services/ui.service';
 import { DataService } from 'src/app/services/data.service';
+import { Location } from '@angular/common';
 import * as L from 'leaflet';
 
 interface LifeItem {
@@ -61,6 +62,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public data: DataService,
     public ui: UiService,
+    private location: Location,
   ) {}
 
   ionViewWillEnter() {
@@ -70,6 +72,10 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
     this.lifeLoadAttempts = 0;
     this.tryLoadAuthorLife();
+  }
+
+  goback(){
+   this.location.back();
   }
 
   ngAfterViewInit() {
@@ -146,8 +152,19 @@ export class MapPage implements AfterViewInit, OnDestroy {
     }
 
     this.map = L.map(this.lifeMapRef.nativeElement, {
-      zoomControl: true,
+      zoomControl: false,
       attributionControl: true,
+      minZoom: 4,
+      maxZoom: 6,
+    });
+
+    L.control.zoom({ position: 'topright' }).addTo(this.map);
+
+    this.map.on('zoomend', () => {
+      if (!this.map) return;
+      const z = this.map.getZoom();
+      if (z < 4) this.map.setZoom(4);
+      else if (z > 6) this.map.setZoom(6);
     });
 
     const localTileLayer = L.tileLayer('/assets/map/{z}/{x}/{y}.png', {

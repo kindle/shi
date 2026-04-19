@@ -1,0 +1,44 @@
+.footprint-card {
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin: 16px 16px;
+}
+
+.footprint-title {
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ion-color-dark, #1f2937);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footprint-map-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 12px 12px;
+}
+
+.footprint-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #dfe8ee;
+}
+
+:host ::ng-deep .footprint-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #dfe8ee;
+}
+
+:host ::ng-deep .footprint-map .leaflet-control-attribution {
+  display: none;
+}

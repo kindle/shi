@@ -118,7 +118,6 @@
 
   <br>
 
-  <div (click)="goToMap()">history</div>
 
   <!--相关诗人-->
   <ion-header *ngIf="!showFilter&&poets&&poets.length>0"> 
@@ -126,6 +125,15 @@
      (clickAuthor)="data.goToAuthor($event)">
     </app-author>
   </ion-header>
+
+  <!--诗人足迹-->
+  <app-sub-title name="{{ ui.instant('Title.PoetFootprint') }}"
+    *ngIf="authorData?.life && authorData.life.length > 0">
+  </app-sub-title> 
+  <app-poet-footprint [author]="authorData.name" 
+    (footprintClicked)="goToMap()" 
+    *ngIf="authorData?.life && authorData.life.length > 0">
+  </app-poet-footprint>
 
   <!--热门诗词-->
   <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"

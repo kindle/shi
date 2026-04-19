@@ -12,6 +12,8 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
 import { HotComponentModule } from 'src/app/components/hot/hot.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AuthorComponentModule } from 'src/app/components/author/author.module';
+import { PoetFootprintComponentModule } from 'src/app/components/poet-footprint/poet-footprint.module';
+import { SubTitleComponentModule } from 'src/app/components/sub-title/sub-title.module';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { AuthorComponentModule } from 'src/app/components/author/author.module';
     TextComponentModule,
     ButtonEndComponentModule,
     HotComponentModule,
+    PoetFootprintComponentModule,
     LazyLoadImageModule,
+    SubTitleComponentModule,
   ],
   declarations: [PoetPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
