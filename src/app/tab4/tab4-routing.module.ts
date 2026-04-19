@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: () => import('../pages/by-name-author-info/poet.module').then( m => m.PoetPageModule)
   },
   {
+    path: 'map',
+    loadChildren: () => import('../pages/map/map.module').then( m => m.MapPageModule)
+  },
+  {
     path: 'tag/:tag',
     loadChildren: () => import('../pages/by-tag-shi-list/tag.module').then( m => m.TagPageModule)
   }

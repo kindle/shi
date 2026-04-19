@@ -1,0 +1,90 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ author ? (author + '的一生') : '的一生' }}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" [scrollY]="false" class="map-content">
+  <div class="map-shell">
+    <div class="map-wrapper" id="map" #lifeMap></div>
+<!-- 
+    <div class="map-overlay map-overlay-top">
+      <div class="map-panel map-summary">
+        <div class="map-summary-title">{{ author || 'Poet' }}</div>
+        <div class="map-summary-subtitle" *ngIf="hasLifeData">Life timeline map</div>
+        <div class="map-summary-subtitle" *ngIf="!hasLifeData">No life location data</div>
+      </div>
+    </div> -->
+
+    <div class="map-overlay map-overlay-bottom">
+      <!-- <div class="map-panel life-detail" *ngIf="selectedLife">
+        <div><b>年份:</b> {{ formatDisplayYear(selectedLife.year) }}<span *ngIf="selectedLife.old!=null">（{{selectedLife.old}}岁）</span></div>
+        <div><b>年号:</b> {{ selectedLife.reign }}</div>
+        <div><b>地点:</b> {{ selectedLife.location }}</div>
+        <div><b>事件:</b> {{ selectedLife.event }}</div>
+      </div> -->
+
+      <div class="map-panel timeline-panel" *ngIf="hasLifeData"
+      style="background:rgba(255,255,255,0.3);">
+        <!-- <div class="year-line">
+          <span>{{ formatDisplayYear(minYear) }}</span>
+          <strong>{{ selectedYearLabel }}</strong>
+          <span>{{ formatDisplayYear(maxYear) }}</span>
+        </div> -->
+
+        <div class="timeline-head">
+          <div class="timeline-author">
+            <img
+              class="timeline-author-avatar"
+              [src]="authorAvatarUrl"
+              alt="author avatar"
+              onerror="this.src='assets/img/default.jpg'">
+
+            <div class="timeline-author-meta">
+              <div class="timeline-author-name" [style.fontSize]="data.zoom(17)">{{ author || 'Poet' }}</div>
+              <div class="timeline-author-age" [style.fontSize]="data.zoom(17)"> · {{ selectedAgeLabel }} · {{ formatRangePin(selectedYear) }}年</div>
+            </div>
+          </div>
+
+          <div class="timeline-actions">
+            <ion-button
+              size="small"
+              fill="solid"
+              [color]="canGoPrevious ? 'primary' : 'medium'"
+              [disabled]="!canGoPrevious"
+              aria-label="Previous"
+              (click)="goToPreviousYear()">
+              <ion-icon name="chevron-back-outline"></ion-icon>
+            </ion-button>
+            <ion-button
+              size="small"
+              fill="solid"
+              [color]="canGoNext ? 'primary' : 'medium'"
+              [disabled]="!canGoNext"
+              aria-label="Next"
+              (click)="goToNextYear()">
+              <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+
+        <ion-range
+          style="--background:transparent;"
+          [min]="minYear"
+          [max]="maxYear"
+          [value]="selectedYear"
+          [step]="0.1"
+          [pin]="true"
+          [pinFormatter]="formatRangePin"
+          [ticks]="true" [snaps]="true"
+          color="primary"
+          (ionInput)="onYearChanged($event)">
+        </ion-range>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

@@ -169,4 +169,11 @@ export class PoetPage {
     //bug fix for navigating back from other pages
     this.cdRef.detectChanges();
   }
+
+  goToMap(){
+    const targetTab = this.data.currentTab || 'tab1';
+    this.router.navigate(['/tabs', targetTab, 'map'], {
+      queryParams: { author: this.author }
+    });
+  }
 }
