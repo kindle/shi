@@ -1161,7 +1161,8 @@ export class DataService {
     // console.log('nextNextJieQiTermInfo:', this.nextNextJieQiTermInfo);
     if(solarTermName.length>0)//today is 24 JieQi
     {
-      this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
+      //this.term24Array = [this.preJieQiTermInfo, this.curJieQiTermInfo, this.nextJieQiTermInfo, this.nextNextJieQiTermInfo];
+      this.term24Array = [this.preJieQiTermInfo, this.nextNextJieQiTermInfo];
     }
     else //not a JieQi day
     {
