@@ -35,18 +35,28 @@
 
     <div class="map-overlay map-overlay-bottom">
       <!-- <div class="map-panel life-detail" *ngIf="selectedLife">
-        <div><b>年份:</b> {{ formatDisplayYear(selectedLife.year) }}<span *ngIf="selectedLife.old!=null">（{{selectedLife.old}}岁）</span></div>
-        <div><b>年号:</b> {{ selectedLife.reign }}</div>
-        <div><b>地点:</b> {{ selectedLife.location }}</div>
-        <div><b>事件:</b> {{ selectedLife.event }}</div>
+        <div><b>11年份:</b> {{ formatDisplayYear(selectedLife.year) }}<span *ngIf="selectedLife.old!=null">（{{selectedLife.old}}岁）</span></div>
+        <div><b>22年号:</b> {{ selectedLife.reign }}</div>
+        <div><b>33地点:</b> {{ selectedLife.location }}</div>
+        <div><b>44事件:</b> {{ selectedLife.event }}</div>
       </div> -->
+      <div class="map-panel life-detail" *ngIf="selectedLife&&selectedLife.poem">
+        <ion-label (click)="play(selectedLife.poem)">
+          <h2>{{ selectedLife.poem.sample }}</h2>
+          <span>《{{ selectedLife.poem.title }}》</span>
+          <span>{{ selectedLife.poem.note }}</span>
+        </ion-label>
+        <div>
+          <b></b> 
+        </div>
+      </div>
 
       <div class="map-panel timeline-panel" *ngIf="hasLifeData"
       style="background:rgba(255,255,255,0.3);">
         <!-- <div class="year-line">
-          <span>{{ formatDisplayYear(minYear) }}</span>
-          <strong>{{ selectedYearLabel }}</strong>
-          <span>{{ formatDisplayYear(maxYear) }}</span>
+          <span>{{ formatDisplayYear(minYear) }}111</span>
+          <strong>{{ selectedYearLabel }}222</strong>
+          <span>{{ formatDisplayYear(maxYear) }}333</span>
         </div> -->
 
         <div class="timeline-head">

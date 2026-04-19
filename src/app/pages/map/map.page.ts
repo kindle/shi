@@ -12,6 +12,15 @@ interface LifeItem {
   location?: string;
   latlng?: string;
   event?: string;
+  poem?: PoemItem;
+}
+
+interface PoemItem {
+  id: string;
+  author: string;
+  title: string;
+  sample: string;
+  note: string;
 }
 
 interface AuthorInfo {
@@ -120,6 +129,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
         location: item?.location,
         latlng: item?.latlng,
         event: item?.event,
+        poem: item?.poem,
       }))
       .filter((item: LifeItem) => !Number.isNaN(item.year) && !!item.latlng)
       .sort((a: LifeItem, b: LifeItem) => a.year - b.year);
@@ -493,14 +503,12 @@ export class MapPage implements AfterViewInit, OnDestroy {
       return;
     }
 
-    this.map.once('moveend', () => {
-      console.log('[MapLeaflet] Current zoom level:', this.map?.getZoom());
-    });
+    const currentZoomLevel = Math.min(6, Math.max(4, this.map.getZoom() ?? this.defaultZoomLevel));
 
     if (!this.allowZoomLevelChange) {
       if (visiblePoints.length === 1) {
         const [{ point }] = visiblePoints;
-        this.map.setView([point.lat, point.lng], this.defaultZoomLevel, { animate: true });
+        this.map.setView([point.lat, point.lng], currentZoomLevel, { animate: true });
         return;
       }
 
@@ -509,7 +517,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
       );
       const center = bounds.getCenter();
 
-      this.map.setView([center.lat, center.lng], this.defaultZoomLevel, { animate: true });
+      this.map.setView([center.lat, center.lng], currentZoomLevel, { animate: true });
       return;
     }
 
@@ -565,16 +573,16 @@ export class MapPage implements AfterViewInit, OnDestroy {
   }
 
   private buildLifePopup(item: LifeItem): string {
-    const age = item.old != null ? `（${item.old}岁）` : '';
+    const age = item.old != null ? `${item.old}岁` : '';
     const reign = item.reign || '';
     const location = item.location || '';
     const event = item.event || '';
+    const poem = item.poem || '';
     const yearLabel = this.formatDisplayYear(item.year);
 
     return `
       <div style="line-height:1.45;min-width:220px;">
-        <div style="font-weight:700;margin-bottom:4px;">${location}</div>
-        <div><b>年份</b>: ${yearLabel}${age}</div>
+        <div style="font-weight:700;margin-bottom:4px;">${location} · ${yearLabel} · ${age}</div>
         <div><b>年号</b>: ${reign}</div>
         <div><b>事件</b>: ${event}</div>
       </div>
@@ -674,5 +682,9 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
     const locationText = this.author || 'China';
     window.open(`https://maps.google.com/?q=${encodeURIComponent(locationText)}`, '_blank');
+  }
+
+  play(poem: PoemItem) {
+    this.data.playobj(poem, true);
   }
 }

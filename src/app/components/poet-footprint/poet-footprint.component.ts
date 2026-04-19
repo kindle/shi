@@ -9,6 +9,15 @@ interface LifeItem {
   location?: string;
   latlng?: string;
   event?: string;
+  poem?: PoemItem;
+}
+
+interface PoemItem {
+  id: string;
+  author: string;
+  title: string;
+  sample: string;
+  note: string;
 }
 
 interface AuthorInfo {
@@ -112,6 +121,7 @@ export class PoetFootprintComponent implements AfterViewInit, OnDestroy {
         location: item?.location,
         latlng: item?.latlng,
         event: item?.event,
+        poem: item?.poem,
       }))
       .filter((item: LifeItem) => !Number.isNaN(item.year) && !!item.latlng)
       .sort((a: LifeItem, b: LifeItem) => a.year - b.year);
