@@ -196,6 +196,10 @@
   object-fit: cover;
 }
 
+:host ::ng-deep .leaflet-top.leaflet-right {
+  margin-top: 30px;
+}
+
 @media (min-width: 768px) {
   .map-overlay {
     left: auto;

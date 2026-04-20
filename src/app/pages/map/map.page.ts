@@ -75,12 +75,17 @@ export class MapPage implements AfterViewInit, OnDestroy {
   ) {}
 
   ionViewWillEnter() {
+    this.ui.hideStatusBar();
     this.author = this.activatedRoute.snapshot.queryParamMap.get('author')
       || this.activatedRoute.snapshot.paramMap.get('author')
       || '';
 
     this.lifeLoadAttempts = 0;
     this.tryLoadAuthorLife();
+  }
+
+  ionViewWillLeave() {
+    this.ui.showStatusBar();
   }
 
   goback(){
@@ -582,7 +587,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
     return `
       <div style="line-height:1.45;min-width:220px;">
-        <div style="font-weight:700;margin-bottom:4px;">${location} · ${yearLabel} · ${age}</div>
+        <div style="font-weight:700;margin-bottom:4px;">${location} · ${yearLabel} · ${age === '0岁' ? '出生' : age}</div>
         <div><b>年号</b>: ${reign}</div>
         <div><b>事件</b>: ${event}</div>
       </div>
@@ -687,4 +692,5 @@ export class MapPage implements AfterViewInit, OnDestroy {
   play(poem: PoemItem) {
     this.data.playobj(poem, true);
   }
+
 }
