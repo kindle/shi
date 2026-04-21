@@ -39,6 +39,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
   private readonly currentMarkerColor = '#dc2626';
   private readonly defaultZoomLevel = 5;
   private allowZoomLevelChange = false;
+  private currentZoomLevel = 5; // Track actual zoom level to avoid jumpback
 
   @ViewChild('lifeMap', { static: false }) lifeMapRef?: ElementRef<HTMLDivElement>;
 
@@ -56,6 +57,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
   private routeLine?: L.LayerGroup;
   private markerLayer?: L.LayerGroup;
   private currentLeafletMarker?: L.CircleMarker;
+  private latestVisiblePoints: Array<{ lat: number; lng: number }> = [];
   private lifeLoadAttempts = 0;
   private lifeLoadTimer?: ReturnType<typeof setTimeout>;
 
@@ -169,7 +171,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
     this.map = L.map(this.lifeMapRef.nativeElement, {
       zoomControl: false,
       attributionControl: true,
-      minZoom: 4,
+      minZoom: 2,
       maxZoom: 6,
     });
 
@@ -178,8 +180,10 @@ export class MapPage implements AfterViewInit, OnDestroy {
     this.map.on('zoomend', () => {
       if (!this.map) return;
       const z = this.map.getZoom();
-      if (z < 4) this.map.setZoom(4);
+      if (z < 2) this.map.setZoom(2);
       else if (z > 6) this.map.setZoom(6);
+      // Record the zoom level when user manually zooms
+      this.currentZoomLevel = this.map.getZoom() || this.defaultZoomLevel;
     });
 
     const localTileLayer = L.tileLayer('/assets/map/{z}/{x}/{y}.png', {
@@ -202,6 +206,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
     localTileLayer.addTo(this.map);
 
     this.map.setView([35, 104], this.defaultZoomLevel);
+    this.currentZoomLevel = this.defaultZoomLevel;
 
     setTimeout(() => {
       this.map?.invalidateSize();
@@ -217,6 +222,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
     this.routeLine = undefined;
     this.markerLayer = undefined;
     this.currentLeafletMarker = undefined;
+    this.currentZoomLevel = this.defaultZoomLevel; // Reset zoom level when destroying map
   }
 
   onYearChanged(event: CustomEvent) {
@@ -279,8 +285,11 @@ export class MapPage implements AfterViewInit, OnDestroy {
       .filter((entry): entry is { item: LifeItem; point: { lat: number; lng: number } } => !!entry.point);
 
     if (visiblePoints.length === 0) {
+      this.latestVisiblePoints = [];
       return;
     }
+
+    this.latestVisiblePoints = visiblePoints.map(({ point }) => point);
 
     this.renderVisibleMarkers(visiblePoints, currentLife);
     this.renderRouteLine(visiblePoints);
@@ -323,6 +332,8 @@ export class MapPage implements AfterViewInit, OnDestroy {
       marker.bindPopup(this.buildLifePopup(item), {
         maxWidth: 320,
         autoPan: true,
+        autoPanPadding: [24, 150],
+        autoPanPaddingBottomRight: [24, 300],
       });
 
       marker.addTo(this.markerLayer as L.LayerGroup);
@@ -356,8 +367,15 @@ export class MapPage implements AfterViewInit, OnDestroy {
       .bindPopup(this.buildLifePopup(currentEntry.item), {
         maxWidth: 320,
         autoPan: true,
+        autoPanPadding: [24, 150],
+        autoPanPaddingBottomRight: [24, 300],
       })
       .openPopup();
+
+    // After popup opens, check if we need to zoom out to display everything
+    setTimeout(() => {
+      this.ensureMapFitsContent();
+    }, 300);
   }
 
   private renderRouteLine(visiblePoints: Array<{ item: LifeItem; point: { lat: number; lng: number } }>) {
@@ -508,7 +526,10 @@ export class MapPage implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const currentZoomLevel = Math.min(6, Math.max(4, this.map.getZoom() ?? this.defaultZoomLevel));
+    const preferredPoints = this.getPreferredAutoViewPoints(
+      visiblePoints.map(({ point }) => point),
+    );
+    const currentZoomLevel = Math.min(6, Math.max(2, this.currentZoomLevel));
 
     if (!this.allowZoomLevelChange) {
       if (visiblePoints.length === 1) {
@@ -518,7 +539,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
       }
 
       const bounds = L.latLngBounds(
-        visiblePoints.map(({ point }) => [point.lat, point.lng] as L.LatLngTuple),
+        preferredPoints.map((point) => [point.lat, point.lng] as L.LatLngTuple),
       );
       const center = bounds.getCenter();
 
@@ -528,12 +549,14 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
     if (visiblePoints.length === 1) {
       const [{ point }] = visiblePoints;
-      this.map.setView([point.lat, point.lng], 7, { animate: true });
+      const zoomForSingle = Math.max(2, this.currentZoomLevel);
+      this.map.setView([point.lat, point.lng], zoomForSingle, { animate: true });
+      this.currentZoomLevel = zoomForSingle;
       return;
     }
 
     const bounds = L.latLngBounds(
-      visiblePoints.map(({ point }) => [point.lat, point.lng] as L.LatLngTuple),
+      preferredPoints.map((point) => [point.lat, point.lng] as L.LatLngTuple),
     );
 
     this.map.fitBounds(bounds, {
@@ -542,6 +565,91 @@ export class MapPage implements AfterViewInit, OnDestroy {
       maxZoom: 7,
       animate: true,
     });
+
+    // Record the zoom level after fitBounds is applied
+    setTimeout(() => {
+      const finalZoom = this.map?.getZoom();
+      if (finalZoom !== undefined) {
+        this.currentZoomLevel = finalZoom;
+      }
+    }, 300);
+  }
+
+  private ensureMapFitsContent() {
+    if (!this.map) {
+      return;
+    }
+
+    if (this.latestVisiblePoints.length <= 1) {
+      return;
+    }
+
+    const currentZoom = this.map.getZoom();
+    if (currentZoom === undefined || currentZoom <= 2) {
+      // Already at minimum zoom level
+      return;
+    }
+
+    const mapContainer = this.lifeMapRef?.nativeElement;
+    if (!mapContainer) {
+      return;
+    }
+
+    const mapWidth = mapContainer.offsetWidth;
+    const mapHeight = mapContainer.offsetHeight;
+
+    // Account for the bottom control panel (104px) and popup space (consider ~80px for popup height)
+    const effectiveHeight = mapHeight - 104 - 80;
+    const effectiveWidth = mapWidth - 48; // padding on sides
+
+    if (effectiveWidth <= 0 || effectiveHeight <= 0) {
+      return;
+    }
+
+    const preferredPoints = this.getPreferredAutoViewPoints(this.latestVisiblePoints);
+    if (preferredPoints.length <= 1) {
+      return;
+    }
+
+    const projectedPoints = preferredPoints.map((point) =>
+      this.map!.latLngToContainerPoint([point.lat, point.lng] as L.LatLngTuple),
+    );
+
+    const xValues = projectedPoints.map((point) => point.x);
+    const yValues = projectedPoints.map((point) => point.y);
+    const requiredWidth = Math.max(...xValues) - Math.min(...xValues);
+    const requiredHeight = Math.max(...yValues) - Math.min(...yValues);
+
+    // Compare projected pixel footprint against available viewport area.
+    if (requiredWidth > (effectiveWidth * 0.9) || requiredHeight > (effectiveHeight * 0.82)) {
+      const newZoom = Math.max(2, currentZoom - 1);
+      const centerBounds = L.latLngBounds(
+        preferredPoints.map((point) => [point.lat, point.lng] as L.LatLngTuple),
+      );
+      const center = centerBounds.getCenter();
+      this.map.setZoom(newZoom);
+      this.map.setView(center, newZoom, { animate: true });
+      // Update the recorded zoom level to avoid jumpback on next navigation
+      this.currentZoomLevel = newZoom;
+    }
+  }
+
+  private getPreferredAutoViewPoints(
+    points: Array<{ lat: number; lng: number }>,
+  ): Array<{ lat: number; lng: number }> {
+    if (points.length <= 3) {
+      return points;
+    }
+
+    const sortedLngs = points.map((point) => point.lng).sort((a, b) => a - b);
+    const q1 = sortedLngs[Math.floor((sortedLngs.length - 1) * 0.25)];
+    const q3 = sortedLngs[Math.floor((sortedLngs.length - 1) * 0.75)];
+    const iqr = q3 - q1;
+    const lowerFence = q1 - (1.5 * iqr);
+    const corePoints = points.filter((point) => point.lng >= lowerFence);
+    const minimumCoreCount = Math.max(3, Math.ceil(points.length * 0.6));
+
+    return corePoints.length >= minimumCoreCount ? corePoints : points;
   }
 
   private getNearestLifeByYear(year: number): LifeItem | undefined {

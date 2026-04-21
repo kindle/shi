@@ -18,7 +18,7 @@ export class Tab4Page implements OnInit {
   localJsonData:any;
   isFocused = false;
   tabBarHeight = '50px';
-  poets:any = ['苏轼','李贺','杜甫','李白','白居易','辛弃疾','李清照','王维','孟浩然','柳宗元','韩愈','刘禹锡','王昌龄','高适','岑参','王之涣','贺知章','张九龄','崔颢'];
+  poets:any = ['李白','杜甫','白居易','苏轼','陆游','辛弃疾','李清照','王维','孟浩然','柳宗元','韩愈','李贺','欧阳修','王安石','刘禹锡','王昌龄','高适','岑参','岳飞','王之涣','贺知章','张九龄','崔颢'];
 
   constructor(
     public data: DataService,
