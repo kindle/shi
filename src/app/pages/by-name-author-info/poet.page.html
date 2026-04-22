@@ -126,13 +126,14 @@
     </app-author>
   </ion-header>
 
-  <!--诗人足迹-->
+  <!--大事年表-->
   <app-sub-title name="{{ ui.instant('Title.PoetFootprint') }}"
-    *ngIf="authorData?.life && authorData.life.length > 0">
+  style="margin-top:10px;"
+    *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
   </app-sub-title> 
   <app-poet-footprint [author]="authorData.name" 
     (footprintClicked)="goToMap()" 
-    *ngIf="authorData?.life && authorData.life.length > 0">
+    *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
   </app-poet-footprint>
 
   <!--热门诗词-->

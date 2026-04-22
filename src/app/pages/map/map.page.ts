@@ -77,7 +77,9 @@ export class MapPage implements AfterViewInit, OnDestroy {
   ) {}
 
   ionViewWillEnter() {
-    this.ui.hideStatusBar();
+    if(this.ui.isIos){
+      this.ui.hideStatusBar();
+    }
     this.author = this.activatedRoute.snapshot.queryParamMap.get('author')
       || this.activatedRoute.snapshot.paramMap.get('author')
       || '';
@@ -87,7 +89,9 @@ export class MapPage implements AfterViewInit, OnDestroy {
   }
 
   ionViewWillLeave() {
-    this.ui.showStatusBar();
+    if(this.ui.isIos){
+      this.ui.showStatusBar();
+    }
   }
 
   goback(){
@@ -740,7 +744,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
   get selectedAgeLabel(): string {
     if (this.selectedLife?.old != null && !Number.isNaN(Number(this.selectedLife.old))) {
-      return `${this.selectedLife.old}岁`;
+      return this.selectedLife.old===0? `出生` : `${this.selectedLife.old}岁`;
     }
 
     return '年龄未知';

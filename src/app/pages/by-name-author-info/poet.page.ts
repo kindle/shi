@@ -48,7 +48,7 @@ export class PoetPage {
     let foundAuthor = this.data.authorJsonData.filter((p:any)=>p.name===this.author);
     if(foundAuthor.length>=1){
       this.authorData = foundAuthor[0];
-      console.log(this.authorData)
+      //console.log(this.authorData)
       if(this.authorData.relation!=null){
         this.poets = this.authorData.relation[0];
         this.relation = this.authorData.relation[1];
