@@ -1251,7 +1251,8 @@
     "list":[
       {"name":"推荐诗人", "data": [
         {"src":"https://reddah.blob.core.windows.net/msjjpoet/屈原.jpeg","display":"cover","text":"屈原","desc":"","color":"rgb(98,166,243)","author":"屈原"},
-        {"src":"https://reddah.blob.core.windows.net/msjjpoet/宋玉.jpeg","display":"cover","text":"宋玉","desc":"","color":"rgb(98,166,243)","author":"宋玉"}
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/宋玉.jpeg","display":"cover","text":"宋玉","desc":"","color":"rgb(98,166,243)","author":"宋玉"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/荆轲.jpeg","display":"cover","text":"荆轲","desc":"","color":"rgb(98,166,243)","author":"荆轲"}
       ]},
 
       {"name":"精选诗单", "data": [
@@ -1286,6 +1287,29 @@
             "author": "屈原",
             "sample": "鸟飞反故乡兮，狐死必首丘",
             "id": "f81bc920-a768-4c7d-acc4-b06b400ee1ab",
+            "dynasty": "战国"
+          }
+        ],
+        [
+          {
+            "title": "易水寒",
+            "author": "荆轲",
+            "sample": "风萧萧兮易水寒，壮士一去兮不复还",
+            "id": "ec6ea00a-76c0-4bf7-99ae-958ea4328732",
+            "dynasty": "战国"
+          },
+          {
+            "title": "九辩",
+            "author": "宋玉",
+            "sample": "皇天平分四时兮，窃独悲此凛秋",
+            "id": "5b809282-fee0-4067-841e-5ef1ea4cf1fa",
+            "dynasty": "战国"
+          },
+          {
+            "title": "招魂",
+            "author": "宋玉",
+            "sample": "朕幼清以廉洁兮，身服义而未沫",
+            "id": "aa2ced9c-dae9-4303-be44-f00151587e6a",
             "dynasty": "战国"
           }
         ]
@@ -2243,13 +2267,9 @@
       "zh-CN":"近现代",
       "zh-TW":"近現代"
     },
-    "image":"https://reddah.blob.core.windows.net/msjjimg/mediterranean-cuisine-2378758_1280.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/thepixelman-war-469503_1920.jpg",
     "scroll":[
-      {"id":56, "alias":"人间烟火","text":"人间烟火气，最抚凡人心","desc":"玉盘杨梅为君设，吴盐如花皎白雪","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/italian-cuisine-2378729_1280.jpg"},
-      {"id":3000, "alias":"诗人都是美食家","text":"中国人是最会吃的民族，欢喜时，我们在食物中寻找幸福；悲伤时，我们在食物中寻找慰藉。","desc":"美食诗词句句诱人","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/spaghetti-1932466_1280.jpg"},
-      {"id":3001, "alias":"爱吃鱼的诗人们","text":"如临其境，口齿留香","desc":"那些描写鱼的美味诗词","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/fish-3622319_1280.jpg"},
-      {"id":3002, "alias":"爱喝酒的诗人们","text":"飘香的清冽，是时间和酒釉的奇妙相遇","desc":"那些描写酒的美味诗词","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/water-5366496_1280.jpg"}
-        
+      {"id":112, "alias":"爱国诗词","text":"十年树木，百年树人","desc":"中国人民百年来反对外来侵略、争取民族独立的精神，感天动地。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/thepixelman-war-469503_1920.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
