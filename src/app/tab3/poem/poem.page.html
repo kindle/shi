@@ -79,7 +79,7 @@
           class="show-only-one-line"
           [style.fontSize]="data.zoom(17)">
           {{like.data['sample']}}</h2>
-        <p style="margin-top:5px;display: flex;align-items: end;"
+        <p style="margin-top:5px;display: flex;align-items: center;"
           [style.fontSize]="data.zoom(14)">
           {{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
           <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"></ion-icon>
