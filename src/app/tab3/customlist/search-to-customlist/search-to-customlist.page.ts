@@ -13,15 +13,18 @@ export class SearchToCustomListPage {
 
   name:any;
   localJsonData:any;
+  cid:any = null;
 
   constructor(
     public data: DataService,
-    private eventService: EventService
+    private eventService: EventService,
+    private navParams: NavParams
   ) { 
     
   }
 
   ionViewWillEnter() {
+    this.cid = this.navParams.get('cid');
     this.localJsonData = this.data.JsonData;
   }
 
@@ -139,7 +142,10 @@ export class SearchToCustomListPage {
   }
 
   addtocustomlist(p:any){
-    p.added = true;
+    if(p.added==null){
+      p.added = [];
+    }
+    p.added.push(this.cid);
     this.data.currentCollectPoem = p;
     //console.log(p)
     this.data.addtocustomlist(this.data.currentCollectLike);

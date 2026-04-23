@@ -236,6 +236,7 @@ export class ListPage {
       component: SearchToCustomListPage,
       componentProps: {
         //name: this.customData.data.name
+        cid: this.id
       },
       //cssClass: 'modal-fullscreen',
       //keyboardClose: true,
