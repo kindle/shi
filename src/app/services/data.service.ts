@@ -3734,6 +3734,7 @@ export class DataService {
     }catch(e){
       console.warn('Clear persisted DB zip files failed', e);
     }
+    this.reloadUserDataAfterImport();
   }
 
   // 导出当前 Storage 和 window.localStorage 中的所有键值为备份文件
@@ -3876,11 +3877,27 @@ export class DataService {
         }
       }
 
-      this.ui.toast('bottom', '导入成功，重新启动应用后生效');
+      await this.reloadUserDataAfterImport();
+      this.ui.toast('bottom', this.ui.instant('Settings.ImportSuccess'));//导入成功
     }catch(err){
       console.error('Import backup failed', err);
-      this.ui.toast('bottom', '导入失败');
+      this.ui.toast('bottom', this.ui.instant('Settings.ImportFail'));//导入失败
     }
+  }
+
+  private async reloadUserDataAfterImport(){
+    await this.loadLocale();
+    await this.loadFontFamily();
+    await this.loadFontSizeZoomLevel();
+
+    this.loadlikes();
+    this.loadPlayHistory();
+    this.loadSearchHistory();
+    this.loadTracker();
+    this.loadRecentPlayedEP();
+    this.loadPlayStyle();
+    this.loadAIChatHistory();
+    this.loadMyLikeArticles();
   }
 
   poemlistcount:any=0;

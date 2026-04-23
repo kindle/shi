@@ -73,7 +73,7 @@ export class MoreSettingsPage implements OnInit {
 
   private async onConfirmClearCache(){
     await this.data.clearLocalStorage();
-    //this.ui.toast('bottom', '已清除缓存，重新启动应用后生效');
+    //this.ui.toast('bottom', '已清除缓存');
     this.ui.toast('bottom', this.ui.instant('Settings.ClearCacheSuccess'));
   }
 
