@@ -59,6 +59,7 @@ export class PlayerPage implements OnInit {
          this.onInlineEditorActive(editor);
        }
     });
+    this.checkandload();
   }
   ngOnDestroy() {
     document.body.classList.remove('player-open');
@@ -444,15 +445,19 @@ export class PlayerPage implements OnInit {
   }
   infinite(){
     this.data.isInfinite = !this.data.isInfinite;
+    this.checkandload();
+    this.data.updateInfiniteHint();
+    this.data.savePlayStyle();
+
+  }
+
+  checkandload(){
     if(this.data.isInfinite===true)
     {
       this.data.isRepeat = 0;
       //when infinite is on
       this.data.checkAndLoadAdditionalList();
     }
-    this.data.updateInfiniteHint();
-    this.data.savePlayStyle();
-
   }
   
 
