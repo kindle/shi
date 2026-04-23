@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NgZone } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
@@ -13,7 +14,8 @@ export class MoreSettingsPage implements OnInit {
 
   constructor(
     public ui: UiService,
-    public data: DataService
+    public data: DataService,
+    private ngZone: NgZone
 
   ) { }
 
@@ -45,12 +47,21 @@ export class MoreSettingsPage implements OnInit {
       return;
     }
     const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const text = (reader.result || '') as string;
-      await this.data.importLocalDataBackupFromJson(text);
-    };
-    reader.readAsText(file, 'utf-8');
+    void this.importBackupFile(file);
+  }
+
+  private async importBackupFile(file: File){
+    try{
+      const text = await file.text();
+      await this.ngZone.run(async () => {
+        await this.data.importLocalDataBackupFromJson(text);
+      });
+    }catch(e){
+      console.error('Import file read failed', e);
+      await this.ngZone.run(async () => {
+        this.ui.toast('bottom', '读取备份文件失败');
+      });
+    }
   }
 
   clearCache(){
