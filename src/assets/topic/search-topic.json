@@ -1398,6 +1398,7 @@
         ],
         [
           {
+              "title": "短歌行",
               "author":"曹操", 
               "sample":"对酒当歌，人生几何", 
               "desc":"", 
@@ -1406,6 +1407,7 @@
               "note":"政治/军事：雄才大略，善于用人，现实主义者，能“唯才是举”，不拘出身。性格特点：多疑但果断，心机深、控制欲强，有时冷酷甚至残忍，但又重视法度和秩序。"
           },
           {
+              "title": "燕歌行",
               "author":"曹丕",  
               "sample":"秋风萧瑟天气凉，草木摇落露为霜", 
               "desc":"", 
@@ -1414,6 +1416,7 @@
               "note":"政治：心思缜密、城府极深，更偏向稳守和制度建设，而非父亲那样的开疆拓土。性格特点：多疑、敏感，重权力、重地位；对兄弟、功臣较为刻薄、防范心理强。"
           },
           {
+              "title": "七步诗",
               "author":"曹植",  
               "sample":"本自同根生，相煎何太急", 
               "desc":"", 
@@ -1976,15 +1979,9 @@
       "zh-CN":"元",
       "zh-TW":"元"
     },
-    "image":"https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/miapowterr-peking-opera-1160109_1920.jpg",
     "scroll":[
-      {"id":37, "alias":"离别","text":"古人笔下的离别到底有多难？","desc":"相见时难别亦难，东风无力百花残","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/sunrise-1014712_1280.jpg"},
-      {"id":52, "alias":"人的一生","text":"这些诗词道尽了人的一生，你现在正处于哪个阶段？","desc":"儿童急走追黄蝶，飞入菜花无处寻","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/countryside-1846774_1280.jpg"},
-      {"id":67, "alias":"意境绝美","text":"这些意境绝美的古诗，你最喜欢哪句？","desc":"云青青兮欲雨，水澹澹兮生烟","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/beach-1851101_1280.jpg"},
-      {"id":68, "alias":"无边风月","text":"诗人笔下的无边风月，你最喜欢哪句？","desc":"日色欲尽花含烟，月明如素愁不眠","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/mountain-5678172_1280.jpg"},
-      {"id":76, "alias":"江南烟雨","text":"哪些忘不掉的江南烟雨","desc":"人人尽说江南好，游人只合江南老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/road-4730553_1280.jpg"},
-      {"id":86, "alias":"潇洒","text":"诗人笔下的顶级潇洒，你最爱哪一句?","desc":"莫愁千里路，自有到来风","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/wild-wine-7496359_1280.jpg"},
-      {"id":87, "alias":"自由","text":"诗人笔下的顶级自由，你最爱哪一句?","desc":"我自人间漫浪，平生事、南北西东","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/salmon-3704543_1280.jpg"}
+      {"id":113, "alias":"人间清曲","text":"登坛竖帜，独领风骚","desc":"元曲是传统文学史三座高峰之一","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/miapowterr-peking-opera-1160109_1920.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
@@ -2096,11 +2093,9 @@
       "zh-CN":"明清",
       "zh-TW":"明清"
     },
-    "image":"https://reddah.blob.core.windows.net/msjjimg/24小寒.jpg",
+    "image":"https://reddah.blob.core.windows.net/msjjimg/istockphoto-2180623243-612x612.jpg",
     "scroll":[
-      {"id":35, "alias":"大雪","text":"只字不提雪如何形容雪下得很大？","desc":"应是天仙狂醉，乱把白云揉碎","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/24小寒.jpg"},
-      {"id":98, "alias":"下雨","text":"只字不提雨如何形容雨下得很大？","desc":"恰似银针倾泻，杀尽世间残叶","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/leaf-1001679_1280.jpg"},
-      {"id":32, "alias":"禅意","text":"那些一语惊醒梦中人的禅意诗句","desc":"若无闲事挂心头，便是人间好时节","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/meditate-5375835_1280.jpg"}
+      {"id":114, "alias":"复古革新","text":"登坛竖帜，独领风骚","desc":"明清文学风格多样，既有复古之风，也有创新之举。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/istockphoto-2180623243-612x612.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
@@ -2269,7 +2264,7 @@
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/thepixelman-war-469503_1920.jpg",
     "scroll":[
-      {"id":112, "alias":"爱国诗词","text":"十年树木，百年树人","desc":"中国人民百年来反对外来侵略、争取民族独立的精神，感天动地。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/thepixelman-war-469503_1920.jpg"}
+      {"id":112, "alias":"风雨如晦","text":"十年树木，百年树人","desc":"中国人民百年来反对外来侵略、争取民族独立的精神，感天动地。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/thepixelman-war-469503_1920.jpg"}
     ],
     "list":[
       {"name":"推荐诗人", "data": [
