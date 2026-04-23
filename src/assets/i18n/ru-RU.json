@@ -76,6 +76,7 @@
         "MoreToExplore":"Больше для исследования",
         "DeleteFromLib":"Удалить из библиотеки",
         "AddToLib":"Добавить в библиотеку",
+        "AddTo":"Добавить в ",
         "FontSize":"Размер текста",
         "AddToAPoemList":"Добавить в список стихов...",
         "ViewPoet":"Поэт",
@@ -152,7 +153,9 @@
         "Albums":"Поиск в альбомах",
         "Poems":"Поиск в стихах",
         "Topics":"Поиск в темах",
-        "Articles":"Найти в статье"
+        "Articles":"Найти в статье",
+        "AllCustomLists":"Все списки стихов",
+        "RecentCustomLists":"Недавние списки стихов"
     },
 
     "Feedback":{

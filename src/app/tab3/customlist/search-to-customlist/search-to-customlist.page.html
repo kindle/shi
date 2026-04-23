@@ -1,19 +1,21 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title style="font-size:12px;width: 100%;white-space: normal;">添加到"{{data.currentCollectLike.data.name}}"</ion-title>
+        <ion-title style="font-size:12px;width: 100%;white-space: normal;">
+          {{ui.instant('Action.AddTo')}}"{{data.currentCollectLike.data.name}}"<!--添加到+name-->
+        </ion-title>
         <!--<ion-buttons slot="end">
             <ion-button (click)="cancel()" [strong]="true">取消</ion-button>
         </ion-buttons>-->
     </ion-toolbar>
 </ion-header>
-<ion-content class="no-padding">
-    <ion-searchbar placeholder="诗人、诗词以及更多内容" show-cancel-button="focus" 
+<ion-content class="no-padding"><!--诗人、诗词以及更多内容-->
+    <ion-searchbar placeholder="{{ui.instant('Search.Tab4')}}" show-cancel-button="focus" 
       style="padding-left:15px;"
       [(ngModel)]="searchText"
       (ionFocus)="onSearchFocus()"
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
-      cancel-button-text="取消"
+      [cancelButtonText]="ui.instant('Action.Cancel')"
     ></ion-searchbar>
     
     <ion-list>

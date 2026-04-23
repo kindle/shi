@@ -77,6 +77,7 @@
         "MoreToExplore":"搜索更多",
         "DeleteFromLib":"从资料库中删除",
         "AddToLib":"添加到资料库",
+        "AddTo":"添加到",
         "FontSize":"文字大小",
         "AddToAPoemList":"添加到诗单列表...",
         "ViewPoet":"看作者",
@@ -152,8 +153,10 @@
         "Poets":"在诗人中查找",
         "Albums":"在专辑中查找",
         "Poems":"在诗词中查找",
-        "Topics":"在主题中查找",
-        "Articles":"在文章中查找"
+        "Topics":"在主题中查找", 
+        "Articles":"在文章中查找",
+        "AllCustomLists":"所有诗单列表",
+        "RecentCustomLists":"最近诗单列表"
     },
 
     "Feedback":{

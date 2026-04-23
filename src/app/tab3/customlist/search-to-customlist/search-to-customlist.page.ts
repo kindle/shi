@@ -3,6 +3,7 @@ import { DataService } from '../../../services/data.service';
 import { ModalController, NavParams } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from '../../../services/event.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-search-to-customlist',
@@ -17,6 +18,7 @@ export class SearchToCustomListPage {
 
   constructor(
     public data: DataService,
+    public ui: UiService,
     private eventService: EventService,
     private navParams: NavParams
   ) { 

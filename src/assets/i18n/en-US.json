@@ -76,6 +76,7 @@
         "MoreToExplore":"Search More",
         "DeleteFromLib":"Delete from Library",
         "AddToLib":"Add to Library",
+        "AddTo":"Add to ",
         "FontSize":"Text Size",
         "AddToAPoemList":"Add to a Poemlist...",
         "ViewPoet":"Poet",
@@ -152,7 +153,9 @@
         "Albums":"Find in Albums",
         "Poems":"Find in Poems",
         "Topics":"Find in Topics",
-        "Articles":"Find in Articles"
+        "Articles":"Find in Articles",
+        "AllCustomLists":"All Poemlists",
+        "RecentCustomLists":"Recent Poemlists"
     },
 
     "Feedback":{

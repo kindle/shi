@@ -76,6 +76,7 @@
         "MoreToExplore": "المزيد لاستكشافه",
         "DeleteFromLib": "حذف من المكتبة",
         "AddToLib": "إضافة إلى المكتبة",
+        "AddTo": "إضافة إلى ",
         "FontSize":"حجم النص",
         "AddToAPoemList": "إضافة إلى قائمة قصائد...",
         "ViewPoet": "الشاعر",
@@ -152,7 +153,9 @@
         "Albums": "البحث في الألبومات",
         "Poems": "البحث في القصائد",
         "Topics": "البحث في المواضيع",
-        "Articles":"البحث في المادة"
+        "Articles":"البحث في المادة",
+        "AllCustomLists":"كل قوائم القصائد",
+        "RecentCustomLists":"قوائم القصائد الأخيرة"
     },
 
     "Feedback": {

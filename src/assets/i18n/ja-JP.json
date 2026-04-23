@@ -76,6 +76,7 @@
         "MoreToExplore": "さらに検索",
         "DeleteFromLib": "詩庫から削除",
         "AddToLib": "詩庫に追加",
+        "AddTo": "追加先: ",
         "FontSize":"文字サイズ",
         "AddToAPoemList": "詩リストに追加...",
         "ViewPoet": "詩人を見る",
@@ -152,7 +153,9 @@
         "Albums": "アルバムで検索",
         "Poems": "詩で検索",
         "Topics": "トピックで検索",
-        "Articles":"記事内の検索"
+        "Articles":"記事内の検索",
+        "AllCustomLists":"すべての詩リスト",
+        "RecentCustomLists":"最近の詩リスト"
     },
 
     "Feedback": {

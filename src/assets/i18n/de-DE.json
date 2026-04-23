@@ -76,6 +76,7 @@
         "MoreToExplore":"Mehr entdecken",
         "DeleteFromLib":"Aus Bibliothek löschen",
         "AddToLib":"Zur Bibliothek hinzufügen",
+        "AddTo":"Hinzufügen zu ",
         "FontSize":"Textgröße",
         "AddToAPoemList":"Zu einer Gedichtsliste hinzufügen...",
         "ViewPoet":"Dichter",
@@ -152,7 +153,9 @@
         "Albums":"In Alben suchen",
         "Poems":"In Gedichten suchen",
         "Topics":"In Themen suchen",
-        "Articles":"In Artikeln suchen"
+        "Articles":"In Artikeln suchen",
+        "AllCustomLists":"Alle Gedichtslisten",
+        "RecentCustomLists":"Letzte Gedichtslisten"
     },
 
     "Feedback":{

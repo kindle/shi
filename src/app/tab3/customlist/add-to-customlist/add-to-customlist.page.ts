@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { ModalController } from '@ionic/angular';
 import { AddPlayerListPage } from '../new-customlist/add-playerlist.page';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-add-to-customlist',
@@ -15,6 +16,7 @@ export class AddToCustomListPage {
 
   constructor(
     public data: DataService,
+    public ui: UiService,
     private modalController: ModalController,
   ) { }
 

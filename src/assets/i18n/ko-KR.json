@@ -76,6 +76,7 @@
         "MoreToExplore": "더 많이 검색",
         "DeleteFromLib": "시가 서재에서 삭제",
         "AddToLib": "시가 서재에 추가",
+        "AddTo": "다음에 추가: ",
         "FontSize":"글자 크기",
         "AddToAPoemList": "시 목록에 추가...",
         "ViewPoet": "시인 보기",
@@ -152,7 +153,9 @@
         "Albums": "앨범에서 찾기",
         "Poems": "시에서 찾기",
         "Topics": "주제에서 찾기",
-        "Articles":"기사에서 찾기"
+        "Articles":"기사에서 찾기",
+        "AllCustomLists":"모든 시 목록",
+        "RecentCustomLists":"최근 시 목록"
     },
 
     "Feedback": {

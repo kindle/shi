@@ -31,8 +31,11 @@
         border-radius: 15px;"
         >
         <ion-button color="light" (click)="goback()">
-          <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
-          {{ ui.instant('Action.Back') }}<!--返回-->
+          <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"
+          [color]="lastScrollTop > 400 ? 'dark' : null"></ion-icon>
+          <ion-text [color]="lastScrollTop > 400 ? 'dark' : null">
+            {{ ui.instant('Action.Back') }}<!--返回-->
+          </ion-text>
         </ion-button>
       </ion-buttons>
 
@@ -43,7 +46,8 @@
         border-radius: 50%;">
         <ion-button (click)="share()" color="light"
           style="--border-radius:50%;width:40px;height:40px;min-width:40px;padding:0;">
-          <ion-icon name="share-social" color="warning" style="margin-right:5px;"></ion-icon>
+          <ion-icon name="share-social" style="margin-right:5px;" 
+          [color]="lastScrollTop > 400 ? 'dark' : null"></ion-icon>
           <!--{{ ui.instant('Action.Share') }}分享-->
         </ion-button>
       </ion-buttons>
