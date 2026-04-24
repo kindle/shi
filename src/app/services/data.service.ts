@@ -3136,9 +3136,10 @@ export class DataService {
     // return;
     
     this.get('app_daily_tracker').then((value)=>{
-      if(value==null)
-        //this.tracker = [];
+      if(value==null){
+        this.tracker = [];
         console.log('use default test data');
+      }
       else{
         this.tracker = JSON.parse(value);
       }
@@ -3734,7 +3735,7 @@ export class DataService {
     }catch(e){
       console.warn('Clear persisted DB zip files failed', e);
     }
-    this.reloadUserDataAfterImport();
+    await this.reloadUserDataAfterImport();
   }
 
   // 导出当前 Storage 和 window.localStorage 中的所有键值为备份文件
@@ -3890,9 +3891,12 @@ export class DataService {
     await this.loadFontFamily();
     await this.loadFontSizeZoomLevel();
 
+    // Reload dynamic article/fun cache data after import.
+    this.loadFunData();
     this.loadlikes();
     this.loadPlayHistory();
     this.loadSearchHistory();
+    // StudyActivity data source.
     this.loadTracker();
     this.loadRecentPlayedEP();
     this.loadPlayStyle();
