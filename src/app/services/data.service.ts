@@ -3836,6 +3836,12 @@ export class DataService {
   // 从备份 JSON 字符串导入并覆盖当前 Storage 与 window.localStorage
   async importLocalDataBackupFromJson(jsonStr:string){
     try{
+      const currentFullDbReady = await this.get(this.FULL_DB_READY_KEY);
+      const currentFullDbVersionValue = await this.get(this.FULL_DB_VERSION_KEY);
+      const normalizedCurrentFullDbVersion = typeof currentFullDbVersionValue === 'string'
+        ? currentFullDbVersionValue.trim()
+        : '';
+
       const obj = JSON.parse(jsonStr);
       if(!obj || typeof obj !== 'object'){
         this.ui.toast('bottom', '备份文件格式不正确');
@@ -3877,6 +3883,23 @@ export class DataService {
           await this.storage.set(key as string, value);
         }
       }
+
+      // 完整版诗词库状态属于“当前设备本地资源状态”，不是用户备份数据的一部分。
+      // 导入备份时不要用旧备份覆盖本机当前已下载的完整版标记或版本号，
+      // 否则会错误地再次提示下载/升级诗词库。
+      await this.set(this.FULL_DB_READY_KEY, !!currentFullDbReady);
+      this.isFullDbReady = !!currentFullDbReady;
+      this.hasCheckedFullDbFlag = true;
+
+      if (normalizedCurrentFullDbVersion.length > 0) {
+        await this.set(this.FULL_DB_VERSION_KEY, normalizedCurrentFullDbVersion);
+        this.localFullDbVersion = normalizedCurrentFullDbVersion;
+      } else {
+        await this.remove(this.FULL_DB_VERSION_KEY);
+        this.localFullDbVersion = null;
+      }
+
+      this.isFullDbUpgradeAvailable = this.compareDbVersions(this.localFullDbVersion, this.remoteFullDbVersion) < 0;
 
       await this.reloadUserDataAfterImport();
       this.ui.toast('bottom', this.ui.instant('Settings.ImportSuccess'));//导入成功
