@@ -34,11 +34,15 @@ export class TutorialPage implements OnInit {
     }
   }
 
-  home(){
+  async home(){
     // 完成教程后刷新文章数据，确保 Tab1 回来时图片等已就绪
     this.data.refreshArticleData(true);
 
+    this.data.set(this.data.LOCALSTORAGE_TUTORIAL_COMPLETED, true);
+
     this.ui.goback();
+
+    void this.data.triggerFirstInstallFullDbAutoDownloadIfAllowed();
 
     // this.router.navigate(['/'], {
     //   queryParams: {}

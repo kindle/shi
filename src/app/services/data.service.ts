@@ -74,6 +74,7 @@ export class DataService {
   public isFullDbUpgradeAvailable = false;
   private hasCheckedFullDbFlag = false; // 是否已从存储中检查过 FULL_DB_READY_KEY
   private fullDbVersionCheckPromise: Promise<void> | null = null;
+  private fullDbAutoDownloadPromise: Promise<void> | null = null;
 
   private SOLAR_TERM_NOTIFICATION_BASE_ID = 7001;
   private SOLAR_TERM_NOTIFICATION_CHANNEL_ID = 'solar-term-reminder';
@@ -559,6 +560,67 @@ export class DataService {
     })();
 
     return this.fullDbVersionCheckPromise;
+  }
+
+  private async autoDownloadFullDbOnFirstInstall(): Promise<void> {
+    if (!this.useTwoStepDbLoading || this.isFullDbReady || this.isLoadingFullDb) {
+      return;
+    }
+
+    if (this.fullDbAutoDownloadPromise) {
+      return this.fullDbAutoDownloadPromise;
+    }
+
+    this.fullDbAutoDownloadPromise = (async () => {
+      if (!this.hasNetworkConnection()) {
+        return;
+      }
+
+      await this.checkRemoteFullDbVersionOnEnter();
+
+      if (this.isFullDbReady || this.isLoadingFullDb) {
+        return;
+      }
+
+      //正在更新诗词库
+      await this.ui.toast('bottom', this.ui.instant('Settings.AutoUpgrading'));
+      await this.downloadFullDb(this.remoteFullDbVersion, true);
+
+      if (this.isFullDbReady) {
+        //诗词库更新完成
+        await this.ui.toast('bottom', this.ui.instant('Settings.AutoUpgradeDone')); 
+      }
+    })().finally(() => {
+      this.fullDbAutoDownloadPromise = null;
+    });
+
+    return this.fullDbAutoDownloadPromise;
+  }
+
+  private isStoredTrue(value: any): boolean {
+    return value === true || value === 1 || value === '1' || value === 'true';
+  }
+
+  private async shouldWaitForTutorialConsentBeforeAutoDownload(): Promise<boolean> {
+    const tutorialValue = await this.get(this.LOCALSTORAGE_TUTORIAL);
+    if (tutorialValue == null) {
+      return true;
+    }
+
+    const tutorialCompleted = await this.get(this.LOCALSTORAGE_TUTORIAL_COMPLETED);
+    if (tutorialCompleted == null) {
+      return false;
+    }
+
+    return !this.isStoredTrue(tutorialCompleted);
+  }
+
+  public async triggerFirstInstallFullDbAutoDownloadIfAllowed(): Promise<void> {
+    if (await this.shouldWaitForTutorialConsentBeforeAutoDownload()) {
+      return;
+    }
+
+    return this.autoDownloadFullDbOnFirstInstall();
   }
 
   // 优先从本地 Filesystem 读取已下载的 db zip，用于离线启动
@@ -2825,6 +2887,7 @@ export class DataService {
         // 只加载精简版（默认实现仍然调用 loadJsonData，
         // 以避免你还没准备好精简 JSON 时功能受影响）
         this.loadMinimalDb();
+        void this.triggerFirstInstallFullDbAutoDownloadIfAllowed();
       }
     });
   }
@@ -2932,7 +2995,7 @@ export class DataService {
     );
   }
 
-  private async downloadFullDb(targetVersion: string | null = this.remoteFullDbVersion) {
+  private async downloadFullDb(targetVersion: string | null = this.remoteFullDbVersion, silent = false) {
     if (this.isLoadingFullDb) {
       return;
     }
@@ -2941,7 +3004,9 @@ export class DataService {
     this.fullDbDownloadProgress = 0;
 
     try {
-      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbStart"));  
+      if (!silent) {
+        await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbStart"));
+      }
       //开始下载诗词库
 
       // 先清空当前内存中的精简数据
@@ -2981,11 +3046,15 @@ export class DataService {
         this.refreshArticleData(true);
       }
 
-      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbSuccess"));  //诗词库下载完成
+      if (!silent) {
+        await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbSuccess"));  //诗词库下载完成
+      }
     } 
     catch 
     {
-      await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbFail"));  //下载失败，请稍后重试
+      if (!silent) {
+        await this.ui.toast('bottom', this.ui.instant("Settings.DownloadFullDbFail"));  //下载失败，请稍后重试
+      }
     } 
     finally 
     {
@@ -4413,10 +4482,12 @@ export class DataService {
   }
 
   LOCALSTORAGE_TUTORIAL = "Tutorial";
+  LOCALSTORAGE_TUTORIAL_COMPLETED = "TutorialCompleted";
   async checkTutorial(){
     let value = await this.get(this.LOCALSTORAGE_TUTORIAL);
     if(value == null){
         this.set(this.LOCALSTORAGE_TUTORIAL, 1);
+        this.set(this.LOCALSTORAGE_TUTORIAL_COMPLETED, false);
         this.tutorial();
     }
   }
