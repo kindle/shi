@@ -231,7 +231,9 @@
         "DownloadFullDbFail":"Download failed. Please try again later",
         "DownloadFullDbStart":"Starting poetry database download",
         "UpgradeFullDb":"Upgrade Full Poetry Database",
-        "FullDbNotFound":"Poem ID not found. You may need to download the full poetry database to view it. Go to download now?"
+        "FullDbNotFound":"Poem ID not found. You may need to download the full poetry database to view it. Go to download now?",
+        "AutoUpgrading":"Updating poetry database",
+        "AutoUpgradeDone":"Poetry database update complete"
     },
 
     "Font":{

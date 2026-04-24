@@ -231,7 +231,9 @@
         "DownloadFullDbFail":"Download fehlgeschlagen. Bitte versuchen Sie es später erneut",
         "DownloadFullDbStart":"Download der Gedichtdatenbank wird gestartet",
         "UpgradeFullDb":"Vollständige Gedichtdatenbank aktualisieren",
-        "FullDbNotFound":"Gedicht-ID nicht gefunden. Möglicherweise müssen Sie die vollständige Gedichtdatenbank herunterladen, um es anzuzeigen. Jetzt zum Download wechseln?"
+        "FullDbNotFound":"Gedicht-ID nicht gefunden. Möglicherweise müssen Sie die vollständige Gedichtdatenbank herunterladen, um es anzuzeigen. Jetzt zum Download wechseln?",
+        "AutoUpgrading":"Gedichtdatenbank wird aktualisiert",
+        "AutoUpgradeDone":"Gedichtdatenbank erfolgreich aktualisiert"
     },
 
     "Font":{

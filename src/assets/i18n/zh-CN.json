@@ -232,7 +232,9 @@
         "DownloadFullDbFail":"下载失败，请稍后重试",
         "DownloadFullDbStart":"开始下载诗词库",
         "UpgradeFullDb":"升级完整版诗词库",
-        "FullDbNotFound":"诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？"
+        "FullDbNotFound":"诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？",
+        "AutoUpgrading":"正在更新诗词库",
+        "AutoUpgradeDone":"诗词库更新完成"
     },
 
     "Font":{
