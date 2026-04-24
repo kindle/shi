@@ -838,6 +838,7 @@ export class DataService {
     this.loadPoemList();
 
     this.articleDataLoaded = true;
+    console.log('load JsonData done')
   }
 
   loadPoemList(){
@@ -894,6 +895,32 @@ export class DataService {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  private async waitForArticleDataLoaded(maxWaitMs:number = 10000, intervalMs:number = 100): Promise<void> {
+    const startTime = Date.now();
+
+    while ((!this.articleDataLoaded || this.JsonData.length === 0) && Date.now() - startTime < maxWaitMs) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
+
+  private async updateClassicDataAudio(): Promise<void> {
+    await this.waitForArticleDataLoaded();
+
+    this.classicData = (this.classicData || []).map((subArray:any[]) => {
+      return subArray.map((item:any) => {
+        const poem = this.JsonData.find((shici:any) => shici.id === item.id);
+        if (poem?.audio) {
+          return {
+            ...item,
+            audio: poem.audio,
+          };
+        }
+
+        return item;
+      });
+    });
+  }
+
   hotData:any;
   funData:any;
   funDataMap = new Map();
@@ -904,6 +931,7 @@ export class DataService {
     this.remove(this.LOCALSTORAGE_HOURLY_FUN);
   }
   async loadFunData(){
+    console.log('loadFunData')
     this.get(this.LOCALSTORAGE_HOURLY_FUN).then((value)=>{
       if(value==null){
         this.funDataMap = new Map();
@@ -968,6 +996,7 @@ export class DataService {
   articleData:any=[];
   azureData:any;
   async loadArticleJsonData(){
+    console.log('loadArticleJsonData')
     this.http.get<any>('/assets/json/pick.json').subscribe(result=>{
       this.pickData = result;
     });
@@ -1025,19 +1054,19 @@ export class DataService {
         this.hotData.push(subArray);
       }
     });
+    //console.log('load classic.json')
     this.http.get<any>('/assets/topic/classic.json').subscribe(result=>{
       result = this.getRandomArray(result, 16);
+      //console.log('random classic')
       this.classicData = [];
+
+      
       for (let i = 0; i < result.length; i += 4) {
         const subArray = result.slice(i, i + 4);
-        subArray.forEach((e:any) => {
-          let poem = this.JsonData.filter((shici:any)=>shici.id===e.id)[0];
-          if(poem&&poem.audio){
-            e.audio = poem.audio;
-          }
-        });
         this.classicData.push(subArray);
       }
+
+      void this.updateClassicDataAudio();
     });
 
     // 每次加载文章相关 JSON 后，强制刷新一次开卷有益文章，
@@ -2735,6 +2764,7 @@ export class DataService {
     this.set(this.LocalQueueKey, JSON.stringify(this.queueData));
   }
   init(){
+    console.log('init data...')
     if (this.useTwoStepDbLoading) {
       this.initDbWithTwoSteps();
     } else {
