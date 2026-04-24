@@ -449,7 +449,27 @@ export class Tab4Page implements OnInit {
   isHistoryExpanded = false;
   
   getHistory() {
-    return this.data.searchHistory.slice().reverse();
+    //console.log(this.data.searchHistory)
+    //predefined data
+    let predefdata = ["陶渊明","李白 凤凰台上","苏轼 水调歌头", 
+      "桂花 酒", "韩愈 黄鹂", "王维 山居秋暝", "白居易 琵琶行", 
+      "李清照 声声慢", "杜甫 春望"];
+    if(this.data.searchHistory ==null || this.data.searchHistory.length ==0)
+    {
+      return predefdata;
+    }
+    else
+    {
+      if(this.data.searchHistory.length<predefdata.length){
+        const historyItems = this.data.searchHistory;
+        const remainingPredefdata = predefdata.filter((item:string) => historyItems.indexOf(item) === -1);
+        return historyItems.slice().reverse().concat(remainingPredefdata);
+      }
+      else
+      {
+        return this.data.searchHistory.slice().reverse();
+      }
+    }
   }
 
   toggleHistory(event?: Event) {

@@ -42,7 +42,7 @@
 
   
   <ion-toolbar style="padding-top:0px;--background: white;"><!--诗人、诗词以及更多内容-->
-    <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
+    <!-- <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
       [class.ipad-searchbar]="ui.isipad"
       [style.fontSize]="data.zoom(17)"
       [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
@@ -61,7 +61,23 @@
     <ion-icon name="mic" color="danger" 
     style="font-size:23px;margin-left:10px;margin-top:0px;margin-bottom:10px;" 
     *ngIf="btnStatus==='OPEN'"
-    ></ion-icon>
+    ></ion-icon> -->
+    <ion-searchbar placeholder="{{ ui.instant('Search.Tab4') }}"
+      [class.ipad-searchbar]="ui.isipad"
+      [style.fontSize]="data.zoom(17)"
+      [ngStyle]="{'color': data.searchText==ui.instant('Search.Tab4')? 'grey' : 'black' }"
+      [(ngModel)]="data.searchText"
+      (ionFocus)="onSearchFocus()"
+      (ionBlur)="onLoseFocus()"
+      (ionCancel)="onCancel()"
+      (ionInput)="onSearchChanged()"
+      (ionClear)="onSearchChanged()"
+      show-clear-button="never"
+      clear-icon="close-circle-outline"
+      style="margin-top:15px;"
+      show-cancel-button="focus"
+      [cancelButtonText]="ui.instant('Action.Cancel')">
+    </ion-searchbar>
   </ion-toolbar>
   
 
@@ -93,10 +109,10 @@
   <!-- data.showFilter:{{data.showFilter}}
   data.searchText:{{data.searchText}}
   data.searchHistory.length:{{data.searchHistory.length}} -->
-  <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0||data.searchText==this.ui.instant('Search.Tab4'))&&data.searchHistory.length>0">
+  <div class="searchHistory" *ngIf="data.showFilter&&(data.searchText==null||data.searchText.length==0||data.searchText==this.ui.instant('Search.Tab4'))&&data.searchHistory.length>=0">
       <ion-item lines="none">
         <h3 style="margin-left:0px;margin-top:10px;">
-          {{ ui.instant('Title.RecentSearches') }}<!--最近搜索-->
+          {{ data.searchHistory.length == 0  ?  ui.instant('Title.SuggestSearches'):   ui.instant('Title.RecentSearches') }}<!--最近搜索-->
         </h3>
         <ion-button slot="end" (mousedown)="presentClearHistoryActionSheet($event)"
           style="height:40px;"

@@ -126,6 +126,7 @@
         "PlayingNext":"PlayingNext",
         "Author":"Author",
         "RecentSearches":"Recent Searches",
+        "SuggestSearches":"Suggested Searches",
         "ContinuePlay":"Sequential",
         "SinglePlay":"Loop One",
         "Repeat":"Loop All",
