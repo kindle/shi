@@ -217,6 +217,8 @@
         "Data":"資料",
         "Backup":"備份資料",
         "Import":"匯入資料",
+        "DetectedBackup":"偵測到備份檔案",
+        "ImportPrompt":"是否立即匯入？",
         "ImportSuccess":"資料匯入成功",
         "ImportFail":"資料匯入失敗",
         "Restore":"還原並清除資料",

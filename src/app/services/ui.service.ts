@@ -212,7 +212,7 @@ export class UiService {
     await toast.present();
   }
 
-  async confirm(header:any, message:any, action:any){
+  async confirm(header:any, message:any, action:any, cancelAction?: () => void){
     const alert = await this.alertController.create({
         header: header,//this.reddah.instant("Confirm.Title")
         message: message,
@@ -221,7 +221,11 @@ export class UiService {
             text: this.instant("Action.Cancel"), //"取消",
             role: 'cancel',
             cssClass: 'secondary',
-            handler: () => {}
+            handler: () => {
+              if(cancelAction){
+                cancelAction();
+              }
+            }
         }, 
         {
             text: this.instant("Game.ConfirmYes"), //"确定",

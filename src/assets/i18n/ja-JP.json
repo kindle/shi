@@ -216,6 +216,8 @@
         "Data":"データ",
         "Backup":"データをバックアップ",
         "Import":"データをインポート",
+        "DetectedBackup":"バックアップファイルを検出しました",
+        "ImportPrompt":"今すぐインポートしますか？",
         "ImportSuccess":"インポートに成功しました",
         "ImportFail":"インポートに失敗しました",
         "Restore":"データを復元して消去",

@@ -51,6 +51,7 @@ export class AppComponent {
 
     await this.storage.create().then(()=>{
       this.data.init();
+      void this.data.initializeExternalImportHandling();
 
       // 如需在首次安装后提示用户“是否下载完整诗词库”，
       // 可以在 DataService 中把 useTwoStepDbLoading 设为 true，

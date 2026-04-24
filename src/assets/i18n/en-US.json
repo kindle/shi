@@ -216,6 +216,8 @@
         "Data":"Data",
         "Backup":"Back Up Data",
         "Import":"Import Data",
+        "DetectedBackup":"Backup file detected",
+        "ImportPrompt":"Import now?",
         "ImportSuccess":"Import successful",
         "ImportFail":"Import failed",
         "Restore":"Restore and Clear Data",

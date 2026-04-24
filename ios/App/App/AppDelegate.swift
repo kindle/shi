@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         // Called when the app was launched with a url. Feel free to add additional processing here,
         // but if you want the App API to support tracking app url opens, make sure to keep this call
-        return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
+        let accessibleURL = prepareIncomingFileURL(url) ?? url
+        return ApplicationDelegateProxy.shared.application(app, open: accessibleURL, options: options)
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -44,6 +45,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Feel free to add additional processing here, but if you want the App API to support
         // tracking app url opens, make sure to keep this call
         return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
+    }
+
+    private func prepareIncomingFileURL(_ url: URL) -> URL? {
+        guard url.isFileURL else {
+            return nil
+        }
+
+        let needsSecurityScope = url.startAccessingSecurityScopedResource()
+        defer {
+            if needsSecurityScope {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        do {
+            let fileManager = FileManager.default
+            let importDirectory = fileManager.temporaryDirectory.appendingPathComponent("incoming-imports", isDirectory: true)
+
+            if !fileManager.fileExists(atPath: importDirectory.path) {
+                try fileManager.createDirectory(at: importDirectory, withIntermediateDirectories: true)
+            }
+
+            let targetURL = importDirectory.appendingPathComponent("\(UUID().uuidString)-\(url.lastPathComponent)")
+
+            if fileManager.fileExists(atPath: targetURL.path) {
+                try fileManager.removeItem(at: targetURL)
+            }
+
+            try fileManager.copyItem(at: url, to: targetURL)
+            return targetURL
+        } catch {
+            NSLog("Failed to prepare incoming file URL %@: %@", url.absoluteString, error.localizedDescription)
+            return nil
+        }
     }
 
 }

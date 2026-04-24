@@ -216,6 +216,8 @@
         "Data":"데이터",
         "Backup":"데이터 백업",
         "Import":"데이터 가져오기",
+        "DetectedBackup":"백업 파일을 감지했습니다",
+        "ImportPrompt":"지금 가져오시겠습니까?",
         "ImportSuccess":"가져오기에 성공했습니다",
         "ImportFail":"가져오기에 실패했습니다",
         "Restore":"데이터 복원 및 삭제",

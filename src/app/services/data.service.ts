@@ -92,6 +92,9 @@ export class DataService {
 
   // 本地完整库 zip 文件名（保存在 Directory.Data 下）
   private readonly DB_ZIP_FILE_NAME = 'db.zip';
+  private externalImportInitialized = false;
+  private pendingExternalImportUri: string | null = null;
+  private handledExternalImportUri: string | null = null;
 
   private poemListLoaded = false;
   private poemListLoadingPromise: Promise<void> | null = null;
@@ -224,6 +227,116 @@ export class DataService {
       binary += String.fromCharCode(bytes[i]);
     }
     return btoa(binary);
+  }
+
+  async initializeExternalImportHandling(){
+    if(this.externalImportInitialized || !Capacitor.isNativePlatform()){
+      return;
+    }
+
+    this.externalImportInitialized = true;
+
+    App.addListener('appUrlOpen', ({ url }) => {
+      void this.handleExternalImportUrl(url);
+    });
+
+    try{
+      const launchUrl = await App.getLaunchUrl();
+      await this.handleExternalImportUrl(launchUrl?.url);
+    }catch(error){
+      console.error('Read launch url failed', error);
+    }
+  }
+
+  private async handleExternalImportUrl(rawUrl?: string){
+    const externalUri = this.normalizeExternalImportUri(rawUrl);
+    if(!externalUri){
+      return;
+    }
+    if(this.pendingExternalImportUri === externalUri || this.handledExternalImportUri === externalUri){
+      return;
+    }
+
+    this.pendingExternalImportUri = externalUri;
+    const fileName = this.getExternalImportFileName(externalUri);
+
+    await this.ui.confirm(
+      this.ui.instant('Settings.Import'),//'导入备份',
+      `${this.ui.instant('Settings.DetectedBackup')}“${fileName}”，${this.ui.instant('Settings.ImportPrompt')}`, 
+          //`检测到备份文件“${fileName}”，是否立即导入？`,
+      () => {
+        this.pendingExternalImportUri = null;
+        this.handledExternalImportUri = externalUri;
+        void this.importLocalDataBackupFromExternalUri(externalUri);
+      },
+      () => {
+        this.pendingExternalImportUri = null;
+      }
+    );
+  }
+
+  private normalizeExternalImportUri(rawUrl?: string): string | null {
+    if(typeof rawUrl !== 'string'){
+      return null;
+    }
+
+    const trimmed = rawUrl.trim();
+    if(trimmed.length === 0){
+      return null;
+    }
+
+    if(trimmed.startsWith('content://') || trimmed.startsWith('file://')){
+      return trimmed;
+    }
+
+    return null;
+  }
+
+  private getExternalImportFileName(uri: string): string {
+    const cleanPath = uri.split('?')[0];
+    const lastSegment = cleanPath.substring(cleanPath.lastIndexOf('/') + 1);
+    if(lastSegment.length === 0){
+      return '备份文件';
+    }
+
+    try{
+      return decodeURIComponent(lastSegment);
+    }catch{
+      return lastSegment;
+    }
+  }
+
+  async importLocalDataBackupFromExternalUri(uri: string){
+    try{
+      const jsonStr = await this.readExternalTextFile(uri);
+      await this.importLocalDataBackupFromJson(jsonStr);
+    }catch(error){
+      console.error('Import external backup failed', error);
+      this.ui.toast('bottom', '读取备份文件失败');
+      this.handledExternalImportUri = null;
+    }
+  }
+
+  private async readExternalTextFile(uri: string): Promise<string> {
+    try{
+      const result = await Filesystem.readFile({
+        path: uri,
+        encoding: Encoding.UTF8,
+      });
+
+      if(typeof result.data === 'string'){
+        return result.data;
+      }
+    }catch(readError){
+      console.warn('Filesystem.readFile external uri failed, falling back to fetch', readError);
+    }
+
+    const response = await fetch(uri);
+    if(!response.ok){
+      throw new Error(`Read external file failed: ${response.status}`);
+    }
+
+    return await response.text();
   }
 
   private base64ToArrayBuffer(base64: string): ArrayBuffer {

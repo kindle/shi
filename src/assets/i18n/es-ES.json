@@ -216,6 +216,8 @@
         "Data":"Datos",
         "Backup":"Respaldar datos",
         "Import":"Importar datos",
+        "DetectedBackup":"Se ha detectado un archivo de respaldo",
+        "ImportPrompt":"¿Importarlo ahora?",
         "ImportSuccess":"Importación correcta",
         "ImportFail":"Error al importar",
         "Restore":"Restaurar y borrar datos",
