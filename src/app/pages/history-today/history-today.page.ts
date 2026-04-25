@@ -183,7 +183,7 @@ export class HistoryTodayPage implements OnInit {
            ctx.fillText("长按识别二维码免费获取", 120, footerY + 85);
 
            let dataUrl=canvas.toDataURL();
-           console.log(dataUrl);
+           //console.log(dataUrl);
      
            var img1 = new Image();
            img1.src = dataUrl;

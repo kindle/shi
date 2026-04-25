@@ -933,7 +933,7 @@ export class DataService {
     this.loadPoemList();
 
     this.articleDataLoaded = true;
-    console.log('load JsonData done')
+    //console.log('load JsonData done')
   }
 
   loadPoemList(){
@@ -956,7 +956,7 @@ export class DataService {
 
     this.poemListLoadingPromise = this.loadNextJSON(jsonFiles, 0).then(() => {
       this.poemListLoaded = true;
-      console.log('load holiday.json done');
+      //console.log('load holiday.json done');
       
     }).finally(() => {
       this.poemListLoadingPromise = null;
@@ -1087,7 +1087,7 @@ export class DataService {
     this.remove(this.LOCALSTORAGE_HOURLY_FUN);
   }
   async loadFunData(){
-    console.log('loadFunData')
+    //console.log('loadFunData')
     this.get(this.LOCALSTORAGE_HOURLY_FUN).then((value)=>{
       if(value==null){
         this.funDataMap = new Map();
@@ -1152,7 +1152,7 @@ export class DataService {
   articleData:any=[];
   azureData:any;
   async loadArticleJsonData(){
-    console.log('loadArticleJsonData')
+    //console.log('loadArticleJsonData')
     this.http.get<any>('/assets/json/pick.json').subscribe(result=>{
       this.pickData = result;
     });
@@ -3445,7 +3445,7 @@ export class DataService {
     this.get('app_daily_tracker').then((value)=>{
       if(value==null){
         this.tracker = [];
-        console.log('use default test data');
+        //console.log('use default test data');
       }
       else{
         this.tracker = JSON.parse(value);
@@ -3566,7 +3566,7 @@ export class DataService {
     this.set(this.LOCALSTORAGE_SEARCH_HIST, JSON.stringify(this.searchHistory));
   }
   removeSearchHistory(s:any){
-    console.log('remove'+s)
+    //console.log('remove'+s)
     this.searchHistory = this.searchHistory.filter((sh:any)=>
       sh !== s
     );
@@ -3590,8 +3590,48 @@ export class DataService {
     if(this.currentPoem.paragraphs&&this.currentPoem.title&&this.currentPoem.author)
       this.ui.player(this.currentPoem);
   }
+
+  private buildMissingPoemFeedbackMessage(id:any, sample:any = null){
+    const poemTitle = typeof sample?.title === 'string' ? sample.title : '';
+    const poemContent = Array.isArray(sample?.paragraphs)
+      ? sample.paragraphs.join('')
+      : (typeof sample === 'string' ? sample : '');
+    const poemId = id == null ? '' : `${id}`;
+
+    return [
+      '开发者你好，我发现 这首诗词 在诗词库中不存在，可能是GUID定义有误，请修正诗词库。',
+      `诗词title：${poemTitle}`,
+      `诗词内容：${poemContent}`,
+      `诗词ID：${poemId}`,
+    ].join('\n');
+  }
+
+  private async handleMissingPoem(id:any, sample:any = null){
+    await this.checkRemoteFullDbVersionOnEnter();
+
+    if (!this.isFullDbReady || this.isFullDbUpgradeAvailable) {
+      this.ui.confirm(
+        this.ui.instant('Settings.UpgradeFullDb'),
+        this.ui.instant('Settings.DownloadFullDbConfirm'),
+        () => {
+          this.goToMoreSettings();
+          this.downloadFullDb(this.remoteFullDbVersion);
+        }
+      );
+      return;
+    }
+
+    const feedbackMessage = this.buildMissingPoemFeedbackMessage(id, sample);
+    this.ui.confirm(
+      this.ui.instant('Title.PoemNotFound'),//'找不到诗词',
+      this.ui.instant('Title.TellDevFeedbak'),//'当前诗词库已是最新版本，当前诗词不存在或收录ID有误，建议给开发者发信反馈。',
+      () => {
+        this.feedback(feedbackMessage);
+      }
+    );
+  }
   
-  playbyid(id:any=null, sample:any=null, pop:any=true, fromArticle:boolean=false){
+  async playbyid(id:any=null, sample:any=null, pop:any=true, fromArticle:boolean=false){
     //console.log(id+sample)
     if(id){
       let poem = this.JsonData
@@ -3601,15 +3641,7 @@ export class DataService {
         //console.log(poem)
 
       if(!poem){
-        // poem not found in JsonData, offer to download full DB
-        this.ui.confirm(
-          this.ui.instant('Settings.UpgradeFullDb'),//'升级完整版诗词库',
-          this.ui.instant('Settings.DownloadFullDbConfirm'),//'诗词ID没找到，可能需要下载完整版诗词库才能查看，是否现在前往下载？',
-          () => {
-            this.goToMoreSettings();
-            this.downloadFullDb();
-          }
-        );
+        await this.handleMissingPoem(id, sample);
         return;
       }
 
@@ -4588,9 +4620,9 @@ export class DataService {
   }
 
   AppVersion:any="1.10";
-  async feedback(){
+  async feedback(predefinedMessage:string = ''){
     let subject = this.ui.instant('Title.Feedback')+"";
-    let body = "";
+    let body = predefinedMessage ? `${predefinedMessage}\n\n\n` : "";
     try {
       let info = await Device.getInfo();
       let appInfo = await App.getInfo();
@@ -4598,9 +4630,9 @@ export class DataService {
 
       if(this.ui.isIos){
         // predefined text is iOS + version, iphone 14 App Version: 1.0.6 
-        body = `\n\n\niOS ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
+        body += `iOS ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
       }else{
-        body = `\n\n\n${info.operatingSystem} ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
+        body += `${info.operatingSystem} ${info.osVersion}, ${info.model}\nApp Version: 名诗佳句 v${this.AppVersion}`;
       }
     } catch (error) {
        console.error(error); 

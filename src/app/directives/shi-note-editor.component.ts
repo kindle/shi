@@ -462,7 +462,7 @@ export class ShiNoteEditorComponent implements OnInit, AfterViewInit {
     if (this.cacheid) {
         localStorage.setItem(this.cacheid, result);
     }
-    console.log('Background Text:', this.cacheid, result);
+    //console.log('Background Text:', this.cacheid, result);
     //save value to it.
 
 

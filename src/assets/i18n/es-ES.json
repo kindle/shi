@@ -144,7 +144,9 @@
         "ByAuthor": "Por autor",
         "ByDynasty": "Por dinastía",
         "ByType": "Por tipo",
-        "ByGrade": "Por grado"
+        "ByGrade": "Por grado",
+        "PoemNotFound": "No se encontró el poema",
+        "TellDevFeedbak": "Tu base de datos de poemas ya está actualizada. Este poema no existe o el ID registrado es incorrecto. Envía un correo al desarrollador con tus comentarios."
     },
 
     "Search":{

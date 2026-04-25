@@ -144,7 +144,9 @@
         "ByAuthor":"By Author",
         "ByDynasty":"By Dynasty",
         "ByType":"By Type",
-        "ByGrade":"By Grade"
+        "ByGrade":"By Grade",
+        "PoemNotFound":"Poem not found",
+        "TellDevFeedbak":"Your poetry database is already up to date. This poem does not exist or the recorded ID is incorrect. Please email the developer with feedback."
     },
 
     "Search":{

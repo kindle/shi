@@ -172,7 +172,7 @@ export class SlideSharePreviewPage {
       return;
     }
 
-    console.log(this.imageOptions)
+    //console.log(this.imageOptions)
     const selectedImage = this.imageOptions.find((option) => option.key === this.selectedImageId);
     if (!selectedImage?.preview) {
       return;
