@@ -597,6 +597,39 @@ export class DataService {
     return this.fullDbAutoDownloadPromise;
   }
 
+  private async autoUpgradeFullDbOnAppOpen(): Promise<void> {
+    if (!this.useTwoStepDbLoading || !this.isFullDbReady || this.isLoadingFullDb) {
+      return;
+    }
+
+    if (this.fullDbAutoDownloadPromise) {
+      return this.fullDbAutoDownloadPromise;
+    }
+
+    this.fullDbAutoDownloadPromise = (async () => {
+      if (!this.hasNetworkConnection()) {
+        return;
+      }
+
+      await this.checkRemoteFullDbVersionOnEnter();
+
+      if (!this.isFullDbUpgradeAvailable || this.isLoadingFullDb) {
+        return;
+      }
+
+      await this.ui.toast('bottom', this.ui.instant('Settings.AutoUpgrading'));
+      await this.downloadFullDb(this.remoteFullDbVersion, true);
+
+      if (!this.isFullDbUpgradeAvailable && this.isFullDbReady) {
+        await this.ui.toast('bottom', this.ui.instant('Settings.AutoUpgradeDone'));
+      }
+    })().finally(() => {
+      this.fullDbAutoDownloadPromise = null;
+    });
+
+    return this.fullDbAutoDownloadPromise;
+  }
+
   private isStoredTrue(value: any): boolean {
     return value === true || value === 1 || value === '1' || value === 'true';
   }
@@ -2944,6 +2977,7 @@ export class DataService {
         }
 
         this.loadJsonData();
+        void this.autoUpgradeFullDbOnAppOpen();
       } else {
         // 只加载精简版（默认实现仍然调用 loadJsonData，
         // 以避免你还没准备好精简 JSON 时功能受影响）
