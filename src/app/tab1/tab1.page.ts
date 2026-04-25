@@ -37,66 +37,13 @@ export class Tab1Page {
 
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
 
-    if(item.items){
-      //update audio info..
-      item.items.forEach((poem:any) => {
-        let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-        
-        if(fullData&&fullData.audio){
-          poem.audio = fullData.audio;
-        }
-      });
-    }
-    if(item.desc){
-      await this.ensureSolarTermDescPoems(item);
+    void this.data.prepareArticleForViewer(item);
 
-      //update audio info..
-      item.desc.filter((i:any)=>i.type=='poem').forEach((poem:any) => {
-        let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-        if(fullData&&fullData.audio!=null){
-          poem.audio = fullData.audio;
-        }
-      });
-      
-    }
     this.data.currentArticle = item;
     this.router.navigate(['article-viewer'], {
       queryParams: {
       }
     });
-  }
-
-  private async ensureSolarTermDescPoems(item:any) {
-    if (!Array.isArray(item?.desc)) {
-      return;
-    }
-
-    const hasListItem = item.desc.some((descItem:any) => descItem?.type === 'list');
-    const hasPoemItem = item.desc.some((descItem:any) => descItem?.type === 'poem');
-
-    if (!hasListItem || hasPoemItem) {
-      return;
-    }
-
-    const solarTermTextItem = item.desc.find((descItem:any) =>
-      descItem?.type === 'text'
-      && typeof descItem?.value === 'string'
-      && this.data.solarTermMap.has(descItem.value)
-    );
-
-    if (!solarTermTextItem) {
-      return;
-    }
-
-    const solarTermName = solarTermTextItem.value;
-    while ((this.data.JsonData?.length || 0) <= 0) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-    const solarTermArticle = this.data.getSolarTermPoem(solarTermName, item.small_title || '');
-
-    if (Array.isArray(solarTermArticle?.desc) && solarTermArticle.desc.some((descItem:any) => descItem?.type === 'poem')) {
-      item.desc = solarTermArticle.desc;
-    }
   }
   
 

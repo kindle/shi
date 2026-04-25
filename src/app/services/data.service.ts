@@ -923,6 +923,8 @@ export class DataService {
 
     this.poemListLoadingPromise = this.loadNextJSON(jsonFiles, 0).then(() => {
       this.poemListLoaded = true;
+      console.log('load holiday.json done');
+      
     }).finally(() => {
       this.poemListLoadingPromise = null;
     });
@@ -981,6 +983,65 @@ export class DataService {
         return item;
       });
     });
+  }
+
+  private updateArticlePoemAudio(poems:any[]): void {
+    poems.forEach((poem:any) => {
+      const fullData = this.JsonData.find((shici:any) => shici.id === poem?.id);
+      if (fullData?.audio != null) {
+        poem.audio = fullData.audio;
+      }
+    });
+  }
+
+  private ensureSolarTermArticleDescPoems(item:any): void {
+    if (!Array.isArray(item?.desc)) {
+      return;
+    }
+
+    const hasListItem = item.desc.some((descItem:any) => descItem?.type === 'list');
+    const hasPoemItem = item.desc.some((descItem:any) => descItem?.type === 'poem');
+
+    if (!hasListItem || hasPoemItem) {
+      return;
+    }
+
+    const solarTermTextItem = item.desc.find((descItem:any) =>
+      descItem?.type === 'text'
+      && typeof descItem?.value === 'string'
+      && this.solarTermMap.has(descItem.value)
+    );
+
+    if (!solarTermTextItem) {
+      return;
+    }
+
+    const solarTermArticle = this.getSolarTermPoem(solarTermTextItem.value, item.small_title || '');
+    if (Array.isArray(solarTermArticle?.desc) && solarTermArticle.desc.some((descItem:any) => descItem?.type === 'poem')) {
+      item.desc = solarTermArticle.desc;
+    }
+  }
+
+  public async prepareArticleForViewer(item:any): Promise<void> {
+    if (!item) {
+      return;
+    }
+
+    const hasPoemContent = Array.isArray(item?.items) || Array.isArray(item?.desc);
+    if (!hasPoemContent) {
+      return;
+    }
+
+    await this.waitForArticleDataLoaded();
+    this.ensureSolarTermArticleDescPoems(item);
+
+    if (Array.isArray(item.items)) {
+      this.updateArticlePoemAudio(item.items);
+    }
+
+    if (Array.isArray(item.desc)) {
+      this.updateArticlePoemAudio(item.desc.filter((descItem:any) => descItem?.type === 'poem'));
+    }
   }
 
   hotData:any;
