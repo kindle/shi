@@ -45,6 +45,7 @@
           <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
             style="margin-top:5px;display: flex;align-items: center;">
             <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+            {{(p.dy?'['+p.dy+'] ':'')}}
             {{p.author}}《{{p.title}}》{{p.chapter}} {{p.section}}
           </p>
         </ion-label>

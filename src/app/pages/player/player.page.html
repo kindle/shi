@@ -384,7 +384,8 @@
         [originalText]="data.currentPoem.author"
         cacheid="{{data.currentPoem.id+'_author'}}" 
         *ngIf="data.currentPoem.sample">
-          {{GetCacheById(data.currentPoem.id+'_author')||data.currentPoem.author}}
+          {{GetCacheById(data.currentPoem.id+'_author')||
+          ((data.currentPoem.dy?'['+data.currentPoem.dy+'] ':'')+data.currentPoem.author)}}
         </div>
       </div>
     </ion-item>

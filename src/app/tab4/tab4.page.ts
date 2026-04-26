@@ -613,7 +613,8 @@ export class Tab4Page implements OnInit {
   }
 
   getHighlightMeta(p:any): SafeHtml{
-    const meta = `${p.author || ''}《${p.title || ''}》`;
+    const dynastic = p.dy ? `[${p.dy}] ` : '';
+    const meta = `${dynastic}${p.author || ''}《${p.title || ''}》`;
 
     return this.sanitizer.bypassSecurityTrustHtml(
       this.highlightText(meta, this.getSearchTerms())

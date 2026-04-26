@@ -39,6 +39,10 @@ const qtDirs = [
   '全唐诗3',
   '全唐诗4',
   '全唐诗5',
+  '全唐诗6',
+  '全唐诗7',
+  '全唐诗8',
+  '全唐诗9'
 ];
 
 /**
@@ -115,8 +119,8 @@ function createZip(zipPath, fillArchiveFn) {
       }
     });
 
-    // db1.zip ~ db5.zip: 只打包对应的 全唐诗X 目录，顶层目录名统一为 db
-    for (let i = 1; i <= 5; i++) {
+    // db1.zip ~ db8.zip: 只打包对应的 全唐诗X 目录，顶层目录名统一为 db
+    for (let i = 1; i <= 9; i++) {
       const dirName = `全唐诗${i}`;
       const srcDir = path.join(dbRoot, dirName);
       if (!fs.existsSync(srcDir)) {

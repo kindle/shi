@@ -9,7 +9,7 @@ export const environment = {
   dbBaseUrl: 'assets',
   // 使用分片压缩包方式：后端提供 db0.zip ~ db5.zip，
   // 这里给出一个“基准”地址，以 db.zip 结尾，代码里会自动映射为 db0.zip...db5.zip
-  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjimg/db.zip'
+  fullDbZipUrl: 'https://reddah.blob.core.windows.net/msjjdb/db.zip'
 };
 
 /*

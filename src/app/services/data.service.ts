@@ -93,6 +93,7 @@ export class DataService {
 
   // 本地完整库 zip 文件名（保存在 Directory.Data 下）
   private readonly DB_ZIP_FILE_NAME = 'db.zip';
+  private readonly FULL_DB_ZIP_MAX_INDEX = 9;
   private externalImportInitialized = false;
   private pendingExternalImportUri: string | null = null;
   private handledExternalImportUri: string | null = null;
@@ -201,11 +202,76 @@ export class DataService {
     return `${base}/${normalized}`;
   }
 
+  private getDbAssetCandidates(path: string): string[] {
+    const candidates = [path];
+
+    for (const candidate of this.getSplitDbAssetCandidates(path)) {
+      if (!candidates.includes(candidate)) {
+        candidates.push(candidate);
+      }
+    }
+
+    return candidates;
+  }
+
+  private getSplitDbAssetCandidates(path: string): string[] {
+    if (path === 'assets/db/全唐诗/authors.mq.json') {
+      return ['assets/db/全唐诗6/authors.mq.json'];
+    }
+
+    const ciMatch = path.match(/^assets\/db\/全唐诗\/(ci\.(?:明|清)\.\d{4}\.json)$/);
+    if (ciMatch) {
+      return [`assets/db/全唐诗6/${ciMatch[1]}`];
+    }
+
+    const mingPoetryMatch = path.match(/^assets\/db\/全唐诗\/poetry\.明\.(\d{4})\.json$/);
+    if (mingPoetryMatch) {
+      const index = Number(mingPoetryMatch[1]);
+      const folder = index <= 81 ? '全唐诗7' : '全唐诗8';
+      return [`assets/db/${folder}/poetry.明.${mingPoetryMatch[1]}.json`];
+    }
+
+    const qingPoetryMatch = path.match(/^assets\/db\/全唐诗\/(poetry\.清\.\d{4}\.json)$/);
+    if (qingPoetryMatch) {
+      return [`assets/db/全唐诗9/${qingPoetryMatch[1]}`];
+    }
+
+    return [];
+  }
+
+  private loadDbJsonFromCandidates(paths: string[], onSuccess: (result: any) => void, index = 0): void {
+    if (index >= paths.length) {
+      return;
+    }
+
+    const path = paths[index];
+    const cached = this.dbJsonCache.get(path);
+    if (cached) {
+      onSuccess(cached);
+      return;
+    }
+
+    this.http.get<any>(this.resolveDbPath(path)).subscribe({
+      next: result => {
+        onSuccess(result);
+      },
+      error: () => {
+        this.loadDbJsonFromCandidates(paths, onSuccess, index + 1);
+      }
+    });
+  }
+
+  private appendAuthorData(path: string): void {
+    this.loadDbJsonFromCandidates(this.getDbAssetCandidates(path), result => {
+      this.authorJsonData = this.authorJsonData.concat(result || []);
+    });
+  }
+
   private normalizeZipEntryToAssetKey(name: string): string | null {
     let path = name.replace(/^\.*[\/]+/, '').replace(/\\/g, '/');
     // 兼容后端 zip 中使用 db/全唐诗1~5/ 这类带数字后缀的目录名
     // 例如：db/全唐诗1/authors.song.json -> assets/db/全唐诗/authors.song.json
-    path = path.replace(/^db\/全唐诗[1-5]\//, 'db/全唐诗/');
+    path = path.replace(/^db\/全唐诗[1-9]\//, 'db/全唐诗/');
 
     if (!path.endsWith('.json')) {
       return null;
@@ -492,7 +558,7 @@ export class DataService {
 
   private async clearPersistedDbZipFiles(): Promise<void> {
     const fileNames = [this.DB_ZIP_FILE_NAME];
-    for (let index = 0; index <= 5; index++) {
+    for (let index = 0; index <= this.FULL_DB_ZIP_MAX_INDEX; index++) {
       fileNames.push(`${this.DB_ZIP_FILE_NAME}.${index}`);
     }
 
@@ -677,9 +743,9 @@ export class DataService {
       // console.warn('No single DB zip found, will try multi-part zip if present.', e);
     }
 
-    // 2) 如果没有加载到单一 zip，再尝试多包 db.zip.0 ~ db.zip.5 持久化方案
+    // 2) 如果没有加载到单一 zip，再尝试多包 db.zip.0 ~ db.zip.9 持久化方案
     if (!loadedAny) {
-      const maxPartIndex = 5;
+      const maxPartIndex = this.FULL_DB_ZIP_MAX_INDEX;
       for (let index = 0; index <= maxPartIndex; index++) {
         try {
           const partFile = await Filesystem.readFile({
@@ -722,17 +788,17 @@ export class DataService {
     }
 
     // 构造需要下载的 zip 列表：
-    // 1) 如果包含 {index} 占位符，则按模板替换 0~5
-    // 2) 如果以 db.zip 结尾，则自动映射为 db0.zip ~ db5.zip
+    // 1) 如果包含 {index} 占位符，则按模板替换 0~9
+    // 2) 如果以 db.zip 结尾，则自动映射为 db0.zip ~ db9.zip
     // 3) 否则按单一 zip 处理
     const zipUrls: string[] = [];
     if (zipUrl.includes('{index}')) {
-      for (let i = 0; i <= 5; i++) {
+      for (let i = 0; i <= this.FULL_DB_ZIP_MAX_INDEX; i++) {
         zipUrls.push(zipUrl.replace('{index}', i.toString()));
       }
     } else if (zipUrl.endsWith('db.zip')) {
       const base = zipUrl.replace(/db\.zip$/, 'db');
-      for (let i = 0; i <= 5; i++) {
+      for (let i = 0; i <= this.FULL_DB_ZIP_MAX_INDEX; i++) {
         zipUrls.push(`${base}${i}.zip`);
       }
     } else {
@@ -824,65 +890,29 @@ export class DataService {
   async loadJsonData(){
 
     //authors
-    const authorsSongCached = this.dbJsonCache.get('assets/db/全唐诗/authors.song.json');
-    if (authorsSongCached) {
-      this.authorJsonData = this.authorJsonData.concat(authorsSongCached);
-    } else {
-      this.http.get<any>(this.resolveDbPath(`assets/db/全唐诗/authors.song.json`)).subscribe(result=>{
-        this.authorJsonData = this.authorJsonData.concat(result);
-      });
-    }
+    this.appendAuthorData('assets/db/全唐诗/authors.song.json');
+    this.appendAuthorData('assets/db/宋词/author.song.json');
+    this.appendAuthorData('assets/db/全唐诗/authors.tang.json');
+    this.appendAuthorData('assets/db/others/authors.others.json');
+    this.appendAuthorData('assets/db/全唐诗/authors.mq.json');
 
-    const ciAuthorCached = this.dbJsonCache.get('assets/db/宋词/author.song.json');
-    if (ciAuthorCached) {
-      this.authorJsonData = this.authorJsonData.concat(ciAuthorCached);
-    } else {
-      this.http.get<any>(this.resolveDbPath(`assets/db/宋词/author.song.json`)).subscribe(result=>{
-        this.authorJsonData = this.authorJsonData.concat(result);
-      });
-    }
-
-    const authorsTangCached = this.dbJsonCache.get('assets/db/全唐诗/authors.tang.json');
-    if (authorsTangCached) {
-      this.authorJsonData = this.authorJsonData.concat(authorsTangCached);
-    } else {
-      this.http.get<any>(this.resolveDbPath(`assets/db/全唐诗/authors.tang.json`)).subscribe(result=>{
-        this.authorJsonData = this.authorJsonData.concat(result);
-      });
-    }
-
-    const authorsOthersCached = this.dbJsonCache.get('assets/db/others/authors.others.json');
-    if (authorsOthersCached) {
-      this.authorJsonData = this.authorJsonData.concat(authorsOthersCached);
-    } else {
-      this.http.get<any>(this.resolveDbPath(`assets/db/others/authors.others.json`)).subscribe(result=>{
-        this.authorJsonData = this.authorJsonData.concat(result);
-      });
-    }
     if(this.EnablePrivateMusic){
-      const authorsMusicCached = this.dbJsonCache.get('assets/db/music/authors.music.json');
-      if (authorsMusicCached) {
-        this.authorJsonData = this.authorJsonData.concat(authorsMusicCached);
-      } else {
-        this.http.get<any>(this.resolveDbPath(`assets/db/music/authors.music.json`)).subscribe(result=>{
-          this.authorJsonData = this.authorJsonData.concat(result);
-        });
-      }
+      this.appendAuthorData('assets/db/music/authors.music.json');
     }
 
 
     //诗经楚辞
-    this.getObjects(`assets/db/诗经/shijing.json`,"诗经");
-    this.getObjects(`assets/db/楚辞/chuci.json`,"楚辞");
+    this.getObjects(`assets/db/诗经/shijing.json`,"诗经",'西周春秋');
+    this.getObjects(`assets/db/楚辞/chuci.json`,"楚辞",'战国');
 
     //建安
-    this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操");
+    this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操",'秦汉');
 
     //其他补录
-    this.getObjects(`assets/db/others/others.json`,"");
+    this.getObjects(`assets/db/others/others.json`,"", '');
 
     if(this.EnablePrivateMusic){
-      this.getObjects(`assets/db/music/music.json`,"");
+      this.getObjects(`assets/db/music/music.json`,"", '');
     }
 
     //蒙学
@@ -891,34 +921,49 @@ export class DataService {
     this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
 
     //纳兰性德
-    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德');
+    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德', '清');
 
     //全唐诗
     for(let i=0;i<=57;i++){
-      this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗");
+      this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗", '唐');
     }
     for(let i=0;i<=254;i++){
-      this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗");
+      this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗", '宋');
     }
-
+    //明词
+    for(let i=0;i<=3;i++){
+      this.getObjects(`assets/db/全唐诗/ci.明.${i.toString().padStart(4, '0')}.json`,"明词", '明');
+    }
+    //清词
+    for(let i=0;i<=26;i++){
+      this.getObjects(`assets/db/全唐诗/ci.清.${i.toString().padStart(4, '0')}.json`,"清词", '清');
+    }
+    //明诗
+    for(let i=0;i<=161;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.明.${i.toString().padStart(4, '0')}.json`,"明诗", '明');
+    }
+    //清诗
+    for(let i=0;i<=59;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.清.${i.toString().padStart(4, '0')}.json`,"清诗", '清');
+    }
     //四书五经
 
     //宋词
     for(let i=0;i<=21;i++){
-      this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词");
+      this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
     }
-    this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首");
+    this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
 
     //水墨唐诗
-    this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗");
+    this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
 
     //元曲
-    this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲");
+    this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲", '元');
 
 
     //论语
-    this.getObjects(`assets/db/论语/lunyu.json`,"论语");
-    this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子");
+    this.getObjects(`assets/db/论语/lunyu.json`,"论语", '西周春秋');
+    this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子", '战国');
 
     /*
     this.http.get<any>('https://reddah.blob.core.windows.net/cache/202385.json').subscribe(result=>{
@@ -1885,20 +1930,10 @@ export class DataService {
 
 
   tagsStat = new Map();
-  getObjects(json:any, category:any){
-    const cached = this.dbJsonCache.get(json);
-    if (cached) {
-      this.importData(cached, category);
-      return;
-    }
-
-    const url = this.resolveDbPath(json);
-    this.http.get<any>(url)
-      .subscribe(result =>{
-          this.importData(result, category);
-      }, error =>{
-          //console.log(error);
-      });
+  getObjects(json:any, category:any, dy:any){
+    this.loadDbJsonFromCandidates(this.getDbAssetCandidates(json), result => {
+      this.importData(result, category, dy);
+    });
   }
 
   //蒙学
@@ -1924,7 +1959,7 @@ export class DataService {
       });
   }
 
-  importData(result:any, category:any){
+  importData(result:any, category:any, dy:any=null){
     result.forEach((element:any) => {
       if(element.title == null){
         element.title = element.rhythmic;
@@ -1951,6 +1986,9 @@ export class DataService {
           //console.log(tag, count)
         });
       }
+      //if(element.dy != null){
+        element.dy = dy;
+      //}
       element.type = category;
       element.text = 
           element.author + 
@@ -3015,7 +3053,7 @@ export class DataService {
     });
 
     // 精简版诗词（请将 Tab1/2/3/4 需要的诗词填入 poems.min.json）
-    this.getObjects('assets/db-min/poems.min.json', '');
+    this.getObjects('assets/db-min/poems.min.json', '', '');
 
     // 其它体积较小的 topic、诗单等仍然使用原始 assets
     this.loadPoemList();
