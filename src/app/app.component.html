@@ -1,3 +1,17 @@
 <ion-app scrollY="false">
   <ion-router-outlet></ion-router-outlet>
+
+  <div *ngIf="showStartupArticleLoadingMask" class="app-startup-loading-mask" aria-live="polite" aria-busy="true">
+    <div class="app-startup-loading-mask__content">
+      <div class="app-startup-loading-mask__visual">
+        <img class="app-startup-loading-mask__image" src="assets/icon/favicon.png" alt="" />
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      <div class="app-startup-loading-mask__text">
+        {{
+          data.CurrentLoadingSet === ""? ui.instant("Title.LoadingLib")+"    " : ui.instant("Title.LoadingLib") + " " + data.CurrentLoadingSet
+        }}
+      </div>
+    </div>
+  </div>
 </ion-app>

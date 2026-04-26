@@ -1,0 +1,53 @@
+.app-startup-loading-mask {
+	position: fixed;
+	inset: 0;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	background: rgba(17, 24, 39, 0.28);
+	backdrop-filter: blur(3px);
+	pointer-events: all;
+}
+
+.app-startup-loading-mask__content {
+	min-width: 152px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	padding: 20px 24px;
+	border-radius: 18px;
+	background: white;//rgba(255, 255, 255, 0.92);
+	box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+	color: #111827;
+}
+
+.app-startup-loading-mask__visual {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 120px;//名诗佳句icon width height
+	height: 120px;
+}
+
+.app-startup-loading-mask__image {
+	width: 120px;
+	height: 120px;
+	object-fit: contain;
+}
+
+.app-startup-loading-mask__visual ion-spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1.15);
+	pointer-events: none;
+}
+
+.app-startup-loading-mask__text {
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}

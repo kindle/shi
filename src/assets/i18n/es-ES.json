@@ -146,7 +146,8 @@
         "ByType": "Por tipo",
         "ByGrade": "Por grado",
         "PoemNotFound": "No se encontró el poema",
-        "TellDevFeedbak": "Tu base de datos de poemas ya está actualizada. Este poema no existe o el ID registrado es incorrecto. Envía un correo al desarrollador con tus comentarios."
+        "TellDevFeedbak": "Tu base de datos de poemas ya está actualizada. Este poema no existe o el ID registrado es incorrecto. Envía un correo al desarrollador con tus comentarios.",
+        "LoadingLib": "Cargando la biblioteca de poemas..."
     },
 
     "Search":{

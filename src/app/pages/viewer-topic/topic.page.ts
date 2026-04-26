@@ -32,6 +32,7 @@ export class TopicPage {
     {
       this.data.hotData = [];
     }
+    //console.log(this.data.hotData)
   }
 }
 

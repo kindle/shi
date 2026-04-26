@@ -239,8 +239,9 @@ export class DataService {
     return [];
   }
 
-  private loadDbJsonFromCandidates(paths: string[], onSuccess: (result: any) => void, index = 0): void {
+  private loadDbJsonFromCandidates(paths: string[], onSuccess: (result: any) => void, index = 0, onComplete?: () => void): void {
     if (index >= paths.length) {
+      onComplete?.();
       return;
     }
 
@@ -248,23 +249,26 @@ export class DataService {
     const cached = this.dbJsonCache.get(path);
     if (cached) {
       onSuccess(cached);
+      onComplete?.();
       return;
     }
 
     this.http.get<any>(this.resolveDbPath(path)).subscribe({
       next: result => {
         onSuccess(result);
+        onComplete?.();
       },
       error: () => {
-        this.loadDbJsonFromCandidates(paths, onSuccess, index + 1);
+        this.loadDbJsonFromCandidates(paths, onSuccess, index + 1, onComplete);
       }
     });
   }
 
   private appendAuthorData(path: string): void {
+    const done = this.createStartupJsonDoneCallback();
     this.loadDbJsonFromCandidates(this.getDbAssetCandidates(path), result => {
       this.authorJsonData = this.authorJsonData.concat(result || []);
-    });
+    }, 0, done);
   }
 
   private normalizeZipEntryToAssetKey(name: string): string | null {
@@ -887,9 +891,78 @@ export class DataService {
     }
   }
 
+  CurrentLoadingSet = "";
+  public isStartupJsonDataLoading = true;
+  private startupJsonTrackingActive = false;
+  private startupJsonSchedulingComplete = false;
+  private startupJsonPendingRequests = 0;
+
+  private beginStartupJsonTracking(): void {
+    this.isStartupJsonDataLoading = true;
+    this.startupJsonTrackingActive = true;
+    this.startupJsonSchedulingComplete = false;
+    this.startupJsonPendingRequests = 0;
+  }
+
+  private createStartupJsonDoneCallback(): (() => void) | undefined {
+    if (!this.startupJsonTrackingActive) {
+      return undefined;
+    }
+
+    this.startupJsonPendingRequests += 1;
+    let resolved = false;
+
+    return () => {
+      if (resolved) {
+        return;
+      }
+
+      resolved = true;
+      this.startupJsonPendingRequests = Math.max(0, this.startupJsonPendingRequests - 1);
+      this.completeStartupJsonTrackingIfReady();
+    };
+  }
+
+  private markStartupJsonSchedulingComplete(): void {
+    if (!this.startupJsonTrackingActive) {
+      return;
+    }
+
+    this.startupJsonSchedulingComplete = true;
+    this.completeStartupJsonTrackingIfReady();
+  }
+
+  private completeStartupJsonTrackingIfReady(): void {
+    if (!this.startupJsonTrackingActive || !this.startupJsonSchedulingComplete || this.startupJsonPendingRequests > 0) {
+      return;
+    }
+
+    this.startupJsonTrackingActive = false;
+    this.isStartupJsonDataLoading = false;
+    this.CurrentLoadingSet = "";
+
+      if (Array.isArray(this.classicData) && this.classicData.length > 0) {
+        void this.updateClassicDataAudio();
+      }
+  }
+
+  private async updateCurrentLoadingSet(setName:string): Promise<void> {
+    this.CurrentLoadingSet = setName;
+
+    await new Promise<void>((resolve) => {
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(() => resolve());
+        return;
+      }
+
+      setTimeout(() => resolve(), 0);
+    });
+  }
+
   async loadJsonData(){
 
     //authors
+  await this.updateCurrentLoadingSet("诗人");
     this.appendAuthorData('assets/db/全唐诗/authors.song.json');
     this.appendAuthorData('assets/db/宋词/author.song.json');
     this.appendAuthorData('assets/db/全唐诗/authors.tang.json');
@@ -902,13 +975,17 @@ export class DataService {
 
 
     //诗经楚辞
+  await this.updateCurrentLoadingSet("诗经");
     this.getObjects(`assets/db/诗经/shijing.json`,"诗经",'西周春秋');
+  await this.updateCurrentLoadingSet("楚辞");
     this.getObjects(`assets/db/楚辞/chuci.json`,"楚辞",'战国');
 
     //建安
+  await this.updateCurrentLoadingSet("秦汉");
     this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操",'秦汉');
 
     //其他补录
+  await this.updateCurrentLoadingSet("补录");
     this.getObjects(`assets/db/others/others.json`,"", '');
 
     if(this.EnablePrivateMusic){
@@ -917,51 +994,65 @@ export class DataService {
 
     //蒙学
     //getMXObjects is 文章
+    await this.updateCurrentLoadingSet("古文观止");
     this.getMXObjects(`assets/db/蒙学/guwenguanzhi.json`);
     this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
 
     //纳兰性德
+    await this.updateCurrentLoadingSet("纳兰性德");
     this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德', '清');
 
     //全唐诗
+    await this.updateCurrentLoadingSet("唐诗");
     for(let i=0;i<=57;i++){
       this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗", '唐');
     }
+    await this.updateCurrentLoadingSet("宋诗");
     for(let i=0;i<=254;i++){
       this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗", '宋');
     }
     //明词
+    await this.updateCurrentLoadingSet("明词");
     for(let i=0;i<=3;i++){
       this.getObjects(`assets/db/全唐诗/ci.明.${i.toString().padStart(4, '0')}.json`,"明词", '明');
     }
+    
     //清词
+    await this.updateCurrentLoadingSet("清词");
     for(let i=0;i<=26;i++){
       this.getObjects(`assets/db/全唐诗/ci.清.${i.toString().padStart(4, '0')}.json`,"清词", '清');
     }
     //明诗
+    await this.updateCurrentLoadingSet("明诗");
     for(let i=0;i<=161;i++){
       this.getObjects(`assets/db/全唐诗/poetry.明.${i.toString().padStart(4, '0')}.json`,"明诗", '明');
     }
     //清诗
+    await this.updateCurrentLoadingSet("清诗");
     for(let i=0;i<=59;i++){
       this.getObjects(`assets/db/全唐诗/poetry.清.${i.toString().padStart(4, '0')}.json`,"清诗", '清');
     }
     //四书五经
 
     //宋词
+    await this.updateCurrentLoadingSet("宋词");
     for(let i=0;i<=21;i++){
       this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
     }
+    await this.updateCurrentLoadingSet("宋词三百首");
     this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
 
     //水墨唐诗
+    await this.updateCurrentLoadingSet("唐诗");
     this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
 
     //元曲
+    await this.updateCurrentLoadingSet("元曲");
     this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲", '元');
 
 
     //论语
+    await this.updateCurrentLoadingSet("论语");
     this.getObjects(`assets/db/论语/lunyu.json`,"论语", '西周春秋');
     this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子", '战国');
 
@@ -977,8 +1068,15 @@ export class DataService {
     //load 诗单
     this.loadPoemList();
 
+    this.markStartupJsonSchedulingComplete();
+
+    if (!this.startupJsonTrackingActive) {
+      this.CurrentLoadingSet = "";
+    }
+
     this.articleDataLoaded = true;
-    //console.log('load JsonData done')
+    
+    console.log('load JsonData done')
   }
 
   loadPoemList(){
@@ -1040,7 +1138,7 @@ export class DataService {
   private async waitForArticleDataLoaded(maxWaitMs:number = 10000, intervalMs:number = 100): Promise<void> {
     const startTime = Date.now();
 
-    while ((!this.articleDataLoaded || this.JsonData.length === 0) && Date.now() - startTime < maxWaitMs) {
+    while ((this.isStartupJsonDataLoading || !this.articleDataLoaded || this.JsonData.length === 0) && Date.now() - startTime < maxWaitMs) {
       await new Promise(resolve => setTimeout(resolve, intervalMs));
     }
   }
@@ -1931,18 +2029,21 @@ export class DataService {
 
   tagsStat = new Map();
   getObjects(json:any, category:any, dy:any){
+    const done = this.createStartupJsonDoneCallback();
     this.loadDbJsonFromCandidates(this.getDbAssetCandidates(json), result => {
       this.importData(result, category, dy);
-    });
+    }, 0, done);
   }
 
   //蒙学
   getMXObjects(json:any){
+    const done = this.createStartupJsonDoneCallback();
     const cached = this.dbJsonCache.get(json);
     if (cached) {
       cached.content.forEach((c:any)=>{
         this.importData(c.content, cached.title);
       });
+      done?.();
       return;
     }
 
@@ -1954,8 +2055,10 @@ export class DataService {
           //c.type//五言绝句
           this.importData(c.content, result.title);
         });
+        done?.();
       }, error =>{
           //console.log(error);
+          done?.();
       });
   }
 
@@ -2959,6 +3062,8 @@ export class DataService {
   }
   init(){
     console.log('init data...')
+    this.beginStartupJsonTracking();
+
     if (this.useTwoStepDbLoading) {
       this.initDbWithTwoSteps();
     } else {
@@ -3048,8 +3153,15 @@ export class DataService {
    */
   private loadMinimalDb() {
     // 精简版作者（请将常用作者填入 authors.min.json）
-    this.http.get<any>('assets/db-min/authors.min.json').subscribe(result => {
-      this.authorJsonData = result || [];
+    const authorLoadDone = this.createStartupJsonDoneCallback();
+    this.http.get<any>('assets/db-min/authors.min.json').subscribe({
+      next: result => {
+        this.authorJsonData = result || [];
+        authorLoadDone?.();
+      },
+      error: () => {
+        authorLoadDone?.();
+      }
     });
 
     // 精简版诗词（请将 Tab1/2/3/4 需要的诗词填入 poems.min.json）
@@ -3057,6 +3169,7 @@ export class DataService {
 
     // 其它体积较小的 topic、诗单等仍然使用原始 assets
     this.loadPoemList();
+    this.markStartupJsonSchedulingComplete();
     this.articleDataLoaded = true;
   }
 

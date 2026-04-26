@@ -147,7 +147,8 @@
         "ByType":"按类型",
         "ByGrade":"按年级",
         "PoemNotFound":"找不到诗词",
-        "TellDevFeedbak":"当前诗词库已是最新版本，当前诗词不存在或收录ID有误，建议给开发者发信反馈。"
+        "TellDevFeedbak":"当前诗词库已是最新版本，当前诗词不存在或收录ID有误，建议给开发者发信反馈。",
+        "LoadingLib":"正在加载诗词库..."
     },
 
     "Search":{

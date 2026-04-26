@@ -24,8 +24,8 @@ enum Animation {
 })
 export class AppComponent {
   constructor(
-    private ui: UiService,
-    private data: DataService,
+    public ui: UiService,
+    public data: DataService,
     private storage: Storage,
     private navController: NavController,
     private platform: Platform,
@@ -44,11 +44,6 @@ export class AppComponent {
   }
 
   async ngOnInit() {
-    SplashScreen.show({
-      showDuration: 3000,
-      autoHide: true,
-    });
-
     await this.storage.create().then(()=>{
       this.data.init();
       void this.data.initializeExternalImportHandling();
@@ -68,12 +63,35 @@ export class AppComponent {
     this.data.loadAIChatHistory();
     this.data.loadMyLikeArticles();
 
+    await this.hideNativeSplashScreen();
+
     if(this.ui.isIos)
     {
       await this.loadVisitedTab();
     }
     //test
     //this.data.gototesturl();
+  }
+
+  get showStartupArticleLoadingMask(): boolean {
+    return this.data.isStartupJsonDataLoading;
+  }
+
+  private async hideNativeSplashScreen(): Promise<void> {
+    await new Promise<void>((resolve) => {
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(() => resolve());
+        return;
+      }
+
+      setTimeout(() => resolve(), 0);
+    });
+
+    try {
+      await SplashScreen.hide();
+    } catch {
+      // Ignore when the native splash screen has already been dismissed.
+    }
   }
 
   async loadVisitedTab(){

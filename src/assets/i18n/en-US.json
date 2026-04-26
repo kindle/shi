@@ -146,7 +146,8 @@
         "ByType":"By Type",
         "ByGrade":"By Grade",
         "PoemNotFound":"Poem not found",
-        "TellDevFeedbak":"Your poetry database is already up to date. This poem does not exist or the recorded ID is incorrect. Please email the developer with feedback."
+        "TellDevFeedbak":"Your poetry database is already up to date. This poem does not exist or the recorded ID is incorrect. Please email the developer with feedback.",
+        "LoadingLib":"Loading poetry library..."
     },
 
     "Search":{

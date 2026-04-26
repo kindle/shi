@@ -127,6 +127,7 @@
         </h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
          class="show-only-one-line">
+          {{(p.dy?'['+p.dy+'] ':'')}}
           {{p.author}}《{{p.title}}》
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
