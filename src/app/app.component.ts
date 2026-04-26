@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnDestroy } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { Storage } from '@ionic/storage-angular';
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -22,7 +22,9 @@ enum Animation {
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements DoCheck, OnDestroy {
+  private startupScrollLocked = false;
+
   constructor(
     public ui: UiService,
     public data: DataService,
@@ -73,8 +75,30 @@ export class AppComponent {
     //this.data.gototesturl();
   }
 
+  ngDoCheck(): void {
+    this.syncStartupScrollLock();
+  }
+
+  ngOnDestroy(): void {
+    this.setStartupScrollLock(false);
+  }
+
   get showStartupArticleLoadingMask(): boolean {
     return this.data.isStartupJsonDataLoading;
+  }
+
+  private syncStartupScrollLock(): void {
+    this.setStartupScrollLock(this.showStartupArticleLoadingMask);
+  }
+
+  private setStartupScrollLock(locked: boolean): void {
+    if (this.startupScrollLocked === locked) {
+      return;
+    }
+
+    this.startupScrollLocked = locked;
+    document.documentElement.classList.toggle('startup-loading-open', locked);
+    document.body.classList.toggle('startup-loading-open', locked);
   }
 
   private async hideNativeSplashScreen(): Promise<void> {

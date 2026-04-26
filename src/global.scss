@@ -164,6 +164,15 @@ body.player-open {
   overflow: hidden !important;
   touch-action: none !important;
 }
+
+html.startup-loading-open,
+body.startup-loading-open,
+body.startup-loading-open ion-app,
+body.startup-loading-open ion-router-outlet {
+    overflow: hidden !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+}
 /* Shi Note Styles */
 .note {
   display: inline-flex;
