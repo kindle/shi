@@ -964,11 +964,7 @@ export class DataService {
 
     //authors
     await this.updateCurrentLoadingSet("诗人");
-    this.appendAuthorData('assets/db/全唐诗/authors.song.json');
-    this.appendAuthorData('assets/db/宋词/author.song.json');
-    this.appendAuthorData('assets/db/全唐诗/authors.tang.json');
-    this.appendAuthorData('assets/db/others/authors.others.json');
-    this.appendAuthorData('assets/db/全唐诗/authors.mq.json');
+    this.appendAuthorData('assets/db/全唐诗/authors.all.json');
 
     if(this.EnablePrivateMusic){
       this.appendAuthorData('assets/db/music/authors.music.json');
@@ -1089,10 +1085,6 @@ export class DataService {
       this.getObjects(`assets/db/全唐诗/ci.清.${i.toString().padStart(4, '0')}.json`,"清词", '清');
     }
 
-    //纳兰性德
-    await this.updateCurrentLoadingSet("纳兰性德");
-    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德', '清');
-    
     //清诗
     await this.updateCurrentLoadingSet("清诗");
     for(let i=0;i<=59;i++){
