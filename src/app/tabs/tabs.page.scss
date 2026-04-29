@@ -161,6 +161,12 @@ ion-tab-bar {
   }
 }
 
+.article-loading-progress {
+  --background: rgba(56, 128, 255, 0.15);
+  --progress-background: #3880ff;
+  height: 2px;
+}
+
 /* The moving highlight container */
 .tab-highlight {
   position: absolute;

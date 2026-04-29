@@ -79,3 +79,39 @@ ion-content.snap-scroll::part(scroll) {
   scroll-snap-align: end;
   scroll-snap-stop: always;
 }
+
+.poem-detail-tabs-item {
+  --inner-padding-end: 0;
+}
+
+.poem-detail-tabs {
+  width: 100%;
+  padding: 6px 0;
+}
+
+.poem-detail-content {
+  align-items: flex-start;
+  --inner-padding-top: 0;
+  --inner-padding-bottom: 0;
+}
+
+.poem-detail-content > div {
+  width: 100%;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.poem-detail-scroll {
+  height: calc(100dvh - 330px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  max-height: calc(100dvh - 330px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  min-height: 220px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 4px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+.poem-detail-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}

@@ -49,6 +49,123 @@
         </ion-list>
       </swiper-slide>
  
+      <swiper-slide *ngIf="showIntro">
+        <!--跟小于10行小图片部分一样-->
+        <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
+          <ion-item lines="none" 
+            style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+            <div class="play-icon-box" *ngIf="!bigimg" 
+              (click)="text()">
+              <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
+                defaultImage="assets/img/default.jpg" 
+                lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+                onerror="javascript:this.src='assets/img/default.jpg'"
+              /> -->
+              <ion-thumbnail slot="start"
+                style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
+                  <img id="authorimg" style="border-radius: 10px;" 
+                    defaultImage="assets/img/default.jpg" 
+                    src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+                    onerror="javascript:this.src='assets/img/default.jpg'"
+                    [ngStyle]="{'opacity':(data.currentPoem&&data.isPlaying) ? '0.5' : '1' }" />
+                  <div class="playing" style="position: fixed;" *ngIf="data.isPlaying"
+                    [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                    'height':(data.isPlaying) ? '' : '5px' }"
+                  ></div>
+                </ion-thumbnail>
+            </div>
+            <ion-label>
+              <div style="display: flex; align-items: center;">
+                <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                  {{data.currentPoem.title}} {{data.currentPoem.author}}
+                </h2>
+              </div>
+              <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                style="margin-top:5px;display: flex;align-items: end;">
+                {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+              </p>
+            </ion-label>
+            <!-- <ion-button slot="end" color="transparent" 
+            *ngIf="!data.isliked(data.currentPoem,'poem')"
+            (click)="data.likelist(data.currentPoem,'poem')">
+              <ion-icon name="add-outline" color="dark"></ion-icon>
+            </ion-button> -->
+            <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+            [isViewAuthor]="true"></app-button-end>
+          </ion-item>
+        </ion-list>
+
+        <ng-container *ngIf="hasAnyPoemDetail()">
+          <ion-item lines="none" class="poem-detail-tabs-item">
+            <ion-segment class="poem-detail-tabs" scrollable
+              style="padding:6px 10px;margin:10px 10px 10px 0;"
+              [value]="getVisibleDetailTab()"
+              (ionChange)="setDetailTab($event)">
+              <ion-segment-button value="appreciation" *ngIf="hasPoemDetail('appreciation')">
+                <ion-label>赏析</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="translation" *ngIf="hasPoemDetail('translation')">
+                <ion-label>译文</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="intro" *ngIf="hasPoemDetail('intro')">
+                <ion-label>简介</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="comment" *ngIf="hasPoemDetail('comment')">
+                <ion-label>评论</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="annotation" *ngIf="hasPoemDetail('annotation')">
+                <ion-label>注释</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-item>
+
+          <ion-item *ngIf="getVisibleDetailTab()==='appreciation'&&hasPoemDetail('appreciation')" 
+          lines="none"
+          class="poem-detail-content">
+            <div class="poem-detail-scroll">
+              <div class="poem-detail-title">赏析</div>
+              <div>{{data.currentPoem.appreciation}}</div>
+            </div>
+          </ion-item>
+
+          <ion-item *ngIf="getVisibleDetailTab()==='translation'&&hasPoemDetail('translation')" 
+          lines="none"
+          class="poem-detail-content">
+            <div class="poem-detail-scroll">
+              <div class="poem-detail-title">译文</div>
+              <div>{{data.currentPoem.translation}}</div>
+            </div>
+          </ion-item>
+
+          <ion-item *ngIf="getVisibleDetailTab()==='intro'&&hasPoemDetail('intro')"
+          lines="none" 
+          class="poem-detail-content">
+            <div class="poem-detail-scroll">
+              <div class="poem-detail-title">简介</div>
+              <div>{{data.currentPoem.intro}}</div>
+            </div>
+          </ion-item>
+
+          <ion-item *ngIf="getVisibleDetailTab()==='comment'&&hasPoemDetail('comment')" 
+          lines="none"
+          class="poem-detail-content">
+            <div class="poem-detail-scroll">
+              <div class="poem-detail-title">评论</div>
+              <div *ngFor="let c of data.currentPoem.comment" style="margin-bottom:10px;">{{c}}</div>
+            </div>
+          </ion-item>
+
+          <ion-item *ngIf="getVisibleDetailTab()==='annotation'&&hasPoemDetail('annotation')" 
+          lines="none"
+          class="poem-detail-content">
+            <div class="poem-detail-scroll">
+              <div class="poem-detail-title">注释</div>
+              <div *ngFor="let a of data.currentPoem.annotation" style="margin-bottom:10px;">{{a}}</div>
+            </div>
+          </ion-item>
+        </ng-container>
+      </swiper-slide>
 
       <swiper-slide *ngIf="showPlaylist">
         <ion-list style="margin:35px 5px;" *ngIf="!bigimg&&data.playHistory.length>1" class="snap-end">
@@ -392,16 +509,16 @@
 
     <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
-      [ngClass]="{'select-line selectableText':currentIndex===i}"
-      (click)="select(i, $event); $event.stopPropagation()"
-      (touchstart)="startPress(i, $event, text)" 
-      (touchend)="endPress()" 
-      (touchcancel)="endPress()"
-      (touchmove)="endPress()" 
-      (mousedown)="startPress(i, $event, text)" 
-      (mouseup)="endPress()" 
-      (mouseleave)="endPress()"
-      [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
+          [ngClass]="{'select-line selectableText':currentIndex===i}"
+          (click)="select(i, $event); $event.stopPropagation()"
+          (touchstart)="startPress(i, $event, text)" 
+          (touchend)="endPress()" 
+          (touchcancel)="endPress()"
+          (touchmove)="endPress()" 
+          (mousedown)="startPress(i, $event, text)" 
+          (mouseup)="endPress()" 
+          (mouseleave)="endPress()"
+          [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
         <ion-icon name="search-outline" *ngIf="currentIndex===i&&text.length<=16"
         (click)="data.search(text)"
         style="position: absolute;left:5px;margin:2px;top:10px;"
@@ -425,7 +542,6 @@
         ></ion-icon>
       </div>
     </ion-item>
-    
   </ion-list>
   <!--小于10行*********end*******************-->
 
@@ -616,15 +732,23 @@
           <ion-button style="border-radius: 8px;"
           [ngStyle]="{'background-color':showText ? 'rgb(247,247,247)' : '' }"
           (click)="text()" size="large">
-            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+            <ion-icon name="reader-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-buttons>
+        <!-- <ion-buttons>
           <ion-button *ngIf="data.currentPoem.audio" (click)="data.togglePlaybackRate()" size="large">
             <ion-icon name="timer-outline"></ion-icon>
             <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">
               {{data.playbackRate}}x
             </span>
+          </ion-button>
+        </ion-buttons> -->
+        <ion-buttons>
+          <ion-button *ngIf="hasAnyPoemDetail()" 
+          style="border-radius: 8px;"
+          [ngStyle]="{'background-color':showIntro ? 'rgb(247,247,247)' : '' }"
+          (click)="intro()" size="large">
+            <ion-icon name="information-circle-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
         <ion-buttons>
@@ -659,6 +783,7 @@
   </ion-popover>
 </div>
 
+<!--双击诗词最下方显示的工具栏-->
 <div *ngIf="showNoteToolbar" class="editor-toolbar" [style.--player-keyboard-offset.px]="keyboardOffset">
   <ion-toolbar>
     <ion-buttons slot="start">

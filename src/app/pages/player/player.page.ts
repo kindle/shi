@@ -49,17 +49,21 @@ export class PlayerPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.data.currentPoem)
     document.body.classList.add('player-open');
     if(!this.data.isPlaying){
       this.data.setAudio();
     }
-    this.bindKeyboardListeners();
+    if(!this.ui.isWeb){
+      this.bindKeyboardListeners();
+    }
     this.noteService.activeEditor$.subscribe(editor => {
        if(editor){
          this.onInlineEditorActive(editor);
        }
     });
     this.checkandload();
+    this.data.updateInfiniteHint();
   }
   ngOnDestroy() {
     document.body.classList.remove('player-open');
@@ -114,6 +118,52 @@ export class PlayerPage implements OnInit {
   isPopoverOpen = false;
   popoverEvent: any;
   menuText = '';
+  detailTab = 'appreciation';
+
+  hasPoemDetail(type: 'appreciation' | 'translation' | 'intro' | 'comment' | 'annotation') {
+    const value = this.data.currentPoem?.[type];
+    if (Array.isArray(value)) {
+      return value.length > 0;
+    }
+
+    return !!value && value.length > 0;
+  }
+
+  hasAnyPoemDetail() {
+    return this.hasPoemDetail('appreciation')   //赏析
+      || this.hasPoemDetail('translation')  //译文
+      || this.hasPoemDetail('intro')     //简介
+      || this.hasPoemDetail('comment')    //评论
+      || this.hasPoemDetail('annotation');   //注释
+  }
+
+  getVisibleDetailTab() {
+    if (this.hasPoemDetail(this.detailTab as 'appreciation' | 'translation' | 'intro' | 'comment' | 'annotation')) {
+      return this.detailTab;
+    }
+
+    if (this.hasPoemDetail('appreciation')) {
+      return 'appreciation';
+    }
+    if (this.hasPoemDetail('translation')) {
+      return 'translation';
+    }
+    if (this.hasPoemDetail('intro')) {
+      return 'intro';
+    }
+    if (this.hasPoemDetail('comment')) {
+      return 'comment';
+    }
+    if (this.hasPoemDetail('annotation')) {
+      return 'annotation';
+    }
+
+    return 'appreciation';
+  }
+
+  setDetailTab(ev: any) {
+    this.detailTab = ev?.detail?.value || this.getVisibleDetailTab();
+  }
 
   startPress(i: number, ev: any, text: string) {
     //if (text.length <= 16) return;
@@ -287,18 +337,7 @@ export class PlayerPage implements OnInit {
 
   bigimg = false;
   showText = true;
-  text(){
-    if(this.showText == true){
-      this.bigimg = !this.bigimg;
-    }
-    else
-    {
-      this.showText = true;
-      this.showHistory = false;
-      this.showPlaylist = false;
-      this.bigimg = false;
-    }
-  }
+  
 
 
   showHistory = false;
@@ -344,6 +383,28 @@ export class PlayerPage implements OnInit {
     }, 100);
   }
 
+  text(){
+    if(this.showText == true){
+      this.bigimg = !this.bigimg;
+    }
+    else
+    {
+      this.showText = true;
+      this.showHistory = false;
+      this.showPlaylist = false;
+      this.bigimg = false;
+    }
+    this.showIntro = false;
+  }
+
+  showIntro = false;
+  intro(){
+    this.showIntro = true;
+    this.showText = false;
+    this.showPlaylist = false;
+    this.bigimg = false;
+  }
+
   playlist(){
     if(this.showPlaylist==false)
     {
@@ -361,6 +422,7 @@ export class PlayerPage implements OnInit {
       this.showPlaylist = false;
       this.bigimg = true;
     }
+    this.showIntro = false;
   }
 
   play(poem:any){

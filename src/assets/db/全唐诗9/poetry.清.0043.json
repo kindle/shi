@@ -3675,7 +3675,7 @@
     ]
   },
   {
-    "id": "adcfe4dbcc393fa80b27d7d748f90206",
+    "id": "0751fd93-c250-4ffe-bc62-f3f170d2e30e",
     "title": "十二月十五夜",
     "author": "袁枚",
     "authorId": "adcfe4dbcc393fa866be31e48d9fc230",
@@ -3712,7 +3712,7 @@
     ]
   },
   {
-    "id": "adcfe4dbcc393fa8aeeacb35b5626bc0",
+    "id": "e630fa50-d5d4-47a3-9c8e-90318170e69a",
     "title": "所见",
     "author": "袁枚",
     "authorId": "adcfe4dbcc393fa866be31e48d9fc230",
@@ -3721,6 +3721,17 @@
     "paragraphs": [
       "牧童骑黄牛，歌声振林樾。",
       "意欲捕鸣蝉，忽然闭口立。"
+    ],
+    "tags": 
+    [
+        "北京版",
+        "人教版",
+        "小学",
+        "三年级",
+        "三年级上册",
+        "日记月累",
+        "儿童",
+        "行旅"
     ],
     "comment": [
       "曾令衡：这首诗于质朴中见真性情。",
@@ -4025,7 +4036,7 @@
     ]
   },
   {
-    "id": "adcfe4dbcc393fa804a122c84eba09d1",
+    "id": "873cd420-0af9-40a8-9a7b-574d4d9b7039",
     "title": "苔",
     "author": "袁枚",
     "authorId": "adcfe4dbcc393fa866be31e48d9fc230",
@@ -4213,7 +4224,7 @@
     ]
   },
   {
-    "id": "adcfe4dbcc393fa880ca17608ba86629",
+    "id": "fa251faf-89f2-4812-9c1d-ed14feb614f8",
     "title": "湖上杂诗",
     "author": "袁枚",
     "authorId": "adcfe4dbcc393fa866be31e48d9fc230",

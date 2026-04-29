@@ -259,6 +259,7 @@ export class DataService {
         onComplete?.();
       },
       error: () => {
+        console.log(path)
         this.loadDbJsonFromCandidates(paths, onSuccess, index + 1, onComplete);
       }
     });
@@ -962,7 +963,7 @@ export class DataService {
   async loadJsonData(){
 
     //authors
-  await this.updateCurrentLoadingSet("诗人");
+    await this.updateCurrentLoadingSet("诗人");
     this.appendAuthorData('assets/db/全唐诗/authors.song.json');
     this.appendAuthorData('assets/db/宋词/author.song.json');
     this.appendAuthorData('assets/db/全唐诗/authors.tang.json');
@@ -973,44 +974,109 @@ export class DataService {
       this.appendAuthorData('assets/db/music/authors.music.json');
     }
 
+    //论语
+    await this.updateCurrentLoadingSet("论语");
+    this.getObjects(`assets/db/论语/lunyu.json`,"论语", '西周春秋');
+    this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子", '战国');
 
-    //诗经楚辞
-  await this.updateCurrentLoadingSet("诗经");
+    //诗经
+    await this.updateCurrentLoadingSet("诗经");
     this.getObjects(`assets/db/诗经/shijing.json`,"诗经",'西周春秋');
-  await this.updateCurrentLoadingSet("楚辞");
+
+    //楚辞
+    await this.updateCurrentLoadingSet("楚辞");
     this.getObjects(`assets/db/楚辞/chuci.json`,"楚辞",'战国');
 
-    //建安
-  await this.updateCurrentLoadingSet("秦汉");
-    this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操",'秦汉');
-
-    //其他补录
-  await this.updateCurrentLoadingSet("补录");
-    this.getObjects(`assets/db/others/others.json`,"", '');
-
-    if(this.EnablePrivateMusic){
-      this.getObjects(`assets/db/music/music.json`,"", '');
+    //秦
+    await this.updateCurrentLoadingSet("秦");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.秦.${i.toString().padStart(4, '0')}.json`,"秦", '秦');
     }
 
-    //蒙学
-    //getMXObjects is 文章
-    await this.updateCurrentLoadingSet("古文观止");
-    this.getMXObjects(`assets/db/蒙学/guwenguanzhi.json`);
-    this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
+    //汉
+    await this.updateCurrentLoadingSet("汉");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.汉.${i.toString().padStart(4, '0')}.json`,"汉", '汉');
+    }
 
-    //纳兰性德
-    await this.updateCurrentLoadingSet("纳兰性德");
-    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德', '清');
+    //建安
+    await this.updateCurrentLoadingSet("秦汉");
+    this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操",'秦汉');
+    //三国
+    await this.updateCurrentLoadingSet("三国");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.三国.${i.toString().padStart(4, '0')}.json`,"三国", '三国');
+    }
+
+    //晋
+    await this.updateCurrentLoadingSet("晋");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.晋.${i.toString().padStart(4, '0')}.json`,"晋", '晋');
+    }
+
+    //南北朝
+    await this.updateCurrentLoadingSet("南北朝");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.南北朝.${i.toString().padStart(4, '0')}.json`,"南北朝诗", '南北朝');
+      this.getObjects(`assets/db/全唐诗/ci.南北朝.${i.toString().padStart(4, '0')}.json`,"南北朝词", '南北朝');
+    }
+
+    //隋
+    await this.updateCurrentLoadingSet("隋");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.隋.${i.toString().padStart(4, '0')}.json`,"隋词", '隋');
+      this.getObjects(`assets/db/全唐诗/ci.隋.${i.toString().padStart(4, '0')}.json`,"隋词", '隋');
+    }
 
     //全唐诗
     await this.updateCurrentLoadingSet("唐诗");
     for(let i=0;i<=57;i++){
       this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗", '唐');
     }
+
+    //水墨唐诗
+    await this.updateCurrentLoadingSet("唐诗");
+    this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
+    this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
+
+    //五代十国
+    await this.updateCurrentLoadingSet("五代十国");
+    for(let i=0;i<=1;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.五代十国.${i.toString().padStart(4, '0')}.json`,"五代十国诗", '五代十国');
+    }
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/ci.五代十国.${i.toString().padStart(4, '0')}.json`,"五代十国词", '五代十国');
+    }
+    //宋词
+    await this.updateCurrentLoadingSet("宋词");
+    for(let i=0;i<=21;i++){
+      this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
+    }
+    await this.updateCurrentLoadingSet("宋词三百首");
+    this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
+
     await this.updateCurrentLoadingSet("宋诗");
     for(let i=0;i<=254;i++){
       this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗", '宋');
     }
+
+    //金
+    await this.updateCurrentLoadingSet("金");
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.金.${i.toString().padStart(4, '0')}.json`,"金诗", '金');
+      this.getObjects(`assets/db/全唐诗/ci.金.${i.toString().padStart(4, '0')}.json`,"金词", '金');
+    }
+
+    //元曲
+    await this.updateCurrentLoadingSet("元曲");
+    this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲", '元');
+
+    //明诗
+    await this.updateCurrentLoadingSet("明诗");
+    for(let i=0;i<=161;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.明.${i.toString().padStart(4, '0')}.json`,"明诗", '明');
+    }
+
     //明词
     await this.updateCurrentLoadingSet("明词");
     for(let i=0;i<=3;i++){
@@ -1022,39 +1088,28 @@ export class DataService {
     for(let i=0;i<=26;i++){
       this.getObjects(`assets/db/全唐诗/ci.清.${i.toString().padStart(4, '0')}.json`,"清词", '清');
     }
-    //明诗
-    await this.updateCurrentLoadingSet("明诗");
-    for(let i=0;i<=161;i++){
-      this.getObjects(`assets/db/全唐诗/poetry.明.${i.toString().padStart(4, '0')}.json`,"明诗", '明');
-    }
+
+    //纳兰性德
+    await this.updateCurrentLoadingSet("纳兰性德");
+    this.getObjects(`assets/db/nlxd/nlxd.json`,'纳兰性德', '清');
+    
     //清诗
     await this.updateCurrentLoadingSet("清诗");
     for(let i=0;i<=59;i++){
       this.getObjects(`assets/db/全唐诗/poetry.清.${i.toString().padStart(4, '0')}.json`,"清诗", '清');
     }
-    //四书五经
 
-    //宋词
-    await this.updateCurrentLoadingSet("宋词");
-    for(let i=0;i<=21;i++){
-      this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
+    //古文观止
+    await this.updateCurrentLoadingSet("古文观止");
+    this.getMXObjects(`assets/db/蒙学/guwenguanzhi.json`);
+
+    //其他补录
+    await this.updateCurrentLoadingSet("补录");
+    this.getObjects(`assets/db/others/others.json`,"", '');
+
+    if(this.EnablePrivateMusic){
+      this.getObjects(`assets/db/music/music.json`,"", '');
     }
-    await this.updateCurrentLoadingSet("宋词三百首");
-    this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
-
-    //水墨唐诗
-    await this.updateCurrentLoadingSet("唐诗");
-    this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
-
-    //元曲
-    await this.updateCurrentLoadingSet("元曲");
-    this.getObjects(`assets/db/元曲/yuanqu.json`,"元曲", '元');
-
-
-    //论语
-    await this.updateCurrentLoadingSet("论语");
-    this.getObjects(`assets/db/论语/lunyu.json`,"论语", '西周春秋');
-    this.getObjects(`assets/db/四书五经/mengzi.json`,"孟子", '战国');
 
     /*
     this.http.get<any>('https://reddah.blob.core.windows.net/cache/202385.json').subscribe(result=>{

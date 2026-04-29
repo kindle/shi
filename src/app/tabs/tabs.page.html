@@ -199,6 +199,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
       </ion-item>
     </ion-toolbar>
 
+    <ion-progress-bar
+      *ngIf="!data.articleDataLoaded"
+      class="article-loading-progress"
+      type="indeterminate"
+      color="primary">
+    </ion-progress-bar>
+
     <!--phone view-->
     <ion-tab-bar *ngIf="!ui.isipad" slot="bottom" [translucent]="false" style="padding-top:3px;"
     [class.selected-tab1]="selectedTab === 'tab1'" [class.selected-tab2]="selectedTab === 'tab2'" [class.selected-tab3]="selectedTab === 'tab3'" [class.selected-tab4]="selectedTab === 'tab4'"
