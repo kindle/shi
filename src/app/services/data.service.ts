@@ -93,7 +93,7 @@ export class DataService {
 
   // 本地完整库 zip 文件名（保存在 Directory.Data 下）
   private readonly DB_ZIP_FILE_NAME = 'db.zip';
-  private readonly FULL_DB_ZIP_MAX_INDEX = 9;
+  private readonly FULL_DB_ZIP_MAX_INDEX = 21;
   private externalImportInitialized = false;
   private pendingExternalImportUri: string | null = null;
   private handledExternalImportUri: string | null = null;
@@ -274,9 +274,9 @@ export class DataService {
 
   private normalizeZipEntryToAssetKey(name: string): string | null {
     let path = name.replace(/^\.*[\/]+/, '').replace(/\\/g, '/');
-    // 兼容后端 zip 中使用 db/全唐诗1~5/ 这类带数字后缀的目录名
+    // 兼容后端 zip 中使用 db/全唐诗1~21/ 这类带数字后缀的目录名
     // 例如：db/全唐诗1/authors.song.json -> assets/db/全唐诗/authors.song.json
-    path = path.replace(/^db\/全唐诗[1-9]\//, 'db/全唐诗/');
+    path = path.replace(/^db\/全唐诗\d+\//, 'db/全唐诗/');
 
     if (!path.endsWith('.json')) {
       return null;
@@ -748,7 +748,7 @@ export class DataService {
       // console.warn('No single DB zip found, will try multi-part zip if present.', e);
     }
 
-    // 2) 如果没有加载到单一 zip，再尝试多包 db.zip.0 ~ db.zip.9 持久化方案
+    // 2) 如果没有加载到单一 zip，再尝试多包 db.zip.0 ~ db.zip.21 持久化方案
     if (!loadedAny) {
       const maxPartIndex = this.FULL_DB_ZIP_MAX_INDEX;
       for (let index = 0; index <= maxPartIndex; index++) {
@@ -793,8 +793,8 @@ export class DataService {
     }
 
     // 构造需要下载的 zip 列表：
-    // 1) 如果包含 {index} 占位符，则按模板替换 0~9
-    // 2) 如果以 db.zip 结尾，则自动映射为 db0.zip ~ db9.zip
+    // 1) 如果包含 {index} 占位符，则按模板替换 0~21
+    // 2) 如果以 db.zip 结尾，则自动映射为 db0.zip ~ db21.zip
     // 3) 否则按单一 zip 处理
     const zipUrls: string[] = [];
     if (zipUrl.includes('{index}')) {
@@ -995,9 +995,6 @@ export class DataService {
       this.getObjects(`assets/db/全唐诗/poetry.汉.${i.toString().padStart(4, '0')}.json`,"汉", '汉');
     }
 
-    //建安
-    await this.updateCurrentLoadingSet("秦汉");
-    this.getObjects(`assets/db/曹操诗集/caocao.json`,"曹操",'秦汉');
     //三国
     await this.updateCurrentLoadingSet("三国");
     for(let i=0;i<=0;i++){
@@ -1026,14 +1023,18 @@ export class DataService {
 
     //全唐诗
     await this.updateCurrentLoadingSet("唐诗");
-    for(let i=0;i<=57;i++){
-      this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗", '唐');
-    }
-
+    //for(let i=0;i<=57;i++){
+    //  this.getObjects(`assets/db/全唐诗/poet.tang.${i*1000+""}.json`,"唐诗", '唐');
+    //}
     //水墨唐诗
-    await this.updateCurrentLoadingSet("唐诗");
-    this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
-    this.getMXObjects(`assets/db/蒙学/tangshisanbaishou.json`);
+    //await this.updateCurrentLoadingSet("唐诗");
+    //this.getObjects(`assets/db/水墨唐诗/shuimotangshi.json`,"水墨唐诗", '唐');
+    for(let i=0;i<=38;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.唐.${i.toString().padStart(4, '0')}.json`,"唐诗", '唐');
+    }
+    for(let i=0;i<=0;i++){
+      this.getObjects(`assets/db/全唐诗/ci.唐.${i.toString().padStart(4, '0')}.json`,"唐词", '唐');
+    }
 
     //五代十国
     await this.updateCurrentLoadingSet("五代十国");
@@ -1044,16 +1045,22 @@ export class DataService {
       this.getObjects(`assets/db/全唐诗/ci.五代十国.${i.toString().padStart(4, '0')}.json`,"五代十国词", '五代十国');
     }
     //宋词
-    await this.updateCurrentLoadingSet("宋词");
-    for(let i=0;i<=21;i++){
-      this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
-    }
-    await this.updateCurrentLoadingSet("宋词三百首");
-    this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
-
     await this.updateCurrentLoadingSet("宋诗");
-    for(let i=0;i<=254;i++){
-      this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗", '宋');
+    //for(let i=0;i<=21;i++){
+    //  this.getObjects(`assets/db/宋词/ci.song.${i*1000+""}.json`,"宋词", '宋');
+    //}
+    //await this.updateCurrentLoadingSet("宋词三百首");
+    //this.getObjects(`assets/db/宋词/宋词三百首.json`,"宋词三百首", '宋');
+    //await this.updateCurrentLoadingSet("宋诗");
+    //for(let i=0;i<=254;i++){
+    //  this.getObjects(`assets/db/全唐诗/poet.song.${i*1000+""}.json`,"宋诗", '宋');
+    //}
+    for(let i=0;i<=173;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.宋.${i.toString().padStart(4, '0')}.json`,"宋诗", '宋');
+    }
+    await this.updateCurrentLoadingSet("宋词");
+    for(let i=0;i<=15;i++){
+      this.getObjects(`assets/db/全唐诗/ci.宋.${i.toString().padStart(4, '0')}.json`,"宋词", '宋');
     }
 
     //金
@@ -1061,6 +1068,15 @@ export class DataService {
     for(let i=0;i<=0;i++){
       this.getObjects(`assets/db/全唐诗/poetry.金.${i.toString().padStart(4, '0')}.json`,"金诗", '金');
       this.getObjects(`assets/db/全唐诗/ci.金.${i.toString().padStart(4, '0')}.json`,"金词", '金');
+    }
+
+    await this.updateCurrentLoadingSet("元诗");
+    for(let i=0;i<=38;i++){
+      this.getObjects(`assets/db/全唐诗/poetry.元.${i.toString().padStart(4, '0')}.json`,"元诗", '元');
+    }
+    await this.updateCurrentLoadingSet("元词");
+    for(let i=0;i<=5;i++){
+      this.getObjects(`assets/db/全唐诗/ci.元.${i.toString().padStart(4, '0')}.json`,"元词", '元');
     }
 
     //元曲

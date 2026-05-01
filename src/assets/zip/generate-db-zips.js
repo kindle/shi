@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-// 生成 db0.zip ~ db5.zip
-// db0.zip: 打包 src/assets/db 下除了 "全唐诗1"~"全唐诗5" 目录外的所有内容，顶层目录名为 db
+// 生成 db0.zip ~ db21.zip
+// db0.zip: 打包 src/assets/db 下除了 "全唐诗1"~"全唐诗21" 目录外的所有内容，顶层目录名为 db
 // db1.zip: 只打包 src/assets/db/全唐诗1，顶层目录名为 db
 // ...
-// db5.zip: 只打包 src/assets/db/全唐诗5，顶层目录名为 db
+// db21.zip: 只打包 src/assets/db/全唐诗21，顶层目录名为 db
 
 const path = require('path');
 const fs = require('fs');
@@ -33,17 +33,8 @@ function getRunOutputDir() {
   };
 }
 
-const qtDirs = [
-  '全唐诗1',
-  '全唐诗2',
-  '全唐诗3',
-  '全唐诗4',
-  '全唐诗5',
-  '全唐诗6',
-  '全唐诗7',
-  '全唐诗8',
-  '全唐诗9'
-];
+const maxQtIndex = 21;
+const qtDirs = Array.from({ length: maxQtIndex }, (_, index) => `全唐诗${index + 1}`);
 
 /**
  * 创建 zip 文件
@@ -98,14 +89,14 @@ function createZip(zipPath, fillArchiveFn) {
       JSON.stringify({ version: dirName }, null, 2) + '\n'
     );
 
-    // db0.zip: 除了 全唐诗1-5 以外的所有内容
+    // db0.zip: 除了 全唐诗1-21 以外的所有内容
     const db0Path = path.join(outputDir, 'db0.zip');
     await createZip(db0Path, (archive) => {
       const entries = fs.readdirSync(dbRoot, { withFileTypes: true });
       for (const entry of entries) {
         const fullPath = path.join(dbRoot, entry.name);
 
-        // 排除 全唐诗1~5 目录
+        // 排除 全唐诗1~21 目录
         if (entry.isDirectory() && qtDirs.includes(entry.name)) {
           continue;
         }
@@ -119,8 +110,8 @@ function createZip(zipPath, fillArchiveFn) {
       }
     });
 
-    // db1.zip ~ db8.zip: 只打包对应的 全唐诗X 目录，顶层目录名统一为 db
-    for (let i = 1; i <= 9; i++) {
+    // db1.zip ~ db21.zip: 只打包对应的 全唐诗X 目录，顶层目录名统一为 db
+    for (let i = 1; i <= maxQtIndex; i++) {
       const dirName = `全唐诗${i}`;
       const srcDir = path.join(dbRoot, dirName);
       if (!fs.existsSync(srcDir)) {
