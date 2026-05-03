@@ -2399,9 +2399,39 @@ export class DataService {
   lastUpdateElapsed:any = 0;
   playbackRate = 1.0;
   musicControlsEnabled = true;
+  private musicControlsReady = false;
+  private musicControlsContextKey = '';
+  private musicControlsOperation: Promise<void> = Promise.resolve();
+  private audioSessionToken = 0;
 
   private canUseMusicControls() {
     return this.musicControlsEnabled && Capacitor.isNativePlatform();
+  }
+
+  private queueMusicControlsOperation(operation: () => Promise<void> | void) {
+    this.musicControlsOperation = this.musicControlsOperation
+      .catch(() => undefined)
+      .then(async () => {
+        if (!this.canUseMusicControls()) {
+          return;
+        }
+
+        try {
+          await operation();
+        } catch (error) {
+          this.disableMusicControls(error);
+        }
+      });
+
+    return this.musicControlsOperation;
+  }
+
+  private getMusicControlsContextKey() {
+    if (!this.currentPoem?.audio) {
+      return '';
+    }
+
+    return `${this.currentPoem.id ?? this.currentPoem.audio}:${this.currentPoem.audio}`;
   }
 
   private disableMusicControls(error:any) {
@@ -2409,6 +2439,8 @@ export class DataService {
       console.error('Music controls disabled due to runtime error.', error);
     }
     this.musicControlsEnabled = false;
+    this.musicControlsReady = false;
+    this.musicControlsContextKey = '';
     if (this.musicControlsSubscription) {
       this.musicControlsSubscription.unsubscribe();
       this.musicControlsSubscription = null;
@@ -2421,42 +2453,43 @@ export class DataService {
       this.musicControlsSubscription = null;
     }
 
+    this.musicControlsReady = false;
+    this.musicControlsContextKey = '';
+
     if (!this.canUseMusicControls()) {
       return;
     }
 
     try {
-      await this.musicControls.destroy();
+      await this.queueMusicControlsOperation(async () => {
+        await this.musicControls.destroy();
+      });
     } catch (error) {
       this.disableMusicControls(error);
     }
   }
 
   private updateMusicControlsPlaybackState(isPlaying:boolean) {
-    if (!this.canUseMusicControls()) {
+    if (!this.canUseMusicControls() || !this.musicControlsReady) {
       return;
     }
 
-    try {
+    void this.queueMusicControlsOperation(() => {
       this.musicControls.updateIsPlaying(isPlaying);
-    } catch (error) {
-      this.disableMusicControls(error);
-    }
+    });
   }
 
   private updateMusicControlsElapsed(elapsed:number) {
-    if (!this.canUseMusicControls()) {
+    if (!this.canUseMusicControls() || !this.musicControlsReady) {
       return;
     }
 
-    try {
+    void this.queueMusicControlsOperation(() => {
       this.musicControls.updateElapsed({
         elapsed,
         isPlaying: this.isPlaying
       });
-    } catch (error) {
-      this.disableMusicControls(error);
-    }
+    });
   }
 
   private clearAudioListeners() {
@@ -2487,6 +2520,7 @@ export class DataService {
       return;
     }
 
+    this.audioSessionToken += 1;
     this.clearAudioListeners();
     this.audio.pause();
     this.isPlaying = false;
@@ -2534,28 +2568,38 @@ export class DataService {
     // Ensure valid duration/elapsed
     const duration = Number.isFinite(this.audio.duration) ? this.audio.duration : 0;
     const elapsed = Number.isFinite(this.audio.currentTime) ? this.audio.currentTime : 0;
+    const contextKey = this.getMusicControlsContextKey();
 
-    this.musicControls.create({
-      track       : this.currentPoem.title,
-      artist      : this.currentPoem.author,
-      cover       : 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg',
-      isPlaying   : this.isPlaying,
-      dismissable : true,
-      hasPrev     : false,
-      hasNext     : true,
-      hasClose    : true,
-      hasScrubbing: true,
-      duration: duration,
-      elapsed: elapsed,
-      // ticker      : 'Now playing ' + this.currentPoem.title,
-      playIcon: 'media_play',
-      pauseIcon: 'media_pause',
-      prevIcon: 'media_prev',
-      nextIcon: 'media_next',
-      closeIcon: 'media_close',
-      notificationIcon: 'notification'
-    }).catch((error:any) => {
-      this.disableMusicControls(error);
+    if (this.musicControlsReady && this.musicControlsContextKey === contextKey) {
+      this.updateMusicControlsPlaybackState(this.isPlaying);
+      this.updateMusicControlsElapsed(elapsed);
+      return;
+    }
+
+    void this.queueMusicControlsOperation(async () => {
+      await this.musicControls.create({
+        track       : this.currentPoem.title,
+        artist      : this.currentPoem.author,
+        cover       : 'https://reddah.blob.core.windows.net/msjjpoet/' + this.currentPoem.author + '.jpeg',
+        isPlaying   : this.isPlaying,
+        dismissable : true,
+        hasPrev     : false,
+        hasNext     : true,
+        hasClose    : true,
+        hasScrubbing: true,
+        duration: duration,
+        elapsed: elapsed,
+        // ticker      : 'Now playing ' + this.currentPoem.title,
+        playIcon: 'media_play',
+        pauseIcon: 'media_pause',
+        prevIcon: 'media_prev',
+        nextIcon: 'media_next',
+        closeIcon: 'media_close',
+        notificationIcon: 'notification'
+      });
+
+      this.musicControlsReady = true;
+      this.musicControlsContextKey = contextKey;
     });
   }
 
@@ -2574,6 +2618,7 @@ export class DataService {
     }
 
     this.resetAudioElement();
+    const audioSessionToken = this.audioSessionToken;
     void this.destroyMusicControls();
 
     this.audio.src = audioSource;
@@ -2581,6 +2626,10 @@ export class DataService {
     this.audio.playbackRate = this.playbackRate;
 
     this.audioLoadedmetadataFn = () => {
+      if (audioSessionToken !== this.audioSessionToken) {
+        return;
+      }
+
       this.duration = this.audio.duration;
       this.isPlaying = true;
 
@@ -2677,11 +2726,19 @@ export class DataService {
 
     // Also update if duration changes (streaming/buffering)
     this.audioDurationchangeFn = () => {
+      if (audioSessionToken !== this.audioSessionToken) {
+        return;
+      }
+
       this.updateMusicControls();
     };
     this.audio.addEventListener('durationchange', this.audioDurationchangeFn);
 
     this.audioTimeupdateFn = () => {
+      if (audioSessionToken !== this.audioSessionToken) {
+        return;
+      }
+
       //when dragging, do not update the progress bar.
       if(this.dragWhere===false){
         this.currentTime = this.audio.currentTime;
@@ -2706,6 +2763,10 @@ export class DataService {
     this.audio.addEventListener('timeupdate', this.audioTimeupdateFn);
 
     this.audioEndedFn = () => {
+      if (audioSessionToken !== this.audioSessionToken) {
+        return;
+      }
+
       this.isPlaying = false;
       this.currentTime = 0;
 

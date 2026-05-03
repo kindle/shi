@@ -10,7 +10,9 @@
     
   </ion-list>
   <!--history and playlist-->
-  <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText" [class.snap-scroll]="showPlaylist">
+  <ion-content class="no-padding" [fullscreen]="true" *ngIf="!showText"
+    [class.sheet-scroll-guard]="showIntro || showPlaylist"
+    [class.snap-scroll]="showIntro || showPlaylist">
     <swiper-container>
       <swiper-slide *ngIf="showHistory">
         <ion-list style="margin:35px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
@@ -666,7 +668,7 @@
 
 
     <!--00:00   ***hide   00:00-->
-    <ion-item lines="none" *ngIf="data.currentPoem.audio">
+    <ion-item lines="none" *ngIf="data.currentPoem.audio&&!showIntro">
       <div style="display: flex;justify-content: space-around;flex-direction: column;width:100%;">
         <ion-range min="0" step="1" [max]="data.duration" [value]="data.currentTime"
           style="height:30px;margin-bottom:0px;"
@@ -687,7 +689,7 @@
       </div>
     </ion-item>
 
-    <ion-item lines="none" *ngIf="data.currentPoem.audio">
+    <ion-item lines="none" *ngIf="data.currentPoem.audio&&!showIntro">
       <!--prev   play   next-->
       <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
         <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">

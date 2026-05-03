@@ -53,6 +53,11 @@ ion-content.snap-scroll::part(scroll) {
   padding-bottom: 240px;
 }
 
+ion-content.sheet-scroll-guard::part(scroll) {
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
+}
+
 .editor-toolbar {
   position: fixed;
   left: 0;
@@ -106,7 +111,9 @@ ion-content.snap-scroll::part(scroll) {
   max-height: calc(100dvh - 330px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   min-height: 220px;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   padding-right: 4px;
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
