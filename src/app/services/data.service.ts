@@ -1876,6 +1876,34 @@ export class DataService {
   }
 
 
+  get24TermPoemsByName(solarTermName:any){
+    let result:any = [];
+    result = this.JsonData.filter((j:any)=>{
+        if (!j || j.id == null) {
+          return false;
+        }
+
+        const tags: any[] = Array.isArray(j.tags) ? j.tags : [];
+
+        // 1. 如果 tag 里直接有当前节气名（如“谷雨”），无条件加入
+        if (tags.indexOf(solarTermName) > -1) {
+          return true;
+        }
+
+        // 2. 否则，用 text 匹配节气名，但排除打了“非二十四节气”的条目
+        if (j.text && j.text.indexOf(solarTermName) > -1) {
+          if (tags.indexOf('非二十四节气') > -1) {
+            return false;
+          }
+          return true;
+        }
+
+        return false;
+      }).slice(0,100);
+
+    return result;
+  }
+
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
     if (!solarTermInfo) {
@@ -1890,33 +1918,14 @@ export class DataService {
 
     //console.log(this.JsonData.length);
     //如果今天是二十四节气 +1
-    /*
-    let tempSolarTermPoems = this.JsonData.filter((j:any)=>{
-      if (!j || j.id == null) {
-        return false;
-      }
+    
+    let tempSolarTermPoems = this.get24TermPoemsByName(solarTermName);
 
-      const tags: any[] = Array.isArray(j.tags) ? j.tags : [];
 
-      // 1. 如果 tag 里直接有当前节气名（如“谷雨”），无条件加入
-      if (tags.indexOf(solarTermName) > -1) {
-        return true;
-      }
-
-      // 2. 否则，用 text 匹配节气名，但排除打了“非二十四节气”的条目
-      if (j.text && j.text.indexOf(solarTermName) > -1) {
-        if (tags.indexOf('非二十四节气') > -1) {
-          return false;
-        }
-        return true;
-      }
-
-      return false;
-    }).slice(0,50);*/
-    const solarTermArticle = this.poemListData.find((item:any) => item?.sub === solarTermName);
-    let tempSolarTermPoems = Array.isArray(solarTermArticle?.list)
-      ? solarTermArticle.list.slice(0, 50)
-      : [];
+    // const solarTermArticle = this.poemListData.find((item:any) => item?.sub === solarTermName);
+    // let tempSolarTermPoems = Array.isArray(solarTermArticle?.list)
+    //   ? solarTermArticle.list.slice(0, 50)
+    //   : [];
 
 
     let solarTermPoems:any = [];
@@ -1984,7 +1993,7 @@ export class DataService {
     
     let tempFestivalPoems = this.JsonData.filter((j:any)=>
       (j.text.indexOf(festivalName)>-1 || j.title.indexOf(festivalName)>-1)&&
-      j.id!=null).slice(0,50);
+      j.id!=null).slice(0,100);
       
     let festivalPoems:any = [];
     tempFestivalPoems.forEach((p:any) => {
@@ -2163,7 +2172,13 @@ export class DataService {
           element.chapter +
           element.section +
           element.rhythmic +
+          element.dy +
+          element.intro + 
+          element.appreciation +
+          element.traslation +
           element.paragraphs.join('_') +
+          element.comments?.join('_') +
+          element.annotation?.join('_') +
           element.tags.join('_');
     });
     this.JsonData = this.JsonData.concat(result);

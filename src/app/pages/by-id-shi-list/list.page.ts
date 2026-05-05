@@ -131,7 +131,11 @@ export class ListPage {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
 
-
+    //console.log('listdata:', this.listdata);
+    if(this.id>=2001&&this.id<=2024)//24节气list
+    {
+      this.listdata.list = this.data.get24TermPoemsByName(this.listdata.sub);
+    }
     //print 24节气list for test 
     // if(this.listdata.id>=2001&&this.listdata.id<=2024)//24节气list
     // {
