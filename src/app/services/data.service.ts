@@ -920,17 +920,20 @@ export class DataService {
 
       resolved = true;
       this.startupJsonPendingRequests = Math.max(0, this.startupJsonPendingRequests - 1);
-      this.completeStartupJsonTrackingIfReady();
+      if(this.docompleteevents)
+        this.completeStartupJsonTrackingIfReady();
     };
   }
 
+  docompleteevents = false;
   private markStartupJsonSchedulingComplete(): void {
     if (!this.startupJsonTrackingActive) {
       return;
     }
 
     this.startupJsonSchedulingComplete = true;
-    this.completeStartupJsonTrackingIfReady();
+    if(this.docompleteevents)
+      this.completeStartupJsonTrackingIfReady();
   }
 
   private completeStartupJsonTrackingIfReady(): void {
@@ -1209,19 +1212,64 @@ export class DataService {
   private async updateClassicDataAudio(): Promise<void> {
     await this.waitForArticleDataLoaded();
 
-    this.classicData = (this.classicData || []).map((subArray:any[]) => {
-      return subArray.map((item:any) => {
-        const poem = this.JsonData.find((shici:any) => shici.id === item.id);
-        if (poem?.audio) {
-          return {
-            ...item,
-            audio: poem.audio,
-          };
-        }
+    //print classic poems with audio for test
+    // this.JsonData.forEach((item:any) => {
+    //   if (item?.audio) {
+    //     let sample = Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample;
+    //     if(sample.length<25){
+    //       console.log(JSON.stringify({
+    //             "title": item.title,
+    //             "author": item.author,
+    //             "sample": Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample,
+    //             "id": item.id,
+    //             "dy": item.dy,
+    //             "audio": item.audio,
+    //           }, null, 2));
+    //     }
+    //   }
+    // });
 
-        return item;
+    //print hot poems without audio for test
+    console.log('Hot poems without audio:');
+    this.JsonData.forEach((item:any) => {
+      const hasRequiredAttributes = ['appreciation', 'comment', 'annotation',"intro"].every((attribute) => {
+        const value = item?.[attribute];
+        return Array.isArray(value) ? value.length > 0 : !!value;
       });
+      
+
+      if ((item?.audio==null||item?.audio.length<3) && hasRequiredAttributes) {
+        
+        let sample = Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample;
+    
+        if(sample.length<25&&sample.indexOf("其一")==-1){
+          console.log(JSON.stringify({
+                "title": item.title,
+                "author": item.author,
+                "sample": Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample,
+                "id": item.id,
+                "dy": item.dy,
+                "audio": item.audio,
+              }, null, 2));
+        }
+      }
     });
+
+    //useless
+    // this.classicData = (this.classicData || []).map((subArray:any[]) => {
+    //   return subArray.map((item:any) => {
+    //     const poem = this.JsonData.find((shici:any) => shici.id === item.id);
+    //     if (poem?.audio) {
+
+    //       return {
+    //         ...item,
+    //         audio: poem.audio,
+    //       };
+    //     }
+
+    //     return item;
+    //   });
+    // });
   }
 
   private updateArticlePoemAudio(poems:any[]): void {
@@ -1450,6 +1498,13 @@ export class DataService {
       //poemListData包括fun,audio,holiday,food
       this.poemListData.filter((f:any) => f.tab1hide!==true).forEach((fun:any) => {
         let descArray:any = [];
+
+        if(fun.desc&&fun.desc.length>20){
+          if(fun.memo==null||fun.memo.length==0){
+            fun.memo = fun.desc;
+            fun.desc = fun.name;
+          }
+        }
         fun.list.forEach((p:any) => {
           descArray.push({
             "type":"poem", 
@@ -2132,6 +2187,11 @@ export class DataService {
           //console.log(error);
           done?.();
       });
+  }
+  
+  getPreviewSegment(poem: any, index: number) {
+    const source = poem?.sample || poem?.paragraphs?.[0] || '';
+    return source.split(/[，。？！]/).filter(Boolean)[index] || '';
   }
 
   importData(result:any, category:any, dy:any=null){

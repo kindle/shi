@@ -207,7 +207,8 @@
             </ion-item>
           </ng-container>
         </ion-list>
-        <ion-list style="margin:5px 5px;scroll-margin-top: calc(10px + env(safe-area-inset-top));" id="playlist-top" class="snap-start">
+        <ion-list style="margin:5px 5px;scroll-margin-top: calc(10px + env(safe-area-inset-top));" 
+          id="playlist-top" class="snap-start">
           <ion-item lines="none" *ngIf="bigimg"
             style="margin:0 5px;margin-top:15px;--padding-start:0;">
             <div style="width: 100%;margin-left:15px;display: flex;justify-content: center;">
@@ -219,7 +220,8 @@
               />
             </div>
           </ion-item>
-          <ion-item lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+          <ion-item lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;
+          margin-left:15px;--inner-padding-end:0px;">
             <div class="play-icon-box" *ngIf="!bigimg" 
               (click)="text()">
               <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
@@ -256,8 +258,11 @@
             (click)="data.likelist(data.currentPoem,'poem')">
               <ion-icon name="add-outline" color="dark"></ion-icon>
             </ion-button> -->
-            <app-button-end [p]="data.currentPoem" page="playerlist" slot="end" 
-            [isViewAuthor]="true"></app-button-end>
+            <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end" 
+            [isViewAuthor]="true"></app-button-end> -->
+            <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large">
+              <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
+            </ion-button>
           </ion-item>
           
           <ion-list-header *ngIf="showPlaylist&&!bigimg">
@@ -434,7 +439,8 @@
     </ion-item>
     <!--小于10行小图片+诗名+诗人-->
     <ion-item lines="none" 
-    style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+    style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;
+    --inner-padding-end:0px;">
       <div class="play-icon-box" *ngIf="!bigimg" 
         (click)="text()">
         <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;" 
@@ -472,8 +478,11 @@
       (click)="data.likelist(data.currentPoem,'poem')">
         <ion-icon name="add-outline" color="dark"></ion-icon>
       </ion-button> -->
-      <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
-      [isViewAuthor]="true"></app-button-end>
+      <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+      [isViewAuthor]="true"></app-button-end> -->
+      <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large">
+        <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
 
@@ -567,7 +576,8 @@
       </ion-item>
       <!--大于10行小图片+诗名+诗人-->
       <ion-item lines="none" 
-      style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+      style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;
+      --inner-padding-end:0;">
         <div class="play-icon-box" *ngIf="!bigimg" 
           (click)="text()">
           <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
@@ -596,8 +606,11 @@
         (click)="data.likelist(data.currentPoem,'poem')">
           <ion-icon name="add-outline" color="dark"></ion-icon>
         </ion-button> -->
-        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
-        [isViewAuthor]="true"></app-button-end>
+        <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+        [isViewAuthor]="true"></app-button-end> -->
+        <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large">
+          <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-list>
 
@@ -694,24 +707,47 @@
       <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
         <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">
           <ion-buttons>
-            <ion-button [disabled]="data.playHistory.length<2"
+            <ion-button
+              (click)="switchPlayMethord()" style="font-size: 20px;">
+              <ion-icon name="shuffle-outline" *ngIf="data.isShuffle"></ion-icon>
+              <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
+              <span *ngIf="data.isRepeat===2 || data.isRepeat===true" style="font-size: 15px;" 
+                  [ngStyle]="{'color':data.isRepeat ? '#3880ff' : '' }">1</span>
+              </ion-button>
+          </ion-buttons>
+          <ion-buttons>
+            <ion-button [disabled]="data.playHistory.length<2"  size="small"
               (click)="data.playPrev()" style="font-size: 30px;">
-              <ion-icon name="play-back" 
+              <ion-icon name="play-skip-back" 
                 [style.color]="(data.playHistory.length<2) ? 'lightgray' : ''"></ion-icon>
             </ion-button>
           </ion-buttons>
           <ion-buttons>
             <ion-button  size="large" (click)="data.togglePlay()">
-              <ion-icon name="pause-outline" *ngIf="data.isPlaying" style="font-size: 60px;"></ion-icon>
-              <ion-icon name="play" *ngIf="!data.isPlaying" style="font-size: 60px;"></ion-icon>
+              <ion-icon name="pause-outline" *ngIf="data.isPlaying" style="font-size: 40px;"></ion-icon>
+              <ion-icon name="play" *ngIf="!data.isPlaying" style="font-size: 40px;"></ion-icon>
             </ion-button>
           </ion-buttons>
           <ion-buttons>
-            <ion-button [disabled]="data.toPlayList.length<2&&!data.isInfinite" 
+            <ion-button [disabled]="data.toPlayList.length<2&&!data.isInfinite" size="small"
               (click)="data.playNext()" style="font-size: 30px;">
-              <ion-icon name="play-forward" 
+              <ion-icon name="play-skip-forward" 
                 [style.color]="(data.toPlayList.length<2&&!data.isInfinite) ? 'lightgray' : ''"></ion-icon>
             </ion-button>
+          </ion-buttons>
+          
+          <!-- <ion-buttons>
+            <ion-button 
+              (click)="data.togglePlaybackRate()" style="font-size: 20px;">
+              <ion-icon name="timer-outline"></ion-icon>
+              <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">
+                {{data.playbackRate}}x
+              </span>
+            </ion-button>
+          </ion-buttons> -->
+          <ion-buttons>
+            <app-button-end [p]="data.currentPoem" page="playerlist" color="primary"
+              [isViewAuthor]="true"></app-button-end>
           </ion-buttons>
         </div>
       </div>

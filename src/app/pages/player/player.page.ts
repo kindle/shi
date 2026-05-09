@@ -483,6 +483,12 @@ export class PlayerPage implements OnInit {
     this.data.savePlayStyle();
     this.data.isRepeat = 0;
     this.data.updateInfiniteHint();
+    if(this.data.isShuffle){
+      this.ui.toast_short("top","随机播放");
+    }
+    else{
+      this.ui.toast_short("top","随机播放已关闭");
+    }
   }
   repeat(){
     //0 normal play
@@ -491,17 +497,19 @@ export class PlayerPage implements OnInit {
 
     if(this.data.isRepeat===1){
       this.data.isRepeat = 2;
+      this.ui.toast_short("top","单曲循环");
     }
-    else if(this.data.isRepeat===2 || this.data.isRepeat===true){
-      this.data.isRepeat = 0;
-    }
-    else{
+    else{// if(this.data.isRepeat===2 || this.data.isRepeat===true){
+    //  this.data.isRepeat = 0;
+   //}
+    //else{
       this.data.isRepeat = 1;
+      this.ui.toast_short("top","顺序播放");
     }
 
-    if(this.data.isRepeat!==0){
-      this.data.isInfinite = false;
-    }
+    ///if(this.data.isRepeat!==0){
+    //  this.data.isInfinite = false;
+    //}
     this.data.savePlayStyle();
     this.data.isShuffle = false;
   }
@@ -510,13 +518,45 @@ export class PlayerPage implements OnInit {
     this.checkandload();
     this.data.updateInfiniteHint();
     this.data.savePlayStyle();
+    if(this.data.isInfinite){
+      this.ui.toast_short("top","自动播放");
+    }
+    else{
+      this.ui.toast_short("top","自动播放已关闭");
+    }
+  }
 
+  switchPlayMethord(){
+    if(this.data.isShuffle)
+    {
+      this.data.isShuffle = false;
+      this.repeat();
+      this.ui.toast_short("top","顺序播放");
+    }else{
+      if(this.data.isRepeat===1){
+        this.data.isRepeat = 2;
+        this.ui.toast_short("top","单曲循环");
+      }
+      else if(this.data.isRepeat===2 || this.data.isRepeat===true){
+        this.data.isRepeat = 0;
+        this.shuffle();
+        this.ui.toast_short("top","随机播放");
+      }
+      else{
+        this.data.isRepeat = 1;
+        
+      }
+    }
+    this.data.savePlayStyle();
+
+    //console.log('repeat mode:', this.data.isRepeat);
+    //console.log('shuffle mode:', this.data.isShuffle);
   }
 
   checkandload(){
     if(this.data.isInfinite===true)
     {
-      this.data.isRepeat = 0;
+      //this.data.isRepeat = 0;
       //when infinite is on
       this.data.checkAndLoadAdditionalList();
     }
