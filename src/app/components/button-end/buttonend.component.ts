@@ -18,6 +18,8 @@ export class ButtonEndComponent {
   @Input() page: string|any;
   @Input() isViewAuthor: boolean = false;
 
+  @Input() color: string = 'dark';
+
   uuid:any;
   constructor(
     public data: DataService,
