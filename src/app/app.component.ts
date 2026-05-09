@@ -23,6 +23,7 @@ enum Animation {
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements DoCheck, OnDestroy {
+  //Jsondata not loaded , lock ui.
   private startupScrollLocked = false;
 
   constructor(

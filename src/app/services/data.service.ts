@@ -1203,8 +1203,16 @@ export class DataService {
 
   private async waitForArticleDataLoaded(maxWaitMs:number = 10000, intervalMs:number = 100): Promise<void> {
     const startTime = Date.now();
-
+    //this method is useless......
     while ((this.isStartupJsonDataLoading || !this.articleDataLoaded || this.JsonData.length === 0) && Date.now() - startTime < maxWaitMs) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
+
+  private async waitForJsonDataLoaded(maxWaitMs:number = 10000, intervalMs:number = 100): Promise<void> {
+    const startTime = Date.now();
+
+    while (!this.articleDataLoaded && Date.now() - startTime < maxWaitMs) {
       await new Promise(resolve => setTimeout(resolve, intervalMs));
     }
   }
@@ -1319,7 +1327,7 @@ export class DataService {
       return;
     }
 
-    await this.waitForArticleDataLoaded();
+    await this.waitForJsonDataLoaded();
     this.ensureSolarTermArticleDescPoems(item);
 
     if (Array.isArray(item.items)) {
@@ -1964,6 +1972,7 @@ export class DataService {
 
   //24节气诗词列表获取
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
+    console.log('getSolarTermPoem for', solarTermName);
     let solarTermInfo = this.solarTermMap.get(solarTermName);
     if (!solarTermInfo) {
       solarTermInfo = {
@@ -2025,6 +2034,7 @@ export class DataService {
       ),
       link:"",
     };
+    console.log('getSolarTermPoem result for', solarTermName, result);
     return result;
   }
 

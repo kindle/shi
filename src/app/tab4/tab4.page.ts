@@ -591,19 +591,29 @@ export class Tab4Page implements OnInit {
 
   getHighlight(p:any): SafeHtml{
     const searchTerms = this.getSearchTerms();
+    const paragraphs = Array.isArray(p?.paragraphs) ? p.paragraphs : [];
     let result = "";
-    p.paragraphs.forEach((s:any) => {
+    paragraphs.forEach((s:any) => {
       if(searchTerms.some((term:string) => s.indexOf(term) > -1))
       {
         result = s;
       }
     });
-    if(result===""){
-      result = p.paragraphs[0]?.substring(0,50);
+    if(result === ""){
+      result = paragraphs[0] || "";
     }
-    else{
-      result = result?.substring(0,50);
+
+    if(result.indexOf('其一') > -1){
+      const currentIndex = paragraphs.findIndex((line:any) => line === result);
+      if(currentIndex > -1 && paragraphs[currentIndex + 1]){
+        result = paragraphs[currentIndex + 1];
+      }
+      else if(paragraphs[1]){
+        result = paragraphs[1];
+      }
     }
+
+    result = (result || '').substring(0,50);
     p.sample = searchTerms.join(' ');
     //return result.replace(this.data.searchText,"<b>"+this.data.searchText+"</b>");
     return this.sanitizer.bypassSecurityTrustHtml(
