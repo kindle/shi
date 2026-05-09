@@ -69,6 +69,22 @@ export class PoetPage {
     return `https://reddah.blob.core.windows.net/msjjpoet/${this.author}.jpeg`
   }
 
+  formatYear(year:any){
+    if(year == null || year === ''){
+      return '';
+    }
+
+    const yearText = String(year).trim();
+
+    if(yearText.includes('公元前')){
+      return yearText;
+    }
+
+    return yearText.replace(/(^|[^\d])-([0-9]+)(年)?$/u, (_, prefix, value) => {
+      return `${prefix}公元前${value}年`;
+    });
+  }
+
 
 
 

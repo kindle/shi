@@ -1230,30 +1230,30 @@ export class DataService {
     // });
 
     //print hot poems without audio for test
-    console.log('Hot poems without audio:');
-    this.JsonData.forEach((item:any) => {
-      const hasRequiredAttributes = ['appreciation', 'comment', 'annotation',"intro"].every((attribute) => {
-        const value = item?.[attribute];
-        return Array.isArray(value) ? value.length > 0 : !!value;
-      });
+    // console.log('Hot poems without audio:');
+    // this.JsonData.forEach((item:any) => {
+    //   const hasRequiredAttributes = ['appreciation', 'comment', 'annotation',"intro"].every((attribute) => {
+    //     const value = item?.[attribute];
+    //     return Array.isArray(value) ? value.length > 0 : !!value;
+    //   });
       
 
-      if ((item?.audio==null||item?.audio.length<3) && hasRequiredAttributes) {
+    //   if ((item?.audio==null||item?.audio.length<3) && hasRequiredAttributes) {
         
-        let sample = Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample;
+    //     let sample = Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample;
     
-        if(sample.length<25&&sample.indexOf("其一")==-1){
-          console.log(JSON.stringify({
-                "title": item.title,
-                "author": item.author,
-                "sample": Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample,
-                "id": item.id,
-                "dy": item.dy,
-                "audio": item.audio,
-              }, null, 2));
-        }
-      }
-    });
+    //     if(sample.length<25&&sample.indexOf("其一")==-1){
+    //       console.log(JSON.stringify({
+    //             "title": item.title,
+    //             "author": item.author,
+    //             "sample": Array.isArray(item.paragraphs) ? item.paragraphs.slice(0,1).join('') : item.sample,
+    //             "id": item.id,
+    //             "dy": item.dy,
+    //             "audio": item.audio,
+    //           }, null, 2));
+    //     }
+    //   }
+    // });
 
     //useless
     // this.classicData = (this.classicData || []).map((subArray:any[]) => {
@@ -1447,6 +1447,7 @@ export class DataService {
       
       
     });
+    //hot are all poems without audio, but with appreciation/comment/annotation/intro, and show in home page topic section.
     this.http.get<any>('/assets/topic/hot.json').subscribe(result=>{
       result = this.getRandomArray(result, 16);
       this.hotData = [];
@@ -1465,6 +1466,7 @@ export class DataService {
       }
     });
     //console.log('load classic.json')
+    //classic is all audio mp3 poems.
     this.http.get<any>('/assets/topic/classic.json').subscribe(result=>{
       result = this.getRandomArray(result, 16);
       //console.log('random classic')
@@ -1476,7 +1478,8 @@ export class DataService {
         this.classicData.push(subArray);
       }
 
-      void this.updateClassicDataAudio();
+      if(this.docompleteevents)
+        void this.updateClassicDataAudio();
     });
 
     // 每次加载文章相关 JSON 后，强制刷新一次开卷有益文章，
@@ -1959,6 +1962,7 @@ export class DataService {
     return result;
   }
 
+  //24节气诗词列表获取
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
     let solarTermInfo = this.solarTermMap.get(solarTermName);
     if (!solarTermInfo) {
@@ -3737,6 +3741,10 @@ export class DataService {
       }
     }
   }
+  goToTag(tag:any){
+    this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${tag}`);
+    //this.navCtrl.navigateForward(`/tabs/tab2/tag/${tag}`);
+  }
   goToTopic(id:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/topic/${id}`);
   }
@@ -4156,7 +4164,7 @@ export class DataService {
     }
     else{
       //console.log(this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=10))
-      return this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=10);
+      return this.searchTopicData.filter((d:any)=>d.id>=1&&d.id<=11);
     }
   }
 
@@ -5073,7 +5081,10 @@ export class DataService {
 
 
   getUrl(){
-    return this.currentItem.src;
+    if(this.currentItem&&this.currentItem.src)
+      return this.currentItem.src;
+    else
+      return "";
   }
 
   getShareUrl(){

@@ -81,7 +81,7 @@
       (ionCancel)="onSearchCancel()"
       (ionInput)="onSearchChanged()"
       ></ion-searchbar>
-      <div *ngIf="!showFilter"
+      <div *ngIf="!showFilter&&data.getUrl()!==''"
           style="width:100%;display: flex;justify-content: center;flex-direction: column;margin-top:20px;margin-bottom:20px;">
           <ion-card 
             defaultImage="" 
@@ -123,7 +123,7 @@
       </ion-thumbnail>
       <ion-label (click)="data.playobj(p)">
         <h2 class="show-only-one-line">
-          {{p.paragraphs[0]}}
+          {{ p.paragraphs?.[0] === '【其一】' ? p.paragraphs?.[1] : p.paragraphs?.[0] }}
         </h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
          class="show-only-one-line">

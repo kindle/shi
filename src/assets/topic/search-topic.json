@@ -1027,6 +1027,66 @@
     
   },
 
+  {
+    "id":11,
+    "name":"建筑",
+    "i18n":{
+      "ar-AE":"العمارة",
+      "de-DE":"Architektur",
+      "el-GR":"Αρχιτεκτονική",
+      "en-US":"Architecture",
+      "es-ES":"Arquitectura",
+      "fr-FR":"Architecture",
+      "ja-JP":"建築",
+      "ko-KR":"건축",
+      "pt-PT":"Arquitetura",
+      "ru-RU":"Архитектура",
+      "th-TH":"สถาปัตยกรรม",
+      "zh-CN":"建筑",
+      "zh-TW":"建築"
+    },
+    "image":"https://reddah.blob.core.windows.net/msjjimg/山海关.jpg",
+    "scroll":[
+      {"id":3106, "alias":"关隘","text":"重关对摇落，孤馆罢登临。","desc":"重关对摇落，孤馆罢登临。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/山海关.jpg"},
+      {"id":3101, "alias":"亭台","text":"醉翁之意不在酒，在乎山水之间也","desc":"醉翁之意不在酒，在乎山水之间也","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/醉翁亭.jpg"},
+      {"id":3102, "alias":"楼阁","text":"滕王高阁临江渚，佩玉鸣鸾罢歌舞。","desc":"滕王高阁临江渚，佩玉鸣鸾罢歌舞。","color":"rgb(255,230,151)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/滕王阁.jpg"},
+      {"id":3103, "alias":"宫殿","text":"西上秦原见未央，山岚川色晚苍苍。","desc":"西上秦原见未央，山岚川色晚苍苍。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/大明宫.jpg"},
+      {"id":3104, "alias":"寺庙","text":"夕阳衰草古城隅，废堞遥连玄武湖。","desc":"夕阳衰草古城隅，废堞遥连玄武湖。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/鸡鸣寺.jpg"},
+      {"id":3105, "alias":"桥梁","text":"莫向华亭觅船子，赵州桥下有青龙。","desc":"莫向华亭觅船子，赵州桥下有青龙。","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/赵州桥.jpg"}
+    ],
+    "list":[
+      {"name":"推荐诗人", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/陈子昂.jpeg","display":"cover","text":"陈子昂","sample":"前不见古人，后不见来者","desc":"","color":"rgb(98,166,243)","author":"陈子昂"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/李白.jpeg","display":"cover","text":"李白","sample":"凤凰台上凤凰游，凤去台空江自流","desc":"","color":"rgb(98,166,243)","author":"李白"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王之涣.jpeg","display":"cover","text":"王之涣","sample":"白日依山尽，黄河入海流","desc":"","color":"rgb(98,166,243)","author":"王之涣"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/张继.jpeg","display":"cover","text":"张继","sample":"月落乌啼霜满天，江枫渔火对愁眠","desc":"","color":"rgb(98,166,243)","author":"张继"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/王维.jpeg","display":"cover","text":"王维","sample":"羌笛何须怨杨柳，春风不度玉门关","desc":"","color":"rgb(98,166,243)","author":"王维"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/辛弃疾.jpeg","display":"cover","text":"辛弃疾","sample":"千古江山，英雄无觅孙仲谋处","desc":"","color":"rgb(98,166,243)","author":"辛弃疾"},
+        {"src":"https://reddah.blob.core.windows.net/msjjpoet/欧阳修.jpeg","display":"cover","text":"欧阳修","sample":"醉翁之意不在酒，在乎山水之间也","desc":"","color":"rgb(98,166,243)","author":"欧阳修"}
+        
+      ]},
+
+      {"name":"风格诗单", "data": [
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/醉翁亭.jpg","display":"cover","text":"醉翁亭","desc":"醉翁之意不在酒，在乎山水之间也","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/大明宫.jpg","display":"cover","text":"大明宫","desc":"西上秦原见未央，山岚川色晚苍苍。","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/滕王阁.jpg","display":"cover","text":"滕王阁","desc":"滕王高阁临江渚，佩玉鸣鸾罢歌舞。","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/鸡鸣寺.jpg","display":"cover","text":"鸡鸣寺","desc":"夕阳衰草古城隅，废堞遥连玄武湖。","color":"rgb(121,196,131)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/赵州桥.jpg","display":"cover","text":"赵州桥","desc":"莫向华亭觅船子，赵州桥下有青龙。","color":"rgb(98,166,243)"},
+        {"src":"https://reddah.blob.core.windows.net/msjjimg/山海关.jpg","display":"cover","text":"山海关","desc":"重关对摇落，孤馆罢登临。","color":"rgb(121,196,131)"}
+        ]
+      },
+      {"name":"精选诗单", "data": [
+        {"id":22,"src":"https://reddah.blob.core.windows.net/msjjimg/cyclone-2102397_1280.jpg","display":"cover","text":"边塞 | 你读过最燃的一句诗？","desc":"","color":"rgb(98,166,243)"},
+        {"id":32,"src":"https://reddah.blob.core.windows.net/msjjimg/meditate-5375835_1280.jpg","display":"cover","text":"禅意 | 莫将闲事挂心头，便是人间好时节。","desc":"","color":"rgb(98,166,243)"},
+        {"id":97,"src":"https://reddah.blob.core.windows.net/msjjimg/dragon-238931_1280.jpg","display":"cover","text":"帝王 | 古代帝王诗最有文采的是哪位？","desc":"","color":"rgb(98,166,243)"}
+      ]
+      }
+    ],
+    "hot":[],
+    "desctitle":"简介",
+    "desc":"惜哉瑶池饮，日晏昆仑丘。黄鹄去不息，哀鸣何所投。"
+    
+  },
 
 
 

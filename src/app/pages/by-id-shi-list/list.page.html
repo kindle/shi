@@ -65,7 +65,8 @@
 <ion-content [fullscreen]="true" *ngIf="listdata" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-header collapse="condense" style="box-shadow: none;">
     <ion-toolbar><!--搜索-->
-      <div class="searchbar-container" [class.hidden]="!isSearchbarVisible" *ngIf="localList.length>10||searchText.length>0">
+      <div class="searchbar-container" [class.hidden]="!isSearchbarVisible" 
+      *ngIf="(localList&&localList.length>10)||searchText.length>0">
         <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
         style="padding-left:15px;"
         [(ngModel)]="searchText"
@@ -176,14 +177,32 @@
         <p slot="end" style="margin-top:5px;display: flex;align-items: center;color:black;"
             [style.fontSize]="data.zoom(17)">
             <ion-icon name="headset" *ngIf="p.audio" color="primary" style="margin-right:5px;"></ion-icon>
+            {{(p.dy?'['+p.dy+'] ':'')}}
             {{p.author}}《{{p.title}}》
         </p>
       </ion-item>
-      <ion-item *ngIf="p.note&&p.note.length>0"
+      <ion-item *ngIf="p.note&&p.note.length>0" lines="none"
          (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <p style="margin-top:5px;color:black;" [style.fontSize]="data.zoom(17)">
           {{p.note}}
         </p>
+      </ion-item>
+
+      <ion-item *ngIf="p.tag">
+        <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px;color:black;" 
+        [style.fontSize]="data.zoom(17)">
+          <ion-badge color="primary" style="padding:0 14px;min-height:44px;display:inline-flex;align-items:center;" size="large"
+            (click)="data.goToTag(p.tag)"
+            [style.fontSize]="data.zoom(17)">
+            {{p.tag}}
+          </ion-badge>
+          <ion-button color="transparent" size="large"
+            style="margin:0;min-width:44px;min-height:44px;"
+            (click)="data.search(p.tag)">
+            <ion-icon name="search-outline" color="dark"></ion-icon>
+          </ion-button>
+        </div>
+        
       </ion-item>
     </div>
   </ion-list>
@@ -197,7 +216,7 @@
     </ion-text>
   </ion-list>
     
-  <ion-header *ngIf="!showFilter&&poets.length>=1">
+  <ion-header *ngIf="!showFilter&&(poets&&poets.length>=1)" style="margin-left:5px;">
     <app-author name="{{ ui.instant('Title.FeaturedPoets') }}" [source]="poets"></app-author>
   </ion-header><!--此诗单中的诗人-->
 

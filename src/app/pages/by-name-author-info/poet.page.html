@@ -112,7 +112,16 @@
     </ion-toolbar>
   </ion-header>
   
-  <app-text [name]="authorData.name" [text]="authorData.desc"
+  <app-text [name]="authorData.name"
+    *ngIf="!showFilter&&authorData">
+  </app-text>
+  <app-text [name]="' ['+ authorData.dy  +'] ' + '' + (formatYear(authorData.birthYear) || '?') + ' - ' + (formatYear(authorData.deathYear) || '?') + ''" 
+    *ngIf="!showFilter&&authorData">
+  </app-text>
+
+  
+  <app-text
+    [text]="authorData.desc"
     *ngIf="!showFilter&&authorData">
   </app-text>
 
@@ -120,7 +129,7 @@
 
 
   <!--相关诗人-->
-  <ion-header *ngIf="!showFilter&&poets&&poets.length>0"> 
+  <ion-header *ngIf="!showFilter&&poets&&poets.length>0" style="margin-left:5px;"> 
     <app-author name="{{ ui.instant('Title.RelatedPoets')}}" [source]="poets" [relation]="relation"
      (clickAuthor)="data.goToAuthor($event)">
     </app-author>

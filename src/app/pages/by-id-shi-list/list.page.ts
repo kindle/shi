@@ -127,14 +127,23 @@ export class ListPage {
       }));
   }
 
-  ionViewWillEnter() {
+  private async waitForJsonDataLoaded(intervalMs:number = 100): Promise<void> {
+    while (this.data.articleDataLoaded == false) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
+
+  async ionViewWillEnter() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
 
     //console.log('listdata:', this.listdata);
     if(this.id>=2001&&this.id<=2024)//24节气list
     {
+      await this.waitForJsonDataLoaded();
       this.listdata.list = this.data.get24TermPoemsByName(this.listdata.sub);
+      // console.log('load listdata.list')
+      // console.log(this.listdata.list)
     }
     //print 24节气list for test 
     // if(this.listdata.id>=2001&&this.listdata.id<=2024)//24节气list
@@ -173,7 +182,7 @@ export class ListPage {
   CheckIsPlayList(){
     this.localList.forEach((poem:any) => {
       let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-      if(fullData.audio!=null){
+      if(fullData&&fullData.audio!=null){
         poem.audio = fullData.audio;
         this.noAudio = false;
       }

@@ -480,15 +480,19 @@ export class PlayerPage implements OnInit {
 
   shuffle(){
     this.data.togglePlayListRandomly();
-    this.data.savePlayStyle();
-    this.data.isRepeat = 0;
-    this.data.updateInfiniteHint();
+    
     if(this.data.isShuffle){
+      this.data.isRepeat = 0;
       this.ui.toast_short("top", this.ui.instant('Action.Shuffle'));//随机播放
     }
     else{
+      this.data.isRepeat = 1;
       this.ui.toast_short("top", this.ui.instant('Action.ShuffleClosed'));//随机播放已关闭
     }
+
+    this.data.savePlayStyle();
+    
+    this.data.updateInfiniteHint();
   }
   repeat(){
     //0 normal play
@@ -510,20 +514,24 @@ export class PlayerPage implements OnInit {
     ///if(this.data.isRepeat!==0){
     //  this.data.isInfinite = false;
     //}
-    this.data.savePlayStyle();
+    
     this.data.isShuffle = false;
+
+    this.data.savePlayStyle();
   }
   infinite(){
     this.data.isInfinite = !this.data.isInfinite;
     this.checkandload();
-    this.data.updateInfiniteHint();
-    this.data.savePlayStyle();
+    
     if(this.data.isInfinite){
       this.ui.toast_short("top", this.ui.instant('Title.AutoPlay'));//自动播放
     }
     else{
       this.ui.toast_short("top", this.ui.instant('Title.AutoPlayClosed'));//自动播放已关闭
     }
+
+    this.data.updateInfiniteHint();
+    this.data.savePlayStyle();
   }
 
   switchPlayMethord(){
