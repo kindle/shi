@@ -25,7 +25,7 @@ export class ArticleViewerPage {
   ) {
     this.localFunData = this.data.getFunData('article_'+data.currentArticle.big_title);
     //console.log(this.localFunData)
-    // console.log(this.data.currentArticle)
+    //console.log(this.data.currentArticle)
     //data.clearFunDataCache();
     this.data.addTracker({name:"ReadArticle", data:{id:this.data.currentArticle.id}});
   }
