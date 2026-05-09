@@ -198,6 +198,17 @@ export class UiService {
     }
   }
 
+  async toast_short(position: 'top' | 'middle' | 'bottom',msg:string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1500,
+      position: 'bottom',
+      cssClass: 'custom-short-toast',
+      icon: 'checkmark-circle',
+    });
+
+    await toast.present();
+  }
 
   async toast(position: 'top' | 'middle' | 'bottom',msg:string) {
     const toast = await this.toastController.create({
