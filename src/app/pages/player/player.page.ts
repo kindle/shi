@@ -484,10 +484,10 @@ export class PlayerPage implements OnInit {
     this.data.isRepeat = 0;
     this.data.updateInfiniteHint();
     if(this.data.isShuffle){
-      this.ui.toast_short("top","随机播放");
+      this.ui.toast_short("top", this.ui.instant('Action.Shuffle'));//随机播放
     }
     else{
-      this.ui.toast_short("top","随机播放已关闭");
+      this.ui.toast_short("top", this.ui.instant('Action.ShuffleClosed'));//随机播放已关闭
     }
   }
   repeat(){
@@ -497,14 +497,14 @@ export class PlayerPage implements OnInit {
 
     if(this.data.isRepeat===1){
       this.data.isRepeat = 2;
-      this.ui.toast_short("top","单曲循环");
+      this.ui.toast_short("top", this.ui.instant('Title.SinglePlay'));//单曲循环
     }
     else{// if(this.data.isRepeat===2 || this.data.isRepeat===true){
     //  this.data.isRepeat = 0;
    //}
     //else{
       this.data.isRepeat = 1;
-      this.ui.toast_short("top","顺序播放");
+      this.ui.toast_short("top", this.ui.instant('Title.ContinuePlay'));//顺序播放
     }
 
     ///if(this.data.isRepeat!==0){
@@ -519,10 +519,10 @@ export class PlayerPage implements OnInit {
     this.data.updateInfiniteHint();
     this.data.savePlayStyle();
     if(this.data.isInfinite){
-      this.ui.toast_short("top","自动播放");
+      this.ui.toast_short("top", this.ui.instant('Title.AutoPlay'));//自动播放
     }
     else{
-      this.ui.toast_short("top","自动播放已关闭");
+      this.ui.toast_short("top", this.ui.instant('Title.AutoPlayClosed'));//自动播放已关闭
     }
   }
 
@@ -531,16 +531,16 @@ export class PlayerPage implements OnInit {
     {
       this.data.isShuffle = false;
       this.repeat();
-      this.ui.toast_short("top","顺序播放");
+      this.ui.toast_short("top", this.ui.instant('Title.ContinuePlay'));//顺序播放
     }else{
       if(this.data.isRepeat===1){
         this.data.isRepeat = 2;
-        this.ui.toast_short("top","单曲循环");
+        this.ui.toast_short("top", this.ui.instant('Title.SinglePlay'));//单曲循环
       }
       else if(this.data.isRepeat===2 || this.data.isRepeat===true){
         this.data.isRepeat = 0;
         this.shuffle();
-        this.ui.toast_short("top","随机播放");
+        this.ui.toast_short("top", this.ui.instant('Action.Shuffle'));//随机播放
       }
       else{
         this.data.isRepeat = 1;
