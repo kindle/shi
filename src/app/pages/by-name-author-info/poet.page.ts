@@ -40,8 +40,15 @@ export class PoetPage {
   ) {}
 
 
-  ionViewWillEnter() {
+  private async waitForJsonDataLoaded(intervalMs:number = 100): Promise<void> {
+    while (this.data.articleDataLoaded == false) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
+
+  async ionViewWillEnter() {
     //this.defaultBgHeight = "350px";
+    await this.waitForJsonDataLoaded();
     this.author = this.activatedRoute.snapshot.paramMap.get('author');
     this.localJsonData = this.data.JsonData
       .filter((shici:any)=>shici.author===this.author);
