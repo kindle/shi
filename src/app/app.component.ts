@@ -85,7 +85,7 @@ export class AppComponent implements DoCheck, OnDestroy {
   }
 
   get showStartupArticleLoadingMask(): boolean {
-    return this.ui.showStartupLoadingMask && this.data.isStartupJsonDataLoading;
+    return this.ui.showStartupLoadingMask && !this.data.articleDataLoaded;
   }
 
   private syncStartupScrollLock(): void {

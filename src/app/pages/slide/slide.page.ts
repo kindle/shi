@@ -82,7 +82,7 @@ export class SlidePage implements OnInit {
     }
 
     this.data.getSlides(this.id).then(data=>{
-      console.log(data);
+      //console.log(data);
       if (!data || !data.slides || data.slides.length === 0) {
         return;
       }
@@ -93,8 +93,8 @@ export class SlidePage implements OnInit {
         this.loadedSlideId = this.id;
         this.currentSlideIndex = 0;
         this.cs = this.slidesJsonData.slides[0];
-        console.log('Initial slide set. Starting autoplay.');
-        console.log(this.cs);
+        //console.log('Initial slide set. Starting autoplay.');
+        //console.log(this.cs);
         this.userPausedAutoplay = false;
         this.startSlideAutoplay();
 

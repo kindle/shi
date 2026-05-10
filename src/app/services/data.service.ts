@@ -1793,7 +1793,7 @@ export class DataService {
         //下个二十四节气
         if(solarTermName.length>0){
           //temp = temp.concat(this.getSolarTermPoem(solarTermName));
-          console.log('getSolarTermPoem')
+          //console.log('getSolarTermPoem')
           temp.unshift(this.getSolarTermPoem(solarTermName, dateStrChinese));
         }else{
           //calculate next solar term
@@ -1972,7 +1972,7 @@ export class DataService {
 
   //24节气诗词列表获取
   getSolarTermPoem(solarTermName:any, dateStrChinese:any){
-    console.log('getSolarTermPoem for', solarTermName);
+    //console.log('getSolarTermPoem for', solarTermName);
     let solarTermInfo = this.solarTermMap.get(solarTermName);
     if (!solarTermInfo) {
       solarTermInfo = {
@@ -2034,7 +2034,7 @@ export class DataService {
       ),
       link:"",
     };
-    console.log('getSolarTermPoem result for', solarTermName, result);
+    //console.log('getSolarTermPoem result for', solarTermName, result);
     return result;
   }
 
@@ -3274,7 +3274,7 @@ export class DataService {
     this.set(this.LocalQueueKey, JSON.stringify(this.queueData));
   }
   init(){
-    console.log('init data...')
+    //console.log('init data...')
     this.beginStartupJsonTracking();
 
     if (this.useTwoStepDbLoading) {
