@@ -275,11 +275,12 @@
               </ion-button>
               <ion-button (click)="repeat()" size="small" style="width:100%;height:40px;"
               [ngStyle]="{'--background':data.isRepeat ? '#3880ff' : 'rgb(247,247,247)' }">
-                <ion-icon name="repeat-outline" size="large"
+                <ion-icon name="repeat-outline" size="large" *ngIf="!(data.isRepeat===2 || data.isRepeat===true)" 
                 [ngStyle]="{'color':data.isRepeat ? 'white' : '' }"
                 ></ion-icon>
-                <span *ngIf="data.isRepeat===2 || data.isRepeat===true" 
-                [ngStyle]="{'color':data.isRepeat ? 'white' : '' }">1</span>
+                <ion-icon src="assets/img/repeat1-outline.svg" size="large" *ngIf="data.isRepeat===2 || data.isRepeat===true" 
+                [ngStyle]="{'color':data.isRepeat ? 'white' : '' }"
+                ></ion-icon>
               </ion-button>
               <ion-button (click)="infinite()" size="small" style="width:100%;height:40px;"
               [ngStyle]="{'--background':data.isInfinite ? '#3880ff' : 'rgb(247,247,247)' }">
@@ -710,10 +711,13 @@
             <ion-button
               (click)="switchPlayMethord()" style="font-size: 20px;">
               <ion-icon name="shuffle-outline" *ngIf="data.isShuffle"></ion-icon>
-              <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
+              <!-- <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
               <span *ngIf="data.isRepeat===2 || data.isRepeat===true" style="font-size: 15px;" 
-                  [ngStyle]="{'color':data.isRepeat ? '#3880ff' : '' }">1</span>
-              </ion-button>
+                  [ngStyle]="{'color':data.isRepeat ? '#3880ff' : '' }">1</span> -->
+
+              <ion-icon name="repeat-outline" *ngIf="!data.isShuffle && !(data.isRepeat===2 || data.isRepeat===true)"></ion-icon>
+              <ion-icon src="assets/img/repeat1-outline.svg" *ngIf="data.isRepeat===2 || data.isRepeat===true"></ion-icon>
+            </ion-button>
           </ion-buttons>
           <ion-buttons>
             <ion-button [disabled]="data.playHistory.length<2"  size="small"
