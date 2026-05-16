@@ -146,18 +146,30 @@
         <!--prev   play   next-->
         <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
           <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">
-            <ion-buttons>
+            <!-- <ion-buttons>
               <ion-button (click)="shuffle()" size="small" style="width:100%;height:40px;"
                 [ngStyle]="{'--background':data.isShuffle ? '#3880ff' : 'rgb(247,247,247)' }">
                 <ion-icon name="shuffle-outline" size="large"
                 [ngStyle]="{'color':data.isShuffle ? 'white' : '' }"
                 ></ion-icon>
               </ion-button>
+            </ion-buttons> -->
+            <ion-buttons>
+              <ion-button
+                (click)="data.switchPlayMethord()" style="font-size: 25px;">
+                <ion-icon name="shuffle-outline" *ngIf="data.isShuffle"></ion-icon>
+                <!-- <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
+                <span *ngIf="data.isRepeat===2 || data.isRepeat===true" style="font-size: 15px;" 
+                    [ngStyle]="{'color':data.isRepeat ? '#3880ff' : '' }">1</span> -->
+
+                <ion-icon name="repeat-outline" *ngIf="!data.isShuffle && !(data.isRepeat===2 || data.isRepeat===true)"></ion-icon>
+                <ion-icon src="assets/img/repeat1-outline.svg" *ngIf="data.isRepeat===2 || data.isRepeat===true"></ion-icon>
+              </ion-button>
             </ion-buttons>
             <ion-buttons>
               <ion-button [disabled]="data.playHistory.length<2"
                 (click)="data.playPrev()" style="font-size: 30px;">
-                <ion-icon name="play-back" 
+                <ion-icon name="play-skip-back" 
                   [style.color]="(data.playHistory.length<2) ? 'lightgray' : ''"></ion-icon>
               </ion-button>
             </ion-buttons>
@@ -170,11 +182,15 @@
             <ion-buttons>
               <ion-button [disabled]="data.toPlayList.length<2&&!data.isInfinite" 
                 (click)="data.playNext()" style="font-size: 30px;">
-                <ion-icon name="play-forward" 
+                <ion-icon name="play-skip-forward" 
                   [style.color]="(data.toPlayList.length<2&&!data.isInfinite) ? 'lightgray' : ''"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-buttons>
+              <app-button-end [p]="data.currentPoem" page="playerlist" color="primary"
+                [isViewAuthor]="true"></app-button-end>
+            </ion-buttons>
+            <!-- <ion-buttons>
               <ion-button (click)="repeat()" size="small" style="width:100%;height:40px;"
                 [ngStyle]="{'--background':data.isRepeat ? '#3880ff' : 'rgb(247,247,247)' }">
                 <ion-icon name="repeat-outline" size="large"
@@ -183,7 +199,7 @@
                 <span *ngIf="data.isRepeat===2 || data.isRepeat===true" 
                 [ngStyle]="{'color':data.isRepeat ? 'white' : '' }">1</span>
               </ion-button>
-            </ion-buttons>
+            </ion-buttons> -->
           </div>
         </div>
       </ion-item>
@@ -202,11 +218,12 @@
 
 
   </div>
-  <div class="right" *ngIf="showPlaylist||showLyric">
+  <div class="right" *ngIf="showPlaylist||showLyric||showIntro">
 
     <!--history and playlist-->
     <ion-content class="no-padding" [fullscreen]="true" 
-      [class.snap-scroll]="showPlaylist"><!--*ngIf="!showText"-->
+      [class.sheet-scroll-guard]="showIntro || showPlaylist"
+      [class.snap-scroll]="showIntro || showPlaylist"><!--*ngIf="!showText"-->
       <swiper-container>
 
         <swiper-slide *ngIf="showPlaylist">
@@ -304,7 +321,7 @@
                     {{data.toPlayListName}}
                   </p>
                 </ion-label>
-                <ion-button (click)="infinite()" slot="end" size="small" style="height:40px;margin-right:-10px;"
+                <ion-button (click)="data.infinite()" slot="end" size="small" style="height:40px;margin-right:-10px;"
                   [ngStyle]="{'--background':data.isInfinite ? '#3880ff' : 'white' }">
                   <ion-icon name="infinite-outline" size="large"
                   [color]="data.isInfinite ? 'light' : 'dark'"
@@ -339,7 +356,8 @@
                       </div>
                       <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
                         style="margin-top:5px;display: flex;align-items: end;">
-                        {{p.sample?p.sample:p.paragraphs[0]}}
+                        {{p.sample?p.sample:
+                        p.paragraphs?.[0] === '【其一】' ? p.paragraphs?.[1] : p.paragraphs?.[0]}}
                       </p>
                     </ion-label>
           
@@ -391,7 +409,7 @@
                       </div>
                       <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
                         style="margin-top:5px;display: flex;align-items: end;">
-                        {{p.sample?p.sample:p.paragraphs[0]}}
+                        {{data.showsample(p)}}
                       </p>
                     </ion-label>
           
@@ -407,7 +425,7 @@
             <ion-list *ngIf="data.showInfiniteHint && !bigimg" style="margin-top: 20px;">
               <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
                 <ion-label style="width:100%;display: grid;justify-content: center;"
-                (click)="infinite()">
+                (click)="data.infinite()">
                   <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">
                     {{ ui.instant('Title.ToTurnOnAutoPlay') }}<!--若要继续播放诗词，请打开-->
                   </h2>
@@ -533,6 +551,113 @@
             </ion-item>
           </ion-list>
         </swiper-slide>
+
+        <swiper-slide *ngIf="showIntro">
+          <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
+            <ion-item lines="none" 
+              style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+              <div class="play-icon-box" *ngIf="!rightbigimg" 
+                (click)="playlyric()">
+                <ion-thumbnail slot="start"
+                  style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
+                    <img id="authorimg" style="border-radius: 10px;" 
+                      defaultImage="assets/img/default.jpg" 
+                      src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
+                      onerror="javascript:this.src='assets/img/default.jpg'"
+                      [ngStyle]="{'opacity':(data.currentPoem&&data.isPlaying) ? '0.5' : '1' }" />
+                    <div class="playing" style="position: fixed;" *ngIf="data.isPlaying"
+                      [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+                      'height':(data.isPlaying) ? '' : '5px' }"
+                    ></div>
+                  </ion-thumbnail>
+              </div>
+              <ion-label>
+                <div style="display: flex; align-items: center;">
+                  <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                  <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+                    {{data.currentPoem.title}} {{data.currentPoem.author}}
+                  </h2>
+                </div>
+                <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
+                  style="margin-top:5px;display: flex;align-items: end;">
+                  {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+                </p>
+              </ion-label>
+              <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+              [isViewAuthor]="true"></app-button-end>
+            </ion-item>
+          </ion-list>
+
+          <ng-container *ngIf="hasAnyPoemDetail()">
+            <ion-item lines="none" class="poem-detail-tabs-item">
+              <ion-segment class="poem-detail-tabs" scrollable
+                style="padding:6px 10px;margin:10px 10px 10px 0;"
+                [value]="getVisibleDetailTab()"
+                (ionChange)="setDetailTab($event)">
+                <ion-segment-button value="appreciation" *ngIf="hasPoemDetail('appreciation')">
+                  <ion-label>{{ ui.instant('Title.appreciation')}}<!--赏析--></ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="translation" *ngIf="hasPoemDetail('translation')">
+                  <ion-label>{{ ui.instant('Title.translation')}}<!--译文--></ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="intro" *ngIf="hasPoemDetail('intro')">
+                  <ion-label>{{ ui.instant('Title.introduction')}}<!--简介--></ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="comment" *ngIf="hasPoemDetail('comment')">
+                  <ion-label>{{ ui.instant('Title.comment')}}<!--评论--></ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="annotation" *ngIf="hasPoemDetail('annotation')">
+                  <ion-label>{{ ui.instant('Title.annotation')}}<!--注释--></ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </ion-item>
+
+            <ion-item *ngIf="getVisibleDetailTab()==='appreciation'&&hasPoemDetail('appreciation')" 
+            lines="none"
+            class="poem-detail-content">
+              <div class="poem-detail-scroll">
+                <div class="poem-detail-title">{{ ui.instant('Title.appreciation') }}<!--赏析--></div>
+                <div>{{data.currentPoem.appreciation}}</div>
+              </div>
+            </ion-item>
+
+            <ion-item *ngIf="getVisibleDetailTab()==='translation'&&hasPoemDetail('translation')" 
+            lines="none"
+            class="poem-detail-content">
+              <div class="poem-detail-scroll">
+                <div class="poem-detail-title">{{ ui.instant('Title.translation') }}<!--译文--></div>
+                <div>{{data.currentPoem.translation}}</div>
+              </div>
+            </ion-item>
+
+            <ion-item *ngIf="getVisibleDetailTab()==='intro'&&hasPoemDetail('intro')"
+            lines="none" 
+            class="poem-detail-content">
+              <div class="poem-detail-scroll">
+                <div class="poem-detail-title">{{ ui.instant('Title.introduction') }}<!--简介--></div>
+                <div>{{data.currentPoem.intro}}</div>
+              </div>
+            </ion-item>
+
+            <ion-item *ngIf="getVisibleDetailTab()==='comment'&&hasPoemDetail('comment')" 
+            lines="none"
+            class="poem-detail-content">
+              <div class="poem-detail-scroll">
+                <div class="poem-detail-title">{{ ui.instant('Title.comment') }}<!--评论--></div>
+                <div *ngFor="let c of data.currentPoem.comment" style="margin-bottom:10px;">{{c}}</div>
+              </div>
+            </ion-item>
+
+            <ion-item *ngIf="getVisibleDetailTab()==='annotation'&&hasPoemDetail('annotation')" 
+            lines="none"
+            class="poem-detail-content">
+              <div class="poem-detail-scroll">
+                <div class="poem-detail-title">{{ ui.instant('Title.annotation') }}<!--注释--></div>
+                <div *ngFor="let a of data.currentPoem.annotation" style="margin-bottom:10px;">{{a}}</div>
+              </div>
+            </ion-item>
+          </ng-container>
+        </swiper-slide>
       </swiper-container>
     </ion-content>
 
@@ -558,7 +683,15 @@
           <ion-button style="margin-right: 20px;"
           [ngStyle]="{'background-color':showText ? 'rgb(247,247,247)' : '' }"
           (click)="playlyric()" size="large">
-            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+            <ion-icon name="reader-outline"></ion-icon>
+          </ion-button>
+
+          
+          <ion-button *ngIf="hasAnyPoemDetail()" 
+          style="border-radius: 8px;margin-right: 20px;"
+          [ngStyle]="{'background-color':showIntro ? 'rgb(247,247,247)' : '' }"
+          (click)="intro()" size="large">
+            <ion-icon name="information-circle-outline"></ion-icon>
           </ion-button>
 
           <ion-button  

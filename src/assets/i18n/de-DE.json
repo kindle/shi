@@ -149,7 +149,12 @@
         "ByGrade": "Nach Klassenstufe",
         "PoemNotFound": "Gedicht nicht gefunden",
         "TellDevFeedbak": "Ihre Gedichtdatenbank ist bereits auf dem neuesten Stand. Dieses Gedicht existiert nicht oder die erfasste ID ist falsch. Bitte senden Sie dem Entwickler eine E-Mail mit Feedback.",
-        "LoadingLib": "Gedichtbibliothek wird geladen..."
+        "LoadingLib": "Gedichtbibliothek wird geladen...",
+        "appreciation": "Würdigung",
+        "translation": "Übersetzung",
+        "introduction": "Einführung",
+        "comment": "Kommentar",
+        "annotation": "Anmerkung"
     },
 
     "Search":{

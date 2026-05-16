@@ -1,12 +1,12 @@
 {
     "Tabs":{
-        "Home":"主页",
-        "Discovery":"发现",
+        "Home":"孟章",
+        "Discovery":"陵光",
         "Browse": "浏览",
         "ListenNow": "现在就听",
         "Library": "资料库",
-        "Search":"搜索",
-        "Me":"我的"
+        "Search":"执明",
+        "Me":"监兵"
     },
 
     "Tutorial":{
@@ -150,7 +150,12 @@
         "ByGrade":"按年级",
         "PoemNotFound":"找不到诗词",
         "TellDevFeedbak":"当前诗词库已是最新版本，当前诗词不存在或收录ID有误，建议给开发者发信反馈。",
-        "LoadingLib":"正在加载诗词库..."
+        "LoadingLib":"正在加载诗词库...",
+        "appreciation":"赏析",
+        "translation":"译文",
+        "introduction":"简介",
+        "comment":"评论",
+        "annotation":"注释"
     },
 
     "Search":{

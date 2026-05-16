@@ -149,7 +149,12 @@
         "ByGrade": "学年別",
         "PoemNotFound": "詩が見つかりません",
         "TellDevFeedbak": "詩データベースはすでに最新です。この詩は存在しないか、登録 ID が正しくありません。開発者にメールでフィードバックを送ってください。",
-        "LoadingLib": "詩データベースを読み込み中..."
+        "LoadingLib": "詩データベースを読み込み中...",
+        "appreciation": "鑑賞",
+        "translation": "訳文",
+        "introduction": "紹介",
+        "comment": "評論",
+        "annotation": "注釈"
     },
 
     "Search": {

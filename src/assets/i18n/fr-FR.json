@@ -149,7 +149,12 @@
         "ByGrade": "Par niveau scolaire",
         "PoemNotFound": "Poème introuvable",
         "TellDevFeedbak": "Votre base de poèmes est déjà à jour. Ce poème n'existe pas ou l'identifiant enregistré est incorrect. Veuillez envoyer un e-mail au développeur pour signaler le problème.",
-        "LoadingLib": "Chargement de la bibliothèque de poèmes..."
+        "LoadingLib": "Chargement de la bibliothèque de poèmes...",
+        "appreciation": "Analyse",
+        "translation": "Traduction",
+        "introduction": "Introduction",
+        "comment": "Commentaire",
+        "annotation": "Annotation"
     },
 
     "Search":{

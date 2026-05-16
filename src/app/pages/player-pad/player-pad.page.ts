@@ -139,6 +139,8 @@ export class PlayerPadPage implements OnInit {
   rightbigimg = false;
   showText = true;
   showLyric = true;
+  showIntro = false;
+  detailTab = 'appreciation';
   playlyric(){
     if(this.showLyric){
       this.showLyric = false;
@@ -146,6 +148,7 @@ export class PlayerPadPage implements OnInit {
     else{
       this.showLyric = true;
       this.showPlaylist = false;
+      this.showIntro = false;
     }
   }
 
@@ -198,6 +201,7 @@ export class PlayerPadPage implements OnInit {
     else{
       this.showPlaylist = true;
       this.showLyric = false;
+      this.showIntro = false;
       this.goToHistoryEnd();
     }
   }
@@ -255,45 +259,59 @@ export class PlayerPadPage implements OnInit {
   }
   
 
-  shuffle(){
-    this.data.togglePlayListRandomly();
-    this.data.savePlayStyle();
-    this.data.isRepeat = 0;
-    this.data.updateInfiniteHint();
-  }
-  repeat(){
-    //0 normal play
-    //1 cycle play
-    //2 single play
-
-    if(this.data.isRepeat===1){
-      this.data.isRepeat = 2;
-    }
-    else if(this.data.isRepeat===2 || this.data.isRepeat===true){
-      this.data.isRepeat = 0;
-    }
-    else{
-      this.data.isRepeat = 1;
+  hasPoemDetail(type: 'appreciation' | 'translation' | 'intro' | 'comment' | 'annotation') {
+    const value = this.data.currentPoem?.[type];
+    if (Array.isArray(value)) {
+      return value.length > 0;
     }
 
-    if(this.data.isRepeat!==0){
-      this.data.isInfinite = false;
-    }
-    this.data.savePlayStyle();
-    this.data.isShuffle = false;
+    return !!value && value.length > 0;
   }
-  infinite(){
-    this.data.isInfinite = !this.data.isInfinite;
-    if(this.data.isInfinite===true)
-    {
-      this.data.isRepeat = 0;
-      //when infinite is on
-      this.data.checkAndLoadAdditionalList();
-    }
-    this.data.updateInfiniteHint();
-    this.data.savePlayStyle();
 
+  hasAnyPoemDetail() {
+    return this.hasPoemDetail('appreciation')   //赏析
+      || this.hasPoemDetail('translation')  //译文
+      || this.hasPoemDetail('intro')     //简介
+      || this.hasPoemDetail('comment')    //评论
+      || this.hasPoemDetail('annotation');   //注释
   }
-  
+
+  getVisibleDetailTab() {
+    if (this.hasPoemDetail(this.detailTab as 'appreciation' | 'translation' | 'intro' | 'comment' | 'annotation')) {
+      return this.detailTab;
+    }
+
+    if (this.hasPoemDetail('appreciation')) {
+      return 'appreciation';
+    }
+    if (this.hasPoemDetail('translation')) {
+      return 'translation';
+    }
+    if (this.hasPoemDetail('intro')) {
+      return 'intro';
+    }
+    if (this.hasPoemDetail('comment')) {
+      return 'comment';
+    }
+    if (this.hasPoemDetail('annotation')) {
+      return 'annotation';
+    }
+
+    return 'appreciation';
+  }
+
+  setDetailTab(ev: any) {
+    this.detailTab = ev?.detail?.value || this.getVisibleDetailTab();
+  }
+
+  intro(){
+    this.showIntro = true;
+    this.showLyric = false;
+    this.showPlaylist = false;
+    // this.showText = false;
+    // this.showPlaylist = false;
+    // this.bigimg = false;
+  }
+
 
 }

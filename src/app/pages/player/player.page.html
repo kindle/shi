@@ -105,19 +105,19 @@
               [value]="getVisibleDetailTab()"
               (ionChange)="setDetailTab($event)">
               <ion-segment-button value="appreciation" *ngIf="hasPoemDetail('appreciation')">
-                <ion-label>赏析</ion-label>
+                <ion-label>{{ ui.instant('Title.appreciation') }}<!--赏析--></ion-label>
               </ion-segment-button>
               <ion-segment-button value="translation" *ngIf="hasPoemDetail('translation')">
-                <ion-label>译文</ion-label>
+                <ion-label>{{ ui.instant('Title.translation') }}<!--译文--></ion-label>
               </ion-segment-button>
               <ion-segment-button value="intro" *ngIf="hasPoemDetail('intro')">
-                <ion-label>简介</ion-label>
+                <ion-label>{{ ui.instant('Title.introduction') }}<!--简介--></ion-label>
               </ion-segment-button>
               <ion-segment-button value="comment" *ngIf="hasPoemDetail('comment')">
-                <ion-label>评论</ion-label>
+                <ion-label>{{ ui.instant('Title.comment') }}<!--评论--></ion-label>
               </ion-segment-button>
               <ion-segment-button value="annotation" *ngIf="hasPoemDetail('annotation')">
-                <ion-label>注释</ion-label>
+                <ion-label>{{ ui.instant('Title.annotation') }}<!--注释--></ion-label>
               </ion-segment-button>
             </ion-segment>
           </ion-item>
@@ -126,7 +126,7 @@
           lines="none"
           class="poem-detail-content">
             <div class="poem-detail-scroll">
-              <div class="poem-detail-title">赏析</div>
+              <div class="poem-detail-title">{{ ui.instant('Title.appreciation') }}<!--赏析--></div>
               <div>{{data.currentPoem.appreciation}}</div>
             </div>
           </ion-item>
@@ -135,7 +135,7 @@
           lines="none"
           class="poem-detail-content">
             <div class="poem-detail-scroll">
-              <div class="poem-detail-title">译文</div>
+              <div class="poem-detail-title">{{ ui.instant('Title.translation') }}<!--译文--></div>
               <div>{{data.currentPoem.translation}}</div>
             </div>
           </ion-item>
@@ -144,7 +144,7 @@
           lines="none" 
           class="poem-detail-content">
             <div class="poem-detail-scroll">
-              <div class="poem-detail-title">简介</div>
+              <div class="poem-detail-title">{{ ui.instant('Title.introduction') }}<!--简介--></div>
               <div>{{data.currentPoem.intro}}</div>
             </div>
           </ion-item>
@@ -153,7 +153,7 @@
           lines="none"
           class="poem-detail-content">
             <div class="poem-detail-scroll">
-              <div class="poem-detail-title">评论</div>
+              <div class="poem-detail-title">{{ ui.instant('Title.comment') }}<!--评论--></div>
               <div *ngFor="let c of data.currentPoem.comment" style="margin-bottom:10px;">{{c}}</div>
             </div>
           </ion-item>
@@ -162,7 +162,7 @@
           lines="none"
           class="poem-detail-content">
             <div class="poem-detail-scroll">
-              <div class="poem-detail-title">注释</div>
+              <div class="poem-detail-title">{{ ui.instant('Title.annotation') }}<!--注释--></div>
               <div *ngFor="let a of data.currentPoem.annotation" style="margin-bottom:10px;">{{a}}</div>
             </div>
           </ion-item>
@@ -267,13 +267,13 @@
           
           <ion-list-header *ngIf="showPlaylist&&!bigimg">
             <div style="margin-right:10px;width:100%;display:flex;justify-content: space-between;">
-              <ion-button (click)="shuffle()" size="small" style="width:100%;height:40px;"
+              <ion-button (click)="data.shuffle()" size="small" style="width:100%;height:40px;"
               [ngStyle]="{'--background':data.isShuffle ? '#3880ff' : 'rgb(247,247,247)' }">
                 <ion-icon name="shuffle-outline" size="large"
                 [ngStyle]="{'color':data.isShuffle ? 'white' : '' }"
                 ></ion-icon>
               </ion-button>
-              <ion-button (click)="repeat()" size="small" style="width:100%;height:40px;"
+              <ion-button (click)="data.repeat()" size="small" style="width:100%;height:40px;"
               [ngStyle]="{'--background':data.isRepeat ? '#3880ff' : 'rgb(247,247,247)' }">
                 <ion-icon name="repeat-outline" size="large" *ngIf="!(data.isRepeat===2 || data.isRepeat===true)" 
                 [ngStyle]="{'color':data.isRepeat ? 'white' : '' }"
@@ -282,7 +282,7 @@
                 [ngStyle]="{'color':data.isRepeat ? 'white' : '' }"
                 ></ion-icon>
               </ion-button>
-              <ion-button (click)="infinite()" size="small" style="width:100%;height:40px;"
+              <ion-button (click)="data.infinite()" size="small" style="width:100%;height:40px;"
               [ngStyle]="{'--background':data.isInfinite ? '#3880ff' : 'rgb(247,247,247)' }">
                 <ion-icon name="infinite-outline" size="large"
                 [ngStyle]="{'color':data.isInfinite ? 'white' : '' }"
@@ -401,7 +401,7 @@
           <ion-list *ngIf="data.showInfiniteHint && !bigimg" style="margin-top: 20px;">
             <ion-item lines="none" style="margin:0 0px 0 5px;--padding-start:0;margin-left:15px;">
               <ion-label style="width:100%;display: grid;justify-content: center;"
-              (click)="infinite()">
+              (click)="data.infinite()">
                 <h2 [style.fontSize]="data.zoom(17)" style="margin-top:5px;">
                   {{ ui.instant('Title.ToTurnOnAutoPlay') }}<!--若要继续播放诗词，请打开-->
                 </h2>
@@ -709,7 +709,7 @@
         <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">
           <ion-buttons>
             <ion-button
-              (click)="switchPlayMethord()" style="font-size: 20px;">
+              (click)="data.switchPlayMethord()" style="font-size: 20px;">
               <ion-icon name="shuffle-outline" *ngIf="data.isShuffle"></ion-icon>
               <!-- <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
               <span *ngIf="data.isRepeat===2 || data.isRepeat===true" style="font-size: 15px;" 

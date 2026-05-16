@@ -150,7 +150,12 @@
         "ByGrade":"按年級",
         "PoemNotFound":"找不到詩詞",
         "TellDevFeedbak":"目前詩詞庫已是最新版本，目前詩詞不存在或收錄 ID 有誤，建議寄信給開發者回饋。",
-        "LoadingLib":"正在載入詩詞庫..."
+        "LoadingLib":"正在載入詩詞庫...",
+        "appreciation":"賞析",
+        "translation":"譯文",
+        "introduction":"簡介",
+        "comment":"評論",
+        "annotation":"註釋"
     },
 
     "Search":{

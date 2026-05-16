@@ -149,7 +149,12 @@
         "ByGrade": "Por Ano Escolar",
         "PoemNotFound": "Poema não encontrado",
         "TellDevFeedbak": "A sua base de dados de poemas já está atualizada. Este poema não existe ou o ID registado está incorreto. Envie um e-mail ao programador com o seu feedback.",
-        "LoadingLib": "A carregar a biblioteca de poemas..."
+        "LoadingLib": "A carregar a biblioteca de poemas...",
+        "appreciation": "Apreciação",
+        "translation": "Tradução",
+        "introduction": "Introdução",
+        "comment": "Comentário",
+        "annotation": "Anotação"
     },
 
     "Search": {
