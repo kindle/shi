@@ -37,7 +37,8 @@
       *ngFor="let template of styleOptions"
       (click)="chooseStyle(template.key)">
       <div class="scroll-thumb">
-        <img [src]="template.preview" alt="style preview">
+        <img [src]="template.preview" alt="style preview" 
+        (error)="template.preview='assets/img/default.jpg'; $any($event.target).src='assets/img/default.jpg'">
       </div>
       <div class="scroll-label" style="display: none;">{{ template.value }}</div>
     </div>
@@ -69,7 +70,7 @@
         *ngFor="let template of imageOptions"
         (click)="chooseImage(template.key)">
         <div class="scroll-thumb">
-          <img [src]="template.preview" alt="style preview">
+          <img [src]="template.preview" alt="style preview" (error)="template.preview='assets/img/default.jpg'; $any($event.target).src='assets/img/default.jpg'">
         </div>
         <div class="scroll-label" style="display: none;">{{ template.value }}</div>
       </div>

@@ -200,4 +200,16 @@ export class PoetPage {
       queryParams: { author: this.author }
     });
   }
+
+  share(poem?: any){
+    if(poem)//share poem
+    {
+      this.data.shareText(
+        poem.author + "《" + poem.title + "》",
+        this.data.showsample(poem),
+        '',
+        'https://reddah.blob.core.windows.net/msjjpoet/' + poem.author + '.jpeg'
+      );
+    }
+  }
 }

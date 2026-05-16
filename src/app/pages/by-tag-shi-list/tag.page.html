@@ -132,7 +132,8 @@
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
-      <app-button-end [p]="p" page="taglist" slot="end"></app-button-end>
+      <app-button-end [p]="p" page="taglist" slot="end"
+      [showShare]="true" (share)="share(p)"></app-button-end>
     </ion-item>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>

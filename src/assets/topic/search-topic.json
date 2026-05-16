@@ -272,7 +272,7 @@
           "desc":"Southern and Northern Dynasty",
           "text":"木兰辞: 粤语精选",
           "color":"rgb(232,188,78)","light":"rgb(255,230,151,60%)",
-          "image":"/assets/img/mulan.png",
+          "image":"https://reddah.blob.core.windows.net/msjjimg/mulan.jpg",
           "image-size":"cover",
           "image-pos":"center"
         },
@@ -1536,7 +1536,7 @@
       ]},
 
       {"name":"精选诗单", "data": [
-        {"id":905,"src":"/assets/img/mulan.png","text":"唧唧复唧唧 | 木兰辞: 粤语精选","display":"cover","desc":"","color":"rgb(98,166,243)"}
+        {"id":905,"src":"https://reddah.blob.core.windows.net/msjjimg/mulan.jpg","text":"唧唧复唧唧 | 木兰辞: 粤语精选","display":"cover","desc":"","color":"rgb(98,166,243)"}
       ]}
 
     ],

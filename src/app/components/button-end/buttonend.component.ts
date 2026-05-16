@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
@@ -17,8 +17,11 @@ export class ButtonEndComponent {
 
   @Input() page: string|any;
   @Input() isViewAuthor: boolean = false;
+  @Input() showShare: boolean = false;
 
   @Input() color: string = 'dark';
+
+  @Output() share = new EventEmitter<any>();
 
   uuid:any;
   constructor(
@@ -83,21 +86,8 @@ export class ButtonEndComponent {
     this.data.textZoom();
   }
     
-  share(){
-    //this.data.share1('camera1')
-    /*
-    const historyBlock:any = document.getElementById("sharetest");
-    
-    const options = { 
-      background: "white", 
-      width: historyBlock.clientWidth, 
-      height: historyBlock.clientHeight 
-    };
-
-    domtoimage.toPng(historyBlock, options).then((file) => {
-      this.ui.share(file);
-    });*/
-
+  emitShare(){
+    this.share.emit(this.p);
   }
 
   like(p: any, type: string) {

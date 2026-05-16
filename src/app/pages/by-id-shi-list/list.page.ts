@@ -188,5 +188,29 @@ export class ListPage {
       }
     });
   }
+
+  share(poem?: any){
+    //console.log(this.listdata.image)
+    if(poem)//share poem
+    {
+      this.data.shareText(
+        poem.author + "《" + poem.title + "》",
+        this.data.showsample(poem),
+        '',
+        this.listdata.image
+      );
+    }
+  }
+
+  goToTag(tag:any){
+    this.data.currentItem = {
+      src: this.listdata.image,
+      display: 'cover',
+      text: tag,
+      desc: '',
+      color: this.listdata.color
+    }
+    this.data.goToTag(tag);
+  }
   
 }

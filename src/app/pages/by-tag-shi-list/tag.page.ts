@@ -143,4 +143,15 @@ export class TagPage {
     }, 200);
   }
 
+  share(poem?: any){
+    if(poem)//share poem
+    {
+      this.data.shareText(
+        poem.author + "《" + poem.title + "》",
+        this.data.showsample(poem),
+        '',
+        this.data.getUrl()
+      );
+    }
+  }
 }

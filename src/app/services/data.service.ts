@@ -3762,7 +3762,6 @@ export class DataService {
   }
   goToTag(tag:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${tag}`);
-    //this.navCtrl.navigateForward(`/tabs/tab2/tag/${tag}`);
   }
   goToTopic(id:any){
     this.navCtrl.navigateForward(`/tabs/${this.currentTab}/topic/${id}`);
@@ -5185,6 +5184,10 @@ export class DataService {
     bigTitleArray:any=null, 
     image:any='定格秋天.jpg')
   {
+    if(image.indexOf('/assets/img/')>-1){
+      image = image.replace('/assets/img/', '');
+      console.log('share image from assets:'+image)
+    }
     const isFromArticleViewer = this.router.url.includes('article-viewer');
     const baseArticle = isFromArticleViewer && this.currentArticle
       ? { ...this.currentArticle }

@@ -467,7 +467,7 @@
         "name":"木兰辞: 粤语精选",
         "text":"木兰辞: 粤语精选",
         "sub":"Southern and Northern Dynasty",  
-        "image":"/assets/img/mulan.png",
+        "image":"https://reddah.blob.core.windows.net/msjjimg/mulan.jpg",
         "special":true,
         "image-size":"cover",
         "color":"rgb(121,196,131)","light":"rgb(255,230,151,60%)",

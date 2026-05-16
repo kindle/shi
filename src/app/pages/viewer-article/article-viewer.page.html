@@ -216,7 +216,8 @@
             </p>  -->
           </ion-label>
 
-          <app-button-end [p]="it" page="articlelist" slot="end"></app-button-end>
+          <app-button-end [p]="it" page="articlelist" slot="end"
+            [showShare]="true" (share)="share(it)"></app-button-end>
         </ion-item>
         <ion-item lines="none" *ngIf="it.author&&it.title"
          (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)">

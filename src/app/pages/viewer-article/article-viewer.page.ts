@@ -279,7 +279,19 @@ export class ArticleViewerPage {
   }
 
 
-  share(){
-    this.router.navigate(['/slide-share-preview']);
+  share(poem?: any){
+    if(poem)//share poem
+    {
+      this.data.shareText(
+        poem.author + "《" + poem.title + "》",
+        this.data.showsample(poem),
+        '',
+        'https://reddah.blob.core.windows.net/msjjimg/' + this.data.currentArticle.bg_image
+      );
+    }
+    else //share article
+    {
+      this.router.navigate(['/slide-share-preview']);
+    }
   }
 }

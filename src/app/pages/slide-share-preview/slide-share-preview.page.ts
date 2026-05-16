@@ -377,53 +377,64 @@ export class SlideSharePreviewPage {
   private async renderPreview() {
     this.isRendering = true;
     this.renderError = '';
+    const fallbackBgUrl = 'assets/img/default.jpg';
 
     try {
       const shareArticle = this.shareArticle;
-      if (!shareArticle?.bg_image) {
+      if (!shareArticle) {
         this.renderError = '预览生成失败';
         return;
       }
 
       const currentFontFamilyName = this.data.getCurrentFontFamilyName();
-      const bgUrl = this.customBackgroundUrl || (shareArticle.bg_image.indexOf('msjjpoet') > -1 ?
-        shareArticle.bg_image :
-        `https://reddah.blob.core.windows.net/msjjimg/${shareArticle.bg_image}`);
+      const resolvedArticleBg = shareArticle.bg_image ?
+        (shareArticle.bg_image.indexOf('msjjpoet') > -1 ?
+          shareArticle.bg_image :
+          `https://reddah.blob.core.windows.net/msjjimg/${shareArticle.bg_image}`) :
+        fallbackBgUrl;
+      const bgUrl = this.customBackgroundUrl || resolvedArticleBg;
       const bigTitleLines = this.getEditableBigTitleLines();
-      const previewOptions = {
+      const basePreviewOptions = {
         loadImage: this.loadImage.bind(this),
-        bgUrl,
-        useCorsForBg: !this.customBackgroundUrl || this.customBackgroundUrl.startsWith('http'),
         currentFontFamilyName,
         editableSmallTitle: this.editableSmallTitle,
         bigTitleLines,
       };
 
-      switch (this.selectedStyleId) {
-        case 1:
-          this.previewDataUrl = await renderStandard1Preview(previewOptions);
-          return;
-        case 2:
-          this.previewDataUrl = await renderStandard2Preview(previewOptions);
-          return;
-        case 3:
-          this.previewDataUrl = await renderStandard3Preview(previewOptions);
-          return;
-        case 4:
-          this.previewDataUrl = await renderStandard4Preview(previewOptions);
-          return;
-        case 5:
-          this.previewDataUrl = await renderStandard5Preview(previewOptions);
-          return;
-        case 6:
-          this.previewDataUrl = await renderStandard6Preview(previewOptions);
-          return;
-        case 7:
-          this.previewDataUrl = await renderStandard7Preview(previewOptions);
-          return;
-        default:
-          this.previewDataUrl = await renderStandard5Preview(previewOptions);
-          return;
+      const renderByStyle = async (previewOptions: any) => {
+        switch (this.selectedStyleId) {
+          case 1:
+            return renderStandard1Preview(previewOptions);
+          case 2:
+            return renderStandard2Preview(previewOptions);
+          case 3:
+            return renderStandard3Preview(previewOptions);
+          case 4:
+            return renderStandard4Preview(previewOptions);
+          case 5:
+            return renderStandard5Preview(previewOptions);
+          case 6:
+            return renderStandard6Preview(previewOptions);
+          case 7:
+            return renderStandard7Preview(previewOptions);
+          default:
+            return renderStandard5Preview(previewOptions);
+        }
+      };
+
+      try {
+        this.previewDataUrl = await renderByStyle({
+          ...basePreviewOptions,
+          bgUrl,
+          useCorsForBg: !this.customBackgroundUrl || this.customBackgroundUrl.startsWith('http'),
+        });
+      } catch (primaryError) {
+        console.error('Render share preview failed with source background, fallback to default.jpg', primaryError);
+        this.previewDataUrl = await renderByStyle({
+          ...basePreviewOptions,
+          bgUrl: fallbackBgUrl,
+          useCorsForBg: false,
+        });
       }
     } catch (error) {
       console.error('Render share preview failed', error);

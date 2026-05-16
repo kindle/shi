@@ -125,4 +125,16 @@ export class HotComponent implements OnDestroy {
     this.mutationObserver?.disconnect();
   }
 
+  share(poem?: any){
+    if(poem) //share poem
+    {
+      this.data.shareText(
+        poem.author + "《" + poem.title + "》",
+        this.data.showsample(poem),
+        '',
+        'https://reddah.blob.core.windows.net/msjjpoet/' + poem.author +".jpeg"
+      );
+    }
+  }
+
 }

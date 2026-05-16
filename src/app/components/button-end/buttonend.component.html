@@ -56,12 +56,13 @@
           {{ ui.instant('Action.FontSize') }}<!--文字大小-->
           <ion-icon name="text-outline" slot="end"></ion-icon>
         </ion-item>
-        <!--
         <ion-item lines="full" [button]="true" [detail]="false"
-          (click)="share()">
-          分享
-          <ion-icon name="share-outline" slot="end"></ion-icon>
-        </ion-item>-->
+          *ngIf="showShare"
+          (click)="emitShare()"
+          [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Action.Share') }}<!--分享-->
+          <ion-icon name="share-social-outline" slot="end"></ion-icon>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>
