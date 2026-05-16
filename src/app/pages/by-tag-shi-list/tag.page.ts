@@ -27,7 +27,7 @@ export class TagPage {
 
 
   displayName:any;
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.tag = this.activatedRoute.snapshot.paramMap.get('tag');
     if(this.data.currentItem){
       this.displayName = 
@@ -46,6 +46,8 @@ export class TagPage {
     //this.localJsonData = this.data.JsonData
     //  .filter((shici:any)=>shici.tags.join("").indexOf(this.tag)>=0);
     //by text: more than tag
+    await this.waitForJsonDataLoaded();
+
     this.localJsonData = this.data.JsonData
       .filter((shici:any)=>tags.every((tag:string) => shici.text.indexOf(tag)>=0));
     //note: tags is array
@@ -53,6 +55,12 @@ export class TagPage {
     this.onSearchChanged();
   }
 
+
+  private async waitForJsonDataLoaded(intervalMs:number = 100): Promise<void> {
+    while (this.data.articleDataLoaded == false) {
+      await new Promise(resolve => setTimeout(resolve, intervalMs));
+    }
+  }
 
 
 
