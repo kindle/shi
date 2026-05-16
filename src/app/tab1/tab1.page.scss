@@ -1,5 +1,31 @@
 
 
+.tab1-page-bg {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) translateX(20%);
+    width: 50vw;
+    height: 100vh;
+    background-image: url('/assets/img/tab1.jpeg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .tab1-page-bg {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+ion-content > *:not(.tab1-page-bg) {
+    position: relative;
+    z-index: 1;
+}
+
 .card{
     min-height: 380px !important;
 }
@@ -21,6 +47,24 @@
     --padding-start:0;
     border-radius: 50px;
     margin:10px;
+}
+
+.cards-layout-default {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cards-layout-ipad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .cards-layout-ipad {
+        justify-content: center;
+    }
 }
 
 .card {
@@ -163,5 +207,4 @@
     line-height: 2;
     font-size: xxx-large;
 }
-
 
