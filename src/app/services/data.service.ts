@@ -953,6 +953,7 @@ export class DataService {
   private async updateCurrentLoadingSet(setName:string): Promise<void> {
     this.CurrentLoadingSet = setName;
 
+    //console.log(`Start loading ${setName} data...`);
     await new Promise<void>((resolve) => {
       if (typeof requestAnimationFrame === 'function') {
         requestAnimationFrame(() => resolve());
@@ -3273,15 +3274,18 @@ export class DataService {
 
     this.set(this.LocalQueueKey, JSON.stringify(this.queueData));
   }
-  init(){
+  async init(){
+    //await this.updateCurrentLoadingSet("init data");
     //console.log('init data...')
     this.beginStartupJsonTracking();
 
     if (this.useTwoStepDbLoading) {
+      //await this.updateCurrentLoadingSet("initDbWithTwoSteps");
       this.initDbWithTwoSteps();
     } else {
       // 旧逻辑：直接加载全部本地 JSON
       // 如需改为“首启只加载精简版”，请开启 useTwoStepDbLoading
+      //await this.updateCurrentLoadingSet("start load json data");
       this.loadJsonData();
     }
 
@@ -3312,11 +3316,13 @@ export class DataService {
    * 第一次安装：先加载精简版；
    * 之后如已下载完整版，则直接加载完整版。
    */
-  private initDbWithTwoSteps() {
+  private async initDbWithTwoSteps() {
+    //await this.updateCurrentLoadingSet("start to get full db ready flag in initDbWithTwoSteps");
     this.get(this.FULL_DB_READY_KEY).then(async flag => {
       this.hasCheckedFullDbFlag = true;
       this.isFullDbReady = !!flag;
 
+      //await this.updateCurrentLoadingSet("done get...");
       if (this.isFullDbReady) {
         // 已经下载过完整版：
         // 1）优先尝试从本地 Filesystem 读取并解压 zip；
@@ -3326,17 +3332,20 @@ export class DataService {
           let loadedFromLocal = await this.tryLoadDbZipFromLocal();
 
           if (!loadedFromLocal && environment.fullDbZipUrl) {
+            await this.updateCurrentLoadingSet("downloadand extractdbzip");
             await this.downloadAndExtractDbZip();
           }
         } catch (e) {
           console.error('Init full DB from zip failed, fallback to direct JSON loading.', e);
         }
 
+        //await this.updateCurrentLoadingSet("start load json data in initDbWithTwoSteps");
         this.loadJsonData();
         void this.autoUpgradeFullDbOnAppOpen();
       } else {
         // 只加载精简版（默认实现仍然调用 loadJsonData，
         // 以避免你还没准备好精简 JSON 时功能受影响）
+        await this.updateCurrentLoadingSet("loadMinimalDb");
         this.loadMinimalDb();
         void this.triggerFirstInstallFullDbAutoDownloadIfAllowed();
       }
@@ -4777,6 +4786,112 @@ export class DataService {
 
 
 
+
+  showsample(p:any){
+    if(p.sample){
+      if(p.sample.indexOf('【其一】') !== -1){
+        return p.paragraphs?.[0].indexOf('【其一】') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+      }
+      else
+        return p.sample;
+    }else{
+      return p.paragraphs?.[0].indexOf('【其一】') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+    }
+  }
+  shuffle(){
+    this.togglePlayListRandomly();
+    
+    if(this.isShuffle){
+      this.isRepeat = 0;
+      this.ui.toast_short("top", this.ui.instant('Action.Shuffle'));//随机播放
+    }
+    else{
+      this.isRepeat = 1;
+      this.ui.toast_short("top", this.ui.instant('Action.ShuffleClosed'));//随机播放已关闭
+    }
+
+    this.savePlayStyle();
+    
+    this.updateInfiniteHint();
+  }
+  repeat(){
+    //0 normal play
+    //1 cycle play
+    //2 single play
+
+    if(this.isRepeat===1){
+      this.isRepeat = 2;
+      this.ui.toast_short("top", this.ui.instant('Title.SinglePlay'));//单曲循环
+    }
+    else{// if(this.data.isRepeat===2 || this.data.isRepeat===true){
+    //  this.data.isRepeat = 0;
+   //}
+    //else{
+      this.isRepeat = 1;
+      this.ui.toast_short("top", this.ui.instant('Title.ContinuePlay'));//顺序播放
+    }
+
+    ///if(this.data.isRepeat!==0){
+    //  this.data.isInfinite = false;
+    //}
+    
+    this.isShuffle = false;
+
+    this.savePlayStyle();
+  }
+
+  infinite(){
+    this.isInfinite = !this.isInfinite;
+    this.checkandload();
+    
+    if(this.isInfinite){
+      this.ui.toast_short("top", this.ui.instant('Title.AutoPlay'));//自动播放
+    }
+    else{
+      this.ui.toast_short("top", this.ui.instant('Title.AutoPlayClosed'));//自动播放已关闭
+    }
+
+    this.updateInfiniteHint();
+    this.savePlayStyle();
+  }
+
+
+  switchPlayMethord(){
+    if(this.isShuffle)
+    {
+      this.isShuffle = false;
+      this.repeat();
+      this.ui.toast_short("top", this.ui.instant('Title.ContinuePlay'));//顺序播放
+    }else{
+      if(this.isRepeat===1){
+        this.isRepeat = 2;
+        this.ui.toast_short("top", this.ui.instant('Title.SinglePlay'));//单曲循环
+      }
+      else if(this.isRepeat===2 || this.isRepeat===true){
+        this.isRepeat = 0;
+        this.shuffle();
+        this.ui.toast_short("top", this.ui.instant('Action.Shuffle'));//随机播放
+      }
+      else{
+        this.isRepeat = 1;
+        
+      }
+    }
+    this.savePlayStyle();
+
+    //console.log('repeat mode:', this.data.isRepeat);
+    //console.log('shuffle mode:', this.data.isShuffle);
+  }
+
+  checkandload(){
+    if(this.isInfinite===true)
+    {
+      //this.data.isRepeat = 0;
+      //when infinite is on
+      this.checkAndLoadAdditionalList();
+    }
+  }
+
   isShuffle:any= false;
   isRepeat:any= false;
   isInfinite:any= false;
@@ -4987,7 +5102,7 @@ export class DataService {
     }
   }
 
-  AppVersion:any="1.10";
+  AppVersion:any="1.11";
   async feedback(predefinedMessage:string = ''){
     let subject = this.ui.instant('Title.Feedback')+"";
     let body = predefinedMessage ? `${predefinedMessage}\n\n\n` : "";
