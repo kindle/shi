@@ -24,7 +24,7 @@
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
-        {{ ui.instant('Tabs.Search') }}<!--搜索-->
+        执明 zhí míng<!--{{ ui.instant('Tabs.Search') }}<!--搜索-->
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet4">
@@ -309,7 +309,7 @@
   </app-sub-title> <!--按作者-->
 
   <div *ngIf="!data.showFilter&&poets.length>=1">
-    <app-author name="" [source]="poets"></app-author>
+    <app-author name="" [source]="poets" [width]="60"></app-author>
   </div>
 
   <app-sub-title name="{{ ui.instant('Title.ByDynasty') }}" 

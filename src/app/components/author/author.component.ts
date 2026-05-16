@@ -11,6 +11,7 @@ export class AuthorComponent implements AfterViewInit, OnDestroy {
   @Input() name?: string;
   @Input() source?: any;
   @Input() relation?: any;
+  @Input() width?:any = 120;//60
 
   private observer?: IntersectionObserver;
 

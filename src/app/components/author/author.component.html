@@ -17,14 +17,14 @@
     slides-offset-before="20"
     slides-offset-after="10"
     >
-  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" (click)="data.goToAuthor(s)" style="width:140px;">
+  <swiper-slide *ngFor="let s of source; let i = index" class="swiper-slide" (click)="data.goToAuthor(s)" style="width:{{width+20}}px;">
     <div class="slide-in-right" [style.animation-delay]="i * 0.05 + 's'" style="display: flex; justify-content: center; flex-direction: column;width:120px;">
-      <img width="120" height="120" style="border-radius: 10px;" 
+      <img width="{{width}}" height="{{width}}" style="border-radius: 10px;" 
         style="border-radius: 50%;"
         defaultImage="assets/img/default.jpg" 
         lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s}}.jpeg"  
         onerror="javascript:this.src='assets/img/default.jpg'" />
-      <div class="card-text-style" style="text-align: center;margin-top: 10px;"
+      <div class="card-text-style" style="text-align: center;margin-top: 10px;width: {{width}}px;"
        [style.fontSize]="data.zoom(16)"> 
         {{relation?relation[i]:''}} {{s}}
       </div>
