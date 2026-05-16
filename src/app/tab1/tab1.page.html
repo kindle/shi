@@ -7,11 +7,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content #pageTop [fullscreen]="true">
+  <div class="tab1-page-bg" aria-hidden="true"
+  *ngIf="ui.isipad"
+  ></div>
   <ion-header collapse="condense" style="margin-bottom: 10px;">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
-        {{ ui.instant('Tabs.Home') }}<!--主页-->
+        孟章 mèngzhāng<!--{{ ui.instant('Tabs.Home') }}主页-->
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet1">
@@ -57,7 +60,7 @@
   
 
 
-  <div *ngIf="!ui.isipad" style="display: flex;flex-wrap: wrap;justify-content: center;">
+  <div class="cards-layout-default" [ngClass]="ui.isipad ? 'cards-layout-ipad' : 'cards-layout-default'">
     <div class="card-wrap" *ngFor="let item of data.articleData;index as i">
       <!--text template-->
       <ion-card class="card card-img" card-shrink
@@ -220,8 +223,8 @@
           </ion-card-subtitle>
           <ion-card-title style="margin-top:10px;color:black;"
           [style.fontSize]="data.zoom(28)">{{item.big_title}}</ion-card-title>
-          <ion-card-subtitle style="margin-top:10px;"
-          [style.fontSize]="data.zoom(18)">{{item.desc}}</ion-card-subtitle>
+          <!-- <ion-card-subtitle style="margin-top:10px;"
+          [style.fontSize]="data.zoom(18)">{{item.desc}}</ion-card-subtitle> -->
         </ion-card-content>
         <ion-card-content>
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
