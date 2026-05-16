@@ -9,7 +9,7 @@
     <swiper-slide *ngFor="let s of source" (click)="data.goToListBy(s)">
       <div style="min-height: 200px;">
         <ion-card-content style="padding-top:0;padding-bottom: 0;padding-left:0;">
-          <ion-card-title class="station-text" style="margin-bottom:5px;"
+          <ion-card-title class="station-text" style="margin-bottom:5px;white-space: nowrap;"
           [style.fontSize]="data.zoom(20)">{{s.alias}}</ion-card-title>
           <ion-card-title class="station-type" style="white-space: nowrap;">
             <div class="card-text-style" style="margin-left:0;"
