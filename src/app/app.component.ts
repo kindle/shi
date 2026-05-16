@@ -63,7 +63,7 @@ export class AppComponent implements DoCheck, OnDestroy {
     
     this.data.loadFontSizeZoomLevel();
 
-    this.data.loadAIChatHistory();
+    //this.data.loadAIChatHistory();
     this.data.loadMyLikeArticles();
 
     await this.hideNativeSplashScreen();

@@ -5,12 +5,16 @@
     <div class="app-startup-loading-mask__content">
       <div class="app-startup-loading-mask__visual">
         <img class="app-startup-loading-mask__image" src="assets/icon/favicon.png" alt="" />
-        <ion-spinner name="crescent"></ion-spinner>
+        <!-- <ion-spinner name="crescent"></ion-spinner> -->
       </div>
       <div class="app-startup-loading-mask__text">
-        {{
-          data.CurrentLoadingSet === ""? ui.instant("Title.LoadingLib")+"    " : ui.instant("Title.LoadingLib") + " " + data.CurrentLoadingSet
-        }}
+        {{ui.instant("Title.LoadingLib")}}
+      </div>
+      <div class="app-startup-loading-mask__text" *ngIf="!data.CurrentLoadingSet">
+         <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      <div class="app-startup-loading-mask__text" *ngIf="data.CurrentLoadingSet">
+         {{data.CurrentLoadingSet}}
       </div>
     </div>
   </div>
