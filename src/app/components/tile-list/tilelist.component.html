@@ -96,7 +96,7 @@
      [style.fontSize]="data.zoom(16)">{{s.data.text}}</div>
 
 
-    <div class="card-scroll-item1" *ngIf="s.group=='poetlist'" 
+    <div class="card-scroll-item1" *ngIf="s.group=='poetlist'&&s.data&&s.data.name" 
     (click)="data.goToAuthor(s.data.name)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
       defaultImage="" 
@@ -106,8 +106,8 @@
         background-repeat:no-repeat;
         background-color:rgb(113,203,212);">
     </div>
-    <div class="card-text-style" *ngIf="s.group=='poetlist'"
-     [style.fontSize]="data.zoom(16)">关注诗人 - {{s.data.name}}</div>
+    <div class="card-text-style" *ngIf="s.group=='poetlist'&&s.data&&s.data.name"
+     [style.fontSize]="data.zoom(16)">{{ui.instant('Title.followpoet')}} - {{s.data.name}}</div><!--关注诗人-->
 
 
     <div class="card-scroll-item1" *ngIf="s.group=='poem'" 

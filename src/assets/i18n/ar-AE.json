@@ -154,7 +154,9 @@
         "translation": "ترجمة",
         "introduction": "مقدمة",
         "comment": "تعليق",
-        "annotation": "حاشية"
+        "annotation": "حاشية",
+        "followpoet": "متابعة الشاعر",
+        "failtopreview": "فشل إنشاء المعاينة"
     },
 
     "Search": {

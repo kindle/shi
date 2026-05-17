@@ -128,7 +128,7 @@
         <ion-label>
           <h2 [style.fontSize]="data.zoom(17)"
           class="show-only-one-line" *ngIf="p.paragraphs">
-            {{p.sample&&p.sample.length>8?p.sample:p.paragraphs[0]}}
+            {{data.showsample(p)}}
           </h2>
           <h2 [style.fontSize]="data.zoom(17)"
           class="show-only-one-line" *ngIf="!p.paragraphs">

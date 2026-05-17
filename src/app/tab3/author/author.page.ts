@@ -17,6 +17,7 @@ export class AuthorPage {
   ionViewWillEnter() {
     this.data.updateLocalData('poetlist');
     this.onSearchChanged();
+    console.log(this.displayResult);
   }
 
   searchResult:any;
@@ -37,7 +38,7 @@ export class AuthorPage {
     }
 
     this.searchResult = this.data.localJsonData.filter((e:any)=>
-      (e.data.name+e.data.desc).indexOf(key)>=0
+     (e.data.name+e.data.desc).indexOf(key)>=0
     );
     this.searchResultCount = this.searchResult.length;
     

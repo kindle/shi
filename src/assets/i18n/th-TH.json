@@ -154,7 +154,9 @@
         "translation": "คำแปล",
         "introduction": "บทนำ",
         "comment": "ความคิดเห็น",
-        "annotation": "คำอธิบายประกอบ"
+        "annotation": "คำอธิบายประกอบ",
+        "followpoet": "ติดตามกวี",
+        "failtopreview": "สร้างตัวอย่างล้มเหลว"
     },
 
     "Search": {

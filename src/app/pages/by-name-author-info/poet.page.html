@@ -31,7 +31,7 @@
               </ion-item>
               -->
               <ion-item lines="full" [button]="true" [detail]="false"
-              *ngIf="!data.isliked(authorData,'poetlist')"  
+              *ngIf="authorData&&!data.isliked(authorData,'poetlist')"  
               (click)="data.likelist(authorData, 'poetlist')">
                 {{ ui.instant('Action.AddToLib') }}<!--添加到诗词库-->
                 <ion-icon name="add-outline" slot="end"></ion-icon>

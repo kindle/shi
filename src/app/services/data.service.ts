@@ -4259,6 +4259,7 @@ export class DataService {
 
   //group: idlist, taglist, poetlist, poem, customlist
   likelist(listdata:any, group:any){
+    let jump_url= "/tabs/tab3";
     //in case it's brief data from json
     if(group==='poem'){
       let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
@@ -4277,7 +4278,22 @@ export class DataService {
     {
       this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
     }
-    this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+    //this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+console.log(group)
+    if(group=='poem')
+    {
+      jump_url = "/tabs/tab3/poem";
+    }else if(group=='idlist')
+    {
+      jump_url = "/tabs/tab3/list";
+    }else if(group=='poetlist')
+    {
+      jump_url = "/tabs/tab3/author";
+    }else if(group=='taglist')
+    {
+      jump_url = "/tabs/tab3/tag";
+    }
+    this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"), jump_url)//"已添加到诗词库"
     Haptics.impact({ style: ImpactStyle.Light });
     
     this.checkAndRequestReview();
@@ -4661,7 +4677,7 @@ export class DataService {
   localJsonData:any;
   updateLocalData(group:any){
     this.localJsonData = this.recentCollection()
-      .filter((l:any)=>l.group==group);
+      .filter((l:any)=>l.group==group&&l.data);
     //console.log(this.localJsonData)
     switch(group){
       case 'customlist':
@@ -5314,7 +5330,8 @@ export class DataService {
       //console.log('add new one...')
     }
     this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
-    this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+    //this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
+    this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
   }
   delMyLikeArticle(data:any){
     for(let i=0;i<this.myLikeArticles.length;i++){

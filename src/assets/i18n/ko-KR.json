@@ -154,7 +154,9 @@
         "translation": "번역",
         "introduction": "소개",
         "comment": "논평",
-        "annotation": "주석"
+        "annotation": "주석",
+        "followpoet": "시인 팔로우",
+        "failtopreview": "미리보기 생성에 실패했습니다"
     },
 
     "Search": {

@@ -155,7 +155,9 @@
         "translation":"譯文",
         "introduction":"簡介",
         "comment":"評論",
-        "annotation":"註釋"
+        "annotation":"註釋",
+        "followpoet":"關注詩人",
+        "failtopreview":"預覽生成失敗"
     },
 
     "Search":{

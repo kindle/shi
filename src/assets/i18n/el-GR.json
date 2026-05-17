@@ -154,7 +154,9 @@
         "translation": "Μετάφραση",
         "introduction": "Εισαγωγή",
         "comment": "Σχόλιο",
-        "annotation": "Σημείωση"
+        "annotation": "Σημείωση",
+        "followpoet": "Ακολούθηση ποιητή",
+        "failtopreview": "Αποτυχία δημιουργίας προεπισκόπησης"
     },
 
     "Search": {

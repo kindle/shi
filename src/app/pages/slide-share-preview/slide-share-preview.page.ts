@@ -382,7 +382,7 @@ export class SlideSharePreviewPage {
     try {
       const shareArticle = this.shareArticle;
       if (!shareArticle) {
-        this.renderError = '预览生成失败';
+        this.renderError = this.ui.instant('Title.failtopreview');//'预览生成失败';
         return;
       }
 
@@ -438,7 +438,7 @@ export class SlideSharePreviewPage {
       }
     } catch (error) {
       console.error('Render share preview failed', error);
-      this.renderError = '预览生成失败';
+      this.renderError = this.ui.instant('Title.failtopreview');//'预览生成失败';
     } finally {
       this.isRendering = false;
     }

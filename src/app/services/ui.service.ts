@@ -210,6 +210,50 @@ export class UiService {
     await toast.present();
   }
 
+  async toast_jump(position: 'top' | 'middle' | 'bottom', msg:string, jumpTarget?: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1500,
+      position: 'bottom',
+      cssClass: 'custom-bottom-toast',
+      icon: 'checkmark-circle',
+    });
+
+    if (jumpTarget) {
+      const onToastClick = () => {
+        this.navigateToTarget(jumpTarget);
+        void toast.dismiss(undefined, 'tap');
+      };
+
+      toast.addEventListener('click', onToastClick, { once: true });
+    }
+
+    await toast.present();
+  }
+
+  private navigateToTarget(target: string) {
+    if (!target) {
+      return;
+    }
+
+    if (/^https?:\/\//i.test(target)) {
+      try {
+        const parsed = new URL(target);
+        if (parsed.origin === window.location.origin) {
+          this.router.navigateByUrl(parsed.pathname + parsed.search + parsed.hash);
+          return;
+        }
+      } catch {
+        // Fall back to full page navigation if URL parsing fails.
+      }
+
+      window.location.href = target;
+      return;
+    }
+
+    this.router.navigateByUrl(target);
+  }
+
   async toast(position: 'top' | 'middle' | 'bottom',msg:string) {
     const toast = await this.toastController.create({
       message: msg,

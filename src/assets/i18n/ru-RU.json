@@ -154,7 +154,9 @@
         "translation": "Перевод",
         "introduction": "Введение",
         "comment": "Комментарий",
-        "annotation": "Примечание"
+        "annotation": "Примечание",
+        "followpoet": "Подписаться на поэта",
+        "failtopreview": "Не удалось создать предпросмотр"
     },
 
     "Search":{

@@ -154,7 +154,9 @@
         "translation":"Translation",
         "introduction":"Introduction",
         "comment":"Commentary",
-        "annotation":"Annotation"
+        "annotation":"Annotation",
+        "followpoet":"Follow Poet",
+        "failtopreview":"Preview generation failed"
     },
 
     "Search":{

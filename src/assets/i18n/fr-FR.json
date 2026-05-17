@@ -154,7 +154,9 @@
         "translation": "Traduction",
         "introduction": "Introduction",
         "comment": "Commentaire",
-        "annotation": "Annotation"
+        "annotation": "Annotation",
+        "followpoet": "Suivre le poète",
+        "failtopreview": "Échec de la génération de l'aperçu"
     },
 
     "Search":{

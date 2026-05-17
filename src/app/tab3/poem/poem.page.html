@@ -74,15 +74,17 @@
         <h2 *ngIf="like.data['paragraphs']" 
           class="show-only-one-line"
           [style.fontSize]="data.zoom(17)">
-          {{like.data['paragraphs'][0]}}</h2>
+          {{data.showsample(like.data)}}
+        </h2>
         <h2 *ngIf="!like.data['paragraphs']" 
           class="show-only-one-line"
           [style.fontSize]="data.zoom(17)">
           {{like.data['sample']}}</h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
           [style.fontSize]="data.zoom(14)">
-          {{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
-          <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"></ion-icon>
+          <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"
+          style="margin-right:5px;min-width: 24px;"></ion-icon>
+          [{{like.data['dy']}}]{{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
         </p>
       </ion-label>
     </ion-item>

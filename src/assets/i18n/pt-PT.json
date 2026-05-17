@@ -154,7 +154,9 @@
         "translation": "Tradução",
         "introduction": "Introdução",
         "comment": "Comentário",
-        "annotation": "Anotação"
+        "annotation": "Anotação",
+        "followpoet": "Seguir poeta",
+        "failtopreview": "Falha ao gerar a pré-visualização"
     },
 
     "Search": {
