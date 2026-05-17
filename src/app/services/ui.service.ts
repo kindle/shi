@@ -221,6 +221,9 @@ export class UiService {
 
     if (jumpTarget) {
       const onToastClick = () => {
+        //close if it's playing
+        this.closePlayerPopup();
+        
         this.navigateToTarget(jumpTarget);
         void toast.dismiss(undefined, 'tap');
       };

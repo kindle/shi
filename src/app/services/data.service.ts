@@ -4279,7 +4279,7 @@ export class DataService {
       this.addTracker({name:"AddToLib", data:{listdata:listdata, group:group}});
     }
     //this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
-console.log(group)
+    
     if(group=='poem')
     {
       jump_url = "/tabs/tab3/poem";

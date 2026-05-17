@@ -49,7 +49,7 @@ export class PlayerPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data.currentPoem)
+    //console.log(this.data.currentPoem)
     document.body.classList.add('player-open');
     if(!this.data.isPlaying){
       this.data.setAudio();
@@ -524,7 +524,7 @@ export class PlayerPage implements OnInit {
   }
 
   clear(){
-    console.log('clear selection');
+    //console.log('clear selection');
     this.currentIndex = null;
     this.authorSelected = false;
     this.showNoteToolbar = false;
