@@ -11,8 +11,13 @@
     background-repeat: no-repeat;
     background-position: left center;
     background-size: auto 100%;
+    opacity: 0.22;
     pointer-events: none;
     z-index: 0;
+}
+
+.tab1-page-bg[slot='fixed'] {
+    position: absolute;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -59,6 +64,10 @@ ion-content > *:not(.tab1-page-bg) {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+.card-wrap {
+    flex: 0 0 auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
