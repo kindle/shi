@@ -255,11 +255,17 @@ export class DataService {
 
     this.http.get<any>(this.resolveDbPath(path)).subscribe({
       next: result => {
+        if (index > 0) {
+          this.startupDbFallbackRecoveredCount += 1;
+        }
         onSuccess(result);
         onComplete?.();
       },
       error: () => {
-        console.log(path)
+        this.startupDbFallbackCount += 1;
+        if (this.TestMode) {
+          console.log(path);
+        }
         this.loadDbJsonFromCandidates(paths, onSuccess, index + 1, onComplete);
       }
     });
@@ -268,7 +274,9 @@ export class DataService {
   private appendAuthorData(path: string): void {
     const done = this.createStartupJsonDoneCallback();
     this.loadDbJsonFromCandidates(this.getDbAssetCandidates(path), result => {
-      this.authorJsonData = this.authorJsonData.concat(result || []);
+      if (Array.isArray(result) && result.length > 0) {
+        this.authorJsonData.push(...result);
+      }
     }, 0, done);
   }
 
@@ -897,8 +905,14 @@ export class DataService {
   private startupJsonTrackingActive = false;
   private startupJsonSchedulingComplete = false;
   private startupJsonPendingRequests = 0;
+  private startupDbFallbackCount = 0;
+  private startupDbFallbackRecoveredCount = 0;
+  private startupLoadStartAt = 0;
+  private lastLoadingSetUiYieldAt = 0;
+  private startupTrackingStartedAt = 0;
 
   private beginStartupJsonTracking(): void {
+    this.startupTrackingStartedAt = Date.now();
     this.isStartupJsonDataLoading = true;
     this.startupJsonTrackingActive = true;
     this.startupJsonSchedulingComplete = false;
@@ -945,12 +959,22 @@ export class DataService {
     this.isStartupJsonDataLoading = false;
     this.CurrentLoadingSet = "";
 
+      const completedElapsedMs = this.startupTrackingStartedAt > 0 ? (Date.now() - this.startupTrackingStartedAt) : 0;
+      console.log(
+        `[startupJsonReady] done in ${completedElapsedMs}ms; poems=${this.JsonData.length}; authors=${this.authorJsonData.length}`
+      );
+
       if (Array.isArray(this.classicData) && this.classicData.length > 0) {
         void this.updateClassicDataAudio();
       }
   }
 
   private async updateCurrentLoadingSet(setName:string): Promise<void> {
+    const now = Date.now();
+    if (this.CurrentLoadingSet === setName && now - this.lastLoadingSetUiYieldAt < 120) {
+      return;
+    }
+
     this.CurrentLoadingSet = setName;
 
     //console.log(`Start loading ${setName} data...`);
@@ -962,9 +986,15 @@ export class DataService {
 
       setTimeout(() => resolve(), 0);
     });
+
+    this.lastLoadingSetUiYieldAt = Date.now();
   }
 
   async loadJsonData(){
+    this.startupLoadStartAt = Date.now();
+    this.startupDbFallbackCount = 0;
+    this.startupDbFallbackRecoveredCount = 0;
+    this.lastLoadingSetUiYieldAt = 0;
 
     //authors
     await this.updateCurrentLoadingSet("诗人");
@@ -1142,6 +1172,11 @@ export class DataService {
     }
 
     this.articleDataLoaded = true;
+
+    const elapsedMs = Date.now() - this.startupLoadStartAt;
+    console.log(
+      `[loadJsonData] done in ${elapsedMs}ms; fallbackAttempts=${this.startupDbFallbackCount}; fallbackRecovered=${this.startupDbFallbackRecoveredCount}; poems=${this.JsonData.length}; authors=${this.authorJsonData.length}`
+    );
     
     console.log('load JsonData done')
   }
@@ -1186,7 +1221,9 @@ export class DataService {
 
     try {
       const result = await firstValueFrom(this.http.get<any>(jsonFiles[index]));
-      this.poemListData = this.poemListData.concat(result);
+      if (Array.isArray(result) && result.length > 0) {
+        this.poemListData.push(...result);
+      }
     } catch (error) {
       console.error('Error loading JSON file:'+jsonFiles[index], error);
     }
@@ -2256,7 +2293,9 @@ export class DataService {
           element.annotation?.join('_') +
           element.tags.join('_');
     });
-    this.JsonData = this.JsonData.concat(result);
+    if (Array.isArray(result) && result.length > 0) {
+      this.JsonData.push(...result);
+    }
     //console.log("data init:"+this.articleData.length)
   }
 
