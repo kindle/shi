@@ -3,8 +3,8 @@
 
   <div *ngIf="showStartupArticleLoadingMask" class="app-startup-loading-mask" aria-live="polite" aria-busy="true">
     <div class="app-startup-loading-mask__content">
-      <div class="app-startup-loading-mask__visual">
-        <img class="app-startup-loading-mask__image" src="assets/icon/favicon.png" alt="" />
+      <div class="app-startup-loading-mask__visual" [class.app-startup-loading-mask__visual--ipad]="ui.isipad">
+        <img class="app-startup-loading-mask__image" [class.app-startup-loading-mask__image--ipad]="ui.isipad" src="assets/icon/favicon.png" alt="" />
         <!-- <ion-spinner name="crescent"></ion-spinner> -->
       </div>
       <div class="app-startup-loading-mask__text">

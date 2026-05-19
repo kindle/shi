@@ -8,9 +8,10 @@
 </ion-header>
 <ion-content #pageTop [fullscreen]="true">
   <div class="tab1-page-bg" aria-hidden="true" slot="fixed"
-  *ngIf="ui.isipad"
-  ></div>
-  <ion-header collapse="condense" style="margin-bottom: 10px;">
+    *ngIf="ui.isipad"></div>
+  <ion-header collapse="condense" style="margin-bottom: 10px;"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+  [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">

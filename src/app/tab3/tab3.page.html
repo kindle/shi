@@ -7,11 +7,15 @@
 </ion-header>
 
 <ion-content #pageTop [fullscreen]="true">
-  <ion-header collapse="condense">
+  <div class="tab3-page-bg" aria-hidden="true" slot="fixed"
+    *ngIf="ui.isipad"></div>
+  <ion-header collapse="condense"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+  [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
       [style.fontSize]="data.zoom(28)">
-        监兵 jiān bīng<!--{{ ui.instant('Tabs.Me') }}诗词库-->
+        执明 zhí míng<!--{{ ui.instant('Tabs.Me') }}诗词库-->
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet3">
@@ -62,200 +66,204 @@
     </ion-card>
   </div> -->
 
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+  [style.margin-left]="ui.isipad ? '20px' : 0">
 
-  <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
-    grid-gap:0px;padding:0 10px;margin-top:10px;margin-bottom:15px;">
-    <ion-card *ngFor="let topic of topics"
-      id="{{topic.id}}"
-      (click)="goToTopic(topic.id)"
-      ion-long-press 
-      (pressed)="pressed(topic.id)" 
-      (longPressed)="active(topic.id)"
-      (pressEnded)="released(topic.id)"
-      style="border-radius: 5px;margin:3px 5px;"
-      [ngStyle]="{'height': ui.isipad ? '250px' : '120px'}"
-      >
-      <div class="station-bg-title"
-      [ngStyle]="{'font-size': ui.isipad ? '240px' : '120px'}">
-        {{ ui.instant(topic.text) }}
-      </div>
-      <ion-card-content class="station-content" 
-        [ngStyle]="{'font-size': ui.isipad ? '60px' : '25px', 
-        'height': ui.isipad ? '250px' : '120px'}"
-        style="background-image: linear-gradient(to right, {{topic.color}},{{topic.color}}, {{topic.light}}, {{topic.color}});"
-        [style.fontSize]="data.zoom(ui.isipad?50:20)">
-        {{ ui.instant(topic.text) }}
-        <span> ({{$any(data)[topic.count]}})</span>
-      </ion-card-content>
-    </ion-card>
-  </div>
+    <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
+      grid-gap:0px;padding:0 10px;margin-top:10px;margin-bottom:15px;">
+      <ion-card *ngFor="let topic of topics"
+        id="{{topic.id}}"
+        (click)="goToTopic(topic.id)"
+        ion-long-press 
+        (pressed)="pressed(topic.id)" 
+        (longPressed)="active(topic.id)"
+        (pressEnded)="released(topic.id)"
+        style="border-radius: 5px;margin:3px 5px;"
+        [ngStyle]="{'height': ui.isipad ? '250px' : '120px'}"
+        >
+        <div class="station-bg-title"
+        [ngStyle]="{'font-size': ui.isipad ? '240px' : '120px'}">
+          {{ ui.instant(topic.text) }}
+        </div>
+        <ion-card-content class="station-content" 
+          [ngStyle]="{'font-size': ui.isipad ? '60px' : '25px', 
+          'height': ui.isipad ? '250px' : '120px'}"
+          style="background-image: linear-gradient(to right, {{topic.color}},{{topic.color}}, {{topic.light}}, {{topic.color}});"
+          [style.fontSize]="data.zoom(ui.isipad?50:20)">
+          {{ ui.instant(topic.text) }}
+          <span> ({{$any(data)[topic.count]}})</span>
+        </ion-card-content>
+      </ion-card>
+    </div>
 
-  
-  <!--最近添加-->
-  <div style="margin-bottom:15px;">
-    <app-tile-list name="{{ ui.instant('Title.RecentlyAdded') }}" 
-    [arrow]="false" [source]="data.recentCollection()" [max]="6">
-    </app-tile-list>
-  </div>
-
-
-  <!--动态-->
-  <app-sub-title name="{{ ui.instant('Tracker.StudyActivity') }}"></app-sub-title>
-  <app-shi-tracker [year]="2026" style="margin-top:10px;"></app-shi-tracker>
-  
-
-  <!--最近浏览专辑-->
-  <app-tile name="{{ ui.instant('Title.RecentAlbums') }}" [source]="data.playedEPHistory" 
-  *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+    
+    <!--最近添加-->
+    <div style="margin-bottom:15px;">
+      <app-tile-list name="{{ ui.instant('Title.RecentlyAdded') }}" 
+      [arrow]="false" [source]="data.recentCollection()" [max]="6">
+      </app-tile-list>
+    </div>
 
 
-  <!--最近浏览诗词-->
-  <ion-list style="margin:0 0px;margin-top: 0;">
-    <ion-list-header style="margin-bottom: 15px;">
-      {{ui.instant('Title.RecentShi')}}
-    </ion-list-header>
-    <ng-container *ngFor="let p of reversedPlayHistory">
-      <ion-item lines="none" (click)="play(p)" *ngIf="!data.currentPoem || p.id !== data.currentPoem.id">
-        <ion-thumbnail slot="start"
-        style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
-          <img id="authorimg" style="border-radius: 10px;" 
-            defaultImage="assets/img/default.jpg" 
-            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
-            onerror="javascript:this.src='assets/img/default.jpg'"
-              />
-        </ion-thumbnail>
-        
-        <ion-label>
-          <h2 [style.fontSize]="data.zoom(17)"
-          class="show-only-one-line" *ngIf="p.paragraphs">
-            {{data.showsample(p)}}
-          </h2>
-          <h2 [style.fontSize]="data.zoom(17)"
-          class="show-only-one-line" *ngIf="!p.paragraphs">
-            {{p.sample}}
-          </h2>
-          <p style="margin-top:5px;display: flex;align-items: center;"
-            class="show-only-one-line" [style.fontSize]="data.zoom(14)">
-            {{p.author}}《{{p.title}}》
-            <ion-icon name="headset" *ngIf="p.audio" color="primary" style="min-width: 16px;"></ion-icon>
-          </p>
+    <!--动态-->
+    <app-sub-title name="{{ ui.instant('Tracker.StudyActivity') }}"></app-sub-title>
+    <app-shi-tracker [year]="2026" style="margin-top:10px;"></app-shi-tracker>
+    
+
+    <!--最近浏览专辑-->
+    <app-tile name="{{ ui.instant('Title.RecentAlbums') }}" [source]="data.playedEPHistory" 
+    *ngIf="data.playedEPHistory&&data.playedEPHistory.length>2"></app-tile>
+
+
+    <!--最近浏览诗词-->
+    <ion-list style="margin:0 0px;margin-top: 0;">
+      <ion-list-header style="margin-bottom: 15px;">
+        {{ui.instant('Title.RecentShi')}}
+      </ion-list-header>
+      <ng-container *ngFor="let p of reversedPlayHistory">
+        <ion-item lines="none" (click)="play(p)" *ngIf="!data.currentPoem || p.id !== data.currentPoem.id">
+          <ion-thumbnail slot="start"
+          style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
+            <img id="authorimg" style="border-radius: 10px;" 
+              defaultImage="assets/img/default.jpg" 
+              lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+              onerror="javascript:this.src='assets/img/default.jpg'"
+                />
+          </ion-thumbnail>
+          
+          <ion-label>
+            <h2 [style.fontSize]="data.zoom(17)"
+            class="show-only-one-line" *ngIf="p.paragraphs">
+              {{data.showsample(p)}}
+            </h2>
+            <h2 [style.fontSize]="data.zoom(17)"
+            class="show-only-one-line" *ngIf="!p.paragraphs">
+              {{p.sample}}
+            </h2>
+            <p style="margin-top:5px;display: flex;align-items: center;"
+              class="show-only-one-line" [style.fontSize]="data.zoom(14)">
+              {{p.author}}《{{p.title}}》
+              <ion-icon name="headset" *ngIf="p.audio" color="primary" style="min-width: 16px;"></ion-icon>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+  <!--
+    <ion-list style="margin-left:5px;margin-bottom:10px;">
+      <ion-item (click)="goToPlayList()" [detail]="true">
+        <ion-icon color="primary" name="list-outline" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Poemlists') }}!--诗单列表--
+          <span> ({{data.poemlistcount}})</span>
         </ion-label>
       </ion-item>
-    </ng-container>
-  </ion-list>
+      <ion-item (click)="goToAuthor()" [detail]="true">
+        <ion-icon color="primary" name="people-outline" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Poets') }}!--诗人--
+          <span> ({{data.poetcount}})</span>
+        </ion-label>
+      </ion-item>
+      <ion-item (click)="goToList()" [detail]="true">
+        <ion-icon color="primary" name="albums-outline" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Albums') }}!--诗单--
+          <span> ({{data.albumcount}})</span>
+        </ion-label>
+      </ion-item>
+      <ion-item (click)="goToPoem()" [detail]="true">
+        <ion-icon color="primary" name="reader-outline" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Poems') }}!--诗词--
+          <span> ({{data.poemcount}})</span>
+        </ion-label>
+      </ion-item>
+      <ion-item (click)="goToTag()" [detail]="true">
+        <ion-icon color="primary" name="layers-outline" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Topics') }}!--主题--
+          <span> ({{data.topiccount}})</span>
+        </ion-label>
+      </ion-item>
+      <ion-item (click)="goToArticle()" [detail]="true">
+        <ion-icon color="primary" name="star" slot="start"></ion-icon>
+        <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
+          {{ ui.instant('Lib.Articles') }}!--文章--
+          <span> ({{data.myLikeArticles.length}})</span>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  -->
 
-<!--
-  <ion-list style="margin-left:5px;margin-bottom:10px;">
-    <ion-item (click)="goToPlayList()" [detail]="true">
-      <ion-icon color="primary" name="list-outline" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Poemlists') }}!--诗单列表--
-        <span> ({{data.poemlistcount}})</span>
-      </ion-label>
-    </ion-item>
-    <ion-item (click)="goToAuthor()" [detail]="true">
-      <ion-icon color="primary" name="people-outline" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Poets') }}!--诗人--
-        <span> ({{data.poetcount}})</span>
-      </ion-label>
-    </ion-item>
-    <ion-item (click)="goToList()" [detail]="true">
-      <ion-icon color="primary" name="albums-outline" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Albums') }}!--诗单--
-        <span> ({{data.albumcount}})</span>
-      </ion-label>
-    </ion-item>
-    <ion-item (click)="goToPoem()" [detail]="true">
-      <ion-icon color="primary" name="reader-outline" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Poems') }}!--诗词--
-        <span> ({{data.poemcount}})</span>
-      </ion-label>
-    </ion-item>
-    <ion-item (click)="goToTag()" [detail]="true">
-      <ion-icon color="primary" name="layers-outline" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Topics') }}!--主题--
-        <span> ({{data.topiccount}})</span>
-      </ion-label>
-    </ion-item>
-    <ion-item (click)="goToArticle()" [detail]="true">
-      <ion-icon color="primary" name="star" slot="start"></ion-icon>
-      <ion-label class="tab3-group-title" [style.fontSize]="data.zoom(17)">
-        {{ ui.instant('Lib.Articles') }}!--文章--
-        <span> ({{data.myLikeArticles.length}})</span>
-      </ion-label>
-    </ion-item>
-  </ion-list>
--->
+    <!-- 历史上的今天
+    <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>
 
-  <!-- 历史上的今天
-  <app-sub-title name="{{ ui.instant('History.Title') }}"></app-sub-title>
+    <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
+      <div style="padding-right:20px;margin-right:10px;" *ngIf="false&&ui.isWeb">
+        <ion-card class="card card-img" card-shrink
+          defaultImage=""  
+          lazyLoad="{{'assets/img/water.jpg'}}"
+          style="background-size:cover;
+          min-height: 220px;
+          background-color:blue;">
+          <ion-card-content [ngClass]="{'title-bottom':false}">
+            <ion-card-subtitle class="card-text" 
+              style="color:white;"
+              (click)="goToTool('video-to-audio')"
+              [style.fontSize]="data.zoom(18)">
+              小工具
+            </ion-card-subtitle>
+            <ion-card-title class="card-text" style="color:white;"
+            [style.fontSize]="data.zoom(28)">
+              视频转音频 
+            </ion-card-title>
+          </ion-card-content>
+          
+          <ion-footer *ngIf="convertService.downloadUrl">
+            <ion-grid style="padding:0">
+              <ion-row>
+                <ion-col>
+                  <ion-button expand="full" color="primary" (click)="convertService.playConvertedAudio()">
+                    <ion-icon name="play-circle-outline" slot="start"></ion-icon>
+                    Play
+                  </ion-button>
+                </ion-col>
+                <ion-col>
+                  <ion-button expand="full" color="success" (click)="convertService.downloadCurrentFile()">
+                    <ion-icon name="cloud-download-outline" slot="start"></ion-icon>
+                    Download
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-footer>
+        </ion-card>
+      </div> -->
 
-  <div class="tile-group" [style.display]="ui.isipad ? 'flex' : ''">
-    <div style="padding-right:20px;margin-right:10px;" *ngIf="false&&ui.isWeb">
-      <ion-card class="card card-img" card-shrink
-        defaultImage=""  
-        lazyLoad="{{'assets/img/water.jpg'}}"
-        style="background-size:cover;
-        min-height: 220px;
-        background-color:blue;">
-        <ion-card-content [ngClass]="{'title-bottom':false}">
-          <ion-card-subtitle class="card-text" 
-            style="color:white;"
-            (click)="goToTool('video-to-audio')"
-            [style.fontSize]="data.zoom(18)">
-            小工具
-          </ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:white;"
-          [style.fontSize]="data.zoom(28)">
-            视频转音频 
-          </ion-card-title>
-        </ion-card-content>
-        
-        <ion-footer *ngIf="convertService.downloadUrl">
-          <ion-grid style="padding:0">
-            <ion-row>
-              <ion-col>
-                <ion-button expand="full" color="primary" (click)="convertService.playConvertedAudio()">
-                  <ion-icon name="play-circle-outline" slot="start"></ion-icon>
-                  Play
-                </ion-button>
-              </ion-col>
-              <ion-col>
-                <ion-button expand="full" color="success" (click)="convertService.downloadCurrentFile()">
-                  <ion-icon name="cloud-download-outline" slot="start"></ion-icon>
-                  Download
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-footer>
-      </ion-card>
+  <!-- 
+      <div
+        [style.padding-right]="ui.isipad ? '' : '20px'"
+        [style.margin-right]="ui.isipad ? '' : '10px'">
+        <app-ascii-card class="card card-img custom-card" style="width: auto; margin: 5px;"
+            section="" 
+            sub="" 
+            title="{{ currentDateTitle }}">
+            !--历史上的今天--
+        </app-ascii-card>
+      </div>
+
+      <div *ngIf="false" style="padding-right:20px;margin-right:10px;">
+        <app-dog-card class="card card-img custom-card" style="width: auto; margin: 5px;"
+            section="" 
+            sub="" 
+            title="{{ ui.instant('Game.Title') }}">!--考考你--
+        </app-dog-card>
+      </div>
     </div> -->
 
-<!-- 
-    <div
-      [style.padding-right]="ui.isipad ? '' : '20px'"
-      [style.margin-right]="ui.isipad ? '' : '10px'">
-      <app-ascii-card class="card card-img custom-card" style="width: auto; margin: 5px;"
-          section="" 
-          sub="" 
-          title="{{ currentDateTitle }}">
-          !--历史上的今天--
-      </app-ascii-card>
-    </div>
-
-    <div *ngIf="false" style="padding-right:20px;margin-right:10px;">
-      <app-dog-card class="card card-img custom-card" style="width: auto; margin: 5px;"
-          section="" 
-          sub="" 
-          title="{{ ui.instant('Game.Title') }}">!--考考你--
-      </app-dog-card>
-    </div>
-  </div> -->
+  </div>
 
   <div class="placeholder-playbox"></div>
 </ion-content>

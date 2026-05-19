@@ -32,10 +32,20 @@
 	height: 120px;
 }
 
+.app-startup-loading-mask__visual--ipad {
+	width: 250px;
+	height: 250px;
+}
+
 .app-startup-loading-mask__image {
 	width: 120px;
 	height: 120px;
 	object-fit: contain;
+}
+
+.app-startup-loading-mask__image--ipad {
+	width: 250px;
+	height: 250px;
 }
 
 .app-startup-loading-mask__visual ion-spinner {
