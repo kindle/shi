@@ -3787,7 +3787,7 @@ export class DataService {
     else
     {
       this.saveRecentPlayedEP(item);
-      if(item.id){//有id诗单
+      if(item.id&&!item.tag){//有id诗单
         this.goToList(item.id);
       }
       else{//tag诗单
@@ -4152,10 +4152,9 @@ export class DataService {
         continue;
       }
 
-      const key = this.getKey(item.group);
-      const value = item.data?.[key];
+      const values = this.getLookupValues(item.data, item.group);
 
-      if(value == null){
+      if(values.length === 0){
         continue;
       }
 
@@ -4163,17 +4162,16 @@ export class DataService {
         nextLookup[item.group] = new Set<any>();
       }
 
-      nextLookup[item.group].add(value);
+      values.forEach(value => nextLookup[item.group].add(value));
     }
 
     this.likedLookup = nextLookup;
   }
 
   private addToLikedLookup(listdata:any, group:any){
-    const key = this.getKey(group);
-    const value = listdata?.[key];
+    const values = this.getLookupValues(listdata, group);
 
-    if(value == null){
+    if(values.length === 0){
       return;
     }
 
@@ -4181,18 +4179,38 @@ export class DataService {
       this.likedLookup[group] = new Set<any>();
     }
 
-    this.likedLookup[group].add(value);
+    values.forEach(value => this.likedLookup[group].add(value));
   }
 
   private removeFromLikedLookup(listdata:any, group:any){
-    const key = this.getKey(group);
-    const value = listdata?.[key];
+    const values = this.getLookupValues(listdata, group);
 
-    if(value == null){
+    if(values.length === 0){
       return;
     }
 
-    this.likedLookup[group]?.delete(value);
+    values.forEach(value => this.likedLookup[group]?.delete(value));
+  }
+
+  private getLookupValues(listdata:any, group:any){
+    const key = this.getKey(group);
+
+    return key
+      .split(',')
+      .map(part => part.trim())
+      .map(part => listdata?.[part])
+      .filter(value => value != null);
+  }
+
+  private hasMatchingLookupValue(left:any, right:any, group:any){
+    const leftValues = this.getLookupValues(left, group);
+
+    if(leftValues.length === 0){
+      return false;
+    }
+
+    const rightValues = new Set(this.getLookupValues(right, group));
+    return leftValues.some(value => rightValues.has(value));
   }
 
   recentCollection(){
@@ -4368,8 +4386,8 @@ export class DataService {
   }
 
   isliked(listdata:any, group:any){
-    let key = this.getKey(group);
-    return this.likedLookup[group]?.has(listdata?.[key]) === true;
+    const values = this.getLookupValues(listdata, group);
+    return values.some(value => this.likedLookup[group]?.has(value) === true);
   }
 
   private getKey(group:any){
@@ -4378,7 +4396,7 @@ export class DataService {
       key = "id";
     }
     else if(group=='taglist'){
-      key = "text";
+      key = "text,tag";
     }
     else if (group=='poetlist'){
       key = "name";
@@ -4421,15 +4439,10 @@ export class DataService {
           role: 'destructive',
           handler: () => {
             if(this.isliked(listdata, group)){
-              let key = this.getKey(group);
-              for (let i = 0; i < this.collectList.length; i++) {
-                let item = this.collectList[i];
-                if (item.group===group && item.data?.[key] === listdata[key]) {
-                  this.collectList.splice(i, 1);
-                  this.removeFromLikedLookup(listdata, group);
-                    break;
-                }
-              }
+              this.collectList = this.collectList.filter((item:any) =>
+                !(item.group===group && this.hasMatchingLookupValue(item.data, listdata, group))
+              );
+              this.rebuildLikedLookup();
               if(group!=='taglist')//tag not use guid, use tag string instead, so do not track it.
               {
                 this.addTracker({name:"RemoveFromLib", data:{listdata:listdata, group:group}});

@@ -17,6 +17,7 @@ export class TagPage {
   ionViewWillEnter() {
     this.data.updateLocalData('taglist');
     this.onSearchChanged();
+    console.log(this.displayResult)
   }
 
   searchResult:any;
