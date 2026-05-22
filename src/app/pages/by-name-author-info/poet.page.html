@@ -64,6 +64,8 @@
 </ion-header>
 
 <ion-content #pageTop [fullscreen]="true" *ngIf="localJsonData&&displayResult">
+  <div class="tab2-page-bg" aria-hidden="true" slot="fixed"
+    *ngIf="ui.isipad"></div>
   <!-- <ion-card class="card card-img" *ngIf="false&&!showFilter"
       (click)="ui.imageviewer(getUrl())"
       defaultImage="" 
@@ -81,7 +83,9 @@
         <ion-card-title class="card-text" style="color:white;"></ion-card-title>
       </ion-card-content>
   </ion-card> -->
-  <ion-header collapse="condense">
+  <ion-header collapse="condense"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+  [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <!--搜索-->
       <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
@@ -112,101 +116,106 @@
     </ion-toolbar>
   </ion-header>
   
-  <app-text [name]="authorData.name"
-    *ngIf="!showFilter&&authorData">
-  </app-text>
-  <app-text [name]="' ['+ authorData.dy  +'] ' + '' + (formatYear(authorData.birthYear) || '?') + ' - ' + (formatYear(authorData.deathYear) || '?') + ''" 
-    *ngIf="!showFilter&&authorData">
-  </app-text>
 
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+  [style.margin-left]="ui.isipad ? '20px' : 0">
   
-  <app-text
-    [text]="authorData.desc"
-    *ngIf="!showFilter&&authorData">
-  </app-text>
 
-  <br>
+    <app-text [name]="authorData.name"
+      *ngIf="!showFilter&&authorData">
+    </app-text>
+    <app-text [name]="' ['+ authorData.dy  +'] ' + '' + (formatYear(authorData.birthYear) || '?') + ' - ' + (formatYear(authorData.deathYear) || '?') + ''" 
+      *ngIf="!showFilter&&authorData">
+    </app-text>
 
+    
+    <app-text
+      [text]="authorData.desc"
+      *ngIf="!showFilter&&authorData">
+    </app-text>
 
-  <!--相关诗人-->
-  <ion-header *ngIf="!showFilter&&poets&&poets.length>0" style="margin-left:5px;"> 
-    <app-author name="{{ ui.instant('Title.RelatedPoets')}}" [source]="poets" [relation]="relation"
-     (clickAuthor)="data.goToAuthor($event)">
-    </app-author>
-  </ion-header>
-
-  <!--大事年表-->
-  <app-sub-title name="{{ ui.instant('Title.PoetFootprint') }}"
-  style="margin-top:10px;"
-    *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
-  </app-sub-title> 
-  <app-poet-footprint [author]="authorData.name" 
-    (footprintClicked)="goToMap()" 
-    *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
-  </app-poet-footprint>
-
-  <!--热门诗词-->
-  <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"
-  *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>
+    <br>
 
 
-  <!--所有作品-->
-  <ion-toolbar style="--background: translucent;" *ngIf="!showFilter">
-    <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
-      <ion-buttons>
-        <ion-card-title class="station-text" style="font-weight: bold;"
-        [style.fontSize]="data.zoom(20)">
-          {{ ui.instant('Title.AllPoems') }}
-        </ion-card-title>
-      </ion-buttons>
-    </ion-card-content>
-  </ion-toolbar>
+    <!--相关诗人-->
+    <ion-header *ngIf="!showFilter&&poets&&poets.length>0" style="margin-left:5px;"> 
+      <app-author name="{{ ui.instant('Title.RelatedPoets')}}" [source]="poets" [relation]="relation"
+      (clickAuthor)="data.goToAuthor($event)">
+      </app-author>
+    </ion-header>
 
-  <ion-list style="margin-top:10px;margin-bottom: 20px;" *ngIf="!showFilter">
-    <ion-text color="medium" *ngIf="displayResult" style="margin:20px;"
-    [style.fontSize]="data.zoom(15)">
-      {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
-    </ion-text>
-  </ion-list>
+    <!--大事年表-->
+    <app-sub-title name="{{ ui.instant('Title.PoetFootprint') }}"
+    style="margin-top:10px;"
+      *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
+    </app-sub-title> 
+    <app-poet-footprint [author]="authorData.name" 
+      (footprintClicked)="goToMap()" 
+      *ngIf="!showFilter&& authorData?.life && authorData.life.length > 0">
+    </app-poet-footprint>
 
-  <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult; let i = index; trackBy: trackByPoem">
-      <!-- <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
-      style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" 
-          defaultImage="assets/img/default.jpg" 
-          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
-          onerror="javascript:this.src='assets/img/default.jpg'"
-          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-          [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-          'height':(data.isPlaying) ? '' : '5px' }"
-        ></div>
-      </ion-thumbnail> -->
-      <ion-badge slot="start" color="light" mode="ios">
-        {{i+1}}
-      </ion-badge>
-      <ion-label (click)="data.playobj(p)">
-        <h2 [style.fontSize]="data.zoom(17)"
-         class="show-only-one-line">
-          {{data.showsample(p)}}
-        </h2>
-        <p style="margin-top:5px;display: flex;align-items: center;"
-         class="show-only-one-line" 
-        [style.fontSize]="data.zoom(14)">
-          {{p.author}}《{{p.title}}》
-          <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
-        </p>
-      </ion-label>
-      <app-button-end [p]="p" page="authorlist" slot="end"
-      [showShare]="true" (share)="share(p)"></app-button-end>
-    </ion-item>
-    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-list>
+    <!--热门诗词-->
+    <app-hot name="{{ ui.instant('Title.Hot') }}" [source]="hotPoemByAuthor" audio="yes" [hideAuthor]="true"
+    *ngIf="!showFilter&&hotPoemByAuthor.length>0"></app-hot>
 
 
+    <!--所有作品-->
+    <ion-toolbar style="--background: translucent;" *ngIf="!showFilter">
+      <ion-card-content style="display: flex;direction:row;padding-top:0;padding-bottom: 0;padding-left:15px;">
+        <ion-buttons>
+          <ion-card-title class="station-text" style="font-weight: bold;"
+          [style.fontSize]="data.zoom(20)">
+            {{ ui.instant('Title.AllPoems') }}
+          </ion-card-title>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-toolbar>
+
+    <ion-list style="margin-top:10px;margin-bottom: 20px;" *ngIf="!showFilter">
+      <ion-text color="medium" *ngIf="displayResult" style="margin:20px;"
+      [style.fontSize]="data.zoom(15)">
+        {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
+      </ion-text>
+    </ion-list>
+
+    <ion-list *ngIf="displayResult" style="margin-left:5px;">
+      <ion-item *ngFor="let p of displayResult; let i = index; trackBy: trackByPoem">
+        <!-- <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+        style="display: flex;justify-content: center;align-items: center;">
+          <img style="border-radius: 10px;" 
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
+            onerror="javascript:this.src='assets/img/default.jpg'"
+            [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+          <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+            [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+            'height':(data.isPlaying) ? '' : '5px' }"
+          ></div>
+        </ion-thumbnail> -->
+        <ion-badge slot="start" color="light" mode="ios">
+          {{i+1}}
+        </ion-badge>
+        <ion-label (click)="data.playobj(p)">
+          <h2 [style.fontSize]="data.zoom(17)"
+          class="show-only-one-line">
+            {{data.showsample(p)}}
+          </h2>
+          <p style="margin-top:5px;display: flex;align-items: center;"
+          class="show-only-one-line" 
+          [style.fontSize]="data.zoom(14)">
+            {{p.author}}《{{p.title}}》
+            <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
+          </p>
+        </ion-label>
+        <app-button-end [p]="p" page="authorlist" slot="end"
+        [showShare]="true" (share)="share(p)"></app-button-end>
+      </ion-item>
+      <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
+
+  </div>
 
 
   <div class="placeholder-playbox"></div>
