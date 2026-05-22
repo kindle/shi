@@ -72,7 +72,11 @@
         <ion-card-title class="card-text" style="color:white;">{{tag}}</ion-card-title>
       </ion-card-content>
   </ion-card> -->
-  <ion-header collapse="condense">
+  <div class="tab2-page-bg" aria-hidden="true" slot="fixed"
+    *ngIf="ui.isipad"></div>
+  <ion-header collapse="condense"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+  [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar><!--搜索-->
       <ion-searchbar placeholder="{{ ui.instant('Action.Search') }}"
       style="padding-left:15px;"
@@ -98,49 +102,53 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-text [name]="authorData.name" [text]="authorData.desc" *ngIf="!showFilter&&authorData"></app-text>
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+  [style.margin-left]="ui.isipad ? '20px' : 0">
+    
+
+    <app-text [name]="authorData.name" [text]="authorData.desc" *ngIf="!showFilter&&authorData"></app-text>
 
 
-  <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
-    <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
-      {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
-    </ion-text>
-  </ion-list>
+    <ion-list style="margin-top:20px;margin-bottom: 20px;" *ngIf="!showFilter">
+      <ion-text color="medium" *ngIf="displayResult" style="margin:20px;">
+        {{localJsonData.length}}{{ ui.instant('Title.PoemCount') }}<!--首诗词-->
+      </ion-text>
+    </ion-list>
 
-  <ion-list *ngIf="displayResult" style="margin-left:5px;">
-    <ion-item *ngFor="let p of displayResult" style="--padding-start:15px;--inner-padding-end:10px;">
-      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
-        style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" 
-          defaultImage="assets/img/default.jpg" 
-          lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(p.image?p.image:'poet/'+p.author+'.jpeg')}}"
-          onerror="javascript:this.src='assets/img/default.jpg'" 
-          [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
-          [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-          'height':(data.isPlaying) ? '' : '5px' }"
-        ></div>
-      </ion-thumbnail>
-      <ion-label (click)="data.playobj(p)">
-        <h2 class="show-only-one-line">
-          {{data.showsample(p)}}
-        </h2>
-        <p style="margin-top:5px;display: flex;align-items: center;"
-         class="show-only-one-line">
-          {{(p.dy?'['+p.dy+'] ':'')}}
-          {{p.author}}《{{p.title}}》
-          <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
-        </p>
-      </ion-label>
-      <app-button-end [p]="p" page="taglist" slot="end"
-      [showShare]="true" (share)="share(p)"></app-button-end>
-    </ion-item>
-    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-list>
+    <ion-list *ngIf="displayResult" style="margin-left:5px;">
+      <ion-item *ngFor="let p of displayResult" style="--padding-start:15px;--inner-padding-end:10px;">
+        <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+          style="display: flex;justify-content: center;align-items: center;">
+          <img style="border-radius: 10px;" 
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(p.image?p.image:'poet/'+p.author+'.jpeg')}}"
+            onerror="javascript:this.src='assets/img/default.jpg'" 
+            [ngStyle]="{'opacity':(data.currentPoem&&p.audio&&p.id === data.currentPoem.id) ? '0.5' : '1' }" />
+          <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&p.audio&&p.id === data.currentPoem.id"
+            [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+            'height':(data.isPlaying) ? '' : '5px' }"
+          ></div>
+        </ion-thumbnail>
+        <ion-label (click)="data.playobj(p)">
+          <h2 class="show-only-one-line">
+            {{data.showsample(p)}}
+          </h2>
+          <p style="margin-top:5px;display: flex;align-items: center;"
+          class="show-only-one-line">
+            {{(p.dy?'['+p.dy+'] ':'')}}
+            {{p.author}}《{{p.title}}》
+            <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
+          </p>
+        </ion-label>
+        <app-button-end [p]="p" page="taglist" slot="end"
+        [showShare]="true" (share)="share(p)"></app-button-end>
+      </ion-item>
+      <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
 
-
+  </div>
 
 
   <div class="placeholder-playbox"></div>

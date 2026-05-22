@@ -13,14 +13,25 @@
           (data.currentArticle.color||'') + ' url(' + data.currentArticle.bg_image + ') top / ' + 'contain' + ' no-repeat'
         )
         :
-        'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') top/auto ' + defaultBgHeight + ' no-repeat'
+        'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') '+
+        (ui.isipad ? 'left top' : 'top')
+        +'/auto ' + 
+        (ui.isipad ? '72%' : defaultBgHeight)
+        + ' no-repeat'
       )
   }"
-  
+  [style.background-position]="ui.isipad ? 'left top' : 'top'"
+  [style.background-size]="ui.isipad ? '72% auto' : '100% auto'"
   >
+  <div class="tablist-page-bg" aria-hidden="true" slot="fixed"
+  *ngIf="ui.isipad"></div>
+
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+  [style.margin-left]="ui.isipad ? (data.currentArticle.effect?'0':'20px') : 0">
+  
     <!--shared backbutton for normal and effect animation start-->
     <!--[style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? 'calc(30px + 20px)' : '30px'"-->
-    <ion-card-content style="z-index:100;position:fixed;width:100%;
+    <ion-card-content style="z-index:100;position:relative;width:100%;
       padding-inline-start:20px;
       padding-inline-end:20px;padding-top:30px;"
       [style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? '45px' : '30px'">
@@ -56,7 +67,8 @@
     <!-- min-height: {{data.currentArticle.min_height}}; -->
     <div style="bailin:0;display: flex;flex-wrap: wrap;justify-content: center;
       background-color: white;position: fixed; top: 0; width: 100%; z-index: 0;"
-      *ngIf="data.currentArticle.effect">
+      *ngIf="data.currentArticle.effect"
+      [style.width]="ui.isipad ? '72%' : '100%'">
       <app-card-moon viewer="true" class="custom-card" 
       *ngIf="data.currentArticle.effect=='moon'" 
       style="padding:0;margin:0"
@@ -335,4 +347,6 @@
         </div>
       </div>
     </div>
+
+  </div>  
 </ion-content>
