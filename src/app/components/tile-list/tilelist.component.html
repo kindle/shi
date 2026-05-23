@@ -93,7 +93,7 @@
         background-color: {{s.data.color}};">
     </div>
     <div class="card-text-style" *ngIf="s.group=='taglist'"
-     [style.fontSize]="data.zoom(16)">{{s.data.text}}</div>
+     [style.fontSize]="data.zoom(16)">{{s.data.text?s.data.text:s.data.tag}}</div>
 
 
     <div class="card-scroll-item1" *ngIf="s.group=='poetlist'&&s.data&&s.data.name" 
