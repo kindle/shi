@@ -11,7 +11,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+ <div class="tab2-page-bg" aria-hidden="true" slot="fixed"
+  *ngIf="ui.isipad"></div>
+  <ion-header collapse="condense"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+  [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md">
         {{ ui.instant('Lib.Poems') }}<!--诗词-->
@@ -31,64 +35,68 @@
     </ion-toolbar>
   </ion-header>
 
-  <div style="display: flex;margin:5px 20px;">
-    <ion-button color="light" style="width: 100%;margin-right:10px;"
-    (click)="data.playList(listdata.list, '诗词')">
-      <ion-icon slot="start" name="play" color="primary"></ion-icon>
-      <ion-text color="primary">{{ ui.instant('Action.Play') }}<!--播放--></ion-text>
-    </ion-button>
-    <ion-button color="light" style="width: 100%;margin-left:10px;"
-    (click)="data.playListRandomly(listdata.list, '诗词')">
-      <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
-      <ion-text color="primary">{{ ui.instant('Action.Shuffle') }}<!--随机播放--></ion-text>
-    </ion-button>
-  </div>
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+  [style.margin-left]="ui.isipad ? '20px' : 0">
 
-  <ion-list>
-    <ion-item *ngFor="let like of displayResult" (click)="data.playobj(like.data)"
-    style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
-      <ion-thumbnail slot="start" *ngIf="like.data"
-      style="display: flex;justify-content: center;align-items: center;">
-        <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['author'])"
-          defaultImage="assets/img/default.jpg" 
-          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['author']}}.jpeg" 
-          onerror="javascript:this.src='assets/img/default.jpg'"
-          [ngStyle]="{'opacity':(data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id) ? '0.5' : '1' }" />
-        <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id"
-          [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
-          'height':(data.isPlaying) ? '' : '5px' }"
-        ></div>
-      </ion-thumbnail>
-      <!--
-      <ion-label *ngIf="like.data">
-        <h2 *ngIf="like.data['paragraphs']">
-          {{like.data['paragraphs'][0]}}
-        </h2>
-        <p style="margin-top:5px;display: flex;align-items: end;">
-          {{like.data['author']}}《{{like.data['title']}}》
-          <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"></ion-icon>
-        </p>
-      </ion-label>
-      -->
-      <ion-label *ngIf="like.data">
-        <h2 *ngIf="like.data['paragraphs']" 
-          class="show-only-one-line"
-          [style.fontSize]="data.zoom(17)">
-          {{data.showsample(like.data)}}
-        </h2>
-        <h2 *ngIf="!like.data['paragraphs']" 
-          class="show-only-one-line"
-          [style.fontSize]="data.zoom(17)">
-          {{like.data['sample']}}</h2>
-        <p style="margin-top:5px;display: flex;align-items: center;"
-          [style.fontSize]="data.zoom(14)">
-          <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"
-          style="margin-right:5px;min-width: 24px;"></ion-icon>
-          [{{like.data['dy']}}]{{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+    <div style="display: flex;margin:5px 20px;">
+      <ion-button color="light" style="width: 100%;margin-right:10px;"
+      (click)="data.playList(listdata.list, '诗词')">
+        <ion-icon slot="start" name="play" color="primary"></ion-icon>
+        <ion-text color="primary">{{ ui.instant('Action.Play') }}<!--播放--></ion-text>
+      </ion-button>
+      <ion-button color="light" style="width: 100%;margin-left:10px;"
+      (click)="data.playListRandomly(listdata.list, '诗词')">
+        <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
+        <ion-text color="primary">{{ ui.instant('Action.Shuffle') }}<!--随机播放--></ion-text>
+      </ion-button>
+    </div>
+
+    <ion-list>
+      <ion-item *ngFor="let like of displayResult" (click)="data.playobj(like.data)"
+      style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
+        <ion-thumbnail slot="start" *ngIf="like.data"
+        style="display: flex;justify-content: center;align-items: center;">
+          <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['author'])"
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['author']}}.jpeg" 
+            onerror="javascript:this.src='assets/img/default.jpg'"
+            [ngStyle]="{'opacity':(data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id) ? '0.5' : '1' }" />
+          <div class="playing" style="position: fixed;" *ngIf="data.currentPoem&&like.data['audio']&&like.data['id'] === data.currentPoem.id"
+            [ngStyle]="{'animation-duration':(data.isPlaying) ? '1s' : '1000s',
+            'height':(data.isPlaying) ? '' : '5px' }"
+          ></div>
+        </ion-thumbnail>
+        <!--
+        <ion-label *ngIf="like.data">
+          <h2 *ngIf="like.data['paragraphs']">
+            {{like.data['paragraphs'][0]}}
+          </h2>
+          <p style="margin-top:5px;display: flex;align-items: end;">
+            {{like.data['author']}}《{{like.data['title']}}》
+            <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"></ion-icon>
+          </p>
+        </ion-label>
+        -->
+        <ion-label *ngIf="like.data">
+          <h2 *ngIf="like.data['paragraphs']" 
+            class="show-only-one-line"
+            [style.fontSize]="data.zoom(17)">
+            {{data.showsample(like.data)}}
+          </h2>
+          <h2 *ngIf="!like.data['paragraphs']" 
+            class="show-only-one-line"
+            [style.fontSize]="data.zoom(17)">
+            {{like.data['sample']}}</h2>
+          <p style="margin-top:5px;display: flex;align-items: center;"
+            [style.fontSize]="data.zoom(14)">
+            <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"
+            style="margin-right:5px;min-width: 24px;"></ion-icon>
+            [{{like.data['dy']}}]{{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
   
   <div class="placeholder-playbox"></div>
 </ion-content>
