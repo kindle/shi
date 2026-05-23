@@ -5,6 +5,22 @@
   --padding-bottom: 0;
 }
 
+.map-back-action {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  z-index: 500;
+}
+
+.map-back-button {
+  margin: 0;
+  --background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);
+  //--color: var(--ion-color-light);
+  --border-radius: 15px;
+  -webkit-backdrop-filter: saturate(210%) blur(20px);
+  backdrop-filter: saturate(210%) blur(20px);
+}
+
 .map-shell {
   position: relative;
   width: 100%;

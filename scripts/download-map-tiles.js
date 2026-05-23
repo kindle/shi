@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const crypto = require('crypto');
 
 const DEFAULT_ZOOM = 5;
 const BOUNDS = {
@@ -9,6 +10,17 @@ const BOUNDS = {
   minLng: 73,
   maxLng: 135,
 };
+const EXTRA_TILES_BY_ZOOM = {
+  6: [{ x: 43, y: 23 }],
+};
+const TILE_SOURCES = [
+  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  'https://tile.openstreetmap.de/{z}/{x}/{y}.png',
+  'https://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+];
+const BLOCKED_TILE_HASHES = new Set([
+  'b02c44252dac5a5e820ecef1e9bf9200e9407c042df668a466a1aa81a9ecca7a',
+]);
 const OUTPUT_ROOT = path.resolve(__dirname, '../src/assets/map');
 
 function latLngToTile(lat, lng, zoom) {
@@ -38,11 +50,20 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function buildTileUrl(template, zoom, x, y) {
+  return template
+    .replace('{z}', String(zoom))
+    .replace('{x}', String(x))
+    .replace('{y}', String(y));
+}
+
 function downloadTile(url, outputFile) {
   return new Promise((resolve, reject) => {
     const request = https.get(url, {
       headers: {
-        'User-Agent': 'shi-offline-tile-downloader/1.0 (contact: shi.reddah.com)',
+        'User-Agent': 'shi-offline-tile-downloader/1.1 (+https://shi.reddah.com/; contact: shi@reddah.com)',
+        Referer: 'https://shi.reddah.com/',
+        Accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
       },
     }, (response) => {
       if (response.statusCode !== 200) {
@@ -51,16 +72,27 @@ function downloadTile(url, outputFile) {
         return;
       }
 
-      fs.mkdirSync(path.dirname(outputFile), { recursive: true });
-      const stream = fs.createWriteStream(outputFile);
-      response.pipe(stream);
+      const chunks = [];
 
-      stream.on('finish', () => {
-        stream.close(() => resolve());
+      response.on('data', (chunk) => {
+        chunks.push(chunk);
       });
 
-      stream.on('error', (error) => {
-        stream.destroy();
+      response.on('end', () => {
+        const buffer = Buffer.concat(chunks);
+        const hash = crypto.createHash('sha256').update(buffer).digest('hex');
+
+        if (BLOCKED_TILE_HASHES.has(hash)) {
+          reject(new Error(`Blocked tile payload from ${url}`));
+          return;
+        }
+
+        fs.mkdirSync(path.dirname(outputFile), { recursive: true });
+        fs.writeFileSync(outputFile, buffer);
+        resolve();
+      });
+
+      response.on('error', (error) => {
         reject(error);
       });
     });
@@ -74,12 +106,27 @@ async function main() {
   const zoom = Number.isInteger(zoomArg) ? zoomArg : DEFAULT_ZOOM;
 
   const range = getTileRange(zoom);
+  const taskKeys = new Set();
   const tasks = [];
+
+  function addTask(x, y) {
+    const key = `${x}/${y}`;
+    if (taskKeys.has(key)) {
+      return;
+    }
+
+    taskKeys.add(key);
+    tasks.push({ x, y });
+  }
 
   for (let x = range.xMin; x <= range.xMax; x += 1) {
     for (let y = range.yMin; y <= range.yMax; y += 1) {
-      tasks.push({ x, y });
+      addTask(x, y);
     }
+  }
+
+  for (const tile of EXTRA_TILES_BY_ZOOM[zoom] || []) {
+    addTask(tile.x, tile.y);
   }
 
   console.log(`Downloading ${tasks.length} tiles for zoom ${zoom}...`);
@@ -95,15 +142,25 @@ async function main() {
       continue;
     }
 
-    const url = `https://tile.openstreetmap.org/${zoom}/${task.x}/${task.y}.png`;
+    let lastError;
 
-    try {
-      await downloadTile(url, outputFile);
-      downloaded += 1;
-      process.stdout.write(`\rDownloaded ${downloaded}/${tasks.length}, skipped ${skipped}`);
-      await sleep(80);
-    } catch (error) {
-      console.error(`\nSkip tile ${zoom}/${task.x}/${task.y}: ${error.message}`);
+    for (const template of TILE_SOURCES) {
+      const url = buildTileUrl(template, zoom, task.x, task.y);
+
+      try {
+        await downloadTile(url, outputFile);
+        downloaded += 1;
+        process.stdout.write(`\rDownloaded ${downloaded}/${tasks.length}, skipped ${skipped}`);
+        await sleep(80);
+        lastError = undefined;
+        break;
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (lastError) {
+      console.error(`\nSkip tile ${zoom}/${task.x}/${task.y}: ${lastError.message}`);
     }
   }
 

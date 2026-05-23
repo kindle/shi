@@ -37,9 +37,9 @@ export class MapPage implements AfterViewInit, OnDestroy {
 
   private readonly visitedMarkerColor = '#1d4ed8';
   private readonly currentMarkerColor = '#dc2626';
-  private readonly defaultZoomLevel = 5;
+  private readonly defaultZoomLevel = 6;
   private allowZoomLevelChange = false;
-  private currentZoomLevel = 5; // Track actual zoom level to avoid jumpback
+  private currentZoomLevel = 6; // Track actual zoom level to avoid jumpback
 
   @ViewChild('lifeMap', { static: false }) lifeMapRef?: ElementRef<HTMLDivElement>;
 
@@ -95,6 +95,7 @@ export class MapPage implements AfterViewInit, OnDestroy {
   }
 
   goback(){
+    //console.log('Going back');
    this.location.back();
   }
 

@@ -334,6 +334,10 @@ export class PoetFootprintComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
+    this.map.once('moveend', () => {
+      console.log('[PoetFootprint] map zoom level:', this.map?.getZoom());
+    });
+
     if (visiblePoints.length === 1) {
       const [{ point }] = visiblePoints;
       this.map.setView([point.lat, point.lng], 8, { animate: true });
