@@ -31,9 +31,10 @@
   
     <!--shared backbutton for normal and effect animation start-->
     <!--[style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? 'calc(30px + 20px)' : '30px'"-->
-    <ion-card-content style="z-index:100;position:relative;width:100%;
+    <ion-card-content style="z-index:100;position:fixed;top:0;
       padding-inline-start:20px;
       padding-inline-end:20px;padding-top:30px;"
+      [style.width]="ui.isipad ? '72%' : '100%'"
       [style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? '45px' : '30px'">
       <ion-buttons style="display:flex;justify-content:center;
         width:fit-content;height:25px;float:left;

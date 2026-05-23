@@ -269,7 +269,8 @@
           <ion-list style="margin:5px 5px;" id="playlist-top" class="snap-start">
 
             <!--current play item start-->
-            <ion-item *ngIf="false" lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+            <ion-item *ngIf="false" lines="none" style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;
+            --inner-padding-end:0;">
               <div class="play-icon-box" *ngIf="!rightbigimg">
                 <!-- <img style="min-width: 56px;border-radius: 10px;aspect-ratio: 1;background-size: contain;"
                   defaultImage="assets/img/default.jpg" 
@@ -305,7 +306,11 @@
               (click)="data.likelist(data.currentPoem,'poem')">
                 <ion-icon name="add-outline" color="dark"></ion-icon>
               </ion-button> -->
-              <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+              <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end> -->
+              <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
+              style="margin-right:0;">
+                <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
+              </ion-button>
             </ion-item>
             <!--current play item end-->
             <div *ngIf="!rightbigimg">
@@ -555,7 +560,8 @@
         <swiper-slide *ngIf="showIntro">
           <ion-list style="margin:5px 5px;margin-top: calc(5px + env(safe-area-inset-top));">
             <ion-item lines="none" 
-              style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;">
+              style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;
+              --inner-padding-end:0;">
               <div class="play-icon-box" *ngIf="!rightbigimg" 
                 (click)="playlyric()">
                 <ion-thumbnail slot="start"
@@ -583,8 +589,12 @@
                   {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
                 </p>
               </ion-label>
-              <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
-              [isViewAuthor]="true"></app-button-end>
+              <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
+              [isViewAuthor]="true"></app-button-end> -->
+              <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
+              style="margin-right:0;">
+                <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
+              </ion-button>
             </ion-item>
           </ion-list>
 
