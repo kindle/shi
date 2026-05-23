@@ -81,8 +81,8 @@
         style="border-radius: 5px;margin:3px 5px;"
         [ngStyle]="{'height': ui.isipad ? '250px' : '120px'}"
         >
-        <div class="station-bg-title"
-        [ngStyle]="{'font-size': ui.isipad ? '240px' : '120px'}">
+        <div class="station-bg-title" style="display:flow;"
+        [ngStyle]="{'font-size': ui.isipad ? '160px' : '120px'}">
           {{ ui.instant(topic.text) }}
         </div>
         <ion-card-content class="station-content" 
