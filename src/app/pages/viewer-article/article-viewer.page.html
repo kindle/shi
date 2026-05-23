@@ -328,10 +328,14 @@
   
     <div class="floating-div" [ngStyle]="{'transform': 'translateY(' + translateY + 'px)', 'opacity': opacity}">
       <div class="fd-container">
-        <div class="fd-item" (click)="data.goToSearch()">
-          <ion-icon name="search-outline" class="fd-icon" color="dark"></ion-icon>
-          <div class="fd-text">{{ ui.instant('Action.Search') }}<!--搜索--></div>
+        <div class="fd-item" (click)="goback()">
+          <ion-icon name="chevron-down-circle-outline" class="fd-icon" color="dark"></ion-icon>
+          <div class="fd-text">{{ ui.instant('Action.Back') }}<!--返回--></div>
         </div>
+        <!-- <div class="fd-item" (click)="data.goToSearch()">
+          <ion-icon name="search-outline" class="fd-icon" color="dark"></ion-icon>
+          <div class="fd-text">{{ ui.instant('Action.Search') }}--搜索--</div>
+        </div> -->
         <div class="fd-item" *ngIf="!data.isLikedArticle()" (click)="data.likeArticle()">
           <ion-icon name="star-outline" class="fd-icon" color="dark"></ion-icon>
           <div class="fd-text">{{ ui.instant('Action.Collect') }}<!--收藏--></div>
