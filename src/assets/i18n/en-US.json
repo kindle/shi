@@ -156,7 +156,8 @@
         "comment":"Commentary",
         "annotation":"Annotation",
         "followpoet":"Follow Poet",
-        "failtopreview":"Preview generation failed"
+        "failtopreview":"Preview generation failed",
+        "NoInternet":"No internet connection"
     },
 
     "Search":{

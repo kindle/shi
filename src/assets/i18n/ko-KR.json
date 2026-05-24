@@ -156,7 +156,8 @@
         "comment": "논평",
         "annotation": "주석",
         "followpoet": "시인 팔로우",
-        "failtopreview": "미리보기 생성에 실패했습니다"
+        "failtopreview": "미리보기 생성에 실패했습니다",
+        "NoInternet": "인터넷에 연결되어 있지 않습니다"
     },
 
     "Search": {

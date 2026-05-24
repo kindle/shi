@@ -157,7 +157,8 @@
         "comment":"评论",
         "annotation":"注释",
         "followpoet":"关注诗人",
-        "failtopreview":"预览生成失败"
+        "failtopreview":"预览生成失败",
+        "NoInternet":"网络不可用"
     },
 
     "Search":{

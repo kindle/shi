@@ -157,7 +157,8 @@
         "comment":"評論",
         "annotation":"註釋",
         "followpoet":"關注詩人",
-        "failtopreview":"預覽生成失敗"
+        "failtopreview":"預覽生成失敗",
+        "NoInternet":"網路不可用"
     },
 
     "Search":{

@@ -11,7 +11,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <div class="mylike-page-bg" aria-hidden="true" slot="fixed"
+    *ngIf="ui.isipad"></div>
+  <ion-header collapse="condense"
+  [style.margin-left]="ui.isipad ? '20px' : 0"
+    [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md">
         {{ ui.instant('Lib.Poets') }}<!--诗人-->
@@ -20,7 +24,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-header collapse="condense">
-    <ion-toolbar><!--在诗人中查找-->
+    <ion-toolbar
+    [style.margin-left]="ui.isipad ? '20px' : 0"
+    [style.padding-right]="ui.isipad ? '20px' : 0"><!--在诗人中查找-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Poets') }}"
         style="padding-left:15px;"
         [(ngModel)]="searchText"
@@ -32,22 +38,25 @@
   </ion-header>
 
 
-  <ion-list>
-    <ion-item *ngFor="let like of displayResult" 
-    style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
-      <ion-thumbnail slot="start" *ngIf="like.data&&like.data.name">
-        <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['name'])"
-          defaultImage="assets/img/default.jpg" 
-          lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['name']}}.jpeg"  
-          onerror="javascript:this.src='assets/img/default.jpg'"  />
-      </ion-thumbnail>
-      <ion-label *ngIf="like.data&&like.data.name" (click)="data.goToAuthor(like.data['name'])">
-        <h2>{{like.data['name']}}</h2>
-        <!--<p style="margin-top:5px;">{{like.data['desc']}}</p>-->
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div [style.width]="ui.isipad ? '72%' : '100%'"
+    [style.margin-left]="ui.isipad ? '20px' : 0">
+    <ion-list>
+      <ion-item *ngFor="let like of displayResult" 
+      style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
+        <ion-thumbnail slot="start" *ngIf="like.data&&like.data.name">
+          <img style="border-radius: 10px;" (click)="data.goToAuthor(like.data['name'])"
+            defaultImage="assets/img/default.jpg" 
+            lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{like.data['name']}}.jpeg"  
+            onerror="javascript:this.src='assets/img/default.jpg'"  />
+        </ion-thumbnail>
+        <ion-label *ngIf="like.data&&like.data.name" (click)="data.goToAuthor(like.data['name'])">
+          <h2>{{like.data['name']}}</h2>
+          <!--<p style="margin-top:5px;">{{like.data['desc']}}</p>-->
+        </ion-label>
+      </ion-item>
+    </ion-list>
 
+  </div>
   
   <div class="placeholder-playbox"></div>
 </ion-content>

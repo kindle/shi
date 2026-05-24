@@ -156,7 +156,8 @@
         "comment": "Commentaire",
         "annotation": "Annotation",
         "followpoet": "Suivre le poète",
-        "failtopreview": "Échec de la génération de l'aperçu"
+        "failtopreview": "Échec de la génération de l'aperçu",
+        "NoInternet": "Pas de connexion Internet"
     },
 
     "Search":{

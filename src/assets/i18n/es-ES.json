@@ -156,7 +156,8 @@
         "comment": "Comentario",
         "annotation": "Anotación",
         "followpoet": "Seguir poeta",
-        "failtopreview": "Error al generar la vista previa"
+        "failtopreview": "Error al generar la vista previa",
+        "NoInternet": "Sin conexión a Internet"
     },
 
     "Search":{

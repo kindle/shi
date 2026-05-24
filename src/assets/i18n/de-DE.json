@@ -156,7 +156,8 @@
         "comment": "Kommentar",
         "annotation": "Anmerkung",
         "followpoet": "Dichter folgen",
-        "failtopreview": "Vorschau konnte nicht erstellt werden"
+        "failtopreview": "Vorschau konnte nicht erstellt werden",
+        "NoInternet": "Keine Internetverbindung"
     },
 
     "Search":{

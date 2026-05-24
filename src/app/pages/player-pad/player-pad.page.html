@@ -123,7 +123,11 @@
       <!--00:00   ***hide   00:00-->
       <ion-item lines="none" *ngIf="data.currentPoem.audio">
         <div style="display: flex;justify-content: space-around;flex-direction: column;width:100%;">
-          <ion-range min="0" step="1" [max]="data.duration" [value]="data.currentTime"
+          <div *ngIf="!data.hasPlaybackNetworkConnection"
+            style="color:red;height:30px;margin-bottom:0px;display:flex;align-items:center;justify-content:center;font-size:13px;">
+            {{ ui.instant('Title.NoInternet') }}
+          </div>
+          <ion-range *ngIf="data.hasPlaybackNetworkConnection" min="0" step="1" [max]="data.duration" [value]="data.currentTime"
             style="height:30px;margin-bottom:0px;"
             color="primary"
             (ionInput)="test($event)"
@@ -449,17 +453,7 @@
 
         <swiper-slide *ngIf="showLyric">
 
-          <ion-list style="margin:5px 5px;">
-            <div *ngIf="!rightbigimg">
-              <ion-item lines="none" style="position: sticky; top: 0; z-index: 999; background: var(--ion-background-color, #fff); --padding-start:15px;--inner-padding-end:15px;" 
-              *ngIf="true">
-                <ion-button (click)="data.textZoom()" slot="end" size="small" 
-                style="height:40px;margin-right:-10px;--background:white;">
-                  <ion-icon name="text-outline" size="large" color="dark"></ion-icon>
-                </ion-button>
-              </ion-item>
-            </div>
-          </ion-list>
+          
 
 
           <!--小于10行诗词段-->
@@ -685,13 +679,17 @@
               {{data.playbackRate}}x
             </span>
           </ion-button>
+          <ion-button (click)="data.textZoom()" size="large" 
+            style="margin-left:20px;--background:white;">
+            <ion-icon name="text-outline" size="large" color="primary"></ion-icon>
+          </ion-button>
         </ion-buttons>
         <ion-buttons>
           
         </ion-buttons>
         <ion-buttons>
           <ion-button style="margin-right: 20px;"
-          [ngStyle]="{'background-color':showText ? 'rgb(247,247,247)' : '' }"
+          [ngStyle]="{'background-color':showLyric ? 'rgb(247,247,247)' : '' }"
           (click)="playlyric()" size="large">
             <ion-icon name="reader-outline"></ion-icon>
           </ion-button>

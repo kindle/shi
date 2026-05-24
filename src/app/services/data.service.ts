@@ -100,6 +100,10 @@ export class DataService {
 
   private poemListLoaded = false;
   private poemListLoadingPromise: Promise<void> | null = null;
+  public hasPlaybackNetworkConnection = true;
+  private readonly handlePlaybackNetworkStatusChange = () => {
+    this.updatePlaybackNetworkConnection();
+  };
 
   
 
@@ -137,6 +141,12 @@ export class DataService {
   ){
     this.platform = platform;
     this.audio = new Audio();
+    this.hasPlaybackNetworkConnection = this.hasNetworkConnection();
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', this.handlePlaybackNetworkStatusChange);
+      window.addEventListener('offline', this.handlePlaybackNetworkStatusChange);
+    }
 
     this.audio.addEventListener('play', () => {
       if ('mediaSession' in navigator) {
@@ -462,6 +472,16 @@ export class DataService {
 
   private hasNetworkConnection(): boolean {
     return typeof navigator !== 'undefined' && navigator.onLine !== false;
+  }
+
+  private updatePlaybackNetworkConnection(): boolean {
+    this.hasPlaybackNetworkConnection = this.hasNetworkConnection();
+    if(this.hasPlaybackNetworkConnection){
+    }
+    else{
+      this.ui.toast('bottom', this.ui.instant('Title.NoInternet'));
+    }
+    return this.hasPlaybackNetworkConnection;
   }
 
   private getDbVersionUrl(): string | null {
@@ -2737,6 +2757,12 @@ export class DataService {
       return;
     }
 
+    if (!this.updatePlaybackNetworkConnection()) {
+      this.resetAudioElement();
+      void this.destroyMusicControls();
+      return;
+    }
+
     const audioSource = `https://reddah.blob.core.windows.net/msjjmp3/${this.currentPoem.audio}`;
     const shouldReuseCurrentAudio = this.isCurrentAudioSource(audioSource) && !!this.audioLoadedmetadataFn;
 
@@ -2962,6 +2988,7 @@ export class DataService {
   }
   //by-id-custom-list,by-id-shi-list,收藏诗词tab3/poem click button
   playList(list:any, name:any, isfromplaybutton:boolean=true){
+    this.updatePlaybackNetworkConnection();
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null)
     this.toPlayList = this.orgToPlayList;
     this.toPlayListName = name;
@@ -2970,15 +2997,17 @@ export class DataService {
       this.playbyid(first.id, first.sample);
     }
     this.isShuffle = false;
+    this.isRepeat = 0;
     this.savePlayStyle();
+    
   }
   playListRandomly(list:any, name:any, playAutomatically:boolean=false){
+    this.updatePlaybackNetworkConnection();
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null);
     let randomToPlaylist = this.shuffleArray(this.orgToPlayList);
     
     this.toPlayList = randomToPlaylist;
     this.toPlayListName = name;
-    
     if(playAutomatically&&this.toPlayList.length>0){
       let first = this.toPlayList[0];
       this.playbyid(first.id, first.sample);
@@ -3777,7 +3806,8 @@ export class DataService {
     this.navCtrl.navigateForward(`/tabs/tab3/customlist/${id}`);
   }
   //by tag or by id
-  goToListBy(item:any){
+  goToListBy(item:any)
+  {
     if(item.author!=null){
       this.goToAuthor(item.author)
     }
@@ -3787,8 +3817,17 @@ export class DataService {
     else
     {
       this.saveRecentPlayedEP(item);
-      if(item.id&&!item.tag){//有id诗单
-        this.goToList(item.id);
+      if(item.id){//有id诗单
+        if(item.tag&&!Array.isArray(item.tag)){
+          this.currentItem = item;
+          let sendData = item.tag?item.tag:item.text;
+          this.navCtrl.navigateForward(`/tabs/${this.currentTab}/tag/${sendData}`);
+        }
+        else
+        {
+          this.goToList(item.id);
+          return;
+        }
       }
       else{//tag诗单
         //this.currentAuthor = item.text;
@@ -4094,8 +4133,14 @@ export class DataService {
 
       this.currentPoem = poem;
       this.addTracker({name:"ReadPoem",data:poem});
+      this.updatePlaybackNetworkConnection();
       if(poem.audio){
-        this.setAudio();
+        if (this.hasPlaybackNetworkConnection) {
+          this.setAudio();
+        } else {
+          this.resetAudioElement();
+          void this.destroyMusicControls();
+        }
       }else{
         this.resetAudioElement();
         void this.destroyMusicControls();

@@ -156,7 +156,8 @@
         "comment": "Comentário",
         "annotation": "Anotação",
         "followpoet": "Seguir poeta",
-        "failtopreview": "Falha ao gerar a pré-visualização"
+        "failtopreview": "Falha ao gerar a pré-visualização",
+        "NoInternet": "Sem ligação à Internet"
     },
 
     "Search": {

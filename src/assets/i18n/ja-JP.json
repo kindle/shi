@@ -156,7 +156,8 @@
         "comment": "評論",
         "annotation": "注釈",
         "followpoet": "詩人をフォロー",
-        "failtopreview": "プレビューの生成に失敗しました"
+        "failtopreview": "プレビューの生成に失敗しました",
+        "NoInternet": "インターネットに接続できません"
     },
 
     "Search": {
