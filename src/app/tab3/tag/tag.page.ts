@@ -17,7 +17,7 @@ export class TagPage {
   ionViewWillEnter() {
     this.data.updateLocalData('taglist');
     this.onSearchChanged();
-    console.log(this.displayResult)
+    //console.log(this.displayResult)
   }
 
   searchResult:any;
@@ -36,10 +36,13 @@ export class TagPage {
     if(this.searchText!=null){
       key = this.searchText.trim();
     }
-    
-    this.searchResult = this.data.localJsonData.filter((e:any)=>
-      (e.data.alias+e.data.text+e.data.src).indexOf(key)>=0
-    );
+    //console.log(this.data.localJsonData)
+    this.searchResult = this.data.localJsonData.filter((e:any)=> {
+      const searchText = [e.data?.alias, e.data?.text, e.data?.name, e.data?.tag]
+        .filter((value:any) => value != null)
+        .join('');
+      return searchText.indexOf(key) >= 0;
+    });
     this.searchResultCount = this.searchResult.length;
     
     this.displayResult = [];
