@@ -5214,7 +5214,7 @@ export class DataService {
     }
   }
 
-  AppVersion:any="1.11";
+  AppVersion:any="1.12";
   async feedback(predefinedMessage:string = ''){
     let subject = this.ui.instant('Title.Feedback')+"";
     let body = predefinedMessage ? `${predefinedMessage}\n\n\n` : "";
