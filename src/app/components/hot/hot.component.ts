@@ -15,7 +15,7 @@ export class HotComponent implements OnDestroy {
   @Input() name?: string;
   @Input() source?: any;
   @Input() audio?: string;
-  @Input() hideAuthor?: boolean;
+  @Input() hideAuthor?: boolean = false;
 
   currentSlideIndex = 0;
   private refreshFrameId?: number;

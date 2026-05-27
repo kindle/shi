@@ -5445,7 +5445,7 @@ export class DataService {
   /*start text font size zoom level */
   zoomLevel:number = 1;
   zoom(px:any){
-    px = this.ui.isipad?px+10:px;
+    px = this.ui.isipad?px+8:px;
     return px*this.zoomLevel + 'px'
   }
   LOCALSTORAGE_Text_FontSize_Zoom_Level = "app_text_fontsize_zoom_level";

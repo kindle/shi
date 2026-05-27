@@ -115,6 +115,23 @@ export class PlayerPadPage implements OnInit {
 
   }
 
+  isCurrentPoemLiked(){
+    return !!this.data.currentPoem && this.data.isliked(this.data.currentPoem, 'poem');
+  }
+
+  toggleCurrentPoemLike(){
+    if(!this.data.currentPoem){
+      return;
+    }
+
+    if(this.isCurrentPoemLiked()){
+      this.data.unlikelist(this.data.currentPoem, 'poem');
+      return;
+    }
+
+    this.data.likelist(this.data.currentPoem, 'poem');
+  }
+
   getHighlight(text:any){
     if(this.data.currentPoem.sample.split(/[，|、|。]/).some((t:any)=>text.indexOf(t)>-1))
     {

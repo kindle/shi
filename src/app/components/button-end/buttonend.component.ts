@@ -20,6 +20,7 @@ export class ButtonEndComponent {
   @Input() showShare: boolean = false;
 
   @Input() color: string = 'dark';
+  @Input() direction: string = 'h'; //h or v
 
   @Output() share = new EventEmitter<any>();
 

@@ -47,6 +47,18 @@
     --color: #ffffff; /* Set text color to white or any preferred color */
   }
 
+  .player-pad-action-button {
+    --ripple-color: transparent;
+  }
+
+  .player-pad-like-button {
+    --background: white;
+    --background-hover: white;
+    --background-focused: white;
+    --background-activated: white;
+    margin-left: 20px;
+  }
+
 ion-content.snap-scroll::part(scroll) {
   scroll-snap-type: y proximity;
   scroll-padding-bottom: 240px;
@@ -72,13 +84,32 @@ ion-content.sheet-scroll-guard::part(scroll) {
   width: 100%;
   height: 100%;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: calc(56px + env(safe-area-inset-top));
+
+  .top {
+    position: fixed;
+    top: env(safe-area-inset-top);
+    left: 0;
+    right: 0;
+    z-index: 2100;
+    display: flex;
+    justify-content: flex-start;
+    padding: 8px 16px;
+    padding-top:35px;
+    padding-bottom:0;
+    pointer-events: none;
+
+    ion-buttons {
+      pointer-events: auto;
+    }
+  }
   
   .left {
     width: 45%;
     height: 100%;
     overflow-y: auto;
     margin: 0 20px;
+    padding-left:50px;
   }
   
   .right {

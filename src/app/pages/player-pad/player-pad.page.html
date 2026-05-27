@@ -1,5 +1,25 @@
 <div class="split-pane">
 
+  <div class="top">
+    <ion-buttons style="display:flex;justify-content:space-between;align-items:center;
+    margin-left:10px;
+      width:100%;height:25px;
+      --background:rgba(var(--ion-background-color-rgb,255,255,255),0.8);-webkit-backdrop-filter:saturate(210%) blur(20px);backdrop-filter:saturate(210%) blur(20px);
+      padding:15px 15px 15px 5px;
+      border-radius: 15px;"
+      >
+      <ion-button color="primary" (click)="ui.closePlayerPopup()" size="large">
+        <ion-icon name="chevron-down-circle-outline" style="margin-right:5px;"></ion-icon>
+      </ion-button>
+      <ion-button color="primary" size="large"
+        (click)="data.shareText(data.currentPoem.author + '·《' + data.currentPoem.title + '》', data.showsample(data.currentPoem))">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    
+  </div>
+
   <div class="left">
 
     <!--(click)="ui.imageviewer(data.currentPoem.image?'https://reddah.blob.core.windows.net/msjjimg/'+data.currentPoem.image : 'https://reddah.blob.core.windows.net/msjjpoet/'+data.currentPoem.author+'.jpeg')"-->
@@ -9,7 +29,7 @@
       <ion-item lines="none" *ngIf="leftbigimg"
         style="margin:0 5px;margin-top:15px;--padding-start:0;">
         <div style="width: 100%;display: flex;justify-content: center;">
-          <img style="width: 300px; height: 300px; margin: 40px; border-radius: 10px;aspect-ratio: 1;" 
+          <img style="width: 300px; height: 300px; margin: 40px; border-radius: 10px;aspect-ratio: 1;object-fit:cover;" 
             (click)="playlyric()"
             defaultImage="assets/img/default.jpg"   
             src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
@@ -28,8 +48,9 @@
             onerror="javascript:this.src='assets/img/default.jpg'"
           /> -->
           <ion-thumbnail slot="start"
-            style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
-              <img id="authorimg" style="border-radius: 10px;" 
+            style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;
+            object-fit:cover;">
+              <img id="authorimg" style="border-radius: 10px;object-fit:cover;" 
                 defaultImage="assets/img/default.jpg" 
                 lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
                 onerror="javascript:this.src='assets/img/default.jpg'"
@@ -41,22 +62,64 @@
             </ion-thumbnail>
         </div>
         <ion-label>
-          <div style="display: flex; align-items: center;">
-            <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
+          <ion-button (click)="toggleCurrentPoemLike()" size="large"
+            class="player-pad-action-button player-pad-like-button">
+            <ion-icon [name]="isCurrentPoemLiked() ? 'heart' : 'heart-outline'" size="large" color="primary"></ion-icon>
+          </ion-button>
+          <ion-button (click)="data.textZoom()" size="large" 
+            class="player-pad-like-button"
+            style="--background:white;">
+            <ion-icon name="text-outline" size="large" color="primary"></ion-icon>
+          </ion-button>
+          <ion-button  size="large"
+           *ngIf="showLyric&&hasAnyPoemDetail()"
+            class="player-pad-like-button"
+            style="--background:white;"
+            [ngStyle]="{'background-color':showIntro ? 'rgb(247,247,247)' : '' }"
+            (click)="intro()" size="large">
+            <ion-icon name="reader-outline" size="large" color="primary"></ion-icon>
+          </ion-button>
+          <ion-button style="margin-right:12px;"
+           *ngIf="!showLyric&&hasAnyPoemDetail()"
+            class="player-pad-like-button"
+            style="--background:white;"
+            (click)="playlyric()" size="large">
+            <ion-icon name="school-outline" size="large" color="primary"></ion-icon>
+          </ion-button>
+
+          <ion-button style="margin-right:12px;"
+          *ngIf="!hasAnyPoemDetail()"
+            class="player-pad-like-button"
+            style="--background:white;"
+            [ngStyle]="{'background-color':showPlaylist ? 'rgb(247,247,247)' : '' }"
+            (click)="playlist()" size="large">
+              <ion-icon name="list-outline" size="large" color="primary"></ion-icon>
+          </ion-button>
+          <!-- <ion-button *ngIf="data.currentPoem.audio" (click)="data.togglePlaybackRate()" size="large"
+            class="player-pad-like-button"
+            style="--background:white;">
+            <ion-icon name="timer-outline" size="large" color="primary"></ion-icon>
+            <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">
+              {{data.playbackRate}}x
+            </span>
+          </ion-button> -->
+          
+          <!-- <div style="display: flex; align-items: center;">
+            <h2 [style.fontSize]="data.zoom(16)" class="show-only-one-line">
               {{data.currentPoem.title}}
             </h2>
           </div>
           <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
             style="margin-top:5px;display: flex;align-items: end;">
             {{data.currentPoem.author}}
-          </p>
+          </p> -->
         </ion-label>
         <!-- <ion-button slot="end" color="transparent" 
         *ngIf="!data.isliked(data.currentPoem,'poem')"
         (click)="data.likelist(data.currentPoem,'poem')">
           <ion-icon name="add-outline" color="dark"></ion-icon>
         </ion-button> -->
-        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end>
+        <app-button-end [p]="data.currentPoem" page="playerlist" slot="end" direction="v" color="primary"></app-button-end>
       </ion-item>
        <!--诗词 title/author end-->  
     </ion-list>
@@ -74,14 +137,14 @@
       </ion-item>
 
       <ion-item lines="none" *ngIf="data.currentPoem.paragraphs.length<9&&showText">
-        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;position: relative;"
         [ngClass]="{'select-line':authorSelected===true}"
         (click)="selectAuthor()"
         class="selectableText" (click)="ui.selectText()"
         [style.fontSize]="data.zoom(18)">
           <ion-icon name="search-outline" *ngIf="authorSelected===true"
           (click)="data.search(data.currentPoem.author)"
-          style="position: absolute;left:5px;margin:2px;"
+          style="position: absolute;left:5px;top:50%;transform:translateY(-50%);margin:0;"
           ></ion-icon>
           {{data.currentPoem.author}}
         </div>
@@ -92,14 +155,14 @@
       </ion-item>
 
       <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
-        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+        <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;position: relative;"
         [ngClass]="{'select-line selectableText':currentIndex===i}"
         (click)="select(i)"
         [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
           <ion-icon name="search-outline" *ngIf="currentIndex===i"
           (click)="data.search(text)"
-          style="position: absolute;left:5px;margin:2px;"
-          ></ion-icon>
+          style="position: absolute;left:5px;top:50%;transform:translateY(-50%);margin:0;"
+          ></ion-icon><!--1-->
           <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
           [style.fontSize]="data.zoom(18)"
           class="selectableText" (click)="ui.selectText()"></div>
@@ -121,13 +184,14 @@
 
 
       <!--00:00   ***hide   00:00-->
-      <ion-item lines="none" *ngIf="data.currentPoem.audio">
+      <ion-item lines="none">
         <div style="display: flex;justify-content: space-around;flex-direction: column;width:100%;">
           <div *ngIf="!data.hasPlaybackNetworkConnection"
             style="color:red;height:30px;margin-bottom:0px;display:flex;align-items:center;justify-content:center;font-size:13px;">
             {{ ui.instant('Title.NoInternet') }}
           </div>
           <ion-range *ngIf="data.hasPlaybackNetworkConnection" min="0" step="1" [max]="data.duration" [value]="data.currentTime"
+          [disabled]="!data.currentPoem.audio"
             style="height:30px;margin-bottom:0px;"
             color="primary"
             (ionInput)="test($event)"
@@ -136,17 +200,17 @@
             (ionKnobMoveEnd)="onDragEnd($event)">
           </ion-range>
           <div style="width:100%;">
-            <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="!dragWhere">{{formatTime(data.currentTime)}}</ion-text>
-            <ion-text color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="dragWhere">{{formatTime(dragvalue)}}</ion-text>
+            <ion-text [disabled]="!data.currentPoem.audio" color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="!dragWhere">{{formatTime(data.currentTime)}}</ion-text>
+            <ion-text [disabled]="!data.currentPoem.audio" color="medium" style="margin-left:0px;float:left;font-size:13px;" *ngIf="dragWhere">{{formatTime(dragvalue)}}</ion-text>
             <div style="font-size: 18px;width: 100%;text-align: center;font-size:13px;">{{data.displaySongName}}</div>
-            <ion-text color="medium" style="margin-right:0px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.audio.duration)}}</ion-text>
+            <ion-text [disabled]="!data.currentPoem.audio" color="medium" style="margin-right:0px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.audio.duration)}}</ion-text>
             
             <!--<ion-text color="medium" style="margin-right:20px;float:right;font-size:13px;">{{formatTime(this.data.audio&&this.data.audio.duration??this.data.leftTime)}}</ion-text>-->
           </div>
         </div>
       </ion-item>
 
-      <ion-item lines="none" *ngIf="data.currentPoem.audio">
+      <ion-item lines="none">
         <!--prev   play   next-->
         <div style="display: flex;justify-content: space-around;height:120px;flex-direction: column; width: 100%;">
           <div style="display: flex;justify-content: space-around;margin-left:15px;margin-right:20px;">
@@ -159,7 +223,7 @@
               </ion-button>
             </ion-buttons> -->
             <ion-buttons>
-              <ion-button
+              <ion-button [disabled]="!data.currentPoem.audio"
                 (click)="data.switchPlayMethord()" style="font-size: 25px;">
                 <ion-icon name="shuffle-outline" *ngIf="data.isShuffle"></ion-icon>
                 <!-- <ion-icon name="repeat-outline" *ngIf="data.isRepeat"></ion-icon>
@@ -171,28 +235,34 @@
               </ion-button>
             </ion-buttons>
             <ion-buttons>
-              <ion-button [disabled]="data.playHistory.length<2"
+              <ion-button [disabled]="!data.currentPoem.audio||data.playHistory.length<2"
                 (click)="data.playPrev()" style="font-size: 30px;">
-                <ion-icon name="play-skip-back" 
+                <ion-icon name="play-skip-back-outline" 
                   [style.color]="(data.playHistory.length<2) ? 'lightgray' : ''"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-buttons>
-              <ion-button  size="large" (click)="data.togglePlay()">
-                <ion-icon name="pause-outline" *ngIf="data.isPlaying" style="font-size: 60px;"></ion-icon>
-                <ion-icon name="play" *ngIf="!data.isPlaying" style="font-size: 60px;"></ion-icon>
+              <ion-button  size="large" (click)="data.togglePlay()"
+              [disabled]="!data.currentPoem.audio">
+                <ion-icon name="pause-circle-outline" *ngIf="data.isPlaying" style="font-size: 60px;"></ion-icon>
+                <ion-icon name="play-circle-outline" *ngIf="!data.isPlaying" style="font-size: 60px;"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-buttons>
-              <ion-button [disabled]="data.toPlayList.length<2&&!data.isInfinite" 
+              <ion-button [disabled]="!data.currentPoem.audio||data.toPlayList.length<2&&!data.isInfinite" 
                 (click)="data.playNext()" style="font-size: 30px;">
-                <ion-icon name="play-skip-forward" 
+                <ion-icon name="play-skip-forward-outline" 
                   [style.color]="(data.toPlayList.length<2&&!data.isInfinite) ? 'lightgray' : ''"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-buttons>
-              <app-button-end [p]="data.currentPoem" page="playerlist" color="primary"
-                [isViewAuthor]="true"></app-button-end>
+              <!-- <app-button-end [p]="data.currentPoem" page="playerlist" color="primary"
+                [isViewAuthor]="true"></app-button-end> -->
+              <ion-button  
+                [ngStyle]="{'background-color':showPlaylist ? 'rgb(247,247,247)' : '' }"
+                (click)="playlist()" size="large">
+                  <ion-icon name="list-outline"></ion-icon>
+              </ion-button>
             </ion-buttons>
             <!-- <ion-buttons>
               <ion-button (click)="repeat()" size="small" style="width:100%;height:40px;"
@@ -246,8 +316,9 @@
             <ng-container *ngFor="let p of data.playHistory">
               <ion-item lines="none" (click)="play(p)" *ngIf="!data.currentPoem || p.id !== data.currentPoem.id">
                 <ion-thumbnail slot="start"
-                style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
-                  <img id="authorimg" style="border-radius: 10px;" 
+                style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;
+                object-fit:cover;">
+                  <img id="authorimg" style="border-radius: 10px;object-fit:cover;" 
                     defaultImage="assets/img/default.jpg" 
                     lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
                     onerror="javascript:this.src='assets/img/default.jpg'"
@@ -281,8 +352,9 @@
                   lazyLoad="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
                   onerror="javascript:this.src='assets/img/default.jpg'" /> -->
                 <ion-thumbnail slot="start"
-                  style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
-                    <img id="authorimg" style="border-radius: 10px;" 
+                  style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;
+                  object-fit:cover;">
+                    <img id="authorimg" style="border-radius: 10px;object-fit:cover;" 
                       defaultImage="assets/img/default.jpg" 
                       src="{{'https://reddah.blob.core.windows.net/msjj'+(data.currentPoem.image?'img/'+data.currentPoem.image:'poet/'+data.currentPoem.author+'.jpeg')}}"
                       onerror="javascript:this.src='assets/img/default.jpg'"
@@ -302,7 +374,7 @@
                 </div>
                 <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
                   style="margin-top:5px;display: flex;align-items: end;">
-                  {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+                  {{data.showsample(data.currentPoem)}}
                 </p>
               </ion-label>
               <!-- <ion-button slot="end" color="transparent" size="large"
@@ -311,10 +383,10 @@
                 <ion-icon name="add-outline" color="dark"></ion-icon>
               </ion-button> -->
               <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"></app-button-end> -->
-              <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
+              <!-- <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
               style="margin-right:0;">
                 <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
-              </ion-button>
+              </ion-button> -->
             </ion-item>
             <!--current play item end-->
             <div *ngIf="!rightbigimg">
@@ -345,7 +417,7 @@
                     style="--padding-start:15px;--inner-padding-end:15px;">
                     <ion-thumbnail style="width:56px;height:56px;" slot="start"
                       style="display: flex;justify-content: center;align-items: center;">
-                      <img id="authorimg" style="border-radius: 10px;" 
+                      <img id="authorimg" style="border-radius: 10px;object-fit:cover;" 
                         defaultImage="assets/img/default.jpg" 
                         lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{p.author}}.jpeg" 
                         onerror="javascript:this.src='assets/img/default.jpg'"
@@ -470,31 +542,31 @@
             </ion-item>
 
             <ion-item lines="none">
-              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;
+              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;position: relative;
               margin-bottom:30px;"
               [ngClass]="{'select-line':authorSelected===true}"
               (click)="selectAuthor()" class="selectableText" 
               (click)="ui.selectText()"
               [style.fontSize]="data.zoom(18)">
-                <ion-icon name="information-circle-outline" *ngIf="authorSelected===true"
+                <ion-icon name="search-outline" *ngIf="authorSelected===true"
                 (click)="data.search(data.currentPoem.author)"
-                style="position: absolute;left:5px;margin:2px;"
+                style="position: absolute;left:5px;top:50%;transform:translateY(-50%);margin:0;"
                 ></ion-icon>
                 {{data.currentPoem.author}}
               </div>
             </ion-item>
 <!-- {{'small 10'}} -->
             <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
-              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;position: relative;"
               [ngClass]="{'select-line':currentIndex===i}"
               (click)="select(i)" class="selectableText" 
               (click)="ui.selectText()"
               [style.fontSize]="data.zoom(18)"
               [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }">
-                <ion-icon name="information-circle-outline" *ngIf="currentIndex===i"
+                <ion-icon name="search-outline" *ngIf="currentIndex===i"
                 (click)="data.search(text)"
-                style="position: absolute;left:5px;margin:2px;"
-                ></ion-icon>
+                style="position: absolute;left:5px;top:50%;transform:translateY(-50%);margin:0;"
+                ></ion-icon><!--2-->
                 {{text}}
 <!--                 
                 <span *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
@@ -534,14 +606,14 @@
 <!-- {{'big 10'}} -->
             <!--大于10行诗词段-->
             <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
-              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
+              <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;position: relative;"
               [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
               [ngClass]="{'select-line':currentIndex===i}"
               (click)="select(i)">
                 <ion-icon name="search-outline" *ngIf="currentIndex===i"
                 (click)="data.search(text)"
-                style="position: absolute;left:5px;margin:2px;"
-                ></ion-icon>
+                style="position: absolute;left:5px;top:50%;transform:translateY(-50%);margin:0;"
+                ></ion-icon><!--3-->
                 <div *ngIf="data.currentPoem.sample" [innerHTML]="getHighlight(text)"
                 [style.fontSize]="data.zoom(18)"></div>
                 <div *ngIf="!data.currentPoem.sample"
@@ -556,7 +628,7 @@
             <ion-item lines="none" 
               style="margin:0 0px 0 5px;margin-top:15px;--padding-start:0;margin-left:15px;
               --inner-padding-end:0;">
-              <div class="play-icon-box" *ngIf="!rightbigimg" 
+              <!-- <div class="play-icon-box" *ngIf="!rightbigimg" 
                 (click)="playlyric()">
                 <ion-thumbnail slot="start"
                   style="width:56px;height:56px;display: flex;justify-content: center;align-items: center;">
@@ -570,25 +642,25 @@
                       'height':(data.isPlaying) ? '' : '5px' }"
                     ></div>
                   </ion-thumbnail>
-              </div>
+              </div> -->
               <ion-label>
                 <div style="display: flex; align-items: center;">
-                  <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon>
+                  <!-- <ion-icon name="headset" *ngIf="data.currentPoem.audio" color="primary" style="margin-right:5px;min-width: 16px;"></ion-icon> -->
                   <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
                     {{data.currentPoem.title}} {{data.currentPoem.author}}
                   </h2>
                 </div>
                 <p [style.fontSize]="data.zoom(14)" class="show-only-one-line"
                   style="margin-top:5px;display: flex;align-items: end;">
-                  {{data.currentPoem.sample?data.currentPoem.sample:data.currentPoem.paragraphs[0]}}
+                  {{data.showsample(data.currentPoem)}}
                 </p>
               </ion-label>
               <!-- <app-button-end [p]="data.currentPoem" page="playerlist" slot="end"
               [isViewAuthor]="true"></app-button-end> -->
-              <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
+              <!-- <ion-button slot="end" (click)="ui.closePlayerPopup()" color="transparent" size="large"
               style="margin-right:0;">
                 <ion-icon name="chevron-down-circle-outline" color="primary"></ion-icon>
-              </ion-button>
+              </ion-button> -->
             </ion-item>
           </ion-list>
 
@@ -599,19 +671,19 @@
                 [value]="getVisibleDetailTab()"
                 (ionChange)="setDetailTab($event)">
                 <ion-segment-button value="appreciation" *ngIf="hasPoemDetail('appreciation')">
-                  <ion-label>{{ ui.instant('Title.appreciation')}}<!--赏析--></ion-label>
+                  <ion-label [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.appreciation')}}<!--赏析--></ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="translation" *ngIf="hasPoemDetail('translation')">
-                  <ion-label>{{ ui.instant('Title.translation')}}<!--译文--></ion-label>
+                  <ion-label [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.translation')}}<!--译文--></ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="intro" *ngIf="hasPoemDetail('intro')">
-                  <ion-label>{{ ui.instant('Title.introduction')}}<!--简介--></ion-label>
+                  <ion-label [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.introduction')}}<!--简介--></ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="comment" *ngIf="hasPoemDetail('comment')">
-                  <ion-label>{{ ui.instant('Title.comment')}}<!--评论--></ion-label>
+                  <ion-label [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.comment')}}<!--评论--></ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="annotation" *ngIf="hasPoemDetail('annotation')">
-                  <ion-label>{{ ui.instant('Title.annotation')}}<!--注释--></ion-label>
+                  <ion-label [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.annotation')}}<!--注释--></ion-label>
                 </ion-segment-button>
               </ion-segment>
             </ion-item>
@@ -620,8 +692,8 @@
             lines="none"
             class="poem-detail-content">
               <div class="poem-detail-scroll">
-                <div class="poem-detail-title">{{ ui.instant('Title.appreciation') }}<!--赏析--></div>
-                <div>{{data.currentPoem.appreciation}}</div>
+                <div class="poem-detail-title" [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.appreciation') }}<!--赏析--></div>
+                <div [style.fontSize]="data.zoom(14)">{{data.currentPoem.appreciation}}</div>
               </div>
             </ion-item>
 
@@ -629,8 +701,8 @@
             lines="none"
             class="poem-detail-content">
               <div class="poem-detail-scroll">
-                <div class="poem-detail-title">{{ ui.instant('Title.translation') }}<!--译文--></div>
-                <div>{{data.currentPoem.translation}}</div>
+                <div class="poem-detail-title" [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.translation') }}<!--译文--></div>
+                <div [style.fontSize]="data.zoom(14)">{{data.currentPoem.translation}}</div>
               </div>
             </ion-item>
 
@@ -638,8 +710,8 @@
             lines="none" 
             class="poem-detail-content">
               <div class="poem-detail-scroll">
-                <div class="poem-detail-title">{{ ui.instant('Title.introduction') }}<!--简介--></div>
-                <div>{{data.currentPoem.intro}}</div>
+                <div class="poem-detail-title" [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.introduction') }}<!--简介--></div>
+                <div [style.fontSize]="data.zoom(14)">{{data.currentPoem.intro}}</div>
               </div>
             </ion-item>
 
@@ -647,8 +719,10 @@
             lines="none"
             class="poem-detail-content">
               <div class="poem-detail-scroll">
-                <div class="poem-detail-title">{{ ui.instant('Title.comment') }}<!--评论--></div>
-                <div *ngFor="let c of data.currentPoem.comment" style="margin-bottom:10px;">{{c}}</div>
+                <div class="poem-detail-title" [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.comment') }}<!--评论--></div>
+                <div *ngFor="let c of data.currentPoem.comment" 
+                [style.fontSize]="data.zoom(14)" 
+                style="margin-bottom:10px;">{{c}}</div>
               </div>
             </ion-item>
 
@@ -656,8 +730,9 @@
             lines="none"
             class="poem-detail-content">
               <div class="poem-detail-scroll">
-                <div class="poem-detail-title">{{ ui.instant('Title.annotation') }}<!--注释--></div>
-                <div *ngFor="let a of data.currentPoem.annotation" style="margin-bottom:10px;">{{a}}</div>
+                <div class="poem-detail-title" [style.fontSize]="data.zoom(14)">{{ ui.instant('Title.annotation') }}<!--注释--></div>
+                <div *ngFor="let a of data.currentPoem.annotation" 
+                [style.fontSize]="data.zoom(14)" style="margin-bottom:10px;">{{a}}</div>
               </div>
             </ion-item>
           </ng-container>
@@ -673,22 +748,23 @@
     <ion-item lines="none">
       <div style="display: flex;justify-content: space-between;width:100%;height: 60px;">
         <ion-buttons>
-          <ion-button *ngIf="data.currentPoem.audio" (click)="data.togglePlaybackRate()" size="large">
+          <!-- <ion-button *ngIf="data.currentPoem.audio" (click)="data.togglePlaybackRate()" size="large">
             <ion-icon name="timer-outline"></ion-icon>
             <span style="font-size: 16px; font-weight: bold; color: var(--ion-color-dark);">
               {{data.playbackRate}}x
             </span>
           </ion-button>
           <ion-button (click)="data.textZoom()" size="large" 
-            style="margin-left:20px;--background:white;">
+          [style.margin-left]="data.currentPoem.audio ? '20px' : '0px'"
+            style="--background:white;">
             <ion-icon name="text-outline" size="large" color="primary"></ion-icon>
-          </ion-button>
+          </ion-button> -->
         </ion-buttons>
         <ion-buttons>
           
         </ion-buttons>
         <ion-buttons>
-          <ion-button style="margin-right: 20px;"
+          <!-- <ion-button style="margin-right:12px;"
           [ngStyle]="{'background-color':showLyric ? 'rgb(247,247,247)' : '' }"
           (click)="playlyric()" size="large">
             <ion-icon name="reader-outline"></ion-icon>
@@ -696,17 +772,17 @@
 
           
           <ion-button *ngIf="hasAnyPoemDetail()" 
-          style="border-radius: 8px;margin-right: 20px;"
+          style="border-radius: 8px;margin-left: 20px;"
           [ngStyle]="{'background-color':showIntro ? 'rgb(247,247,247)' : '' }"
           (click)="intro()" size="large">
             <ion-icon name="information-circle-outline"></ion-icon>
-          </ion-button>
-
+          </ion-button> -->
+<!-- 
           <ion-button  
           [ngStyle]="{'background-color':showPlaylist ? 'rgb(247,247,247)' : '' }"
           (click)="playlist()" size="large">
             <ion-icon name="list-outline"></ion-icon>
-          </ion-button>
+          </ion-button> -->
         </ion-buttons>
       </div>
     </ion-item>

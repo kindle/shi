@@ -19,10 +19,11 @@
     slides-offset-after="20"
   pagination="false"
     >
-  <swiper-slide *ngFor="let hot of source">
+  <swiper-slide *ngFor="let hot of source; let i = index;">
     <ion-list style="padding-bottom: 30px;">
-      <ion-item *ngFor="let p of hot" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
+      <ion-item *ngFor="let p of hot; let j = index;" style="--padding-start:0px;--inner-padding-end:0px;--padding-end:10px;" >
         <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+        *ngIf="!hideAuthor"
         style="display: flex;justify-content: center;align-items: center;"
         [style.width]="ui.isipad ? '90px' : '56px'"
         [style.height]="ui.isipad ? '90px' : '56px'">
@@ -36,6 +37,10 @@
             'height':(data.isPlaying) ? '' : '5px' }"
           ></div>
         </ion-thumbnail>
+        <ion-badge slot="start" color="light" mode="ios"
+        *ngIf="hideAuthor">
+          {{i*4+j+1}}
+        </ion-badge>
         <ion-label (click)="data.playListHot(source, p, name)">
           <div style="display: flex; align-items: center;">
             <h2 [style.fontSize]="data.zoom(17)" class="show-only-one-line">
