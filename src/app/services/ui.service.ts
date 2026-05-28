@@ -54,6 +54,7 @@ export class UiService {
       if(this.platform.is('ipad')){
         this.isipad = true;
       }
+      
     }
     if(this.platform.is('android')){
       this.isAndroid =true;
@@ -61,6 +62,12 @@ export class UiService {
         this.isipad = true;
       }
     }
+
+    if(this.platform.is('desktop')){
+      if(/Mac/i.test(window.navigator.userAgent)){
+        this.isipad = true;
+      }
+    } 
   }
 
   setStatusBar(style: Style,animation: Animation,color: string) {
