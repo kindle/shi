@@ -56,7 +56,20 @@
     --background-hover: white;
     --background-focused: white;
     --background-activated: white;
-    margin-left: 20px;
+    margin-left: 10px;
+  }
+
+  .player-pad-actions {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .placeholder-playbox {
+    height: calc(260px + env(safe-area-inset-bottom));
+    flex-shrink: 0;
   }
 
 ion-content.snap-scroll::part(scroll) {
