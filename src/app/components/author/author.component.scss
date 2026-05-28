@@ -31,7 +31,7 @@
   
   .slide-in-right {
     /* animation: slideInRight 0.5s ease-out forwards; Removed to control via class */
-    opacity: 0; /* Ensures elements are hidden before animation starts */
+    opacity: 1;
   }
 
   :host(.in-view) .slide-in-right {

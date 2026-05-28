@@ -30,7 +30,7 @@
 }
   
 .slide-in-right {
-    opacity: 0;
+    opacity: 1;
 }
 
 :host(.in-view) .slide-in-right {
@@ -112,6 +112,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
     }
     .card-text-style{
@@ -123,6 +124,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
     }
 }
@@ -197,5 +199,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
 }
