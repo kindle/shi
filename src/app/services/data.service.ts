@@ -4901,13 +4901,13 @@ export class DataService {
 
   showsample(p:any){
     if(p.sample){
-      if(p.sample.indexOf('【其一】') !== -1){
-        return p.paragraphs?.[0].indexOf('【其一】') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+      if(p.sample.indexOf('【') !== -1){
+        return p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
       }
       else
         return p.sample;
     }else{
-      return p.paragraphs?.[0].indexOf('【其一】') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+      return p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
     }
   }
   shuffle(){
