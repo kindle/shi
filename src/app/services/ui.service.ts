@@ -67,6 +67,8 @@ export class UiService {
       if(/Mac/i.test(window.navigator.userAgent)){
         this.isipad = true;
       }
+      //consider as ipad for other desktop scenario temporarily.
+      this.isipad = true;
     } 
   }
 
