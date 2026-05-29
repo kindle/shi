@@ -37,7 +37,7 @@ export class Tab1Page {
 
     this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
 
-    void this.data.prepareArticleForViewer(item);
+    await this.data.prepareArticleForViewer(item, true);
 
     this.data.currentArticle = item;
     this.router.navigate(['article-viewer'], {

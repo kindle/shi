@@ -1259,6 +1259,39 @@ export class DataService {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  private articleDataMaskRequestCount = 0;
+
+  private showArticleDataLoadingMask(): void {
+    this.articleDataMaskRequestCount += 1;
+    this.ui.showStartupLoadingMask = true;
+  }
+
+  private hideArticleDataLoadingMask(): void {
+    this.articleDataMaskRequestCount = Math.max(0, this.articleDataMaskRequestCount - 1);
+
+    if (this.articleDataMaskRequestCount === 0) {
+      this.ui.showStartupLoadingMask = false;
+    }
+  }
+
+  public async ensureArticleDataReady(showMask:boolean = false): Promise<void> {
+    if (!this.isStartupJsonDataLoading && this.articleDataLoaded && this.JsonData.length > 0) {
+      return;
+    }
+
+    if (showMask) {
+      this.showArticleDataLoadingMask();
+    }
+
+    try {
+      await this.waitForJsonDataLoaded();
+    } finally {
+      if (showMask) {
+        this.hideArticleDataLoadingMask();
+      }
+    }
+  }
+
   private async waitForArticleDataLoaded(maxWaitMs:number = 10000, intervalMs:number = 100): Promise<void> {
     const startTime = Date.now();
     //this method is useless......
@@ -1375,7 +1408,7 @@ export class DataService {
     }
   }
 
-  public async prepareArticleForViewer(item:any): Promise<void> {
+  public async prepareArticleForViewer(item:any, showMask:boolean = false): Promise<void> {
     if (!item) {
       return;
     }
@@ -1385,7 +1418,7 @@ export class DataService {
       return;
     }
 
-    await this.waitForJsonDataLoaded();
+    await this.ensureArticleDataReady(showMask);
     this.ensureSolarTermArticleDescPoems(item);
 
     if (Array.isArray(item.items)) {
@@ -4088,6 +4121,8 @@ export class DataService {
   async playbyid(id:any=null, sample:any=null, pop:any=true, fromArticle:boolean=false){
     //console.log(id+sample)
     if(id){
+      await this.ensureArticleDataReady(true);
+
       let poem = this.JsonData
         .filter((shici:any)=>
           shici.id===id

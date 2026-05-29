@@ -26,7 +26,7 @@ export class UiService {
   isIos = false;
   isAndroid = false;
   isWeb = false;
-  showStartupLoadingMask = true;
+  showStartupLoadingMask = false;
 
   isiphone = false;
   isipad = false;
