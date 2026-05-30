@@ -14,6 +14,8 @@ import { Swiper } from 'swiper';
 })
 export class ListPage {
 
+  private readonly pageSize = 100;
+
   sysImages = [
     "https://reddah.blob.core.windows.net/msjjimg/bird.jpg",
     "https://reddah.blob.core.windows.net/msjjimg/cao3.jpg",
@@ -81,6 +83,7 @@ export class ListPage {
   }
 
   localList:any;
+  visibleLocalList:any[] = [];
   searchText:any;
   showFilter = false;
   onSearchFocus(){
@@ -92,7 +95,7 @@ export class ListPage {
   }
   onSearchChanged(){
     //console.log('onsearch changed')
-    let key = this.searchText.trim();
+    let key = (this.searchText || '').trim();
     /*if(key==""){
       this.localList = this.listdata.list;
     }
@@ -136,6 +139,8 @@ export class ListPage {
         }
       }
     }
+
+    this.resetVisibleLocalList();
   }
 
   listdata:any;
@@ -145,6 +150,7 @@ export class ListPage {
   id:any;
   customData:any;
   listActualLength:any=0;
+  private poemAudioMap = new Map<any, any>();
   ionViewWillEnter() {
     this.updateRemoteDataTolocal();
     this.updateIsPlayListFlag();
@@ -157,13 +163,23 @@ export class ListPage {
 
   noAudio:any = true;
   CheckIsPlayList(){
-    this.localList.forEach((poem:any) => {
-      let fullData = this.data.JsonData.filter((j:any)=>j.id===poem.id)[0];
-      if(fullData&&fullData.audio!=null){
-        poem.audio = fullData.audio;
+    this.ensurePoemAudioMap();
+    this.noAudio = true;
+
+    this.localList = this.localList.map((poem:any) => {
+      const audio = poem.audio ?? this.poemAudioMap.get(poem.id) ?? null;
+      if(audio){
         this.noAudio = false;
       }
+
+      return {
+        ...poem,
+        audio,
+        previewText: poem.previewText ?? this.data.showsample(poem)
+      };
     });
+
+    this.resetVisibleLocalList();
   }
 
   singleImage:any;
@@ -171,13 +187,54 @@ export class ListPage {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.customData = this.data.collectList.filter(
       (e:any)=>e.group==='customlist'&&e.data['id']==this.id)[0];
-    this.listdata = JSON.parse(JSON.stringify(this.customData.data));
-    this.localList = JSON.parse(JSON.stringify(this.listdata.list));
+    const sourceData = this.customData?.data ?? {};
+    const sourceList = Array.isArray(sourceData.list) ? sourceData.list : [];
+
+    this.listdata = {
+      ...sourceData,
+      image: Array.isArray(sourceData.image) ? [...sourceData.image] : [],
+      list: sourceList
+    };
+    this.localList = sourceList.map((poem:any) => ({
+      ...poem,
+      previewText: this.data.showsample(poem)
+    }));
     this.listActualLength = this.localList.length;
+    this.resetVisibleLocalList();
     
     if(this.localList.length>0&&this.localList.length<4){
       this.singleImage = `https://reddah.blob.core.windows.net/msjjpoet/${this.localList[0].author}.jpeg`;
     }
+  }
+
+  private ensurePoemAudioMap(){
+    if(this.poemAudioMap.size > 0){
+      return;
+    }
+
+    this.data.JsonData.forEach((poem:any) => {
+      if(poem?.id != null && poem.audio != null){
+        this.poemAudioMap.set(poem.id, poem.audio);
+      }
+    });
+  }
+
+  private resetVisibleLocalList(){
+    this.visibleLocalList = this.localList.slice(0, this.pageSize);
+  }
+
+  loadMoreLocalList(event:any){
+    const nextCount = Math.min(this.visibleLocalList.length + this.pageSize, this.localList.length);
+    this.visibleLocalList = this.localList.slice(0, nextCount);
+    event.target.complete();
+
+    if(this.visibleLocalList.length >= this.localList.length){
+      event.target.disabled = true;
+    }
+  }
+
+  trackByPoem(_:number, poem:any){
+    return poem?.id ?? `${poem?.author}_${poem?.title}`;
   }
 
   isEdit = false;

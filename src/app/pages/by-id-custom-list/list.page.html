@@ -240,7 +240,7 @@
   </ion-list>
 
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
-    <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:20px;">
+    <ion-item *ngFor="let p of visibleLocalList; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
       
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
@@ -261,7 +261,7 @@
       </ion-thumbnail>
       <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <h2 class="show-only-one-line">
-          {{data.showsample(p)}}
+          {{p.previewText}}
         </h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
         class="show-only-one-line">
@@ -272,6 +272,11 @@
     </ion-item>
 
   </ion-list>
+
+  <ion-infinite-scroll *ngIf="listdata&&!isEdit&&visibleLocalList.length<localList.length" threshold="100px"
+    (ionInfinite)="loadMoreLocalList($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <ion-list style="margin-left:5px;margin-bottom:5px;"
   *ngIf="isEdit">
@@ -288,7 +293,7 @@
 
   <ion-list *ngIf="listdata&&isEdit" style="margin-left:5px;">
     <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
-      <ion-item-sliding #slidingItem *ngFor="let p of localList" 
+      <ion-item-sliding #slidingItem *ngFor="let p of localList; trackBy: trackByPoem" 
       style="--padding-start:15px;--inner-padding-end:20px;">
         <ion-item style="--padding-start:15px;--inner-padding-end:20px;">
           <ion-icon slot="start" name="remove-circle" color="danger"
@@ -310,7 +315,7 @@
           </ion-thumbnail>
           <ion-label>
             <h2 class="show-only-one-line">
-              {{data.showsample(p)}}
+              {{p.previewText}}
             </h2>
             <p style="margin-top:5px;display: flex;align-items: center;" 
             class="show-only-one-line">
