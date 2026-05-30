@@ -253,7 +253,8 @@
       </ion-thumbnail>
       <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <h2 class="show-only-one-line">
-          {{p.paragraphs[0]}}</h2>
+          {{data.showsample(p)}}
+        </h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
         class="show-only-one-line">
           {{p.author}}《{{p.title}}》
@@ -298,7 +299,9 @@
               
           </ion-thumbnail>
           <ion-label>
-            <h2 class="show-only-one-line">{{p.paragraphs[0]}}</h2>
+            <h2 class="show-only-one-line">
+              {{data.showsample(p)}}
+            </h2>
             <p style="margin-top:5px;display: flex;align-items: center;" 
             class="show-only-one-line">
               {{p.author}}《{{p.title}}》
