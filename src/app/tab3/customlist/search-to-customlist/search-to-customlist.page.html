@@ -33,7 +33,7 @@
             <h2 [innerHTML]="getHighlight(p)" class="show-only-one-line"></h2>
             <p style="margin-top:5px;display: flex;align-items: center;" 
             class="show-only-one-line">
-              {{p.author}}《{{p.title}}》
+              {{p.dy ? '[' + p.dy + ']' : ''}} {{p.author}}《{{p.title}}》
               <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
             </p>
           </ion-label>

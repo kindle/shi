@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ActivatedRoute } from '@angular/router';
-import { ScrollDetail } from '@ionic/angular';
+import { ModalController, ScrollDetail } from '@ionic/angular';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/add-to-customlist.page';
 
 @Component({
   selector: 'app-list',
@@ -113,6 +114,7 @@ export class ListPage {
     public data: DataService,
     public ui: UiService,
     private activatedRoute: ActivatedRoute,
+    private modalController: ModalController,
   ) { }
 
   id:any;
@@ -213,4 +215,24 @@ export class ListPage {
     this.data.goToTag(tag);
   }
   
+  async addAllToCustomList(){ 
+    this.data.currentCollectPoem = null;
+    this.data.currentCollectPoems = [];
+
+    this.listdata.list.forEach((p:any) => {
+      this.data.currentCollectPoems.push(p);
+    });
+
+    const modal = await this.modalController.create({
+        component: AddToCustomListPage,
+        componentProps: {
+        },
+        showBackdrop: true,
+        breakpoints: [0, 0.5, 0.75, 1],
+        initialBreakpoint: 0.75,
+    });
+    await modal.present();
+
+  }
+
 }

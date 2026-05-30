@@ -93,7 +93,7 @@
             [style.fontSize]="data.zoom(14)">
             <ion-icon name="headset" *ngIf="like.data['audio']" color="primary"
             style="margin-right:5px;min-width: 24px;"></ion-icon>
-            [{{like.data['dy']}}]{{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
+            {{like.data['dy'] ? '[' + like.data['dy'] + ']' : ''}} {{like.data['author']}}《{{like.data['title'].substring(0,8)}}{{like.data['title'].substring(0,8)==like.data['title']?"":"..."}}》
           </p>
         </ion-label>
       </ion-item>

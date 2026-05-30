@@ -161,8 +161,10 @@ export class SearchToCustomListPage {
     }
 
     this.data.currentCollectPoem = p;
+    //this.data.currentCollectPoems.push(p);
     //console.log(p)
     this.data.addtocustomlist(this.data.currentCollectLike);
+    //console.log(this.data.currentCollectLike)
     //update parent datalist
     this.eventService.triggerMyEvent({ someData: 'bailintest data' });
 

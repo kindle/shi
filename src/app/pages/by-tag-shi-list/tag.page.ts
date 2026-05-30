@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { InfiniteScrollCustomEvent, IonContent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, IonContent, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Share } from '@capacitor/share';
+import { AddToCustomListPage } from 'src/app/tab3/customlist/add-to-customlist/add-to-customlist.page';
 
 @Component({
   selector: 'app-tag',
@@ -21,6 +22,7 @@ export class TagPage {
     public data: DataService,
     public ui: UiService,
     private activatedRoute: ActivatedRoute,
+    private modalController: ModalController
   ) { 
     
   }
@@ -153,5 +155,25 @@ export class TagPage {
         this.data.getUrl()
       );
     }
+  }
+
+  async addAllToCustomList(){ 
+    this.data.currentCollectPoem = null;
+    this.data.currentCollectPoems = [];
+
+    this.localJsonData.forEach((p:any) => {
+      this.data.currentCollectPoems.push(p);
+    });
+
+    const modal = await this.modalController.create({
+        component: AddToCustomListPage,
+        componentProps: {
+        },
+        showBackdrop: true,
+        breakpoints: [0, 0.5, 0.75, 1],
+        initialBreakpoint: 0.75,
+    });
+    await modal.present();
+
   }
 }

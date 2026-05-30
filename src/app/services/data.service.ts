@@ -50,10 +50,44 @@ export enum ViewType{
   Id,
 }
 
+export interface StudyPlanSettings {
+  totalPoems: number;
+  studiedPoems: number;
+  dailyPoems: number;
+  completionDays: number;
+}
+
+export interface StudyPlanItem {
+  src: string;
+  title: string;
+  desc: string;
+  done: number;
+  total: number;
+  cid: string | number;
+  data: any[];
+  current: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  public studyPlan: StudyPlanSettings = {
+    totalPoems: 739,
+    studiedPoems: 594,
+    dailyPoems: 10,
+    completionDays: Math.ceil(739 / 10),
+  };
+  public studyPlanSubject = new BehaviorSubject<StudyPlanSettings>(this.studyPlan);
+
+  updateStudyPlan(plan: Partial<StudyPlanSettings>) {
+    this.studyPlan = {
+      ...this.studyPlan,
+      ...plan,
+    };
+    this.studyPlanSubject.next(this.studyPlan);
+  }
 
   //debug mode
   TestMode = false;
@@ -3402,6 +3436,7 @@ export class DataService {
     this.loadRecentPlayedEP();
     //load play style
     this.loadPlayStyle();
+    this.loadStudyPlan();
     
     //tab4 订阅随机图片
     this.getSubscriptionImage();
@@ -4010,6 +4045,46 @@ export class DataService {
 
   private saveTracker(){
     this.set('app_daily_tracker', JSON.stringify(this.tracker));
+  }
+
+  get recentTrackerStreakDays(): number {
+    if (!Array.isArray(this.tracker) || this.tracker.length === 0) {
+      return 0;
+    }
+
+    const dateSet = new Set(
+      this.tracker
+        .map((item: any) => item?.date)
+        .filter((date: any) => typeof date === 'string' && date.length > 0)
+    );
+
+    if (dateSet.size === 0) {
+      return 0;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const hasToday = dateSet.has(this.formatTrackerDate(today));
+    if (!hasToday) {
+      today.setDate(today.getDate() - 1);
+    }
+
+    let streak = 0;
+    const cursor = new Date(today);
+    while (dateSet.has(this.formatTrackerDate(cursor))) {
+      streak += 1;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+
+    return streak;
+  }
+
+  private formatTrackerDate(date: Date): string {
+    const y = date.getFullYear();
+    const m = (date.getMonth() + 1).toString().padStart(2, '0');
+    const d = date.getDate().toString().padStart(2, '0');
+    return `${y}-${m}-${d}`;
   }
   /****tracker logic end****************************** */
   
@@ -4832,6 +4907,7 @@ export class DataService {
 
   currentCollectLike:any;
   currentCollectPoem:any;
+  currentCollectPoems:any = [];
   collectCustom(p:any){
     let fullData = this.JsonData.filter((j:any)=>j.id===p.id);
     if(fullData.length===1){
@@ -4842,21 +4918,30 @@ export class DataService {
       //console.log('did not find the poet data by id:'+p.id)
     }
   }
-  addtocustomlist(like:any){
-    if(this.currentCollectPoem){
-      if(!like.data.list.find((d:any)=>d.id===this.currentCollectPoem.id)||
-      this.currentCollectPoem.id==null
-      )
+  addsinglepoemtocustomlist(like:any){
+    if(!like.data.list.find((d:any)=>d.id===this.currentCollectPoem.id)||
+        this.currentCollectPoem.id==null
+        )
       {
+        if(!Array.isArray(this.currentCollectPoem.added)){
+          this.currentCollectPoem.added = [];
+        }
+
+        if(!this.currentCollectPoem.added.includes(like.data.id)){
+          this.currentCollectPoem.added.push(like.data.id);
+        }
         like.data.list.push(this.currentCollectPoem);
       }
 
       like.lastupdate = Date.now();
       like.data.image = [];
-      if(like.data.list.length>0&&like.data.list.length<4){
+      if(like.data.list.length>0&&like.data.list.length<4)
+      {
         let image = `https://reddah.blob.core.windows.net/msjjpoet/${like.data.list[0].author}.jpeg`;
         like.data.image.push(image);
-      }else if(like.data.list.length>=4){
+      }
+      else if(like.data.list.length>=4)
+      {
         /*for(let i=0;i<4;i++){
           let image = `https://reddah.blob.core.windows.net/msjjpoet/${like.data.list[i].author}.jpeg`;
           like.data.image.push(image);
@@ -4875,9 +4960,35 @@ export class DataService {
           }
         }
       }
-      else{
-
+      else
+      {
       }
+  }
+  addtocustomlist(like:any)
+  {
+    //console.log(like)
+    //single poem add to custom list
+    if(this.currentCollectPoem)
+    {
+      this.addsinglepoemtocustomlist(like);
+      this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
+    }
+    else
+    //multiple poems add to custom list
+    {
+      this.currentCollectPoems.forEach((p:any)=>{
+        if(!Array.isArray(p.added)){
+          p.added = [];
+        }
+
+        if(!p.added.includes(like.data.id)){
+          p.added.push(like.data.id);
+        }
+        
+        this.currentCollectPoem = p;
+        this.addsinglepoemtocustomlist(like);
+      });
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
       this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
     }
@@ -4935,7 +5046,7 @@ export class DataService {
 
 
   showsample(p:any){
-    if(p.sample){
+    if(p.sample&&p.sample.length>4){
       if(p.sample.indexOf('【') !== -1){
         return p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
       }
@@ -6057,4 +6168,169 @@ export class DataService {
 
     return `${year}.${month}.${day}`;
   }
+
+
+
+  get currentStudyPlan(): StudyPlanItem | null {
+    return this.getCurrentStudyPlan() ?? this.StudyPlans[0] ?? null;
+  }
+
+  StudyPlans: StudyPlanItem[] = [];
+  //LocalQueueKey="local_queue_music_key";
+  LOCALSTORAGE_STUDY_PLAN = "local_study_plan_key";
+  saveStudyPlan(){
+    this.set(this.LOCALSTORAGE_STUDY_PLAN, JSON.stringify(this.StudyPlans));
+  }
+  
+  async loadStudyPlan(){
+    this.get(this.LOCALSTORAGE_STUDY_PLAN).then((value)=>{
+      if(value==null)
+      {}
+      else{
+        let studyPlan = JSON.parse(value);
+        this.StudyPlans = Array.isArray(studyPlan) ? studyPlan : [];
+      }
+    });
+  }
+  // StudyPlans: StudyPlanItem[] = [
+  //   {
+  //     src:"assets/img/501.jpeg", 
+  //     title:"小学生必背古诗词", 
+  //     desc:"完整收录北京版小学教材中出现的古诗词，适合小学生诵读背诵。",
+  //     done:594,
+  //     total:739,
+  //     cid:1,
+  //     data:[],
+  //     current:true
+  //   },
+  //   {
+  //     src:"assets/img/501.jpeg", 
+  //     title:"初中生必背古诗词", 
+  //     desc:"完整收录北京版初中教材中出现的古诗词，适合初中生诵读背诵。",
+  //     done:20,
+  //     total:300,
+  //     cid:1,
+  //     data:[],
+  //     current:false
+  //   },
+  //   {
+  //     src:"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg", 
+  //     title:"唐诗三百首", 
+  //     desc:"完整收录唐诗三百首，适合各年龄段诵读背诵。",
+  //     done:0,
+  //     total:316,
+  //     cid:1,
+  //     data:[],
+  //     current:false
+  //   },
+
+  // ];
+
+  private resolveStudyPlanImage(customList: any): string {
+    if (customList?.customimage) {
+      return customList.customimage;
+    }
+
+    const imageSource = customList?.image;
+    if (Array.isArray(imageSource) && imageSource.length > 0) {
+      return imageSource[0];
+    }
+
+    if (typeof imageSource === 'string' && imageSource.trim() !== '') {
+      return imageSource;
+    }
+
+    return 'assets/img/501.jpeg';
+  }
+
+  isStudyPlanAdded(cid: string | number): boolean {
+    return this.StudyPlans.some((plan) => `${plan.cid}` === `${cid}`);
+  }
+
+  getCurrentStudyPlan(): StudyPlanItem | null {
+    return this.StudyPlans.find((plan) => plan.current) ?? null;
+  }
+
+  syncStudyPlanSummaryFromCurrentPlan() {
+    const currentPlan = this.getCurrentStudyPlan();
+    if (!currentPlan) {
+      return;
+    }
+
+    const totalPoems = currentPlan.total || 0;
+    const studiedPoems = Math.min(currentPlan.done || 0, totalPoems);
+    const dailyPoems = Math.max(1, Math.min(this.studyPlan.dailyPoems, Math.max(totalPoems, 1)));
+
+    this.updateStudyPlan({
+      totalPoems,
+      studiedPoems,
+      dailyPoems,
+      completionDays: Math.ceil(totalPoems / dailyPoems),
+    });
+  }
+
+  buildStudyPlanFromCustomList(customListCollection: any): StudyPlanItem {
+    const customList = customListCollection?.data ?? {};
+    const poemList = Array.isArray(customList.list) ? customList.list : [];
+
+    return {
+      src: this.resolveStudyPlanImage(customList),
+      title: customList.name || '未命名诗单列表',
+      desc: customList.desc || '这个诗单还没有描述。',
+      done: 0,
+      total: poemList.length,
+      cid: customList.id,
+      data: poemList,
+      current: false,
+    };
+  }
+
+  addStudyPlanFromCustomList(customListCollection: any): boolean {
+    const cid = customListCollection?.data?.id;
+    if (!cid) {
+      return false;
+    }
+
+    if (this.isStudyPlanAdded(cid)) {
+      this.ui.toast('top', '已经添加过这个诗单了');
+      return false;
+    }
+
+    this.StudyPlans = [...this.StudyPlans, this.buildStudyPlanFromCustomList(customListCollection)];
+    this.ui.toast('top', '已添加到学习计划');
+    return true;
+  }
+
+  setCurrentStudyPlan(cid: string | number): boolean {
+    let changed = false;
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      const shouldBeCurrent = `${plan.cid}` === `${cid}`;
+      if (plan.current !== shouldBeCurrent) {
+        changed = true;
+      }
+
+      return {
+        ...plan,
+        current: shouldBeCurrent,
+      };
+    });
+
+    if (changed) {
+      this.syncStudyPlanSummaryFromCurrentPlan();
+    }
+
+    return changed;
+  }
+
+  removeStudyPlan(cid: string | number): boolean {
+    const targetPlan = this.StudyPlans.find((plan) => `${plan.cid}` === `${cid}`);
+    if (!targetPlan || targetPlan.current) {
+      return false;
+    }
+
+    this.StudyPlans = this.StudyPlans.filter((plan) => `${plan.cid}` !== `${cid}`);
+    return true;
+  }
+
 }
