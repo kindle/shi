@@ -231,6 +231,14 @@
   <ion-input style="font-size:20px; margin:5px;margin-left:20px;" *ngIf="!showFilter&&isEdit"
    [(ngModel)]="listdata.desc" placeholder="{{ ui.instant('Title.Description')}}"></ion-input><!--诗词列表描述-->
     
+
+  <ion-list *ngIf="!showFilter"
+  style="margin-top:20px;margin-bottom: 20px;">
+    <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">
+      {{listdata.list.length}}{{ ui.instant('Title.PoemCount')}}<!--首诗词-->
+    </ion-text>
+  </ion-list>
+
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
     <ion-item *ngFor="let p of localList" style="--padding-start:15px;--inner-padding-end:20px;">
       
@@ -257,7 +265,7 @@
         </h2>
         <p style="margin-top:5px;display: flex;align-items: center;"
         class="show-only-one-line">
-          {{p.author}}《{{p.title}}》
+          {{p.dy ? '[' + p.dy + ']' : ''}} {{p.author}}《{{p.title}}》
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
@@ -276,6 +284,8 @@
     </ion-item>
   </ion-list>
     
+
+
   <ion-list *ngIf="listdata&&isEdit" style="margin-left:5px;">
     <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
       <ion-item-sliding #slidingItem *ngFor="let p of localList" 
@@ -304,7 +314,7 @@
             </h2>
             <p style="margin-top:5px;display: flex;align-items: center;" 
             class="show-only-one-line">
-              {{p.author}}《{{p.title}}》
+              {{p.dy ? '[' + p.dy + ']' : ''}} {{p.author}}《{{p.title}}》
               <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
             </p>
           </ion-label>
@@ -326,12 +336,6 @@
   </ion-list>
 
 
-  <ion-list  *ngIf="!showFilter"
-  style="margin-top:20px;margin-bottom: 20px;">
-    <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">
-      {{listdata.list.length}}{{ ui.instant('Title.PoemCount')}}<!--首诗词-->
-    </ion-text>
-  </ion-list>
 
   <ion-card-content *ngIf="listActualLength==0"
   style="text-align: center;font-weight: light;color:black;padding-bottom:0;">
