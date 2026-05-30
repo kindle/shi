@@ -45,6 +45,7 @@ export class UiService {
     private router: Router
   ) { 
     this.isWeb = Capacitor.getPlatform() === 'web';
+    
 
     if(this.platform.is('ios')){
       this.isIos =true;
@@ -69,6 +70,11 @@ export class UiService {
       }
       //consider as ipad for other desktop scenario temporarily.
       this.isipad = true;
+      if(this.isWeb){
+        //this.isiphone = /iPhone/i.test(window.navigator.userAgent);
+        this.isiphone = true;
+        this.isipad = false;
+      }
     } 
   }
 
