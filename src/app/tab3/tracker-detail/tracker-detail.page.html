@@ -17,6 +17,26 @@
 
   <div [style.width]="ui.isipad ? '60%' : '100%'"
   [style.margin-left]="ui.isipad ? '20px' : 0">
+    <!--连续不断电-->
+    <ion-card style="height: 120px; margin-bottom: 16px; border-radius: 20px; 
+    background: linear-gradient(135deg, #3171e0 0%, #8fd3ff 100%); 
+    color: #ffffff; box-shadow: none;">
+      <ion-card-content style="height: 100%; display: flex; align-items: center; padding: 24px;">
+        <ion-icon name="flash-outline" style="font-size: 40px; margin-right: 18px; color: #ffffff; flex-shrink: 0;"></ion-icon>
+        <div style="display: flex; flex-direction: column; justify-content: center; color: #ffffff;">
+          <div style="font-weight: 700; line-height: 1; margin-bottom: 5px;"
+          [style.fontSize]="dataService.zoom(40)">
+            {{ dataService.recentTrackerStreakDays }}
+            <span [style.fontSize]="dataService.zoom(15)">天</span>
+          </div>
+          <div style="font-weight: bold; opacity: 0.96;"
+           [style.fontSize]="dataService.zoom(15)">
+            连续学习诗词
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
     <app-shi-tracker [year]="currentViewDate.getFullYear()" 
     [showActivity]="true"
     (monthSelected)="onMonthSelected($event)"></app-shi-tracker>
