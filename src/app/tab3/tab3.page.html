@@ -69,8 +69,133 @@
   <div [style.width]="ui.isipad ? '72%' : '100%'"
   [style.margin-left]="ui.isipad ? '20px' : 0">
 
-    <div style="display: grid;grid-template-columns: repeat({{ui.isipad?3:2}}, 1fr);
-      grid-gap:0px;padding:0 10px;margin-top:10px;margin-bottom:15px;">
+
+
+
+    <!--task bar  -->
+    <ion-list>
+      <ion-item lines="none" class="task-item">
+        <ion-button color="light" size="medium" class="task-button"
+        (click)="goToTrackerDetail()"
+         [style.fontSize]="data.zoom(15)">
+          <ion-icon slot="start" name="flash" color="primary"></ion-icon>
+          {{ data.recentTrackerStreakDays }}
+        </ion-button>
+        <ion-button color="light" size="medium" class="task-button"
+         [style.fontSize]="data.zoom(15)">
+          <ion-icon slot="start" name="calendar-outline" color="success"></ion-icon>
+          统计
+        </ion-button>
+        <ion-button color="light" size="medium" class="task-button"
+         [style.fontSize]="data.zoom(15)">
+          <ion-icon slot="start" name="file-tray" color="warning"></ion-icon>
+          任务
+        </ion-button>
+
+        <!-- <ion-button color="transparent" size="medium" class="task-search-button">
+          <ion-icon slot="end" name="search-outline" color="dark" size="large"></ion-icon>
+        </ion-button> -->
+      </ion-item>
+    </ion-list>
+    
+    <!--进度-->
+    <ion-list>
+      <ion-item lines="none">
+        <ion-thumbnail slot="start"
+          style="width:80px;height:120px;display: flex;justify-content: center;align-items: center;">
+          <img id="authorimg" style="border-radius: 10px;" 
+            defaultImage="assets/img/501.jpeg" 
+            lazyLoad="{{ data.currentStudyPlan?.src || 'assets/img/501.jpeg' }}"
+            onerror="javascript:this.src='assets/img/501.jpeg'"
+              />
+        </ion-thumbnail>
+        
+        <ion-label>
+          <p [style.fontSize]="data.zoom(18)" style="margin-top:5px;color:black;">
+            {{ data.currentStudyPlan?.title || '当前学习诗单' }}
+          </p>
+          <p [style.fontSize]="data.zoom(18)" style="margin-top:6px;margin-bottom:4px;color:black;">
+            每日{{ studyPlan.dailyPoems }}首，剩余{{ studyPlan.completionDays }}天
+            <span [style.fontSize]="data.zoom(16)" style="color:gray;cursor:pointer;float:right;" 
+            (click)="goToStudyPlan()">
+              修改 >
+            </span>
+          </p>
+          <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+            {{ data.currentStudyPlan?.desc || '选择一个诗单开始你的学习计划。' }}
+          </p>
+          <div class="study-progress-block">
+            <ion-range
+              class="study-progress-range"
+              [value]="studyPlan.studiedPoems"
+              [max]="studyPlan.totalPoems">
+            </ion-range>
+            <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
+              <span>{{ studyPlan.studiedPoems }} / {{ studyPlan.totalPoems }}</span>
+              <span>剩余{{ studyPlan.completionDays }}天</span>
+            </div>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <hr class="progress-plan-divider">
+
+    <!--今日计划-->
+    <!-- <app-sub-title name="今日计划"></app-sub-title> -->
+    <ion-list class="plan-list">
+      <ion-item lines="none" class="plan-item">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title" [style.fontSize]="data.zoom(18)" style="margin-left:5px;">
+              今日计划
+            </div>
+            <br>
+            <ion-button class="plan-checkin-button" [style.fontSize]="data.zoom(16)">
+              去打卡 &gt;
+            </ion-button>
+          </div>
+
+          <div class="plan-stats">
+            <div class="plan-stat-card">
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(16)">已新学</div>
+              <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
+                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(30)">10</span>
+                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ 10</span>
+              </div>
+              <ion-button fill="clear" class="plan-action-button" [style.fontSize]="data.zoom(19)">
+                学习
+              </ion-button>
+            </div>
+
+            <div class="plan-stat-card plan-review-card">
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(16)">已复习</div>
+              <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
+                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(30)">0</span>
+                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ 432</span>
+              </div>
+              <ion-button expand="block" class="plan-review-button" [style.fontSize]="data.zoom(19)">
+                复习
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+
+
+    <app-sub-title name="{{ ui.instant('Tabs.Library') }}"></app-sub-title>
+
+    <div
+      [ngStyle]="{
+        'display': 'grid',
+        'grid-template-columns': 'repeat(' + (ui.isipad ? 3 : 2) + ', 1fr)',
+        'grid-gap': '0px',
+        'padding': '0 10px',
+        'margin-top': '10px',
+        'margin-bottom': '15px'
+      }">
       <ion-card *ngFor="let topic of topics"
         id="{{topic.id}}"
         (click)="goToTopic(topic.id)"
@@ -87,8 +212,8 @@
         </div>
         <ion-card-content class="station-content" 
           [ngStyle]="{'font-size': ui.isipad ? '60px' : '25px', 
-          'height': ui.isipad ? '250px' : '120px'}"
-          style="background-image: linear-gradient(to right, {{topic.color}},{{topic.color}}, {{topic.light}}, {{topic.color}});"
+          'height': ui.isipad ? '250px' : '120px',
+          'background-image': 'linear-gradient(to right, ' + topic.color + ', ' + topic.color + ', ' + topic.light + ', ' + topic.color + ')'}"
           [style.fontSize]="data.zoom(ui.isipad?50:20)">
           {{ ui.instant(topic.text) }}
           <span> ({{$any(data)[topic.count]}})</span>

@@ -1,0 +1,9 @@
+.plan-disabled {
+  opacity: 0.45;
+}
+
+.plan-disabled ion-label,
+.plan-disabled h2,
+.plan-disabled p {
+  color: var(--ion-color-medium);
+}

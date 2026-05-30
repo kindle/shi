@@ -7,6 +7,7 @@ import { UiService } from '../services/ui.service';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs';
 import { ConvertService } from '../services/convert.service';
+import { StudyPlanItem, StudyPlanSettings } from '../services/data.service';
 
 @Component({
   selector: 'app-tab3',
@@ -14,6 +15,8 @@ import { ConvertService } from '../services/convert.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+
+  studyPlan!: StudyPlanSettings;
 
   readonly currentDateTitle = this.formatCurrentDate();
   get reversedPlayHistory(): any[] {
@@ -37,19 +40,28 @@ export class Tab3Page {
     private scrollService: ScrollService,
     public convertService: ConvertService
   ) {}
-
-  @ViewChild(IonContent, { static: false }) content: IonContent|any;
-  private scrollSubscription: Subscription|any;
+  
   ngOnInit(){
+    this.studyPlan = this.data.studyPlan;
     this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
       if (this.content) {
         this.content.scrollToTop(300);
       }
     });
+    this.studyPlanSubscription = this.data.studyPlanSubject.subscribe((plan) => {
+      this.studyPlan = plan;
+    });
   }
+
+  @ViewChild(IonContent, { static: false }) content: IonContent|any;
+  private scrollSubscription: Subscription|any;
+  private studyPlanSubscription: Subscription|any;
   ngOnDestroy() {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
+    }
+    if (this.studyPlanSubscription) {
+      this.studyPlanSubscription.unsubscribe();
     }
   }
 
@@ -229,6 +241,14 @@ export class Tab3Page {
       queryParams: {
       }
     });
+  }
+
+  goToTrackerDetail(){
+    this.router.navigate(['/tabs/tab3/tracker-detail']);
+  }
+
+  goToStudyPlan(){
+    this.router.navigate(['/tabs/tab3/study/plan']);
   }
 
 

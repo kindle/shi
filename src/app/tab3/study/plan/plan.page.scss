@@ -1,0 +1,309 @@
+.study-plan-shell {
+  padding: 78px 16px 24px;
+}
+
+.study-plan-tabs-wrapper {
+  padding: 0 16px;
+  background: #ffffff;
+  z-index: 10;
+}
+
+.study-plan-tabs {
+  --tab-count: 2;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(56, 128, 255, 0.12);
+  background: #ffffff;
+}
+
+.study-plan-tab-button {
+  border: 0;
+  background: transparent;
+  color: #8c8c8c;
+  padding: 14px 8px 16px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+.study-plan-tab-button.active {
+  color: var(--ion-color-primary);
+}
+
+.study-plan-highlight {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: calc(100% / var(--tab-count));
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.highlight-line {
+  width: 34px;
+  height: 3px;
+  background: var(--ion-color-primary);
+  border-radius: 999px;
+}
+
+.study-plan-tabs.selected-tab1 .study-plan-highlight {
+  transform: translateX(0%);
+}
+
+.study-plan-tabs.selected-tab2 .study-plan-highlight {
+  transform: translateX(100%);
+}
+
+.study-plan-panel {
+  padding-top: 4px;
+}
+
+.study-plan-summary-list {
+  margin: 0 0 14px;
+  background: transparent;
+  border:1px solid #e8e8e8;
+  border-radius: 5px;
+}
+
+.progress-plan-divider {
+    margin: 15px 20px;
+    border: 0;
+    border-top: 1px solid #e7e7e7;
+}
+
+.study-plan-deadline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 14px;
+  color: var(--ion-color-medium);
+  gap: 12px;
+}
+
+.study-plan-picker-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 16px;
+  margin: 0 0 18px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+.study-plan-submit-button {
+  margin: 0 20px;
+  --border-radius: 14px;
+  --box-shadow: 0 10px 22px rgba(56, 128, 255, 0.25);
+  --color: #ffffff;
+  font-weight: 600;
+}
+
+.study-plan-picker-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.study-plan-picker-title {
+  color: #1f2937;
+  font-weight: 600;
+  text-align: center;
+}
+
+.study-plan-picker-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.study-plan-wheel-shell {
+  position: relative;
+  height: 144px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(56, 128, 255, 0.06), rgba(56, 128, 255, 0.02));
+  overflow: hidden;
+}
+
+.study-plan-wheel-focus {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(56, 128, 255, 0.08);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.study-plan-wheel {
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  z-index: 2;
+}
+
+.study-plan-wheel::-webkit-scrollbar {
+  display: none;
+}
+
+.study-plan-wheel-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 500;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.study-plan-wheel-item-days {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  position: relative;
+}
+
+.study-plan-wheel-item.active {
+  color: var(--ion-color-primary);
+  font-weight: 700;
+}
+
+.study-plan-wheel-check-icon {
+  font-size: 18px;
+  color: var(--ion-color-primary);
+  position: absolute;
+  right: 18px;
+}
+
+.study-plan-wheel-spacer {
+  flex: 0 0 auto;
+}
+
+.study-plan-summary-item {
+  --background: #ffffff;
+  --border-radius: 16px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --inner-padding-end: 0;
+  --inner-border-width: 0;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+.study-plan-summary-title {
+  margin-top: 5px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.study-plan-reset-link {
+  margin-left: auto;
+  color: var(--ion-color-medium);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.study-plan-current {
+  margin-left: auto;
+  color: var(--ion-color-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.study-plan-reset-icon {
+  font-size: 16px;
+}
+
+.study-plan-summary-subtitle {
+  margin: 6px 0 2px;
+  color: #111827;
+}
+
+.study-plan-list {
+  background: transparent;
+}
+
+.study-progress-block {
+  margin-top: 0;
+}
+
+.study-progress-range {
+  margin: 0;
+  margin-bottom: -12px;
+  padding-inline: 0;
+  pointer-events: none;
+  touch-action: none;
+  --padding-start: 0;
+  --padding-end: 0;
+  --knob-size: 18px;
+  --bar-height: 6px;
+  --bar-background-active: var(--ion-color-primary);
+  --knob-background: var(--ion-color-primary);
+}
+
+.study-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  color: var(--ion-color-medium);
+}
+
+.study-plan-item {
+  --background: #ffffff;
+  --border-radius: 16px;
+  --padding-start: 18px;
+  --padding-end: 18px;
+  --inner-padding-end: 0;
+  --inner-border-width: 0;
+  margin-bottom: 12px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+.study-plan-item-title {
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.study-plan-item-value {
+  color: var(--ion-color-primary);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.study-plan-item-desc {
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 420px) {
+  .study-plan-deadline-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .study-plan-picker-card {
+    padding: 16px 12px;
+  }
+}

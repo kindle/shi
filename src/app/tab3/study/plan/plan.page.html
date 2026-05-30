@@ -1,0 +1,248 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="padding-left:10px;padding-right:10px;">
+    <ion-buttons slot="start">
+      <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title [style.fontSize]="data.zoom(18)">
+      学习计划
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="study-plan-tabs-wrapper" slot="fixed"
+    [style.width]="ui.isipad ? '72%' : '100%'"
+    [style.margin-left]="ui.isipad ? '20px' : 0">
+    <div class="study-plan-tabs"
+      [class.selected-tab1]="selectedTab === 'plan'"
+      [class.selected-tab2]="selectedTab === 'playlist'">
+      <div class="study-plan-highlight">
+        <div class="highlight-line"></div>
+      </div>
+
+      <button
+        type="button"
+        class="study-plan-tab-button"
+        [class.active]="selectedTab === 'plan'"
+        (click)="selectTab('plan')"
+        [style.fontSize]="data.zoom(18)">
+        修改计划
+      </button>
+      <button
+        type="button"
+        class="study-plan-tab-button"
+        [class.active]="selectedTab === 'playlist'"
+        (click)="selectTab('playlist')"
+        [style.fontSize]="data.zoom(18)">
+        更换诗单
+      </button>
+    </div>
+  </div>
+
+  <div class="study-plan-shell"
+    [style.width]="ui.isipad ? '72%' : '100%'"
+    [style.margin-left]="ui.isipad ? '20px' : 0">
+
+    <div class="study-plan-panel" *ngIf="selectedTab === 'plan'">
+      <ion-list class="study-plan-summary-list">
+        <ion-item lines="none" class="study-plan-summary-item">
+            <ion-thumbnail slot="start"
+                style="width:80px;height:100px;display: flex;justify-content: center;align-items: center;">
+                <img id="authorimg" style="border-radius: 10px;" 
+                    defaultImage="assets/img/501.jpeg" 
+                    lazyLoad="{{ data.currentStudyPlan?.src || 'assets/img/501.jpeg' }}"
+                    onerror="javascript:this.src='assets/img/501.jpeg'"
+                    />
+            </ion-thumbnail>
+            
+            <ion-label>
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
+                {{ data.currentStudyPlan?.title || '当前学习诗单' }}
+            </p>
+            <p [style.fontSize]="data.zoom(14)" class="study-plan-summary-subtitle">
+              {{ summarySubtitle }}
+              <span [style.fontSize]="data.zoom(14)" class="study-plan-reset-link" (click)="resetPlan()" style="float:right;">
+                <ion-icon name="refresh" class="study-plan-reset-icon"></ion-icon>
+                重置
+              </span>
+            </p>
+            <div class="study-progress-block">
+                <ion-range
+                class="study-progress-range"
+                [value]="594"
+                [max]="739">
+                </ion-range>
+                <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
+                <span>{{ data.studyPlan.studiedPoems }} / {{ data.studyPlan.totalPoems }}</span>
+                <span>剩余{{ data.studyPlan.completionDays }}天</span>
+                </div>
+            </div>
+            </ion-label>
+        </ion-item>
+      </ion-list>
+
+
+      <hr class="progress-plan-divider">
+
+      <div class="study-plan-deadline-row" [style.fontSize]="data.zoom(16)">
+        <span>完成日期：{{ completionDateLabel }} &nbsp;&nbsp;&nbsp;&nbsp;{{ estimatedDailyTimeLabel }}</span>
+        <span></span>
+      </div>
+
+      <div class="study-plan-picker-card">
+        <div class="study-plan-picker-header">
+          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">每天背诗词</div>
+          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">完成天数</div>
+        </div>
+        <div class="study-plan-picker-body">
+          <div class="study-plan-wheel-shell">
+            <div class="study-plan-wheel-focus"></div>
+            <div
+              #dailyWheel
+              class="study-plan-wheel"
+              (scroll)="onDailyWheelScroll($event)">
+              <div
+                class="study-plan-wheel-spacer"
+                [style.height.px]="wheelPaddingItems * wheelItemHeight">
+              </div>
+              <button
+                *ngFor="let option of dailyPoemOptions"
+                type="button"
+                class="study-plan-wheel-item"
+                [class.active]="option === selectedDailyPoems"
+                [style.height.px]="wheelItemHeight"
+                [style.fontSize]="data.zoom(option === selectedDailyPoems ? 18 : 16)"
+                (click)="selectDailyPoems(option)">
+                {{ option }} 首
+              </button>
+              <div
+                class="study-plan-wheel-spacer"
+                [style.height.px]="wheelPaddingItems * wheelItemHeight">
+              </div>
+            </div>
+          </div>
+
+          <div class="study-plan-wheel-shell">
+            <div class="study-plan-wheel-focus"></div>
+            <div
+              #daysWheel
+              class="study-plan-wheel"
+              (scroll)="onDaysWheelScroll($event)">
+              <div
+                class="study-plan-wheel-spacer"
+                [style.height.px]="wheelPaddingItems * wheelItemHeight">
+              </div>
+              <button
+                *ngFor="let option of completionDayOptions"
+                type="button"
+                class="study-plan-wheel-item study-plan-wheel-item-days"
+                [class.active]="option === selectedCompletionDays"
+                [style.height.px]="wheelItemHeight"
+                [style.fontSize]="data.zoom(option === selectedCompletionDays ? 18 : 16)"
+                (click)="selectCompletionDays(option)">
+                <span>{{ option }} 天</span>
+                <ion-icon
+                  *ngIf="option === selectedCompletionDays"
+                  name="checkmark-circle"
+                  class="study-plan-wheel-check-icon">
+                </ion-icon>
+              </button>
+              <div
+                class="study-plan-wheel-spacer"
+                [style.height.px]="wheelPaddingItems * wheelItemHeight">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ion-button
+      (click)="data.saveStudyPlan();ui.goback();"
+        expand="block"
+        color="primary"
+        class="study-plan-submit-button"
+        [style.fontSize]="data.zoom(17)">
+        保存计划
+      </ion-button>
+
+      <!-- <ion-list lines="none" class="study-plan-list">
+        <ion-item class="study-plan-item">
+          <ion-label>
+            <div class="study-plan-item-title" [style.fontSize]="data.zoom(18)">每日新学</div>
+            <div class="study-plan-item-value" [style.fontSize]="data.zoom(30)">{{ selectedDailyPoems }} 首</div>
+            <p class="study-plan-item-desc" [style.fontSize]="data.zoom(14)">{{ dailyStudyDescription }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item class="study-plan-item">
+          <ion-label>
+            <div class="study-plan-item-title" [style.fontSize]="data.zoom(18)">完成周期</div>
+            <div class="study-plan-item-value" [style.fontSize]="data.zoom(30)">{{ selectedCompletionDays }} 天</div>
+            <p class="study-plan-item-desc" [style.fontSize]="data.zoom(14)">{{ completionDescription }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list> -->
+    </div>
+
+    <div class="study-plan-panel" *ngIf="selectedTab === 'playlist'">
+
+      <ion-list class="study-plan-summary-list" *ngFor="let plan of orderedStudyPlans">
+        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)">
+            <ion-thumbnail slot="start"
+                style="width:80px;height:120px;display: flex;justify-content: center;align-items: center;">
+                <img id="authorimg" style="border-radius: 10px;" 
+                    defaultImage="assets/img/501.jpeg" 
+                    lazyLoad="{{plan.src}}"
+                    onerror="javascript:this.src='assets/img/501.jpeg'"
+                    />
+            </ion-thumbnail>
+            
+            <ion-label>
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
+                {{ plan.title }}
+            </p>
+            <p [style.fontSize]="data.zoom(14)" class="study-plan-summary-subtitle">
+              {{ summarySubtitle }}
+              <span [style.fontSize]="data.zoom(14)" class="study-plan-current" 
+                style="float:right;" *ngIf="plan.current">
+                当前在学
+              </span>
+              <span [style.fontSize]="data.zoom(14)" class="study-plan-reset-link" 
+              (click)="deleteStudyPlan(plan, $event)" style="float:right;"
+              *ngIf="!plan.current">
+                <ion-icon name="trash-outline" class="study-plan-reset-icon"></ion-icon>
+                删除
+              </span>
+            </p>
+            <div class="study-progress-block">
+                <ion-range
+                class="study-progress-range"
+                [value]="plan.done"
+                [max]="plan.total">
+                </ion-range>
+                <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
+                <span>已学 {{ plan.done }}</span>
+                <span>{{ plan.total }} 首</span>
+                </div>
+            </div>
+            </ion-label>
+        </ion-item>
+      </ion-list>
+
+
+
+
+
+
+      <ion-button
+        expand="block"
+        color="primary"
+        (click)="addStudyPlan()"
+        class="study-plan-submit-button"
+        [style.fontSize]="data.zoom(17)">
+        添加诗单
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="placeholder-playbox"></div>
+</ion-content>

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>添加诗单</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" [strong]="true">{{ ui.instant('Action.Cancel') }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="no-padding">
+  <ion-searchbar
+    placeholder="{{ ui.instant('Search.CustomList') }}"
+    show-cancel-button="focus"
+    style="padding-left:15px;"
+    [(ngModel)]="searchText"
+    (ionFocus)="onSearchFocus()"
+    (ionCancel)="onSearchCancel()"
+    (ionInput)="onSearchChanged()"
+    [cancelButtonText]="ui.instant('Action.Cancel')">
+  </ion-searchbar>
+
+  <ion-list *ngIf="lastUpdatedCustomList.length > 0 && (!searchText || searchText.length === 0)">
+    <ion-list-header>
+      <ion-label style="padding-left:5px;">最近诗单列表</ion-label>
+    </ion-list-header>
+
+    <ion-item
+      *ngFor="let like of lastUpdatedCustomList"
+      (click)="pickPlan(like)"
+      [class.plan-disabled]="isAdded(like)"
+      style="--padding-start:20px;--inner-padding-end:20px;"
+      detail="false">
+      <ion-thumbnail slot="start" *ngIf="like.data && like.data.customimage" style="background-color: {{like.data['color']}};border-radius: 10px;">
+        <img style="border-radius: 10px;" defaultImage="" lazyLoad="{{like.data['customimage']}}" />
+      </ion-thumbnail>
+
+      <ion-thumbnail slot="start" *ngIf="like.data && !like.data.customimage && like.data.image && like.data.image.length < 4" style="background-color: {{like.data['color']}};border-radius: 10px;">
+        <img style="border-radius: 10px;" defaultImage="" lazyLoad="{{like.data['image']}}" />
+      </ion-thumbnail>
+
+      <ion-thumbnail
+        slot="start"
+        *ngIf="like.data && !like.data.customimage && like.data.image && like.data.image.length >= 4"
+        style="aspect-ratio: 1 / 1; border: 1px solid rgba(247,247,247); border-radius: 10px; display: grid; grid-gap:0px; justify-content: space-evenly; align-content: space-evenly; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); overflow: hidden;background-color: {{like.data['color']}};">
+        <div
+          *ngFor="let i of [0,1,2,3]"
+          defaultImage=""
+          lazyLoad="{{like.data.image[i]}}"
+          style="background-size:cover; background-repeat: no-repeat;">
+        </div>
+      </ion-thumbnail>
+
+      <ion-label *ngIf="like.data">
+        <h2>
+          {{ like.data['name'] }}
+          <ion-text color="medium" *ngIf="isAdded(like)"> 已添加</ion-text>
+        </h2>
+        <p style="margin-top:5px;">{{ like.data['desc'] }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label style="padding-left:5px;">所有诗单列表</ion-label>
+    </ion-list-header>
+
+    <ion-item
+      *ngFor="let like of displayResult"
+      (click)="pickPlan(like)"
+      [class.plan-disabled]="isAdded(like)"
+      style="--padding-start:20px;--inner-padding-end:20px;"
+      detail="false">
+      <ion-thumbnail slot="start" *ngIf="like.data && like.data.customimage" style="background-color: {{like.data['color']}};border-radius: 10px;">
+        <img style="border-radius: 10px;" defaultImage="" lazyLoad="{{like.data['customimage']}}" />
+      </ion-thumbnail>
+
+      <ion-thumbnail slot="start" *ngIf="like.data && !like.data.customimage && like.data.image && like.data.image.length < 4" style="background-color: {{like.data['color']}};border-radius: 10px;">
+        <img style="border-radius: 10px;" defaultImage="" lazyLoad="{{like.data['image']}}" />
+      </ion-thumbnail>
+
+      <ion-thumbnail
+        slot="start"
+        *ngIf="like.data && !like.data.customimage && like.data.image && like.data.image.length >= 4"
+        style="aspect-ratio: 1 / 1; border: 1px solid rgba(247,247,247); border-radius: 10px; display: grid; grid-gap:0px; justify-content: space-evenly; align-content: space-evenly; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); overflow: hidden;background-color: {{like.data['color']}};">
+        <div
+          *ngFor="let i of [0,1,2,3]"
+          defaultImage=""
+          lazyLoad="{{like.data.image[i]}}"
+          style="background-size:cover;background-repeat: no-repeat;">
+        </div>
+      </ion-thumbnail>
+
+      <ion-label *ngIf="like.data">
+        <h2>
+          {{ like.data['name'] }}
+          <ion-text color="medium" *ngIf="isAdded(like)"> 已添加</ion-text>
+        </h2>
+        <p style="margin-top:5px;">{{ like.data['desc'] }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
