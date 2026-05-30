@@ -37,10 +37,10 @@
               <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
             </p>
           </ion-label>
-          <ion-button fill="clear" slot="end" (click)="addtocustomlist(p)" *ngIf="!(p.added && p.added.includes(cid))">
+          <ion-button fill="clear" slot="end" (click)="addtocustomlist(p)" *ngIf="!isAddedToCurrentList(p)">
             <ion-icon name="add-circle-outline" color="danger" style="font-size:22px;"></ion-icon>
           </ion-button>
-          <ion-button fill="clear" slot="end" *ngIf="p.added && p.added.includes(cid)">
+          <ion-button fill="clear" slot="end" *ngIf="isAddedToCurrentList(p)">
             <ion-icon name="checkmark-outline" color="danger" style="font-size:22px;"></ion-icon>
           </ion-button>
         </ion-item>

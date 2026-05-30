@@ -127,12 +127,12 @@ export class SearchToCustomListPage {
     this.displayResult.forEach((element:any) => {
       if(element.id!=null){
         if(poemIdsInCustomList.includes(element.id)){
-          element.added = true;
+          element.added = [this.cid];
         }
       }
       else{
         if(poemTextInCustomList.includes(element.title+element.author+element.paragraphs.join('_'))){
-          element.added = true;
+          element.added = [this.cid];
         }
       }
       
@@ -143,11 +143,23 @@ export class SearchToCustomListPage {
     //console.log(this.displayResult)
   }
 
+  isAddedToCurrentList(p:any){
+    if(Array.isArray(p?.added)){
+      return p.added.includes(this.cid);
+    }
+
+    return !!p?.added;
+  }
+
   addtocustomlist(p:any){
-    if(p.added==null){
+    if(!Array.isArray(p.added)){
       p.added = [];
     }
-    p.added.push(this.cid);
+
+    if(!p.added.includes(this.cid)){
+      p.added.push(this.cid);
+    }
+
     this.data.currentCollectPoem = p;
     //console.log(p)
     this.data.addtocustomlist(this.data.currentCollectLike);
@@ -165,7 +177,7 @@ export class SearchToCustomListPage {
       }
     });
     p.sample = this.searchText;
-    result = result ===""?p.paragraphs[0]:result;
+    result = result ===""?this.data.showsample(p):result;
     return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
 
   }
