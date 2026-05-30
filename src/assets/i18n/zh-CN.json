@@ -73,14 +73,14 @@
         "Shuffle":"随机播放",
         "ShuffleClosed":"随机播放已关闭",
         "AddPoem":"添加诗词",
-        "NewList":"新建诗单列表...",
+        "NewList":"新建诗单...",
         "Interpret":"赏析",
         "MoreToExplore":"搜索更多",
         "DeleteFromLib":"从资料库中删除",
         "AddToLib":"添加到资料库",
         "AddTo":"添加到",
         "FontSize":"文字大小",
-        "AddToAPoemList":"添加到诗单列表...",
+        "AddToAPoemList":"添加到诗单...",
         "ViewPoet":"看作者",
         "Collect":"收藏",
         "Share":"分享",
@@ -92,7 +92,7 @@
 
     "Message":{
         "LibAdded":"已添加到资料库",
-        "PoemlistAdded":"已添加到诗单列表"
+        "PoemlistAdded":"已添加到诗单"
     },
 
     "Lib":{
@@ -121,8 +121,8 @@
         "RelatedPoets":"相关诗人",
         "PoetFootprint":"大事年表",
         "PoemCount":"首诗词",
-        "NewList":"新建诗单列表",
-        "NewListName":"诗单列表名称",
+        "NewList":"新建诗单",
+        "NewListName":"诗单名称",
         "NewListDesc":"描述",
         "History":"历史记录",
         "PlayingNext":"待播清单",
@@ -163,14 +163,14 @@
 
     "Search":{
         "Tab4":"诗人、诗词以及更多内容",
-        "CustomList":"在诗单列表中查找",
+        "CustomList":"在诗单中查找",
         "Poets":"在诗人中查找",
         "Albums":"在专辑中查找",
         "Poems":"在诗词中查找",
         "Topics":"在主题中查找", 
         "Articles":"在文章中查找",
-        "AllCustomLists":"所有诗单列表",
-        "RecentCustomLists":"最近诗单列表"
+        "AllCustomLists":"所有诗单",
+        "RecentCustomLists":"最近诗单"
     },
 
     "Feedback":{
@@ -205,8 +205,8 @@
         "ReadList":"阅读诗单",
         "ReadPoem":"阅读诗词",
         "ReadArticle":"阅读文章",
-        "AddCustomList":"添加自定义诗单列表",
-        "UpdateCustomList":"更新自定义诗单列表",
+        "AddCustomList":"添加自定义诗单",
+        "UpdateCustomList":"更新自定义诗单",
         "AddToLib":"添加到资料库",
         "RemoveFromLib":"从资料库中移除",
         "NoDetailsAvailable":"暂无详细信息"

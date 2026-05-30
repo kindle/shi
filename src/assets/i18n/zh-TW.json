@@ -47,7 +47,7 @@
 
     "AI":{
         "Title":"詩詞助手",
-        "Hello":"您好！关于诗词有什麼我可以幫助您的嗎？",
+        "Hello":"您好！关于詩词有什麼我可以幫助您的嗎？",
         "Submit":"發送",
         "Status0":"AI助手",
         "Status1":"對方正在輸入...",
@@ -73,14 +73,14 @@
         "Shuffle":"隨機播放",
         "ShuffleClosed":"隨機播放已關閉",
         "AddPoem":"添加詩詞",
-        "NewList":"新建詩單列表...",
+        "NewList":"新建詩單...",
         "Interpret":"赏析",
         "MoreToExplore":"搜索更多",
         "DeleteFromLib":"從詩詞庫中刪除",
         "AddToLib":"添加到詩詞庫",
         "AddTo":"添加到",
         "FontSize":"文字大小",
-        "AddToAPoemList":"添加到詩單列表...",
+        "AddToAPoemList":"添加到詩單...",
         "ViewPoet":"看作者",
         "Collect": "收藏",
         "Share": "分享",
@@ -92,11 +92,11 @@
 
     "Message":{
         "LibAdded":"已添加到詩詞庫",
-        "PoemlistAdded":"已添加到詩單列表"
+        "PoemlistAdded":"已添加到詩單"
     },
 
     "Lib":{
-        "Poemlists":"詩單列表",
+        "Poemlists":"詩單",
         "Poets":"詩人",
         "Albums":"專輯",
         "Poems":"詩詞",
@@ -121,8 +121,8 @@
         "RelatedPoets":"相關詩人",
         "PoetFootprint":"大事年表",
         "PoemCount":"首詩詞",
-        "NewList":"新建詩單列表",
-        "NewListName":"詩單列表名稱",
+        "NewList":"新建詩單",
+        "NewListName":"詩單名稱",
         "NewListDesc":"描述",
         "History":"歷史記錄",
         "PlayingNext":"待播清單",
@@ -163,14 +163,14 @@
 
     "Search":{
         "Tab4":"詩人、詩詞以及更多內容",
-        "CustomList":"在詩單列表中查找",
+        "CustomList":"在詩單中查找",
         "Poets":"在詩人中查找",
         "Albums":"在專輯中查找",
         "Poems":"在詩詞中查找",
         "Topics":"在主題中查找",
         "Articles":"在主題中查找",
-        "AllCustomLists":"所有詩單列表",
-        "RecentCustomLists":"最近詩單列表"
+        "AllCustomLists":"所有詩單",
+        "RecentCustomLists":"最近詩單"
     },
 
     "Feedback":{
@@ -205,8 +205,8 @@
         "ReadList":"閱讀詩單",
         "ReadPoem":"閱讀詩詞",
         "ReadArticle":"閱讀文章",
-        "AddCustomList":"添加自定義詩單列表",
-        "UpdateCustomList":"更新自定義詩單列表",
+        "AddCustomList":"添加自定義詩單",
+        "UpdateCustomList":"更新自定義詩單",
         "AddToLib":"添加到資料庫",
         "RemoveFromLib":"從資料庫中移除",
         "NoDetailsAvailable":"暫無詳細信息"
