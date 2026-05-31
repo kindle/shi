@@ -1,0 +1,139 @@
+<ion-header [translucent]="true" *ngIf="!sessionCompleted">
+  <ion-toolbar style="padding-left:10px;padding-right:10px;">
+    <ion-buttons slot="start">
+      <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="learn-toolbar-title" slot="start" 
+    [style.fontSize]="data.zoom(14)"
+    style="color:gray;"
+    >需学习 {{ remainingCount }} 句</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="learn-page">
+  <div class="learn-shell" *ngIf="!loading && hasPlan; else stateBlock">
+    <div class="question-panel" *ngIf="shouldShowQuestion && currentQuestion">
+      <div class="prompt-card">
+        <div class="prompt-line">{{ currentQuestion.firstHalf }}</div>
+        <div class="prompt-blank">{{ '_  '.repeat(currentQuestion.secondHalf.length) }}</div>
+        <div class="prompt-meta" *ngIf="showHintMeta && currentPoem">
+          {{ currentPoem.dy || '佚名' }} {{ currentPoem.author || '佚名' }} 《{{ currentPoem.title || currentPoem.rhythmic || '无题' }}》
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <button
+          type="button"
+          class="option-card"
+          [class.option-card-correct]="getOptionState(option) === 'correct'"
+          [class.option-card-wrong]="getOptionState(option) === 'wrong'"
+          [class.option-card-muted]="getOptionState(option) === 'muted'"
+          *ngFor="let option of currentQuestion.options; let index = index"
+          [disabled]="isOptionLocked(option)"
+          (click)="selectOption(option)">
+          <ng-container *ngIf="getOptionPoem(option) as optionPoem">
+          <span class="option-tag" *ngIf="false">{{ optionLabels[index] }}</span>
+          <span class="option-copy">
+            <span class="option-text">{{ option.text }}</span>
+            <span class="option-meta" *ngIf="shouldShowOptionMeta(option)">
+              {{ optionPoem.dy || '佚名' }} {{ optionPoem.author || '佚名' }} 《{{ optionPoem.title || optionPoem.rhythmic || '无题' }}》
+            </span>
+          </span>
+          <ion-icon
+            *ngIf="answerPendingReveal && getOptionState(option) === 'correct'"
+            class="option-result-icon option-result-correct"
+            name="checkmark-circle"></ion-icon>
+          <ion-icon
+            *ngIf="getOptionState(option) === 'wrong'"
+            class="option-result-icon option-result-wrong"
+            name="close-circle"></ion-icon>
+          </ng-container>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="detail-panel"
+      *ngIf="shouldShowDetail && currentPoem"
+      [class.correct]="answerCorrect"
+      [class.wrong]="!answerCorrect">
+      <!-- <div class="result-banner">
+        <ion-icon [name]="questionUnavailable ? 'book-outline' : (answerCorrect ? 'checkmark-circle' : 'close-circle')"></ion-icon>
+        <span>{{ questionUnavailable ? '本题请直接查看原文' : (answerCorrect ? '答对了' : '答错了') }}</span>
+      </div> -->
+
+      <div class="poem-card" style="margin-top:5px;">
+        <div class="poem-title">{{ currentPoem.title }}</div>
+        <div class="poem-meta">
+          {{ currentPoem.dy || '佚名' }} · {{ currentPoem.author || '佚名' }}
+        </div>
+        <div class="poem-text">
+          <div *ngFor="let line of detailParagraphs">{{ line }}</div>
+        </div>
+      </div>
+
+      <div class="detail-card" *ngIf="detailItems(currentPoem.appreciation).length > 0">
+        <div class="detail-title">赏析</div>
+        <div *ngFor="let item of detailItems(currentPoem.appreciation)" class="detail-text">{{ item }}</div>
+      </div>
+
+      <div class="detail-card" *ngIf="detailItems(currentPoem.translation).length > 0">
+        <div class="detail-title">译文</div>
+        <div *ngFor="let item of detailItems(currentPoem.translation)" class="detail-text">{{ item }}</div>
+      </div>
+
+      <div class="detail-card" *ngIf="detailItems(currentPoem.intro).length > 0">
+        <div class="detail-title">简介</div>
+        <div *ngFor="let item of detailItems(currentPoem.intro)" class="detail-text">{{ item }}</div>
+      </div>
+
+      <div class="detail-card" *ngIf="detailItems(currentPoem.comment).length > 0">
+        <div class="detail-title">评论</div>
+        <div *ngFor="let item of detailItems(currentPoem.comment)" class="detail-text">{{ item }}</div>
+      </div>
+
+      <div class="detail-card" *ngIf="detailItems(currentPoem.annotation).length > 0">
+        <div class="detail-title">注释</div>
+        <div *ngFor="let item of detailItems(currentPoem.annotation)" class="detail-text">{{ item }}</div>
+      </div>
+
+    </div>
+
+    <div class="complete-card" *ngIf="sessionCompleted">
+      <ion-icon name="trophy-outline"></ion-icon>
+      <div class="complete-title">{{ completionTitle }}</div>
+      <div class="complete-text">腹有诗书气自华，要每天坚持呦！</div>
+      <!-- <ion-button expand="block" (click)="close()">关闭</ion-button> -->
+      <ion-button fill="clear" class="plan-review-button" [style.fontSize]="data.zoom(18)"
+        (click)="close()">
+        关闭
+      </ion-button>
+    </div>
+  </div>
+
+  <ng-template #stateBlock>
+    <div class="empty-card" *ngIf="loading">
+      <ion-spinner name="crescent"></ion-spinner>
+      <div>正在准备今日学习内容...</div>
+    </div>
+
+    <div class="empty-card" *ngIf="!loading && !hasPlan">
+      <div class="complete-title">还没有当前学习计划</div>
+      <div class="complete-text">请先在学习计划里选择一个诗单。</div>
+      <ion-button expand="block" (click)="goToPlan()">去设置</ion-button>
+    </div>
+  </ng-template>
+
+  <div class="action-bar-shell" *ngIf="shouldShowBottomActionBar">
+    <div class="action-bar" [class.action-bar-question]="!canGoNext">
+      <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()">斩</ion-button>
+      <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" [class.icon-button-active]="showHintMeta" [disabled]="hintUsed" (click)="revealHintMeta()">
+        <ion-icon slot="icon-only" name="bulb-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="next-button" *ngIf="canGoNext" (click)="gotoNextQuestion()">{{ nextActionLabel }}</ion-button>
+      <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" [class.icon-button-active]="isFeedbackSoundEnabled" (click)="onSpeakerClick()">
+        <ion-icon slot="icon-only" [name]="isFeedbackSoundEnabled ? 'volume-medium-outline' : 'volume-mute-outline'"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

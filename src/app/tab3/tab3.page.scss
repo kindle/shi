@@ -32,6 +32,13 @@ ion-content > *:not(.tab3-page-bg) {
 .task-button{
     min-width: 90px;
     font-size: bold;
+    margin-left:0;
+    margin-right:10px;
+    --border-radius: 5px;
+}
+
+.plan-streak-button {
+    margin-inline-start: auto;
 }
 
 .task-item {
@@ -96,10 +103,15 @@ ion-content > *:not(.tab3-page-bg) {
 
 .plan-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     gap: 4px;
     margin-bottom: 12px;
+}
+
+.plan-checkin-row {
+    flex-basis: 100%;
 }
 
 .plan-title {
@@ -131,7 +143,7 @@ ion-content > *:not(.tab3-page-bg) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-    margin-top: 12px;
+    margin-top: 30px;
 }
 
 .plan-stat-card {
@@ -150,7 +162,8 @@ ion-content > *:not(.tab3-page-bg) {
 }
 
 .plan-stat-label {
-    color: var(--ion-color-medium);
+    padding: 0;
+    color: black;
 }
 
 .plan-stat-value {
@@ -159,6 +172,8 @@ ion-content > *:not(.tab3-page-bg) {
     margin: 8px 0 14px;
     color: var(--ion-color-medium);
     line-height: 1;
+    padding:0;
+    padding-left: 10px;
 }
 
 .plan-stat-value-current {

@@ -207,7 +207,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-progress-bar>
 
     <!--phone view-->
-    <ion-tab-bar *ngIf="!ui.isipad" slot="bottom" [translucent]="false" style="padding-top:3px;"
+    <ion-tab-bar *ngIf="!ui.isipad && !shouldHideTabBar" slot="bottom" [translucent]="false" style="padding-top:3px;"
     [class.selected-tab1]="selectedTab === 'tab1'" [class.selected-tab2]="selectedTab === 'tab2'" [class.selected-tab3]="selectedTab === 'tab3'" [class.selected-tab4]="selectedTab === 'tab4'"
     [ngStyle]="{
       'padding-bottom':ui.isAndroid ? '10px' : '25px',
@@ -245,7 +245,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
 
 
     <!--ipad view-->
-    <ion-tab-bar *ngIf="ui.isipad" slot="bottom" [translucent]="false" 
+    <ion-tab-bar *ngIf="ui.isipad && !shouldHideTabBar" slot="bottom" [translucent]="false" 
     style="padding-top:15px;"
       [ngStyle]="{
         'padding-bottom':ui.isAndroid ? '10px' : '25px',

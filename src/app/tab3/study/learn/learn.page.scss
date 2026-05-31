@@ -1,0 +1,329 @@
+.learn-page {
+  //--background: linear-gradient(180deg, #f7f0df 0%, #f6f8fc 100%);
+  --background: linear-gradient(180deg, #e8e8e8 0%, #f6f8fc 100%);
+}
+
+ion-toolbar .learn-toolbar-title {
+  position: static;
+  flex: 1;
+  width: auto;
+  padding-inline: 0;
+  text-align: left;
+}
+
+.learn-shell {
+  min-height: 100%;
+  padding: 10px 16px 132px;
+}
+
+.question-panel,
+.detail-panel,
+.complete-card,
+.empty-card {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.prompt-card {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 18px 45px rgba(79, 66, 39, 0.1);
+  margin-top:10px;
+}
+
+.prompt-line {
+  font-size: 30px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: #342514;
+  text-align: center;
+}
+
+.prompt-blank {
+  margin-top: 18px;
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: #8f7350;
+}
+
+.prompt-meta {
+  margin-top: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #979797;
+  text-align: center;
+}
+
+.options-grid {
+  min-height: 38vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.option-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #2c2419;
+  box-shadow: 0 10px 24px rgba(79, 66, 39, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.option-card:active {
+  transform: scale(0.985);
+}
+
+.option-card-correct {
+  background: rgba(123, 201, 130, 0.22);
+  box-shadow: 0 12px 28px rgba(52, 126, 60, 0.15);
+}
+
+.option-card-wrong {
+  background: rgba(232, 127, 127, 0.22);
+  box-shadow: 0 12px 28px rgba(171, 58, 58, 0.14);
+}
+
+.option-card-muted {
+  opacity: 0.58;
+}
+
+.option-tag {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f0e0ba;
+  color: #7d5f2a;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.option-text {
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.option-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.option-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #958574;
+  text-align: left;
+  flex: 1;
+}
+
+.option-result-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.option-result-correct {
+  color: #2f8b3a;
+}
+
+.option-result-wrong {
+  color: #b53939;
+}
+
+.detail-panel {
+  padding: 0px 0 12px;
+}
+
+.detail-panel.correct .result-banner {
+  background: rgba(103, 184, 112, 0.18);
+  color: #235c2b;
+}
+
+.detail-panel.wrong .result-banner {
+  background: rgba(228, 109, 109, 0.18);
+  color: #9f2f2f;
+}
+
+.result-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.result-banner ion-icon,
+.complete-card ion-icon {
+  font-size: 24px;
+}
+.poem-card{
+  padding-top:10px;
+}
+
+
+.poem-card,
+.detail-card,
+.complete-card,
+.empty-card {
+  margin-top: 16px;
+  padding: 20px 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 30px rgba(79, 66, 39, 0.08);
+}
+
+.poem-title,
+.complete-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2f2416;
+}
+
+.poem-meta,
+.complete-text {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #7a6854;
+}
+
+.poem-text {
+  margin-top: 16px;
+  font-size: 22px;
+  line-height: 1.9;
+  color: #241b13;
+}
+
+.detail-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #7a5c2a;
+}
+
+.detail-text {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3d3020;
+}
+
+.action-bar {
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.action-bar-question {
+  justify-content: space-around;
+  gap: 0;
+}
+
+.action-bar-shell {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  //padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 12px);
+  padding: 0px 16px calc(env(safe-area-inset-bottom, 0px) - 70px) 16px;
+  background: linear-gradient(180deg, rgba(246, 248, 252, 0) 0%, rgba(246, 248, 252, 0.92) 28%, rgba(246, 248, 252, 0.98) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.slash-button {
+  flex: 0 0 56px !important;
+  width: 56px;
+  height: 56px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color:black;
+}
+
+.icon-button {
+  flex: 0 0 56px !important;
+  width: 56px;
+  height: 56px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --border-radius: 16px;
+  --background: rgba(255, 255, 255, 0.96);
+  --background-hover: rgba(255, 255, 255, 1);
+  --background-activated: rgba(232, 238, 245, 1);
+  --background-focused: rgba(255, 255, 255, 1);
+  --color: #6f624f;
+  box-shadow: 0 10px 24px rgba(79, 66, 39, 0.08);
+}
+
+.icon-button-active {
+  --background: #ebe7dc;
+  --color: #8b6a2b;
+}
+
+.icon-button.button-disabled {
+  --background: #ececec;
+  --color: #aaaaaa;
+  opacity: 1;
+}
+
+.icon-button ion-icon {
+  font-size: 22px;
+}
+
+.next-button {
+  flex: 1 1 auto;
+  min-height: 56px;
+  --background: #e6f4ff;
+  --background-hover: #d7ecff;
+  --background-activated: #cbe5ff;
+  --background-focused: #d7ecff;
+  --color: var(--ion-color-primary);
+  --border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.complete-card,
+.empty-card {
+  text-align: center;
+}
+
+.complete-card ion-icon,
+.empty-card ion-spinner {
+  margin-top: 4px;
+  color: #b07b24;
+}
+
+@media (min-width: 768px) {
+  .learn-shell {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .options-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

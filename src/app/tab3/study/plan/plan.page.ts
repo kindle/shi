@@ -19,21 +19,34 @@ export class PlanPage {
   selectedDailyPoems: number;
   selectedCompletionDays: number;
 
-  @ViewChild('dailyWheel') dailyWheel?: ElementRef<HTMLElement>;
-  @ViewChild('daysWheel') daysWheel?: ElementRef<HTMLElement>;
+  private dailyWheel?: ElementRef<HTMLElement>;
+  private daysWheel?: ElementRef<HTMLElement>;
+
+  @ViewChild('dailyWheel')
+  set dailyWheelRef(element: ElementRef<HTMLElement> | undefined) {
+    this.dailyWheel = element;
+    this.tryRestoreWheelSelection('auto');
+  }
+
+  @ViewChild('daysWheel')
+  set daysWheelRef(element: ElementRef<HTMLElement> | undefined) {
+    this.daysWheel = element;
+    this.tryRestoreWheelSelection('auto');
+  }
 
   private dailyWheelTimer?: ReturnType<typeof setTimeout>;
   private daysWheelTimer?: ReturnType<typeof setTimeout>;
   private suppressDailyWheelScroll = false;
   private suppressDaysWheelScroll = false;
+  private pendingWheelRestore = false;
 
   constructor(
     public data: DataService,
     public ui: UiService,
     private modalController: ModalController,
   ) {
-    this.selectedDailyPoems = this.data.studyPlan.dailyPoems;
-    this.selectedCompletionDays = this.calculateDaysFromDaily(this.selectedDailyPoems);
+    this.selectedDailyPoems = this.data.currentStudyPlan?.num || this.data.studyPlan.dailyPoems;
+    this.selectedCompletionDays = this.data.currentStudyPlan?.days || this.data.studyPlan.completionDays;
     this.refreshPlanControls();
   }
 
@@ -46,14 +59,19 @@ export class PlanPage {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.scrollWheelToValue('daily', this.selectedDailyPoems, 'auto');
-      this.scrollWheelToValue('days', this.selectedCompletionDays, 'auto');
-    });
+    this.queueWheelRestore('auto');
+  }
+
+  ionViewWillEnter() {
+    this.refreshPlanControls();
   }
 
   selectTab(tab: 'plan' | 'playlist') {
     this.selectedTab = tab;
+
+    if (tab === 'plan') {
+      this.queueWheelRestore('auto');
+    }
   }
 
   get remainingPoems(): number {
@@ -62,6 +80,10 @@ export class PlanPage {
 
   get summarySubtitle(): string {
     return `每日${this.selectedDailyPoems}首，剩余${this.selectedCompletionDays}天`;
+  }
+
+  getPlanSubtitle(plan: StudyPlanItem): string {
+    return `每日${plan.num}首，剩余${plan.days}天`;
   }
 
   get completionDateLabel(): string {
@@ -147,7 +169,20 @@ export class PlanPage {
   }
 
   resetPlan() {
-    this.selectDailyPoems(10);
+    const currentPlan = this.data.currentStudyPlan;
+    if (!currentPlan) {
+      return;
+    }
+
+    this.ui.confirm('重置学习计划', `确定重置“${currentPlan.title}”吗？学习进度会清零。`, () => {
+      const reset = this.data.resetCurrentStudyPlan();
+      if (!reset) {
+        return;
+      }
+
+      this.refreshPlanControls();
+      this.ui.toast('top', '已重置当前学习计划');
+    });
   }
 
   selectStudyPlan(plan: StudyPlanItem) {
@@ -157,17 +192,20 @@ export class PlanPage {
     }
 
     this.refreshPlanControls();
+    this.selectDailyPoems(this.resolveClosestOption(5, this.dailyPoemOptions));
     this.ui.toast('top', '已切换当前诗单');
   }
 
   deleteStudyPlan(plan: StudyPlanItem, event: Event) {
     event.stopPropagation();
-    const removed = this.data.removeStudyPlan(plan.cid);
-    if (!removed) {
-      return;
-    }
+    this.ui.confirm('删除诗单', `确定删除“${plan.title}”吗？`, () => {
+      const removed = this.data.removeStudyPlan(plan.cid);
+      if (!removed) {
+        return;
+      }
 
-    this.ui.toast('top', '已删除诗单');
+      this.ui.toast('top', '已删除诗单');
+    });
   }
 
   async addStudyPlan() {
@@ -195,22 +233,59 @@ export class PlanPage {
   }
 
   private refreshPlanControls() {
-    this.dailyPoemOptions = this.buildDailyPoemOptions();
-    this.completionDayOptions = this.buildCompletionDayOptions();
+    const currentPlan = this.data.currentStudyPlan;
+    const preferredDailyPoems = currentPlan?.num || this.data.studyPlan.dailyPoems;
+    const preferredCompletionDays = currentPlan?.days || this.data.studyPlan.completionDays;
+
+    this.dailyPoemOptions = this.includeOption(
+      this.buildDailyPoemOptions(),
+      preferredDailyPoems,
+      Math.max(this.totalPoems, 1)
+    );
+    this.completionDayOptions = this.includeOption(
+      this.buildCompletionDayOptions(),
+      preferredCompletionDays,
+      Math.max(preferredCompletionDays, 1)
+    );
 
     const maxDailyPoems = this.dailyPoemOptions[this.dailyPoemOptions.length - 1] ?? 1;
-    this.selectedDailyPoems = Math.min(this.data.studyPlan.dailyPoems, maxDailyPoems);
+    this.selectedDailyPoems = Math.max(1, Math.min(preferredDailyPoems, maxDailyPoems));
     if (!this.dailyPoemOptions.includes(this.selectedDailyPoems)) {
-      this.selectedDailyPoems = this.dailyPoemOptions[0] ?? 1;
+      this.selectedDailyPoems = this.resolveClosestOption(this.selectedDailyPoems, this.dailyPoemOptions);
     }
 
-    this.selectedCompletionDays = this.calculateDaysFromDaily(this.selectedDailyPoems);
+    this.selectedCompletionDays = Math.max(1, preferredCompletionDays);
+    if (!this.completionDayOptions.includes(this.selectedCompletionDays)) {
+      this.selectedCompletionDays = this.resolveClosestOption(this.selectedCompletionDays, this.completionDayOptions);
+    }
+
     this.syncStudyPlan();
 
+    this.queueWheelRestore('auto');
+  }
+
+  private queueWheelRestore(behavior: ScrollBehavior = 'auto') {
+    this.pendingWheelRestore = true;
+    this.suppressDailyWheelScroll = true;
+    this.suppressDaysWheelScroll = true;
+
     setTimeout(() => {
-      this.scrollWheelToValue('daily', this.selectedDailyPoems, 'auto');
-      this.scrollWheelToValue('days', this.selectedCompletionDays, 'auto');
+      this.tryRestoreWheelSelection(behavior);
     });
+  }
+
+  private tryRestoreWheelSelection(behavior: ScrollBehavior = 'auto') {
+    if (!this.pendingWheelRestore || this.selectedTab !== 'plan') {
+      return;
+    }
+
+    if (!this.dailyWheel?.nativeElement || !this.daysWheel?.nativeElement) {
+      return;
+    }
+
+    this.pendingWheelRestore = false;
+    this.scrollWheelToValue('daily', this.selectedDailyPoems, behavior);
+    this.scrollWheelToValue('days', this.selectedCompletionDays, behavior);
   }
 
   private buildDailyPoemOptions(): number[] {
@@ -259,6 +334,26 @@ export class PlanPage {
     });
 
     return Array.from(daySet).sort((left, right) => left - right);
+  }
+
+  private includeOption(options: number[], value: number, maxValue: number): number[] {
+    const normalizedValue = Math.max(1, Math.min(value || 1, Math.max(maxValue, 1)));
+
+    if (options.includes(normalizedValue)) {
+      return options;
+    }
+
+    return [...options, normalizedValue].sort((left, right) => left - right);
+  }
+
+  private resolveClosestOption(value: number, options: number[]): number {
+    if (options.length === 0) {
+      return 1;
+    }
+
+    return options.reduce((closest, current) => {
+      return Math.abs(current - value) < Math.abs(closest - value) ? current : closest;
+    }, options[0]);
   }
 
   private calculateDaysFromDaily(dailyPoems: number): number {

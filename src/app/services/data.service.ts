@@ -63,9 +63,28 @@ export interface StudyPlanItem {
   desc: string;
   done: number;
   total: number;
+  num: number;
+  days: number;
   cid: string | number;
   data: any[];
   current: boolean;
+}
+
+interface StudyDailyLearnState {
+  date: string;
+  cid: string;
+  poemKeys: string[];
+  dailyCount: number;
+}
+
+export interface StudyDailyProgress {
+  completed: number;
+  total: number;
+}
+
+export interface StudyReviewProgress {
+  completed: number;
+  total: number;
 }
 
 @Injectable({
@@ -87,6 +106,10 @@ export class DataService {
       ...plan,
     };
     this.studyPlanSubject.next(this.studyPlan);
+
+    if (this.StudyPlans.length > 0) {
+      this.saveStudyPlan();
+    }
   }
 
   //debug mode
@@ -6178,7 +6201,10 @@ export class DataService {
   StudyPlans: StudyPlanItem[] = [];
   //LocalQueueKey="local_queue_music_key";
   LOCALSTORAGE_STUDY_PLAN = "local_study_plan_key";
+  LOCALSTORAGE_STUDY_DAILY_STATE = 'local_study_daily_state_key';
   saveStudyPlan(){
+    this.syncCurrentStudyPlanSettingsFromSummary();
+    this.refreshStudyPlanProgress();
     this.set(this.LOCALSTORAGE_STUDY_PLAN, JSON.stringify(this.StudyPlans));
   }
   
@@ -6188,7 +6214,15 @@ export class DataService {
       {}
       else{
         let studyPlan = JSON.parse(value);
-        this.StudyPlans = Array.isArray(studyPlan) ? studyPlan : [];
+        this.StudyPlans = Array.isArray(studyPlan) ? studyPlan.map((plan) => this.normalizeStudyPlanItem(plan)) : [];
+        if (this.StudyPlans.length > 0 && !this.StudyPlans.some((plan) => plan.current)) {
+          this.StudyPlans = this.StudyPlans.map((plan, index) => ({
+            ...plan,
+            current: index === 0,
+          }));
+        }
+        this.refreshStudyPlanProgress();
+        this.syncStudyPlanSummaryFromCurrentPlan();
       }
     });
   }
@@ -6200,6 +6234,8 @@ export class DataService {
   //     done:594,
   //     total:739,
   //     cid:1,
+  //     num:5,
+  //     days:30,
   //     data:[],
   //     current:true
   //   },
@@ -6251,21 +6287,315 @@ export class DataService {
     return this.StudyPlans.find((plan) => plan.current) ?? null;
   }
 
+  private normalizeStudyPlanItem(plan: Partial<StudyPlanItem> | null | undefined): StudyPlanItem {
+    const total = Math.max(0, Number(plan?.total) || 0);
+    const done = Math.min(Math.max(0, Number(plan?.done) || 0), total);
+    const maxDailyPoems = Math.max(total, 1);
+    const num = Math.max(1, Math.min(Number(plan?.num) || this.studyPlan.dailyPoems, maxDailyPoems));
+    const days = Math.max(1, Number(plan?.days) || Math.ceil(total / num) || 1);
+    const data = Array.isArray(plan?.data) ? (plan?.data as any[]) : [];
+
+    return {
+      src: plan?.src || 'assets/img/501.jpeg',
+      title: plan?.title || '未命名诗单列表',
+      desc: plan?.desc || '这个诗单还没有描述。',
+      done,
+      total,
+      num,
+      days,
+      cid: plan?.cid || '',
+      data,
+      current: Boolean(plan?.current),
+    };
+  }
+
+  private refreshStudyPlanProgress() {
+    this.StudyPlans = this.StudyPlans.map((plan) => this.rebuildStudyPlanProgress(plan));
+  }
+
+  private rebuildStudyPlanProgress(plan: StudyPlanItem): StudyPlanItem {
+    const normalizedPlan = this.normalizeStudyPlanItem(plan);
+    const planData = Array.isArray(normalizedPlan.data) ? normalizedPlan.data : [];
+    const total = Math.max(planData.length, normalizedPlan.total || 0);
+    const done = planData.filter((item:any) => item?.learned === true).length;
+    const maxDailyPoems = Math.max(total, 1);
+    const num = Math.max(1, Math.min(Number(normalizedPlan.num) || this.studyPlan.dailyPoems, maxDailyPoems));
+    const remaining = Math.max(total - done, 0);
+    const days = Math.max(1, remaining === 0 ? 1 : Math.ceil(remaining / num));
+
+    return {
+      ...normalizedPlan,
+      total,
+      done,
+      num,
+      days,
+      data: planData,
+    };
+  }
+
+  private getStudyPoemKey(poem:any): string {
+    if (poem?.id != null && poem?.id !== '') {
+      return `id:${poem.id}`;
+    }
+
+    return `text:${poem?.author || ''}::${poem?.title || ''}::${poem?.sample || poem?.paragraphs?.[0] || ''}`;
+  }
+
+  private findPlanPoemByKey(plan: StudyPlanItem, poemKey: string): any | null {
+    return plan.data.find((item:any) => this.getStudyPoemKey(item) === poemKey) || null;
+  }
+
+  private formatStudyDate(date: Date = new Date()): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
+  private async loadStudyDailyState(): Promise<StudyDailyLearnState | null> {
+    const value = await this.get(this.LOCALSTORAGE_STUDY_DAILY_STATE);
+    if (!value) {
+      return null;
+    }
+
+    try {
+      const state = JSON.parse(value);
+      if (!state || typeof state !== 'object') {
+        return null;
+      }
+
+      return {
+        date: `${state.date || ''}`,
+        cid: `${state.cid || ''}`,
+        poemKeys: Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [],
+        dailyCount: Math.max(1, Number(state.dailyCount) || 1),
+      };
+    } catch (error) {
+      console.warn('Failed to parse study daily state', error);
+      return null;
+    }
+  }
+
+  private saveStudyDailyState(state: StudyDailyLearnState) {
+    this.set(this.LOCALSTORAGE_STUDY_DAILY_STATE, JSON.stringify(state));
+  }
+
+  private clearStudyDailyState() {
+    this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
+  }
+
+  private resetStudyPlanPoemState(poem:any): any {
+    if (!poem || typeof poem !== 'object') {
+      return poem;
+    }
+
+    const { learned, wrong, reviewRequired, ...initialPoem } = poem;
+    return initialPoem;
+  }
+
+  private getEffectiveDailyStudyCount(plan: StudyPlanItem): number {
+    return Math.max(1, Math.min(this.studyPlan.dailyPoems || plan.num || 1, Math.max(plan.data.length, 1)));
+  }
+
+  private buildTodayStudyPoemKeys(plan: StudyPlanItem): string[] {
+    const dailyCount = this.getEffectiveDailyStudyCount(plan);
+
+    return plan.data
+      .filter((item:any) => item?.learned !== true)
+      .slice(0, dailyCount)
+      .map((item:any) => this.getStudyPoemKey(item));
+  }
+
+  async ensureTodayStudyPlanPoems(): Promise<any[]> {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return [];
+    }
+
+    const today = this.formatStudyDate();
+    const currentCid = `${currentPlan.cid}`;
+    const savedState = await this.loadStudyDailyState();
+    const dailyCount = this.getEffectiveDailyStudyCount(currentPlan);
+
+    if (
+      savedState &&
+      savedState.date === today &&
+      savedState.cid === currentCid &&
+      savedState.dailyCount === dailyCount &&
+      savedState.poemKeys.every((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
+    ) {
+      return savedState.poemKeys
+        .map((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
+        .filter((item): item is any => Boolean(item));
+    }
+
+    const poemKeys = this.buildTodayStudyPoemKeys(currentPlan);
+    this.saveStudyDailyState({
+      date: today,
+      cid: currentCid,
+      poemKeys,
+      dailyCount,
+    });
+
+    return poemKeys
+      .map((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
+      .filter((item): item is any => Boolean(item));
+  }
+
+  async getTodayStudyProgress(): Promise<StudyDailyProgress> {
+    const todayPoems = await this.ensureTodayStudyPlanPoems();
+
+    return {
+      completed: todayPoems.filter((poem:any) => poem?.learned === true).length,
+      total: todayPoems.length,
+    };
+  }
+
+  async getTodayReviewProgress(): Promise<StudyReviewProgress> {
+    const todayPoems = await this.ensureTodayStudyPlanPoems();
+    const reviewPoems = todayPoems.filter((poem:any) => poem?.reviewRequired === true);
+
+    return {
+      completed: reviewPoems.filter((poem:any) => poem?.wrong !== true).length,
+      total: reviewPoems.length,
+    };
+  }
+
+  getStudyPlanPoemDetail(poem:any) {
+    const fullData = this.JsonData.find((item:any) => `${item?.id}` === `${poem?.id}`);
+
+    if (!fullData) {
+      return poem;
+    }
+
+    return {
+      ...fullData,
+      ...poem,
+    };
+  }
+
+  updateCurrentStudyPlanPoemProgress(poem:any, progress: { learned?: boolean; wrong?: boolean }): boolean {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return false;
+    }
+
+    const targetKey = this.getStudyPoemKey(poem);
+    let updated = false;
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      if (`${plan.cid}` !== `${currentPlan.cid}`) {
+        return plan;
+      }
+
+      const data = plan.data.map((item:any) => {
+        if (this.getStudyPoemKey(item) !== targetKey) {
+          return item;
+        }
+
+        updated = true;
+        const nextReviewRequired = progress.wrong === true ? true : item?.reviewRequired === true;
+
+        return {
+          ...item,
+          ...progress,
+          reviewRequired: nextReviewRequired,
+        };
+      });
+
+      return {
+        ...plan,
+        data,
+      };
+    });
+
+    if (!updated) {
+      return false;
+    }
+
+    this.saveStudyPlan();
+    this.syncStudyPlanSummaryFromCurrentPlan();
+    return true;
+  }
+
+  resetCurrentStudyPlan(): boolean {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return false;
+    }
+
+    const totalPoems = Math.max(currentPlan.data.length, currentPlan.total || 0);
+    const dailyPoems = Math.max(1, Math.min(10, Math.max(totalPoems, 1)));
+    const completionDays = Math.max(1, Math.ceil(totalPoems / dailyPoems) || 1);
+
+    this.studyPlan = {
+      ...this.studyPlan,
+      totalPoems,
+      studiedPoems: 0,
+      dailyPoems,
+      completionDays,
+    };
+    this.studyPlanSubject.next(this.studyPlan);
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      if (`${plan.cid}` !== `${currentPlan.cid}`) {
+        return plan;
+      }
+
+      return {
+        ...plan,
+        done: 0,
+        num: dailyPoems,
+        days: completionDays,
+        data: plan.data.map((item:any) => this.resetStudyPlanPoemState(item)),
+      };
+    });
+
+    this.clearStudyDailyState();
+    this.saveStudyPlan();
+    return true;
+  }
+
+  private syncCurrentStudyPlanSettingsFromSummary() {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return;
+    }
+
+    const maxDailyPoems = Math.max(currentPlan.total, 1);
+    const num = Math.max(1, Math.min(this.studyPlan.dailyPoems, maxDailyPoems));
+    const days = Math.max(1, this.studyPlan.completionDays || Math.ceil(currentPlan.total / num) || 1);
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      if (`${plan.cid}` !== `${currentPlan.cid}`) {
+        return plan;
+      }
+
+      return {
+        ...plan,
+        num,
+        days,
+      };
+    });
+  }
+
   syncStudyPlanSummaryFromCurrentPlan() {
-    const currentPlan = this.getCurrentStudyPlan();
+    const currentPlan = this.currentStudyPlan;
     if (!currentPlan) {
       return;
     }
 
     const totalPoems = currentPlan.total || 0;
     const studiedPoems = Math.min(currentPlan.done || 0, totalPoems);
-    const dailyPoems = Math.max(1, Math.min(this.studyPlan.dailyPoems, Math.max(totalPoems, 1)));
+    const dailyPoems = Math.max(1, Math.min(currentPlan.num || this.studyPlan.dailyPoems, Math.max(totalPoems, 1)));
+    const completionDays = Math.max(1, currentPlan.days || Math.ceil(totalPoems / dailyPoems) || 1);
 
     this.updateStudyPlan({
       totalPoems,
       studiedPoems,
       dailyPoems,
-      completionDays: Math.ceil(totalPoems / dailyPoems),
+      completionDays,
     });
   }
 
@@ -6279,6 +6609,8 @@ export class DataService {
       desc: customList.desc || '这个诗单还没有描述。',
       done: 0,
       total: poemList.length,
+      num: Math.max(1, Math.min(this.studyPlan.dailyPoems, Math.max(poemList.length, 1))),
+      days: Math.max(1, Math.ceil(poemList.length / Math.max(1, Math.min(this.studyPlan.dailyPoems, Math.max(poemList.length, 1))))),
       cid: customList.id,
       data: poemList,
       current: false,
@@ -6296,7 +6628,14 @@ export class DataService {
       return false;
     }
 
-    this.StudyPlans = [...this.StudyPlans, this.buildStudyPlanFromCustomList(customListCollection)];
+    const newPlan = this.buildStudyPlanFromCustomList(customListCollection);
+    if (this.StudyPlans.length === 0 || !this.StudyPlans.some((plan) => plan.current)) {
+      newPlan.current = true;
+    }
+
+    this.StudyPlans = [...this.StudyPlans, newPlan];
+    this.saveStudyPlan();
+    this.syncStudyPlanSummaryFromCurrentPlan();
     this.ui.toast('top', '已添加到学习计划');
     return true;
   }
@@ -6318,6 +6657,7 @@ export class DataService {
 
     if (changed) {
       this.syncStudyPlanSummaryFromCurrentPlan();
+      this.saveStudyPlan();
     }
 
     return changed;
@@ -6330,6 +6670,7 @@ export class DataService {
     }
 
     this.StudyPlans = this.StudyPlans.filter((plan) => `${plan.cid}` !== `${cid}`);
+    this.saveStudyPlan();
     return true;
   }
 

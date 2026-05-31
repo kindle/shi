@@ -22,6 +22,10 @@ export class TabsPage {
   @ViewChild('tabs', { static: false }) tabs!: IonTabs;
   selectedTab: any = 'tab1';
 
+  get shouldHideTabBar(): boolean {
+    return this.router.url.includes('/tabs/tab3/study/learn');
+  }
+
   onTabChange(event: any){
     this.data.setLastVisitTab(event.tab);
     this.setCurrentTab();

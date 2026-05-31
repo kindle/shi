@@ -7,7 +7,7 @@ import { UiService } from '../services/ui.service';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs';
 import { ConvertService } from '../services/convert.service';
-import { StudyPlanItem, StudyPlanSettings } from '../services/data.service';
+import { StudyDailyProgress, StudyPlanItem, StudyPlanSettings, StudyReviewProgress } from '../services/data.service';
 
 @Component({
   selector: 'app-tab3',
@@ -17,8 +17,48 @@ import { StudyPlanItem, StudyPlanSettings } from '../services/data.service';
 export class Tab3Page {
 
   studyPlan!: StudyPlanSettings;
+  todayStudyProgress: StudyDailyProgress = {
+    completed: 0,
+    total: 0,
+  };
+  todayReviewProgress: StudyReviewProgress = {
+    completed: 0,
+    total: 0,
+  };
 
   readonly currentDateTitle = this.formatCurrentDate();
+  get hasCurrentStudyPlan(): boolean {
+    return Boolean(this.data.currentStudyPlan);
+  }
+
+  get studyActionLabel(): string {
+    if (!this.hasCurrentStudyPlan) {
+      return '去设置';
+    }
+
+    if (this.todayStudyProgress.total === 0) {
+      return '已完成';
+    }
+
+    return this.todayStudyProgress.completed > 0 ? '继续学习' : '学习';
+  }
+
+  get reviewActionLabel(): string {
+    if (!this.hasCurrentStudyPlan) {
+      return '去设置';
+    }
+
+    if (this.todayReviewProgress.total === 0) {
+      return '暂无复习';
+    }
+
+    if (this.todayReviewProgress.completed >= this.todayReviewProgress.total) {
+      return '已复习';
+    }
+
+    return '复习';
+  }
+
   get reversedPlayHistory(): any[] {
     return [...(this.data.playHistory || [])].reverse();
   }
@@ -43,6 +83,7 @@ export class Tab3Page {
   
   ngOnInit(){
     this.studyPlan = this.data.studyPlan;
+    void this.refreshTodayStudyProgress();
     this.scrollSubscription = this.scrollService.scrollToTop$.subscribe(() => {
       if (this.content) {
         this.content.scrollToTop(300);
@@ -50,6 +91,7 @@ export class Tab3Page {
     });
     this.studyPlanSubscription = this.data.studyPlanSubject.subscribe((plan) => {
       this.studyPlan = plan;
+      void this.refreshTodayStudyProgress();
     });
   }
 
@@ -66,6 +108,7 @@ export class Tab3Page {
   }
 
   async ionViewDidEnter(){
+      await this.refreshTodayStudyProgress();
     
     //if(this.data.articleDataLoaded===false){
     //  await this.data.loadJsonData();
@@ -86,6 +129,21 @@ export class Tab3Page {
 
       this.data.loadAllLibraryCount();
       
+  }
+
+  private async refreshTodayStudyProgress() {
+    this.todayStudyProgress = await this.data.getTodayStudyProgress();
+    this.todayReviewProgress = await this.data.getTodayReviewProgress();
+  }
+
+  async goToStudyReview(){
+    if (!this.hasCurrentStudyPlan) {
+      this.goToStudyPlan();
+      return;
+    }
+
+    await this.data.ensureArticleDataReady(true);
+    this.router.navigate(['/tabs/tab3/study/learn']);
   }
 
   add(){
@@ -249,6 +307,16 @@ export class Tab3Page {
 
   goToStudyPlan(){
     this.router.navigate(['/tabs/tab3/study/plan']);
+  }
+
+  async goToStudyLearn(){
+    if (!this.hasCurrentStudyPlan) {
+      this.goToStudyPlan();
+      return;
+    }
+
+    await this.data.ensureArticleDataReady(true);
+    this.router.navigate(['/tabs/tab3/study/learn']);
   }
 
 

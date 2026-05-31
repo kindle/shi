@@ -47,7 +47,7 @@
       <ion-list class="study-plan-summary-list">
         <ion-item lines="none" class="study-plan-summary-item">
             <ion-thumbnail slot="start"
-                style="width:80px;height:100px;display: flex;justify-content: center;align-items: center;">
+                style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
                 <img id="authorimg" style="border-radius: 10px;" 
                     defaultImage="assets/img/501.jpeg" 
                     lazyLoad="{{ data.currentStudyPlan?.src || 'assets/img/501.jpeg' }}"
@@ -59,25 +59,33 @@
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
                 {{ data.currentStudyPlan?.title || '当前学习诗单' }}
             </p>
-            <p [style.fontSize]="data.zoom(14)" class="study-plan-summary-subtitle">
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
               {{ summarySubtitle }}
-              <span [style.fontSize]="data.zoom(14)" class="study-plan-reset-link" (click)="resetPlan()" style="float:right;">
+              <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
+                (click)="resetPlan()" style="float:right;">
                 <ion-icon name="refresh" class="study-plan-reset-icon"></ion-icon>
                 重置
               </span>
             </p>
+            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+              {{ data.currentStudyPlan?.desc || '' }}
+            </p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
             <div class="study-progress-block">
                 <ion-range
                 class="study-progress-range"
-                [value]="594"
-                [max]="739">
+                [value]="data.currentStudyPlan?.done"
+                [max]="data.currentStudyPlan?.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>{{ data.studyPlan.studiedPoems }} / {{ data.studyPlan.totalPoems }}</span>
-                <span>剩余{{ data.studyPlan.completionDays }}天</span>
+                <span>{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%</span>
+                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
                 </div>
             </div>
-            </ion-label>
+          </ion-label>
         </ion-item>
       </ion-list>
 
@@ -113,7 +121,7 @@
                 [style.height.px]="wheelItemHeight"
                 [style.fontSize]="data.zoom(option === selectedDailyPoems ? 18 : 16)"
                 (click)="selectDailyPoems(option)">
-                {{ option }} 首
+                {{ option }} 句
               </button>
               <div
                 class="study-plan-wheel-spacer"
@@ -169,7 +177,7 @@
         <ion-item class="study-plan-item">
           <ion-label>
             <div class="study-plan-item-title" [style.fontSize]="data.zoom(18)">每日新学</div>
-            <div class="study-plan-item-value" [style.fontSize]="data.zoom(30)">{{ selectedDailyPoems }} 首</div>
+            <div class="study-plan-item-value" [style.fontSize]="data.zoom(30)">{{ selectedDailyPoems }} 句</div>
             <p class="study-plan-item-desc" [style.fontSize]="data.zoom(14)">{{ dailyStudyDescription }}</p>
           </ion-label>
         </ion-item>
@@ -188,7 +196,7 @@
       <ion-list class="study-plan-summary-list" *ngFor="let plan of orderedStudyPlans">
         <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)">
             <ion-thumbnail slot="start"
-                style="width:80px;height:120px;display: flex;justify-content: center;align-items: center;">
+                style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
                 <img id="authorimg" style="border-radius: 10px;" 
                     defaultImage="assets/img/501.jpeg" 
                     lazyLoad="{{plan.src}}"
@@ -200,19 +208,27 @@
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
                 {{ plan.title }}
             </p>
-            <p [style.fontSize]="data.zoom(14)" class="study-plan-summary-subtitle">
-              {{ summarySubtitle }}
-              <span [style.fontSize]="data.zoom(14)" class="study-plan-current" 
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
+              {{ getPlanSubtitle(plan) }}
+              <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
                 style="float:right;" *ngIf="plan.current">
                 当前在学
               </span>
-              <span [style.fontSize]="data.zoom(14)" class="study-plan-reset-link" 
+              <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
               (click)="deleteStudyPlan(plan, $event)" style="float:right;"
               *ngIf="!plan.current">
                 <ion-icon name="trash-outline" class="study-plan-reset-icon"></ion-icon>
                 删除
               </span>
             </p>
+            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+              {{ data.currentStudyPlan?.desc || '' }}
+            </p>
+            
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
             <div class="study-progress-block">
                 <ion-range
                 class="study-progress-range"
@@ -221,10 +237,10 @@
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
                 <span>已学 {{ plan.done }}</span>
-                <span>{{ plan.total }} 首</span>
+                <span>{{ plan.total }} 句</span>
                 </div>
             </div>
-            </ion-label>
+          </ion-label>
         </ion-item>
       </ion-list>
 

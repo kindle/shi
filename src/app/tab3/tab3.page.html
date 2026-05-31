@@ -79,18 +79,19 @@
         (click)="goToTrackerDetail()"
          [style.fontSize]="data.zoom(15)">
           <ion-icon slot="start" name="flash" color="primary"></ion-icon>
-          {{ data.recentTrackerStreakDays }}
+          连续学习 {{ data.recentTrackerStreakDays }} 天
         </ion-button>
         <ion-button color="light" size="medium" class="task-button"
-         [style.fontSize]="data.zoom(15)">
-          <ion-icon slot="start" name="calendar-outline" color="success"></ion-icon>
-          统计
+         [style.fontSize]="data.zoom(15)"
+         (click)="goToStudyPlan()">
+          <ion-icon slot="start" name="alarm-outline" color="dark"></ion-icon>
+          学习进度 {{studyPlan.studiedPoems / studyPlan.totalPoems * 100 | number:'1.0-0'}}%
         </ion-button>
-        <ion-button color="light" size="medium" class="task-button"
+        <!-- <ion-button color="light" size="medium" class="task-button"
          [style.fontSize]="data.zoom(15)">
-          <ion-icon slot="start" name="file-tray" color="warning"></ion-icon>
+          <ion-icon slot="start" name="file-tray" color="primary"></ion-icon>
           任务
-        </ion-button>
+        </ion-button> -->
 
         <!-- <ion-button color="transparent" size="medium" class="task-search-button">
           <ion-icon slot="end" name="search-outline" color="dark" size="large"></ion-icon>
@@ -98,16 +99,17 @@
       </ion-item>
     </ion-list>
     
+
+    <!-- <app-sub-title name="当前学习计划"></app-sub-title> -->
     <!--进度-->
-    <ion-list>
+    <!-- <ion-list style="margin-top:15px;">
       <ion-item lines="none">
         <ion-thumbnail slot="start"
-          style="width:80px;height:120px;display: flex;justify-content: center;align-items: center;">
+          style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
           <img id="authorimg" style="border-radius: 10px;" 
             defaultImage="assets/img/501.jpeg" 
             lazyLoad="{{ data.currentStudyPlan?.src || 'assets/img/501.jpeg' }}"
-            onerror="javascript:this.src='assets/img/501.jpeg'"
-              />
+            onerror="javascript:this.src='assets/img/501.jpeg'"/>
         </ion-thumbnail>
         
         <ion-label>
@@ -115,67 +117,84 @@
             {{ data.currentStudyPlan?.title || '当前学习诗单' }}
           </p>
           <p [style.fontSize]="data.zoom(18)" style="margin-top:6px;margin-bottom:4px;color:black;">
-            每日{{ studyPlan.dailyPoems }}首，剩余{{ studyPlan.completionDays }}天
+            每日{{ studyPlan.dailyPoems }}句，剩余{{ studyPlan.completionDays }}天
             <span [style.fontSize]="data.zoom(16)" style="color:gray;cursor:pointer;float:right;" 
             (click)="goToStudyPlan()">
               修改 >
             </span>
           </p>
           <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
-            {{ data.currentStudyPlan?.desc || '选择一个诗单开始你的学习计划。' }}
+            {{ data.currentStudyPlan?.desc || '' }}
           </p>
-          <div class="study-progress-block">
-            <ion-range
-              class="study-progress-range"
-              [value]="studyPlan.studiedPoems"
-              [max]="studyPlan.totalPoems">
-            </ion-range>
-            <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-              <span>{{ studyPlan.studiedPoems }} / {{ studyPlan.totalPoems }}</span>
-              <span>剩余{{ studyPlan.completionDays }}天</span>
-            </div>
-          </div>
+          
         </ion-label>
       </ion-item>
-    </ion-list>
-
-    <hr class="progress-plan-divider">
+      <ion-item lines="none" *ngIf="data.studyPlan">
+        <ion-label>
+          <div class="study-progress-block">
+              <ion-range
+                class="study-progress-range"
+                [value]="studyPlan.studiedPoems"
+                [max]="studyPlan.totalPoems">
+              </ion-range>
+              <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
+                <span>{{ studyPlan.studiedPoems }} / {{ studyPlan.totalPoems }}</span>
+                <span>剩余{{ studyPlan.completionDays }}天</span>
+              </div>
+            </div>
+          </ion-label>
+      </ion-item>
+    </ion-list> -->
+<!-- 
+    <hr class="progress-plan-divider"> -->
 
     <!--今日计划-->
     <!-- <app-sub-title name="今日计划"></app-sub-title> -->
-    <ion-list class="plan-list">
+    <ion-list class="plan-list" style="margin-top:10px;">
       <ion-item lines="none" class="plan-item">
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title" [style.fontSize]="data.zoom(18)" style="margin-left:5px;">
+            <div class="plan-title" [style.fontSize]="data.zoom(18)" style="margin-left:5px;
+            margin-bottom:10px;">
               今日计划
             </div>
-            <br>
-            <ion-button class="plan-checkin-button" [style.fontSize]="data.zoom(16)">
-              去打卡 &gt;
-            </ion-button>
+            <div class="plan-checkin-row" [style.fontSize]="data.zoom(16)">
+              <div style="background-color:red;color:white;padding:5px;margin-left:5px;
+              border-radius: 5px;display:inline;">去打卡 &gt;</div>
+              <!-- <ion-button class="plan-checkin-button">
+                去打卡 &gt;
+              </ion-button> -->
+            </div>
+            <!-- <ion-button color="light" size="medium" class="task-button plan-streak-button"
+              (click)="goToTrackerDetail()"
+              [style.fontSize]="data.zoom(15)">
+                <ion-icon slot="start" name="flash" color="primary"></ion-icon>
+                <span style="color:black">{{ data.recentTrackerStreakDays }}</span>
+            </ion-button> -->
           </div>
 
           <div class="plan-stats">
             <div class="plan-stat-card">
-              <div class="plan-stat-label" [style.fontSize]="data.zoom(16)">已新学</div>
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(18)">已新学</div>
               <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
-                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(30)">10</span>
-                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ 10</span>
+                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(35)">{{ todayStudyProgress.completed }}</span>
+                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ {{ todayStudyProgress.total }}</span>
               </div>
-              <ion-button fill="clear" class="plan-action-button" [style.fontSize]="data.zoom(19)">
-                学习
+              <ion-button fill="clear" class="plan-action-button" [style.fontSize]="data.zoom(18)"
+                (click)="goToStudyLearn()">
+                {{ studyActionLabel }}
               </ion-button>
             </div>
 
             <div class="plan-stat-card plan-review-card">
-              <div class="plan-stat-label" [style.fontSize]="data.zoom(16)">已复习</div>
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(18)">已复习</div>
               <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
-                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(30)">0</span>
-                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ 432</span>
+                <span class="plan-stat-value-current" [style.fontSize]="data.zoom(35)">{{ todayReviewProgress.completed }}</span>
+                <span class="plan-stat-value-total" [style.fontSize]="data.zoom(20)">/ {{ todayReviewProgress.total }}</span>
               </div>
-              <ion-button expand="block" class="plan-review-button" [style.fontSize]="data.zoom(19)">
-                复习
+              <ion-button fill="clear" class="plan-review-button" [style.fontSize]="data.zoom(18)"
+                (click)="goToStudyReview()">
+                {{ reviewActionLabel }}
               </ion-button>
             </div>
           </div>
