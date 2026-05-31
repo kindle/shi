@@ -79,11 +79,11 @@ export class PlanPage {
   }
 
   get summarySubtitle(): string {
-    return `每日${this.selectedDailyPoems}首，剩余${this.selectedCompletionDays}天`;
+    return `每天${this.selectedDailyPoems}句，剩余${this.selectedCompletionDays}天`;
   }
 
   getPlanSubtitle(plan: StudyPlanItem): string {
-    return `每日${plan.num}首，剩余${plan.days}天`;
+    return `每天${plan.num}句，剩余${plan.days}天`;
   }
 
   get completionDateLabel(): string {
@@ -121,7 +121,6 @@ export class PlanPage {
   private applyPlanFromDaily(value: number) {
     this.selectedDailyPoems = value;
     this.selectedCompletionDays = this.calculateDaysFromDaily(value);
-    this.syncStudyPlan();
     this.scrollWheelToValue('daily', this.selectedDailyPoems);
     this.scrollWheelToValue('days', this.selectedCompletionDays);
   }
@@ -131,7 +130,6 @@ export class PlanPage {
 
     this.selectedDailyPoems = resolvedDailyPoems;
     this.selectedCompletionDays = this.calculateDaysFromDaily(resolvedDailyPoems);
-    this.syncStudyPlan();
     this.scrollWheelToValue('daily', this.selectedDailyPoems);
     this.scrollWheelToValue('days', this.selectedCompletionDays);
   }
@@ -192,7 +190,6 @@ export class PlanPage {
     }
 
     this.refreshPlanControls();
-    this.selectDailyPoems(this.resolveClosestOption(5, this.dailyPoemOptions));
     this.ui.toast('top', '已切换当前诗单');
   }
 
@@ -225,17 +222,18 @@ export class PlanPage {
     }
   }
 
-  private syncStudyPlan() {
+  savePlan() {
     this.data.updateStudyPlan({
       dailyPoems: this.selectedDailyPoems,
       completionDays: this.selectedCompletionDays,
     });
+    this.ui.goback();
   }
 
   private refreshPlanControls() {
     const currentPlan = this.data.currentStudyPlan;
     const preferredDailyPoems = currentPlan?.num || this.data.studyPlan.dailyPoems;
-    const preferredCompletionDays = currentPlan?.days || this.data.studyPlan.completionDays;
+    const preferredCompletionDays = this.calculateDaysFromDaily(preferredDailyPoems);
 
     this.dailyPoemOptions = this.includeOption(
       this.buildDailyPoemOptions(),
@@ -258,8 +256,6 @@ export class PlanPage {
     if (!this.completionDayOptions.includes(this.selectedCompletionDays)) {
       this.selectedCompletionDays = this.resolveClosestOption(this.selectedCompletionDays, this.completionDayOptions);
     }
-
-    this.syncStudyPlan();
 
     this.queueWheelRestore('auto');
   }
@@ -363,7 +359,15 @@ export class PlanPage {
   private calculateDailyFromDays(days: number): number {
     const matchedOption = this.dailyPoemOptions.find((value) => this.calculateDaysFromDaily(value) === days);
 
-    return matchedOption ?? this.totalPoems;
+    if (matchedOption) {
+      return matchedOption;
+    }
+
+    const persistedDailyPoems = this.data.currentStudyPlan?.num || this.selectedDailyPoems || this.data.studyPlan.dailyPoems;
+    return this.resolveClosestOption(
+      Math.max(1, Math.min(persistedDailyPoems, Math.max(this.totalPoems, 1))),
+      this.dailyPoemOptions
+    );
   }
 
   private estimateMinutesForDailyPoems(dailyPoems: number): number {

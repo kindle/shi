@@ -110,6 +110,14 @@ ion-content > *:not(.tab3-page-bg) {
     margin-bottom: 12px;
 }
 
+.plan-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-inline-start: auto;
+}
+
 .plan-checkin-row {
     flex-basis: 100%;
 }

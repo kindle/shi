@@ -4,7 +4,8 @@
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(18)">
-      学习计划
+      学习计划 
+      {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -61,14 +62,13 @@
             </p>
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
               {{ summarySubtitle }}
+            </p>
+            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
               <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
                 (click)="resetPlan()" style="float:right;">
                 <ion-icon name="refresh" class="study-plan-reset-icon"></ion-icon>
                 重置
               </span>
-            </p>
-            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
-              {{ data.currentStudyPlan?.desc || '' }}
             </p>
             </ion-label>
         </ion-item>
@@ -99,7 +99,7 @@
 
       <div class="study-plan-picker-card">
         <div class="study-plan-picker-header">
-          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">每天背诗词</div>
+          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">每天背</div>
           <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">完成天数</div>
         </div>
         <div class="study-plan-picker-body">
@@ -165,7 +165,7 @@
       </div>
 
       <ion-button
-      (click)="data.saveStudyPlan();ui.goback();"
+      (click)="savePlan()"
         expand="block"
         color="primary"
         class="study-plan-submit-button"
@@ -210,6 +210,8 @@
             </p>
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
               {{ getPlanSubtitle(plan) }}
+            </p>
+            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
               <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
                 style="float:right;" *ngIf="plan.current">
                 当前在学
@@ -220,9 +222,6 @@
                 <ion-icon name="trash-outline" class="study-plan-reset-icon"></ion-icon>
                 删除
               </span>
-            </p>
-            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
-              {{ data.currentStudyPlan?.desc || '' }}
             </p>
             
             </ion-label>

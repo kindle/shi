@@ -69,35 +69,6 @@
   <div [style.width]="ui.isipad ? '72%' : '100%'"
   [style.margin-left]="ui.isipad ? '20px' : 0">
 
-
-
-
-    <!--task bar  -->
-    <ion-list>
-      <ion-item lines="none" class="task-item">
-        <ion-button color="light" size="medium" class="task-button"
-        (click)="goToTrackerDetail()"
-         [style.fontSize]="data.zoom(15)">
-          <ion-icon slot="start" name="flash" color="primary"></ion-icon>
-          连续学习 {{ data.recentTrackerStreakDays }} 天
-        </ion-button>
-        <ion-button color="light" size="medium" class="task-button"
-         [style.fontSize]="data.zoom(15)"
-         (click)="goToStudyPlan()">
-          <ion-icon slot="start" name="alarm-outline" color="dark"></ion-icon>
-          学习进度 {{studyPlan.studiedPoems / studyPlan.totalPoems * 100 | number:'1.0-0'}}%
-        </ion-button>
-        <!-- <ion-button color="light" size="medium" class="task-button"
-         [style.fontSize]="data.zoom(15)">
-          <ion-icon slot="start" name="file-tray" color="primary"></ion-icon>
-          任务
-        </ion-button> -->
-
-        <!-- <ion-button color="transparent" size="medium" class="task-search-button">
-          <ion-icon slot="end" name="search-outline" color="dark" size="large"></ion-icon>
-        </ion-button> -->
-      </ion-item>
-    </ion-list>
     
 
     <!-- <app-sub-title name="当前学习计划"></app-sub-title> -->
@@ -158,19 +129,24 @@
             margin-bottom:10px;">
               今日计划
             </div>
-            <div class="plan-checkin-row" [style.fontSize]="data.zoom(16)">
+            <!-- <div class="plan-checkin-row" [style.fontSize]="data.zoom(16)">
               <div style="background-color:red;color:white;padding:5px;margin-left:5px;
               border-radius: 5px;display:inline;">去打卡 &gt;</div>
-              <!-- <ion-button class="plan-checkin-button">
-                去打卡 &gt;
-              </ion-button> -->
-            </div>
-            <!-- <ion-button color="light" size="medium" class="task-button plan-streak-button"
-              (click)="goToTrackerDetail()"
-              [style.fontSize]="data.zoom(15)">
-                <ion-icon slot="start" name="flash" color="primary"></ion-icon>
-                <span style="color:black">{{ data.recentTrackerStreakDays }}</span>
-            </ion-button> -->
+            </div> -->
+              <div class="plan-header-actions">
+                <ion-button color="light" size="medium" class="task-button"
+                  (click)="goToTrackerDetail()"
+                  [style.fontSize]="data.zoom(15)">
+                  <ion-icon slot="start" name="flash" color="primary"></ion-icon>
+                  {{ data.recentTrackerStreakDays }}
+                </ion-button>
+                <ion-button color="light" size="medium" class="task-button"
+                  [style.fontSize]="data.zoom(15)"
+                  (click)="goToStudyPlan()">
+                  <ion-icon slot="start" name="time-outline" color="dark"></ion-icon>
+                  {{studyPlan.studiedPoems / studyPlan.totalPoems * 100 | number:'1.0-0'}}%
+                </ion-button>
+              </div>
           </div>
 
           <div class="plan-stats">
