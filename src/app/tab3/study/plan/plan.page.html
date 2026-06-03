@@ -4,8 +4,8 @@
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(18)">
-      学习计划 
-      {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+      学习计划  
+      已完成{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
     </ion-title>
   </ion-toolbar>
 </ion-header>

@@ -6,7 +6,7 @@
     <ion-title class="learn-toolbar-title" slot="start" 
     [style.fontSize]="data.zoom(14)"
     style="color:gray;"
-    >需学习 {{ remainingCount }} 句</ion-title>
+    >{{ toolbarTitle }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -114,7 +114,7 @@
   <ng-template #stateBlock>
     <div class="empty-card" *ngIf="loading">
       <ion-spinner name="crescent"></ion-spinner>
-      <div>正在准备今日学习内容...</div>
+      <div>{{ isReviewMode ? '正在准备复习内容...' : '正在准备今日学习内容...' }}</div>
     </div>
 
     <div class="empty-card" *ngIf="!loading && !hasPlan">

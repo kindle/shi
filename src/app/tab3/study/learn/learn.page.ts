@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService, StudyPlanPoemItem } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
 interface LearnOption {
@@ -11,7 +12,7 @@ interface LearnOption {
 }
 
 interface LearnQuestion {
-  poem: any;
+  poem: StudyPlanPoemItem;
   firstHalf: string;
   secondHalf: string;
   options: LearnOption[];
@@ -28,11 +29,12 @@ export class LearnPage {
   readonly rightAnswerAudioSrc = 'assets/music/right.wav';
   readonly wrongAnswerAudioSrc = 'assets/music/wrong.wav';
   readonly feedbackSoundStorageKey = 'study_learn_feedback_sound_enabled';
+  mode: 'learn' | 'review' = 'learn';
   showHintMeta = false;
   hintUsed = false;
   isFeedbackSoundEnabled = true;
-  todayPoems: any[] = [];
-  roundQueue: any[] = [];
+  todayPoems: StudyPlanPoemItem[] = [];
+  roundQueue: StudyPlanPoemItem[] = [];
   currentQuestion: LearnQuestion | null = null;
   currentQueueIndex = 0;
   answered = false;
@@ -55,16 +57,28 @@ export class LearnPage {
   constructor(
     public data: DataService,
     public ui: UiService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
   ) {}
 
   async ionViewWillEnter() {
+    this.mode = this.activatedRoute.snapshot.queryParamMap.get('mode') === 'review' ? 'review' : 'learn';
     this.loadFeedbackSoundPreference();
     await this.loadTodaySession();
   }
 
+  get isReviewMode(): boolean {
+    return this.mode === 'review';
+  }
+
   get remainingCount(): number {
-    return this.todayPoems.filter((poem) => poem?.learned !== true).length;
+    return this.isReviewMode
+      ? this.todayPoems.length
+      : Math.max(this.todayPoems.length - this.todayPoems.filter((poem) => poem?.learned === true || poem?.wrong === true).length, 0);
+  }
+
+  get toolbarTitle(): string {
+    return this.isReviewMode ? `待复习 ${this.remainingCount} 句` : `需学习 ${this.remainingCount} 句`;
   }
 
   get hasPlan(): boolean {
@@ -105,12 +119,20 @@ export class LearnPage {
   }
 
   get completionTitle(): string {
+    if (this.isReviewMode) {
+      return this.todayPoems.length > 0 ? '复习已完成' : '当前没有需要复习的诗词';
+    }
+
     return this.todayPoems.length > 0 ? '今日学习计划完成' : '当前没有需要学习的诗词';
   }
 
   get nextActionLabel(): string {
     if (!this.currentQuestion) {
       return '下一题';
+    }
+
+    if (this.isReviewMode) {
+      return this.currentQueueIndex + 1 < this.roundQueue.length ? '下一题' : '完成';
     }
 
     if (this.currentQueueIndex + 1 < this.roundQueue.length) {
@@ -134,6 +156,10 @@ export class LearnPage {
       this.attemptedWrongOptionIds.includes(option.id)
     ) {
       return;
+    }
+
+    if (this.isReviewMode) {
+      await this.data.markTodayReviewCompleted(this.currentQuestion.poem);
     }
 
     if (!option.isCorrect) {
@@ -166,9 +192,14 @@ export class LearnPage {
       return;
     }
 
+    if (this.isReviewMode) {
+      await this.data.markTodayReviewCompleted(this.currentQuestion.poem);
+    }
+
     this.data.updateCurrentStudyPlanPoemProgress(this.currentQuestion.poem, {
       learned: true,
       wrong: false,
+      everwronged: this.isReviewMode ? false : undefined,
     });
 
     await this.gotoNextQuestion();
@@ -195,23 +226,20 @@ export class LearnPage {
   async gotoNextQuestion() {
     await this.refreshTodayPoems();
 
+    if (this.isReviewMode) {
+      await this.gotoNextReviewQuestion();
+      return;
+    }
+
     if (this.currentQueueIndex + 1 < this.roundQueue.length) {
       this.currentQueueIndex += 1;
       this.prepareQuestion(this.roundQueue[this.currentQueueIndex]);
       return;
     }
 
-    const wrongQueue = this.todayPoems.filter((poem) => poem?.learned !== true && poem?.wrong === true);
-    if (wrongQueue.length > 0) {
-      this.roundQueue = wrongQueue;
-      this.currentQueueIndex = 0;
-      this.prepareQuestion(this.roundQueue[0]);
-      return;
-    }
-
-    const unresolvedQueue = this.todayPoems.filter((poem) => poem?.learned !== true);
-    if (unresolvedQueue.length > 0) {
-      this.roundQueue = unresolvedQueue;
+    const nextQueue = this.getPendingStudyQueue();
+    if (nextQueue.length > 0) {
+      this.roundQueue = nextQueue;
       this.currentQueueIndex = 0;
       this.prepareQuestion(this.roundQueue[0]);
       return;
@@ -294,15 +322,15 @@ export class LearnPage {
     try {
       await this.refreshTodayPoems();
 
-      const unresolvedQueue = this.todayPoems.filter((poem) => poem?.learned !== true);
-      if (unresolvedQueue.length === 0) {
+      const initialQueue = this.getInitialQueue();
+      if (initialQueue.length === 0) {
         this.roundQueue = [];
         this.currentQuestion = null;
         this.sessionCompleted = true;
         return;
       }
 
-      this.roundQueue = unresolvedQueue;
+      this.roundQueue = initialQueue;
       this.currentQueueIndex = 0;
       this.prepareQuestion(this.roundQueue[0]);
     } finally {
@@ -311,8 +339,70 @@ export class LearnPage {
   }
 
   private async refreshTodayPoems() {
-    const poems = await this.data.ensureTodayStudyPlanPoems();
+    const poems = this.isReviewMode
+      ? this.data.getCurrentStudyReviewPoems()
+      : await this.data.ensureTodayStudyPlanPoems();
     this.todayPoems = poems.map((poem) => this.data.getStudyPlanPoemDetail(poem));
+  }
+
+  private getInitialQueue(): StudyPlanPoemItem[] {
+    if (this.isReviewMode) {
+      return [...this.todayPoems];
+    }
+
+    return this.getPendingStudyQueue();
+  }
+
+  private getPendingStudyQueue(): StudyPlanPoemItem[] {
+    const unattemptedQueue = this.todayPoems.filter((poem) => poem?.learned !== true && poem?.wrong !== true);
+    const wrongQueue = this.todayPoems.filter((poem) => poem?.learned !== true && poem?.wrong === true);
+
+    return [...unattemptedQueue, ...wrongQueue];
+  }
+
+  private async gotoNextReviewQuestion() {
+    const nextQueue = [...this.todayPoems];
+    this.roundQueue = nextQueue;
+
+    if (nextQueue.length === 0) {
+      this.currentQuestion = null;
+      this.sessionCompleted = true;
+      this.answered = false;
+      this.selectedOptionId = '';
+      this.questionUnavailable = false;
+      this.answerPendingReveal = false;
+      return;
+    }
+
+    const currentKey = this.currentQuestion ? this.getPoemKey(this.currentQuestion.poem) : '';
+    const currentIndexInNextQueue = nextQueue.findIndex((poem) => this.getPoemKey(poem) === currentKey);
+
+    if (currentIndexInNextQueue === -1) {
+      this.currentQueueIndex = Math.min(this.currentQueueIndex, nextQueue.length - 1);
+      this.prepareQuestion(nextQueue[this.currentQueueIndex]);
+      return;
+    }
+
+    if (currentIndexInNextQueue + 1 < nextQueue.length) {
+      this.currentQueueIndex = currentIndexInNextQueue + 1;
+      this.prepareQuestion(nextQueue[this.currentQueueIndex]);
+      return;
+    }
+
+    this.currentQuestion = null;
+    this.sessionCompleted = true;
+    this.answered = false;
+    this.selectedOptionId = '';
+    this.questionUnavailable = false;
+    this.answerPendingReveal = false;
+  }
+
+  private getPoemKey(poem: StudyPlanPoemItem): string {
+    if (poem?.id != null && poem?.id !== '') {
+      return `id:${poem.id}`;
+    }
+
+    return `text:${poem?.author || ''}::${poem?.title || ''}::${poem?.sample || poem?.paragraphs?.[0] || ''}`;
   }
 
   private prepareQuestion(poem: any) {

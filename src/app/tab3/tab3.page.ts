@@ -40,7 +40,7 @@ export class Tab3Page {
       return '已完成';
     }
 
-    return this.todayStudyProgress.completed > 0 ? '继续学习' : '学习';
+    return this.todayStudyProgress.completed > 0 ? '学习' : '学习'; //继续学习、学习
   }
 
   get reviewActionLabel(): string {
@@ -53,7 +53,7 @@ export class Tab3Page {
     }
 
     if (this.todayReviewProgress.completed >= this.todayReviewProgress.total) {
-      return '已复习';
+      return '复习'; //已复习
     }
 
     return '复习';
@@ -93,6 +93,10 @@ export class Tab3Page {
       this.studyPlan = plan;
       void this.refreshTodayStudyProgress();
     });
+
+    //print StudyPlanItem
+    console.log("StudyPlanItem sample:");
+    console.log(this.data.StudyPlans[0]);
   }
 
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
@@ -143,7 +147,11 @@ export class Tab3Page {
     }
 
     await this.data.ensureArticleDataReady(true);
-    this.router.navigate(['/tabs/tab3/study/learn']);
+    this.router.navigate(['/tabs/tab3/study/learn'], {
+      queryParams: {
+        mode: 'review',
+      }
+    });
   }
 
   add(){
@@ -316,7 +324,11 @@ export class Tab3Page {
     }
 
     await this.data.ensureArticleDataReady(true);
-    this.router.navigate(['/tabs/tab3/study/learn']);
+    this.router.navigate(['/tabs/tab3/study/learn'], {
+      queryParams: {
+        mode: 'learn',
+      }
+    });
   }
 
 

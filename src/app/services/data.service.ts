@@ -57,6 +57,29 @@ export interface StudyPlanSettings {
   completionDays: number;
 }
 
+export interface StudyPlanPoemItem {
+  id?: string | number;
+  title?: string;
+  author?: string;
+  authorId?: string | number;
+  dy?: string;
+  sample?: string;
+  rhythmic?: string;
+  paragraphs?: string[];
+  appreciation?: string | string[];
+  translation?: string | string[];
+  intro?: string | string[];
+  comment?: string | string[];
+  annotation?: string | string[];
+  audio?: string;
+  added?: Array<string | number>;
+  learned?: boolean;
+  wrong?: boolean;
+  reviewRequired?: boolean;
+  everwronged?: boolean;
+  [key: string]: any;
+}
+
 export interface StudyPlanItem {
   src: string;
   title: string;
@@ -66,7 +89,7 @@ export interface StudyPlanItem {
   num: number;
   days: number;
   cid: string | number;
-  data: any[];
+  data: StudyPlanPoemItem[];
   current: boolean;
 }
 
@@ -75,6 +98,13 @@ interface StudyDailyLearnState {
   cid: string;
   poemKeys: string[];
   dailyCount: number;
+}
+
+interface StudyDailyReviewState {
+  date: string;
+  cid: string;
+  poemKeys: string[];
+  completedKeys: string[];
 }
 
 export interface StudyDailyProgress {
@@ -6202,6 +6232,7 @@ export class DataService {
   //LocalQueueKey="local_queue_music_key";
   LOCALSTORAGE_STUDY_PLAN = "local_study_plan_key";
   LOCALSTORAGE_STUDY_DAILY_STATE = 'local_study_daily_state_key';
+  LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE = 'local_study_review_daily_state_key';
   saveStudyPlan(){
     this.syncCurrentStudyPlanSettingsFromSummary();
     this.refreshStudyPlanProgress();
@@ -6226,39 +6257,27 @@ export class DataService {
       }
     });
   }
+  // item sample:
   // StudyPlans: StudyPlanItem[] = [
   //   {
   //     src:"assets/img/501.jpeg", 
   //     title:"小学生必背古诗词", 
   //     desc:"完整收录北京版小学教材中出现的古诗词，适合小学生诵读背诵。",
-  //     done:594,
-  //     total:739,
-  //     cid:1,
-  //     num:5,
-  //     days:30,
-  //     data:[],
-  //     current:true
+  //     done:594,         //已学数量
+  //     total:739,        //诗词总数
+  //     cid:138232-323838-2233, 
+  //                       //诗单id，唯一标识一个诗单  guid
+  //     num:5,            //每天几句
+  //     days:30,          //计划几天完成
+  //     data:[],   shi list
+  //                      //每项包含诗词内容和学习状态等信息
+  //                       -learned
+  //                       -wrong
+  //                       -reviewRequired
+  //                       -everwronged
+  //     current:true      //当前学习flag
   //   },
-  //   {
-  //     src:"assets/img/501.jpeg", 
-  //     title:"初中生必背古诗词", 
-  //     desc:"完整收录北京版初中教材中出现的古诗词，适合初中生诵读背诵。",
-  //     done:20,
-  //     total:300,
-  //     cid:1,
-  //     data:[],
-  //     current:false
-  //   },
-  //   {
-  //     src:"https://reddah.blob.core.windows.net/msjjimg/chalk-4829602_1280.jpg", 
-  //     title:"唐诗三百首", 
-  //     desc:"完整收录唐诗三百首，适合各年龄段诵读背诵。",
-  //     done:0,
-  //     total:316,
-  //     cid:1,
-  //     data:[],
-  //     current:false
-  //   },
+  //   
 
   // ];
 
@@ -6293,7 +6312,7 @@ export class DataService {
     const maxDailyPoems = Math.max(total, 1);
     const num = Math.max(1, Math.min(Number(plan?.num) || this.studyPlan.dailyPoems, maxDailyPoems));
     const days = Math.max(1, Number(plan?.days) || Math.ceil(total / num) || 1);
-    const data = Array.isArray(plan?.data) ? (plan?.data as any[]) : [];
+    const data = Array.isArray(plan?.data) ? (plan?.data as StudyPlanPoemItem[]) : [];
 
     return {
       src: plan?.src || 'assets/img/501.jpeg',
@@ -6333,7 +6352,7 @@ export class DataService {
     };
   }
 
-  private getStudyPoemKey(poem:any): string {
+  private getStudyPoemKey(poem: StudyPlanPoemItem): string {
     if (poem?.id != null && poem?.id !== '') {
       return `id:${poem.id}`;
     }
@@ -6341,7 +6360,7 @@ export class DataService {
     return `text:${poem?.author || ''}::${poem?.title || ''}::${poem?.sample || poem?.paragraphs?.[0] || ''}`;
   }
 
-  private findPlanPoemByKey(plan: StudyPlanItem, poemKey: string): any | null {
+  private findPlanPoemByKey(plan: StudyPlanItem, poemKey: string): StudyPlanPoemItem | null {
     return plan.data.find((item:any) => this.getStudyPoemKey(item) === poemKey) || null;
   }
 
@@ -6385,12 +6404,12 @@ export class DataService {
     this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
   }
 
-  private resetStudyPlanPoemState(poem:any): any {
+  private resetStudyPlanPoemState(poem: StudyPlanPoemItem): StudyPlanPoemItem {
     if (!poem || typeof poem !== 'object') {
       return poem;
     }
 
-    const { learned, wrong, reviewRequired, ...initialPoem } = poem;
+    const { learned, wrong, reviewRequired, everwronged, ...initialPoem } = poem;
     return initialPoem;
   }
 
@@ -6407,7 +6426,61 @@ export class DataService {
       .map((item:any) => this.getStudyPoemKey(item));
   }
 
-  async ensureTodayStudyPlanPoems(): Promise<any[]> {
+  private buildTodayReviewPoemKeys(plan: StudyPlanItem): string[] {
+    return plan.data
+      .filter((item:any) => item?.everwronged === true)
+      .map((item:any) => this.getStudyPoemKey(item));
+  }
+
+  private async loadStudyReviewDailyState(): Promise<StudyDailyReviewState | null> {
+    const value = await this.get(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
+    if (!value) {
+      return null;
+    }
+
+    try {
+      const state = JSON.parse(value);
+      if (!state || typeof state !== 'object') {
+        return null;
+      }
+
+      return {
+        date: `${state.date || ''}`,
+        cid: `${state.cid || ''}`,
+        poemKeys: Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [],
+        completedKeys: Array.isArray(state.completedKeys) ? state.completedKeys.map((item:any) => `${item}`) : [],
+      };
+    } catch (error) {
+      console.warn('Failed to parse study review daily state', error);
+      return null;
+    }
+  }
+
+  private saveStudyReviewDailyState(state: StudyDailyReviewState) {
+    this.set(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE, JSON.stringify(state));
+  }
+
+  private clearStudyReviewDailyState() {
+    this.remove(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
+  }
+
+  private mergeStudyReviewPoemKeys(existingPoemKeys: string[], currentPoemKeys: string[]): string[] {
+    const seen = new Set<string>();
+    const merged: string[] = [];
+
+    for (const poemKey of [...existingPoemKeys, ...currentPoemKeys]) {
+      if (!poemKey || seen.has(poemKey)) {
+        continue;
+      }
+
+      seen.add(poemKey);
+      merged.push(poemKey);
+    }
+
+    return merged;
+  }
+
+  async ensureTodayStudyPlanPoems(): Promise<StudyPlanPoemItem[]> {
     const currentPlan = this.currentStudyPlan;
     if (!currentPlan) {
       return [];
@@ -6427,7 +6500,7 @@ export class DataService {
     ) {
       return savedState.poemKeys
         .map((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
-        .filter((item): item is any => Boolean(item));
+        .filter((item): item is StudyPlanPoemItem => Boolean(item));
     }
 
     const poemKeys = this.buildTodayStudyPoemKeys(currentPlan);
@@ -6440,29 +6513,120 @@ export class DataService {
 
     return poemKeys
       .map((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
-      .filter((item): item is any => Boolean(item));
+      .filter((item): item is StudyPlanPoemItem => Boolean(item));
+  }
+
+  private async ensureTodayReviewPlanState(): Promise<StudyDailyReviewState | null> {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return null;
+    }
+
+    const today = this.formatStudyDate();
+    const currentCid = `${currentPlan.cid}`;
+    const currentPoemKeys = this.buildTodayReviewPoemKeys(currentPlan);
+    const savedState = await this.loadStudyReviewDailyState();
+
+    if (savedState && savedState.date === today && savedState.cid === currentCid) {
+      const poemKeys = this.mergeStudyReviewPoemKeys(savedState.poemKeys, currentPoemKeys)
+        .filter((poemKey) => Boolean(this.findPlanPoemByKey(currentPlan, poemKey)));
+      const poemKeySet = new Set(poemKeys);
+      const completedKeys = savedState.completedKeys.filter((poemKey) => poemKeySet.has(poemKey));
+      const stateChanged = poemKeys.length !== savedState.poemKeys.length
+        || completedKeys.length !== savedState.completedKeys.length;
+
+      const nextState = {
+        date: today,
+        cid: currentCid,
+        poemKeys,
+        completedKeys,
+      };
+
+      if (stateChanged) {
+        this.saveStudyReviewDailyState(nextState);
+      }
+
+      return nextState;
+    }
+
+    const nextState = {
+      date: today,
+      cid: currentCid,
+      poemKeys: currentPoemKeys,
+      completedKeys: [],
+    };
+
+    this.saveStudyReviewDailyState(nextState);
+    return nextState;
+  }
+
+  async ensureTodayReviewPlanPoems(): Promise<StudyPlanPoemItem[]> {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return [];
+    }
+
+    const reviewState = await this.ensureTodayReviewPlanState();
+    if (!reviewState) {
+      return [];
+    }
+
+    return reviewState.poemKeys
+      .map((poemKey) => this.findPlanPoemByKey(currentPlan, poemKey))
+      .filter((item): item is StudyPlanPoemItem => Boolean(item));
   }
 
   async getTodayStudyProgress(): Promise<StudyDailyProgress> {
     const todayPoems = await this.ensureTodayStudyPlanPoems();
 
     return {
-      completed: todayPoems.filter((poem:any) => poem?.learned === true).length,
+      completed: todayPoems.filter((poem:any) => poem?.learned === true || poem?.wrong === true).length,
       total: todayPoems.length,
     };
   }
 
+  getCurrentStudyReviewPoems(): StudyPlanPoemItem[] {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return [];
+    }
+
+    return currentPlan.data.filter((poem) => poem?.everwronged === true);
+  }
+
   async getTodayReviewProgress(): Promise<StudyReviewProgress> {
-    const todayPoems = await this.ensureTodayStudyPlanPoems();
-    const reviewPoems = todayPoems.filter((poem:any) => poem?.reviewRequired === true);
+    const reviewPoems = await this.ensureTodayReviewPlanPoems();
+    const reviewState = await this.ensureTodayReviewPlanState();
+    const completedKeySet = new Set(reviewState?.completedKeys || []);
 
     return {
-      completed: reviewPoems.filter((poem:any) => poem?.wrong !== true).length,
+      completed: reviewPoems.filter((poem:any) => completedKeySet.has(this.getStudyPoemKey(poem))).length,
       total: reviewPoems.length,
     };
   }
 
-  getStudyPlanPoemDetail(poem:any) {
+  async markTodayReviewCompleted(poem: StudyPlanPoemItem): Promise<void> {
+    const reviewState = await this.ensureTodayReviewPlanState();
+    if (!reviewState) {
+      return;
+    }
+
+    const poemKey = this.getStudyPoemKey(poem);
+    const poemKeys = reviewState.poemKeys.includes(poemKey)
+      ? reviewState.poemKeys
+      : [...reviewState.poemKeys, poemKey];
+    const completedKeys = reviewState.completedKeys.includes(poemKey)
+      ? reviewState.completedKeys
+      : [...reviewState.completedKeys, poemKey];
+
+    this.saveStudyReviewDailyState({
+      ...reviewState,
+      poemKeys,
+      completedKeys,
+    });
+  }
+
+  getStudyPlanPoemDetail(poem: StudyPlanPoemItem): StudyPlanPoemItem {
     const fullData = this.JsonData.find((item:any) => `${item?.id}` === `${poem?.id}`);
 
     if (!fullData) {
@@ -6475,7 +6639,7 @@ export class DataService {
     };
   }
 
-  updateCurrentStudyPlanPoemProgress(poem:any, progress: { learned?: boolean; wrong?: boolean }): boolean {
+  updateCurrentStudyPlanPoemProgress(poem: StudyPlanPoemItem, progress: { learned?: boolean; wrong?: boolean; everwronged?: boolean }): boolean {
     const currentPlan = this.currentStudyPlan;
     if (!currentPlan) {
       return false;
@@ -6496,11 +6660,19 @@ export class DataService {
 
         updated = true;
         const nextReviewRequired = progress.wrong === true ? true : item?.reviewRequired === true;
+        const nextEverwronged = progress.everwronged === true
+          ? true
+          : progress.everwronged === false
+            ? false
+            : progress.wrong === true
+              ? true
+              : item?.everwronged === true;
 
         return {
           ...item,
           ...progress,
           reviewRequired: nextReviewRequired,
+          everwronged: nextEverwronged,
         };
       });
 
@@ -6553,6 +6725,7 @@ export class DataService {
     });
 
     this.clearStudyDailyState();
+    this.clearStudyReviewDailyState();
     this.saveStudyPlan();
     return true;
   }
