@@ -34,3 +34,12 @@ ion-content > *:not(.tab2-page-bg) {
     font-size:20px;
     font-weight: normal;
 }
+
+
+ion-content {
+    overflow-x: hidden;
+}
+
+ion-content::part(scroll) {
+    overflow-x: hidden;
+}

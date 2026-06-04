@@ -14,6 +14,14 @@
     z-index: 0;
 }
 
+ion-content {
+    overflow-x: hidden;
+}
+
+ion-content::part(scroll) {
+    overflow-x: hidden;
+}
+
 .tablist-page-bg[slot='fixed'] {
     position: absolute;
 }
