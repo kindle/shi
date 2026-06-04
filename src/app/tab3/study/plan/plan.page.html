@@ -216,9 +216,9 @@
                 style="float:right;" *ngIf="plan.current">
                 当前在学
               </span>
-              <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
-              (click)="deleteStudyPlan(plan, $event)" style="float:right;"
-              *ngIf="!plan.current">
+              <span [style.fontSize]="data.zoom(18)" class="study-plan-reset-link" 
+              (click)="deleteStudyPlan(plan, $event)" style="float:right;margin-right:10px;"
+              *ngIf="!plan.current||(plan.current&&orderedStudyPlans.length==1)">
                 <ion-icon name="trash-outline" class="study-plan-reset-icon"></ion-icon>
                 删除
               </span>

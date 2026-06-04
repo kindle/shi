@@ -91,6 +91,8 @@ export interface StudyPlanItem {
   cid: string | number;
   data: StudyPlanPoemItem[];
   current: boolean;
+  studyDailyState: StudyDailyLearnState | null;
+  reviewDailyState: StudyDailyReviewState | null;
 }
 
 interface StudyDailyLearnState {
@@ -6313,6 +6315,7 @@ export class DataService {
     const num = Math.max(1, Math.min(Number(plan?.num) || this.studyPlan.dailyPoems, maxDailyPoems));
     const days = Math.max(1, Number(plan?.days) || Math.ceil(total / num) || 1);
     const data = Array.isArray(plan?.data) ? (plan?.data as StudyPlanPoemItem[]) : [];
+    const cid = `${plan?.cid || ''}`;
 
     return {
       src: plan?.src || 'assets/img/501.jpeg',
@@ -6322,9 +6325,38 @@ export class DataService {
       total,
       num,
       days,
-      cid: plan?.cid || '',
+      cid,
       data,
       current: Boolean(plan?.current),
+      studyDailyState: this.normalizeStudyDailyState(plan?.studyDailyState, cid),
+      reviewDailyState: this.normalizeStudyReviewDailyState(plan?.reviewDailyState, cid),
+    };
+  }
+
+  private normalizeStudyDailyState(state: Partial<StudyDailyLearnState> | null | undefined, cid: string): StudyDailyLearnState | null {
+    if (!state || typeof state !== 'object') {
+      return null;
+    }
+
+    const poemKeys = Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [];
+    return {
+      date: `${state.date || ''}`,
+      cid: `${state.cid || cid || ''}`,
+      poemKeys,
+      dailyCount: Math.max(1, Number(state.dailyCount) || 1),
+    };
+  }
+
+  private normalizeStudyReviewDailyState(state: Partial<StudyDailyReviewState> | null | undefined, cid: string): StudyDailyReviewState | null {
+    if (!state || typeof state !== 'object') {
+      return null;
+    }
+
+    return {
+      date: `${state.date || ''}`,
+      cid: `${state.cid || cid || ''}`,
+      poemKeys: Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [],
+      completedKeys: Array.isArray(state.completedKeys) ? state.completedKeys.map((item:any) => `${item}`) : [],
     };
   }
 
@@ -6372,7 +6404,7 @@ export class DataService {
     return `${year}-${month}-${day}`;
   }
 
-  private async loadStudyDailyState(): Promise<StudyDailyLearnState | null> {
+  private async loadLegacyStudyDailyState(): Promise<StudyDailyLearnState | null> {
     const value = await this.get(this.LOCALSTORAGE_STUDY_DAILY_STATE);
     if (!value) {
       return null;
@@ -6380,27 +6412,72 @@ export class DataService {
 
     try {
       const state = JSON.parse(value);
-      if (!state || typeof state !== 'object') {
-        return null;
-      }
-
-      return {
-        date: `${state.date || ''}`,
-        cid: `${state.cid || ''}`,
-        poemKeys: Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [],
-        dailyCount: Math.max(1, Number(state.dailyCount) || 1),
-      };
+      return this.normalizeStudyDailyState(state, `${state?.cid || ''}`);
     } catch (error) {
       console.warn('Failed to parse study daily state', error);
       return null;
     }
   }
 
+  private async loadStudyDailyState(): Promise<StudyDailyLearnState | null> {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return null;
+    }
+
+    const planState = this.normalizeStudyDailyState(currentPlan.studyDailyState, `${currentPlan.cid}`);
+    if (planState) {
+      return planState;
+    }
+
+    const legacyState = await this.loadLegacyStudyDailyState();
+    if (legacyState && legacyState.cid === `${currentPlan.cid}`) {
+      this.saveStudyDailyState(legacyState);
+      this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
+      return legacyState;
+    }
+
+    return null;
+  }
+
   private saveStudyDailyState(state: StudyDailyLearnState) {
-    this.set(this.LOCALSTORAGE_STUDY_DAILY_STATE, JSON.stringify(state));
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return;
+    }
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      if (`${plan.cid}` !== `${currentPlan.cid}`) {
+        return plan;
+      }
+
+      return {
+        ...plan,
+        studyDailyState: this.normalizeStudyDailyState(state, `${plan.cid}`),
+      };
+    });
+
+    this.saveStudyPlan();
+    this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
   }
 
   private clearStudyDailyState() {
+    const currentPlan = this.currentStudyPlan;
+    if (currentPlan) {
+      this.StudyPlans = this.StudyPlans.map((plan) => {
+        if (`${plan.cid}` !== `${currentPlan.cid}`) {
+          return plan;
+        }
+
+        return {
+          ...plan,
+          studyDailyState: null,
+        };
+      });
+
+      this.saveStudyPlan();
+    }
+
     this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
   }
 
@@ -6432,7 +6509,7 @@ export class DataService {
       .map((item:any) => this.getStudyPoemKey(item));
   }
 
-  private async loadStudyReviewDailyState(): Promise<StudyDailyReviewState | null> {
+  private async loadLegacyStudyReviewDailyState(): Promise<StudyDailyReviewState | null> {
     const value = await this.get(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
     if (!value) {
       return null;
@@ -6440,27 +6517,72 @@ export class DataService {
 
     try {
       const state = JSON.parse(value);
-      if (!state || typeof state !== 'object') {
-        return null;
-      }
-
-      return {
-        date: `${state.date || ''}`,
-        cid: `${state.cid || ''}`,
-        poemKeys: Array.isArray(state.poemKeys) ? state.poemKeys.map((item:any) => `${item}`) : [],
-        completedKeys: Array.isArray(state.completedKeys) ? state.completedKeys.map((item:any) => `${item}`) : [],
-      };
+      return this.normalizeStudyReviewDailyState(state, `${state?.cid || ''}`);
     } catch (error) {
       console.warn('Failed to parse study review daily state', error);
       return null;
     }
   }
 
+  private async loadStudyReviewDailyState(): Promise<StudyDailyReviewState | null> {
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return null;
+    }
+
+    const planState = this.normalizeStudyReviewDailyState(currentPlan.reviewDailyState, `${currentPlan.cid}`);
+    if (planState) {
+      return planState;
+    }
+
+    const legacyState = await this.loadLegacyStudyReviewDailyState();
+    if (legacyState && legacyState.cid === `${currentPlan.cid}`) {
+      this.saveStudyReviewDailyState(legacyState);
+      this.remove(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
+      return legacyState;
+    }
+
+    return null;
+  }
+
   private saveStudyReviewDailyState(state: StudyDailyReviewState) {
-    this.set(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE, JSON.stringify(state));
+    const currentPlan = this.currentStudyPlan;
+    if (!currentPlan) {
+      return;
+    }
+
+    this.StudyPlans = this.StudyPlans.map((plan) => {
+      if (`${plan.cid}` !== `${currentPlan.cid}`) {
+        return plan;
+      }
+
+      return {
+        ...plan,
+        reviewDailyState: this.normalizeStudyReviewDailyState(state, `${plan.cid}`),
+      };
+    });
+
+    this.saveStudyPlan();
+    this.remove(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
   }
 
   private clearStudyReviewDailyState() {
+    const currentPlan = this.currentStudyPlan;
+    if (currentPlan) {
+      this.StudyPlans = this.StudyPlans.map((plan) => {
+        if (`${plan.cid}` !== `${currentPlan.cid}`) {
+          return plan;
+        }
+
+        return {
+          ...plan,
+          reviewDailyState: null,
+        };
+      });
+
+      this.saveStudyPlan();
+    }
+
     this.remove(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
   }
 
@@ -6772,6 +6894,16 @@ export class DataService {
     });
   }
 
+  private clearStudyPlanSummary() {
+    this.studyPlan = {
+      totalPoems: 0,
+      studiedPoems: 0,
+      dailyPoems: 1,
+      completionDays: 1,
+    };
+    this.studyPlanSubject.next(this.studyPlan);
+  }
+
   buildStudyPlanFromCustomList(customListCollection: any): StudyPlanItem {
     const customList = customListCollection?.data ?? {};
     const poemList = Array.isArray(customList.list) ? customList.list : [];
@@ -6787,6 +6919,8 @@ export class DataService {
       cid: customList.id,
       data: poemList,
       current: false,
+      studyDailyState: null,
+      reviewDailyState: null,
     };
   }
 
@@ -6838,11 +6972,23 @@ export class DataService {
 
   removeStudyPlan(cid: string | number): boolean {
     const targetPlan = this.StudyPlans.find((plan) => `${plan.cid}` === `${cid}`);
-    if (!targetPlan || targetPlan.current) {
+    if (!targetPlan) {
+      return false;
+    }
+
+    const isOnlyPlan = this.StudyPlans.length === 1;
+    if (targetPlan.current && !isOnlyPlan) {
       return false;
     }
 
     this.StudyPlans = this.StudyPlans.filter((plan) => `${plan.cid}` !== `${cid}`);
+
+    if (this.StudyPlans.length === 0) {
+      this.clearStudyPlanSummary();
+      this.remove(this.LOCALSTORAGE_STUDY_DAILY_STATE);
+      this.remove(this.LOCALSTORAGE_STUDY_REVIEW_DAILY_STATE);
+    }
+
     this.saveStudyPlan();
     return true;
   }
