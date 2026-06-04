@@ -234,10 +234,12 @@
         </ion-item>
         <ion-item lines="none" *ngIf="it.author&&it.title"
          (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)">
-          <p slot="end" style="margin-top:5px;display: flex;align-items: center;color:black;"
+          <p slot="end" style="margin-top:5px;display: flex;align-items: center;color:black;min-width:0;max-width:100%;"
             [style.fontSize]="data.zoom(17)">
             <ion-icon name="headset" *ngIf="it.audio" color="primary" style="margin-right:5px;"></ion-icon>
-            {{it.author}}《{{it.title}}》
+            <span class="show-only-one-line" style="display:block;min-width:0;">
+              {{it.author}}《{{it.title}}》
+            </span>
           </p>
         </ion-item>
         <ion-item *ngIf="it.note&&it.note.length>0"
