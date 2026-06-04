@@ -34,7 +34,7 @@
             <p style="margin-top:5px;display: flex;align-items: center;" 
             class="show-only-one-line">
               {{p.dy ? '[' + p.dy + ']' : ''}} {{p.author}}《{{p.title}}》
-              <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
+              <ion-icon name="headset" *ngIf="p.audio" color="primary" style="min-width: 22px;"></ion-icon>
             </p>
           </ion-label>
           <ion-button fill="clear" slot="end" (click)="addtocustomlist(p)" *ngIf="!isAddedToCurrentList(p)">
