@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'article',
     loadChildren: () => import('./article/article.module').then( m => m.ArticlePageModule)
   },
+  {
+    path: 'zaohua/compass',
+    loadChildren: () => import('./zaohua/compass/compass.module').then( m => m.CompassPageModule)
+  },
 
 
   {

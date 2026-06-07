@@ -2316,8 +2316,8 @@ export class DataService {
 
   private createJieQiTermInfo(solar: Solar, jieQiName: string): JieQiTermInfo {
     const table = solar.getLunar().getJieQiTable();
-    const targetSolar = table.get(jieQiName);
-    const date = targetSolar?.toYmd() || null;
+    const targetSolar = table[jieQiName];
+    const date = targetSolar ? targetSolar.toYmd() : null;
     const days = this.getDaysComparedToToday(date);
 
     return {

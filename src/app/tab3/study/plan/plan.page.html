@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(18)">
       学习计划  
-      已完成{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+      <!-- 已完成{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}% -->
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,7 +16,8 @@
     [style.margin-left]="ui.isipad ? '20px' : 0">
     <div class="study-plan-tabs"
       [class.selected-tab1]="selectedTab === 'plan'"
-      [class.selected-tab2]="selectedTab === 'playlist'">
+      [class.selected-tab2]="selectedTab === 'playlist'"
+      [class.selected-tab3]="selectedTab === 'completed'">
       <div class="study-plan-highlight">
         <div class="highlight-line"></div>
       </div>
@@ -36,6 +37,14 @@
         (click)="selectTab('playlist')"
         [style.fontSize]="data.zoom(18)">
         更换诗单
+      </button>
+      <button
+        type="button"
+        class="study-plan-tab-button"
+        [class.active]="selectedTab === 'completed'"
+        (click)="selectTab('completed')"
+        [style.fontSize]="data.zoom(18)">
+        已完成
       </button>
     </div>
   </div>
@@ -64,6 +73,9 @@
               {{ summarySubtitle }}
             </p>
             <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+              <span [style.fontSize]="data.zoom(16)">
+                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+              </span>
               <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
                 (click)="resetPlan()" style="float:right;">
                 <ion-icon name="refresh" class="study-plan-reset-icon"></ion-icon>
@@ -81,7 +93,7 @@
                 [max]="data.currentStudyPlan?.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%</span>
+                <span>已完成 {{ data.currentStudyPlan?.done }} / {{ data.currentStudyPlan?.total }}</span>
                 <span>剩余{{ data.currentStudyPlan?.days }}天</span>
                 </div>
             </div>
@@ -194,7 +206,8 @@
     <div class="study-plan-panel" *ngIf="selectedTab === 'playlist'">
 
       <ion-list class="study-plan-summary-list" *ngFor="let plan of orderedStudyPlans">
-        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)">
+        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)"
+        *ngIf="plan.done !== plan.total">
             <ion-thumbnail slot="start"
                 style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
                 <img id="authorimg" style="border-radius: 10px;" 
@@ -212,6 +225,9 @@
               {{ getPlanSubtitle(plan) }}
             </p>
             <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+              <span [style.fontSize]="data.zoom(16)" *ngIf="plan.current">
+                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+              </span>
               <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
                 style="float:right;" *ngIf="plan.current">
                 当前在学
@@ -226,7 +242,8 @@
             
             </ion-label>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none"
+        *ngIf="plan.done !== plan.total">
           <ion-label>
             <div class="study-progress-block">
                 <ion-range
@@ -235,8 +252,8 @@
                 [max]="plan.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>已学 {{ plan.done }}</span>
-                <span>{{ plan.total }} 句</span>
+                <span>已完成 {{ plan.done }} / {{ plan.total }}</span>
+                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
                 </div>
             </div>
           </ion-label>
@@ -256,6 +273,62 @@
         [style.fontSize]="data.zoom(17)">
         添加诗单
       </ion-button>
+    </div>
+
+
+    <div class="study-plan-panel" *ngIf="selectedTab === 'completed'">
+
+      <ion-list class="study-plan-summary-list" *ngFor="let plan of orderedStudyPlans">
+        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)"
+          *ngIf="plan.done>0 && plan.done === plan.total">
+            <ion-thumbnail slot="start"
+                style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
+                <img id="authorimg" style="border-radius: 10px;" 
+                    defaultImage="assets/img/501.jpeg" 
+                    lazyLoad="{{plan.src}}"
+                    onerror="javascript:this.src='assets/img/501.jpeg'"
+                    />
+            </ion-thumbnail>
+            
+            <ion-label>
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
+                {{ plan.title }}
+            </p>
+            <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
+              {{ getPlanSubtitle(plan) }}
+            </p>
+            <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
+              <span [style.fontSize]="data.zoom(16)" *ngIf="plan.current">
+                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+              </span>
+              <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
+                style="float:right;" *ngIf="plan.current">
+                当前在学
+              </span>
+            </p>
+            
+            </ion-label>
+        </ion-item>
+        <ion-item lines="none"
+        *ngIf="plan.done>0 && plan.done === plan.total">
+          <ion-label>
+            <div class="study-progress-block">
+                <ion-range
+                class="study-progress-range"
+                [value]="plan.done"
+                [max]="plan.total">
+                </ion-range>
+                <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
+                <span>已完成 {{ plan.done }} / {{ plan.total }}</span>
+                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
+                </div>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+
+
     </div>
   </div>
 

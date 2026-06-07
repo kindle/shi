@@ -10,7 +10,7 @@ import { PickPage } from '../pick/pick.page';
   styleUrls: ['./plan.page.scss'],
 })
 export class PlanPage {
-  selectedTab: 'plan' | 'playlist' = 'plan';
+  selectedTab: 'plan' | 'playlist' | 'completed' = 'plan';
   readonly wheelItemHeight = 48;
   readonly wheelPaddingItems = 1;
   dailyPoemOptions: number[] = [];
@@ -66,7 +66,7 @@ export class PlanPage {
     this.refreshPlanControls();
   }
 
-  selectTab(tab: 'plan' | 'playlist') {
+  selectTab(tab: 'plan' | 'playlist' | 'completed') {
     this.selectedTab = tab;
 
     if (tab === 'plan') {

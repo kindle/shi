@@ -9,10 +9,10 @@
 }
 
 .study-plan-tabs {
-  --tab-count: 2;
+  --tab-count: 3;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   margin-bottom: 0;
   border-bottom: 1px solid rgba(56, 128, 255, 0.12);
@@ -57,6 +57,10 @@
 
 .study-plan-tabs.selected-tab2 .study-plan-highlight {
   transform: translateX(100%);
+}
+
+.study-plan-tabs.selected-tab3 .study-plan-highlight {
+  transform: translateX(200%);
 }
 
 .study-plan-panel {

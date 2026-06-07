@@ -19,6 +19,7 @@ ion-toolbar .learn-toolbar-title {
 .question-panel,
 .detail-panel,
 .complete-card,
+.completion-tile-group,
 .empty-card {
   max-width: 760px;
   margin: 0 auto;
@@ -311,6 +312,27 @@ ion-toolbar .learn-toolbar-title {
   text-align: center;
 }
 
+.completion-tile-group {
+  width: 100%;
+  justify-content: center;
+}
+
+.completion-tile-item {
+  width: 100%;
+}
+
+.completion-tile-card {
+  width: auto;
+  margin: 5px 0;
+}
+
+:host ::ng-deep app-dog-card.completion-tile-card ion-card,
+:host ::ng-deep app-tree-card.completion-tile-card ion-card,
+:host ::ng-deep app-star-card.completion-tile-card ion-card {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .complete-card ion-icon,
 .empty-card ion-spinner {
   margin-top: 4px;
@@ -326,4 +348,12 @@ ion-toolbar .learn-toolbar-title {
   .options-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+
+.card {
+    min-height: 180px;
+    width: 400px;
+    margin-top:5px;
+    margin-bottom:5px;
 }

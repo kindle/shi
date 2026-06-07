@@ -109,6 +109,40 @@
         关闭
       </ion-button>
     </div>
+    <div class="tile-group completion-tile-group" [style.display]="ui.isipad ? 'flex' : ''" 
+      *ngIf="sessionCompleted" >
+      <div class="completion-tile-item">
+        <app-dog-card class="card card-img custom-card completion-tile-card"
+            section="" 
+            sub="" 
+            title="{{ ui.instant('Game.Title') }}"><!--考考你-->
+        </app-dog-card>
+      </div>
+    </div>
+
+    <div class="tile-group completion-tile-group" [style.display]="ui.isipad ? 'flex' : ''" 
+      *ngIf="sessionCompleted" >
+      <div class="completion-tile-item">
+        <app-tree-card class="card card-img custom-card completion-tile-card"
+            section="" 
+            sub="" 
+            title="牛斗之墟">
+        </app-tree-card>
+      </div>
+    </div>
+
+    <div class="tile-group completion-tile-group" [style.display]="ui.isipad ? 'flex' : ''" 
+      *ngIf="sessionCompleted" >
+      <div class="completion-tile-item">
+        <app-star-card class="card card-img custom-card completion-tile-card"
+            section="" 
+            sub="" 
+            route="/tabs/tab3/zaohua/compass"
+            title="造化玉碟">
+        </app-star-card>
+      </div>
+    </div>
+    
   </div>
 
   <ng-template #stateBlock>

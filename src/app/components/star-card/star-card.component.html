@@ -1,4 +1,4 @@
-<ion-toolbar style="--background: translucent;">
+<ion-toolbar *ngIf="section" style="--background: translucent;">
     <ion-card-content style="display: flex;direction:row;padding-top:15px;padding-bottom: 0;padding-left:15px;">
         <ion-buttons>
             <ion-card-title class="station-text" style="font-weight: bold;">{{section}}</ion-card-title>
@@ -8,10 +8,12 @@
 <ion-card style="margin-top:15px;" class="card card-gif" card-shrink (click)="loonglist()">
   <ion-card-content class="container">
     <ion-card-subtitle class="card-text" 
-    style="font-size: 18px;position:absolute;bottom: 10px;right:15px;z-index: 10;">
+    style="font-size: 18px;position:absolute;bottom: 10px;left:15px;right:15px;z-index: 10;display:flex;justify-content:space-between;align-items:center;">
         <!--{{sub}}-->
-        <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;float:right;">
-            {{data.mycoins}}<ion-img src="/assets/img/coin.png" style="margin-right:10px;width: 25px;"></ion-img>
+        <ion-label style="display: flex;align-items: center;justify-content:flex-start;font-size: medium;font-weight: normal;">
+            <ion-img src="/assets/img/coin.png" style="margin-right:10px;width: 25px;"></ion-img>{{data.mycoins}}
+        </ion-label>
+        <ion-label style="display: flex;align-items: center;font-size: medium;font-weight: normal;">
             {{data.mystars}}/{{data.totalstars}}<ion-img src="/assets/img/bigstar.png" style="margin-right:0px;width: 25px;"></ion-img>
         </ion-label>
     </ion-card-subtitle>

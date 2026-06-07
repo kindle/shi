@@ -13,6 +13,7 @@ export class StarCardComponent implements OnInit {
   @Input() section?: any;
   @Input() sub?: any;
   @Input() title?: any;
+  @Input() route?: string | any[];
 
   constructor(
     public data : DataService,
@@ -21,6 +22,11 @@ export class StarCardComponent implements OnInit {
   ) { }
 
   loonglist(){
+    if (this.route) {
+      this.router.navigate(Array.isArray(this.route) ? this.route : [this.route], {});
+      return;
+    }
+
     this.router.navigate(['/tabs/tab5/list'], {});
   }
 
