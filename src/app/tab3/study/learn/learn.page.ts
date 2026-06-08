@@ -447,11 +447,20 @@ export class LearnPage {
 
     this.selectedOptionId = option.id;
     this.answerCorrect = resolvedAsCorrect;
-    this.answerPendingReveal = true;
 
     this.data.updateCurrentStudyPlanPoemProgress(this.currentQuestion.poem, resolvedAsCorrect
       ? { learned: true, wrong: false }
       : { learned: false, wrong: true });
+
+    if (resolvedAsCorrect) {
+      this.answerPendingReveal = false;
+      this.answered = false;
+      this.clearAnswerRevealTimer();
+      await this.gotoNextQuestion();
+      return;
+    }
+
+    this.answerPendingReveal = true;
 
     await this.refreshTodayPoems();
 
