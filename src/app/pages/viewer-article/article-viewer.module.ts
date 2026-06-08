@@ -21,6 +21,7 @@ import { CardSilkComponentModule } from 'src/app/components/card-silk/card-silk.
 import { CardBalloonComponentModule } from 'src/app/components/card-balloon/card-balloon.module';
 import { CardPathComponentModule } from 'src/app/components/card-path/card-path.module';
 import { CardWaveComponentModule } from 'src/app/components/card-wave/card-wave.module';
+import { CardCompassComponentModule } from 'src/app/components/card-compass/card-compass.module';
 
 @NgModule({
   imports: [
@@ -42,7 +43,7 @@ import { CardWaveComponentModule } from 'src/app/components/card-wave/card-wave.
     CardBalloonComponentModule,
     CardPathComponentModule,
     CardWaveComponentModule,
-    
+    CardCompassComponentModule,
   ],
   declarations: [ArticleViewerPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

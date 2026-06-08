@@ -38,6 +38,44 @@ export class ArticleViewerPage {
     delay: 0,
     disableOnInteraction: true,
   }
+  poemDisplayLimit = 5;
+  showAllPoems = false;
+
+  getPoemPosition(index: number): number {
+    const desc = this.data.currentArticle?.desc || [];
+    let poemCount = 0;
+
+    for (let currentIndex = 0; currentIndex <= index && currentIndex < desc.length; currentIndex++) {
+      if (desc[currentIndex]?.type === 'poem') {
+        poemCount++;
+      }
+    }
+
+    return poemCount;
+  }
+
+  shouldShowDescItem(item: any, index: number): boolean {
+    if (item?.type !== 'poem' || this.showAllPoems) {
+      return true;
+    }
+
+    return this.getPoemPosition(index) <= this.poemDisplayLimit;
+  }
+
+  shouldShowMorePoems(item: any, index: number): boolean {
+    if (this.showAllPoems || item?.type !== 'poem') {
+      return false;
+    }
+
+    const desc = this.data.currentArticle?.desc || [];
+    const totalPoems = desc.filter((entry: any) => entry?.type === 'poem').length;
+
+    return totalPoems > this.poemDisplayLimit && this.getPoemPosition(index) === this.poemDisplayLimit;
+  }
+
+  showMorePoems() {
+    this.showAllPoems = true;
+  }
 
   goback(){
    this.location.back();
@@ -46,6 +84,7 @@ export class ArticleViewerPage {
   ionViewWillEnter() {
     this.ui.hideStatusBar();
     this.defaultBgHeight = this.data.currentArticle.min_height;
+    this.showAllPoems = false;
   }
 
   ionViewWillLeave() {

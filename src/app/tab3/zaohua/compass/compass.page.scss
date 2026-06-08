@@ -75,6 +75,9 @@
   padding: 10px;
   border-radius: 12px;
   background: rgba(248, 250, 252, 0.95);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
@@ -168,6 +171,7 @@
 .day-circle,
 .constellation-guides-circle,
 .bagua-circle,
+.center-arrow,
 .center-marker,
 .degree-markers {
   pointer-events: none;
@@ -187,6 +191,44 @@
 .bagua-circle {
   transform-origin: 50% 50%;
   animation: compass-clockwise-spin 120s linear infinite;
+}
+
+.center-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 2;
+  opacity: 0.2;
+  transform: rotate(-45deg);
+  transform-origin: 0 0;
+}
+
+.center-arrow-shaft,
+.center-arrow-head {
+  position: absolute;
+  top: 0;
+}
+
+.center-arrow-shaft {
+  left: calc(var(--bagua-radius) + 28px);
+  width: calc(368px - (var(--bagua-radius) + 28px));
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #dc2626 0%, #dc2626 100%);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.18);
+}
+
+.center-arrow-head {
+  left: 358px;
+  top: -9px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 26px solid #dc2626;
+  filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.16));
 }
 
 @keyframes compass-clockwise-spin {
@@ -353,6 +395,8 @@
   height: 36px;
   margin-left: -26px;
   overflow: visible;
+  pointer-events: auto;
+  cursor: grab;
 
   &.group-qinglong {
     --map-link-color: rgba(13, 148, 136, 0.46);
@@ -391,6 +435,14 @@
   }
 }
 
+.constellations-circle.dragging .constellation-map {
+  cursor: grabbing;
+}
+
+.constellation-map-hit-area {
+  fill: transparent;
+}
+
 .constellation-map-link {
   stroke: var(--map-link-color);
   stroke-width: var(--map-link-width);
@@ -408,51 +460,6 @@
 
 .constellation-guides-circle {
   z-index: 1;
-}
-
-.current-four-symbol-sector {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc((var(--constellation-map-radius) + 44px) * 2);
-  height: calc((var(--constellation-map-radius) + 44px) * 2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(calc(var(--current-four-symbol-index) * 90deg));
-  background: conic-gradient(
-    from -45deg,
-    rgba(59, 130, 246, 0.2) 0deg,
-    rgba(59, 130, 246, 0.1) 40deg,
-    rgba(59, 130, 246, 0.05) 90deg,
-    transparent 90deg,
-    transparent 360deg
-  );
-  pointer-events: none;
-  -webkit-mask: radial-gradient(
-    circle at center,
-    transparent calc(var(--constellation-map-radius) - 34px),
-    #000 calc(var(--constellation-map-radius) - 33px),
-    #000 calc(var(--constellation-map-radius) + 26px),
-    transparent calc(var(--constellation-map-radius) + 27px)
-  );
-  mask: radial-gradient(
-    circle at center,
-    transparent calc(var(--constellation-map-radius) - 34px),
-    #000 calc(var(--constellation-map-radius) - 33px),
-    #000 calc(var(--constellation-map-radius) + 26px),
-    transparent calc(var(--constellation-map-radius) + 27px)
-  );
-  animation: four-symbol-sector-pulse 4.5s ease-in-out infinite;
-}
-
-@keyframes four-symbol-sector-pulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-
-  50% {
-    opacity: 0.85;
-  }
 }
 
 .constellation-group-divider,
@@ -606,6 +613,7 @@
   left: 50%;
   width: 147px;
   height: 147px;
+  z-index: 3;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;

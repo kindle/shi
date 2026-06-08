@@ -1,0 +1,663 @@
+:host {
+	display: block;
+	min-height: 860px;
+	--compass-tab-bar-inset: 0px;
+}
+
+:host.viewer {
+	min-height: 860px;
+	width: 100%;
+}
+
+.compass-container {
+	position: relative;
+	width: 100%;
+	min-height: inherit;
+	overflow: hidden;
+}
+
+.constellation-debug-panel-summary{
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+}
+.constellation-debug-panel {
+	position: relative;
+	z-index: 3;
+	margin: 16px auto 0;
+	width: min(100%, 520px);
+	padding: 12px 14px;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.88);
+
+	summary {
+		cursor: pointer;
+		color: #334155;
+		font-size: 14px;
+		font-weight: 700;
+		list-style: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+}
+
+.constellation-debug-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 10px;
+	margin-top: 12px;
+}
+
+.constellation-debug-item {
+	padding: 10px;
+	border-radius: 12px;
+	background: rgba(248, 250, 252, 0.95);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.constellation-debug-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.constellation-debug-name {
+	color: #0f172a;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.constellation-debug-form {
+	color: #475569;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.constellation-debug-note {
+	margin-top: 6px;
+	color: #475569;
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+.constellation-debug-meta {
+	margin-top: 6px;
+	color: #64748b;
+	font-size: 11px;
+}
+
+.compass {
+	--solar-term-radius: 436px;
+	--degree-radius: 388px;
+	--month-ganzhi-radius: 371px;
+	--day-ganzhi-radius: 347px;
+	--constellation-radius: 327px;
+	--constellation-map-radius: 286px;
+	--bagua-radius: 142.5px;
+
+	position: absolute;
+	bottom: var(--compass-tab-bar-inset);
+	left: 0;
+	flex: 0 0 auto;
+	width: 800px;
+	height: 800px;
+	transform: translate(-50%, 50%);
+	border-radius: 50%;
+	border: 2px solid rgba(15, 23, 42, 0.06);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (min-width: 768px) {
+	.compass {
+		left: 50%;
+	}
+}
+
+.circle {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.solar-terms-circle,
+.constellations-circle {
+	z-index: 2;
+	transform-origin: 50% 50%;
+	pointer-events: none;
+	touch-action: none;
+	cursor: grab;
+}
+
+.constellations-circle {
+	z-index: 1;
+}
+
+.solar-terms-circle.dragging,
+.constellations-circle.dragging {
+	cursor: grabbing;
+}
+
+.month-circle,
+.day-circle,
+.constellation-guides-circle,
+.bagua-circle,
+.center-arrow,
+.center-marker,
+.degree-markers {
+	pointer-events: none;
+}
+
+.solar-term-label,
+.constellation-label,
+.constellation-divider {
+	pointer-events: auto;
+}
+
+.degree-markers {
+	transform-origin: 50% 50%;
+	animation: compass-clockwise-spin 120s linear infinite;
+}
+
+.bagua-circle {
+	transform-origin: 50% 50%;
+	animation: compass-clockwise-spin 120s linear infinite;
+}
+
+.center-arrow {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	z-index: 2;
+	opacity: 0.2;
+	transform: rotate(-45deg);
+	transform-origin: 0 0;
+}
+
+.center-arrow-shaft,
+.center-arrow-head {
+	position: absolute;
+	top: 0;
+}
+
+.center-arrow-shaft {
+	left: calc(var(--bagua-radius) + 28px);
+	width: calc(368px - (var(--bagua-radius) + 28px));
+	height: 6px;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #dc2626 0%, #dc2626 100%);
+	box-shadow: 0 0 10px rgba(220, 38, 38, 0.18);
+}
+
+.center-arrow-head {
+	left: 358px;
+	top: -9px;
+	width: 0;
+	height: 0;
+	border-top: 12px solid transparent;
+	border-bottom: 12px solid transparent;
+	border-left: 26px solid #dc2626;
+	filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.16));
+}
+
+@keyframes compass-clockwise-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes compass-counterclockwise-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+.solar-term-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.solar-term-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 99px;
+	margin-left: -49.5px;
+	transform: translateY(calc(-1 * var(--solar-term-radius)));
+	color: var(--ion-color-primary);
+	font-size: 27px;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+
+	&.current {
+		color: #dc2626;
+	}
+}
+
+.month-ganzhi-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.month-ganzhi-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 7px;
+	margin-left: -3.5px;
+	transform: translateY(calc(-1 * var(--month-ganzhi-radius)));
+	color: #7c2d12;
+	font-size: 3.8px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+}
+
+.day-ganzhi-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.day-ganzhi-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 8px;
+	margin-left: -4px;
+	transform: translateY(calc(-1 * var(--day-ganzhi-radius)));
+	color: #334155;
+	font-size: 5px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+}
+
+.constellation-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.constellation-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 42px;
+	margin-left: -21px;
+	transform: translateY(calc(-1 * var(--constellation-radius)));
+	color: #0f172a;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+
+	&.current {
+		color: #dc2626;
+	}
+}
+
+.constellation-divider {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 72px;
+	border-left: 1px dashed rgba(15, 23, 42, 0.22);
+	transform-origin: 0 0;
+}
+
+.constellation-map-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.constellation-map {
+	--map-link-color: rgba(15, 23, 42, 0.32);
+	--map-star-fill: rgba(59, 130, 246, 0.84);
+	--map-star-stroke: rgba(255, 255, 255, 0.85);
+	--map-link-width: 1.1;
+	--map-link-dash: none;
+	--map-star-shadow: transparent;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 52px;
+	height: 36px;
+	margin-left: -26px;
+	overflow: visible;
+	pointer-events: auto;
+	cursor: grab;
+
+	&.group-qinglong {
+		--map-link-color: rgba(13, 148, 136, 0.46);
+		--map-star-fill: rgba(15, 118, 110, 0.86);
+		--map-link-dash: none;
+		--map-star-shadow: rgba(13, 148, 136, 0.16);
+	}
+
+	&.group-xuanwu {
+		--map-link-color: rgba(51, 65, 85, 0.56);
+		--map-star-fill: rgba(71, 85, 105, 0.88);
+		--map-link-dash: 2 1.5;
+		--map-star-shadow: rgba(51, 65, 85, 0.16);
+	}
+
+	&.group-baihu {
+		--map-link-color: rgba(180, 110, 34, 0.5);
+		--map-star-fill: rgba(217, 119, 6, 0.84);
+		--map-link-width: 1.2;
+		--map-link-dash: 5 1.6;
+		--map-star-shadow: rgba(217, 119, 6, 0.14);
+	}
+
+	&.group-zhuque {
+		--map-link-color: rgba(185, 50, 50, 0.5);
+		--map-star-fill: rgba(200, 58, 58, 0.84);
+		--map-link-dash: none;
+		--map-star-shadow: rgba(200, 58, 58, 0.16);
+	}
+
+	&.current {
+		--map-link-color: rgba(220, 38, 38, 0.85);
+		--map-star-fill: rgba(220, 38, 38, 1);
+		--map-star-stroke: rgba(255, 255, 255, 0.95);
+		--map-star-shadow: rgba(220, 38, 38, 0.2);
+	}
+}
+
+.constellations-circle.dragging .constellation-map {
+	cursor: grabbing;
+}
+
+.constellation-map-hit-area {
+	fill: transparent;
+}
+
+.constellation-map-link {
+	stroke: var(--map-link-color);
+	stroke-width: var(--map-link-width);
+	stroke-dasharray: var(--map-link-dash);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.constellation-map-star {
+	fill: var(--map-star-fill);
+	stroke: var(--map-star-stroke);
+	stroke-width: 0.6;
+	filter: drop-shadow(0 0 0.6px var(--map-star-shadow));
+}
+
+.constellation-guides-circle {
+	z-index: 1;
+}
+
+.constellation-group-divider,
+.four-symbol-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.constellation-group-divider-line {
+	position: absolute;
+	top: calc(-1 * var(--constellation-radius) - 36px);
+	left: 0;
+	width: 0;
+	height: 144px;
+	border-left: 1px dashed rgba(15, 23, 42, 0.22);
+	transform-origin: 0 0;
+}
+
+.constellation-group-divider.active .constellation-group-divider-line {
+	border-left-color: rgba(15, 23, 42, 0.22);
+}
+
+.four-symbol-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 52px;
+	margin-left: -26px;
+	padding: 2px 6px;
+	border-radius: 999px;
+	border: 1px solid rgba(30, 41, 59, 0.18);
+	color: #334155;
+	background: rgba(255, 255, 255, 0.9);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.2;
+	text-align: center;
+	letter-spacing: 0.5px;
+	white-space: nowrap;
+	opacity: 0;
+	animation: four-symbol-label-fade-in 560ms ease-out forwards;
+	transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+
+	&.group-qinglong {
+		color: #0f766e;
+		border-color: rgba(13, 148, 136, 0.3);
+		background: rgba(204, 251, 241, 0.58);
+	}
+
+	&.group-xuanwu {
+		color: #334155;
+		border-color: rgba(71, 85, 105, 0.32);
+		background: rgba(226, 232, 240, 0.72);
+	}
+
+	&.group-baihu {
+		color: #b45309;
+		border-color: rgba(217, 119, 6, 0.35);
+		background: rgba(254, 243, 199, 0.7);
+	}
+
+	&.group-zhuque {
+		color: #b91c1c;
+		border-color: rgba(200, 58, 58, 0.35);
+		background: rgba(254, 226, 226, 0.74);
+	}
+
+	&.active {
+		border-color: rgba(37, 99, 235, 0.66);
+		box-shadow: 0 6px 12px rgba(37, 99, 235, 0.18);
+		transform: translateY(calc(-1 * var(--constellation-map-radius) - 30px));
+	}
+}
+
+@keyframes four-symbol-label-fade-in {
+	from {
+		opacity: 0;
+		filter: blur(2px);
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+.bagua-tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.bagua-dashed-ring {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: calc((var(--bagua-radius) + 28px) * 2);
+	height: calc((var(--bagua-radius) + 28px) * 2);
+	border: 1px dashed rgba(var(--ion-color-primary-rgb), 0.35);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.bagua-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 54px;
+	margin-left: -27px;
+	transform: translateY(calc(-1 * var(--bagua-radius)));
+	color: var(--ion-color-primary);
+	font-size: 36px;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+
+	&.current {
+		color: #dc2626;
+	}
+}
+
+.label {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-origin: 0 0;
+	font-size: 12px;
+	white-space: nowrap;
+	text-align: center;
+	width: 50px;
+	margin-left: -25px;
+}
+
+.vertical-text {
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	font-size: 10px;
+}
+
+.center-marker {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 147px;
+	height: 147px;
+	z-index: 3;
+	transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.center-logo {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	animation: center-logo-counterclockwise-spin 60s linear infinite;
+}
+
+@keyframes center-logo-counterclockwise-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+.degree-markers {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.degree-marker {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform-origin: 0 0;
+}
+
+.marker-line {
+	position: absolute;
+	left: -1px;
+	top: calc(-1 * var(--degree-radius) - 7px);
+	width: 2px;
+	height: 7px;
+	background-color: rgba(15, 23, 42, 0.08);
+
+	&.long {
+		top: calc(-1 * var(--degree-radius) - 12px);
+		height: 12px;
+		background-color: rgba(15, 23, 42, 0.12);
+	}
+}
+
+.degree-text {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 28px;
+	margin-left: -14px;
+	transform: translateY(calc(-1 * var(--degree-radius))) rotate(-90deg);
+	color: #475569;
+	font-size: 8px;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+}

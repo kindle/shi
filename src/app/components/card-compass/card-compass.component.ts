@@ -1,8 +1,8 @@
-import { Component, ElementRef, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Solar } from 'lunar-typescript';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
-import { Solar } from 'lunar-typescript';
 
 type RotatingRingKey = 'solarTerms' | 'constellations';
 
@@ -58,22 +58,21 @@ interface SolarTermDebugInfo {
   title?: string;
 }
 
-interface HolidayListItem {
-  id: number;
-  sub?: string;
-}
-
 type BrowserAudioContext = AudioContext & {
   createGain: () => GainNode;
 };
 
 @Component({
-  selector: 'app-compass',
-  templateUrl: './compass.page.html',
-  styleUrls: ['./compass.page.scss'],
+  selector: 'app-card-compass',
+  templateUrl: './card-compass.component.html',
+  styleUrls: ['./card-compass.component.scss'],
 })
-export class CompassPage implements OnInit, OnDestroy {
+export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() viewer: boolean | string | null = false;
   @HostBinding('style.--compass-tab-bar-inset') compassTabBarInset = '0px';
+  @HostBinding('class.viewer') get isViewerClass(): boolean {
+    return this.isViewer;
+  }
 
   fourSymbolFollowConstellations = true;
   showConstellationDebugPanel = true;
@@ -105,27 +104,6 @@ export class CompassPage implements OnInit, OnDestroy {
     小寒: 2023,
     大寒: 2024,
   };
-
-  async goToTerm(termName: string|undefined) {
-    if (!termName) {
-      return;
-    }
-
-    // await this.data.waitForPoemListLoaded();
-    // const termItem = this.data.poemListData.find((item: HolidayListItem) => item?.sub === termName);
-
-    // if (!termItem?.id) {
-    //   return;
-    // }
-
-    const termId = this.term24mapping[termName];
-
-    if (!termId) {
-      return;
-    }
-
-    await this.navCtrl.navigateForward(`/tabs/tab1/list/${termId}`);
-  }
 
   private readonly rotatingRingAutoRestartDelay = 10000;
   private readonly dragClickDegrees = 5;
@@ -218,7 +196,6 @@ export class CompassPage implements OnInit, OnDestroy {
     { points: [{ x: 22, y: 32 }, { x: 40, y: 20 }, { x: 58, y: 32 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }] },
     { points: [{ x: 12, y: 18 }, { x: 22, y: 20 }, { x: 32, y: 25 }, { x: 42, y: 31 }, { x: 54, y: 36 }, { x: 66, y: 41 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 5 }] },
     { points: [{ x: 18, y: 22 }, { x: 46, y: 18 }, { x: 60, y: 30 }, { x: 24, y: 34 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }] },
-
     { points: [{ x: 14, y: 18 }, { x: 26, y: 14 }, { x: 38, y: 20 }, { x: 50, y: 28 }, { x: 62, y: 36 }, { x: 70, y: 44 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 5 }] },
     { points: [{ x: 16, y: 34 }, { x: 28, y: 18 }, { x: 40, y: 34 }, { x: 52, y: 18 }, { x: 64, y: 34 }, { x: 72, y: 22 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 3, to: 5 }] },
     { points: [{ x: 18, y: 24 }, { x: 46, y: 18 }, { x: 58, y: 30 }, { x: 28, y: 36 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }] },
@@ -226,7 +203,6 @@ export class CompassPage implements OnInit, OnDestroy {
     { points: [{ x: 22, y: 34 }, { x: 40, y: 18 }, { x: 58, y: 34 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }] },
     { points: [{ x: 28, y: 20 }, { x: 52, y: 20 }], links: [{ from: 0, to: 1 }] },
     { points: [{ x: 28, y: 34 }, { x: 52, y: 34 }], links: [{ from: 0, to: 1 }] },
-
     { points: [{ x: 14, y: 34 }, { x: 24, y: 18 }, { x: 42, y: 16 }, { x: 60, y: 22 }, { x: 66, y: 36 }, { x: 32, y: 40 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 5 }, { from: 5, to: 0 }] },
     { points: [{ x: 24, y: 34 }, { x: 40, y: 16 }, { x: 56, y: 34 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 0 }] },
     { points: [{ x: 24, y: 32 }, { x: 40, y: 18 }, { x: 56, y: 32 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 0 }] },
@@ -234,7 +210,6 @@ export class CompassPage implements OnInit, OnDestroy {
     { points: [{ x: 16, y: 16 }, { x: 30, y: 14 }, { x: 46, y: 14 }, { x: 62, y: 16 }, { x: 20, y: 38 }, { x: 34, y: 40 }, { x: 50, y: 40 }, { x: 64, y: 38 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 }, { from: 0, to: 4 }, { from: 1, to: 5 }, { from: 2, to: 6 }, { from: 3, to: 7 }, { from: 1, to: 4 }, { from: 2, to: 7 }] },
     { points: [{ x: 24, y: 34 }, { x: 40, y: 14 }, { x: 56, y: 34 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 0 }] },
     { points: [{ x: 20, y: 14 }, { x: 60, y: 14 }, { x: 16, y: 42 }, { x: 64, y: 42 }, { x: 28, y: 24 }, { x: 40, y: 28 }, { x: 52, y: 24 }], links: [{ from: 0, to: 4 }, { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 1 }, { from: 4, to: 2 }, { from: 6, to: 3 }] },
-
     { points: [{ x: 24, y: 14 }, { x: 40, y: 14 }, { x: 56, y: 14 }, { x: 24, y: 28 }, { x: 40, y: 28 }, { x: 56, y: 28 }, { x: 24, y: 42 }, { x: 40, y: 42 }, { x: 56, y: 42 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 3, to: 4 }, { from: 4, to: 5 }, { from: 6, to: 7 }, { from: 7, to: 8 }, { from: 0, to: 3 }, { from: 3, to: 6 }, { from: 1, to: 4 }, { from: 4, to: 7 }, { from: 2, to: 5 }, { from: 5, to: 8 }] },
     { points: [{ x: 40, y: 12 }, { x: 58, y: 28 }, { x: 40, y: 44 }, { x: 22, y: 28 }, { x: 40, y: 28 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 }, { from: 0, to: 4 }, { from: 2, to: 4 }] },
     { points: [{ x: 12, y: 18 }, { x: 22, y: 20 }, { x: 32, y: 24 }, { x: 42, y: 29 }, { x: 52, y: 34 }, { x: 62, y: 37 }, { x: 70, y: 35 }, { x: 74, y: 28 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 }] },
@@ -243,7 +218,6 @@ export class CompassPage implements OnInit, OnDestroy {
     { points: [{ x: 10, y: 20 }, { x: 22, y: 12 }, { x: 34, y: 22 }, { x: 40, y: 30 }, { x: 46, y: 22 }, { x: 58, y: 12 }, { x: 70, y: 20 }, { x: 28, y: 38 }, { x: 52, y: 38 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 }, { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 2, to: 7 }, { from: 4, to: 8 }, { from: 7, to: 8 }] },
     { points: [{ x: 20, y: 18 }, { x: 54, y: 16 }, { x: 60, y: 34 }, { x: 26, y: 38 }], links: [{ from: 0, to: 1 }, { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 0 }] },
   ];
-  // Traditional simplified form mapping for later fine-tuning.
   constellationSketchNotes: ConstellationSketchNote[] = [
     { name: '角', traditionalForm: '双角双点', note: '按角宿双角意象压缩为 2 点斜线。' },
     { name: '亢', traditionalForm: '颈项折线', note: '保留 4 点浅折线，避免误画成团簇。' },
@@ -301,6 +275,10 @@ export class CompassPage implements OnInit, OnDestroy {
   todayDate: string;
   todayGanzhi: string;
 
+  get isViewer(): boolean {
+    return this.viewer !== false && this.viewer !== null && `${this.viewer}` !== 'false';
+  }
+
   constructor(
     private elementRef: ElementRef<HTMLElement>,
     private navCtrl: NavController,
@@ -311,6 +289,20 @@ export class CompassPage implements OnInit, OnDestroy {
     this.todayDate = today.toLocaleDateString('zh-CN');
     const lunar = Solar.fromDate(today).getLunar();
     this.todayGanzhi = `${lunar.getMonthInGanZhi()}月 ${lunar.getDayInGanZhi()}日`;
+  }
+
+  async goToTerm(termName: string | undefined) {
+    if (!termName) {
+      return;
+    }
+
+    const termId = this.term24mapping[termName];
+
+    if (!termId) {
+      return;
+    }
+
+    await this.navCtrl.navigateForward(`/tabs/tab1/list/${termId}`);
   }
 
   ngOnInit() {
@@ -325,7 +317,6 @@ export class CompassPage implements OnInit, OnDestroy {
     const solar = Solar.fromDate(today);
     const lunar = solar.getLunar();
 
-    const monthGanzhi = lunar.getMonthInGanZhi();
     const dayGanzhi = lunar.getDayInGanZhi();
     this.currentSolarTerm = lunar.getCurrentJieQi()?.getName() || lunar.getPrevJieQi()?.getName() || '';
     this.currentSolarTermConstellation = this.getConstellationForSolarTerm(this.currentSolarTerm);
@@ -343,7 +334,7 @@ export class CompassPage implements OnInit, OnDestroy {
 
     this.updateCompassTabBarInset();
 
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !this.isViewer) {
       window.addEventListener('resize', this.updateCompassTabBarInset);
     }
 
@@ -351,12 +342,12 @@ export class CompassPage implements OnInit, OnDestroy {
     this.startRotatingRingAutoRotation('constellations');
   }
 
-  ionViewDidEnter() {
+  ngAfterViewInit() {
     this.updateCompassTabBarInset();
   }
 
   ngOnDestroy() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && !this.isViewer) {
       window.removeEventListener('resize', this.updateCompassTabBarInset);
     }
 
@@ -448,8 +439,13 @@ export class CompassPage implements OnInit, OnDestroy {
     return Math.floor((dayOfCompassYear / compassYearDays) * 360);
   }
 
+  getFourSymbolLabelTransform(angle: number): string {
+    const staticCompensation = this.fourSymbolFollowConstellations ? -this.constellationsRotation : 0;
+    return `translateY(calc(-1 * var(--constellation-map-radius) + 70px)) rotate(${(-1 * angle) + staticCompensation}deg)`;
+  }
+
   private updateCompassTabBarInset = () => {
-    if (typeof window === 'undefined') {
+    if (this.isViewer || typeof window === 'undefined') {
       this.compassTabBarInset = '0px';
       return;
     }
@@ -459,7 +455,7 @@ export class CompassPage implements OnInit, OnDestroy {
     }
 
     this.resizeFrame = requestAnimationFrame(() => {
-      const content = this.elementRef.nativeElement.querySelector('ion-content');
+      const content = this.elementRef.nativeElement.closest('ion-content');
       const tabBar = document.querySelector('ion-tab-bar');
 
       if (!content || !tabBar) {
@@ -567,7 +563,7 @@ export class CompassPage implements OnInit, OnDestroy {
         };
       })
       .sort((left, right) => left.distance - right.distance)
-      .slice(0, 1);//choose top 4 or top 2
+      .slice(0, 1);
   }
 
   private getSolarTermImageUrl(image?: string): string {
@@ -622,11 +618,6 @@ export class CompassPage implements OnInit, OnDestroy {
     }
 
     return 'group-zhuque';
-  }
-
-  getFourSymbolLabelTransform(angle: number): string {
-    const staticCompensation = this.fourSymbolFollowConstellations ? -this.constellationsRotation : 0;
-    return `translateY(calc(-1 * var(--constellation-map-radius) + 70px)) rotate(${(-1 * angle) + staticCompensation}deg)`;
   }
 
   private getFourSymbolIndexForConstellation(constellation: string): number {

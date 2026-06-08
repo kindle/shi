@@ -1,0 +1,88 @@
+<div class="compass-container">
+  <div class="compass">
+    <div
+      class="circle solar-terms-circle"
+      [style.transform]="'rotate(' + solarTermsRotation + 'deg)'"
+      (pointerdown)="onRotatingRingPointerDown($event, 'solarTerms')"
+      (pointermove)="onRotatingRingPointerMove($event, 'solarTerms')"
+      (pointerup)="onRotatingRingPointerEnd($event, 'solarTerms')"
+      (pointercancel)="onRotatingRingPointerEnd($event, 'solarTerms')">
+      <div *ngFor="let term of solarTerms; let i = index" class="solar-term-tick" [style.transform]="'rotate(' + (i * 15) + 'deg)'">
+        <div class="solar-term-label" [class.current]="term === currentSolarTerm">{{ term }}</div>
+      </div>
+    </div>
+    <div class="circle month-circle">
+      <div *ngFor="let item of monthDegrees; let i = index" class="month-ganzhi-tick" [style.transform]="'rotate(' + i + 'deg)'">
+        <div *ngIf="item" class="month-ganzhi-label">{{ item }}</div>
+      </div>
+    </div>
+    <div class="circle day-circle">
+      <div *ngFor="let item of dayDegrees; let i = index" class="day-ganzhi-tick" [style.transform]="'rotate(' + i + 'deg)'">
+        <div *ngIf="item" class="day-ganzhi-label">{{ item }}</div>
+      </div>
+    </div>
+    <div
+      class="circle constellations-circle"
+      [style.transform]="'rotate(' + constellationsRotation + 'deg)'"
+      (pointerdown)="onRotatingRingPointerDown($event, 'constellations')"
+      (pointermove)="onRotatingRingPointerMove($event, 'constellations')"
+      (pointerup)="onRotatingRingPointerEnd($event, 'constellations')"
+      (pointercancel)="onRotatingRingPointerEnd($event, 'constellations')">
+      <div *ngFor="let divider of constellationDividers" class="constellation-divider" [style.transform]="'rotate(' + divider + 'deg) translateY(calc(-1 * var(--constellation-radius) - 36px))'"></div>
+      <div *ngFor="let constellation of constellations; let i = index" class="constellation-tick" [style.transform]="'rotate(' + (i * (360 / 28)) + 'deg)'">
+        <div class="constellation-label" [class.current]="constellation === currentSolarTermConstellation">{{ constellation }}</div>
+      </div>
+      <div *ngFor="let sketch of constellationSketches; let i = index" class="constellation-map-tick" [style.transform]="'rotate(' + (i * (360 / 28)) + 'deg)'">
+        <svg class="constellation-map" [ngClass]="[constellationGroupClasses[i], constellations[i] === currentSolarTermConstellation ? 'current' : '']" viewBox="0 0 80 56" role="img" [attr.aria-label]="constellations[i] + '宿星图'" [style.transform]="'translateY(calc(-1 * var(--constellation-map-radius))) rotate(' + (-1 * i * (360 / 28)) + 'deg)'">
+          <rect class="constellation-map-hit-area" x="0" y="0" width="80" height="56"></rect>
+          <line
+            *ngFor="let link of sketch.links"
+            class="constellation-map-link"
+            [attr.x1]="sketch.points[link.from].x"
+            [attr.y1]="sketch.points[link.from].y"
+            [attr.x2]="sketch.points[link.to].x"
+            [attr.y2]="sketch.points[link.to].y"></line>
+          <circle
+            *ngFor="let point of sketch.points"
+            class="constellation-map-star"
+            [attr.cx]="point.x"
+            [attr.cy]="point.y"
+            r="2"></circle>
+        </svg>
+      </div>
+    </div>
+    <div class="circle constellation-guides-circle" [style.transform]="fourSymbolFollowConstellations ? 'rotate(' + constellationsRotation + 'deg)' : null">
+      <div *ngFor="let angle of constellationGroupDividerAngles; let i = index" class="constellation-group-divider" [class.active]="i === currentFourSymbolIndex || i === ((currentFourSymbolIndex + 1) % 4)" [style.transform]="'rotate(' + angle + 'deg)'">
+        <div class="constellation-group-divider-line"></div>
+      </div>
+      <div *ngFor="let symbol of fourSymbols; let i = index" class="four-symbol-tick" [style.transform]="'rotate(' + symbol.angle + 'deg)'">
+        <div class="four-symbol-label" [class.active]="i === currentFourSymbolIndex" [ngClass]="symbol.className" [style.transform]="getFourSymbolLabelTransform(symbol.angle)" [style.animationDelay.ms]="120 + i * 120">{{ symbol.name }}</div>
+      </div>
+    </div>
+    <div class="circle bagua-circle">
+      <div class="bagua-dashed-ring"></div>
+      <div *ngFor="let gua of bagua; let i = index" class="bagua-tick" [style.transform]="'rotate(' + (i * 45) + 'deg)'">
+        <div class="bagua-label" [class.current]="gua === currentSolarTermBagua">{{ gua }}</div>
+      </div>
+    </div>
+    <div class="center-arrow" aria-hidden="true">
+      <div class="center-arrow-shaft"></div>
+      <div class="center-arrow-head"></div>
+    </div>
+    <div class="center-marker">
+      <img src="assets/icon/favicon.png" alt="名诗佳句" class="center-logo" />
+    </div>
+    <div class="degree-markers">
+      <div *ngFor="let deg of degrees" class="degree-marker" [style.transform]="'rotate(' + deg + 'deg)'">
+        <div class="marker-line" [class.long]="deg % 15 === 0"></div>
+        <div class="degree-text">{{ deg }}°</div>
+      </div>
+    </div>
+  </div>
+
+  <details class="constellation-debug-panel" *ngIf="showConstellationDebugPanel">
+    <summary class="constellation-debug-panel-summary" [style.fontSize]="data.zoom(20)" (click)="goToTerm(term24Selected[0]?.name)">
+      {{ term24Selected[0]?.name }}<br> {{ term24Selected[0]?.title }}
+    </summary>
+  </details>
+</div>
