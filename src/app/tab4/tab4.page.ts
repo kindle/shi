@@ -7,7 +7,7 @@ import RecorderManager from '../../assets/kdxf/index.umd.js'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ScrollService } from '../services/scroll.service';
 import { Subscription } from 'rxjs';
-import { IonContent, ActionSheetController } from '@ionic/angular';
+import { IonContent, ActionSheetController, IonSearchbar } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -51,6 +51,24 @@ export class Tab4Page implements OnInit {
     this.data.warmupFullDbFlag();
 
     this.updateTabBarHeight();
+
+    const searchText = `${this.data.searchText ?? ''}`.trim();
+    if (searchText && searchText !== this.ui.instant('Search.Tab4')) {
+      this.data.showFilter = true;
+      this.onSearchChanged();
+      if (!this.data.suppressTab4AutoFocus) {
+        setTimeout(() => {
+          this.searchbar?.setFocus();
+        }, 0);
+      } else {
+        setTimeout(() => {
+          this.searchbar?.getInputElement().then(input => input.blur());
+          (document.activeElement as HTMLElement | null)?.blur?.();
+        }, 0);
+      }
+    }
+
+    this.data.suppressTab4AutoFocus = false;
   }
 
   @HostListener('window:resize')
@@ -71,6 +89,7 @@ export class Tab4Page implements OnInit {
   }
 
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
+  @ViewChild(IonSearchbar, { static: false }) searchbar: IonSearchbar | undefined;
   private scrollSubscription: Subscription|any;
   ngOnDestroy() {
     if (this.scrollSubscription) {

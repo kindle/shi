@@ -330,4 +330,22 @@ export class SlidePage implements OnInit {
     return lines;
   }
 
+  search(tag: string) {
+    if (!tag) {
+      return;
+    }
+    this.stopSlideAutoplay();
+    this.data.searchText = tag;
+    this.data.suppressTab4AutoFocus = true;
+    this.router.navigate(['/tabs/tab4']);
+  }
+
+  openPoemById(id: string) {
+    if (!id) {
+      return;
+    }
+    this.stopSlideAutoplay();
+    void this.data.playbyid(id,null,true,true);
+  }
+
 }

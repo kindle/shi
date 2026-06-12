@@ -32,13 +32,17 @@
       id="open-modal{{i}}">
         
         <div style="text-align: center;padding:30px 0;"
-        [style.fontSize]="data.zoom(22)">
+        [style.fontSize]="data.zoom(22)"
+        (click)="search(s.tag)"
+        >
           {{s.tag}}
         </div>
 
         <div *ngFor="let t of s.title" 
           style="text-align: center;padding:5px 0;"
-          [style.fontSize]="data.zoom(20)">
+          [style.fontSize]="data.zoom(20)"
+          (click)="openPoemById(s.id)"
+          >
           {{t}}
         </div>
 
@@ -49,7 +53,7 @@
 
         <div style="padding:30px 0;"
         [style.fontSize]="data.zoom(16)">
-          译文：<br><br>
+          评：<br><br>
           {{s.desc}} 
         </div>
       </div>
