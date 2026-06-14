@@ -261,7 +261,7 @@
 
         <div *ngIf="shouldShowMorePoems(it, i)" style="margin: 10px 20px 20px;text-align:center;">
           <ion-button fill="outline" color="medium" (click)="showMorePoems()">
-            点击查看更多
+            {{ ui.instant('Tracker.ShowMore') }}<!--显示更多-->
           </ion-button>
         </div>
       </div>
