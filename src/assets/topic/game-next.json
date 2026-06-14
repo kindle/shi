@@ -64,6 +64,7 @@
                 "id":"22923091-18da-429d-9ef1-6b367fd74b1a", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"#####报得三春晖",
                 "answer":"谁言寸草心"
@@ -162,6 +163,7 @@
                 "id":"22923091-18da-429d-9ef1-6b367fd74b1a", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"忽如一夜春风来########",
                 "answer":"千树万树梨花开"
@@ -259,6 +261,7 @@
                 "id":"599b8a93-47ab-4426-94c0-ca16eea0ca37", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"########乡音无改鬓毛衰",
                 "answer":"少小离家老大回"
@@ -283,6 +286,7 @@
                 "id":"83e70b6e-ff59-4a3b-8e81-249ab0cda0c3", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"#####对影成三人",
                 "answer":"举杯邀明月"
@@ -332,6 +336,7 @@
                 "id":"0fb0189c-8ff3-4106-af94-f6d26d528a1d", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"########相逢何必曾相识",
                 "answer":"同是天涯沦落人"
@@ -429,6 +434,7 @@
                 "id":"bf4ce5bb-7a29-4b33-b8c6-55a020394ab8", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"########二月春风似剪刀",
                 "answer":"不知细叶谁裁出"
@@ -651,6 +657,7 @@
                 "id":"798d0eba-34f2-4821-898e-1ec4c8091a8c", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"两情若是久长时#######",
                 "answer":"又岂在朝朝暮暮"
@@ -675,6 +682,7 @@
                 "id":"ed79f9bc-d5d1-4251-b22d-d091e0758a3f", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"#######蜡炬成灰泪始干",
                 "answer":"春蚕到死丝方尽"
@@ -772,6 +780,7 @@
                 "id":"32021394-9342-4eb9-b5c0-f98c6e3beece", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"乱花渐欲迷人眼#######",
                 "answer":"浅草才能没马蹄"
@@ -945,6 +954,7 @@
                 "id":"3cda5a92-ffa2-4af0-9217-97ce36113705", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"月落乌啼霜满天#######",
                 "answer":"江枫渔火对愁眠"
@@ -969,6 +979,7 @@
                 "id":"00f12a19-bb96-4980-a4f5-11a1b9d604dd", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"#####天气晚来秋",
                 "answer":"空山新雨后"
@@ -1116,6 +1127,7 @@
                 "id":"e9e6425c-6c14-4f69-8694-87a8b96a43de", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"感时花溅泪#####",
                 "answer":"恨别鸟惊心"
@@ -1140,6 +1152,7 @@
                 "id":"4838bc46-446b-44cb-8296-29eed12cf343", 
                 "start":5.9, "end":9.4,
                 "type":3,
+                "audio":false,
                 "type desc":"对句题",
                 "ask":"#######散入春风满洛城",
                 "answer":"谁家玉笛暗飞声"

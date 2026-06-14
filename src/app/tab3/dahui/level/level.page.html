@@ -14,6 +14,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="tab1-page-bg" aria-hidden="true" slot="fixed"
+    *ngIf="ui.isipad"></div>
   <ion-header collapse="condense">
     <ion-toolbar>
       <!--
@@ -30,7 +32,7 @@
   </ion-header>
   <!-- lazyLoad="{{task.unlock?task.image:'/assets/img/lock.png'}}" -->
   <!--lazyLoad="task.image"-->
-  <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
+  <div [ngStyle]="{'width': ui.isipad ? '72%' : '100%'}" style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap:0px;padding:0 10px;">
     <div style="margin:5px;" *ngFor="let task of data.currentTasks" >
       <div class="card-scroll-item1" (click)="goTask(task)"
         [ngStyle]="{'background-size':'cover' }"

@@ -17,6 +17,7 @@
         "id":3,
         "group":2,
         "type":3,
+        "audio":false,
         "ask":"#####报得三春晖",
         "answer":"谁言寸草心"
     },
@@ -47,6 +48,7 @@
         "id":7,
         "group":2,
         "type":3,
+        "audio":false,
         "ask":"忽如一夜春风来#######",
         "answer":"千树万树梨花开"
     },

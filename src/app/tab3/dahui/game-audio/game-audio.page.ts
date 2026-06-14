@@ -56,10 +56,11 @@ export class GameAudioPage implements OnInit {
   }
 
   selectedOpt = "";
+  inputText = "";
   optionSelected(o:any){
     this.selectedOpt = o;
   }
-  
+
   currentWord = "";
   wordSelected(word:any){
     this.currentWord = word;
@@ -75,9 +76,13 @@ export class GameAudioPage implements OnInit {
   AnswerTimeLimit = 10; //3对句题语音 规定秒数内作答，否则挑战失败
   clearwords(){
     this.selectedOpt = "";
+    this.inputText = "";
   }
   submitted = false;
   submit(item:any){
+    if(item.type==3 && !item.audio){
+      this.selectedOpt = this.inputText;
+    }
     if(item.type==1||//识别诗句题
       item.type==3|| //对句题
       item.type==5 //单选题
@@ -205,9 +210,11 @@ export class GameAudioPage implements OnInit {
       this.readmp3(poem);
       this.start();
     }
-    else if(poem.type===3){
-      //this.readmp3(poem);
+    else if(poem.type===3 && poem.audio){
       this.start();
+    }
+    else if(poem.type===3 && !poem.audio){
+      this.countdown();
     }
     else{
       this.countdown();

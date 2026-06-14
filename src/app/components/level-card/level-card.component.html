@@ -1,13 +1,11 @@
 <!--[ngClass]="{'lock':lock==1}"-->
 <!--original style="background-size:cover;-->
-<ion-card style="margin-top:15px;" class="card card-gif" card-shrink 
-style="border:1px dotted gainsboro;"
+<ion-card class="card card-gif" card-shrink 
+style="border:1px dotted gainsboro;margin:0;background-size:auto;display: flex;justify-content: center;background-position: center;background-color:{{color}};"
 (click)="loonglevel()"
   defaultImage="" 
   lazyLoad="{{img}}"
-  style="background-size:auto;display: flex;justify-content: center;
-  background-position: center;
-  background-color:{{color}};">
+>
   <ion-card-content class="container" [ngClass]="{'bottom':position=='bottom'}">
     <ion-card-subtitle class="card-text" style="font-size: 18px;" *ngIf="sub">{{sub}}</ion-card-subtitle>
     <ion-card-title class="card-text" style="color:white;"

@@ -71,7 +71,7 @@
       <div class="ask" style="display: flex;justify-content: center;">对句</div>
       <div class="empty" *ngIf="s.ask.indexOf('#')==0"
       style="display: flex;justify-content: center;margin-top:30px;">
-        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="clearwords()" >
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="s.audio?clearwords():null" >
           <div *ngFor="let index of getArray()" style="
             background-color: white;
             border: 1px solid #ddd;
@@ -80,7 +80,7 @@
             display: flex;
             justify-content: center;
             align-items: center;">
-            {{selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]}}
+            {{s.audio?(selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]):(selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index])}}
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@
       </div>
       <div class="empty" *ngIf="s.ask.indexOf('#')>0"
       style="display: flex;justify-content: center;margin-top:30px;">
-        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="clearwords()" >
+        <div style="display:flex;justify-content: center;flex-wrap: wrap;" (click)="s.audio?clearwords():null" >
           <div *ngFor="let index of getArray()" style="
             background-color: white;
             border: 1px solid #ddd;
@@ -109,23 +109,35 @@
             display: flex;
             justify-content: center;
             align-items: center;">
-            {{selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]}}
+            {{s.audio?(selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index]):(selectedOpt.split('')[index]==''?'_':selectedOpt.split('')[index])}}
           </div>
         </div>
+      </div>
+      <div *ngIf="!s.audio" style="display: flex;justify-content: center;margin-top:20px;">
+        <ion-input 
+          [(ngModel)]="inputText"
+          placeholder="请输入答案"
+          style="background:white;border:1px solid #ddd;border-radius:8px;text-align:center;font-size:20px;"
+          [maxlength]="answer.length"
+        ></ion-input>
       </div>
       <div class="answer" style="display: flex;flex-direction:column;justify-content: center;padding-top:30px;
       width: 150px;float:right;bottom:0;">
         <div class="countdown-container">
           <div class="countdown" *ngIf="countdownseconds>0">{{ countdownseconds }}</div>
         </div>
-        <ion-button color="warning" style="min-width: 120px;"
-        [disabled]="true"
-        (click)="submit(s)"
-        >录音中</ion-button>
-        <!-- <ion-button color="warning" style="min-width: 120px;"
-        [disabled]="countdownseconds==0||selectedOpt!=''||submitted===true"
-        (click)="submit(s)"
-        >语音</ion-button> -->
+        <ng-container *ngIf="s.audio">
+          <ion-button color="warning" style="min-width: 120px;"
+          [disabled]="true"
+          (click)="submit(s)"
+          >录音中</ion-button>
+        </ng-container>
+        <ng-container *ngIf="!s.audio">
+          <ion-button color="warning" style="min-width: 120px;"
+          [disabled]="countdownseconds==0||inputText==''||inputText.length!=answer.length||submitted===true"
+          (click)="submit(s)"
+          >提交</ion-button>
+        </ng-container>
       </div>
     </div>
 
