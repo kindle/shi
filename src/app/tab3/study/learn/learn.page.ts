@@ -115,7 +115,7 @@ export class LearnPage {
   }
 
   get canGoNext(): boolean {
-    return this.questionUnavailable || this.answered;
+    return this.questionUnavailable || (this.answered && !this.answerPendingReveal);
   }
 
   get completionTitle(): string {
@@ -453,10 +453,12 @@ export class LearnPage {
       : { learned: false, wrong: true });
 
     if (resolvedAsCorrect) {
-      this.answerPendingReveal = false;
-      this.answered = false;
+      this.answerPendingReveal = true;
       this.clearAnswerRevealTimer();
-      await this.gotoNextQuestion();
+      this.answerRevealTimer = setTimeout(() => {
+        this.answerPendingReveal = false;
+        this.answered = true;
+      }, 520);
       return;
     }
 
