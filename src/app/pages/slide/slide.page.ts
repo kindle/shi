@@ -335,9 +335,7 @@ export class SlidePage implements OnInit {
       return;
     }
     this.stopSlideAutoplay();
-    this.data.searchText = tag;
-    this.data.suppressTab4AutoFocus = true;
-    this.router.navigate(['/tabs/tab4']);
+    this.data.goTab4SearchByTag(tag);
   }
 
   openPoemById(id: string) {

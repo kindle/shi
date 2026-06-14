@@ -58,6 +58,24 @@ interface SolarTermDebugInfo {
   title?: string;
 }
 
+interface Star28DebugInfo {
+  image?: string;
+  short?: string;
+  title?: string;
+  desc?: string;
+}
+
+interface Star28Selection {
+  name: string;
+  short: string;
+  title: string;
+  desc: string;
+  image: string;
+  index: number;
+  angle: number;
+  distance: number;
+}
+
 type BrowserAudioContext = AudioContext & {
   createGain: () => GainNode;
 };
@@ -68,9 +86,11 @@ type BrowserAudioContext = AudioContext & {
   styleUrls: ['./card-compass.component.scss'],
 })
 export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() viewer: boolean | string | null = false;
+  @Input() viewer: boolean | string | null = null;
   @HostBinding('style.--compass-tab-bar-inset') compassTabBarInset = '0px';
-  @HostBinding('class.viewer') get isViewerClass(): boolean {
+
+  @HostBinding('class.viewer')
+  get isViewerClass(): boolean {
     return this.isViewer;
   }
 
@@ -267,6 +287,7 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
   monthDegrees: (string | null)[] = [];
   dayDegrees: (string | null)[] = [];
   term24Selected: Term24Selection[] = [];
+  star28Selected: Star28Selection[] = [];
   currentSolarTerm = '';
   currentSolarTermConstellation = '';
   currentSolarTermBagua = '';
@@ -274,6 +295,7 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
 
   todayDate: string;
   todayGanzhi: string;
+  private lastTermPanelActivationAt = 0;
 
   get isViewer(): boolean {
     return this.viewer !== false && this.viewer !== null && `${this.viewer}` !== 'false';
@@ -305,6 +327,49 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
     await this.navCtrl.navigateForward(`/tabs/tab1/list/${termId}`);
   }
 
+  async goToStar28(starName: string | undefined) {
+    if (!starName) {
+      return;
+    }
+    this.data.goTab4SearchByTag(starName);
+  }
+
+  async onTermPanelActivate(event: Event, termName: string | undefined) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const now = Date.now();
+    if (now - this.lastTermPanelActivationAt < 400) {
+      return;
+    }
+
+    this.lastTermPanelActivationAt = now;
+    this.stopRotatingRingAutoRotation('solarTerms');
+    this.stopRotatingRingAutoRotation('constellations');
+    this.clearRotatingRingAutoRestartTimer('solarTerms');
+    this.clearRotatingRingAutoRestartTimer('constellations');
+
+    await this.goToTerm(termName);
+  }
+
+  async onStar28PanelActivate(event: Event, starName: string | undefined) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // const now = Date.now();
+    // if (now - this.lastTermPanelActivationAt < 400) {
+    //   return;
+    // }
+
+    // this.lastTermPanelActivationAt = now;
+    // this.stopRotatingRingAutoRotation('solarTerms');
+    // this.stopRotatingRingAutoRotation('constellations');
+    // this.clearRotatingRingAutoRestartTimer('solarTerms');
+    // this.clearRotatingRingAutoRestartTimer('constellations');
+
+    await this.goToStar28(starName);
+  }
+
   ngOnInit() {
     for (let i = 0; i < 360; i += 5) {
       this.degrees.push(i);
@@ -331,6 +396,7 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
     const todayDegree = this.getDegreeForDate(today);
     this.dayDegrees[todayDegree] = dayGanzhi;
     this.updateNearestSolarTerms();
+    this.updateNearestConstellations();
 
     this.updateCompassTabBarInset();
 
@@ -543,6 +609,7 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.constellationsRotation = this.normalizeRotation(rotation);
+    this.updateNearestConstellations();
   }
 
   private updateNearestSolarTerms() {
@@ -557,6 +624,30 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
           name,
           title: termInfo?.title || name,
           image: this.getSolarTermImageUrl(termInfo?.image),
+          index,
+          angle,
+          distance: Math.abs(this.getShortestAngleDelta(angle, arrowAngle)),
+        };
+      })
+      .sort((left, right) => left.distance - right.distance)
+      .slice(0, 1);
+  }
+
+  private updateNearestConstellations() {
+    const arrowAngle = 45;
+    const constellationDegree = 360 / this.constellations.length;
+
+    this.star28Selected = this.constellations
+      .map((name, index) => {
+        const angle = this.normalizeRotation(index * constellationDegree + this.constellationsRotation);
+        const starInfo = this.data.star28Map.get(name) as Star28DebugInfo | undefined;
+
+        return {
+          name,
+          short: starInfo?.short || name,
+          title: starInfo?.title || name,
+          desc: starInfo?.desc || '',
+          image: this.getSolarTermImageUrl(starInfo?.image),
           index,
           angle,
           distance: Math.abs(this.getShortestAngleDelta(angle, arrowAngle)),

@@ -102,11 +102,15 @@
         </div>
       </div>
     </details> -->
-    <details class="constellation-debug-panel" *ngIf="showConstellationDebugPanel">
-      <summary [style.fontSize]="data.zoom(20)"
-      (click)="goToTerm(term24Selected[0]?.name)">
+    <div class="constellation-debug-panel" *ngIf="showConstellationDebugPanel">
+      <button
+        type="button"
+        class="constellation-debug-panel-button"
+        [style.fontSize]="data.zoom(20)"
+        (pointerdown)="onTermPanelActivate($event, term24Selected[0]?.name)"
+        (click)="onTermPanelActivate($event, term24Selected[0]?.name)">
         {{term24Selected[0]?.name}}<br> {{ term24Selected[0]?.title}}
-      </summary>
+      </button>
       <!-- <div class="constellation-debug-grid">
         <div *ngFor="let term of term24Selected; let i = index" 
         class="constellation-debug-item" 
@@ -126,6 +130,6 @@
           <div class="constellation-debug-meta" style="color:white;"></div>
         </div>
       </div> -->
-    </details>
+    </div>
   </div>
 </ion-content>

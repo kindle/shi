@@ -80,9 +80,32 @@
     </div>
   </div>
 
-  <details class="constellation-debug-panel" *ngIf="showConstellationDebugPanel">
-    <summary class="constellation-debug-panel-summary" [style.fontSize]="data.zoom(20)" (click)="goToTerm(term24Selected[0]?.name)">
-      {{ term24Selected[0]?.name }}<br> {{ term24Selected[0]?.title }}
+  <div class="constellation-debug-panel" *ngIf="showConstellationDebugPanel">
+    <button
+      type="button"
+      class="constellation-debug-panel-summary constellation-debug-panel-button"
+      [style.fontSize]="data.zoom(20)"
+      (pointerdown)="onTermPanelActivate($event, term24Selected[0]?.name)"
+      (click)="onTermPanelActivate($event, term24Selected[0]?.name)"
+      style="color: var(--ion-color-primary);">
+      <span class="debug-summary-text-shell">
+        <span class="debug-summary-text" *ngFor="let term of term24Selected">
+          {{ term.name }}<br> {{ term.title }}
+        </span>
+      </span>
+    </button>
+  </div>
+
+  <details class="constellation-debug-panel" *ngIf="showConstellationDebugPanel && star28Selected[0]"
+  style="margin-top:0;"> 
+    <summary class="constellation-debug-panel-summary" [style.fontSize]="data.zoom(20)"
+      (pointerdown)="onStar28PanelActivate($event, star28Selected[0]?.short)"
+      (click)="onStar28PanelActivate($event, star28Selected[0]?.short)">
+      <span class="debug-summary-text-shell">
+        <span class="debug-summary-text" *ngFor="let star of star28Selected">
+          {{ star.short }}<br> {{ star.title }}
+        </span>
+      </span>
     </summary>
   </details>
 </div>

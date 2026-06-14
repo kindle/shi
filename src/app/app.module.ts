@@ -15,6 +15,7 @@ import { MusicControls } from '@awesome-cordova-plugins/music-controls/ngx';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollService } from './services/scroll.service';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ScrollService } from './services/scroll.service';
   ],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
     IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule, 
     HttpClientModule,

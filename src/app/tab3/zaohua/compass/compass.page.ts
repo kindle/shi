@@ -74,6 +74,7 @@ type BrowserAudioContext = AudioContext & {
 })
 export class CompassPage implements OnInit, OnDestroy {
   @HostBinding('style.--compass-tab-bar-inset') compassTabBarInset = '0px';
+  private lastTermPanelActivationAt = 0;
 
   fourSymbolFollowConstellations = true;
   showConstellationDebugPanel = true;
@@ -125,6 +126,24 @@ export class CompassPage implements OnInit, OnDestroy {
     }
 
     await this.navCtrl.navigateForward(`/tabs/tab1/list/${termId}`);
+  }
+
+  async onTermPanelActivate(event: Event, termName: string | undefined) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const now = Date.now();
+    if (now - this.lastTermPanelActivationAt < 400) {
+      return;
+    }
+
+    this.lastTermPanelActivationAt = now;
+    this.stopRotatingRingAutoRotation('solarTerms');
+    this.stopRotatingRingAutoRotation('constellations');
+    this.clearRotatingRingAutoRestartTimer('solarTerms');
+    this.clearRotatingRingAutoRestartTimer('constellations');
+
+    await this.goToTerm(termName);
   }
 
   private readonly rotatingRingAutoRestartDelay = 10000;

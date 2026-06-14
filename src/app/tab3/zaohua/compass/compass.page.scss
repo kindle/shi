@@ -64,6 +64,25 @@
   }
 }
 
+.constellation-debug-panel-button {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  pointer-events: auto;
+  touch-action: manipulation;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
 .constellation-debug-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

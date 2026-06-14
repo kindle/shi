@@ -261,7 +261,7 @@
 
         <div *ngIf="shouldShowMorePoems(it, i)" style="margin: 10px 20px 20px;text-align:center;">
           <ion-button fill="outline" color="medium" (click)="showMorePoems()">
-            更多
+            点击查看更多
           </ion-button>
         </div>
       </div>
@@ -318,7 +318,7 @@
 
 
       <app-card-compass viewer="true" *ngIf="data.currentArticle.is24solarTerm" 
-      style="margin: 20px 0;min-height: 600px;"></app-card-compass>
+      style="margin: 20px 0;min-height: 800px;"></app-card-compass>
 
       <!--你可能也喜欢-->
       <div *ngIf="data.currentArticle.template==='group'" style="margin-top:10px;">
