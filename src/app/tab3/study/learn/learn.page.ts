@@ -290,7 +290,7 @@ export class LearnPage {
   }
 
   close() {
-    this.ui.goback();
+    this.router.navigate(['/tabs/tab3']);
   }
 
   detailItems(value: any): string[] {

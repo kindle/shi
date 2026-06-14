@@ -4,7 +4,7 @@ import { DataService } from '../../../services/data.service';
 import * as CryptoJS from 'crypto-js';
 import RecorderManager from '../../../../assets/kdxf/index.umd.js'
 import { ActivatedRoute, Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
@@ -39,6 +39,7 @@ export class GameAudioPage implements OnInit {
     private navController: NavController,
     private alertController: AlertController,
     @Inject(DOCUMENT) private _document: Document,
+    private location: Location,
   ) {}
 
   removesharps(input:any){
@@ -214,19 +215,7 @@ export class GameAudioPage implements OnInit {
   }
 
   goLevels(){
-    //this.navController.back();
-    // this.router.navigate(['/tabs/tab5/level'], {
-    //   queryParams: {
-    //     level: this.id,
-    //     random: this.data.getRandom(0,100)
-    //   }
-    // });
-    this.router.navigate(['/tabs/tab1/level'], {
-      queryParams: {
-        level: this.id,
-        random: this.data.getRandom(0,100)
-      }
-    });
+    this.location.back();
   }
 
   ionViewWillLeave() {
