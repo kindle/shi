@@ -12,6 +12,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
 import { AuthorComponentModule } from '../components/author/author.module';
+import { TextComponentModule } from '../components/text/text.module';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AuthorComponentModule } from '../components/author/author.module';
     LazyLoadImageModule,
     AuthorComponentModule,
     AsciiCardComponentModule,
-    SubTitleComponentModule
+    SubTitleComponentModule,
+    TextComponentModule,
   ],
   declarations: [
     Tab4Page,

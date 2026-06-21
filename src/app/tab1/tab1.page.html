@@ -14,8 +14,12 @@
   [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
+      (click)="showIntroWithUnfold()"
       [style.fontSize]="data.zoom(28)">
         孟章 mèngzhāng<!--{{ ui.instant('Tabs.Home') }}主页-->
+        <ion-icon class="intro-info-icon" name="information-circle-outline" mode="md"
+        *ngIf="!isIntroTextVisible"
+        ></ion-icon>
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet1">
@@ -35,30 +39,16 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-<!-- 
-  <div style="display: flex;flex-wrap: wrap;justify-content: center;margin-bottom: 15px;">
-    <app-card-moon class="custom-card"
-      section="诗词游戏" 
-      sub="水调歌头" 
-      title="明月几时有">
-    </app-card-moon>
-    <app-card-path class="custom-card"
-      section="诗词游戏" 
-      sub="考考你" 
-      title="名诗接龙">
-    </app-card-path>
-    <app-card-balloon class="custom-card"
-      section="诗词游戏" 
-      sub="欢庆节日" 
-      title="名诗接龙">
-    </app-card-balloon>
-    <app-card-wave class="custom-card"
-      section="诗词游戏" 
-      sub="潮流时尚" 
-      title="名诗接龙">
-    </app-card-wave>
-  </div>  -->
-  
+
+
+  <div class="intro-fold-box" [class.intro-folded]="!isIntroTextVisible">
+    <app-text style="margin-top:0px;margin-bottom:20px;display: block;"
+      [ngClass]="ui.isipad ? 'app-text-ipad' : ''"
+      name="孟章大陆是东方的神秘之乡，多海岛，产奇兽，出诗豪。"
+      text="流波山上，夔牛被炎帝剥了皮做成了战鼓；东海湾里，龙子被哪吒剥皮抽筋；黄帝大战蚩尤，大羿射杀大风。若无诸神争斗、恶兽侵袭，这里山水灵秀，禽兽通明，是个发现诗词的好地方。"
+      >
+    </app-text>
+  </div>
 
 
   <div class="cards-layout-default" [ngClass]="ui.isipad ? 'cards-layout-ipad' : 'cards-layout-default'">

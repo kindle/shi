@@ -27,8 +27,11 @@
     [style.margin-left]="ui.isipad ? '20px' : 0"
     [style.padding-right]="ui.isipad ? '20px' : 0">
       <ion-title class="tab-title" mode="md"
-      [style.fontSize]="data.zoom(28)">
+      [style.fontSize]="data.zoom(28)"
+      (click)="scrollToIntroBottom()">
         监兵 jiān bīng<!--{{ ui.instant('Tabs.Search') }}--搜索-->
+        <ion-icon class="intro-info-icon" name="information-circle-outline" mode="md"
+        ></ion-icon>
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet4">
@@ -112,6 +115,8 @@
       ></ion-icon>
     </ion-toolbar>
   </ion-header>
+
+
 
 
   <div [style.width]="ui.isipad ? '72%' : '100%'"
@@ -314,6 +319,10 @@
     <!--[ngStyle]="{'-webkit-filter':currentLpId === topic.id ? 'blur(1px)' : '' }"-->
     <!--(longPressed)="active(topic.id)" -->
     <!---->
+
+
+
+
 
     <app-sub-title name="{{ ui.instant('Title.ByAuthor') }}" 
       *ngIf="!data.showFilter">
@@ -566,6 +575,14 @@
           </ion-card-content>
       </ion-card>
     </div>
+  </div>
+
+  <div [style.padding]="ui.isipad ? '20px 20px' : '20px 0'">
+    <app-text style="margin-top:20px;"
+      [ngClass]="ui.isipad ? 'app-text-ipad' : ''"
+      name="监兵大陆是西方仙地。神一般是先天所生，仙则是有大能力者修炼而成。"
+      text="仙有鳞、毛、羽、昆、赢五类，且无优劣之别，故猪狗牛羊也可称兄道弟，这是其他大陆所没有的。仙虽无优劣之别，却有好坏之分。有混沌、穷奇、梼杌、饕餮等凶兽，也有石猴、马猴、猿猴、猕猴混迹于世间。">
+    </app-text>
   </div>
 
   <div class="placeholder-playbox"></div>

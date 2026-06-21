@@ -29,6 +29,32 @@ ion-content > *:not(.tab1-page-bg) {
     z-index: 1;
 }
 
+.app-text-ipad{
+    margin-left:20px;
+}
+
+
+.intro-fold-box {
+    transform-origin: bottom center;
+    transform: scaleY(1);
+    opacity: 1;
+    max-height: 240px;
+    overflow: hidden;
+    transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 300ms ease,
+                max-height 420ms cubic-bezier(0.4, 0, 0.2, 1),
+                margin 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro-fold-box.intro-folded {
+    transform: scaleY(0);
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    pointer-events: none;
+}
+
 .card{
     min-height: 380px !important;
 }

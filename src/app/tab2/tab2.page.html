@@ -14,8 +14,11 @@
   [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md" 
-        [style.fontSize]="data.zoom(28)">
+        [style.fontSize]="data.zoom(28)"
+        (click)="scrollToIntroBottom()">
         陵光 líng guāng<!--{{ ui.instant('Tabs.Discovery') }}发现-->
+        <ion-icon class="intro-info-icon" name="information-circle-outline" mode="md"
+        ></ion-icon>
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet2">
@@ -65,13 +68,21 @@
       [source]="data.tab2LocalFunData" *ngIf="list.name=='趣味诗单'"></app-tile>
     </div>
 
-  <!--搜索更多精彩内容  以后加
-    -->
-    <app-text 
+    <!--搜索更多精彩内容  以后加-->
+    <!-- <app-text 
     [name]="(searchTopicData.i18n && searchTopicData.i18n[data.currentLocale]) ? searchTopicData.i18n[data.currentLocale] : searchTopicData.desctitle"
     [text]="searchTopicData.desc">
-    </app-text>
+    </app-text> -->
+    
 
+  </div>
+
+  <div [style.padding]="ui.isipad ? '0 20px' : '0'">
+    <app-text style="margin-top:20px;"
+      [ngClass]="ui.isipad ? 'app-text-ipad' : ''"
+      name="陵光大陆是南方人的故土，神、仙、魔的下界，三皇居住的地方，也是诗人们的乐园。"
+      text="山多草木却无治病的灵药；地多平整却无甚可耕之田；江河亦多但无汇流水道。自大禹治水，开九州，通九道，陂九泽，度九山，此地才开始宜居。但陵光人民，不从龙、蛇者，必从鸟、凤。龙凤争斗，流血不休，亦为憾事。">
+    </app-text>
   </div>
   
   <div class="placeholder-playbox"></div>

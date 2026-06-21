@@ -14,8 +14,12 @@
   [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar>
       <ion-title class="tab-title" mode="md"
+      (click)="showIntroWithUnfold()"
       [style.fontSize]="data.zoom(28)">
         执明 zhí míng<!--{{ ui.instant('Tabs.Me') }}诗词库-->
+        <ion-icon class="intro-info-icon" name="information-circle-outline" mode="md"
+        *ngIf="!isIntroTextVisible"
+        ></ion-icon>
       </ion-title>
       <ion-buttons slot="end">
         <ion-button shape="round" style="margin-right: 10px;" id="open-action-sheet3">
@@ -32,6 +36,15 @@
   </ion-header>
 
   
+  <div class="intro-fold-box" [class.intro-folded]="!isIntroTextVisible">
+    <app-text style="margin-top:20px;margin-bottom:10px;display: block;"
+      [ngClass]="ui.isipad ? 'app-text-ipad' : ''"
+      name="执名大陆是北方的魔居。什么是魔？与神、仙、人为敌的便是魔。"
+      text="曾有五帝，掌自然五行之力，欲打破一切秩序，使世界归于混沌，所以被秩序的守护者称为魔，视为劲敌。这片大陆的生物多为魔所制造，非自然而生，这便是魔者心思流转不定的明证。"
+      >
+    </app-text>
+  </div>
+
   <!--资料库-->
   <!-- <app-sub-title name="{{ ui.instant('Tabs.Library') }}"></app-sub-title> -->
 <!-- 

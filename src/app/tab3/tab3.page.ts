@@ -15,6 +15,27 @@ import { StudyDailyProgress, StudyPlanItem, StudyPlanSettings, StudyReviewProgre
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  isIntroTextVisible = true;
+  private introTextTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private clearIntroTimer() {
+    if (this.introTextTimer) {
+      clearTimeout(this.introTextTimer);
+      this.introTextTimer = null;
+    }
+  }
+
+  private startIntroFoldCountdown() {
+    this.clearIntroTimer();
+    this.introTextTimer = setTimeout(() => {
+      this.isIntroTextVisible = false;
+    }, 10000);
+  }
+
+  showIntroWithUnfold() {
+    this.isIntroTextVisible = true;
+    this.startIntroFoldCountdown();
+  }
 
   studyPlan!: StudyPlanSettings;
   todayStudyProgress: StudyDailyProgress = {
@@ -109,9 +130,11 @@ export class Tab3Page {
     if (this.studyPlanSubscription) {
       this.studyPlanSubscription.unsubscribe();
     }
+    this.clearIntroTimer();
   }
 
   async ionViewDidEnter(){
+      this.startIntroFoldCountdown();
       await this.refreshTodayStudyProgress();
     
     //if(this.data.articleDataLoaded===false){
@@ -346,6 +369,7 @@ export class Tab3Page {
   }
   ionViewWillLeave() {
     this.currentLpId = 0;
+    this.clearIntroTimer();
   }
   ionViewWillEnter() {
     this.currentLpId = 0;

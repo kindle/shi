@@ -137,6 +137,15 @@ export class Tab4Page implements OnInit {
       this.isSearchSaved = true;
     }
   }
+
+  async scrollToIntroBottom(): Promise<void> {
+    if (!this.content) {
+      return;
+    }
+
+    await this.content.scrollToBottom(500);
+  }
+
   active(topicid:any){
   }
   released(topicid:any){

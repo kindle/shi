@@ -30,6 +30,28 @@ export class Tab1Page {
     delay: 0,
     disableOnInteraction: true,
   }
+  isIntroTextVisible = true;
+  private introTextTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private clearIntroTimer() {
+    if (this.introTextTimer) {
+      clearTimeout(this.introTextTimer);
+      this.introTextTimer = null;
+    }
+  }
+
+  private startIntroFoldCountdown() {
+    this.clearIntroTimer();
+    this.introTextTimer = setTimeout(() => {
+      this.isIntroTextVisible = false;
+    }, 10000);
+  }
+
+  showIntroWithUnfold() {
+    this.isIntroTextVisible = true;
+    this.startIntroFoldCountdown();
+  }
+
   async goToArticle(item:any){
     //console.log(this.data.JsonData.length)
     //console.log(item);
@@ -167,6 +189,7 @@ export class Tab1Page {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
     }
+    this.clearIntroTimer();
   }
 
   ionViewWillEnter(){
@@ -179,10 +202,15 @@ export class Tab1Page {
   @ViewChildren("autoswiper") autoSwipers: any;
   ionViewDidEnter(){ 
     this.searchKeywordModel="";
+    this.startIntroFoldCountdown();
 
     this.autoSwipers.forEach((swiper:any) => {
       swiper.nativeElement.swiper.autoplay.start();
     });
+  }
+
+  ionViewWillLeave() {
+    this.clearIntroTimer();
   }
 
   goSearch(text:any){

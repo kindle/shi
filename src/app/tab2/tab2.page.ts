@@ -95,6 +95,14 @@ export class Tab2Page {
     });
   }
 
+  async scrollToIntroBottom(): Promise<void> {
+    if (!this.content) {
+      return;
+    }
+
+    await this.content.scrollToBottom(500);
+  }
+
   ionViewDidEnter() {
     this.refreshSwipers();
   }
