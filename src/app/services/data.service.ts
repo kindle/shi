@@ -6755,7 +6755,7 @@ export class DataService {
   }
 
   async getTodayReviewProgress(): Promise<StudyReviewProgress> {
-    const reviewPoems = await this.ensureTodayReviewPlanPoems();
+    const reviewPoems = this.getCurrentStudyReviewPoems();
     const reviewState = await this.ensureTodayReviewPlanState();
     const completedKeySet = new Set(reviewState?.completedKeys || []);
 

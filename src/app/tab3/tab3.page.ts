@@ -52,6 +52,22 @@ export class Tab3Page {
     return Boolean(this.data.currentStudyPlan);
   }
 
+  get studyPlanProgressLabel(): string {
+    const totalPoems = Number(this.studyPlan?.totalPoems) || 0;
+    if (totalPoems <= 0) {
+      return '0%';
+    }
+
+    const studiedPoems = Number(this.studyPlan?.studiedPoems) || 0;
+    const progress = (studiedPoems / totalPoems) * 100;
+
+    if (progress > 0 && progress < 1) {
+      return `${Math.max(0.1, Math.round(progress * 10) / 10).toFixed(1)}%`;
+    }
+
+    return `${Math.round(progress)}%`;
+  }
+
   get studyActionLabel(): string {
     if (!this.hasCurrentStudyPlan) {
       return '去设置';

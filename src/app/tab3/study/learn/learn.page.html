@@ -19,7 +19,8 @@
         <div class="prompt-line">{{ currentQuestion.firstHalf }}</div>
         <div class="prompt-blank">{{ '_  '.repeat(currentQuestion.secondHalf.length) }}</div>
         <div class="prompt-meta" *ngIf="showHintMeta && currentPoem">
-          {{ currentPoem.dy || '佚名' }} {{ currentPoem.author || '佚名' }} 《{{ currentPoem.title || currentPoem.rhythmic || '无题' }}》
+          {{ currentPoem.dy || '佚名' }} {{ currentPoem.author || '佚名' }} 
+          《{{ currentPoem.title || currentPoem.rhythmic || '无题' }}》
         </div>
       </div>
 
@@ -75,27 +76,37 @@
       </div>
 
       <div class="detail-card" *ngIf="detailItems(currentPoem.appreciation).length > 0">
-        <div class="detail-title">赏析</div>
+        <div class="detail-title">
+          {{ui.instant('Title.appreciation')}}<!--赏析-->
+        </div>
         <div *ngFor="let item of detailItems(currentPoem.appreciation)" class="detail-text">{{ item }}</div>
       </div>
 
       <div class="detail-card" *ngIf="detailItems(currentPoem.translation).length > 0">
-        <div class="detail-title">译文</div>
+        <div class="detail-title">
+          {{ui.instant('Title.translation')}}<!--译文-->
+        </div>
         <div *ngFor="let item of detailItems(currentPoem.translation)" class="detail-text">{{ item }}</div>
       </div>
 
       <div class="detail-card" *ngIf="detailItems(currentPoem.intro).length > 0">
-        <div class="detail-title">简介</div>
+        <div class="detail-title">
+          {{ui.instant('Title.introduction')}}<!--简介-->
+        </div>
         <div *ngFor="let item of detailItems(currentPoem.intro)" class="detail-text">{{ item }}</div>
       </div>
 
       <div class="detail-card" *ngIf="detailItems(currentPoem.comment).length > 0">
-        <div class="detail-title">评论</div>
+        <div class="detail-title">
+          {{ui.instant('Title.comment')}}<!--评论-->
+        </div>
         <div *ngFor="let item of detailItems(currentPoem.comment)" class="detail-text">{{ item }}</div>
       </div>
 
       <div class="detail-card" *ngIf="detailItems(currentPoem.annotation).length > 0">
-        <div class="detail-title">注释</div>
+        <div class="detail-title">
+          {{ui.instant('Title.annotation')}}<!--注释-->
+        </div>
         <div *ngFor="let item of detailItems(currentPoem.annotation)" class="detail-text">{{ item }}</div>
       </div>
 
@@ -108,7 +119,7 @@
       <!-- <ion-button expand="block" (click)="close()">关闭</ion-button> -->
       <ion-button fill="clear" class="plan-review-button" [style.fontSize]="data.zoom(18)"
         (click)="close()">
-        关闭
+        {{ ui.instant('Game.ConfirmClose') }}<!--关闭-->
       </ion-button>
     </div>
     <div class="tile-group completion-tile-group" [style.display]="ui.isipad ? 'flex' : ''" 
@@ -117,7 +128,7 @@
         <app-dog-card class="card card-img custom-card completion-tile-card"
             section="" 
             sub="" 
-            title="诗词闯关"><!--{{ ui.instant('Game.Title') }}考考你-->
+            title="{{ ui.instant('Game.Title') }}"><!--诗词闯关-->
         </app-dog-card>
       </div>
     </div>
@@ -156,17 +167,24 @@
     <div class="empty-card" *ngIf="!loading && !hasPlan">
       <div class="complete-title">还没有当前学习计划</div>
       <div class="complete-text">请先在学习计划里选择一个诗单。</div>
-      <ion-button expand="block" (click)="goToPlan()">去设置</ion-button>
+      <ion-button expand="block" (click)="goToPlan()">
+        {{ ui.instant('Title.Settings') }}<!--去设置-->
+      </ion-button>
     </div>
   </ng-template>
 
   <div class="action-bar-shell" *ngIf="shouldShowBottomActionBar">
     <div class="action-bar" [class.action-bar-question]="!canGoNext">
-      <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()">斩</ion-button>
-      <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" [class.icon-button-active]="showHintMeta" [disabled]="hintUsed" (click)="revealHintMeta()">
+      <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()">
+        斩
+      </ion-button>
+      <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" 
+      [class.icon-button-active]="showHintMeta" [disabled]="hintUsed" (click)="revealHintMeta()">
         <ion-icon slot="icon-only" name="bulb-outline"></ion-icon>
       </ion-button>
-      <ion-button class="next-button" *ngIf="canGoNext" (click)="gotoNextQuestion()">{{ nextActionLabel }}</ion-button>
+      <ion-button class="next-button" *ngIf="canGoNext" (click)="gotoNextQuestion()">
+        {{ nextActionLabel }}
+      </ion-button>
       <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" [class.icon-button-active]="isFeedbackSoundEnabled" (click)="onSpeakerClick()">
         <ion-icon slot="icon-only" [name]="isFeedbackSoundEnabled ? 'volume-medium-outline' : 'volume-mute-outline'"></ion-icon>
       </ion-button>
