@@ -378,12 +378,15 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
     this.monthDegrees = new Array(360).fill(null);
     this.dayDegrees = new Array(360).fill(null);
 
-    const today = new Date(2026, 5, 7);
-    const solar = Solar.fromDate(today);
+    const today = new Date();
+    const solar = Solar.fromYmd(today.getFullYear(), today.getMonth() + 1, today.getDate());
     const lunar = solar.getLunar();
 
     const dayGanzhi = lunar.getDayInGanZhi();
     this.currentSolarTerm = lunar.getCurrentJieQi()?.getName() || lunar.getPrevJieQi()?.getName() || '';
+    //console.log('当前节气：', this.currentSolarTerm);
+    //console.log('lunar.getCurrentJieQi()?.getName()', lunar.getCurrentJieQi()?.getName());
+    //console.log('lunar.getPrevJieQi()?.getName()', lunar.getPrevJieQi()?.getName());
     this.currentSolarTermConstellation = this.getConstellationForSolarTerm(this.currentSolarTerm);
     this.currentSolarTermBagua = this.getBaguaForSolarTerm(this.currentSolarTerm);
     this.currentFourSymbolIndex = this.getFourSymbolIndexForConstellation(this.currentSolarTermConstellation);
