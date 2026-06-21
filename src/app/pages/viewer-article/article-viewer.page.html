@@ -15,7 +15,7 @@
         :
         'url(https://reddah.blob.core.windows.net/msjjimg/'+data.currentArticle.bg_image +') '+
         (ui.isipad ? 'left top' : 'top')
-        +'/auto ' + 
+        +(ui.isipad?'/72% ':'/auto ') + 
         (ui.isipad ? '72%' : defaultBgHeight)
         + ' no-repeat'
       )
@@ -27,7 +27,7 @@
   *ngIf="ui.isipad"></div>
 
   <div [style.width]="ui.isipad ? '72%' : '100%'"
-  [style.margin-left]="ui.isipad ? (data.currentArticle.effect?'0':'20px') : 0">
+  [style.margin-left]="ui.isipad ? (data.currentArticle.effect?'0':'0px') : 0">
   
     <!--shared backbutton for normal and effect animation start-->
     <!--[style.paddingTop]="data.currentArticle.effect||ui.isAndroid ? 'calc(30px + 20px)' : '30px'"-->

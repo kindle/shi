@@ -52,7 +52,9 @@
 
 
   <div class="cards-layout-default" [ngClass]="ui.isipad ? 'cards-layout-ipad' : 'cards-layout-default'">
-    <div class="card-wrap" *ngFor="let item of data.articleData;index as i">
+    <div class="card-wrap" 
+    [ngStyle]="{'margin-bottom': ui.isipad ? '20px' : '0px'}"
+    *ngFor="let item of data.articleData;index as i">
       <!--text template-->
       <ion-card class="card card-img" card-shrink
       (click)="goToArticle(item)"
