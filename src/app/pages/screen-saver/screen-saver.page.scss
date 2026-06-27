@@ -7,6 +7,13 @@ ion-content,
 
 .screen-saver-content {
   --background: rgb(154, 31, 38);
+  overscroll-behavior: none;
+}
+
+.screen-saver-content::part(scroll) {
+  overflow: hidden;
+  overscroll-behavior-y: none;
+  touch-action: none;
 }
 
 .screen-saver-page {
