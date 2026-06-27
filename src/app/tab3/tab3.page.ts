@@ -15,7 +15,7 @@ import { StudyDailyProgress, StudyPlanItem, StudyPlanSettings, StudyReviewProgre
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  isIntroTextVisible = true;
+  isIntroTextVisible = false;
   private introTextTimer: ReturnType<typeof setTimeout> | null = null;
 
   private clearIntroTimer() {

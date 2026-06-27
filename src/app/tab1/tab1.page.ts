@@ -30,7 +30,7 @@ export class Tab1Page {
     delay: 0,
     disableOnInteraction: true,
   }
-  isIntroTextVisible = true;
+  isIntroTextVisible = false;
   private introTextTimer: ReturnType<typeof setTimeout> | null = null;
 
   private clearIntroTimer() {
