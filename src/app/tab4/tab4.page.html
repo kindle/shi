@@ -378,7 +378,7 @@
         [style.height]="ui.isipad ? '250px' : '120px'"
         [style.position]="ui.isipad ? 'relative' : ''"
         style="margin:5px;
-        background-size:cover;background-color:{{data.getbgcolor()}}"
+        background-size:cover;background-color:{{data.getbgcolor_pink()}}"
         class="search-tile-img"
         id="{{topic.id}}"
         (click)="data.goToTopic(topic.id)"
@@ -413,7 +413,7 @@
         [style.position]="ui.isipad ? 'relative' : ''"
         style="margin:5px;
         background-position:{{topic.position}};
-        background-size:cover;background-color:{{data.getbgcolor()}}"
+        background-size:cover;background-color:{{data.getbgcolor_black()}}"
         class="search-tile-img"
         id="{{topic.id}}"
         (click)="goToTag(topic)"
