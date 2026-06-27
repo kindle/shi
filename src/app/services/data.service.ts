@@ -2419,6 +2419,115 @@ export class DataService {
     return source.split(/[，。？！]/).filter(Boolean)[index] || '';
   }
 
+  private parsePreviewTextParts(rawPreviewText:any): string[] {
+    if (Array.isArray(rawPreviewText)) {
+      return rawPreviewText.map((part:any) => `${part ?? ''}`.trim()).filter(Boolean);
+    }
+
+    if (typeof rawPreviewText === 'string') {
+      const normalized = rawPreviewText.trim();
+      if (!normalized) {
+        return [];
+      }
+
+      const segments = normalized
+        .split(/[\r\n，。？！；]+/)
+        .map(part => part.trim())
+        .filter(Boolean);
+
+      return segments.length > 0 ? segments : [normalized];
+    }
+
+    return [];
+  }
+
+  private getRandomPoemPreviewParts(item:any): string[] {
+    const pool: string[] = [];
+
+    if (Array.isArray(item?.paragraphs)) {
+      item.paragraphs.forEach((line:any) => {
+        `${line ?? ''}`
+          .split(/[，。？！；]+/)
+          .map(part => part.trim())
+          .filter(Boolean)
+          .forEach((part:string) => pool.push(part));
+      });
+    }
+
+    const sample = `${item?.sample ?? ''}`.trim();
+    if (sample) {
+      sample
+        .split(/[，。？！；]+/)
+        .map(part => part.trim())
+        .filter(Boolean)
+        .forEach((part:string) => pool.push(part));
+    }
+
+    const uniquePool = Array.from(new Set(pool));
+    if (uniquePool.length === 0) {
+      const fallbackTitle = `${item?.title ?? ''}`.trim();
+      return fallbackTitle ? [fallbackTitle] : ['诗词'];
+    }
+
+    if (uniquePool.length === 1) {
+      return [uniquePool[0]];
+    }
+
+    const firstIndex = this.getRandom(0, uniquePool.length - 1);
+    let secondIndex = this.getRandom(0, uniquePool.length - 1);
+    if (secondIndex === firstIndex) {
+      secondIndex = (secondIndex + 1) % uniquePool.length;
+    }
+
+    return [uniquePool[firstIndex], uniquePool[secondIndex]];
+  }
+
+  private buildScreenSaverTextsFromList(list:any, count:number = 9): string[][] {
+    const source = Array.isArray(list) ? list : [];
+    const poemItems = source.filter((item:any) => item && typeof item === 'object');
+
+    const itemsWithPreview = poemItems.filter((item:any) => this.parsePreviewTextParts(item?.previewText).length > 0);
+    const selected: any[] = itemsWithPreview.slice(0, count);
+
+    if (selected.length < count) {
+      const selectedSet = new Set(selected);
+      const remaining = poemItems.filter((item:any) => !selectedSet.has(item));
+      for (const item of remaining) {
+        selected.push(item);
+        if (selected.length >= count) {
+          break;
+        }
+      }
+    }
+
+    const result = selected.map((item:any) => {
+      const previewParts = this.parsePreviewTextParts(item?.previewText);
+      if (previewParts.length > 0) {
+        return previewParts.slice(0, 4);
+      }
+
+      return this.getRandomPoemPreviewParts(item);
+    });
+
+    const fallbackTexts: string[][] = [
+      ['要扫除一切害人虫', '全无敌'],
+      ['一万年太久', '只争朝夕'],
+      ['待到山花烂漫时', '她在从中笑'],
+      ['萧瑟秋风今又是', '换了人间'],
+      ['鹰击长空', '鱼翔浅底', '万类霜天竞自由'],
+      ['五帝三皇神圣事', '骗了无涯过客'],
+      ['山下旌旗在望', '山头鼓角相闻', '敌军围困万千重', '我自岿然不动'],
+      ['今日欢呼孙大圣', '只缘妖雾又重来'],
+      ['重上井冈山', '久有凌云志'],
+    ];
+
+    while (result.length < count) {
+      result.push(fallbackTexts[result.length % fallbackTexts.length]);
+    }
+
+    return result.slice(0, count);
+  }
+
   importData(result:any, category:any, dy:any=null){
     result.forEach((element:any) => {
       if(element.title == null){
@@ -3140,6 +3249,52 @@ export class DataService {
     this.playbyid(poem.id, poem.sample);
   }
   //by-id-custom-list,by-id-shi-list,收藏诗词tab3/poem click button
+  screenSaver(list:any, name:any, isfromplaybutton:boolean=true){
+    this.updatePlaybackNetworkConnection();
+    this.orgToPlayList = list.filter((l:any)=>l.audio!=null)
+    this.toPlayList = this.orgToPlayList;
+    this.toPlayListName = name;
+    if(isfromplaybutton&&this.toPlayList.length>0){
+      let first = this.toPlayList[0];
+      //this.playbyid(first.id, first.sample);
+    }
+    console.log('screen saver');
+
+    const textList = this.buildScreenSaverTextsFromList(list, 9);
+    const styleTemplate = [
+      { size:'45px', opacity:0.6, zindex:0, left:0, speed:1 },
+      { size:'40px', opacity:0.5, zindex:0, left:20, speed:1 },
+      { size:'70px', opacity:0.75, zindex:1, left:20, speed:1 },
+      { size:'45px', opacity:0.5, zindex:0, left:10, speed:1 },
+      { size:'80px', opacity:0.85, zindex:10, left:0, speed:1 },
+      { size:'40px', opacity:0.7, zindex:0, left:30, speed:1 },
+      { size:'40px', opacity:0.5, zindex:0, left:20, speed:1 },
+      { size:'60px', opacity:0.75, zindex:0, left:-30, speed:1 },
+      { size:'50px', opacity:0.4, zindex:0, left:-20, speed:1 },
+    ];
+
+    const poemList = textList.map((textParts:string[], index:number) => {
+      const style = styleTemplate[index % styleTemplate.length];
+      return {
+        text: textParts,
+        size: style.size,
+        opacity: style.opacity,
+        zindex: style.zindex,
+        left: style.left,
+        speed: style.speed,
+      };
+    });
+
+    let data = {
+      title:"数风流人物 还看今朝",
+      list:poemList,
+    }
+
+    //open screen saver page full screen
+    this.router.navigate(['/screen-saver'], { state: data });
+
+    
+  }
   playList(list:any, name:any, isfromplaybutton:boolean=true){
     this.updatePlaybackNetworkConnection();
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null)

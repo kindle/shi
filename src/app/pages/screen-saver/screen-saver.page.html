@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true" class="screen-saver-content">
+  <div class="screen-saver-page">
+    <div class="center-panel">
+      <div class="timer">{{ currentTime }}</div>
+      <div class="title">{{ title }}</div>
+    </div>
+
+    <div class="text-streams" *ngIf="streams.length > 0">
+      <div
+        class="text-stream"
+        *ngFor="let stream of streams"
+        [style.right.px]="stream.rightPx"
+        [style.width.px]="stream.columnWidthPx"
+        [style.zIndex]="stream.zIndex"
+      >
+        <div
+          class="text-flow"
+          [style.animationDuration.s]="stream.durationSec"
+          [style.animationDelay.s]="stream.delaySec"
+          [style.fontSize.px]="stream.fontSizePx"
+          [style.opacity]="stream.opacity"
+          [style.letterSpacing.px]="stream.letterSpacingPx"
+        >
+          {{ stream.repeatedText }}
+        </div>
+        <div
+          class="text-flow"
+          [style.animationDuration.s]="stream.durationSec"
+          [style.animationDelay.s]="stream.delaySec - (stream.durationSec / 2)"
+          [style.fontSize.px]="stream.fontSizePx"
+          [style.opacity]="stream.opacity"
+          [style.letterSpacing.px]="stream.letterSpacingPx"
+        >
+          {{ stream.repeatedText }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

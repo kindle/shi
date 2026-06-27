@@ -82,6 +82,10 @@ const routes: Routes = [
     path: 'notes',
     loadChildren: () => import('./pages/notes/notes.module').then( m => m.NotesPageModule)
   },
+  {
+    path: 'screen-saver',
+    loadChildren: () => import('./pages/screen-saver/screen-saver.module').then( m => m.ScreenSaverPageModule)
+  },
 ];
 @NgModule({
   imports: [
