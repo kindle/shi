@@ -18,8 +18,10 @@
           [style.animationDuration.s]="stream.durationSec"
           [style.animationDelay.s]="stream.delaySec"
           [style.fontSize.px]="stream.fontSizePx"
+          [style.color]="stream.color"
           [style.opacity]="stream.opacity"
           [style.letterSpacing.px]="stream.letterSpacingPx"
+          [style.--glyph-safe-inset-px.px]="stream.glyphSafeInsetPx"
         >
           {{ stream.repeatedText }}
         </div>
@@ -28,8 +30,10 @@
           [style.animationDuration.s]="stream.durationSec"
           [style.animationDelay.s]="stream.delaySec - (stream.durationSec / 2)"
           [style.fontSize.px]="stream.fontSizePx"
+          [style.color]="stream.color"
           [style.opacity]="stream.opacity"
           [style.letterSpacing.px]="stream.letterSpacingPx"
+          [style.--glyph-safe-inset-px.px]="stream.glyphSafeInsetPx"
         >
           {{ stream.repeatedText }}
         </div>

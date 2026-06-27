@@ -9,11 +9,13 @@ interface ScreenSaverStream {
   repeatedText: string;
   rightPx: number;
   columnWidthPx: number;
+  glyphSafeInsetPx: number;
   leftOffsetPx: number;
   zIndex: number;
   durationSec: number;
   delaySec: number;
   fontSizePx: number;
+  color: string;
   opacity: number;
   letterSpacingPx: number;
 }
@@ -21,6 +23,7 @@ interface ScreenSaverStream {
 interface ScreenSaverLineConfig {
   text: string;
   fontSizePx?: number;
+  color?: string;
   opacity?: number;
   zIndex?: number;
   leftOffsetPx?: number;
@@ -142,6 +145,7 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
           return {
             text: normalizedText,
             fontSizePx: this.parseFontSizePx(item.size),
+            color: this.parseColor(item.color),
             opacity: this.parseOpacity(item.opacity),
             zIndex: this.parseZIndex(item.zindex ?? item.zIndex),
             leftOffsetPx: this.parseOffsetPx(item.left),
@@ -176,12 +180,15 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
       const fontSizePx = lineConfig.fontSizePx !== undefined
         ? this.clampNumber(lineConfig.fontSizePx, 14, 180, 30)
         : 30;
+      const color = lineConfig.color || '#ffffff';
       const opacity = lineConfig.opacity !== undefined
         ? this.clampNumber(lineConfig.opacity, 0.1, 1, 0.8)
         : 0.8;
       const leftOffsetPx = this.clampNumber(lineConfig.leftOffsetPx, -2000, 2000, 0);
       const speedPxPerSec = this.clampNumber(lineConfig.speedPxPerSec, 1, 240, 0);
-      const columnWidthPx = Math.max(laneWidth - 2, fontSizePx + 4);
+      // Extra inset avoids glyph edge clipping on some iPad vertical-text rasterization paths.
+      const glyphSafeInsetPx = Math.max(4, Math.ceil(fontSizePx * 0.12));
+      const columnWidthPx = Math.max(laneWidth - 2, fontSizePx + glyphSafeInsetPx * 2 + 2);
       const durationSec = speedPxPerSec > 0
         ? this.computeDurationSecBySpeed(viewportHeight, speedPxPerSec)
         : this.randomInt(160, 368);
@@ -192,11 +199,13 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
         text: line,
         repeatedText: this.buildRepeatedText(line, viewportHeight, fontSizePx),
         columnWidthPx,
+        glyphSafeInsetPx,
         leftOffsetPx,
         zIndex: this.clampNumber(lineConfig.zIndex, 0, 9999, 0),
         durationSec,
         delaySec,
         fontSizePx,
+        color,
         opacity,
         letterSpacingPx: this.randomInt(1, Math.max(2, Math.floor(fontSizePx * 0.2))),
       };
@@ -264,6 +273,15 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
     }
 
     return undefined;
+  }
+
+  private parseColor(rawColor: any): string | undefined {
+    if (typeof rawColor !== 'string') {
+      return undefined;
+    }
+
+    const normalized = rawColor.trim();
+    return normalized ? normalized : undefined;
   }
 
   private parseZIndex(rawZIndex: any): number | undefined {

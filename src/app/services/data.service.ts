@@ -3249,7 +3249,7 @@ export class DataService {
     this.playbyid(poem.id, poem.sample);
   }
   //by-id-custom-list,by-id-shi-list,收藏诗词tab3/poem click button
-  screenSaver(list:any, name:any, isfromplaybutton:boolean=true){
+  screenSaver(list:any, name:any, desc:any, isfromplaybutton:boolean=true){
     this.updatePlaybackNetworkConnection();
     this.orgToPlayList = list.filter((l:any)=>l.audio!=null)
     this.toPlayList = this.orgToPlayList;
@@ -3258,19 +3258,20 @@ export class DataService {
       let first = this.toPlayList[0];
       //this.playbyid(first.id, first.sample);
     }
-    console.log('screen saver');
+    console.log(desc)
+    //console.log('screen saver');
 
     const textList = this.buildScreenSaverTextsFromList(list, 9);
     const styleTemplate = [
-      { size:'45px', opacity:0.6, zindex:0, left:0, speed:1 },
-      { size:'40px', opacity:0.5, zindex:0, left:20, speed:1 },
-      { size:'70px', opacity:0.75, zindex:1, left:20, speed:1 },
-      { size:'45px', opacity:0.5, zindex:0, left:10, speed:1 },
-      { size:'80px', opacity:0.85, zindex:10, left:0, speed:1 },
-      { size:'40px', opacity:0.7, zindex:0, left:30, speed:1 },
-      { size:'40px', opacity:0.5, zindex:0, left:20, speed:1 },
-      { size:'60px', opacity:0.75, zindex:0, left:-30, speed:1 },
-      { size:'50px', opacity:0.4, zindex:0, left:-20, speed:1 },
+      { size:'45px', opacity:0.6, zindex:0, left:0, speed:0.2, color:'#ffffff' },
+      { size:'40px', opacity:0.3, zindex:0, left:20, speed:0.3, color:'#f6c4c4' },
+      { size:'65px', opacity:0.75, zindex:1, left:30, speed:0.5, color:'#f7b0b0' },
+      { size:'45px', opacity:0.2, zindex:0, left:10, speed:1, color:'#fcd9c6' },
+      { size:'90px', opacity:0.85, zindex:10, left:-40, speed:0.9, color:'#ffffff' },
+      { size:'40px', opacity:0.7, zindex:0, left:-50, speed:0.7, color:'#ffffff' },
+      { size:'40px', opacity:0.3, zindex:0, left:-50, speed:0.6, color:'#f6c4c4' },
+      { size:'60px', opacity:0.75, zindex:0, left:-100, speed:0.8, color:'#f8dada' },
+      { size:'50px', opacity:0.2, zindex:0, left:-100, speed:0.3, color:'#f6c4c4' },
     ];
 
     const poemList = textList.map((textParts:string[], index:number) => {
@@ -3282,11 +3283,12 @@ export class DataService {
         zindex: style.zindex,
         left: style.left,
         speed: style.speed,
+        color: style.color,
       };
     });
 
     let data = {
-      title:"数风流人物 还看今朝",
+      title:desc?desc:name,//"数风流人物 还看今朝",
       list:poemList,
     }
 
@@ -4066,9 +4068,15 @@ export class DataService {
   /*template end*/
 
   getbgcolor(){
-    //make sure it's not blink
     return "rgb(98, 166, 243)";
-    //return this.getRandomArray(this.colorList,1);
+  }
+  
+  getbgcolor_pink(){
+    return "rgb(240,209,246)";
+  }
+
+  getbgcolor_black(){
+    return "rgb(255,230,151)";
   }
 
   getRandomArray(arr:any,n:any){

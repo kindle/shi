@@ -71,6 +71,7 @@ ion-content,
   top: 0;
   left: 0;
   width: 100%;
+  box-sizing: border-box;
   background: transparent;
   color: #ffffff;
   font-weight: 700;
@@ -79,6 +80,7 @@ ion-content,
   white-space: nowrap;
   word-break: keep-all;
   overflow-wrap: normal;
+  padding-inline: var(--glyph-safe-inset-px, 6px);
   padding-block-end: var(--stream-group-gap-px);
   user-select: none;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
@@ -86,6 +88,20 @@ ion-content,
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
+}
+
+/* iPad/iOS specific tuning: keep Chrome default rendering untouched. */
+@supports (-webkit-touch-callout: none) {
+  .text-flow {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    font-kerning: none;
+    font-synthesis: none;
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.02;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  }
 }
 
 @keyframes stream-fall {
