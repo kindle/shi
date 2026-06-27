@@ -91,7 +91,7 @@
           grid-template-rows: repeat(2, 124px);
           overflow: hidden;">
           <div *ngFor="let i of [0,1,2,3]"
-            defaultImage="" 
+            defaultImage="assets/img/default.jpg" 
             lazyLoad="{{listdata.image[i]}}"
             style="
               background-size:cover;
@@ -133,7 +133,7 @@
               grid-template-rows: repeat(2, 124px);
               overflow: hidden;">
               <div *ngFor="let i of [0,1,2,3]"
-                defaultImage="" 
+                defaultImage="assets/img/default.jpg" 
                 lazyLoad="{{listdata.image[i]}}"
                 style="
                   background-size:cover;
@@ -141,7 +141,7 @@
               ></div>
             </ion-card>
             <ion-card *ngIf="!listdata.customimage&&listdata.image&&listdata.image.length<4&&listdata.image.length>0"
-              defaultImage="" 
+              defaultImage="assets/img/default.jpg" 
               lazyLoad="{{listdata.image[0]}}"
               style="margin:auto;width:250px;height:250px;
                 background-size:cover;
@@ -162,7 +162,7 @@
                 background-repeat: no-repeat;
                 border-radius: 10px;">
               </ion-card>
-            <div style="position: fixed;display:flex;justify-content: center;
+            <div style="position: absolute;display:flex;justify-content: center;
             align-items: center;width: 100%;height: 250px;">
               <ion-buttons id="chooseimg">
                 <button style="padding:5px;border-radius: 5px;">
@@ -207,7 +207,7 @@
         <ion-text mode="ios" style="font-size:20px; margin:15px;text-align: center;" *ngIf="listdata&&!isEdit">
           {{listdata.name}} 
         </ion-text>
-        <ion-input style="font-size:20px; margin:15px;text-align: center;" *ngIf="!showFilter&&isEdit" 
+        <ion-input style="font-size:20px; margin:15px;margin-left:0;text-align: center;" *ngIf="!showFilter&&isEdit" 
         [(ngModel)]="listdata.name" placeholder="诗词列表名称"></ion-input>
       </div>
     </ion-toolbar>
@@ -224,6 +224,17 @@
     (click)="data.playListRandomly(listdata.list, listdata.name)" [disabled]="noAudio">
       <ion-icon slot="start" name="shuffle" color="primary"></ion-icon>
       <ion-text color="primary">{{ ui.instant('Action.Shuffle')}}<!--随机播放--></ion-text>
+    </ion-button>
+  </div>
+
+  <div style="display: flex;margin:0 20px;">
+    <ion-button color="light" style="width: 100%;margin-right:10px;"
+    (click)="data.screenSaver(listdata.list, listdata.name)" [disabled]="noAudio">
+      <ion-icon slot="start" name="sparkles-outline" color="primary"></ion-icon>
+      <ion-text color="primary">
+        屏保
+        <!--{{ ui.instant('Action.Play')}}--屏保-->
+        </ion-text>
     </ion-button>
   </div>
 
