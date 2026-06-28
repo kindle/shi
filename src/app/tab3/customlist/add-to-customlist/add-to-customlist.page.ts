@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { ModalController } from '@ionic/angular';
 import { AddPlayerListPage } from '../new-customlist/add-playerlist.page';
@@ -10,6 +10,8 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./add-to-customlist.page.scss'],
 })
 export class AddToCustomListPage {
+
+  @Input() source: any;
 
   name:any;
   desc:any;
@@ -94,7 +96,7 @@ export class AddToCustomListPage {
   }
 
   addtocustomlist(data:any){
-    this.data.addtocustomlist(data);
+    this.data.addtocustomlist(data, this.source);
     this.modalController.dismiss();
   }
 

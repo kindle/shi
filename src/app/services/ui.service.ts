@@ -249,6 +249,61 @@ export class UiService {
     await toast.present();
   }
 
+  async toast_jump_like_dy(
+    position: 'top' | 'middle' | 'bottom', 
+    msg:string, 
+    jumpTarget?: string,
+    source?: string
+  ) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2500,
+      position: 'bottom',
+      cssClass: source=='articlelist'?'custom-bottom-toast-like-dy-article':'custom-bottom-toast-like-dy',
+      icon: 'checkmark-circle',
+      buttons: jumpTarget
+        ? [{
+            text: this.instant("Title.HaveALook") + ' >',//去看看 >
+            role: 'info',
+            handler: () => {
+              this.closePlayerPopup();
+              this.navigateToTarget(jumpTarget);
+            }
+          }]
+        : undefined,
+    });
+
+    await toast.present();
+  }
+
+  async toast_jump_like_dy_folder(
+    position: 'top' | 'middle' | 'bottom', 
+    msg:string, 
+    jumpTarget?: string,
+    folder?: string,
+    source?: string
+  ) {
+    const toast = await this.toastController.create({
+      message: msg + ' \"'+ folder + '\"',
+      duration: 2500,
+      position: 'bottom',
+      cssClass: source=='articlelist'?'custom-bottom-toast-like-dy-article':'custom-bottom-toast-like-dy',
+      icon: 'checkmark-circle',
+      buttons: jumpTarget
+        ? [{
+            text: this.instant("Title.HaveALook") + ' >',//去看看 >
+            role: 'info',
+            handler: () => {
+              this.closePlayerPopup();
+              this.navigateToTarget(jumpTarget);
+            }
+          }]
+        : undefined,
+    });
+
+    await toast.present();
+  }
+
   private navigateToTarget(target: string) {
     if (!target) {
       return;

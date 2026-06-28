@@ -290,6 +290,22 @@
   //text-align:center;
 }
 
+.custom-bottom-toast-like-dy-article {
+  top: 0px;//consider no tabs 0
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  --button-color: #3880ff;
+}
+
+.custom-bottom-toast-like-dy {
+  top: -78px;//consider tabs height 78
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  --button-color: #3880ff;
+}
+
 .custom-short-toast {
   top: -150px;
   width: 190px;

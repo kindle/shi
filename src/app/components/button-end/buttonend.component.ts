@@ -37,21 +37,16 @@ export class ButtonEndComponent {
 
   async addToCustomList(p:any){
     //console.log(p)
-    this.data.collectCustom(p);
+    this.data.collectCustom(p, this.page);
     
     const modal = await this.modalController.create({
         component: AddToCustomListPage,
         componentProps: {
+          source: this.page,
         },
-        //cssClass: 'modal-fullscreen',
-        //keyboardClose: true,
         showBackdrop: true,
         breakpoints: [0, 0.5, 0.75, 1],
         initialBreakpoint: 0.75,
-        //enterAnimation: this.enterAnimation,
-        //leaveAnimation: this.leaveAnimation,
-        //presentingElement: await this.modalController.getTop(),
-        //presentingElement: this.presentingElement
     });
     await modal.present();
   }
@@ -92,7 +87,7 @@ export class ButtonEndComponent {
   }
 
   like(p: any, type: string) {
-    this.data.likelist(p, type);
+    this.data.likelist(p, type, this.page);
   }
 
   unlike(p: any, type: string) {

@@ -124,6 +124,18 @@ export interface StudyReviewProgress {
 })
 export class DataService {
 
+  private readonly tabNoBgImages = [
+    'assets/img/tab1-nobg.png',
+    'assets/img/tab2-nobg.png',
+    'assets/img/tab3-nobg.png',
+    'assets/img/tab4-nobg.png',
+  ];
+
+  getRandomTabNoBgImage(): string {
+    const index = Math.floor(Math.random() * this.tabNoBgImages.length);
+    return this.tabNoBgImages[index];
+  }
+
   public studyPlan: StudyPlanSettings = {
     totalPoems: 739,
     studiedPoems: 594,
@@ -4726,7 +4738,7 @@ export class DataService {
   }
 
   //group: idlist, taglist, poetlist, poem, customlist
-  likelist(listdata:any, group:any){
+  likelist(listdata:any, group:any, source:any=null){
     let jump_url= "/tabs/tab3";
     //in case it's brief data from json
     if(group==='poem'){
@@ -4761,7 +4773,10 @@ export class DataService {
     {
       jump_url = "/tabs/tab3/tag";
     }
-    this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"), jump_url)//"已添加到诗词库"
+    //"已添加到诗词库"
+    //this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"), jump_url)
+    //"已添加到诗词库" like 抖音
+    this.ui.toast_jump_like_dy("bottom", this.ui.instant("Message.LibAdded"), jump_url, source)
     Haptics.impact({ style: ImpactStyle.Light });
     
     this.checkAndRequestReview();
@@ -5164,7 +5179,7 @@ export class DataService {
   currentCollectLike:any;
   currentCollectPoem:any;
   currentCollectPoems:any = [];
-  collectCustom(p:any){
+  collectCustom(p:any, source:any=null){
     let fullData = this.JsonData.filter((j:any)=>j.id===p.id);
     if(fullData.length===1){
       this.currentCollectPoem = fullData[0];
@@ -5220,7 +5235,7 @@ export class DataService {
       {
       }
   }
-  addtocustomlist(like:any)
+  addtocustomlist(like:any, source:any=null)
   {
     //console.log(like)
     //single poem add to custom list
@@ -5228,7 +5243,7 @@ export class DataService {
     {
       this.addsinglepoemtocustomlist(like);
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
+      //this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
     }
     else
     //multiple poems add to custom list
@@ -5246,8 +5261,13 @@ export class DataService {
         this.addsinglepoemtocustomlist(like);
       });
       this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
-      this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
+      //this.ui.toast("top", this.ui.instant("Message.PoemlistAdded"))//已添加到诗单列表
     }
+    this.ui.toast_jump_like_dy_folder("bottom", 
+      this.ui.instant("Message.PoemlistAdded"),
+      `/tabs/tab3/customlist/${like.data.id}`,
+      like.data.name, 
+      source)//已添加到诗单列表
 
   }
   GetLastUpdatedCustomList(){
@@ -5830,7 +5850,9 @@ export class DataService {
     }
     this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
     //this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
-    this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
+    //this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
+
+    this.ui.toast_jump_like_dy("bottom", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
   }
   delMyLikeArticle(data:any){
     for(let i=0;i<this.myLikeArticles.length;i++){
