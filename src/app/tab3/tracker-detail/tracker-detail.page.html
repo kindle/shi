@@ -27,11 +27,12 @@
           <div style="font-weight: 700; line-height: 1; margin-bottom: 5px;"
           [style.fontSize]="dataService.zoom(40)">
             {{ dataService.recentTrackerStreakDays }}
-            <span [style.fontSize]="dataService.zoom(15)">天</span>
+            <span [style.fontSize]="dataService.zoom(15)"> {{ ui.instant('Study.Days') }}</span>
           </div>
           <div style="font-weight: bold; opacity: 0.96;"
            [style.fontSize]="dataService.zoom(15)">
-            连续学习诗词
+            <!--连续学习诗词-->
+            {{ ui.instant('Study.ContinuousLearning') }}
           </div>
         </div>
       </ion-card-content>

@@ -140,7 +140,8 @@
           <div class="plan-header">
             <div class="plan-title" [style.fontSize]="data.zoom(18)" style="margin-left:5px;
             margin-bottom:10px;">
-              今日计划
+              {{ ui.instant('Title.TodayPlan') }}
+              <!--今日计划-->
             </div>
             <!-- <div class="plan-checkin-row" [style.fontSize]="data.zoom(16)">
               <div style="background-color:red;color:white;padding:5px;margin-left:5px;
@@ -164,7 +165,10 @@
 
           <div class="plan-stats">
             <div class="plan-stat-card">
-              <div class="plan-stat-label" [style.fontSize]="data.zoom(20)">已新学</div>
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(20)">
+                <!--已新学-->
+                {{ui.instant('Study.NewlyLearned')}}
+              </div>
               <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
                 <span class="plan-stat-value-current" [style.fontSize]="data.zoom(35)">
                   {{ todayStudyProgress.completed }}
@@ -180,7 +184,10 @@
             </div>
 
             <div class="plan-stat-card plan-review-card">
-              <div class="plan-stat-label" [style.fontSize]="data.zoom(20)">已复习</div>
+              <div class="plan-stat-label" [style.fontSize]="data.zoom(20)">
+                <!--已复习-->
+                {{ui.instant('Study.Reviewed')}}
+              </div>
               <div class="plan-stat-value" [style.fontSize]="data.zoom(15)">
                 <span class="plan-stat-value-current" [style.fontSize]="data.zoom(35)">
                   {{ todayReviewProgress.completed }}

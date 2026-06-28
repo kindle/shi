@@ -79,11 +79,14 @@ export class PlanPage {
   }
 
   get summarySubtitle(): string {
-    return `每天${this.selectedDailyPoems}句，剩余${this.selectedCompletionDays}天`;
+    //return `每天${this.selectedDailyPoems}句，剩余${this.selectedCompletionDays}天`;
+    return `${this.ui.instant('Study.Daily')} ${this.selectedDailyPoems} ${this.ui.instant('Study.Unit')}, ${this.ui.instant('Study.RestDays')} ${this.selectedCompletionDays} ${this.ui.instant('Study.Days')}`;
   }
 
   getPlanSubtitle(plan: StudyPlanItem): string {
-    return `每天${plan.num}句，剩余${plan.days}天`;
+    //return `每天${plan.num}句，剩余${plan.days}天`;
+    const remainingDays = plan.total > 0 && plan.done >= plan.total ? 0 : plan.days;
+    return `${this.ui.instant('Study.Daily')} ${plan.num} ${this.ui.instant('Study.Unit')}, ${this.ui.instant('Study.RestDays')} ${remainingDays} ${this.ui.instant('Study.Days')}`;
   }
 
   get completionDateLabel(): string {
@@ -403,17 +406,20 @@ export class PlanPage {
 
   private formatDuration(totalMinutes: number): string {
     if (totalMinutes < 60) {
-      return `预计每天${totalMinutes}分钟`;
+      //return `预计每天${totalMinutes}分钟`;
+      return `${this.ui.instant('Study.EstimatedDaily')} ${totalMinutes} ${this.ui.instant('Study.Minutes')}`;
     }
 
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
     if (minutes === 0) {
-      return `预计每天${hours}小时`;
+      //return `预计每天${hours}小时`;
+      return `${this.ui.instant('Study.EstimatedDaily')} ${hours} ${this.ui.instant('Study.Hours')}`;
     }
 
-    return `预计每天${hours}小时${minutes}分钟`;
+    //return `预计每天${hours}小时${minutes}分钟`;
+    return `${this.ui.instant('Study.EstimatedDaily')} ${hours} ${this.ui.instant('Study.Hours')} ${minutes} ${this.ui.instant('Study.Minutes')}`;
   }
 
   private formatDate(date: Date): string {
@@ -421,7 +427,7 @@ export class PlanPage {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
 
-    return `${year}年${month}月${day}日`;
+    return `${year}-${month}-${day}`;
   }
 
   private resolveWheelValue(scrollTop: number, options: number[]): number {

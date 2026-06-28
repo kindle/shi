@@ -132,28 +132,28 @@ export class LearnPage {
   get nextActionLabel(): string {
     if (!this.currentQuestion) {
       //return '下一题';
-      return this.ui.instant('Game.NextQuestion');
+      return this.ui.instant('Study.NextQuestion');
     }
 
     if (this.isReviewMode) {
       //return this.currentQueueIndex + 1 < this.roundQueue.length ? '下一题' : '完成';
-      return this.currentQueueIndex + 1 < this.roundQueue.length ? this.ui.instant('Game.NextQuestion') : this.ui.instant('Game.Complete');
+      return this.currentQueueIndex + 1 < this.roundQueue.length ? this.ui.instant('Study.NextQuestion') : this.ui.instant('Study.Complete');
     } 
 
     if (this.currentQueueIndex + 1 < this.roundQueue.length) {
       //return '下一题';
-      return this.ui.instant('Game.NextQuestion');
+      return this.ui.instant('Study.NextQuestion');
     }
 
     const wrongQueue = this.todayPoems.filter((poem) => poem?.learned !== true && poem?.wrong === true);
     if (wrongQueue.length > 0) {
       //return '下一题';
-      return this.ui.instant('Game.NextQuestion');
+      return this.ui.instant('Study.NextQuestion');
     }
  
     const unresolvedQueue = this.todayPoems.filter((poem) => poem?.learned !== true);
     //return unresolvedQueue.length > 0 ? '下一题' : '完成';
-    return unresolvedQueue.length > 0 ? this.ui.instant('Game.NextQuestion') : this.ui.instant('Game.Complete');
+    return unresolvedQueue.length > 0 ? this.ui.instant('Study.NextQuestion') : this.ui.instant('Study.Complete');
   }
 
   async selectOption(option: LearnOption) {

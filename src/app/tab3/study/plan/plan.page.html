@@ -4,7 +4,8 @@
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title [style.fontSize]="data.zoom(18)">
-      学习计划  
+      {{ui.instant('Study.StudyPlan')}}
+      <!--学习计划 --> 
       <!-- 已完成{{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}% -->
     </ion-title>
   </ion-toolbar>
@@ -28,7 +29,8 @@
         [class.active]="selectedTab === 'plan'"
         (click)="selectTab('plan')"
         [style.fontSize]="data.zoom(18)">
-        修改计划
+        {{ui.instant('Study.ModifyPlan')}}
+        <!--修改计划-->
       </button>
       <button
         type="button"
@@ -36,7 +38,8 @@
         [class.active]="selectedTab === 'playlist'"
         (click)="selectTab('playlist')"
         [style.fontSize]="data.zoom(18)">
-        更换诗单
+        {{ui.instant('Study.ChangePlaylist')}}
+        <!--更换诗单-->
       </button>
       <button
         type="button"
@@ -44,7 +47,8 @@
         [class.active]="selectedTab === 'completed'"
         (click)="selectTab('completed')"
         [style.fontSize]="data.zoom(18)">
-        已完成
+        {{ui.instant('Study.Completed')}}
+        <!--已完成-->
       </button>
     </div>
   </div>
@@ -67,19 +71,23 @@
             
             <ion-label>
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-title">
-                {{ data.currentStudyPlan?.title || '当前学习诗单' }}
+                <!--{{ data.currentStudyPlan?.title || '当前学习诗单' }}-->
+                {{ data.currentStudyPlan?.title || ui.instant('Study.CurrentStudyPlan') }}
             </p>
             <p [style.fontSize]="data.zoom(18)" class="study-plan-summary-subtitle">
               {{ summarySubtitle }}
             </p>
             <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
               <span [style.fontSize]="data.zoom(16)">
-                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+                <!--已完成 -->
+                {{ui.instant('Study.Completed')}} 
+                {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
               </span>
               <span [style.fontSize]="data.zoom(16)" class="study-plan-reset-link" 
                 (click)="resetPlan()" style="float:right;">
                 <ion-icon name="refresh" class="study-plan-reset-icon"></ion-icon>
-                重置
+                {{ui.instant('Study.Reset')}}
+                <!--重置-->
               </span>
             </p>
             </ion-label>
@@ -93,8 +101,14 @@
                 [max]="data.currentStudyPlan?.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>已完成 {{ data.currentStudyPlan?.done }} / {{ data.currentStudyPlan?.total }}</span>
-                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
+                <span>
+                  <!--已完成 -->
+                  {{ui.instant('Study.Completed')}} 
+                  {{ data.currentStudyPlan?.done }} / {{ data.currentStudyPlan?.total }}</span>
+                <span>
+                  <!--剩余 -->
+                  {{ui.instant('Study.RestDays')}}
+                  {{ data.currentStudyPlan?.days }}天</span>
                 </div>
             </div>
           </ion-label>
@@ -105,14 +119,23 @@
       <hr class="progress-plan-divider">
 
       <div class="study-plan-deadline-row" [style.fontSize]="data.zoom(16)">
-        <span>完成日期：{{ completionDateLabel }} &nbsp;&nbsp;&nbsp;&nbsp;{{ estimatedDailyTimeLabel }}</span>
+        <span>
+          <!--完成日期：-->
+          {{ui.instant('Study.CompletionDate')}}:
+          {{ completionDateLabel }} &nbsp;&nbsp;&nbsp;&nbsp;{{ estimatedDailyTimeLabel }}</span>
         <span></span>
       </div>
 
       <div class="study-plan-picker-card">
         <div class="study-plan-picker-header">
-          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">每天背</div>
-          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">完成天数</div>
+          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">
+            <!--每天背-->
+            {{ui.instant('Study.DailyNewLearned')}}
+          </div>
+          <div [style.fontSize]="data.zoom(16)" class="study-plan-picker-title">
+            <!--完成天数-->
+            {{ui.instant('Study.CompletionDays')}}
+          </div>
         </div>
         <div class="study-plan-picker-body">
           <div class="study-plan-wheel-shell">
@@ -133,7 +156,7 @@
                 [style.height.px]="wheelItemHeight"
                 [style.fontSize]="data.zoom(option === selectedDailyPoems ? 18 : 16)"
                 (click)="selectDailyPoems(option)">
-                {{ option }} 句
+                {{ option }} {{ui.instant('Study.Unit')}}<!--句-->
               </button>
               <div
                 class="study-plan-wheel-spacer"
@@ -160,7 +183,7 @@
                 [style.height.px]="wheelItemHeight"
                 [style.fontSize]="data.zoom(option === selectedCompletionDays ? 18 : 16)"
                 (click)="selectCompletionDays(option)">
-                <span>{{ option }} 天</span>
+                <span>{{ option }} {{ui.instant('Study.Days')}}<!--天--></span>
                 <ion-icon
                   *ngIf="option === selectedCompletionDays"
                   name="checkmark-circle"
@@ -182,7 +205,7 @@
         color="primary"
         class="study-plan-submit-button"
         [style.fontSize]="data.zoom(17)">
-        保存计划
+        <!--保存计划-->{{ui.instant('Study.SavePlan')}}
       </ion-button>
 
       <!-- <ion-list lines="none" class="study-plan-list">
@@ -226,17 +249,21 @@
             </p>
             <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
               <span [style.fontSize]="data.zoom(16)" *ngIf="plan.current">
-                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+                <!--已完成-->
+                {{ui.instant('Study.Completed')}}
+                {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
               </span>
               <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
                 style="float:right;" *ngIf="plan.current">
-                当前在学
+                <!--当前在学-->
+                {{ui.instant('Study.CurrentlyStudying')}}
               </span>
               <span [style.fontSize]="data.zoom(18)" class="study-plan-reset-link" 
               (click)="deleteStudyPlan(plan, $event)" style="float:right;margin-right:10px;"
               *ngIf="!plan.current||(plan.current&&orderedStudyPlans.length==1)">
                 <ion-icon name="trash-outline" class="study-plan-reset-icon"></ion-icon>
-                删除
+                <!--删除-->
+                {{ui.instant('Study.Delete')}}
               </span>
             </p>
             
@@ -252,8 +279,14 @@
                 [max]="plan.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>已完成 {{ plan.done }} / {{ plan.total }}</span>
-                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
+                <span>
+                  <!--已完成-->
+                  {{ui.instant('Study.Completed')}}
+                  {{ plan.done }} / {{ plan.total }}</span>
+                <span>
+                  <!--剩余-->
+                  {{ui.instant('Study.RestDays')}}
+                  {{ data.currentStudyPlan?.days }} {{ui.instant('Study.Days')}}</span>
                 </div>
             </div>
           </ion-label>
@@ -271,15 +304,18 @@
         (click)="addStudyPlan()"
         class="study-plan-submit-button"
         [style.fontSize]="data.zoom(17)">
-        添加诗单
+        <!--添加诗单-->
+        {{ui.instant('Study.AddCustomList')}}
       </ion-button>
     </div>
 
 
     <div class="study-plan-panel" *ngIf="selectedTab === 'completed'">
 
+      <!--(click)="selectStudyPlan(plan)"-->
       <ion-list class="study-plan-summary-list" *ngFor="let plan of orderedStudyPlans">
-        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" (click)="selectStudyPlan(plan)"
+        <ion-item lines="none" class="study-plan-summary-item" button="true" detail="false" 
+        
           *ngIf="plan.done>0 && plan.done === plan.total">
             <ion-thumbnail slot="start"
                 style="width:60px;height:80px;display: flex;justify-content: center;align-items: center;">
@@ -299,11 +335,14 @@
             </p>
             <p [style.fontSize]="data.zoom(14)" style="margin-top:0;margin-bottom:6px;color:gray;">
               <span [style.fontSize]="data.zoom(16)" *ngIf="plan.current">
-                已完成 {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
+                <!--已完成-->
+                {{ui.instant('Study.Completed')}}
+                {{ (((data.currentStudyPlan?.done ?? 0) / (data.currentStudyPlan?.total || 1)) * 100) | number:'1.0-0' }}%
               </span>
               <span [style.fontSize]="data.zoom(18)" class="study-plan-current" 
                 style="float:right;" *ngIf="plan.current">
-                当前在学
+                <!--当前在学-->
+                {{ui.instant('Study.CurrentlyStudying')}}
               </span>
             </p>
             
@@ -319,8 +358,15 @@
                 [max]="plan.total">
                 </ion-range>
                 <div class="study-progress-meta" [style.fontSize]="data.zoom(14)">
-                <span>已完成 {{ plan.done }} / {{ plan.total }}</span>
-                <span>剩余{{ data.currentStudyPlan?.days }}天</span>
+                  <span>
+                    <!--已完成-->
+                    {{ui.instant('Study.Completed')}}
+                    {{ plan.done }} / {{ plan.total }}</span>
+                  <span>
+                    <!--剩余-->
+                    <!-- {{ui.instant('Study.RestDays')}}
+                    {{ data.currentStudyPlan?.days }} {{ui.instant('Study.Days')}} -->
+                  </span>
                 </div>
             </div>
           </ion-label>

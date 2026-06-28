@@ -70,30 +70,37 @@ export class Tab3Page {
 
   get studyActionLabel(): string {
     if (!this.hasCurrentStudyPlan) {
-      return '去设置';
+      //return '去设置';
+      return this.ui.instant('Study.GoToSettings');
     }
 
     if (this.todayStudyProgress.total === 0) {
-      return '已完成';
+      //return '已完成';
+      return this.ui.instant('Study.Completed'); 
     }
 
-    return this.todayStudyProgress.completed > 0 ? '学习' : '学习'; //继续学习、学习
+    //return this.todayStudyProgress.completed > 0 ? '学习' : '学习'; //继续学习、学习
+    return this.todayStudyProgress.completed > 0 ? this.ui.instant('Study.Study') : this.ui.instant('Study.Study'); 
   }
 
   get reviewActionLabel(): string {
     if (!this.hasCurrentStudyPlan) {
-      return '去设置';
+      //return '去设置';
+      return this.ui.instant('Study.GoToSettings');
     }
 
     if (this.todayReviewProgress.total === 0) {
-      return '暂无复习';
+      //return '暂无复习';
+      return this.ui.instant('Study.NoPendingReview');
     }
 
     if (this.todayReviewProgress.completed >= this.todayReviewProgress.total) {
-      return '复习'; //已复习
+      //return '复习'; 
+      return this.ui.instant('Study.Reviewed');
     }
 
-    return '复习';
+    //return '复习';
+    return this.ui.instant('Study.Review');
   }
 
   get reversedPlayHistory(): any[] {
