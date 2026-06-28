@@ -16,6 +16,7 @@ export class TileComponent implements AfterViewInit, OnDestroy {
   @Input() source?: any;
 
   private observer?: IntersectionObserver;
+  private fallbackImageBySlideKey = new Map<string, string>();
 
   constructor(
     public ui: UiService,
@@ -48,6 +49,16 @@ export class TileComponent implements AfterViewInit, OnDestroy {
         type:'tag'
       }
     });
+  }
+
+  getDefaultImage(s: any, i: number): string {
+    const key = `${i}-${s?.src || s?.image || s?.text || s?.sub || ''}`;
+
+    if (!this.fallbackImageBySlideKey.has(key)) {
+      this.fallbackImageBySlideKey.set(key, this.data.getRandomTabNoBgImage());
+    }
+
+    return this.fallbackImageBySlideKey.get(key) || 'assets/img/tab1-nobg.png';
   }
 
 }
