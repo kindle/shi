@@ -92,7 +92,7 @@
 
     "Message":{
         "LibAdded":"Added to Library",
-        "PoemlistAdded":"Added to Poemlist"
+        "PoemlistAdded":"Added to"
     },
 
     "Lib":{
@@ -158,7 +158,8 @@
         "annotation":"Annotation",
         "followpoet":"Follow Poet",
         "failtopreview":"Preview generation failed",
-        "NoInternet":"No internet connection"
+        "NoInternet":"No internet connection",
+        "HaveALook":"Have a look"
     },
 
     "Search":{
@@ -257,5 +258,25 @@
         "Code":"Monospace",
         "Handwriting":"Handwriting",
         "Art":"Artistic"
+    },
+
+    "Study":{
+        "Slogan":"When your heart is filled with poetry, elegance comes naturally. Keep it up every day!",
+        "NoCurrentStudyPlan":"No current study plan yet",
+        "PleaseSelectStudyPlan":"Please select a poem list in the study plan first.",
+        "Zhan":"Slash",
+        "PreparingReview":"Preparing review content...",
+        "PreparingToday":"Preparing today's study content...",
+        "PendingReview":"Pending Review",
+        "PendingStudy":"Pending Study",
+        "ReviewCompleted":"Review completed",
+        "StudyCompleted":"There are currently no poems to review",
+        "TodayStudyCompleted":"Today's study plan is completed",
+        "NoPendingStudy":"There are currently no poems to study",
+        "NextQuestion":"Next Question",
+        "Complete":"Complete",
+        "AddCustomList":"Add Poem List",
+        "AllCustomList":"All Poem Lists",
+        "RecentCustomList":"Recent Poem Lists"
     }
 }

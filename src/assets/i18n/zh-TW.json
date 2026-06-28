@@ -93,7 +93,7 @@
 
     "Message":{
         "LibAdded":"已添加到詩詞庫",
-        "PoemlistAdded":"已添加到詩單"
+        "PoemlistAdded":"已添加到"
     },
 
     "Lib":{
@@ -159,7 +159,8 @@
         "annotation":"註釋",
         "followpoet":"關注詩人",
         "failtopreview":"預覽生成失敗",
-        "NoInternet":"網路不可用"
+        "NoInternet":"網路不可用",
+        "HaveALook":"去看看"
     },
 
     "Search":{
@@ -258,5 +259,25 @@
         "Code":"程式碼字體",
         "Handwriting":"手寫體",
         "Art":"藝術體"
+    },
+
+    "Study":{
+        "Slogan":"腹有詩書氣自華，要每天堅持唷！",
+        "NoCurrentStudyPlan":"還沒有目前學習計畫",
+        "PleaseSelectStudyPlan":"請先在學習計畫裡選擇一個詩單。",
+        "Zhan":"斬",
+        "PreparingReview":"正在準備複習內容...",
+        "PreparingToday":"正在準備今日學習內容...",
+        "PendingReview":"待複習",
+        "PendingStudy":"待學習",
+        "ReviewCompleted":"複習已完成",
+        "StudyCompleted":"目前沒有需要複習的詩詞",
+        "TodayStudyCompleted":"今日學習計畫完成",
+        "NoPendingStudy":"目前沒有需要學習的詩詞",
+        "NextQuestion":"下一題",
+        "Complete":"完成",
+        "AddCustomList":"新增詩單",
+        "AllCustomList":"所有詩單列表",
+        "RecentCustomList":"最近詩單列表"
     }
 }

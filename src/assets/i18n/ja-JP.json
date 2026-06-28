@@ -92,7 +92,7 @@
 
     "Message": {
         "LibAdded": "詩庫に追加されました",
-        "PoemlistAdded": "詩リストに追加されました"
+        "PoemlistAdded": "に追加"
     },
 
     "Lib": {
@@ -158,7 +158,8 @@
         "annotation": "注釈",
         "followpoet": "詩人をフォロー",
         "failtopreview": "プレビューの生成に失敗しました",
-        "NoInternet": "インターネットに接続できません"
+        "NoInternet": "インターネットに接続できません",
+        "HaveALook": "見てみる"
     },
 
     "Search": {
@@ -257,5 +258,25 @@
         "Code":"コード体",
         "Handwriting":"手書き体",
         "Art":"アート体"
+    },
+
+    "Study":{
+        "Slogan":"詩書を心にたたえれば、気品はおのずと薫ります。毎日続けましょう！",
+        "NoCurrentStudyPlan":"現在の学習プランはまだありません",
+        "PleaseSelectStudyPlan":"先に学習プランで詩リストを選択してください。",
+        "Zhan":"斬",
+        "PreparingReview":"復習内容を準備しています...",
+        "PreparingToday":"本日の学習内容を準備しています...",
+        "PendingReview":"復習待ち",
+        "PendingStudy":"学習待ち",
+        "ReviewCompleted":"復習完了",
+        "StudyCompleted":"現在、復習が必要な詩はありません",
+        "TodayStudyCompleted":"本日の学習プランが完了しました",
+        "NoPendingStudy":"現在、学習が必要な詩はありません",
+        "NextQuestion":"次の問題",
+        "Complete":"完了",
+        "AddCustomList":"詩リストを追加",
+        "AllCustomList":"すべての詩リスト",
+        "RecentCustomList":"最近の詩リスト"
     }
 }

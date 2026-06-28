@@ -92,7 +92,7 @@
 
     "Message": {
         "LibAdded": "เพิ่มในห้องสมุดแล้ว",
-        "PoemlistAdded": "เพิ่มในรายการกวีแล้ว"
+        "PoemlistAdded": "เพิ่มใน"
     },
 
     "Lib": {
@@ -158,7 +158,8 @@
         "annotation": "คำอธิบายประกอบ",
         "followpoet": "ติดตามกวี",
         "failtopreview": "สร้างตัวอย่างล้มเหลว",
-        "NoInternet": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต"
+        "NoInternet": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต",
+        "HaveALook": "ไปดูกัน"
     },
 
     "Search": {
@@ -257,5 +258,25 @@
         "Code":"แบบอักษรโค้ด",
         "Handwriting":"ลายมือ",
         "Art":"ศิลป์"
+    },
+
+    "Study":{
+        "Slogan":"เมื่อใจเต็มไปด้วยบทกวีและหนังสือ ความสง่างามจะฉายออกมาเอง จงทำต่อเนื่องทุกวันนะ!",
+        "NoCurrentStudyPlan":"ยังไม่มีแผนการเรียนปัจจุบัน",
+        "PleaseSelectStudyPlan":"โปรดเลือกชุดบทกวีในแผนการเรียนก่อน",
+        "Zhan":"ฟัน",
+        "PreparingReview":"กำลังเตรียมเนื้อหาทบทวน...",
+        "PreparingToday":"กำลังเตรียมเนื้อหาการเรียนวันนี้...",
+        "PendingReview":"รอทบทวน",
+        "PendingStudy":"รอเรียน",
+        "ReviewCompleted":"ทบทวนเสร็จแล้ว",
+        "StudyCompleted":"ขณะนี้ไม่มีบทกวีที่ต้องทบทวน",
+        "TodayStudyCompleted":"แผนการเรียนวันนี้เสร็จสมบูรณ์",
+        "NoPendingStudy":"ขณะนี้ไม่มีบทกวีที่ต้องเรียน",
+        "NextQuestion":"ข้อถัดไป",
+        "Complete":"เสร็จสิ้น",
+        "AddCustomList":"เพิ่มชุดบทกวี",
+        "AllCustomList":"รายการชุดบทกวีทั้งหมด",
+        "RecentCustomList":"รายการชุดบทกวีล่าสุด"
     }
 }

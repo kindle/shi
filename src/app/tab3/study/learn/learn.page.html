@@ -1,9 +1,10 @@
-<ion-header [translucent]="true" *ngIf="!sessionCompleted">
+<ion-header [translucent]="true">
   <ion-toolbar style="padding-left:10px;padding-right:10px;">
     <ion-buttons slot="start">
       <ion-back-button style="width:50px;height:50px;" defaultHref="" (click)="ui.goback()" [text]="''"></ion-back-button>
     </ion-buttons>
     <ion-title class="learn-toolbar-title" slot="start" 
+    *ngIf="!sessionCompleted"
     [style.fontSize]="data.zoom(14)"
     style="color:gray;"
     >{{ toolbarTitle }}</ion-title>
@@ -71,7 +72,9 @@
           {{ currentPoem.dy || '佚名' }} · {{ currentPoem.author || '佚名' }}
         </div>
         <div class="poem-text">
-          <div *ngFor="let line of detailParagraphs">{{ line }}</div>
+          <ng-container *ngFor="let line of detailParagraphs">
+            <div *ngFor="let item of splitDetailLine(line)">{{ item }}</div>
+          </ng-container>
         </div>
       </div>
 
@@ -115,7 +118,9 @@
     <div class="complete-card" *ngIf="sessionCompleted">
       <ion-icon name="trophy-outline"></ion-icon>
       <div class="complete-title">{{ completionTitle }}</div>
-      <div class="complete-text">腹有诗书气自华，要每天坚持呦！</div>
+      <div class="complete-text">
+        {{ui.instant('Study.Slogan')}}<!--腹有诗书气自华，要每天坚持呦！-->
+      </div>
       <!-- <ion-button expand="block" (click)="close()">关闭</ion-button> -->
       <ion-button fill="clear" class="plan-review-button" [style.fontSize]="data.zoom(18)"
         (click)="close()">
@@ -161,12 +166,19 @@
   <ng-template #stateBlock>
     <div class="empty-card" *ngIf="loading">
       <ion-spinner name="crescent"></ion-spinner>
-      <div>{{ isReviewMode ? '正在准备复习内容...' : '正在准备今日学习内容...' }}</div>
+      <div>
+        {{ isReviewMode ? ui.instant('Study.PreparingReview') : ui.instant('Study.PreparingToday') }}
+        <!--{{ isReviewMode ? '正在准备复习内容...' : '正在准备今日学习内容...' }}-->
+      </div>
     </div>
 
     <div class="empty-card" *ngIf="!loading && !hasPlan">
-      <div class="complete-title">还没有当前学习计划</div>
-      <div class="complete-text">请先在学习计划里选择一个诗单。</div>
+      <div class="complete-title">
+        {{ui.instant('Study.NoCurrentStudyPlan')}}<!--还没有当前学习计划-->
+      </div>
+      <div class="complete-text">
+        {{ui.instant('Study.PleaseSelectStudyPlan')}}<!--请先在学习计划里选择一个诗单。-->
+      </div>
       <ion-button expand="block" (click)="goToPlan()">
         {{ ui.instant('Title.Settings') }}<!--去设置-->
       </ion-button>
@@ -175,8 +187,9 @@
 
   <div class="action-bar-shell" *ngIf="shouldShowBottomActionBar">
     <div class="action-bar" [class.action-bar-question]="!canGoNext">
-      <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()">
-        斩
+      <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()"
+      style="border:1px solid #e8e8e8;border-radius: 10px;background:#e8e8e8;">
+        {{ui.instant('Study.Zhan')}}<!--斩-->
       </ion-button>
       <ion-button class="slash-button" color="transparent" *ngIf="!canGoNext" 
       [class.icon-button-active]="showHintMeta" [disabled]="hintUsed" (click)="revealHintMeta()">

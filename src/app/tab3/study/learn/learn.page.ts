@@ -78,7 +78,8 @@ export class LearnPage {
   }
 
   get toolbarTitle(): string {
-    return this.isReviewMode ? `待复习 ${this.remainingCount} 句` : `需学习 ${this.remainingCount} 句`;
+    return this.isReviewMode ? `${this.ui.instant('Study.PendingReview')} ${this.remainingCount}` : `${this.ui.instant('Study.PendingStudy')} ${this.remainingCount}`;
+    //return this.isReviewMode ? `待复习 ${this.remainingCount}` : `需学习 ${this.remainingCount}`;
   }
 
   get hasPlan(): boolean {
@@ -120,32 +121,39 @@ export class LearnPage {
 
   get completionTitle(): string {
     if (this.isReviewMode) {
-      return this.todayPoems.length > 0 ? '复习已完成' : '当前没有需要复习的诗词';
+      return this.todayPoems.length > 0 ? this.ui.instant('Study.ReviewCompleted') : this.ui.instant('Study.StudyCompleted');
+      //return this.todayPoems.length > 0 ? '复习已完成' : '当前没有需要复习的诗词';
     }
 
-    return this.todayPoems.length > 0 ? '今日学习计划完成' : '当前没有需要学习的诗词';
+    //return this.todayPoems.length > 0 ? '今日学习计划完成' : '当前没有需要学习的诗词';
+    return this.todayPoems.length > 0 ? this.ui.instant('Study.TodayStudyCompleted') : this.ui.instant('Study.NoPendingStudy');
   }
 
   get nextActionLabel(): string {
     if (!this.currentQuestion) {
-      return '下一题';
+      //return '下一题';
+      return this.ui.instant('Game.NextQuestion');
     }
 
     if (this.isReviewMode) {
-      return this.currentQueueIndex + 1 < this.roundQueue.length ? '下一题' : '完成';
-    }
+      //return this.currentQueueIndex + 1 < this.roundQueue.length ? '下一题' : '完成';
+      return this.currentQueueIndex + 1 < this.roundQueue.length ? this.ui.instant('Game.NextQuestion') : this.ui.instant('Game.Complete');
+    } 
 
     if (this.currentQueueIndex + 1 < this.roundQueue.length) {
-      return '下一题';
+      //return '下一题';
+      return this.ui.instant('Game.NextQuestion');
     }
 
     const wrongQueue = this.todayPoems.filter((poem) => poem?.learned !== true && poem?.wrong === true);
     if (wrongQueue.length > 0) {
-      return '下一题';
+      //return '下一题';
+      return this.ui.instant('Game.NextQuestion');
     }
-
+ 
     const unresolvedQueue = this.todayPoems.filter((poem) => poem?.learned !== true);
-    return unresolvedQueue.length > 0 ? '下一题' : '完成';
+    //return unresolvedQueue.length > 0 ? '下一题' : '完成';
+    return unresolvedQueue.length > 0 ? this.ui.instant('Game.NextQuestion') : this.ui.instant('Game.Complete');
   }
 
   async selectOption(option: LearnOption) {
@@ -305,6 +313,24 @@ export class LearnPage {
     return [];
   }
 
+  splitDetailLine(line: any): string[] {
+    const text = `${line || ''}`.trim();
+    if (!text) {
+      return [];
+    }
+
+    if (!text.includes('，')) {
+      return [text];
+    }
+
+    const parts = text
+      .split('，')
+      .map((item) => item.trim())
+      .filter((item) => item !== '');
+
+    return parts.map((item, index) => (index < parts.length - 1 ? `${item}，` : item));
+  }
+
   private async loadTodaySession() {
     this.loading = true;
     this.sessionCompleted = false;
@@ -453,11 +479,12 @@ export class LearnPage {
       : { learned: false, wrong: true });
 
     if (resolvedAsCorrect) {
+      await this.refreshTodayPoems();
       this.answerPendingReveal = true;
       this.clearAnswerRevealTimer();
       this.answerRevealTimer = setTimeout(() => {
         this.answerPendingReveal = false;
-        this.answered = true;
+        void this.gotoNextQuestion();
       }, 520);
       return;
     }

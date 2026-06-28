@@ -92,7 +92,7 @@
 
     "Message": {
         "LibAdded": "تمت الإضافة إلى المكتبة",
-        "PoemlistAdded": "تمت الإضافة إلى قائمة القصائد"
+        "PoemlistAdded": "تمت الإضافة إلى"
     },
 
     "Lib": {
@@ -158,7 +158,8 @@
         "annotation": "حاشية",
         "followpoet": "متابعة الشاعر",
         "failtopreview": "فشل إنشاء المعاينة",
-        "NoInternet": "لا يوجد اتصال بالإنترنت"
+        "NoInternet": "لا يوجد اتصال بالإنترنت",
+        "HaveALook": "ألقِ نظرة"
     },
 
     "Search": {
@@ -257,5 +258,25 @@
         "Code":"خط برمجي",
         "Handwriting":"خط يدوي",
         "Art":"فني"
+    },
+
+    "Study":{
+        "Slogan":"إذا امتلأ القلب بالشعر والكتب تألّق المرء بطبعه. واصل المواظبة كل يوم!",
+        "NoCurrentStudyPlan":"لا توجد خطة دراسة حالية بعد",
+        "PleaseSelectStudyPlan":"يرجى اختيار قائمة قصائد في خطة الدراسة أولاً.",
+        "Zhan":"اقطع",
+        "PreparingReview":"جارٍ إعداد محتوى المراجعة...",
+        "PreparingToday":"جارٍ إعداد محتوى دراسة اليوم...",
+        "PendingReview":"مراجعة معلّقة",
+        "PendingStudy":"دراسة معلّقة",
+        "ReviewCompleted":"اكتملت المراجعة",
+        "StudyCompleted":"لا توجد حالياً قصائد تحتاج إلى مراجعة",
+        "TodayStudyCompleted":"اكتملت خطة دراسة اليوم",
+        "NoPendingStudy":"لا توجد حالياً قصائد تحتاج إلى دراسة",
+        "NextQuestion":"السؤال التالي",
+        "Complete":"إكمال",
+        "AddCustomList":"إضافة قائمة قصائد",
+        "AllCustomList":"جميع قوائم القصائد",
+        "RecentCustomList":"قوائم القصائد الأخيرة"
     }
 }

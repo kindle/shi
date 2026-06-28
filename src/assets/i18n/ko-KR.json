@@ -92,7 +92,7 @@
 
     "Message": {
         "LibAdded": "시가 서재에 추가되었습니다",
-        "PoemlistAdded": "시 목록에 추가되었습니다"
+        "PoemlistAdded": "추가됨"
     },
 
     "Lib": {
@@ -158,7 +158,8 @@
         "annotation": "주석",
         "followpoet": "시인 팔로우",
         "failtopreview": "미리보기 생성에 실패했습니다",
-        "NoInternet": "인터넷에 연결되어 있지 않습니다"
+        "NoInternet": "인터넷에 연결되어 있지 않습니다",
+        "HaveALook": "살펴보기"
     },
 
     "Search": {
@@ -257,5 +258,25 @@
         "Code":"코드체",
         "Handwriting":"손글씨체",
         "Art":"예술체"
+    },
+
+    "Study":{
+        "Slogan":"가슴에 시와 책을 품으면 품격은 자연스레 빛납니다. 매일 꾸준히 해요!",
+        "NoCurrentStudyPlan":"현재 학습 계획이 아직 없습니다",
+        "PleaseSelectStudyPlan":"먼저 학습 계획에서 시 목록을 선택해 주세요.",
+        "Zhan":"베기",
+        "PreparingReview":"복습 내용을 준비 중입니다...",
+        "PreparingToday":"오늘의 학습 내용을 준비 중입니다...",
+        "PendingReview":"복습 대기",
+        "PendingStudy":"학습 대기",
+        "ReviewCompleted":"복습 완료",
+        "StudyCompleted":"현재 복습할 시가 없습니다",
+        "TodayStudyCompleted":"오늘의 학습 계획을 완료했습니다",
+        "NoPendingStudy":"현재 학습할 시가 없습니다",
+        "NextQuestion":"다음 문제",
+        "Complete":"완료",
+        "AddCustomList":"시 목록 추가",
+        "AllCustomList":"모든 시 목록",
+        "RecentCustomList":"최근 시 목록"
     }
 }

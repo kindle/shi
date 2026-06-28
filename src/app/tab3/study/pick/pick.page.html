@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>添加诗单</ion-title>
+    <ion-title>
+      {{ui.instant('Study.AddCustomList')}}<!--添加诗单-->
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cancel()" [strong]="true">{{ ui.instant('Action.Cancel') }}</ion-button>
     </ion-buttons>
@@ -21,7 +23,10 @@
 
   <ion-list *ngIf="lastUpdatedCustomList.length > 0 && (!searchText || searchText.length === 0)">
     <ion-list-header>
-      <ion-label style="padding-left:5px;">最近诗单列表</ion-label>
+      <ion-label style="padding-left:5px;">
+        <!--最近诗单列表-->
+        {{ ui.instant('Study.RecentCustomList') }}
+      </ion-label>
     </ion-list-header>
 
     <ion-item
@@ -53,7 +58,10 @@
       <ion-label *ngIf="like.data">
         <h2>
           {{ like.data['name'] }}
-          <ion-text color="medium" *ngIf="isAdded(like)"> 已添加</ion-text>
+          <ion-text color="medium" *ngIf="isAdded(like)">
+            <!--已添加-->
+            {{ ui.instant('Action.Added') }}
+          </ion-text>
         </h2>
         <p style="margin-top:5px;">{{ like.data['desc'] }}</p>
       </ion-label>
@@ -62,7 +70,10 @@
 
   <ion-list>
     <ion-list-header>
-      <ion-label style="padding-left:5px;">所有诗单列表</ion-label>
+      <ion-label style="padding-left:5px;">
+        <!--所有诗单列表-->
+        {{ ui.instant('Study.AllCustomList') }}
+      </ion-label>
     </ion-list-header>
 
     <ion-item
@@ -94,7 +105,10 @@
       <ion-label *ngIf="like.data">
         <h2>
           {{ like.data['name'] }}
-          <ion-text color="medium" *ngIf="isAdded(like)"> 已添加</ion-text>
+          <ion-text color="medium" *ngIf="isAdded(like)">
+            <!--已添加-->
+            {{ ui.instant('Action.Added') }}
+          </ion-text>
         </h2>
         <p style="margin-top:5px;">{{ like.data['desc'] }}</p>
       </ion-label>

@@ -92,7 +92,7 @@
 
     "Message":{
         "LibAdded":"Ajouté à la bibliothèque",
-        "PoemlistAdded":"Ajouté à la liste de poèmes"
+        "PoemlistAdded":"Ajouté à"
     },
 
     "Lib":{
@@ -158,7 +158,8 @@
         "annotation": "Annotation",
         "followpoet": "Suivre le poète",
         "failtopreview": "Échec de la génération de l'aperçu",
-        "NoInternet": "Pas de connexion Internet"
+        "NoInternet": "Pas de connexion Internet",
+        "HaveALook": "Jetez un œil"
     },
 
     "Search":{
@@ -257,5 +258,25 @@
         "Code":"Code",
         "Handwriting":"Manuscrite",
         "Art":"Artistique"
+    },
+
+    "Study":{
+        "Slogan":"Quand on a des poèmes et des livres en soi, l'élégance vient naturellement. Persévérez chaque jour !",
+        "NoCurrentStudyPlan":"Aucun plan d'étude en cours",
+        "PleaseSelectStudyPlan":"Veuillez d'abord sélectionner une liste de poèmes dans le plan d'étude.",
+        "Zhan":"Trancher",
+        "PreparingReview":"Préparation du contenu de révision...",
+        "PreparingToday":"Préparation du contenu d'étude d'aujourd'hui...",
+        "PendingReview":"Révision en attente",
+        "PendingStudy":"Étude en attente",
+        "ReviewCompleted":"Révision terminée",
+        "StudyCompleted":"Il n'y a actuellement aucun poème à réviser",
+        "TodayStudyCompleted":"Le plan d'étude d'aujourd'hui est terminé",
+        "NoPendingStudy":"Il n'y a actuellement aucun poème à étudier",
+        "NextQuestion":"Question suivante",
+        "Complete":"Terminer",
+        "AddCustomList":"Ajouter une liste de poèmes",
+        "AllCustomList":"Toutes les listes de poèmes",
+        "RecentCustomList":"Listes de poèmes récentes"
     }
 }

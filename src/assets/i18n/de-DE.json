@@ -92,7 +92,7 @@
 
     "Message":{
         "LibAdded":"Zur Bibliothek hinzugefügt",
-        "PoemlistAdded":"Zur Gedichtsliste hinzugefügt"
+        "PoemlistAdded":"Hinzugefügt zu"
     },
 
     "Lib":{
@@ -158,7 +158,8 @@
         "annotation": "Anmerkung",
         "followpoet": "Dichter folgen",
         "failtopreview": "Vorschau konnte nicht erstellt werden",
-        "NoInternet": "Keine Internetverbindung"
+        "NoInternet": "Keine Internetverbindung",
+        "HaveALook": "Schau mal rein"
     },
 
     "Search":{
@@ -257,5 +258,25 @@
         "Code":"Code-Schrift",
         "Handwriting":"Handschrift",
         "Art":"Künstlerisch"
+    },
+
+    "Study":{
+        "Slogan":"Wer Poesie und Bücher im Herzen trägt, strahlt von selbst. Bleib jeden Tag dran!",
+        "NoCurrentStudyPlan":"Noch kein aktueller Lernplan",
+        "PleaseSelectStudyPlan":"Bitte wähle zuerst eine Gedichtliste im Lernplan aus.",
+        "Zhan":"Schlag",
+        "PreparingReview":"Wiederholungsinhalte werden vorbereitet...",
+        "PreparingToday":"Heutige Lerninhalte werden vorbereitet...",
+        "PendingReview":"Zur Wiederholung",
+        "PendingStudy":"Zu lernen",
+        "ReviewCompleted":"Wiederholung abgeschlossen",
+        "StudyCompleted":"Derzeit gibt es keine Gedichte zur Wiederholung",
+        "TodayStudyCompleted":"Der Lernplan für heute ist abgeschlossen",
+        "NoPendingStudy":"Derzeit gibt es keine Gedichte zum Lernen",
+        "NextQuestion":"Nächste Frage",
+        "Complete":"Fertig",
+        "AddCustomList":"Gedichtliste hinzufügen",
+        "AllCustomList":"Alle Gedichtlisten",
+        "RecentCustomList":"Letzte Gedichtlisten"
     }
 }

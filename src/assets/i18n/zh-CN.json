@@ -93,7 +93,7 @@
 
     "Message":{
         "LibAdded":"已添加到资料库",
-        "PoemlistAdded":"已添加到诗单"
+        "PoemlistAdded":"已添加到"
     },
 
     "Lib":{
@@ -159,7 +159,8 @@
         "annotation":"注释",
         "followpoet":"关注诗人",
         "failtopreview":"预览生成失败",
-        "NoInternet":"网络不可用"
+        "NoInternet":"网络不可用",
+        "HaveALook":"去看看"
     },
 
     "Search":{
@@ -258,5 +259,25 @@
         "Code":"代码体",
         "Handwriting":"手写体",
         "Art":"艺术体"
+    },
+
+    "Study":{
+        "Slogan":"腹有诗书气自华，要每天坚持呦！",
+        "NoCurrentStudyPlan":"还没有当前学习计划",
+        "PleaseSelectStudyPlan":"请先在学习计划里选择一个诗单。",
+        "Zhan":"斩",
+        "PreparingReview":"正在准备复习内容...",
+        "PreparingToday":"正在准备今日学习内容...",
+        "PendingReview":"待复习",
+        "PendingStudy":"待学习",
+        "ReviewCompleted":"复习已完成",
+        "StudyCompleted":"当前没有需要复习的诗词",
+        "TodayStudyCompleted":"今日学习计划完成",
+        "NoPendingStudy":"当前没有需要学习的诗词",
+        "NextQuestion":"下一题",
+        "Complete":"完成",
+        "AddCustomList":"添加诗单",
+        "AllCustomList":"所有诗单列表",
+        "RecentCustomList":"最近诗单列表"
     }
 }

@@ -92,7 +92,7 @@
 
     "Message":{
         "LibAdded":"Añadido a la Biblioteca",
-        "PoemlistAdded":"Añadido a la Lista de Poemas"
+        "PoemlistAdded":"Añadido a"
     },
 
     "Lib":{
@@ -158,7 +158,8 @@
         "annotation": "Anotación",
         "followpoet": "Seguir poeta",
         "failtopreview": "Error al generar la vista previa",
-        "NoInternet": "Sin conexión a Internet"
+        "NoInternet": "Sin conexión a Internet",
+        "HaveALook": "Echa un vistazo"
     },
 
     "Search":{
@@ -257,5 +258,25 @@
         "Code":"Código",
         "Handwriting":"Manuscrita",
         "Art":"Artística"
+    },
+
+    "Study":{
+        "Slogan":"Cuando llevas poesía y libros dentro, la elegancia surge de forma natural. ¡Sé constante cada día!",
+        "NoCurrentStudyPlan":"Aún no hay un plan de estudio actual",
+        "PleaseSelectStudyPlan":"Primero selecciona una lista de poemas en el plan de estudio.",
+        "Zhan":"Cortar",
+        "PreparingReview":"Preparando contenido de repaso...",
+        "PreparingToday":"Preparando contenido de estudio de hoy...",
+        "PendingReview":"Repaso pendiente",
+        "PendingStudy":"Estudio pendiente",
+        "ReviewCompleted":"Repaso completado",
+        "StudyCompleted":"Actualmente no hay poemas para repasar",
+        "TodayStudyCompleted":"El plan de estudio de hoy está completado",
+        "NoPendingStudy":"Actualmente no hay poemas para estudiar",
+        "NextQuestion":"Siguiente pregunta",
+        "Complete":"Completar",
+        "AddCustomList":"Agregar lista de poemas",
+        "AllCustomList":"Todas las listas de poemas",
+        "RecentCustomList":"Listas de poemas recientes"
     }
 }
