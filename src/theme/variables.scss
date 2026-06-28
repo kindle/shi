@@ -314,6 +314,16 @@
   //text-align:center;
 }
 
+ion-toast.custom-bottom-toast-like-dy::part(button) {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+ion-toast.custom-bottom-toast-like-dy-article::part(button) {
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .show-only-one-line{
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
