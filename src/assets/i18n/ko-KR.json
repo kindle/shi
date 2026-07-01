@@ -159,7 +159,16 @@
         "followpoet": "시인 팔로우",
         "failtopreview": "미리보기 생성에 실패했습니다",
         "NoInternet": "인터넷에 연결되어 있지 않습니다",
-        "HaveALook": "살펴보기"
+        "HaveALook": "살펴보기",
+        "grade1": "1학년",
+        "grade2": "2학년",
+        "grade3": "3학년",
+        "grade4": "4학년",
+        "grade5": "5학년",
+        "grade6": "6학년",
+        "grade7": "7학년",
+        "grade8": "8학년",
+        "grade9": "9학년"
     },
 
     "Search": {

@@ -159,7 +159,16 @@
         "followpoet": "Seguir poeta",
         "failtopreview": "Falha ao gerar a pré-visualização",
         "NoInternet": "Sem ligação à Internet",
-        "HaveALook": "Dê uma olhada"
+        "HaveALook": "Dê uma olhada",
+        "grade1": "1.º ano",
+        "grade2": "2.º ano",
+        "grade3": "3.º ano",
+        "grade4": "4.º ano",
+        "grade5": "5.º ano",
+        "grade6": "6.º ano",
+        "grade7": "7.º ano",
+        "grade8": "8.º ano",
+        "grade9": "9.º ano"
     },
 
     "Search": {

@@ -159,7 +159,16 @@
         "followpoet": "Seguir poeta",
         "failtopreview": "Error al generar la vista previa",
         "NoInternet": "Sin conexión a Internet",
-        "HaveALook": "Echa un vistazo"
+        "HaveALook": "Echa un vistazo",
+        "grade1": "1.º grado",
+        "grade2": "2.º grado",
+        "grade3": "3.º grado",
+        "grade4": "4.º grado",
+        "grade5": "5.º grado",
+        "grade6": "6.º grado",
+        "grade7": "7.º grado",
+        "grade8": "8.º grado",
+        "grade9": "9.º grado"
     },
 
     "Search":{

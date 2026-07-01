@@ -160,7 +160,16 @@
         "followpoet":"關注詩人",
         "failtopreview":"預覽生成失敗",
         "NoInternet":"網路不可用",
-        "HaveALook":"去看看"
+        "HaveALook":"去看看",
+        "grade1":"一年級",
+        "grade2":"二年級",
+        "grade3":"三年級",
+        "grade4":"四年級",
+        "grade5":"五年級",
+        "grade6":"六年級",
+        "grade7":"七年級",
+        "grade8":"八年級",
+        "grade9":"九年級"
     },
 
     "Search":{

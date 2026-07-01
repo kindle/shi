@@ -159,7 +159,16 @@
         "followpoet": "詩人をフォロー",
         "failtopreview": "プレビューの生成に失敗しました",
         "NoInternet": "インターネットに接続できません",
-        "HaveALook": "見てみる"
+        "HaveALook": "見てみる",
+        "grade1": "1年生",
+        "grade2": "2年生",
+        "grade3": "3年生",
+        "grade4": "4年生",
+        "grade5": "5年生",
+        "grade6": "6年生",
+        "grade7": "7年生",
+        "grade8": "8年生",
+        "grade9": "9年生"
     },
 
     "Search": {

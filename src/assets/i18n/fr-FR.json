@@ -159,7 +159,16 @@
         "followpoet": "Suivre le poète",
         "failtopreview": "Échec de la génération de l'aperçu",
         "NoInternet": "Pas de connexion Internet",
-        "HaveALook": "Jetez un œil"
+        "HaveALook": "Jetez un œil",
+        "grade1": "1re année",
+        "grade2": "2e année",
+        "grade3": "3e année",
+        "grade4": "4e année",
+        "grade5": "5e année",
+        "grade6": "6e année",
+        "grade7": "7e année",
+        "grade8": "8e année",
+        "grade9": "9e année"
     },
 
     "Search":{

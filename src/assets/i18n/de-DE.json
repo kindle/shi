@@ -159,7 +159,16 @@
         "followpoet": "Dichter folgen",
         "failtopreview": "Vorschau konnte nicht erstellt werden",
         "NoInternet": "Keine Internetverbindung",
-        "HaveALook": "Schau mal rein"
+        "HaveALook": "Schau mal rein",
+        "grade1": "Klasse 1",
+        "grade2": "Klasse 2",
+        "grade3": "Klasse 3",
+        "grade4": "Klasse 4",
+        "grade5": "Klasse 5",
+        "grade6": "Klasse 6",
+        "grade7": "Klasse 7",
+        "grade8": "Klasse 8",
+        "grade9": "Klasse 9"
     },
 
     "Search":{

@@ -160,7 +160,16 @@
         "followpoet":"关注诗人",
         "failtopreview":"预览生成失败",
         "NoInternet":"网络不可用",
-        "HaveALook":"去看看"
+        "HaveALook":"去看看",
+        "grade1":"一年级",
+        "grade2":"二年级",
+        "grade3":"三年级",
+        "grade4":"四年级",
+        "grade5":"五年级",
+        "grade6":"六年级",
+        "grade7":"七年级",
+        "grade8":"八年级",
+        "grade9":"九年级"
     },
 
     "Search":{
