@@ -137,7 +137,7 @@ ion-content > *:not(.tab3-page-bg) {
 }
 
 .plan-header-actions {
-    display: flex;
+    display: flexbox;
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 4px;
@@ -198,6 +198,7 @@ ion-content > *:not(.tab3-page-bg) {
 .plan-stat-label {
     padding: 0;
     color: black;
+    padding-left:5px;
 }
 
 .plan-stat-value {

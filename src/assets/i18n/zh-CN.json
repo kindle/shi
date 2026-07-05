@@ -1,12 +1,12 @@
 {
     "Tabs":{
-        "Home":"孟章",
-        "Discovery":"陵光",
+        "Home":"首页",
+        "Discovery":"发现",
         "Browse": "浏览",
         "ListenNow": "现在就听",
-        "Library": "资料库",
-        "Search":"监兵",
-        "Me":"执明"
+        "Library": "收藏",
+        "Search":"搜索",
+        "Me":"我的"
     },
 
     "Tutorial":{

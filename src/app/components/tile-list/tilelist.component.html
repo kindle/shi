@@ -113,7 +113,7 @@
     <div class="card-scroll-item1" *ngIf="s.group=='poem'" 
     (click)="data.playobj(s.data)"
       [ngStyle]="{'background-size':s.display === 'contain' ? 'contain' : 'cover' }"
-      defaultImage="" 
+      defaultImage="assets/img/default.jpg" 
       lazyLoad="https://reddah.blob.core.windows.net/msjjpoet/{{s.data.author}}.jpeg"
       style="
         background-size:cover;padding-top: 100%; 

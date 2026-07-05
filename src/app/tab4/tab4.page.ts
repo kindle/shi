@@ -673,7 +673,8 @@ export class Tab4Page implements OnInit {
     searchTerms.forEach((term:string) => {
       highlightedValue = highlightedValue.replace(
         new RegExp(this.escapeRegExp(term), 'g'),
-        "<b class='highlight' style='background-color:yellow !important'>" + term + "</b>"
+        //"<b class='highlight' style='background-color:yellow !important'>" + term + "</b>"
+        "<b class='highlight' style='background-color:wheat !important'>" + term + "</b>"
       );
     });
 

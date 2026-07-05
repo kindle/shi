@@ -25,6 +25,36 @@ ion-content,
     linear-gradient(180deg, rgb(171, 43, 50) 0%, rgb(154, 31, 38) 58%, rgb(136, 24, 31) 100%);
 }
 
+.back-button-wrap {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: calc(env(safe-area-inset-left, 0px) + 10px);
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 280ms ease, transform 280ms ease;
+  pointer-events: none;
+}
+
+.back-button-wrap.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-activated: rgba(255, 255, 255, 0.32);
+  --background-focused: rgba(255, 255, 255, 0.3);
+  --background-hover: rgba(255, 255, 255, 0.28);
+  --border-radius: 999px;
+  --color: #ffffff;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(4px);
+}
+
 .center-panel {
   position: absolute;
   top: 50%;

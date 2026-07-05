@@ -39,7 +39,10 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
   title = '';
   currentTime = '00:00:00';
   streams: ScreenSaverStream[] = [];
+  showBackButton = false;
   private readonly backgroundMusicSrc = 'assets/music/slidebg4_mzd.mp3';
+  private readonly doubleTapThresholdMs = 320;
+  private readonly backButtonAutoHideMs = 5000;
 
   private readonly fallbackTitle = '数风流人物 还看今朝';
   private readonly fallbackLineConfigs: ScreenSaverLineConfig[] = [
@@ -58,6 +61,8 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
   private timerId: ReturnType<typeof setInterval> | null = null;
   private resizeThrottleId: ReturnType<typeof setTimeout> | null = null;
   private backgroundAudio: HTMLAudioElement | null = null;
+  private backButtonHideTimerId: ReturnType<typeof setTimeout> | null = null;
+  private lastScreenTapAt = 0;
 
   constructor(
     private router: Router,
@@ -113,6 +118,32 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
       clearTimeout(this.resizeThrottleId);
       this.resizeThrottleId = null;
     }
+
+    if (this.backButtonHideTimerId) {
+      clearTimeout(this.backButtonHideTimerId);
+      this.backButtonHideTimerId = null;
+    }
+  }
+
+  onScreenPointerUp(event: PointerEvent) {
+    const target = event.target as HTMLElement | null;
+    if (target?.closest('.back-button-wrap')) {
+      return;
+    }
+
+    const now = Date.now();
+    if (now - this.lastScreenTapAt <= this.doubleTapThresholdMs) {
+      this.lastScreenTapAt = 0;
+      this.revealBackButton();
+      return;
+    }
+
+    this.lastScreenTapAt = now;
+  }
+
+  goBackToPoemList(event?: Event) {
+    event?.stopPropagation();
+    this.router.navigate(['/tabs/tab3/customlist']);
   }
 
   private hydrateNavigationState() {
@@ -422,5 +453,19 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
 
   private randomFloat(min: number, max: number): number {
     return Math.random() * (max - min) + min;
+  }
+
+  private revealBackButton() {
+    this.showBackButton = true;
+
+    if (this.backButtonHideTimerId) {
+      clearTimeout(this.backButtonHideTimerId);
+      this.backButtonHideTimerId = null;
+    }
+
+    this.backButtonHideTimerId = setTimeout(() => {
+      this.showBackButton = false;
+      this.backButtonHideTimerId = null;
+    }, this.backButtonAutoHideMs);
   }
 }

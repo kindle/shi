@@ -1,5 +1,16 @@
 <ion-content [fullscreen]="true" [scrollY]="false" [forceOverscroll]="false" class="screen-saver-content">
-  <div class="screen-saver-page">
+  <div class="screen-saver-page" (pointerup)="onScreenPointerUp($event)">
+    <div class="back-button-wrap" [class.is-visible]="showBackButton">
+      <ion-button
+        class="back-button"
+        fill="clear"
+        size="small"
+        (click)="goBackToPoemList($event)"
+      >
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </div>
+
     <div class="center-panel">
       <div class="timer">{{ currentTime }}</div>
       <div class="title">{{ title }}</div>

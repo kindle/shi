@@ -19,7 +19,9 @@
       <div class="prompt-card">
         <div class="prompt-line">{{ currentQuestion.firstHalf }}</div>
         <div class="prompt-blank">{{ '_  '.repeat(currentQuestion.secondHalf.length) }}</div>
-        <div class="prompt-meta" *ngIf="showHintMeta && currentPoem">
+        <div class="prompt-meta" *ngIf="showHintMeta && currentPoem"
+        (click)="data.playobj(currentPoem, true)"
+        >
           {{ currentPoem.dy || '佚名' }} {{ currentPoem.author || '佚名' }} 
           《{{ currentPoem.title || currentPoem.rhythmic || '无题' }}》
         </div>

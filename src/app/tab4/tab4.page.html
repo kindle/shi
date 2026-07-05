@@ -18,7 +18,7 @@
   
 -->
 
-<ion-content [fullscreen]="true" scrollEvents="true" class="custom-content"
+<ion-content [fullscreen]="!ui.isIos" scrollEvents="true" class="custom-content"
   (ionScroll)="onScroll($event)" force-overscroll="false">
   <div class="tab4-page-bg" aria-hidden="true" slot="fixed"
     *ngIf="ui.isipad"></div>
@@ -199,8 +199,9 @@
           <h2 class="show-only-one-line" 
           [innerHTML]="getHighlight(p)"></h2>
           <p style="margin-top:5px;display: flex;align-items: center;">
+            <ion-icon name="headset" *ngIf="p.audio" color="primary"
+            style="margin-right:3px;min-width: 24px;"></ion-icon>
             <span [innerHTML]="getHighlightMeta(p)"></span>
-            <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
           </p>
         </ion-label>
         <!--

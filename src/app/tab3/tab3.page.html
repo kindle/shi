@@ -138,29 +138,28 @@
       <ion-item lines="none" class="plan-item">
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title" [style.fontSize]="data.zoom(18)" style="margin-left:5px;
-            margin-bottom:10px;">
-              {{ ui.instant('Title.TodayPlan') }}
-              <!--今日计划-->
+            <div class="plan-title" [style.fontSize]="data.zoom(20)" 
+            style="margin-left:5px;margin-bottom:10px;padding-left:5px;">
+              {{ ui.instant('Study.TodayPlan') }}<!--今日计划-->
             </div>
             <!-- <div class="plan-checkin-row" [style.fontSize]="data.zoom(16)">
               <div style="background-color:red;color:white;padding:5px;margin-left:5px;
               border-radius: 5px;display:inline;">去打卡 &gt;</div>
             </div> -->
-              <div class="plan-header-actions">
-                <ion-button color="light" size="medium" class="task-button"
-                  (click)="goToTrackerDetail()"
-                  [style.fontSize]="data.zoom(15)">
-                  <ion-icon slot="start" name="flash" color="primary"></ion-icon>
-                  {{ data.recentTrackerStreakDays }}
-                </ion-button>
-                <ion-button color="light" size="medium" class="task-button"
-                  [style.fontSize]="data.zoom(15)"
-                  (click)="goToStudyPlan()">
-                  <ion-icon slot="start" name="time-outline" color="dark"></ion-icon>
-                  {{ studyPlanProgressLabel }}
-                </ion-button>
-              </div>
+            <div class="plan-header-actions">
+              <ion-button color="light" size="medium" class="task-button"
+                (click)="goToTrackerDetail()"
+                [style.fontSize]="data.zoom(15)">
+                <ion-icon slot="start" name="flash" color="primary"></ion-icon>
+                {{ data.recentTrackerStreakDays }}
+              </ion-button>
+              <ion-button color="light" size="medium" class="task-button"
+                [style.fontSize]="data.zoom(15)"
+                (click)="goToStudyPlan()">
+                <ion-icon slot="start" name="time-outline" color="dark"></ion-icon>
+                {{ studyPlanProgressLabel }}
+              </ion-button>
+            </div>
           </div>
 
           <div class="plan-stats">
@@ -289,9 +288,10 @@
               {{p.sample}}
             </h2>
             <p style="margin-top:5px;display: flex;align-items: center;"
-              class="show-only-one-line" [style.fontSize]="data.zoom(14)">
+              class="show-only-one-line" [style.fontSize]="data.zoom(17)">
+              <ion-icon name="headset" *ngIf="p.audio" color="primary" 
+              style="margin-right:3px;min-width: 24px;"></ion-icon>
               {{p.author}}《{{p.title}}》
-              <ion-icon name="headset" *ngIf="p.audio" color="primary" style="min-width: 16px;"></ion-icon>
             </p>
           </ion-label>
         </ion-item>
