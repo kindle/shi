@@ -173,6 +173,22 @@
         </ion-card-content>
       </ion-card>
 
+      <!--shufa template-->
+      <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
+        *ngIf="item.template=='shufa'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content>
+          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};"
+          [style.fontSize]="data.zoom(18)">
+            {{item.small_title}}</ion-card-subtitle>
+          <ion-card-title class="card-text" style="color:{{item.title_color}}"
+          [style.fontSize]="data.zoom(28)">
+            {{item.big_title}}</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+
 
 
 
@@ -278,7 +294,7 @@
 
 
       <!--group template-->
-      <ion-card class="card card-img" card-shrink
+      <ion-card class="card card-img template-group" card-shrink
       (click)="goToArticle(item)"
       *ngIf="item.template=='group'"
         defaultImage="" 

@@ -1,0 +1,38 @@
+{
+    "template": "shufa",
+    "link":5,
+    "big_title": "书法",
+    "small_title": "书法",
+    "bg_image": "海钓.jpg",
+    "music":"/assets/music/slidebg2_zsjl.mp3",
+    "bg":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg",
+    "slides": [
+        {
+            "id": "090b7792-2942-4f3c-a34d-caccd066c76f",
+            "title":["一片冰心在玉壶"],
+            "author": "王昌龄",
+            "sub": "唐·王昌龄《芙蓉楼送辛渐》",
+            "bg": 1,
+            "tpl": "hf",
+            "tag":"七言绝句"
+        },
+        {
+            "id": "090b7792-2942-4f3c-a34d-caccd066c76f",
+            "title":["寒雨连江夜入吴","平明送客楚山孤","洛阳亲友如相问","一片冰心在玉壶"],
+            "author": "王昌龄",
+            "sub": "唐·王昌龄《芙蓉楼送辛渐》",
+            "bg": 2,
+            "tpl": "sz",
+            "tag":"七言绝句"
+        },
+        {
+            "id": "7c93c162-d424-4d91-b71b-7c9b81713b8c",
+            "title":["折戟沉沙铁未销","自将磨洗认前朝","东风不与周郎便","铜雀春深锁二乔"],
+            "author": "杜牧",
+            "sub": "唐·杜牧《赤壁》",
+            "bg": 3,
+            "tpl": "",
+            "tag":"七言绝句"
+        }
+    ]
+}

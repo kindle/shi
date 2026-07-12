@@ -1,0 +1,51 @@
+<div class="sf-wrap" id="down_shoujuan">
+  <div class="more_content_shoujuan">
+    <div class="more_content_shoujuan_bg" [style.background-image]="selectedBackgroundImage">
+      <div class="sf-top-seal">
+        <div class="sf-top-seal-inner">
+          <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
+        </div>
+      </div>
+
+      <div class="sf-columns-wrap">
+        <div class="more_content_shoujuan_float" *ngFor="let col of columns">
+          <div class="more_content_shoujuan_all">
+            <div class="more_content_shu2_bg">
+              <div class="more_list" *ngFor="let glyph of col">
+                <div class="more_list_img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
+                  <img *ngIf="glyph.imageSrc; else charFallback" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+                  <ng-template #charFallback>
+                    <div class="sf-char-fallback">{{ glyph.char }}</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="more_content_shoujuan_float sf-side-seals" *ngIf="columns.length">
+          <div class="sf-side-seals-inner">
+            <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+            <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <div class="sf-name" *ngIf="name">{{ name }}</div> -->
+
+  <div class="fixed_bottom">
+    <div class="sf-background-buttons">
+      <span
+        *ngFor="let bg of backgroundOptions"
+        [id]="bg.id"
+        [style.background-image]="bg.image ? 'url(' + bg.image + ')' : 'none'"
+        (click)="setBackground(bg.id)"
+        [class.is-selected]="isSelectedBackground(bg.id)"
+      >
+        {{ bg.label }}
+      </span>
+    </div>
+  </div>
+</div>

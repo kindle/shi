@@ -175,6 +175,25 @@ export class Tab1Page {
     });
   }
 
+  goTemplateShufa(id:any){
+
+    if(id.length==0)
+    {
+      return;
+    }
+    
+    if(id%2==0)
+    {
+      //fade animation
+      this.navCtrl.setDirection('forward', true, 'forward', enterAnimation);
+    }
+    this.router.navigate(['shufa'], {
+      queryParams: {
+        id:id
+      }
+    });
+  }
+
   @ViewChild(IonContent, { static: false }) content: IonContent|any;
   private scrollSubscription: Subscription|any;
   private isLoadingMore = false;

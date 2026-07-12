@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/slide-share-preview/slide-share-preview.module').then( m => m.SlideSharePreviewPageModule)
   },
   {
+    path: 'shufa',
+    loadChildren: () => import('./pages/shufa/shufa.module').then( m => m.ShufaPageModule)
+  },
+  {
     path: 'image-viewer',
     loadChildren: () => import('./pages/viewer-image/image-viewer.module').then( m => m.ImageViewerPageModule)
   },

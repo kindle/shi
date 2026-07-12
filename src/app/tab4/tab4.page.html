@@ -1,7 +1,7 @@
-<ion-header [translucent]="ui.isIos" *ngIf="ui.isIos||!data.showFilter">
+<ion-header [translucent]="ui.isIos" *ngIf="ui.isIos||ui.isAndroid||!data.showFilter">
   <ion-toolbar>
     <ion-title [style.fontSize]="data.zoom(17)">
-      {{ ui.instant('Tabs.Search') }}<!--搜索-->
+      {{ui.instant('Tabs.Search')}} <!--搜索-->
     </ion-title>
   </ion-toolbar>
 </ion-header>

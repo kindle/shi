@@ -1861,6 +1861,8 @@ export class DataService {
   setRandomArticles(data:any){
 
     let temp:any = [];
+    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='shufa'&&!d.effect), 1));
+
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='slide'&&!d.effect), 1));
 
     //get 5 fun articles, 4 articles that have no effect, 1 have effect 

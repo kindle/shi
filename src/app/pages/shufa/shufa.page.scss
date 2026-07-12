@@ -1,0 +1,19 @@
+ion-header {
+    box-shadow: none;
+    &::after {
+        background-image: none;
+    }
+    ion-toolbar {
+        --background: #ffffff;
+        --border-width: 0;
+    }
+}
+
+swiper-container {
+    display: block;
+    height: 100%;
+}
+
+swiper-slide {
+    height: 100%;
+}
