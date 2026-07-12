@@ -95,12 +95,26 @@ export class SfComponent implements OnChanges, OnInit {
       .map((item) => `assets/shufa/zi/${item.id}.gif`);
   }
 
-  get normalizedTpl(): 'sz' | 'hf' {
-    return (this.tpl ?? '').toLowerCase() === 'hf' ? 'hf' : 'sz';
+  get normalizedTpl(): 'sz' | 'hf' | 'tf' {
+    const value = (this.tpl ?? '').toLowerCase();
+
+    if (value === 'hf') {
+      return 'hf';
+    }
+
+    if (value === 'tf') {
+      return 'tf';
+    }
+
+    return 'sz';
   }
 
   get isSzTemplate(): boolean {
     return this.normalizedTpl === 'sz';
+  }
+
+  get isHfTemplate(): boolean {
+    return this.normalizedTpl === 'hf';
   }
 
   get hfGlyphs(): SfGlyph[] {
