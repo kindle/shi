@@ -20,6 +20,7 @@ interface SfBackgroundOption {
 }
 
 const CHARS_PER_COLUMN = 5;
+const HF_MIN_SLOTS = 18;
 
 @Component({
   selector: 'app-sf',
@@ -30,6 +31,7 @@ export class SfComponent implements OnChanges, OnInit {
   @Input() content?: string;
   @Input() name?: string;
   @Input() bg?: number | string;
+  @Input() tpl?: string;
 
   columns: SfGlyph[][] = [];
   backgroundOptions: SfBackgroundOption[] = [
@@ -91,6 +93,28 @@ export class SfComponent implements OnChanges, OnInit {
       .map((char) => this.dictByChar.get(char))
       .filter((item): item is SfDictEntry => !!item)
       .map((item) => `assets/shufa/zi/${item.id}.gif`);
+  }
+
+  get normalizedTpl(): 'sz' | 'hf' {
+    return (this.tpl ?? '').toLowerCase() === 'hf' ? 'hf' : 'sz';
+  }
+
+  get isSzTemplate(): boolean {
+    return this.normalizedTpl === 'sz';
+  }
+
+  get hfGlyphs(): SfGlyph[] {
+    return this.columns.reduce((all, col) => all.concat(col), [] as SfGlyph[]);
+  }
+
+  get hfItemWidthPercent(): number {
+    const count = this.hfGlyphs.length;
+
+    if (!count) {
+      return 100;
+    }
+
+    return 99.4 / Math.max(count, HF_MIN_SLOTS);
   }
 
   private buildGlyph(char: string): SfGlyph {

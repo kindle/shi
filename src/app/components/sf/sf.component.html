@@ -1,38 +1,79 @@
 <div class="sf-wrap" id="down_shoujuan">
-  <div class="more_content_shoujuan">
-    <div class="more_content_shoujuan_bg" [style.background-image]="selectedBackgroundImage">
-      <div class="sf-top-seal">
-        <div class="sf-top-seal-inner">
-          <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
+  <ng-container *ngIf="isSzTemplate; else hfTemplate">
+    <div class="more_content_shoujuan">
+      <div class="more_content_shoujuan_bg" [style.background-image]="selectedBackgroundImage">
+        <div class="sf-top-seal">
+          <div class="sf-top-seal-inner">
+            <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
+          </div>
+        </div>
+
+        <div class="sf-columns-wrap">
+          <div class="more_content_shoujuan_float" *ngFor="let col of columns">
+            <div class="more_content_shoujuan_all">
+              <div class="more_content_shu2_bg">
+                <div class="more_list" *ngFor="let glyph of col">
+                  <div class="more_list_img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
+                    <img *ngIf="glyph.imageSrc; else charFallbackSz" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+                    <ng-template #charFallbackSz>
+                      <div class="sf-char-fallback">{{ glyph.char }}</div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="more_content_shoujuan_float sf-side-seals" *ngIf="columns.length">
+            <div class="sf-side-seals-inner">
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" />
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </ng-container>
 
-      <div class="sf-columns-wrap">
-        <div class="more_content_shoujuan_float" *ngFor="let col of columns">
-          <div class="more_content_shoujuan_all">
-            <div class="more_content_shu2_bg">
-              <div class="more_list" *ngFor="let glyph of col">
-                <div class="more_list_img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
-                  <img *ngIf="glyph.imageSrc; else charFallback" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
-                  <ng-template #charFallback>
-                    <div class="sf-char-fallback">{{ glyph.char }}</div>
-                  </ng-template>
-                </div>
+  <ng-template #hfTemplate>
+    <div class="sf-hf-down">
+      <div class="sf-hf-more-content">
+        <div class="sf-hf-overlay" *ngIf="columns.length">
+          <div class="sf-hf-overlay-bg">
+            <div class="sf-hf-overlay-list" [style.width.%]="hfItemWidthPercent">
+              <div class="sf-hf-overlay-list-img">
+                <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+                <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-hf-yin-heng-img" />
               </div>
             </div>
           </div>
         </div>
 
-        <div class="more_content_shoujuan_float sf-side-seals" *ngIf="columns.length">
-          <div class="sf-side-seals-inner">
-            <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
-            <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" />
+        <div class="sf-hf-content-bg" [style.background-image]="selectedBackgroundImage">
+          <div class="sf-hf-top-seal">
+            <div class="sf-hf-top-seal-col">
+              <div class="sf-hf-top-seal-inner">
+                <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
+              </div>
+            </div>
           </div>
+
+          <div class="sf-hf-more-list" *ngFor="let glyph of hfGlyphs" [style.width.%]="hfItemWidthPercent">
+            <div class="sf-hf-more-list-img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
+              <img *ngIf="glyph.imageSrc; else charFallbackHf" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+              <ng-template #charFallbackHf>
+                <div class="sf-char-fallback">{{ glyph.char }}</div>
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="sf-hf-clear"></div>
         </div>
       </div>
     </div>
-  </div>
-<!-- 
+  </ng-template>
+
+  <!-- 
   <div class="sf-name" *ngIf="name">{{ name }}</div> -->
 
   <div class="fixed_bottom">

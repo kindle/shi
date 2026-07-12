@@ -124,6 +124,125 @@
   opacity: 0.92;
 }
 
+.sf-hf-down {
+  width: 100%;
+}
+
+.sf-hf-more-content {
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+
+.sf-hf-overlay {
+  width: 74%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  box-sizing: border-box;
+  padding: 8px 0 0 22px;
+  overflow: hidden;
+}
+
+.sf-hf-overlay-bg {
+  margin: 0;
+  width: 100%;
+}
+
+.sf-hf-overlay-list {
+  float: left;
+  max-width: 58px;
+}
+
+.sf-hf-overlay-list-img {
+  width: 14%;
+  padding: 0;
+}
+
+.sf-hf-overlay-list-img img {
+  width: 100%;
+  display: block;
+  margin-bottom: 6%;
+  margin-left:5px;
+}
+
+.sf-hf-overlay-list-img img:nth-child(odd) {
+  margin-bottom: -4%;
+}
+
+.sf-hf-overlay-list-img img:nth-child(even) {
+  margin-bottom: 5%;
+}
+
+.sf-hf-yin-heng-img {
+  margin-bottom: -13%;
+  margin-left:5px;
+}
+
+.sf-hf-content-bg {
+  width: 70%;
+  margin: auto;
+  background: #fff;
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: top center;
+  padding: 0 2%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.sf-hf-top-seal {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sf-hf-top-seal-col {
+  width: clamp(24px, 4.6%, 54px);
+  float: none;
+  margin-left: auto;
+}
+
+.sf-hf-top-seal-inner {
+  width: 25%;
+  padding: 10% 0 0 0;
+  margin-left: auto;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.sf-hf-top-seal-inner img {
+  width: 100%;
+  display: block;
+}
+
+.sf-hf-more-list {
+  float: right;
+  box-sizing: border-box;
+  max-width: 58px;
+}
+
+.sf-hf-more-list-img {
+  width: 100%;
+}
+
+.sf-hf-more-list-img img {
+  width: 100%;
+  display: block;
+}
+
+.sf-hf-clear {
+  clear: both;
+}
+
 .fixed_bottom {
   position: fixed;
   left: 50%;
@@ -194,6 +313,30 @@
 
   .more_list {
     margin-bottom: 2%;
+  }
+
+  .sf-hf-overlay-bg {
+    width: 100%;
+  }
+
+  .sf-hf-overlay {
+    width: 92%;
+    padding: 6px 0 0 6px;
+  }
+
+  .sf-hf-content-bg {
+    width: 88%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+  }
+
+  .sf-hf-more-list {
+    min-width: clamp(44px, 10.5vw, 66px);
+  }
+
+  .sf-hf-overlay-list {
+    min-width: clamp(44px, 10.5vw, 66px);
   }
 
   .fixed_bottom {
