@@ -1,4 +1,11 @@
-<div class="sf-wrap" id="down_shoujuan" [class.sf-wrap-tf]="normalizedTpl === 'tf'" style="margin-top:15px;">
+<div
+  class="sf-wrap"
+  id="down_shoujuan"
+  [class.sf-wrap-tf]="normalizedTpl === 'tf'"
+  [class.sf-wrap-dl]="normalizedTpl === 'dl'"
+  [class.sf-wrap-4t]="normalizedTpl === '4t'"
+  style="margin-top:15px;margin-bottom:15px;"
+>
   <ng-container *ngIf="isSzTemplate; else nonSzTemplate">
     <div class="more_content_shoujuan">
       <div class="more_content_shoujuan_bg" [style.background-image]="selectedBackgroundImage">
@@ -36,8 +43,20 @@
   </ng-container>
 
   <ng-template #nonSzTemplate>
-    <ng-container *ngIf="isHfTemplate; else tfTemplate">
+    <ng-container *ngIf="isHfTemplate; else nonHfTemplate">
       <ng-container *ngTemplateOutlet="hfTemplate"></ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #nonHfTemplate>
+    <ng-container *ngIf="isDlTemplate; else nonDlTemplate">
+      <ng-container *ngTemplateOutlet="dlTemplate"></ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #nonDlTemplate>
+    <ng-container *ngIf="isFourTTemplate; else tfTemplate">
+      <ng-container *ngTemplateOutlet="fourTTemplate"></ng-container>
     </ng-container>
   </ng-template>
 
@@ -102,6 +121,79 @@
               </ng-template>
             </div>
           </div>
+          <div class="sf-hf-clear"></div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #dlTemplate>
+    <div class="sf-dl-down">
+      <div class="sf-dl-overlay" *ngIf="sideSealImageSrcs.length">
+        <div class="sf-dl-overlay-inner">
+          <div class="sf-dl-overlay-list">
+            <div class="sf-dl-overlay-list-inner">
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-dl-overlay-last-seal" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sf-dl-content">
+        <div class="sf-dl-content-bg">
+          <div class="sf-dl-column" *ngFor="let col of dlColumns">
+            <div class="sf-dl-column-card">
+              <div class="sf-dl-column-inner" [style.background-image]="selectedBackgroundImage">
+                <div class="sf-dl-list" *ngFor="let glyph of col">
+                  <div class="sf-dl-list-img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
+                    <img *ngIf="glyph.imageSrc; else charFallbackDl" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+                    <ng-template #charFallbackDl>
+                      <div class="sf-char-fallback">{{ glyph.char }}</div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sf-hf-clear"></div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #fourTTemplate>
+    <div class="sf-4t-down">
+      <div class="sf-4t-overlay" *ngIf="sideSealImageSrcs.length">
+        <div class="sf-4t-overlay-inner">
+          <div class="sf-4t-overlay-list">
+            <div class="sf-4t-overlay-list-inner">
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-4t-overlay-last-seal" />
+            </div>
+          </div>
+          <div class="sf-hf-clear"></div>
+        </div>
+      </div>
+
+      <div class="sf-4t-content">
+        <div class="sf-4t-content-bg">
+          <div class="sf-4t-column" *ngFor="let col of fourTColumns">
+            <div class="sf-4t-column-card">
+              <div class="sf-4t-column-inner" [style.background-image]="selectedBackgroundImage">
+                <div class="sf-dl-list" *ngFor="let glyph of col">
+                  <div class="sf-dl-list-img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
+                    <img *ngIf="glyph.imageSrc; else charFallback4t" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+                    <ng-template #charFallback4t>
+                      <div class="sf-char-fallback">{{ glyph.char }}</div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="sf-hf-clear"></div>
         </div>
       </div>

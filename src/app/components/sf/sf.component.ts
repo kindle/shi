@@ -21,6 +21,8 @@ interface SfBackgroundOption {
 
 const CHARS_PER_COLUMN = 5;
 const HF_MIN_SLOTS = 18;
+const DL_COLUMN_COUNT = 2;
+const FOUR_T_COLUMN_COUNT = 4;
 
 @Component({
   selector: 'app-sf',
@@ -95,7 +97,7 @@ export class SfComponent implements OnChanges, OnInit {
       .map((item) => `assets/shufa/zi/${item.id}.gif`);
   }
 
-  get normalizedTpl(): 'sz' | 'hf' | 'tf' {
+  get normalizedTpl(): 'sz' | 'hf' | 'tf' | 'dl' | '4t' {
     const value = (this.tpl ?? '').toLowerCase();
 
     if (value === 'hf') {
@@ -104,6 +106,14 @@ export class SfComponent implements OnChanges, OnInit {
 
     if (value === 'tf') {
       return 'tf';
+    }
+
+    if (value === 'dl') {
+      return 'dl';
+    }
+
+    if (value === '4t') {
+      return '4t';
     }
 
     return 'sz';
@@ -117,8 +127,40 @@ export class SfComponent implements OnChanges, OnInit {
     return this.normalizedTpl === 'hf';
   }
 
+  get isDlTemplate(): boolean {
+    return this.normalizedTpl === 'dl';
+  }
+
+  get isFourTTemplate(): boolean {
+    return this.normalizedTpl === '4t';
+  }
+
   get hfGlyphs(): SfGlyph[] {
     return this.columns.reduce((all, col) => all.concat(col), [] as SfGlyph[]);
+  }
+
+  get dlColumns(): SfGlyph[][] {
+    const glyphs = this.hfGlyphs;
+
+    if (!glyphs.length) {
+      return [];
+    }
+
+    const itemsPerColumn = Math.ceil(glyphs.length / DL_COLUMN_COUNT);
+
+    return this.chunk(glyphs, itemsPerColumn).slice(0, DL_COLUMN_COUNT);
+  }
+
+  get fourTColumns(): SfGlyph[][] {
+    const glyphs = this.hfGlyphs;
+
+    if (!glyphs.length) {
+      return [];
+    }
+
+    const itemsPerColumn = Math.ceil(glyphs.length / FOUR_T_COLUMN_COUNT);
+
+    return this.chunk(glyphs, itemsPerColumn).slice(0, FOUR_T_COLUMN_COUNT);
   }
 
   get hfItemWidthPercent(): number {
