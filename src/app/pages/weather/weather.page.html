@@ -1,0 +1,73 @@
+<ion-content [fullscreen]="true" [scrollY]="false" class="weather-content">
+  <ion-buttons class="weather-back-actions">
+    <ion-button color="dark" class="weather-back-button" (click)="goBack()">
+      <ion-icon name="chevron-down-circle-outline" style="margin-right: 5px;"></ion-icon>
+      {{ ui.instant('Action.Back') }}
+    </ion-button>
+  </ion-buttons>
+
+  <div class="weather-map-shell">
+    <div class="weather-map-wrapper" #weatherMap></div>
+
+    <div class="weather-overlay">
+      <div class="weather-panel">
+        <div class="weather-title">Rain Forecast</div>
+        <div class="weather-location">{{ locationLabel }}</div>
+        <div class="weather-coords">Lat {{ latitude | number:'1.4-4' }}, Lng {{ longitude | number:'1.4-4' }}</div>
+        <div class="weather-source">Data Source: {{ dataSourceLabel }}</div>
+        <div class="weather-time-tip">高清雨图时间: {{ selectedHourLabel }} (共48h预测)</div>
+      </div>
+    </div>
+
+    <div class="rain-timeline-shell">
+      <div class="rain-timeline-header">
+        <div class="rain-timeline-title">降雨时间轴</div>
+        <div class="rain-timeline-value">{{ selectedHourLabel }}</div>
+      </div>
+
+      <div class="rain-quick-chart" aria-label="-1h 到 +4h 降雨预测">
+        <div
+          class="rain-quick-bar"
+          *ngFor="let point of quickTimeline; trackBy: trackRainPoint"
+          [class.rain-light]="point.level === 'light'"
+          [class.rain-moderate]="point.level === 'moderate'"
+          [class.rain-heavy]="point.level === 'heavy'"
+          [class.rain-storm]="point.level === 'storm'"
+          [class.rain-extreme]="point.level === 'extreme'"
+          [style.height.%]="20 + (point.intensity / 110) * 80"
+          [title]="(point.hour > 0 ? '+' : '') + point.hour + 'h'"
+        ></div>
+      </div>
+
+      <div class="rain-quick-labels">
+        <span>-1h</span>
+        <span>Now</span>
+        <span>+1h</span>
+        <span>+2h</span>
+        <span>+3h</span>
+        <span>+4h</span>
+      </div>
+
+      <ion-range
+        class="rain-range"
+        [min]="minHourOffset"
+        [max]="maxHourOffset"
+        [step]="1"
+        [value]="selectedHourOffset"
+        pin="true"
+        snaps="true"
+        (ionInput)="onTimelineInput($event)"
+      >
+      </ion-range>
+
+      <div class="rain-range-hint">拖动查看过去1小时到未来48小时雨图预测，近5小时图在上方柱状图。</div>
+
+      <div class="rain-legend">
+        <div class="rain-legend-item" *ngFor="let item of rainLegend">
+          <span class="rain-legend-dot" [style.background]="item.color"></span>
+          <span>{{ item.label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -41,9 +41,10 @@
     [style.margin-left]="ui.isipad ? '20px' : 0">
     <ion-list><!--list id:1,2,3,4,5-->
       
-      <ion-item *ngFor="let like of displayResult" 
+      <ion-item *ngFor="let like of displayResult;index as i" 
       style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
-        <ion-thumbnail slot="start" *ngIf="like.data">
+      <!-- <div>{{i+1}}</div>   -->
+      <ion-thumbnail slot="start" *ngIf="like.data">
           <img style="border-radius: 10px;"
             defaultImage="" 
             lazyLoad="{{like.data['image']}}"

@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Road Fighter 火箭车</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="roadfighter-content">
+  <div class="page-wrap">
+    <section class="game-card">
+      <div class="hud-row">
+        <div class="hud-item">
+          <span class="label">油量</span>
+          <div class="fuel-bar">
+            <div class="fuel-fill" [style.width.%]="fuel"></div>
+          </div>
+        </div>
+        <div class="hud-item compact">里程 {{ distance | number:'1.0-0' }}/{{ finishDistance }}</div>
+        <div class="hud-item compact">分数 {{ score }}</div>
+      </div>
+
+      <div
+        class="road"
+        (touchstart)="onRoadTouchStart($event)"
+        (touchend)="onRoadTouchEnd()"
+        [class.skid-glow]="skidActive"
+      >
+        <div class="lane-lines" [style.background-position-y.%]="roadOffset"></div>
+
+        <div
+          class="entity"
+          *ngFor="let entity of entities; trackBy: trackByEntity"
+          [ngClass]="getEntityClass(entity)"
+          [style.left.%]="(entity.x + 1) * 50"
+          [style.top.%]="entity.y"
+          [style.width.%]="entity.width * 50"
+          [style.height.%]="entity.height"
+          [style.--car-color]="entity.color || '#f7cb4d'"
+        ></div>
+
+        <div
+          class="player-car"
+          [class.skidding]="skidActive"
+          [style.left.%]="(playerX + 1) * 50"
+          [style.top.%]="playerY"
+          [style.width.%]="playerWidth * 50"
+          [style.height.%]="playerHeight"
+        ></div>
+      </div>
+
+      <p class="status" [class.warn]="skidActive">{{ statusMessage }}</p>
+
+      <div class="controls">
+        <ion-button color="danger" (click)="startGame()" [disabled]="gameState === 'running'">开始</ion-button>
+        <ion-button fill="outline" color="medium" (click)="resetGame()">重置</ion-button>
+        <div class="touch-buttons" *ngIf="gameState === 'running'">
+          <button
+            class="touch-btn"
+            (touchstart)="moveLeft(true)"
+            (touchend)="moveLeft(false)"
+            (mousedown)="moveLeft(true)"
+            (mouseup)="moveLeft(false)"
+            (mouseleave)="moveLeft(false)"
+          >
+            左转
+          </button>
+          <button
+            class="touch-btn"
+            (touchstart)="moveRight(true)"
+            (touchend)="moveRight(false)"
+            (mousedown)="moveRight(true)"
+            (mouseup)="moveRight(false)"
+            (mouseleave)="moveRight(false)"
+          >
+            右转
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-text">
+      <h2>游戏说明</h2>
+      <p>
+        火箭车是一个简单明了的竞速游戏。玩家操控红色的跑车飞驰在公路上，必须在汽油耗尽前到达终点。
+      </p>
+      <p>
+        途中各种诡异变道的车辆，还有临时施工的障碍，都会对玩家造成不小的麻烦。如何及时抢救侧滑的汽车，也成了高手炫耀的技巧。
+      </p>
+      <p>
+        不得不说，FC 时代的科乐美，就是好玩游戏的代名词。这里也保留了经典设定：不同颜色的车辆代表不同功能与危险等级。
+      </p>
+      <ul>
+        <li>白色与蓝色车辆：普通车流，常见突然变道。</li>
+        <li>黄色车辆：速度更慢，容易造成追尾风险。</li>
+        <li>路面施工障碍：直接致命，必须躲开。</li>
+      </ul>
+    </section>
+  </div>
+</ion-content>

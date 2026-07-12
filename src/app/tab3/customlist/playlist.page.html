@@ -51,7 +51,7 @@
             <h2>{{ ui.instant('Action.NewList') }}<!--新建诗单列表...--></h2>
           </ion-label>
         </ion-item>
-        <ion-item *ngFor="let like of displayResult" (click)="data.goToPlayList(like.data['id'])"
+        <ion-item *ngFor="let like of displayResult;index as i" (click)="data.goToPlayList(like.data['id'])"
         style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
           <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 
             style="background-color: {{like.data['color']}};border-radius: 10px;">

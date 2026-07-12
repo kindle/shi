@@ -1,0 +1,228 @@
+.weather-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+.weather-back-actions {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 200;
+  width: fit-content;
+  height: 25px;
+  float: left;
+  margin-top: 35px;
+  margin-left: 15px;
+}
+
+.weather-back-button {
+  --background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.8);
+  -webkit-backdrop-filter: saturate(210%) blur(20px);
+  backdrop-filter: saturate(210%) blur(20px);
+  padding: 15px 15px 15px 5px;
+  border-radius: 15px;
+}
+
+.weather-map-shell {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: #dfe8ee;
+}
+
+.weather-map-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.weather-overlay {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--ion-safe-area-bottom, 0px) + 220px);
+  z-index: 400;
+  pointer-events: none;
+}
+
+.weather-panel {
+  pointer-events: auto;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+.weather-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ion-color-dark);
+}
+
+.weather-location {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ion-color-dark);
+}
+
+.weather-coords {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--ion-color-medium-shade);
+}
+
+.weather-source {
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.weather-time-tip {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #14532d;
+}
+
+.rain-timeline-shell {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--ion-safe-area-bottom, 0px) + 90px);
+  z-index: 450;
+  border-radius: 16px;
+  padding: 12px 12px 10px;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+.rain-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rain-timeline-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.rain-timeline-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14532d;
+}
+
+.rain-quick-chart {
+  height: 42px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: end;
+  gap: 5px;
+}
+
+.rain-quick-bar {
+  border-radius: 6px 6px 2px 2px;
+}
+
+.rain-light {
+  background: #84cc16;
+}
+
+.rain-moderate {
+  background: #166534;
+}
+
+.rain-heavy {
+  background: #facc15;
+}
+
+.rain-storm {
+  background: #ef4444;
+}
+
+.rain-extreme {
+  background: #7f1d1d;
+}
+
+.rain-quick-labels {
+  margin-top: 4px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  font-size: 10px;
+  color: #475569;
+}
+
+.rain-quick-labels span {
+  text-align: center;
+}
+
+.rain-range {
+  margin-top: -4px;
+  --bar-background: rgba(15, 23, 42, 0.12);
+  --bar-background-active: linear-gradient(90deg, #84cc16 0%, #166534 28%, #facc15 56%, #ef4444 80%, #7f1d1d 100%);
+  --knob-background: #0f172a;
+  --pin-background: #0f172a;
+  --pin-color: #ffffff;
+}
+
+.rain-range-hint {
+  margin-top: -2px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.rain-legend {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rain-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #334155;
+}
+
+.rain-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #dfe8ee;
+}
+
+:host ::ng-deep .leaflet-top.leaflet-right {
+  margin-top: 30px;
+}
+
+@media (max-height: 720px) {
+  .weather-overlay {
+    bottom: calc(var(--ion-safe-area-bottom, 0px) + 200px);
+  }
+
+  .rain-timeline-shell {
+    padding-bottom: 8px;
+  }
+
+  .rain-quick-chart {
+    height: 34px;
+  }
+}

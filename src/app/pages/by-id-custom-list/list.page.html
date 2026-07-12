@@ -246,13 +246,13 @@
   <ion-list *ngIf="!showFilter"
   style="margin-top:20px;margin-bottom: 20px;">
     <ion-text color="medium" *ngIf="listdata&&listdata.list" style="margin:20px;">
-      {{listdata.list.length}}{{ ui.instant('Title.PoemCount')}}<!--首诗词-->
+      {{listdata.list.length}} {{ ui.instant('Title.PoemCount')}}<!--首诗词-->
     </ion-text>
   </ion-list>
 
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
-    <ion-item *ngFor="let p of visibleLocalList; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
-      
+    <ion-item *ngFor="let p of visibleLocalList; index as i; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
+      <div slot="start" style="color:#92949c;">{{i+1}}</div>
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;"
@@ -304,7 +304,7 @@
 
   <ion-list *ngIf="listdata&&isEdit" style="margin-left:5px;">
     <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
-      <ion-item-sliding #slidingItem *ngFor="let p of localList; trackBy: trackByPoem" 
+      <ion-item-sliding #slidingItem *ngFor="let p of localList; index as i; trackBy: trackByPoem" 
       style="--padding-start:15px;--inner-padding-end:20px;">
         <ion-item style="--padding-start:15px;--inner-padding-end:20px;">
           <ion-icon slot="start" name="remove-circle" color="danger"

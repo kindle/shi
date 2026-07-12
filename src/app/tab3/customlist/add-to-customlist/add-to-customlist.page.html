@@ -81,9 +81,10 @@
             <h2>{{ui.instant('Action.NewList')}}</h2><!--新建诗单列表...-->
           </ion-label>
         </ion-item>
-        <ion-item *ngFor="let like of displayResult" 
+        <ion-item *ngFor="let like of displayResult;index as i" 
         (click)="addtocustomlist(like)"
         style="--padding-start:20px;--inner-padding-end:20px;" detail="false">
+          <!-- <div>{{i+1}}</div> -->
           <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 
             style="background-color: {{like.data['color']}};border-radius: 10px;">
             <img style="border-radius: 10px;" 
