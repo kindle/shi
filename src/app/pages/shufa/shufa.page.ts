@@ -12,8 +12,10 @@ import { Subscription } from 'rxjs';
 })
 export class ShufaPage implements OnInit {
 
-  @ViewChild('shufaSwiperArticle') slideSwiper?: ElementRef;
+  @ViewChild('slideSwiperArticle') slideSwiper?: ElementRef;
   private attachedSwiper: any = null;
+  private slideChangeHandler: (() => void) | null = null;
+  private autoplayRetryTimer: ReturnType<typeof setTimeout> | null = null;
   private userPausedAutoplay = false;
   private loadedSlideId: any = null;
   private currentSlideIndex = 0;
@@ -121,6 +123,8 @@ export class ShufaPage implements OnInit {
     //console.log('SlidePage ionViewWillLeave');
     this.audio?.pause();
     this.slideSwiper?.nativeElement?.swiper?.autoplay?.stop();
+    this.clearAutoplayRetryTimer();
+    this.detachSlideChangeHandler();
     if (this.routeSub) {
       this.routeSub.unsubscribe();
     }
@@ -141,10 +145,13 @@ export class ShufaPage implements OnInit {
 
     if (!swiper || !swiper.autoplay || !swiper.initialized) {
       if (retry < 10) {
-        setTimeout(() => this.ensureAutoplayStarted(retry + 1), 120);
+        this.clearAutoplayRetryTimer();
+        this.autoplayRetryTimer = setTimeout(() => this.ensureAutoplayStarted(retry + 1), 120);
       }
       return;
     }
+
+    this.clearAutoplayRetryTimer();
 
     this.attachSlideChangeHandler(swiper);
     this.restoreCurrentSlideOnSwiper(swiper);
@@ -166,10 +173,28 @@ export class ShufaPage implements OnInit {
       return;
     }
 
-    swiper.on('slideChange', () => {
+    this.detachSlideChangeHandler();
+
+    this.slideChangeHandler = () => {
       this.updateCurrentSlide();
-    });
+    };
+    swiper.on('slideChange', this.slideChangeHandler);
     this.attachedSwiper = swiper;
+  }
+
+  private detachSlideChangeHandler() {
+    if (this.attachedSwiper && this.slideChangeHandler) {
+      this.attachedSwiper.off?.('slideChange', this.slideChangeHandler);
+    }
+    this.attachedSwiper = null;
+    this.slideChangeHandler = null;
+  }
+
+  private clearAutoplayRetryTimer() {
+    if (this.autoplayRetryTimer) {
+      clearTimeout(this.autoplayRetryTimer);
+      this.autoplayRetryTimer = null;
+    }
   }
 
   private updateCurrentSlide() {
