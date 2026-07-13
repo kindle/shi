@@ -4,13 +4,17 @@
   [class.sf-wrap-tf]="normalizedTpl === 'tf'"
   [class.sf-wrap-dl]="normalizedTpl === 'dl'"
   [class.sf-wrap-4t]="normalizedTpl === '4t'"
+  [class.touming]="tm === true"
   style="margin-top:15px;margin-bottom:15px;"
 >
   <ng-container *ngIf="isSzTemplate; else nonSzTemplate">
-    <div class="more_content_shoujuan">
-      <div class="more_content_shoujuan_bg" [style.background-image]="selectedBackgroundImage">
+    <div class="more_content_shoujuan" 
+    [class.touming]="tm === true">
+      <div class="more_content_shoujuan_bg" 
+      [class.touming]="tm === true"
+      [style.background-image]="selectedBackgroundImage">
         <div class="sf-top-seal">
-          <div class="sf-top-seal-inner">
+          <div class="sf-top-seal-inner" *ngIf="!tm">
             <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
           </div>
         </div>
@@ -21,7 +25,8 @@
               <div class="more_content_shu2_bg">
                 <div class="more_list" *ngFor="let glyph of col">
                   <div class="more_list_img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
-                    <img *ngIf="glyph.imageSrc; else charFallbackSz" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+                    <img *ngIf="glyph.imageSrc; else charFallbackSz" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" 
+                    [class.toumingtext]="tm === true" />
                     <ng-template #charFallbackSz>
                       <div class="sf-char-fallback">{{ glyph.char }}</div>
                     </ng-template>
@@ -33,8 +38,9 @@
 
           <div class="more_content_shoujuan_float sf-side-seals" *ngIf="columns.length">
             <div class="sf-side-seals-inner">
-              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
-              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" />
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" 
+              [class.toumingtext]="tm === true"/>
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" *ngIf="!tm"/>
             </div>
           </div>
         </div>

@@ -174,7 +174,7 @@
       </ion-card>
 
       <!--shufa template-->
-      <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
+      <!-- <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
         *ngIf="item.template=='shufa'"
         defaultImage="" 
         lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
@@ -186,6 +186,22 @@
           <ion-card-title class="card-text" style="color:{{item.title_color}}"
           [style.fontSize]="data.zoom(28)">
             {{item.big_title}}</ion-card-title>
+        </ion-card-content>
+      </ion-card> -->
+      <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
+        *ngIf="item.template=='shufa'"
+        defaultImage="" 
+        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
+        style="background-size:cover;min-height: {{item.min_height}};">
+        <ion-card-content style="padding:0;">
+          <app-sf 
+            content="{{item.big_title}}" 
+            name="{{item.small_title}}" 
+            bg="1" 
+            [tm]="true"
+            [showbgbar]="false"
+            tpl="default">
+          </app-sf>
         </ion-card-content>
       </ion-card>
 

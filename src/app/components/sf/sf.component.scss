@@ -7,6 +7,15 @@
   box-shadow: 2px 2px 8px #777;
 }
 
+.touming{
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.toumingtext{
+  filter: brightness(0) invert(1);
+}
+
 #down_shoujuan.sf-wrap-tf {
   width: fit-content;
   padding: 12% 1.5% 12% 1.5%;

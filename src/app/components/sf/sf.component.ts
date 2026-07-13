@@ -35,6 +35,7 @@ export class SfComponent implements OnChanges, OnInit {
   @Input() bg?: number | string;
   @Input() tpl?: string;
   @Input() showbgbar: boolean | string = true;
+  @Input() tm: boolean | string = false;
 
   columns: SfGlyph[][] = [];
   backgroundOptions: SfBackgroundOption[] = [

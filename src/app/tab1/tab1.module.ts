@@ -27,6 +27,7 @@ import { TreeCardComponentModule } from '../components/tree-card/tree-card.modul
 
 import { AsciiCardComponentModule } from '../components/ascii-card/ascii-card.module';
 import { SubTitleComponentModule } from '../components/sub-title/sub-title.module';
+import { SfComponentModule } from '../components/sf/sf.module';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { SubTitleComponentModule } from '../components/sub-title/sub-title.modul
     StarCardComponentModule,
     TreeCardComponentModule,
     AsciiCardComponentModule,
-    SubTitleComponentModule
+    SubTitleComponentModule,
+    SfComponentModule,
   ],
   declarations: [
     Tab1Page
