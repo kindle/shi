@@ -192,7 +192,8 @@
         *ngIf="item.template=='shufa'"
         defaultImage="" 
         lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
-        style="background-size:cover;min-height: {{item.min_height}};">
+        style="background-size:cover;min-height: {{item.min_height}};
+        background-color:{{item.color}};">
         <ion-card-content style="padding:0;">
           <app-sf 
             content="{{item.big_title}}" 
