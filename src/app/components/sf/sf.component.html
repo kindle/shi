@@ -67,31 +67,34 @@
   </ng-template>
 
   <ng-template #hfTemplate>
-    <div class="sf-hf-down">
+    <div class="sf-hf-down" [class.touming]="tm === true">
       <div class="sf-hf-more-content">
         <div class="sf-hf-overlay" *ngIf="columns.length">
           <div class="sf-hf-overlay-bg">
             <div class="sf-hf-overlay-list" [style.width.%]="hfItemWidthPercent">
               <div class="sf-hf-overlay-list-img">
                 <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
-                <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-hf-yin-heng-img" />
+                <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-hf-yin-heng-img" 
+                 *ngIf="!tm"/>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="sf-hf-content-bg" [style.background-image]="selectedBackgroundImage">
+        <div class="sf-hf-content-bg" [style.background-image]="selectedBackgroundImage"
+        [class.touming]="tm === true">
           <div class="sf-hf-top-seal">
             <div class="sf-hf-top-seal-col">
               <div class="sf-hf-top-seal-inner">
-                <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal" />
+                <img src="assets/shufa/bg/yin_sm_kuan1.gif" alt="seal"  *ngIf="!tm"/>
               </div>
             </div>
           </div>
 
           <div class="sf-hf-more-list" *ngFor="let glyph of hfGlyphs" [style.width.%]="hfItemWidthPercent">
             <div class="sf-hf-more-list-img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
-              <img *ngIf="glyph.imageSrc; else charFallbackHf" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+              <img *ngIf="glyph.imageSrc; else charFallbackHf" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" 
+              [class.toumingtext]="tm === true" />
               <ng-template #charFallbackHf>
                 <div class="sf-char-fallback">{{ glyph.char }}</div>
               </ng-template>
@@ -105,23 +108,28 @@
   </ng-template>
 
   <ng-template #tfTemplate>
-    <div class="sf-tf-down">
+    <div class="sf-tf-down" [class.touming]="tm === true">
       <div class="sf-tf-overlay" *ngIf="hfGlyphs.length">
         <div class="sf-tf-overlay-bg">
           <div class="sf-tf-overlay-list">
             <div class="sf-tf-overlay-list-inner">
-              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
-              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-tf-overlay-last-seal" />
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" 
+              [class.toumingtext]="tm === true" />
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-tf-overlay-last-seal" 
+               *ngIf="!tm"/>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="sf-tf-content">
-        <div class="sf-tf-content-bg" [style.background-image]="selectedBackgroundImage">
+      <div class="sf-tf-content"
+      [class.touming]="tm === true">
+        <div class="sf-tf-content-bg" [style.background-image]="selectedBackgroundImage"
+        [class.touming]="tm === true">
           <div class="sf-tf-list" *ngFor="let glyph of hfGlyphs">
             <div class="sf-tf-list-img" [title]="glyph.author ? '(' + glyph.char + ')' + glyph.author : glyph.char">
-              <img *ngIf="glyph.imageSrc; else charFallbackTf" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" />
+              <img *ngIf="glyph.imageSrc; else charFallbackTf" [src]="glyph.imageSrc" [alt]="glyph.char" loading="lazy" 
+              [class.toumingtext]="tm === true"/>
               <ng-template #charFallbackTf>
                 <div class="sf-char-fallback">{{ glyph.char }}</div>
               </ng-template>
@@ -139,8 +147,10 @@
         <div class="sf-dl-overlay-inner">
           <div class="sf-dl-overlay-list">
             <div class="sf-dl-overlay-list-inner">
-              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
-              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-dl-overlay-last-seal" />
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" 
+              [class.toumingtext]="tm === true" />
+              <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-dl-overlay-last-seal" 
+               *ngIf="!tm"/>
             </div>
           </div>
         </div>
@@ -175,7 +185,8 @@
         <div class="sf-4t-overlay-inner">
           <div class="sf-4t-overlay-list">
             <div class="sf-4t-overlay-list-inner">
-              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" />
+              <img *ngFor="let sealSrc of sideSealImageSrcs" [src]="sealSrc" [alt]="name ? name + ' seal' : 'seal'" 
+              [class.toumingtext]="tm === true" />
               <img src="assets/shufa/bg/yin_heng_kuan.gif" alt="seal" class="sf-4t-overlay-last-seal" />
             </div>
           </div>
