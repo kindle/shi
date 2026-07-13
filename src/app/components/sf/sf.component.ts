@@ -34,6 +34,7 @@ export class SfComponent implements OnChanges, OnInit {
   @Input() name?: string;
   @Input() bg?: number | string;
   @Input() tpl?: string;
+  @Input() showbgbar: boolean | string = true;
 
   columns: SfGlyph[][] = [];
   backgroundOptions: SfBackgroundOption[] = [
@@ -133,6 +134,10 @@ export class SfComponent implements OnChanges, OnInit {
 
   get isFourTTemplate(): boolean {
     return this.normalizedTpl === '4t';
+  }
+
+  get shouldShowBackgroundBar(): boolean {
+    return this.showbgbar !== false && this.showbgbar !== 'false';
   }
 
   get hfGlyphs(): SfGlyph[] {

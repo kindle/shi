@@ -22,7 +22,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [scrollY]="false">
+<ion-content [fullscreen]="true" [scrollY]="true">
   <swiper-container #slideSwiperArticle *ngIf="slidesJsonData"
     [loop]="canLoop" navigation="false" scrollbar="false"
     [autoplay]="slideAutoplay" speed="1000" style="padding-top:50px;">
@@ -34,7 +34,12 @@
         
 
 
-        <app-sf content="{{s.title.join('')}}" name="{{s.author}}" bg="{{s.bg}}" tpl="{{s.tpl}}"></app-sf>
+        <app-sf 
+        content="{{s.title.join('')}}" 
+        name="{{s.author}}" 
+        bg="{{s.bg}}" 
+        [showbgbar]="s.showbgbar"
+        tpl="{{s.tpl}}"></app-sf>
 
 
         <div style="text-align: center;padding:30px 0;"

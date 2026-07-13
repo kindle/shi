@@ -13,6 +13,7 @@
             "author": "王昌龄",
             "sub": "唐·王昌龄《芙蓉楼送辛渐》",
             "bg": 1,
+            "showbgbar": true,
             "tpl": "hf",
             "tag":"七言绝句"
         },
@@ -22,6 +23,7 @@
             "author": "王昌龄",
             "sub": "唐·王昌龄《芙蓉楼送辛渐》",
             "bg": 2,
+            "showbgbar": false,
             "tpl": "sz",
             "tag":"七言绝句"
         },
@@ -31,6 +33,7 @@
             "author": "王昌龄",
             "sub": "唐·王昌龄《芙蓉楼送辛渐》",
             "bg": 3,
+            "showbgbar": false,
             "tpl": "tf",
             "tag":"七言绝句"
         },
@@ -40,6 +43,7 @@
             "author": "王昌龄",
             "sub": "唐·王昌龄《芙蓉楼送辛渐》",
             "bg": 4,
+            "showbgbar": false,
             "tpl": "dl",
             "tag":"七言绝句"
         },
@@ -49,6 +53,7 @@
             "author": "王昌龄",
             "sub": "唐·王昌龄《芙蓉楼送辛渐》",
             "bg": 5,
+            "showbgbar": false,
             "tpl": "4t",
             "tag":"七言绝句"
         },
@@ -58,6 +63,7 @@
             "author": "杜牧",
             "sub": "唐·杜牧《赤壁》",
             "bg": 3,
+            "showbgbar": false,
             "tpl": "",
             "tag":"七言绝句"
         }

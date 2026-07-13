@@ -203,7 +203,7 @@
   <!-- 
   <div class="sf-name" *ngIf="name">{{ name }}</div> -->
 
-  <div class="fixed_bottom">
+  <div class="fixed_bottom" *ngIf="shouldShowBackgroundBar">
     <div class="sf-background-buttons">
       <span
         *ngFor="let bg of backgroundOptions"

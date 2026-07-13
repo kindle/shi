@@ -370,6 +370,7 @@
 .sf-dl-overlay-list-inner {
   width: 20%;
   padding: 150% 0 0 0;
+  display: none;//dl no yin
 }
 
 .sf-dl-overlay-list-inner img {
@@ -407,7 +408,7 @@
 .sf-dl-column-card {
   background: #fff;
   padding: 40% 4% 40% 4%;
-  width: 80%;
+  width: 54%;
   margin: 0 auto;
   box-shadow: 2px 2px 8px #777;
   box-sizing: border-box;
@@ -517,7 +518,7 @@
 .fixed_bottom {
   position: fixed;
   left: 50%;
-  bottom: 10px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 30;
   width: min(92vw, 980px);
@@ -631,7 +632,7 @@
   }
 
   .sf-dl-column-card {
-    width: 88%;
+    width: 54%;
     padding: 34% 4% 34% 4%;
   }
 
@@ -651,7 +652,7 @@
 
   .fixed_bottom {
     width: 98vw;
-    bottom: 6px;
+    bottom: calc(6px + env(safe-area-inset-bottom));
   }
 
   .sf-background-buttons span {
