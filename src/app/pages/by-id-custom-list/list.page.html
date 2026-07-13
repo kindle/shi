@@ -252,7 +252,9 @@
 
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
     <ion-item *ngFor="let p of visibleLocalList; index as i; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
-      <div slot="start" style="color:#92949c;">{{i+1}}</div>
+      <ion-badge slot="start" color="light" mode="ios">
+          {{i+1}}
+      </ion-badge>
       <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;"
