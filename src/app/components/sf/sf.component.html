@@ -5,6 +5,7 @@
   [class.sf-wrap-dl]="normalizedTpl === 'dl'"
   [class.sf-wrap-4t]="normalizedTpl === '4t'"
   [class.touming]="tm === true"
+  [style.zoom.%]="normalizedZoom"
   style="margin-top:15px;margin-bottom:15px;"
 >
   <ng-container *ngIf="isSzTemplate; else nonSzTemplate">

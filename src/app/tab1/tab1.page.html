@@ -77,8 +77,23 @@
           [style.fontSize]="data.zoom(28)" [innerHTML]="item.big_title">
             {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
           </ion-card-title>
+          <app-sf *ngIf="item.shufa"
+            content="{{item.shufa}}" 
+            name="" 
+            bg="1" 
+            [tm]="true"
+            [showbgbar]="false"
+            tpl="{{item.tpl}}">
+            <!--hf  横幅一行 ok
+             tf 竖排一行 大 长 ok
+             default(sz) 右上 ok
+             dl 对联 
+             4t 四联 
+            -->
+          </app-sf>
         </ion-card-content>
       </ion-card>
+      
 
       <!--effect template-->
       <app-card-moon class="card card-img custom-card" card-shrink 
@@ -174,20 +189,6 @@
       </ion-card>
 
       <!--shufa template-->
-      <!-- <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
-        *ngIf="item.template=='shufa'"
-        defaultImage="" 
-        lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
-        style="background-size:cover;min-height: {{item.min_height}};">
-        <ion-card-content>
-          <ion-card-subtitle class="card-text" style="color:{{item.title_color}};"
-          [style.fontSize]="data.zoom(18)">
-            {{item.small_title}}</ion-card-subtitle>
-          <ion-card-title class="card-text" style="color:{{item.title_color}}"
-          [style.fontSize]="data.zoom(28)">
-            {{item.big_title}}</ion-card-title>
-        </ion-card-content>
-      </ion-card> -->
       <ion-card class="card card-img" (click)="goTemplateShufa(item.link)" card-shrink
         *ngIf="item.template=='shufa'"
         defaultImage="" 

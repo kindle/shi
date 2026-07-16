@@ -63,6 +63,22 @@
               background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8));
               ;font-size:13px;width:100%;" *ngIf="s.text"
               [style.fontSize]="data.zoom(13)">{{s.text}}</div>
+            <app-sf *ngIf="s.sf_content" 
+              style="position: absolute;width:stretch;z-index: 0;margin-top:-70px;margin-right:-130px;"
+              content="{{s.sf_content}}" 
+              name="" 
+              bg="0" 
+              zoom="440"
+              [tm]="true"
+              [showbgbar]="false"
+              tpl="hf">
+              <!--hf  横幅一行 ok
+              tf 竖排一行 大 长 ok
+              default(sz) 右上 ok
+              dl 对联 
+              4t 四联 
+              -->
+            </app-sf>
           </ion-card-content>
           <ion-card-content class="station-content" *ngIf="!s.image"
             style="z-index:1; background-image: linear-gradient(to right, {{s.color}},{{s.color}}, {{s.light}}, {{s.color}});">

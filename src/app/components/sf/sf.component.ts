@@ -34,6 +34,7 @@ export class SfComponent implements OnChanges, OnInit {
   @Input() name?: string;
   @Input() bg?: number | string;
   @Input() tpl?: string;
+  @Input() zoom: number | string = 100;
   @Input() showbgbar: boolean | string = true;
   @Input() tm: boolean | string = false;
 
@@ -139,6 +140,16 @@ export class SfComponent implements OnChanges, OnInit {
 
   get shouldShowBackgroundBar(): boolean {
     return this.showbgbar !== false && this.showbgbar !== 'false';
+  }
+
+  get normalizedZoom(): number {
+    const value = Number(this.zoom);
+
+    if (!Number.isFinite(value) || value <= 0) {
+      return 100;
+    }
+
+    return value;
   }
 
   get hfGlyphs(): SfGlyph[] {

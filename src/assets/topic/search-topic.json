@@ -189,6 +189,7 @@
       },
       {
         "id":807, "alias":"A-List 乾元流行: 759年度最佳",
+        "sf_content":"乾元",
         "desc":"Tang Dynasty 乾元流行",
         "text":"唐朝乾元年间为758 - 760年，这一时期经历了安史之乱，社会动荡，文学作品反映了民生疾苦、社会变迁。",
         "color":"rgb(231,112,103)","light":"rgb(231,112,103,40%)",
@@ -199,6 +200,7 @@
       },
       {
         "id":806, "alias":"A-List 开元流行: 729年度最佳",
+        "sf_content":"开元",
         "desc":"Tang Dynasty 开元流行",
         "text":"开元年间，诗人们游历大江南北，把壮志、柔情、旷达等百般心境凝为传世佳作。",
         "color":"rgb(113,203,212)","light":"rgb(113,203,212,40%)",
@@ -209,6 +211,7 @@
       },
       {
         "id":805, "alias":"A-List 天宝流行: 752年度最佳",
+        "sf_content":"天宝",
         "desc":"Tang Dynasty 天宝流行",
         "text":"天宝诗人们踏遍山河湖海，将豪情、悲悯、浪漫等诸多情感化作绚烂诗篇，为后世留下锦绣诗章。",
         "color":"rgb(255,230,151)","light":"rgb(255,230,151,40%)",
@@ -838,7 +841,7 @@
       {"id":52, "alias":"人的一生","text":"这些诗词道尽了人的一生，你现在正处于哪个阶段？","desc":"儿童急走追黄蝶，飞入菜花无处寻","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/countryside-1846774_1280.jpg"},
       {"id":67, "alias":"意境绝美","text":"这些意境绝美的古诗，你最喜欢哪句？","desc":"云青青兮欲雨，水澹澹兮生烟","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/beach-1851101_1280.jpg"},
       {"id":68, "alias":"无边风月","text":"诗人笔下的无边风月，你最喜欢哪句？","desc":"日色欲尽花含烟，月明如素愁不眠","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/mountain-5678172_1280.jpg"},
-      {"id":76, "alias":"江南烟雨","text":"哪些忘不掉的江南烟雨","desc":"人人尽说江南好，游人只合江南老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/road-4730553_1280.jpg"},
+      {"id":76, "alias":"江南烟雨","text":"那些忘不掉的江南烟雨","desc":"人人尽说江南好，游人只合江南老","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/road-4730553_1280.jpg"},
       {"id":86, "alias":"潇洒","text":"诗人笔下的顶级潇洒，你最爱哪一句?","desc":"莫愁千里路，自有到来风","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/wild-wine-7496359_1280.jpg"},
       {"id":87, "alias":"自由","text":"诗人笔下的顶级自由，你最爱哪一句?","desc":"我自人间漫浪，平生事、南北西东","color":"rgb(98,166,243)","light":"rgb(255,230,151,60%)","image":"https://reddah.blob.core.windows.net/msjjimg/salmon-3704543_1280.jpg"}
     ],

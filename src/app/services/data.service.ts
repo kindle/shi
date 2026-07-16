@@ -1719,6 +1719,7 @@ export class DataService {
           })
         });
         this.articleData.push({
+          sf_content:fun.sf_content,
           template:"text",
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),
@@ -1861,7 +1862,7 @@ export class DataService {
   setRandomArticles(data:any){
 
     let temp:any = [];
-    temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='shufa'&&!d.effect), 1));
+    //temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='shufa'&&!d.effect), 1));
 
     temp = temp.concat(this.getRandomArray(data.filter((d:any)=>d.template==='slide'&&!d.effect), 1));
 
@@ -2017,7 +2018,10 @@ export class DataService {
 //console.log(nextName)
           let item:any = this.getSolarTermPoem(nextName, this.ui.instant("SolarTerm.NextSolarTerm") + " " + daysLeftStr);
 //console.log(item)
-          item.big_title =  nextName + " · " + nextDateStr;
+          //item.big_title =  nextName + " · " + nextDateStr;
+          item.big_title =  nextDateStr;
+          item.shufa = nextName;
+          item.tpl = nextName=="春分"?"sz":"tf"
           //let item:any = this.getSolarTermPoem(nextName, daysLeftStr);
           //item.big_title = nextName+"("+nextDateStr+")";
           item["image_size"] = "cover";
@@ -4139,6 +4143,7 @@ export class DataService {
   //by tag or by id
   goToListBy(item:any)
   {
+    //console.log(item)
     if(item.author!=null){
       this.goToAuthor(item.author)
     }

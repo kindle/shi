@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { BigComponent } from './big.component';
 import { SharedSwiperTouchModule } from 'src/app/modules/shared-swiper-touch.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { SfComponentModule } from '../sf/sf.module';
 
 @NgModule({
   imports: [ 
@@ -15,6 +16,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     IonicModule, 
     SharedSwiperTouchModule,
     LazyLoadImageModule,
+    SfComponentModule,
   ],
   declarations: [BigComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],

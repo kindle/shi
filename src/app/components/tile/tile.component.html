@@ -40,6 +40,21 @@
         style="background-size:cover;
             background-repeat:no-repeat;
             background-color:{{s.color}};">
+
+            <app-sf *ngIf="s.id>=2001&&s.id<=2024" style="position: absolute;margin-top:-200px;width:stretch;"
+              content="{{s.termInfo?s.termInfo.name:s.sub}}" 
+              name="" 
+              bg="1" 
+              [tm]="true"
+              [showbgbar]="false"
+              tpl="tf">
+              <!--hf  横幅一行 ok
+              tf 竖排一行 大 长 ok
+              default(sz) 右上 ok
+              dl 对联 
+              4t 四联 
+              -->
+            </app-sf>
         </div>
         <div class="card-text-style"
         [style.fontSize]="data.zoom(16)">
