@@ -9,6 +9,7 @@ import { SlidePageRoutingModule } from './slide-routing.module';
 import { SlidePage } from './slide.page';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonend.module';
+import { SfComponentModule } from 'src/app/components/sf/sf.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ButtonEndComponentModule } from 'src/app/components/button-end/buttonen
     SlidePageRoutingModule,
     LazyLoadImageModule,
     ButtonEndComponentModule,
+    SfComponentModule,
   ],
   declarations: [SlidePage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

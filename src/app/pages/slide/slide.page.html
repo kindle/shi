@@ -30,7 +30,35 @@
       <!--(click)="share(s)" -->
       <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;"
       id="open-modal{{i}}">
-        
+
+        <app-sf *ngIf="s.sf_content" style="position: relative;margin-top:0px;width:stretch;"
+        (click)="openPoemById(s.id)"
+          content="{{s.sf_content}}" 
+          name="{{s.sf_name}}" 
+          bg="{{s.sf_bg}}"
+          zoom="140"
+          [tm]="s.sf_tm"
+          color="black"
+          [showbgbar]="false"
+          tpl="{{s.sf_tpl}}">
+          <!--hf  横幅一行 ok
+          tf 竖排一行 大 长 ok
+          default(sz) 右上 ok
+          dl 对联 
+          4t 四联 
+          -->
+        </app-sf>
+
+        <div *ngIf="!s.sf_content">
+          <div *ngFor="let t of s.title" 
+            style="text-align: center;padding:5px 0;"
+            [style.fontSize]="data.zoom(20)"
+            (click)="openPoemById(s.id)"
+            >
+            {{t}}
+          </div>
+        </div>
+
         <div style="text-align: center;padding:30px 0;"
         [style.fontSize]="data.zoom(22)"
         (click)="search(s.tag)"
@@ -38,20 +66,12 @@
           {{s.tag}}
         </div>
 
-        <div *ngFor="let t of s.title" 
-          style="text-align: center;padding:5px 0;"
-          [style.fontSize]="data.zoom(20)"
-          (click)="openPoemById(s.id)"
-          >
-          {{t}}
-        </div>
-
         <div style="text-align: center;padding:30px 0;"
         [style.fontSize]="data.zoom(16)">
           -{{s.sub}}
         </div>
 
-        <div style="padding:30px 0;"
+        <div style="padding:30px 0;" *ngIf="s.desc"
         [style.fontSize]="data.zoom(16)">
           评：<br><br>
           {{s.desc}} 

@@ -56,7 +56,7 @@
     [ngStyle]="{'margin-bottom': ui.isipad ? '20px' : '0px'}"
     *ngFor="let item of data.articleData;index as i">
       <!--text template-->
-      <ion-card class="card card-img" card-shrink
+      <ion-card class="text-template card card-img" card-shrink
       (click)="goToArticle(item)"
         *ngIf="item.template=='text'&&!item.effect"
         defaultImage="" 
@@ -78,6 +78,7 @@
             {{item.big_title.substring(0,25)}}{{item.big_title==item.big_title.substring(0,25)?"":"..."}}
           </ion-card-title>
           <app-sf *ngIf="item.shufa"
+            class="shufa-overlay"
             content="{{item.shufa}}" 
             name="" 
             bg="1" 
@@ -173,18 +174,35 @@
 
 
       <!--slide template-->
-      <ion-card class="card card-img" (click)="goTemplateSlide(item.link)" card-shrink
+      <ion-card class="template-slide card card-img" (click)="goTemplateSlide(item.link)" card-shrink
         *ngIf="item.template=='slide'"
         defaultImage="" 
         lazyLoad="https://reddah.blob.core.windows.net/msjjimg/{{item.bg_image}}"
         style="background-size:cover;min-height: {{item.min_height}};">
-        <ion-card-content>
+        <ion-card-content style="max-height: 380px;">
           <ion-card-subtitle class="card-text" style="color:{{item.title_color}};"
+           *ngIf="!item.sf_content"
           [style.fontSize]="data.zoom(18)">
             {{item.small_title}}</ion-card-subtitle>
           <ion-card-title class="card-text" style="color:{{item.title_color}}"
+           *ngIf="!item.sf_content"
           [style.fontSize]="data.zoom(28)">
             {{item.big_title}}</ion-card-title>
+          <app-sf *ngIf="item.sf_content"
+            content="{{item.sf_content}}" 
+            name="{{item.sf_name}}" 
+            bg="1" 
+            zoom="100"
+            [tm]="true"
+            [showbgbar]="false"
+            tpl="{{item.sf_tpl}}">
+            <!--hf  横幅一行 ok
+             tf 竖排一行 大 长 ok
+             default(sz) 右上 ok
+             dl 对联 
+             4t 四联 
+            -->
+          </app-sf>
         </ion-card-content>
       </ion-card>
 
@@ -242,7 +260,7 @@
 
       <!--vote template-->
       <!--[ngClass]="getCardClasses()" (press)="onCardPress()" (pressup)="onCardRelease()"-->
-      <ion-card class="card card-vote" id="modal-vote" card-shrink
+      <ion-card class="vote-template card card-vote" id="modal-vote" card-shrink
       *ngIf="item.template=='vote'">
         <div class="card-vote-bg" [style.fontSize]="data.zoom(28)">
           {{item.small_title}}
@@ -259,7 +277,7 @@
           <!-- <ion-card-subtitle style="margin-top:10px;"
           [style.fontSize]="data.zoom(18)">{{item.desc}}</ion-card-subtitle> -->
         </ion-card-content>
-        <ion-card-content>
+        <ion-card-content style="padding-top:0;">
           <ion-item color="light" style="--padding-start:0;margin:10px 0;border-radius: 5px;" lines="none" 
           *ngFor="let v of item.items" (click)="data.playbyid(v.id, v.text)">
             <div style="width: 100%;text-align: center;"

@@ -1720,6 +1720,10 @@ export class DataService {
         });
         this.articleData.push({
           sf_content:fun.sf_content,
+          sf_name:fun.sf_name, 
+          sf_tpl:fun.sf_tpl,
+          sf_bg:fun.sf_bg, 
+          sf_tm:fun.sf_tm,
           template:"text",
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),

@@ -105,7 +105,7 @@ ion-content > *:not(.tab1-page-bg) {
     min-height: 350px;
     width: 400px;
     margin-top:5px;
-    margin-bottom:5px;
+    margin-bottom:15px;
 }
 
 //screen width smaller than 400px, use the following css
@@ -157,6 +157,31 @@ ion-content > *:not(.tab1-page-bg) {
     .card-text{
         color:white;
     }
+}
+
+.slide-template, .vote-template {
+    max-height: 380px;
+}
+
+.text-template {
+    max-height: 380px;
+    overflow: hidden;
+}
+
+.text-template ion-card-content {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.text-template .shufa-overlay {
+    position: relative;
+    top: -50px;
+    width: 360px;
+    min-width: 360px;
+    margin-left: auto;
+    max-height: 100%;
+    overflow: hidden;
 }
 
 

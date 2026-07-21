@@ -32,11 +32,12 @@ const FOUR_T_COLUMN_COUNT = 4;
 export class SfComponent implements OnChanges, OnInit {
   @Input() content?: string;
   @Input() name?: string;
-  @Input() bg?: number | string;
-  @Input() tpl?: string;
-  @Input() zoom: number | string = 100;
-  @Input() showbgbar: boolean | string = true;
-  @Input() tm: boolean | string = false;
+  @Input() bg?: number | string = 7;
+  @Input() tpl?: string = 'sz';
+  @Input() zoom?: number | string = 100;
+  @Input() showbgbar?: boolean | string = true;
+  @Input() tm?: boolean | string = true;
+  @Input() color?: string = 'white';
 
   columns: SfGlyph[][] = [];
   backgroundOptions: SfBackgroundOption[] = [
