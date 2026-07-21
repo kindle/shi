@@ -373,6 +373,8 @@
         "link":1,
         "big_title": "美到窒息的小众诗词，99%的人没读过",
         "small_title": "多愁善感",
+        "sf_content":"",
+        "sf_name":"",
         "bg_image": "定格秋天.jpg",
         "music":"/assets/music/slidebg1.mp3",
         "bg_image1":"bg.jpg"
@@ -382,6 +384,8 @@
         "link":2,
         "big_title": "因为一句诗，想去一座城",
         "small_title": "醉美古诗词",
+        "sf_content":"谁家玉笛暗飞声",
+        "sf_name":"",
         "bg_image": "国庆.jpg",
         "music":"/assets/music/slidebg3_yj.mp3",
         "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg"
@@ -391,6 +395,8 @@
         "link":3,
         "big_title": "古人早已给出了答案",
         "small_title": "当你被否定时",
+        "sf_content":"",
+        "sf_name":"",
         "bg_image": "海钓.jpg",
         "music":"/assets/music/slidebg1.mp3",
         "bg":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"
@@ -400,6 +406,8 @@
         "link":4,
         "big_title": "只为一首而生的词牌",
         "small_title": "此词一出余词皆废",
+        "sf_content":"",
+        "sf_name":"",
         "bg_image": "海钓.jpg",
         "music":"/assets/music/slidebg2_zsjl.mp3",
         "bg":"https://reddah.blob.core.windows.net/msjjimg/海钓.jpg"

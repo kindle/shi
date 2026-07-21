@@ -8,8 +8,26 @@
     "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg",
     "slides": [
         {
+            "tag":"",
+            "title":[],
+            "sf_content":"因为一句诗想去一座城",
+            "sf_name":"",
+            "sf_tpl":"sz",
+            "sf_bg":2,
+            "sf_tm":false, 
+            "sub": "",
+            "desc": "",
+            "author": "",
+            "id": ""
+        },
+        {
             "tag":"洛阳",
             "title":["谁家玉笛暗飞声，","散入春风满洛城。"],
+            "sf_content":"谁家玉笛暗飞声散入春风满洛城",
+            "sf_name":"李白",
+            "sf_tpl":"sz",
+            "sf_bg":7,
+            "sf_tm":true, 
             "sub": "唐·李白《春夜洛城闻笛》",
             "desc": "是谁家精美的笛子暗暗地发出悠扬的笛声？随着春风飘扬，传遍洛阳城。",
             "author": "李白",
@@ -18,6 +36,11 @@
         {
             "tag":"惠州",
             "title":["日啖荔枝三百颗，","不辞长作岭南人。"],
+            "sf_content":"日啖荔枝三百颗不辞长作岭南人",
+            "sf_name":"苏轼",
+            "sf_tpl":"sz",
+            "sf_bg":7,
+            "sf_tm":true,  
             "sub": "宋·苏轼《惠州一绝》",
             "desc": "如果每天能吃到三百颗荔枝，我愿意永远都做个岭南人。",
             "author": "苏轼",
