@@ -35,6 +35,7 @@ export class SfComponent implements OnChanges, OnInit {
   @Input() bg?: number | string = 7;
   @Input() tpl?: string = 'sz';
   @Input() zoom?: number | string = 100;
+  @Input() scale?: string = '100%';
   @Input() showbgbar?: boolean | string = true;
   @Input() tm?: boolean | string = true;
   @Input() color?: string = 'white';

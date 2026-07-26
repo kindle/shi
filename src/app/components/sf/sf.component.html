@@ -1,6 +1,7 @@
 <div
   class="sf-wrap"
   id="down_shoujuan"
+  [class.sf-wrap-sz]="isSzTemplate"
   [class.sf-wrap-tf]="normalizedTpl === 'tf'"
   [class.sf-wrap-dl]="normalizedTpl === 'dl'"
   [class.sf-wrap-4t]="normalizedTpl === '4t'"
@@ -10,6 +11,7 @@
 >
   <ng-container *ngIf="isSzTemplate; else nonSzTemplate">
     <div class="more_content_shoujuan" 
+    [ngStyle]="{'width': scale }"
     [class.touming]="tm === true">
       <div class="more_content_shoujuan_bg" 
       [class.touming]="tm === true"

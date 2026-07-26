@@ -41,14 +41,14 @@
 }
 
 .more_content_shoujuan_bg {
-  width: 65.714285714286%;
+  width: 46.666666666667%;
   margin: auto;
   background: #fff;
   background-image: url('/assets/shufa/bg/bg7.jpg');
   background-repeat: repeat;
   background-size: auto;
   background-position: top center;
-  padding: 0 2% 0 0;
+  padding: 0;
   position: relative;
 }
 
@@ -61,7 +61,9 @@
 .sf-top-seal-inner {
   float: right;
   width: 2.6%;
-  padding: 2% 1.5% 0 0;
+  min-width: 15px;
+  padding: 2% 1.5% 0 2%;
+  box-sizing: border-box;
 }
 
 .sf-top-seal-inner img {
@@ -70,7 +72,7 @@
 
 .sf-columns-wrap {
   padding: 0.5% 0 0;
-  width: 100%;
+  width: inherit;
   margin: auto;
   display: flex;
   flex-direction: row-reverse;
@@ -79,7 +81,7 @@
 }
 
 .more_content_shoujuan_float {
-  width: 13.520822065982%;
+  width: 32.851511169514%;
 }
 
 .more_content_shoujuan_all {
@@ -119,7 +121,7 @@
 }
 
 .sf-side-seals {
-  flex: 0 0 13.520822065982%;
+  flex: 0 0 32.851511169514%;
 }
 
 .sf-side-seals-inner {
@@ -582,15 +584,15 @@
   }
 
   .sf-columns-wrap {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     padding-bottom: 8px;
   }
 
-  .more_content_shoujuan_float,
-  .sf-side-seals {
-    min-width: clamp(46px, 9.2vw, 62px);
-  }
+  // .more_content_shoujuan_float,
+  // .sf-side-seals {
+  //   min-width: clamp(46px, 9.2vw, 62px);
+  // }
 
   .more_list {
     margin-bottom: 2%;
@@ -615,7 +617,7 @@
 
   .sf-hf-content-bg {
     width: 88%;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     padding-bottom: 8px;
   }
@@ -667,5 +669,48 @@
   .sf-background-buttons span {
     height: 30px;
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #down_shoujuan.sf-wrap-sz {
+    width: 96%;
+  }
+
+  #down_shoujuan.sf-wrap-sz .more_content_shoujuan_bg {
+    width: 56%;
+  }
+
+  #down_shoujuan.sf-wrap-sz .more_content_shoujuan_float,
+  #down_shoujuan.sf-wrap-sz .sf-side-seals {
+    width: 32.851511169514%;
+    flex: 0 0 32.851511169514%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #down_shoujuan.sf-wrap-sz {
+    width: 98%;
+    padding: 1% 1% 8px;
+  }
+
+  #down_shoujuan.sf-wrap-sz .more_content_shoujuan_bg {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #down_shoujuan.sf-wrap-sz {
+    width: 100%;
+    padding: 1% 0.5% 8px;
+  }
+
+  #down_shoujuan.sf-wrap-sz .more_content_shoujuan_bg {
+    width: 84%;
+  }
+
+  #down_shoujuan.sf-wrap-sz .sf-top-seal-inner {
+    min-width: 12px;
+    padding-top: 3%;
   }
 }

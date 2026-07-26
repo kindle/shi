@@ -1723,7 +1723,9 @@ export class DataService {
           sf_name:fun.sf_name, 
           sf_tpl:fun.sf_tpl,
           sf_bg:fun.sf_bg, 
+          sf_bgbar:fun.sf_bgbar,
           sf_tm:fun.sf_tm,
+          sf_scale:fun.sf_scale,
           template:"text",
           min_height:"380px",//if effect is there, remove image
           bg_image:fun.image.replace("https://reddah.blob.core.windows.net/msjjimg/",""),

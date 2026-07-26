@@ -386,6 +386,7 @@
         "small_title": "醉美古诗词",
         "sf_content":"谁家玉笛暗飞声",
         "sf_name":"",
+        "sf_scale":"60%",
         "bg_image": "国庆.jpg",
         "music":"/assets/music/slidebg3_yj.mp3",
         "bg":"https://reddah.blob.core.windows.net/msjjimg/bg.jpg"

@@ -41,7 +41,7 @@
             background-repeat:no-repeat;
             background-color:{{s.color}};">
 
-            <app-sf *ngIf="s.id>=2001&&s.id<=2024" style="position: absolute;margin-top:-200px;width:stretch;"
+            <app-sf *ngIf="s.id>=2001&&s.id<=2024" class="tile-shufa-overlay"
               content="{{s.termInfo?s.termInfo.name:s.sub}}" 
               name="" 
               bg="1" 

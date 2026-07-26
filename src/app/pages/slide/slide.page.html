@@ -39,7 +39,7 @@
           zoom="140"
           [tm]="s.sf_tm"
           color="black"
-          [showbgbar]="false"
+          [showbgbar]="s.sf_bgbar"
           tpl="{{s.sf_tpl}}">
           <!--hf  横幅一行 ok
           tf 竖排一行 大 长 ok
@@ -67,6 +67,7 @@
         </div>
 
         <div style="text-align: center;padding:30px 0;"
+        *ngIf="s.sub"
         [style.fontSize]="data.zoom(16)">
           -{{s.sub}}
         </div>

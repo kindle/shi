@@ -193,14 +193,16 @@
             name="{{item.sf_name}}" 
             bg="1" 
             zoom="100"
+            scale="{{item.sf_scale}}"
             [tm]="true"
             [showbgbar]="false"
-            tpl="{{item.sf_tpl}}">
+            tpl="sz">
             <!--hf  横幅一行 ok
              tf 竖排一行 大 长 ok
              default(sz) 右上 ok
              dl 对联 
              4t 四联 
+             tpl="{{item.sf_tpl}}"
             -->
           </app-sf>
         </ion-card-content>
