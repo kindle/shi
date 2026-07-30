@@ -304,5 +304,13 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     </ion-tab-bar>
   </div>
 </ion-tabs>
+<ion-fab slot="fixed" 
+vertical="center" horizontal="end"
+(click)="data.goToMoreSettings()"
+*ngIf="data.isLoadingFullDb">
+  <ion-fab-button style="font-weight: bolder;">
+    {{ data.fullDbDownloadProgress || 0 }}%
+  </ion-fab-button>
+</ion-fab>
 
 
