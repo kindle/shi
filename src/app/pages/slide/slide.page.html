@@ -28,15 +28,17 @@
     [autoplay]="slideAutoplay" speed="1000" style="padding-top:50px;">
     <swiper-slide *ngFor="let s of slidesJsonData.slides;index as i">
       <!--(click)="share(s)" -->
-      <div style="margin:40px 50px;display: flex;flex-direction: column;justify-content: center;"
+      <div style="margin:20px 20px;display: flex;flex-direction: column;justify-content: center;"
       id="open-modal{{i}}">
 
         <app-sf *ngIf="s.sf_content" style="position: relative;margin-top:0px;width:stretch;"
         (click)="openPoemById(s.id)"
           content="{{s.sf_content}}" 
+          [ccount]="s.sf_ccount"
+          scale="{{s.sf_scale}}"
           name="{{s.sf_name}}" 
           bg="{{s.sf_bg}}"
-          zoom="140"
+          zoom="100"
           [tm]="s.sf_tm"
           color="black"
           [showbgbar]="s.sf_bgbar"

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { UiService } from 'src/app/services/ui.service';
 
 interface SfDictEntry {
   id: number;
@@ -19,7 +20,7 @@ interface SfBackgroundOption {
   image?: string;
 }
 
-const CHARS_PER_COLUMN = 5;
+const CHARS_PER_COLUMN: number = 5;
 const HF_MIN_SLOTS = 18;
 const DL_COLUMN_COUNT = 2;
 const FOUR_T_COLUMN_COUNT = 4;
@@ -31,6 +32,7 @@ const FOUR_T_COLUMN_COUNT = 4;
 })
 export class SfComponent implements OnChanges, OnInit {
   @Input() content?: string;
+  @Input() ccount?: number = 5;
   @Input() name?: string;
   @Input() bg?: number | string = 7;
   @Input() tpl?: string = 'sz';
@@ -53,7 +55,9 @@ export class SfComponent implements OnChanges, OnInit {
   selectedBackgroundId = 'back6';
   private dictByChar = new Map<string, SfDictEntry>();
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient, 
+    private ui: UiService,
+  ) {}
 
   ngOnInit(): void {
     this.http.get<SfDictEntry[]>('assets/shufa/dict.json').subscribe({
@@ -221,7 +225,17 @@ export class SfComponent implements OnChanges, OnInit {
   private updateColumns(): void {
     const chars = (this.content ?? '').replace(/\s+/g, '').split('');
     const glyphs = chars.map((char) => this.buildGlyph(char));
-    this.columns = this.chunk(glyphs, CHARS_PER_COLUMN);
+    //this.columns = this.chunk(glyphs, CHARS_PER_COLUMN);
+
+    let column_count = 5;
+    if(this.ui.isipad)
+    {
+      column_count = 5;
+    }
+    else{
+      column_count = this.ccount ?? CHARS_PER_COLUMN;
+    }
+    this.columns = this.chunk(glyphs, column_count);
   }
 
   private chunk<T>(arr: T[], chunkSize: number): T[][] {

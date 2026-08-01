@@ -1720,6 +1720,7 @@ export class DataService {
         });
         this.articleData.push({
           sf_content:fun.sf_content,
+          sf_ccount:fun.sf_ccount,
           sf_name:fun.sf_name, 
           sf_tpl:fun.sf_tpl,
           sf_bg:fun.sf_bg, 

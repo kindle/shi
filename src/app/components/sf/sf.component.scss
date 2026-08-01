@@ -3,7 +3,7 @@
   max-width: 1100px;
   margin: auto;
   background: #fff;
-  padding: 1% 1% 5px;
+  padding: 1% 1% 1%;
   box-shadow: 2px 2px 8px #777;
 }
 
@@ -61,13 +61,14 @@
 .sf-top-seal-inner {
   float: right;
   width: 2.6%;
-  min-width: 15px;
-  padding: 2% 1.5% 0 2%;
+  padding: 2% 1.5% 0 0;
+  margin-right:10px;
   box-sizing: border-box;
 }
 
 .sf-top-seal-inner img {
   width: 100%;
+  min-width: 15px;
 }
 
 .sf-columns-wrap {
@@ -78,6 +79,7 @@
   flex-direction: row-reverse;
   gap: 0.5%;
   align-items: flex-start;
+  margin-left:5px;//左侧落款印章
 }
 
 .more_content_shoujuan_float {
