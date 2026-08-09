@@ -257,7 +257,8 @@
         "UpgradeFullDb":"Upgrade Full Poetry Database",
         "FullDbNotFound":"Poem ID not found. You may need to download the full poetry database to view it. Go to download now?",
         "AutoUpgrading":"Updating poetry database",
-        "AutoUpgradeDone":"Poetry database update complete"
+        "AutoUpgradeDone":"Poetry database update complete",
+        "FailToReadBackupFile":"Failed to read backup file"
     },
 
     "Font":{

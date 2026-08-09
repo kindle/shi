@@ -257,7 +257,8 @@
         "UpgradeFullDb":"Vollständige Gedichtdatenbank aktualisieren",
         "FullDbNotFound":"Gedicht-ID nicht gefunden. Möglicherweise müssen Sie die vollständige Gedichtdatenbank herunterladen, um es anzuzeigen. Jetzt zum Download wechseln?",
         "AutoUpgrading":"Gedichtdatenbank wird aktualisiert",
-        "AutoUpgradeDone":"Gedichtdatenbank erfolgreich aktualisiert"
+        "AutoUpgradeDone":"Gedichtdatenbank erfolgreich aktualisiert",
+        "FailToReadBackupFile":"Sicherungsdatei konnte nicht gelesen werden"
     },
 
     "Font":{

@@ -257,7 +257,8 @@
         "UpgradeFullDb":"Atualizar a base de dados completa de poesia",
         "FullDbNotFound":"ID do poema não encontrado. Pode ser necessário transferir a base de dados completa de poesia para o ver. Ir para a transferência agora?",
         "AutoUpgrading":"A atualizar a base de dados de poesia",
-        "AutoUpgradeDone":"Atualização da base de dados de poesia concluída"
+        "AutoUpgradeDone":"Atualização da base de dados de poesia concluída",
+        "FailToReadBackupFile":"Falha ao ler o ficheiro de cópia de segurança"
     },
 
     "Font":{
