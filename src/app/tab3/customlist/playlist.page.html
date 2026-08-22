@@ -143,7 +143,7 @@
         </ion-item>
         -->
       </ion-list>
-      <ion-list *ngIf="isEdit">
+      <ion-list *ngIf="isEdit" style="margin-top:15px;">
         <ion-reorder-group disabled="false" (ionItemReorder)="handleReorder($any($event))">
           <ion-item-sliding #slidingItem *ngFor="let like of editList;trackBy:trackByCustomList">
             <ion-item style="--padding-start:20px;--inner-padding-end:20px;">
