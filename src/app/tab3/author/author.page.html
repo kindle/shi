@@ -28,7 +28,7 @@
     [style.margin-left]="ui.isipad ? '20px' : 0"
     [style.padding-right]="ui.isipad ? '20px' : 0"><!--在诗人中查找-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Poets') }}"
-        style="padding-left:15px;"
+        style="padding-left:15px;margin-top:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"

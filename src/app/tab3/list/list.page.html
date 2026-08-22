@@ -28,7 +28,7 @@
     [style.padding-right]="ui.isipad ? '20px' : 0">
     <ion-toolbar><!--在专辑中查找-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Albums') }}"
-        style="padding-left:15px;"
+        style="padding-left:15px;margin-top:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"

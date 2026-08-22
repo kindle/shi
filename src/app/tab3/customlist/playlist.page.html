@@ -60,10 +60,10 @@
     </ion-header>
     <ion-header *ngIf="!isEdit" collapse="condense">
       <ion-toolbar
-    [style.margin-left]="ui.isipad ? '20px' : 0"
-    [style.padding-right]="ui.isipad ? '20px' : 0"><!--在诗单列表中查找-->
+        [style.margin-left]="ui.isipad ? '20px' : 0"
+        [style.padding-right]="ui.isipad ? '20px' : 0"><!--在诗单列表中查找-->
         <ion-searchbar placeholder="{{ ui.instant('Search.CustomList') }}"
-        style="padding-left:15px;"
+        style="padding-left:15px;margin-top:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"
@@ -75,9 +75,9 @@
 
     <div [style.width]="ui.isipad ? '72%' : '100%'"
     [style.margin-left]="ui.isipad ? '20px' : 0">
-      <ion-list *ngIf="!isEdit">
+      <ion-list *ngIf="!isEdit" style="margin-top:5px;">
         <ion-item style="--padding-start:20px;--inner-padding-end:20px;"
-        (click)="createPlayList()">
+        (click)="createPlayList()" lines="none">
           <ion-thumbnail slot="start" class="add-center">
             <ion-icon name="add-outline" size="large" color="primary"></ion-icon>
           </ion-thumbnail>
@@ -85,6 +85,8 @@
             <h2>{{ ui.instant('Action.NewList') }}<!--新建诗单列表...--></h2>
           </ion-label>
         </ion-item>
+      </ion-list>
+      <ion-list *ngIf="!isEdit" style="margin-top:15px;">
         <ion-item *ngFor="let like of displayResult;index as i;trackBy:trackByCustomList" (click)="data.goToPlayList(like.data['id'])"
         style="--padding-start:20px;--inner-padding-end:20px;" detail="true">
           <ion-thumbnail slot="start" *ngIf="like.data&&like.data.customimage" 

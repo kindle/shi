@@ -28,7 +28,7 @@
     [style.margin-left]="ui.isipad ? '20px' : 0"
     [style.padding-right]="ui.isipad ? '20px' : 0"><!--在诗词中查找-->
       <ion-searchbar placeholder="{{ ui.instant('Search.Poems') }}" 
-        style="padding-left:15px;"
+        style="padding-left:15px;margin-top:15px;"
         [(ngModel)]="searchText"
         (ionFocus)="onSearchFocus()"
         (ionCancel)="onSearchCancel()"
@@ -40,7 +40,7 @@
   <div [style.width]="ui.isipad ? '72%' : '100%'"
   [style.margin-left]="ui.isipad ? '20px' : 0">
 
-    <div style="display: flex;margin:5px 20px;">
+    <div style="display: flex;margin:0px 15px 10px 15px;">
       <ion-button color="light" style="width: 100%;margin-right:10px;"
       (click)="data.playList(listdata.list, '诗词')">
         <ion-icon slot="start" name="play" color="primary"></ion-icon>
