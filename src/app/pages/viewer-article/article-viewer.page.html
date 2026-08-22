@@ -219,10 +219,10 @@
           <ion-label (click)="data.playbyid(it.id, it.solarterm?it.solarterm:(it.sample?it.sample:''), true, true)" style="color:black;">
             <h2 [style.fontSize]="data.zoom(20)"
             class="show-only-one-line">
-              {{ data.getPreviewSegment(it, 0) }}</h2>
+              {{ data.showsample2(it, 0) }}</h2>
             <h2 [style.fontSize]="data.zoom(20)"
             class="show-only-one-line">
-              {{ data.getPreviewSegment(it, 1) }}</h2>
+              {{ data.showsample2(it, 1) }}</h2>
             <!-- <p style="margin-top:5px;display: flex;align-items: center;color:black;"
             [style.fontSize]="data.zoom(14)">
               {{it.author}}《{{it.title}}》

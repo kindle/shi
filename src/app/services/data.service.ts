@@ -2438,10 +2438,18 @@ export class DataService {
           done?.();
       });
   }
-  
-  getPreviewSegment(poem: any, index: number) {
-    const source = poem?.sample || poem?.paragraphs?.[0] || '';
-    return source.split(/[，。？！]/).filter(Boolean)[index] || '';
+  showsample2(p:any, index: number){
+    let result = "";
+    if(p.sample&&p.sample.length>4){
+      if(p.sample.indexOf('【') !== -1){
+        result = p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+      }
+      else
+        result = p.sample;
+    }else{
+      result = p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+    }
+    return result.split(/[，。？！]/).filter(Boolean)[index] || '';
   }
 
   private parsePreviewTextParts(rawPreviewText:any): string[] {
