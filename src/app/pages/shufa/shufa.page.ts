@@ -360,7 +360,7 @@ export class ShufaPage implements OnInit {
       return;
     }
     this.stopSlideAutoplay();
-    this.data.goTab4SearchByTag(tag);
+    this.data.goTab3SearchByTag(tag);
   }
 
   openPoemById(id: string) {

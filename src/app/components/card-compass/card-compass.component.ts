@@ -331,7 +331,7 @@ export class CardCompassComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!starName) {
       return;
     }
-    this.data.goTab4SearchByTag(starName);
+    this.data.goTab3SearchByTag(starName);
   }
 
   async onTermPanelActivate(event: Event, termName: string | undefined) {

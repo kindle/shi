@@ -4421,7 +4421,7 @@ export class DataService {
 
   //tab4 related start
   searchText:any;
-  suppressTab4AutoFocus = false;
+  suppressTab3AutoFocus = false;
   showFilter = false;
   displayResult:any = [];
   onSearchCancel(){
@@ -4432,10 +4432,10 @@ export class DataService {
   }
   //tab4 related end
 
-  goTab4SearchByTag(tag:any){
+  goTab3SearchByTag(tag:any){
     this.searchText = tag;
-    this.suppressTab4AutoFocus = true;
-    this.router.navigate(['/tabs/tab4']);
+    this.suppressTab3AutoFocus = true;
+    this.router.navigate(['/tabs/tab3']);
   }
 
   play(){

@@ -56,7 +56,7 @@ export class Tab4Page implements OnInit {
     if (searchText && searchText !== this.ui.instant('Search.Tab4')) {
       this.data.showFilter = true;
       this.onSearchChanged();
-      if (!this.data.suppressTab4AutoFocus) {
+      if (!this.data.suppressTab3AutoFocus) {
         setTimeout(() => {
           this.searchbar?.setFocus();
         }, 0);
@@ -68,7 +68,7 @@ export class Tab4Page implements OnInit {
       }
     }
 
-    this.data.suppressTab4AutoFocus = false;
+    this.data.suppressTab3AutoFocus = false;
   }
 
   @HostListener('window:resize')
