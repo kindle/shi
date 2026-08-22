@@ -143,7 +143,7 @@ export class ScreenSaverPage implements OnInit, OnDestroy {
 
   goBackToPoemList(event?: Event) {
     event?.stopPropagation();
-    this.router.navigate(['/tabs/tab3/customlist']);
+    this.router.navigate(['/tabs/tab4/customlist']);
   }
 
   private hydrateNavigationState() {

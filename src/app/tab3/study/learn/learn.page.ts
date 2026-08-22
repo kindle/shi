@@ -294,11 +294,11 @@ export class LearnPage {
   }
 
   goToPlan() {
-    this.router.navigate(['/tabs/tab3/study/plan']);
+    this.router.navigate(['/tabs/tab4/study/plan']);
   }
 
   close() {
-    this.router.navigate(['/tabs/tab3']);
+    this.router.navigate(['/tabs/tab4']);
   }
 
   detailItems(value: any): string[] {

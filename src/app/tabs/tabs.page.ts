@@ -23,7 +23,7 @@ export class TabsPage {
   selectedTab: any = 'tab1';
 
   get shouldHideTabBar(): boolean {
-    return this.router.url.includes('/tabs/tab3/study/learn');
+    return this.router.url.includes('/tabs/tab4/study/learn');
   }
 
   onTabChange(event: any){
@@ -54,7 +54,7 @@ export class TabsPage {
     this.scrollService.triggerScrollToTop();
   }
 
-  tab4Click(){
+  tab3Click(){
     //console.log('change tab ...')
     this.data.onSearchCancel();
     //when click tab4, hide player bar
@@ -151,7 +151,7 @@ export class TabsPage {
       case 4: name="tag";break;
       case 5: name="article";break;
     }
-    this.router.navigate(['/tabs/tab3/'+name], {
+    this.router.navigate(['/tabs/tab4/'+name], {
       queryParams: {
       }
     });

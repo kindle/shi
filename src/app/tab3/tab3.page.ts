@@ -193,7 +193,7 @@ export class Tab3Page {
     }
 
     await this.data.ensureArticleDataReady(true);
-    this.router.navigate(['/tabs/tab3/study/learn'], {
+    this.router.navigate(['/tabs/tab4/study/learn'], {
       queryParams: {
         mode: 'review',
       }
@@ -314,53 +314,53 @@ export class Tab3Page {
   }
   
   goToPlayList(){
-    this.router.navigate(['/tabs/tab3/customlist'], {
+    this.router.navigate(['/tabs/tab4/customlist'], {
       queryParams: {
       }
     });
   }
 
   goToList(){
-    this.router.navigate(['/tabs/tab3/list'], {
+    this.router.navigate(['/tabs/tab4/list'], {
       queryParams: {
       }
     });
   }
 
   goToAuthor(){
-    this.router.navigate(['/tabs/tab3/author'], {
+    this.router.navigate(['/tabs/tab4/author'], {
       queryParams: {
       }
     });
   }
 
   goToPoem(){
-    this.router.navigate(['/tabs/tab3/poem'], {
+    this.router.navigate(['/tabs/tab4/poem'], {
       queryParams: {
       }
     });
   }
 
   goToTag(){
-    this.router.navigate(['/tabs/tab3/tag'], {
+    this.router.navigate(['/tabs/tab4/tag'], {
       queryParams: {
       }
     });
   }
 
   goToArticle(){
-    this.router.navigate(['/tabs/tab3/article'], {
+    this.router.navigate(['/tabs/tab4/article'], {
       queryParams: {
       }
     });
   }
 
   goToTrackerDetail(){
-    this.router.navigate(['/tabs/tab3/tracker-detail']);
+    this.router.navigate(['/tabs/tab4/tracker-detail']);
   }
 
   goToStudyPlan(){
-    this.router.navigate(['/tabs/tab3/study/plan']);
+    this.router.navigate(['/tabs/tab4/study/plan']);
   }
 
   async goToStudyLearn(){
@@ -370,7 +370,7 @@ export class Tab3Page {
     }
 
     await this.data.ensureArticleDataReady(true);
-    this.router.navigate(['/tabs/tab3/study/learn'], {
+    this.router.navigate(['/tabs/tab4/study/learn'], {
       queryParams: {
         mode: 'learn',
       }

@@ -233,7 +233,7 @@ export class Tab1Page {
   }
 
   goSearch(text:any){
-    this.router.navigate(['/tabs/tab3'], {
+    this.router.navigate(['/tabs/tab4'], {
       queryParams: {
         text:text
       }

@@ -4145,7 +4145,7 @@ export class DataService {
   goToPlayList(id:any){
     //console.log(id)
     //tab3
-    this.navCtrl.navigateForward(`/tabs/tab3/customlist/${id}`);
+    this.navCtrl.navigateForward(`/tabs/tab4/customlist/${id}`);
   }
   //by tag or by id
   goToListBy(item:any)
@@ -4753,7 +4753,7 @@ export class DataService {
 
   //group: idlist, taglist, poetlist, poem, customlist
   likelist(listdata:any, group:any, source:any=null){
-    let jump_url= "/tabs/tab3";
+    let jump_url= "/tabs/tab4";
     //in case it's brief data from json
     if(group==='poem'){
       let fullData = this.JsonData.filter((j:any)=>j.id===listdata.id);
@@ -4776,16 +4776,16 @@ export class DataService {
     
     if(group=='poem')
     {
-      jump_url = "/tabs/tab3/poem";
+      jump_url = "/tabs/tab4/poem";
     }else if(group=='idlist')
     {
-      jump_url = "/tabs/tab3/list";
+      jump_url = "/tabs/tab4/list";
     }else if(group=='poetlist')
     {
-      jump_url = "/tabs/tab3/author";
+      jump_url = "/tabs/tab4/author";
     }else if(group=='taglist')
     {
-      jump_url = "/tabs/tab3/tag";
+      jump_url = "/tabs/tab4/tag";
     }
     //"已添加到诗词库"
     //this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"), jump_url)
@@ -4909,7 +4909,7 @@ export class DataService {
       this.updateLocalData(group);
       //role could be: cancel or destructive
       if(role=='destructive'){
-        this.navCtrl.navigateForward(`/tabs/tab3/customlist`);
+        this.navCtrl.navigateForward(`/tabs/tab4/customlist`);
       }
     }
     else if(group==='poem'){
@@ -5279,7 +5279,7 @@ export class DataService {
     }
     this.ui.toast_jump_like_dy_folder("bottom", 
       this.ui.instant("Message.PoemlistAdded"),
-      `/tabs/tab3/customlist/${like.data.id}`,
+      `/tabs/tab4/customlist/${like.data.id}`,
       like.data.name, 
       source)//已添加到诗单列表
 
@@ -5864,9 +5864,9 @@ export class DataService {
     }
     this.set(this.LOCALSTORAGE_Like_Articles, JSON.stringify(this.myLikeArticles));
     //this.ui.toast("top", this.ui.instant("Message.LibAdded"))//"已添加到诗词库"
-    //this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
+    //this.ui.toast_jump("top", this.ui.instant("Message.LibAdded"),'/tabs/tab4/article')//"已添加到诗词库"
 
-    this.ui.toast_jump_like_dy("bottom", this.ui.instant("Message.LibAdded"),'/tabs/tab3/article')//"已添加到诗词库"
+    this.ui.toast_jump_like_dy("bottom", this.ui.instant("Message.LibAdded"),'/tabs/tab4/article')//"已添加到诗词库"
   }
   delMyLikeArticle(data:any){
     for(let i=0;i<this.myLikeArticles.length;i++){

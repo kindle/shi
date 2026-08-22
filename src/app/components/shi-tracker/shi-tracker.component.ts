@@ -316,7 +316,7 @@ export class ShiTrackerComponent implements OnInit, OnChanges, OnDestroy {
     // Threshold of 10 pixels to distinguish between click and drag
     // Also ignore if it was a right click or other buttons if needed, but for touch mostly matters
     if (dist < 10) {
-      this.router.navigate(['/tabs/tab3/tracker-detail']);
+      this.router.navigate(['/tabs/tab4/tracker-detail']);
     }
   }
 

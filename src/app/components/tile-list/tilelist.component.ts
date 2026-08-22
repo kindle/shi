@@ -36,7 +36,7 @@ export class TileListComponent {
   ){}
 
   search(key:any){
-    this.router.navigate(['/tabs/tab3'], {
+    this.router.navigate(['/tabs/tab4'], {
       queryParams: {
         text:key,
         type:'tag'
