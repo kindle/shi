@@ -1099,7 +1099,7 @@
 
   {
       "id":5001,
-      "name":"上古时期",
+      "name":"上古",
       "i18n":{
         "ar-AE":"العصر القديم",
         "de-DE":"Fruehzeit",
@@ -1107,13 +1107,13 @@
         "en-US":"Ancient Era",
         "es-ES":"Antiguedad",
         "fr-FR":"Ere antique",
-        "ja-JP":"上古时代",
-        "ko-KR":"상고 시대",
+        "ja-JP":"上古",
+        "ko-KR":"상고",
         "pt-PT":"Era Antiga",
         "ru-RU":"Древнейшая эпоха",
         "th-TH":"ยุคโบราณ",
-        "zh-CN":"上古时期",
-        "zh-TW":"上古时期"
+        "zh-CN":"上古",
+        "zh-TW":"上古"
       },
       "image":"https://reddah.blob.core.windows.net/msjjimg/spiral-2401967_1280.jpg",
       "scroll":[ 
@@ -1173,7 +1173,7 @@
   },
   {
     "id":5002,
-    "name":"西周春秋",
+    "name":"春秋",
     "period":"公元前1046年 - 公元前476年",
     "i18n":{
       "ar-AE":"أسرة تشو الغربية - الربيع والخريف",
@@ -1182,13 +1182,13 @@
       "en-US":"Western Zhou - Spring and Autumn",
       "es-ES":"Zhou Occidental - Primaveras y Otonos",
       "fr-FR":"Zhou occidental - Printemps et Automnes",
-      "ja-JP":"西周-春秋时代",
+      "ja-JP":"春秋",
       "ko-KR":"서주-춘추 시대",
       "pt-PT":"Zhou Ocidental - Primaveras e Outonos",
       "ru-RU":"Западная Чжоу — Период Весен и Осеней",
       "th-TH":"ราชวงศ์โจวตะวันตก - ยุคชุนชิว",
-      "zh-CN":"西周春秋",
-      "zh-TW":"西周春秋"
+      "zh-CN":"春秋",
+      "zh-TW":"春秋"
     },
     "image":"https://reddah.blob.core.windows.net/msjjimg/张大千荷花.jpg",
     "scroll":[
