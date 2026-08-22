@@ -4759,6 +4759,31 @@ export class DataService {
 
   }
 
+  savecustomlistorder(customLists:any[]){
+    const customListById = new Map<any, any>(
+      this.collectList
+        .filter((item:any)=>item.group==='customlist'&&item.data)
+        .map((item:any)=>[item.data.id, item])
+    );
+    const baseTime = Date.now();
+    const orderedCustomLists = customLists
+      .map((item:any, index:number)=>{
+        const storedItem = customListById.get(item.data.id);
+        if(storedItem){
+          storedItem.lastupdate = baseTime-index;
+        }
+        return storedItem;
+      })
+      .filter((item:any)=>item);
+
+    this.collectList = this.collectList
+      .filter((item:any)=>item.group!=='customlist')
+      .concat(orderedCustomLists);
+    this.rebuildLikedLookup();
+    this.set(this.LOCALSTORAGE_POEM_LIST, JSON.stringify(this.collectList));
+    this.updateLocalData('customlist');
+  }
+
   //group: idlist, taglist, poetlist, poem, customlist
   likelist(listdata:any, group:any, source:any=null){
     let jump_url= "/tabs/tab4";

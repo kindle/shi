@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { IonItemSliding, ItemReorderEventDetail, ModalController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { UiService } from 'src/app/services/ui.service';
 
@@ -54,6 +54,41 @@ export class PlayListPage {
     this.displayResult = this.displayResult.concat(
       this.searchResult.splice(0,Math.min(this.searchResultCount,100))
     );
+  }
+
+  isEdit = false;
+  editList:any[] = [];
+  edit(){
+    this.showFilter = false;
+    this.editList = [...this.data.localJsonData];
+    this.isEdit = true;
+  }
+  cancel(){
+    this.editList = [];
+    this.isEdit = false;
+    this.data.updateLocalData('customlist');
+    this.onSearchChanged();
+  }
+  save(){
+    this.data.savecustomlistorder(this.editList);
+    this.editList = [];
+    this.isEdit = false;
+    this.onSearchChanged();
+  }
+  openSlidingItem(itemSliding: IonItemSliding) {
+    itemSliding.open('end');
+  }
+  deleteCustomList(list:any){
+    const index = this.editList.findIndex((item:any)=>item.data.id===list.data.id);
+    if(index>=0){
+      this.editList.splice(index,1);
+    }
+  }
+  handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
+    this.editList = ev.detail.complete(this.editList);
+  }
+  trackByCustomList(_:number, item:any){
+    return item.data.id;
   }
 
 
