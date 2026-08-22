@@ -172,15 +172,35 @@ export class SearchToCustomListPage {
 
   getHighlight(p:any){
     let result = "";
-    p.paragraphs.forEach((s:any) => {
-      if(s.indexOf(this.searchText)>-1)
-      {
-        result = s;
+    let matchedKeyword = "";
+    const keywords = (this.searchText || "").trim().split(/\s+/).filter(Boolean);
+
+    for (const keyword of keywords) {
+      const matchedParagraph = p.paragraphs.find((paragraph:any) =>
+        paragraph.indexOf(keyword) > -1
+      );
+      if (matchedParagraph) {
+        result = matchedParagraph;
+        matchedKeyword = keyword;
+        break;
       }
-    });
+    }
+
     p.sample = this.searchText;
-    result = result ===""?this.data.showsample(p):result;
-    return result.replace(this.searchText,"<b>"+this.searchText+"</b>");
+    result = result === "" ? p.paragraphs[0] : result;
+
+    if(result.indexOf('其一') > -1){
+      const currentIndex = p.paragraphs.findIndex((line:any) => line === result);
+      if(currentIndex > -1 && p.paragraphs[currentIndex + 1]){
+        result = p.paragraphs[currentIndex + 1];
+      }
+      else if(p.paragraphs[1]){
+        result = p.paragraphs[1];
+      }
+    }
+
+    return matchedKeyword === "" ? result :
+      result.replace(matchedKeyword,"<b>"+matchedKeyword+"</b>");
 
   }
 }
