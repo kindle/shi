@@ -1,0 +1,14 @@
+www/
+build/
+android/
+ios/
+shi.reddah.com/
+
+resources/
+patches/
+
+src/assets/
+marketing/
+
+node_modules/
+.git/
