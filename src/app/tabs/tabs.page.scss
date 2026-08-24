@@ -171,7 +171,7 @@ ion-tab-bar {
 .tab-highlight {
   position: absolute;
   top: 0px;
-  bottom: 0px;
+  bottom: var(--tab-highlight-bottom, 0px);
   left: 0;
   width: calc(100% / 4); /* Updated for 4 tabs */
   display: flex;
@@ -202,7 +202,7 @@ ion-tab-bar {
   background: var(--ion-color-primary);/* #ff9800; /* Orange */
   border-radius: 2px;
   position: absolute;
-  bottom: 3px; /* Tightly inside, respecting border radius curvature */
+  bottom: var(--tab-highlight-line-bottom, 3px);
   left: 50%;
   transform: translateX(-50%);
 }

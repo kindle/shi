@@ -210,7 +210,9 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     <ion-tab-bar *ngIf="!ui.isipad && !shouldHideTabBar" slot="bottom" [translucent]="false" style="padding-top:3px;"
     [class.selected-tab1]="selectedTab === 'tab1'" [class.selected-tab2]="selectedTab === 'tab2'" [class.selected-tab3]="selectedTab === 'tab3'" [class.selected-tab4]="selectedTab === 'tab4'"
     [ngStyle]="{
-      'padding-bottom':ui.isAndroid ? '10px' : '25px',
+      'padding-bottom':ui.isAndroid ? 'calc(var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px)) + 10px)' : '25px',
+      '--tab-highlight-bottom':ui.isAndroid ? 'calc(var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px)) + 10px)' : '0px',
+      '--tab-highlight-line-bottom':ui.isAndroid ? '-7px' : '3px',
       'background': ui.isAndroid ? '#fff' : ''
      }"
     >
@@ -249,7 +251,7 @@ style="z-index:100;position:fixed;width:100%;padding-inline-start:20px;padding-t
     <ion-tab-bar *ngIf="ui.isipad && !shouldHideTabBar" slot="bottom" [translucent]="false" 
     style="padding-top:15px;"
       [ngStyle]="{
-        'padding-bottom':ui.isAndroid ? '10px' : '25px',
+        'padding-bottom':ui.isAndroid ? 'calc(var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px)) + 10px)' : '25px',
         'background': ui.isAndroid ? '#fff' : ''
       }"
       >

@@ -281,10 +281,13 @@ ion-toolbar .learn-toolbar-title {
   right: 0;
   bottom: 0;
   z-index: 20;
-  //padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 12px);
-  padding: 0px 16px calc(env(safe-area-inset-bottom, 0px) - 70px) 16px;
+  padding: 0 16px 10px;
   background: linear-gradient(180deg, rgba(246, 248, 252, 0) 0%, rgba(246, 248, 252, 0.92) 28%, rgba(246, 248, 252, 0.98) 100%);
   backdrop-filter: blur(12px);
+}
+
+.action-bar-shell-android {
+  padding-bottom: calc(var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px)) + 10px);
 }
 
 .slash-button {

@@ -187,7 +187,7 @@
     </div>
   </ng-template>
 
-  <div class="action-bar-shell" *ngIf="shouldShowBottomActionBar">
+  <div class="action-bar-shell" [class.action-bar-shell-android]="ui.isAndroid" *ngIf="shouldShowBottomActionBar">
     <div class="action-bar" [class.action-bar-question]="!canGoNext">
       <ion-button class="slash-button" color="transparent" (click)="slashCurrentPoem()"
       style="border:1px solid #e8e8e8;border-radius: 10px;background:#e8e8e8;">
