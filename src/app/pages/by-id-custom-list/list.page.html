@@ -227,7 +227,7 @@
     </ion-button>
   </div>
 
-  <div style="display: flex;margin:0 20px;">
+  <div style="display: flex;margin:0 20px;" *ngIf="!noAudio">
     <ion-button color="light" style="width: 100%;"
     (click)="data.screenSaver(listdata.list, listdata.name, listdata.desc)" [disabled]="noAudio">
       <ion-icon slot="start" name="sparkles-outline" color="primary"></ion-icon>
