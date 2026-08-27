@@ -138,7 +138,7 @@
     <app-text name="" [text]="listdata.memo" *ngIf="!showFilter"></app-text>
       
     <ion-list *ngIf="listdata" style="margin-left:5px;margin-top:20px;">
-      <div *ngFor="let p of localList; let i = index" >
+      <div *ngFor="let p of displayedPoems; let i = index" >
         <ion-item lines="none" style="--padding-start:15px;--inner-padding-end:10px;">
           <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
           *ngIf="listdata.onlyonepoet!==true"
@@ -215,6 +215,12 @@
           </div>
           
         </ion-item>
+      </div>
+
+      <div *ngIf="shouldShowMorePoems()" style="margin: 10px 20px 20px;text-align:center;">
+        <ion-button fill="outline" color="medium" (click)="showMorePoems()">
+          {{ ui.instant('Tracker.ShowMore') }}<!--显示更多-->
+        </ion-button>
       </div>
     </ion-list>
 

@@ -18,6 +18,29 @@ export class ListPage {
   searchText:any="";
   showFilter = false;
 
+  poemDisplayLimit = 5;
+  showAllPoems = false;
+
+  get displayedPoems(): any[] {
+    if (!this.localList) {
+      return [];
+    }
+
+    if (this.showAllPoems || this.showFilter) {
+      return this.localList;
+    }
+
+    return this.localList.slice(0, this.poemDisplayLimit);
+  }
+
+  shouldShowMorePoems(): boolean {
+    return !this.showFilter && !this.showAllPoems && !!this.localList && this.localList.length > this.poemDisplayLimit;
+  }
+
+  showMorePoems() {
+    this.showAllPoems = true;
+  }
+
   isSearchbarVisible = true;
   lastScrollTop = 0;
 
@@ -137,6 +160,7 @@ export class ListPage {
 
   async ionViewWillEnter() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.showAllPoems = false;
     this.listdata = this.data.poemListData.filter((e:any)=>e.id==this.id)[0];
 
     //console.log('listdata:', this.listdata);
