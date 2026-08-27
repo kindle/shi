@@ -520,7 +520,7 @@
       </div>
     </ion-item>
 
-    <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+    <ion-item class="lessthan10lines" *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
       <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
           [ngClass]="{'select-line selectableText':currentIndex===i}"
           (click)="select(i, $event); $event.stopPropagation()"
@@ -635,7 +635,7 @@
         </div>
       </ion-item>
       <!--大于10行诗词段-->
-      <ion-item *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
+      <ion-item class="biggerthan10lines" *ngFor="let text of data.currentPoem.paragraphs;index as i" lines="none">
         <div style="width: 100%; text-align:center;font-size:18px;font-weight: normal;"
         [ngStyle]="{'text-align':text.length>30 ? 'left' : 'center' }"
         [ngClass]="{'select-line':currentIndex===i}"
