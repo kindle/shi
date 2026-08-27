@@ -73,7 +73,7 @@ export class GameAudioPage implements OnInit {
     this.currentWord=wordArr[wordArr.length-1];
   }
 
-  AnswerTimeLimit = 10; //3对句题语音 规定秒数内作答，否则挑战失败
+  AnswerTimeLimit = 60;//10 //3对句题语音 规定秒数内作答，否则挑战失败
   clearwords(){
     this.selectedOpt = "";
     this.inputText = "";
