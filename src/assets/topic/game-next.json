@@ -55,9 +55,9 @@
         "image":"/assets/img/game1_12生肖/yp3-虎.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"游子吟","author":"孟郊","sample":"谁言寸草心，报得三春晖", 
@@ -154,9 +154,9 @@
         "image":"/assets/img/game1_12生肖/yp7-马.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"白雪歌送武判官归京","author":"岑参","sample":"忽如一夜春风来，千树万树梨花开", 
@@ -251,9 +251,9 @@
         "image":"/assets/img/game1_12生肖/yp11-狗.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"回乡偶书","author":"贺知章",
@@ -276,9 +276,9 @@
         "image":"/assets/img/game1_12生肖/yp12-猪.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"月下独酌","author":"李白",
@@ -326,9 +326,9 @@
         "image":"/assets/img/game2_国画/2.JPG",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"琵琶行","author":"白居易",
@@ -424,9 +424,9 @@
         "image":"/assets/img/game2_国画/6.JPG",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"咏柳","author":"贺知章",
@@ -647,9 +647,9 @@
         "image":"/assets/img/game3_京剧脸谱/3.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"鹊桥仙","author":"秦观",
@@ -672,9 +672,9 @@
         "image":"/assets/img/game3_京剧脸谱/4.jpg",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"无题","author":"李商隐",
@@ -770,9 +770,9 @@
         "image":"/assets/img/game3_京剧脸谱/8.jpg",
         "more":"居易",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"钱唐湖春行","author":"白居易",
@@ -944,9 +944,9 @@
         "image":"/assets/img/game4_水果/3.png",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"枫桥夜泊","author":"张继",
@@ -969,9 +969,9 @@
         "image":"/assets/img/game4_水果/4.png",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"山居秋暝","author":"王维",
@@ -1117,9 +1117,9 @@
         "image":"/assets/img/game4_水果/10.png",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"春望","author":"杜甫",
@@ -1142,9 +1142,9 @@
         "image":"/assets/img/game4_水果/11.png",
         "more":"",
         "desc":"",
-        "seconds1star": 8,
-        "seconds2star": 6,
-        "seconds3star": 4,
+        "seconds1star": 45,
+        "seconds2star": 30,
+        "seconds3star": 15,
         "list":[
             {
                 "title":"春夜洛城闻笛","author":"李白",
