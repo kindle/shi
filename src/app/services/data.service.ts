@@ -3273,6 +3273,9 @@ export class DataService {
   }
   //by-id-custom-list,by-id-shi-list click poem
   playListByPoem(list:any, poem:any, name:any){
+    // console.log(list)
+    // console.log(poem)
+    // console.log(name)
     if(poem.audio){
       this.orgToPlayList = list.filter((l:any)=>l.audio!=null);
       this.toPlayList = list.filter((l:any)=>l.audio!=null);
@@ -4504,6 +4507,9 @@ export class DataService {
       //this.playobj(poem, poem.audio?false:true);
       //always pop
       this.playobj(poem, pop, fromArticle);
+    }
+    else{
+      console.warn('playbyid called with null id'+(sample?` and sample: ${JSON.stringify(sample)}`:''));
     }
   }
 
