@@ -252,10 +252,11 @@
 
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
     <ion-item *ngFor="let p of visibleLocalList; index as i; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
-      <ion-badge slot="start" color="light" mode="ios">
+      <div class="poem-list-row">
+      <ion-badge color="light" mode="ios">
           {{i+1}}
       </ion-badge>
-      <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+      <ion-thumbnail (click)="data.goToAuthor(p.author)"
       style="display: flex;justify-content: center;align-items: center;">
         <img style="border-radius: 10px;"
           defaultImage="" 
@@ -272,7 +273,7 @@
           'height':(data.isPlaying) ? '' : '5px' }"
         ></div>
       </ion-thumbnail>
-      <ion-label (click)="data.playListByPoem(listdata.list, p, listdata.name)">
+      <ion-label class="poem-list-label" (click)="data.playListByPoem(listdata.list, p, listdata.name)">
         <h2 class="show-only-one-line">
           {{p.previewText}}
         </h2>
@@ -282,6 +283,7 @@
           <ion-icon name="headset" *ngIf="p.audio" color="primary"></ion-icon>
         </p>
       </ion-label>
+      </div>
     </ion-item>
 
   </ion-list>
@@ -309,10 +311,11 @@
       <ion-item-sliding #slidingItem *ngFor="let p of localList; index as i; trackBy: trackByPoem" 
       style="--padding-start:15px;--inner-padding-end:20px;">
         <ion-item style="--padding-start:15px;--inner-padding-end:20px;">
-          <ion-icon slot="start" name="remove-circle" color="danger"
+          <div class="poem-list-row poem-list-row-edit">
+          <ion-icon name="remove-circle" color="danger"
           (click)="openSlidingItem(slidingItem, p)"></ion-icon>
 
-          <ion-thumbnail slot="start" (click)="data.goToAuthor(p.author)"
+          <ion-thumbnail (click)="data.goToAuthor(p.author)"
           style="display: flex;justify-content: center;align-items: center;">
             <img style="border-radius: 10px;"
               defaultImage="" 
@@ -326,7 +329,7 @@
             />
               
           </ion-thumbnail>
-          <ion-label>
+          <ion-label class="poem-list-label">
             <h2 class="show-only-one-line">
               {{p.previewText}}
             </h2>
@@ -337,9 +340,10 @@
             </p>
           </ion-label>
 
-          <ion-reorder slot="end">
+          <ion-reorder>
             <!--<ion-icon name="reorder-three-outline"></ion-icon>-->
           </ion-reorder>
+          </div>
 
         </ion-item>
 

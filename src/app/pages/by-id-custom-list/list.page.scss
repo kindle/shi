@@ -25,6 +25,40 @@
     font-weight: lighter;
 }
 
+.poem-list-row {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+}
+
+.poem-list-row-edit {
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+}
+
+.poem-list-row ion-thumbnail {
+    width: 56px;
+    height: 56px;
+}
+
+.poem-list-label {
+    width: auto !important;
+    min-width: 0;
+    max-width: 100% !important;
+    overflow: hidden;
+
+    .show-only-one-line {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
 .station-content{
     background-size:cover;
     min-height:220px;

@@ -111,6 +111,7 @@ export class ListPage {
       this.localList = this.listdata.list.filter((e:any)=>
         (e.title+e.author+e.sample+e.paragraphs.join('_')).indexOf(key)>=0
       );
+      //console.log(this.localList)
     }
     else{
       this.localList = this.listdata.list.filter((e:any)=>
@@ -175,7 +176,7 @@ export class ListPage {
       return {
         ...poem,
         audio,
-        previewText: poem.previewText ?? this.data.showsample(poem)
+        previewText: this.data.shownosample(poem)
       };
     });
 

@@ -5385,6 +5385,15 @@ export class DataService {
       return p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
     }
   }
+  shownosample(p:any){
+    let result = p.paragraphs?.[0].indexOf('【') !== -1 ? p.paragraphs?.[1] : p.paragraphs?.[0];
+    if (typeof result !== 'string') {
+      return result;
+    }
+
+    const firstSentenceEnd = result.search(/[。？！]/);
+    return firstSentenceEnd === -1 ? result : result.slice(0, firstSentenceEnd + 1);
+  }
   shuffle(){
     this.togglePlayListRandomly();
     
