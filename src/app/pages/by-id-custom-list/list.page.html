@@ -250,13 +250,14 @@
   </ion-list>
 
   <ion-list *ngIf="listdata&&!isEdit" style="margin-left:5px;margin-top:10px;">
-    <ion-item *ngFor="let p of visibleLocalList; index as i; trackBy: trackByPoem" style="--padding-start:15px;--inner-padding-end:20px;">
+    <ion-item *ngFor="let p of visibleLocalList; index as i; trackBy: trackByPoem" 
+    style="--padding-start:15px;--inner-padding-end:20px;margin:10px 0 10px 0;" lines="none">
       <div class="poem-list-row">
       <ion-badge color="light" mode="ios">
           {{i+1}}
       </ion-badge>
       <ion-thumbnail (click)="data.goToAuthor(p.author)"
-      style="display: flex;justify-content: center;align-items: center;">
+      style="display: flex;justify-content: center;align-items: center;margin-bottom:5px;">
         <img style="border-radius: 10px;"
           defaultImage="" 
           lazyLoad="{{p.txtimg}}"
