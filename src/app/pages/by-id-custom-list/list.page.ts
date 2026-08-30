@@ -6,6 +6,9 @@ import { IonItemSliding, ItemReorderEventDetail, ModalController } from '@ionic/
 import { SearchToCustomListPage } from 'src/app/tab3/customlist/search-to-customlist/search-to-customlist.page';
 import { EventService } from '../../services/event.service';
 import { Swiper } from 'swiper';
+import { Capacitor } from '@capacitor/core';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-list',
@@ -315,5 +318,54 @@ export class ListPage {
   }
 
   test(){}
+
+  async share(){
+    if(!this.listdata){
+      return;
+    }
+
+    const fileName = `${this.getExportFileName(this.listdata.name)}.json`;
+    const content = JSON.stringify(this.listdata, null, 2);
+
+    try{
+      if(Capacitor.getPlatform() === 'web'){
+        const blob = new Blob([content], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        await this.ui.toast('bottom', '导出成功');
+        return;
+      }
+
+      const savedFile = await Filesystem.writeFile({
+        path: fileName,
+        data: content,
+        directory: Directory.Cache,
+        encoding: Encoding.UTF8
+      });
+
+      await Share.share({
+        title: this.listdata.name,
+        text: fileName,
+        files: [savedFile.uri],
+        dialogTitle: this.ui.instant('Action.Share')
+      });
+    }catch(error){
+      console.error('Custom poem list export failed', error);
+      await this.ui.toast('bottom', '导出失败');
+    }
+  }
+
+  private getExportFileName(name:any){
+    const safeName = String(name || 'poem_list')
+      .replace(/[\\/:*?"<>|]/g, '_')
+      .trim();
+    return safeName || 'poem_list';
+  }
 
 }

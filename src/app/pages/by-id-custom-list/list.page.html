@@ -18,6 +18,10 @@
       <ion-popover trigger="popover-button-list-{{data.currentTab}}" [dismissOnSelect]="true" arrow="false">
         <ng-template>
           <ion-content>
+            <ion-item lines="full" [button]="true" [detail]="false" (click)="share()">
+              {{ ui.instant('Action.Share') }}<!--分享-->
+              <ion-icon name="share-social-outline" slot="end"></ion-icon>
+            </ion-item>
             <ion-list>
               <ion-item lines="full" [button]="true" [detail]="false" (click)="edit()">
                 {{ ui.instant('Action.Edit')}}<!--编辑-->
@@ -29,11 +33,6 @@
                 <ion-text color="danger">{{ ui.instant('Action.DelFromLib')}}<!--从诗词库中删除--></ion-text>
                 <ion-icon name="trash-outline" slot="end" color="danger"></ion-icon>
               </ion-item>
-              <!--
-              <ion-item lines="full" [button]="true" [detail]="false">
-                分享
-                <ion-icon name="share-outline" slot="end"></ion-icon>
-              </ion-item>-->
             </ion-list>
           </ion-content>
         </ng-template>

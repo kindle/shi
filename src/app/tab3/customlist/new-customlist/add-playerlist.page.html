@@ -18,4 +18,33 @@
         <ion-input labelPlacement="floating" label="{{ ui.instant('Title.NewListDesc') }}" [(ngModel)]="desc" 
         placeholder="{{ ui.instant('Title.NewListDesc') }}"></ion-input>
     </ion-item>
+    <ion-list style="margin-top:50px;">
+        <ion-item lines="none">
+          {{ ui.instant('Study.SysPoemList') }}<!--系统诗单-->
+        </ion-item>
+        <ion-item *ngFor="let poemList of sys_poem_list" [button]="true" [detail]="false"
+        (click)="importSystemPoemList(poemList)">
+            <ion-thumbnail slot="start" *ngIf="poemList.data?.customimage"
+            style="border-radius: 10px;" [style.background-color]="poemList.data?.color">
+                <img style="border-radius: 10px;" defaultImage="" lazyLoad="{{poemList.data.customimage}}" />
+            </ion-thumbnail>
+            <ion-thumbnail slot="start" *ngIf="!poemList.data?.customimage&&poemList.data?.image&&poemList.data.image.length<4"
+            style="border-radius: 10px;" [style.background-color]="poemList.data.color">
+                <img style="border-radius: 10px;" defaultImage="assets/img/default.jpg"
+                lazyLoad="{{poemList.data.image[0]}}" *ngIf="poemList.data.image.length>0" />
+            </ion-thumbnail>
+            <ion-thumbnail slot="start" *ngIf="!poemList.data?.customimage&&poemList.data?.image&&poemList.data.image.length>=4"
+            style="aspect-ratio: 1 / 1;border: 1px solid rgba(247,247,247);border-radius: 10px;
+            display: grid;grid-gap:0px;justify-content: space-evenly;align-content: space-evenly;
+            grid-template-columns: repeat(2, 1fr);grid-template-rows: repeat(2, 1fr);
+            overflow: hidden;" [style.background-color]="poemList.data.color">
+                <div *ngFor="let i of [0,1,2,3]"
+                defaultImage="assets/img/default.jpg" lazyLoad="{{poemList.data.image[i]}}"
+                style="background-size:cover;background-repeat: no-repeat;"></div>
+            </ion-thumbnail>
+            <ion-label>
+                <h2>{{poemList.data?.name || poemList.name}}</h2>
+            </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -1,0 +1,121 @@
+{
+  "id": "f87446e3-70c6-4c38-bd18-7aa5df8f273b",
+  "name": "毛主席诗词",
+  "desc": "一万年太久 只争早夕",
+  "color": "rgb(113,203,212)",
+  "list": [
+    {
+      "id": "dcb5d5df-7a1d-4a36-ab98-a8168aae0c36",
+      "title": "卜算子·咏梅",
+      "author": "毛泽东",
+      "dy": "",
+      "paragraphs": [
+        "风雨送春归，飞雪迎春到。",
+        "已是悬崖百丈冰，犹有花枝俏。",
+        "俏也不争春，只把春来报。",
+        "待到山花烂漫时，她在丛中笑。"
+      ],
+      "tags": [
+        "北京版",
+        "人教版",
+        "小学",
+        "四年级",
+        "四年级下册",
+        "课文"
+      ],
+      "audio": "65 毛泽东《卜算子·咏梅》.mp3",
+      "chapter": "",
+      "section": "",
+      "rhythmic": "",
+      "type": "",
+      "text": "毛泽东卜算子·咏梅undefinedundefinedundefined风雨送春归，飞雪迎春到。_已是悬崖百丈冰，犹有花枝俏。_俏也不争春，只把春来报。_待到山花烂漫时，她在丛中笑。undefinedundefined北京版_人教版_小学_四年级_四年级下册_课文",
+      "sample": "毛泽东",
+      "added": [
+        "f87446e3-70c6-4c38-bd18-7aa5df8f273b"
+      ],
+      "previewText": "风雨送春归，飞雪迎春到。"
+    },
+    {
+      "id": "7afa104d-e493-4764-8fc1-53c531c46de7",
+      "title": "七律·长征",
+      "author": "毛泽东",
+      "dy": "",
+      "paragraphs": [
+        "红军不怕远征难，万水千山只等闲。",
+        "五岭逶迤腾细浪，乌蒙磅礴走泥丸。",
+        "金沙水拍云崖暖，大渡桥横铁索寒。",
+        "更喜岷山千里雪，三军过后尽开颜。"
+      ],
+      "tags": [
+        "北京版",
+        "人教版",
+        "小学",
+        "六年级",
+        "六年级上册",
+        "课文"
+      ],
+      "audio": "毛泽东《七律·长征》.mp3",
+      "chapter": "",
+      "section": "",
+      "rhythmic": "",
+      "type": "",
+      "text": "毛泽东七律·长征undefinedundefinedundefined红军不怕远征难，万水千山只等闲。_五岭逶迤腾细浪，乌蒙磅礴走泥丸。_金沙水拍云崖暖，大渡桥横铁索寒。_更喜岷山千里雪，三军过后尽开颜。undefinedundefined北京版_人教版_小学_六年级_六年级上册_课文",
+      "sample": "毛泽东",
+      "added": [
+        "f87446e3-70c6-4c38-bd18-7aa5df8f273b"
+      ],
+      "previewText": "红军不怕远征难，万水千山只等闲。"
+    },
+    {
+      "id": "dfdcfe51-132d-46d2-b090-a8899d8fed06",
+      "title": "忆秦娥·娄山关",
+      "author": "毛泽东",
+      "dy": "",
+      "paragraphs": [
+        "西风烈，长空雁叫霜晨月。",
+        "霜晨月，马蹄声碎，喇叭声咽。",
+        "雄关漫道真如铁，而今迈步从头越。",
+        "从头越，苍山如海，残阳如血。"
+      ],
+      "chapter": "",
+      "section": "",
+      "rhythmic": "",
+      "tags": [],
+      "type": "",
+      "text": "毛泽东忆秦娥·娄山关undefinedundefinedundefined西风烈，长空雁叫霜晨月。_霜晨月，马蹄声碎，喇叭声咽。_雄关漫道真如铁，而今迈步从头越。_从头越，苍山如海，残阳如血。undefinedundefined",
+      "sample": "毛泽东",
+      "added": [
+        "f87446e3-70c6-4c38-bd18-7aa5df8f273b"
+      ],
+      "previewText": "西风烈，长空雁叫霜晨月。",
+      "audio": null
+    },
+    {
+      "id": "00201261-1578-46fb-a58a-f182486f81a6",
+      "title": "七律·人民解放军占领南京",
+      "author": "毛泽东",
+      "dy": "",
+      "paragraphs": [
+        "钟山风雨起苍黄，百万雄师过大江。",
+        "虎踞龙盘今胜昔，天翻地覆慨而慷。",
+        "宜将剩勇追穷寇，不可沽名学霸王。",
+        "天若有情天亦老，人间正道是沧桑。"
+      ],
+      "audio": "毛泽东《七律·人民解放军占领南京》.mp3",
+      "chapter": "",
+      "section": "",
+      "rhythmic": "",
+      "tags": [],
+      "type": "",
+      "text": "毛泽东七律·人民解放军占领南京undefinedundefinedundefined钟山风雨起苍黄，百万雄师过大江。_虎踞龙盘今胜昔，天翻地覆慨而慷。_宜将剩勇追穷寇，不可沽名学霸王。_天若有情天亦老，人间正道是沧桑。undefinedundefined",
+      "sample": "毛泽东",
+      "added": [
+        "f87446e3-70c6-4c38-bd18-7aa5df8f273b"
+      ],
+      "previewText": "钟山风雨起苍黄，百万雄师过大江。"
+    }
+  ],
+  "image": [
+    "https://reddah.blob.core.windows.net/msjjpoet/毛泽东.jpeg"
+  ]
+}
